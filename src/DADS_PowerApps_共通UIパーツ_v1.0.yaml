@@ -1,0 +1,469 @@
+# DADSベース Power Apps 共通UIパーツ v1.0
+# 対応基準: DADS_PowerApps_デザイン基準_v1.01
+# 前提: DADS_PowerApps_AppFormulas_デザイントークン_v1.0.fx を App.Formulas に設定済み
+# 貼り付け先: Power Apps Studioの対象スクリーンまたはコンテナ
+
+- conDadsCommonParts:
+    Control: GroupContainer@1.3.0
+    Variant: AutoLayout
+    Properties:
+      BorderColor: =DadsTokens.Color.Transparent
+      BorderStyle: =BorderStyle.None
+      BorderThickness: =0
+      DropShadow: =DropShadow.None
+      Fill: =DadsTokens.Color.Background
+      Height: =Parent.Height
+      LayoutDirection: =LayoutDirection.Vertical
+      LayoutGap: =DadsTokens.Space.XL
+      LayoutOverflowY: =LayoutOverflow.Scroll
+      PaddingBottom: =PagePadding
+      PaddingLeft: =PagePadding
+      PaddingRight: =PagePadding
+      PaddingTop: =PagePadding
+      RadiusBottomLeft: =DadsTokens.Radius.None
+      RadiusBottomRight: =DadsTokens.Radius.None
+      RadiusTopLeft: =DadsTokens.Radius.None
+      RadiusTopRight: =DadsTokens.Radius.None
+      Width: =Min(Parent.Width, DadsTokens.Size.ContentMaximumWidth)
+      X: =(Parent.Width - Self.Width) / 2
+      Y: =0
+    Children:
+
+      # ================================================================
+      # ボタン
+      # ================================================================
+      - conDadsButtons:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            BorderStyle: =BorderStyle.None
+            DropShadow: =DropShadow.None
+            Fill: =DadsTokens.Color.Transparent
+            Height: =If(IsMobileLayout, 232, 120)
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =DadsTokens.Space.M
+            Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+          Children:
+            - lblDadsButtonsTitle:
+                Control: ModernText@1.0.0
+                Properties:
+                  AutoHeight: =true
+                  Color: =DadsTokens.Color.TextPrimary
+                  Font: =DadsTokens.Font.Family
+                  FontWeight: =DadsTokens.Font.WeightBold
+                  Size: =DadsTokens.Font.Size.SectionTitle
+                  Text: ="ボタン"
+                  Width: =Parent.Width
+
+            - conDadsButtonRow:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderStyle: =BorderStyle.None
+                  DropShadow: =DropShadow.None
+                  Fill: =DadsTokens.Color.Transparent
+                  Height: =If(IsMobileLayout, 160, DadsTokens.Size.ControlMedium)
+                  LayoutDirection: =If(IsMobileLayout, LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                  LayoutGap: =DadsTokens.Space.S
+                  Width: =Parent.Width
+                Children:
+                  - btnDadsPrimary:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="変更を保存"
+                        Appearance: =ButtonAppearance.Primary
+                        BasePaletteColor: =DadsTokens.Color.Primary
+                        BorderColor: =DadsTokens.Color.Primary
+                        BorderStyle: =BorderStyle.Solid
+                        BorderThickness: =DadsTokens.Border.WidthDefault
+                        Color: =DadsTokens.Color.TextOnPrimary
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Height: =DadsTokens.Size.ControlMedium
+                        RadiusBottomLeft: =DadsTokens.Radius.Control
+                        RadiusBottomRight: =DadsTokens.Radius.Control
+                        RadiusTopLeft: =DadsTokens.Radius.Control
+                        RadiusTopRight: =DadsTokens.Radius.Control
+                        Size: =DadsTokens.Font.Size.Button
+                        Text: ="変更を保存"
+                        Width: =If(IsMobileLayout, Parent.Width, 136)
+
+                  - btnDadsSecondary:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="内容を確認"
+                        Appearance: =ButtonAppearance.Outline
+                        BasePaletteColor: =DadsTokens.Color.Primary
+                        BorderColor: =DadsTokens.Color.Primary
+                        BorderStyle: =BorderStyle.Solid
+                        BorderThickness: =DadsTokens.Border.WidthDefault
+                        Color: =DadsTokens.Color.Primary
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Height: =DadsTokens.Size.ControlMedium
+                        RadiusBottomLeft: =DadsTokens.Radius.Control
+                        RadiusBottomRight: =DadsTokens.Radius.Control
+                        RadiusTopLeft: =DadsTokens.Radius.Control
+                        RadiusTopRight: =DadsTokens.Radius.Control
+                        Size: =DadsTokens.Font.Size.Button
+                        Text: ="内容を確認"
+                        Width: =If(IsMobileLayout, Parent.Width, 136)
+
+                  - btnDadsTertiary:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="キャンセル"
+                        Appearance: =ButtonAppearance.Subtle
+                        BasePaletteColor: =DadsTokens.Color.Primary
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =0
+                        Color: =DadsTokens.Color.Link
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Height: =DadsTokens.Size.ControlMedium
+                        Size: =DadsTokens.Font.Size.Button
+                        Text: ="キャンセル"
+                        Underline: =true
+                        Width: =If(IsMobileLayout, Parent.Width, 120)
+
+      # ================================================================
+      # 入力欄
+      # ================================================================
+      - conDadsInputField:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            BorderStyle: =BorderStyle.None
+            DropShadow: =DropShadow.None
+            Fill: =DadsTokens.Color.Transparent
+            Height: =164
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =DadsTokens.Space.S
+            Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+          Children:
+            - lblDadsInputLabel:
+                Control: ModernText@1.0.0
+                Properties:
+                  AutoHeight: =true
+                  Color: =DadsTokens.Color.TextPrimary
+                  Font: =DadsTokens.Font.Family
+                  FontWeight: =DadsTokens.Font.WeightBold
+                  Size: =DadsTokens.Font.Size.InputLabel
+                  Text: ="職員番号　※必須"
+                  Width: =Min(560, Parent.Width)
+
+            - txtDadsInput:
+                Control: ModernTextInput@1.0.0
+                Properties:
+                  AccessibleLabel: ="職員番号、必須項目"
+                  Appearance: =Appearance.Outline
+                  BasePaletteColor: =DadsTokens.Color.Primary
+                  BorderColor: =DadsTokens.Color.Border
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =DadsTokens.Border.WidthDefault
+                  Color: =DadsTokens.Color.TextPrimary
+                  Default: =""
+                  Font: =DadsTokens.Font.Family
+                  FontWeight: =DadsTokens.Font.WeightRegular
+                  Height: =DadsTokens.Size.ControlMedium
+                  MaxLength: =10
+                  Placeholder: ="例：000123"
+                  RadiusBottomLeft: =DadsTokens.Radius.Control
+                  RadiusBottomRight: =DadsTokens.Radius.Control
+                  RadiusTopLeft: =DadsTokens.Radius.Control
+                  RadiusTopRight: =DadsTokens.Radius.Control
+                  Required: =true
+                  Size: =DadsTokens.Font.Size.Body
+                  TriggerOutput: =TriggerOutput.Delayed
+                  Type: =TextInputType.SingleLine
+                  ValidationState: =ValidationState.None
+                  Width: =Min(560, Parent.Width)
+
+            - lblDadsInputSupport:
+                Control: ModernText@1.0.0
+                Properties:
+                  AutoHeight: =true
+                  Color: =DadsTokens.Color.TextSecondary
+                  Font: =DadsTokens.Font.Family
+                  FontWeight: =DadsTokens.Font.WeightRegular
+                  Size: =DadsTokens.Font.Size.Caption
+                  Text: ="半角数字6桁で入力してください。"
+                  Width: =Min(560, Parent.Width)
+
+            - lblDadsInputError:
+                Control: ModernText@1.0.0
+                Properties:
+                  AutoHeight: =true
+                  Color: =DadsTokens.Color.ErrorText
+                  Font: =DadsTokens.Font.Family
+                  FontWeight: =DadsTokens.Font.WeightRegular
+                  Size: =DadsTokens.Font.Size.Body
+                  Text: ="＊職員番号を半角数字6桁で入力してください。"
+                  Visible: =false
+                  Width: =Min(560, Parent.Width)
+
+      # ================================================================
+      # カード
+      # ================================================================
+      - conDadsCard:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            BorderColor: =DadsTokens.Color.Border
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =DadsTokens.Border.WidthDefault
+            DropShadow: =DropShadow.None
+            Fill: =DadsTokens.Color.Surface
+            Height: =208
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =DadsTokens.Space.M
+            PaddingBottom: =CardPadding
+            PaddingLeft: =CardPadding
+            PaddingRight: =CardPadding
+            PaddingTop: =CardPadding
+            RadiusBottomLeft: =DadsTokens.Radius.Card
+            RadiusBottomRight: =DadsTokens.Radius.Card
+            RadiusTopLeft: =DadsTokens.Radius.Card
+            RadiusTopRight: =DadsTokens.Radius.Card
+            Width: =Min(720, Parent.Width - Parent.PaddingLeft - Parent.PaddingRight)
+          Children:
+            - lblDadsCardTitle:
+                Control: ModernText@1.0.0
+                Properties:
+                  AutoHeight: =true
+                  Color: =DadsTokens.Color.TextPrimary
+                  Font: =DadsTokens.Font.Family
+                  FontWeight: =DadsTokens.Font.WeightBold
+                  Size: =DadsTokens.Font.Size.SubsectionTitle
+                  Text: ="給与計算の対象"
+                  Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+
+            - lblDadsCardBody:
+                Control: ModernText@1.0.0
+                Properties:
+                  AutoHeight: =true
+                  Color: =DadsTokens.Color.TextPrimary
+                  Font: =DadsTokens.Font.Family
+                  FontWeight: =DadsTokens.Font.WeightRegular
+                  Size: =DadsTokens.Font.Size.Body
+                  Text: ="対象職員と計算対象年月を確認してから、詳細画面へ進んでください。"
+                  Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+
+            - btnDadsCardAction:
+                Control: ModernButton@1.0.0
+                Properties:
+                  AccessibleLabel: ="給与計算の詳細を表示"
+                  Appearance: =ButtonAppearance.Outline
+                  BasePaletteColor: =DadsTokens.Color.Primary
+                  BorderColor: =DadsTokens.Color.Primary
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =DadsTokens.Border.WidthDefault
+                  Color: =DadsTokens.Color.Primary
+                  Font: =DadsTokens.Font.Family
+                  FontWeight: =DadsTokens.Font.WeightBold
+                  Height: =DadsTokens.Size.ControlMedium
+                  RadiusBottomLeft: =DadsTokens.Radius.Control
+                  RadiusBottomRight: =DadsTokens.Radius.Control
+                  RadiusTopLeft: =DadsTokens.Radius.Control
+                  RadiusTopRight: =DadsTokens.Radius.Control
+                  Size: =DadsTokens.Font.Size.Button
+                  Text: ="詳細を表示"
+                  Width: =If(IsMobileLayout, Parent.Width - Parent.PaddingLeft - Parent.PaddingRight, 136)
+
+      # ================================================================
+      # 通知
+      # ================================================================
+      - conDadsNotifications:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            BorderStyle: =BorderStyle.None
+            DropShadow: =DropShadow.None
+            Fill: =DadsTokens.Color.Transparent
+            Height: =392
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =DadsTokens.Space.M
+            Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+          Children:
+            - lblDadsNotificationsTitle:
+                Control: ModernText@1.0.0
+                Properties:
+                  AutoHeight: =true
+                  Color: =DadsTokens.Color.TextPrimary
+                  Font: =DadsTokens.Font.Family
+                  FontWeight: =DadsTokens.Font.WeightBold
+                  Size: =DadsTokens.Font.Size.SectionTitle
+                  Text: ="通知"
+                  Width: =Parent.Width
+
+            - conDadsNoticeSuccess:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderColor: =DadsTokens.Color.SuccessText
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =DadsTokens.Border.WidthDefault
+                  DropShadow: =DropShadow.None
+                  Fill: =DadsTokens.Color.SuccessBackground
+                  Height: =72
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =DadsTokens.Space.XS
+                  PaddingBottom: =DadsTokens.Space.M
+                  PaddingLeft: =DadsTokens.Space.M
+                  PaddingRight: =DadsTokens.Space.M
+                  PaddingTop: =DadsTokens.Space.M
+                  RadiusBottomLeft: =DadsTokens.Radius.Control
+                  RadiusBottomRight: =DadsTokens.Radius.Control
+                  RadiusTopLeft: =DadsTokens.Radius.Control
+                  RadiusTopRight: =DadsTokens.Radius.Control
+                  Width: =Parent.Width
+                Children:
+                  - lblDadsNoticeSuccessTitle:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        AutoHeight: =true
+                        Color: =DadsTokens.Color.SuccessText
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="成功"
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                  - lblDadsNoticeSuccessBody:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        AutoHeight: =true
+                        Color: =DadsTokens.Color.TextPrimary
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightRegular
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="対象職員のデータを保存しました。"
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+
+            - conDadsNoticeInfo:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderColor: =DadsTokens.Color.InfoText
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =DadsTokens.Border.WidthDefault
+                  DropShadow: =DropShadow.None
+                  Fill: =DadsTokens.Color.InfoBackground
+                  Height: =72
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =DadsTokens.Space.XS
+                  PaddingBottom: =DadsTokens.Space.M
+                  PaddingLeft: =DadsTokens.Space.M
+                  PaddingRight: =DadsTokens.Space.M
+                  PaddingTop: =DadsTokens.Space.M
+                  RadiusBottomLeft: =DadsTokens.Radius.Control
+                  RadiusBottomRight: =DadsTokens.Radius.Control
+                  RadiusTopLeft: =DadsTokens.Radius.Control
+                  RadiusTopRight: =DadsTokens.Radius.Control
+                  Width: =Parent.Width
+                Children:
+                  - lblDadsNoticeInfoTitle:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        AutoHeight: =true
+                        Color: =DadsTokens.Color.InfoText
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="情報"
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                  - lblDadsNoticeInfoBody:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        AutoHeight: =true
+                        Color: =DadsTokens.Color.TextPrimary
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightRegular
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="計算結果は保存前に確認できます。"
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+
+            - conDadsNoticeWarning:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderColor: =DadsTokens.Color.WarningText
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =DadsTokens.Border.WidthDefault
+                  DropShadow: =DropShadow.None
+                  Fill: =DadsTokens.Color.WarningBackground
+                  Height: =72
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =DadsTokens.Space.XS
+                  PaddingBottom: =DadsTokens.Space.M
+                  PaddingLeft: =DadsTokens.Space.M
+                  PaddingRight: =DadsTokens.Space.M
+                  PaddingTop: =DadsTokens.Space.M
+                  RadiusBottomLeft: =DadsTokens.Radius.Control
+                  RadiusBottomRight: =DadsTokens.Radius.Control
+                  RadiusTopLeft: =DadsTokens.Radius.Control
+                  RadiusTopRight: =DadsTokens.Radius.Control
+                  Width: =Parent.Width
+                Children:
+                  - lblDadsNoticeWarningTitle:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        AutoHeight: =true
+                        Color: =DadsTokens.Color.WarningText
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="警告"
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                  - lblDadsNoticeWarningBody:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        AutoHeight: =true
+                        Color: =DadsTokens.Color.TextPrimary
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightRegular
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="未入力の項目があります。内容を確認してください。"
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+
+            - conDadsNoticeError:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderColor: =DadsTokens.Color.ErrorText
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =DadsTokens.Border.WidthDefault
+                  DropShadow: =DropShadow.None
+                  Fill: =DadsTokens.Color.ErrorBackground
+                  Height: =72
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =DadsTokens.Space.XS
+                  PaddingBottom: =DadsTokens.Space.M
+                  PaddingLeft: =DadsTokens.Space.M
+                  PaddingRight: =DadsTokens.Space.M
+                  PaddingTop: =DadsTokens.Space.M
+                  RadiusBottomLeft: =DadsTokens.Radius.Control
+                  RadiusBottomRight: =DadsTokens.Radius.Control
+                  RadiusTopLeft: =DadsTokens.Radius.Control
+                  RadiusTopRight: =DadsTokens.Radius.Control
+                  Width: =Parent.Width
+                Children:
+                  - lblDadsNoticeErrorTitle:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        AutoHeight: =true
+                        Color: =DadsTokens.Color.ErrorText
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="エラー"
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                  - lblDadsNoticeErrorBody:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        AutoHeight: =true
+                        Color: =DadsTokens.Color.TextPrimary
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightRegular
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="データを保存できませんでした。入力内容を確認して再実行してください。"
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
