@@ -1,0 +1,1662 @@
+# 非常勤職員マスタ検索・選択画面 v1.02
+# 参照: 職員マスタ検索ダッシュボード v0.807 基本設計書・詳細設計書・HTML
+# 前提: DADS_PowerApps_AppFormulas_デザイントークン_v1.0.fx を App.Formulas に設定済み
+# 用途: Power Apps Studio のツリービューへ全体を貼り付ける
+# データ接続前のUI確認用としてサンプルコレクションを Screen.OnVisible で生成する
+# Dataverse接続時は colStaffUiSample / colStaffHistoryUiSample を実テーブルへ置換する
+# v1.01: 25名分のテストデータ、20件ページング、検索結果・認定簿・給与簿プレビューを実装
+# v1.02: モダンText Inputの出力を Text で参照し、検索結果コレクションを検索・件数・一覧・出力で共通化
+
+Screens:
+  scrStaffMasterSearch_v102:
+    Properties:
+      Fill: =DadsTokens.Color.BackgroundSubtle
+      LoadingSpinnerColor: =DadsTokens.Color.Primary
+      OnVisible: |-
+        =If(
+            IsEmpty(colStaffUiSample),
+            ClearCollect(
+                colStaffUiSample,
+                {
+                    職員番号: "000101",
+                    氏名: "山田 太郎",
+                    所属: "総務課",
+                    組織名略称: "総務",
+                    在籍状態: "在籍",
+                    生年月日: Date(1985, 4, 12),
+                    性別: "男性",
+                    採用日: Date(2024, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000102",
+                    氏名: "佐藤 花子",
+                    所属: "会計課",
+                    組織名略称: "会計",
+                    在籍状態: "在籍",
+                    生年月日: Date(1990, 9, 20),
+                    性別: "女性",
+                    採用日: Date(2025, 5, 20),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000103",
+                    氏名: "鈴木 一郎",
+                    所属: "人事課",
+                    組織名略称: "人事",
+                    在籍状態: "在籍",
+                    生年月日: Date(1978, 1, 8),
+                    性別: "男性",
+                    採用日: Date(2023, 10, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000104",
+                    氏名: "高橋 美咲",
+                    所属: "調査課",
+                    組織名略称: "調査",
+                    在籍状態: "在籍",
+                    生年月日: Date(1995, 7, 15),
+                    性別: "女性",
+                    採用日: Date(2026, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000105",
+                    氏名: "田中 次郎",
+                    所属: "総務課",
+                    組織名略称: "総務",
+                    在籍状態: "退職",
+                    生年月日: Date(1982, 11, 2),
+                    性別: "男性",
+                    採用日: Date(2022, 4, 1),
+                    退職日: Date(2026, 3, 31)
+                },
+                {
+                    職員番号: "000106",
+                    氏名: "伊藤 健太",
+                    所属: "総務課",
+                    組織名略称: "総務",
+                    在籍状態: "在籍",
+                    生年月日: Date(1978, 11, 7),
+                    性別: "女性",
+                    採用日: Date(2022, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000107",
+                    氏名: "渡辺 直美",
+                    所属: "会計課",
+                    組織名略称: "会計",
+                    在籍状態: "在籍",
+                    生年月日: Date(1979, 12, 8),
+                    性別: "男性",
+                    採用日: Date(2023, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000108",
+                    氏名: "小林 大輔",
+                    所属: "人事課",
+                    組織名略称: "人事",
+                    在籍状態: "在籍",
+                    生年月日: Date(1980, 1, 9),
+                    性別: "女性",
+                    採用日: Date(2024, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000109",
+                    氏名: "加藤 由美",
+                    所属: "調査課",
+                    組織名略称: "調査",
+                    在籍状態: "在籍",
+                    生年月日: Date(1981, 2, 10),
+                    性別: "男性",
+                    採用日: Date(2025, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000110",
+                    氏名: "吉田 翔太",
+                    所属: "企画課",
+                    組織名略称: "企画",
+                    在籍状態: "退職",
+                    生年月日: Date(1982, 3, 11),
+                    性別: "女性",
+                    採用日: Date(2026, 4, 1),
+                    退職日: Date(2029, 3, 31)
+                },
+                {
+                    職員番号: "000111",
+                    氏名: "山本 恵",
+                    所属: "総務課",
+                    組織名略称: "総務",
+                    在籍状態: "在籍",
+                    生年月日: Date(1983, 4, 12),
+                    性別: "男性",
+                    採用日: Date(2022, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000112",
+                    氏名: "中村 拓海",
+                    所属: "会計課",
+                    組織名略称: "会計",
+                    在籍状態: "在籍",
+                    生年月日: Date(1984, 5, 13),
+                    性別: "女性",
+                    採用日: Date(2023, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000113",
+                    氏名: "斎藤 真理",
+                    所属: "人事課",
+                    組織名略称: "人事",
+                    在籍状態: "在籍",
+                    生年月日: Date(1985, 6, 14),
+                    性別: "男性",
+                    採用日: Date(2024, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000114",
+                    氏名: "松本 和也",
+                    所属: "調査課",
+                    組織名略称: "調査",
+                    在籍状態: "在籍",
+                    生年月日: Date(1986, 7, 15),
+                    性別: "女性",
+                    採用日: Date(2025, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000115",
+                    氏名: "井上 彩",
+                    所属: "企画課",
+                    組織名略称: "企画",
+                    在籍状態: "在籍",
+                    生年月日: Date(1987, 8, 16),
+                    性別: "男性",
+                    採用日: Date(2026, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000116",
+                    氏名: "木村 亮",
+                    所属: "総務課",
+                    組織名略称: "総務",
+                    在籍状態: "在籍",
+                    生年月日: Date(1988, 9, 17),
+                    性別: "女性",
+                    採用日: Date(2022, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000117",
+                    氏名: "林 奈々",
+                    所属: "会計課",
+                    組織名略称: "会計",
+                    在籍状態: "退職",
+                    生年月日: Date(1989, 10, 18),
+                    性別: "男性",
+                    採用日: Date(2023, 4, 1),
+                    退職日: Date(2026, 3, 31)
+                },
+                {
+                    職員番号: "000118",
+                    氏名: "清水 誠",
+                    所属: "人事課",
+                    組織名略称: "人事",
+                    在籍状態: "在籍",
+                    生年月日: Date(1990, 11, 19),
+                    性別: "女性",
+                    採用日: Date(2024, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000119",
+                    氏名: "山口 愛",
+                    所属: "調査課",
+                    組織名略称: "調査",
+                    在籍状態: "在籍",
+                    生年月日: Date(1991, 12, 20),
+                    性別: "男性",
+                    採用日: Date(2025, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000120",
+                    氏名: "森 健一",
+                    所属: "企画課",
+                    組織名略称: "企画",
+                    在籍状態: "在籍",
+                    生年月日: Date(1992, 1, 1),
+                    性別: "女性",
+                    採用日: Date(2026, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000121",
+                    氏名: "池田 遥",
+                    所属: "総務課",
+                    組織名略称: "総務",
+                    在籍状態: "在籍",
+                    生年月日: Date(1993, 2, 2),
+                    性別: "男性",
+                    採用日: Date(2022, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000122",
+                    氏名: "橋本 学",
+                    所属: "会計課",
+                    組織名略称: "会計",
+                    在籍状態: "在籍",
+                    生年月日: Date(1994, 3, 3),
+                    性別: "女性",
+                    採用日: Date(2023, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000123",
+                    氏名: "阿部 由紀",
+                    所属: "人事課",
+                    組織名略称: "人事",
+                    在籍状態: "在籍",
+                    生年月日: Date(1995, 4, 4),
+                    性別: "男性",
+                    採用日: Date(2024, 4, 1),
+                    退職日: Blank()
+                },
+                {
+                    職員番号: "000124",
+                    氏名: "石川 翼",
+                    所属: "調査課",
+                    組織名略称: "調査",
+                    在籍状態: "退職",
+                    生年月日: Date(1996, 5, 5),
+                    性別: "女性",
+                    採用日: Date(2025, 4, 1),
+                    退職日: Date(2028, 3, 31)
+                },
+                {
+                    職員番号: "000125",
+                    氏名: "前田 美穂",
+                    所属: "企画課",
+                    組織名略称: "企画",
+                    在籍状態: "在籍",
+                    生年月日: Date(1997, 6, 6),
+                    性別: "男性",
+                    採用日: Date(2026, 4, 1),
+                    退職日: Blank()
+                }
+            );
+            ClearCollect(
+                colStaffHistoryUiSample,
+                {職員番号: "000101", 区分: "給与・勤務条件履歴", 期間: "2026/04/01～", 内容: "日額 9,300円／7時間45分"},
+                {職員番号: "000101", 区分: "通勤支給予定", 期間: "2026/04/01～2026/09/30", 内容: "定期券・6か月 72,000円"},
+                {職員番号: "000101", 区分: "社会保険履歴", 期間: "2026/04/01～", 内容: "厚生年金・共済短期 適用"},
+                {職員番号: "000101", 区分: "住民税履歴", 期間: "2026/06/01～2027/05/31", 内容: "特別徴収"},
+                {職員番号: "000101", 区分: "税・固定控除設定履歴", 期間: "2026/01/01～", 内容: "甲欄／扶養1人"},
+                {職員番号: "000101", 区分: "基準給与簿履歴", 期間: "2026/08支給", 内容: "給与支給総額 186,000円"},
+                {職員番号: "000102", 区分: "給与・勤務条件履歴", 期間: "2025/05/20～", 内容: "時間額 1,500円／6時間"},
+                {職員番号: "000102", 区分: "通勤支給予定", 期間: "2026/04/01～2026/09/30", 内容: "IC運賃・毎月 8,400円"},
+                {職員番号: "000102", 区分: "社会保険履歴", 期間: "2025/05/20～", 内容: "厚生年金 適用"},
+                {職員番号: "000102", 区分: "基準給与簿履歴", 期間: "2026/08支給", 内容: "給与支給総額 144,000円"}
+            )
+        );
+        ClearCollect(colStaffOrgOptions, {Value: "すべて"});
+        ForAll(
+            Sort(Distinct(colStaffUiSample, 所属), Value),
+            Collect(colStaffOrgOptions, {Value: ThisRecord.Value})
+        );
+        ClearCollect(
+            colStaffStatusOptions,
+            {Value: "すべて"},
+            {Value: "在籍"},
+            {Value: "退職"}
+        );
+        ClearCollect(colStaffSearchResult, colStaffUiSample);
+        Set(varStaffPage, 1);
+        Set(varSelectedStaff, Blank());
+        Set(varStaffDataLoadedAt, Now());
+        Set(varShowStaffExportPreview, false);
+        Set(varShowCommutePreview, false);
+        Set(varShowPayrollPreview, false);
+        Set(varStaffLastAction, "テストデータ25名を読み込み、検索結果を初期化しました")
+    Children:
+      - conStaffSearchRoot:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            BorderStyle: =BorderStyle.None
+            DropShadow: =DropShadow.None
+            Fill: =DadsTokens.Color.BackgroundSubtle
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =DadsTokens.Space.M
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingBottom: =If(IsMobileLayout, DadsTokens.Space.M, DadsTokens.Space.L)
+            PaddingLeft: =If(IsMobileLayout, DadsTokens.Space.M, DadsTokens.Space.L)
+            PaddingRight: =If(IsMobileLayout, DadsTokens.Space.L, DadsTokens.Space.XL)
+            PaddingTop: =If(IsMobileLayout, DadsTokens.Space.M, DadsTokens.Space.L)
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+          Children:
+            - conStaffHeader:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderColor: =DadsTokens.Color.Primary
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =DadsTokens.Border.WidthDefault
+                  DropShadow: =DropShadow.None
+                  Fill: =DadsTokens.Color.PrimarySubtle
+                  FillPortions: =0
+                  Height: =If(IsMobileLayout, 176, 112)
+                  LayoutDirection: =If(IsMobileLayout, LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                  LayoutGap: =DadsTokens.Space.M
+                  LayoutMinHeight: =If(IsMobileLayout, 176, 112)
+                  PaddingBottom: =DadsTokens.Space.M
+                  PaddingLeft: =DadsTokens.Space.L
+                  PaddingRight: =DadsTokens.Space.L
+                  PaddingTop: =DadsTokens.Space.M
+                  RadiusBottomLeft: =DadsTokens.Radius.Card
+                  RadiusBottomRight: =DadsTokens.Radius.Card
+                  RadiusTopLeft: =DadsTokens.Radius.Card
+                  RadiusTopRight: =DadsTokens.Radius.Card
+                  Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                Children:
+                  - conStaffHeaderTitle:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        BorderStyle: =BorderStyle.None
+                        DropShadow: =DropShadow.None
+                        Fill: =DadsTokens.Color.Transparent
+                        FillPortions: =1
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =DadsTokens.Space.XS
+                        LayoutMinHeight: =72
+                        LayoutMinWidth: =320
+                      Children:
+                        - lblStaffPageTitle:
+                            Control: ModernText@1.0.0
+                            Properties:
+                              AutoHeight: =true
+                              Color: =DadsTokens.Color.TextPrimary
+                              Font: =DadsTokens.Font.Family
+                              FontWeight: =DadsTokens.Font.WeightBold
+                              Size: =DadsTokens.Font.Size.PageTitle
+                              Text: ="非常勤職員マスタ検索"
+                              Width: =Parent.Width
+                        - lblStaffSource:
+                            Control: ModernText@1.0.0
+                            Properties:
+                              AutoHeight: =true
+                              Color: =DadsTokens.Color.TextSecondary
+                              Font: =DadsTokens.Font.Family
+                              Size: =DadsTokens.Font.Size.Caption
+                              Text: ="テストデータ25名｜最終取得：" & Text(varStaffDataLoadedAt, "yyyy/mm/dd HH:mm") & "｜" & varStaffLastAction
+                              Width: =Parent.Width
+                  - btnStaffExport:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="現在の検索結果をExcel形式で取得"
+                        Appearance: =ButtonAppearance.Outline
+                        BasePaletteColor: =DadsTokens.Color.Primary
+                        Color: =DadsTokens.Color.Primary
+                        FillPortions: =0
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Height: =DadsTokens.Size.ControlMedium
+                        LayoutMinHeight: =DadsTokens.Size.ControlMedium
+                        OnSelect: |-
+                          =ClearCollect(
+                              colStaffExportPreview,
+                              colStaffSearchResult
+                          );
+                          Set(varStaffLastAction, CountRows(colStaffExportPreview) & "件を出力対象として確定しました");
+                          Set(varShowStaffExportPreview, true)
+                        Size: =DadsTokens.Font.Size.Button
+                        Text: ="検索結果をExcel取得"
+                        Width: =If(IsMobileLayout, Parent.Width - Parent.PaddingLeft - Parent.PaddingRight, 216)
+
+            - conStaffBody:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderStyle: =BorderStyle.None
+                  DropShadow: =DropShadow.None
+                  Fill: =DadsTokens.Color.Transparent
+                  FillPortions: =If(IsMobileLayout, 0, 1)
+                  Height: =If(IsMobileLayout, 1696, Parent.Height - conStaffHeader.Height - Parent.LayoutGap - Parent.PaddingTop - Parent.PaddingBottom)
+                  LayoutDirection: =If(IsMobileLayout, LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                  LayoutGap: =DadsTokens.Space.M
+                  LayoutMinHeight: =If(IsMobileLayout, 1696, 480)
+                  Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                Children:
+                  - conStaffLeftPane:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        BorderColor: =DadsTokens.Color.Border
+                        BorderStyle: =BorderStyle.Solid
+                        BorderThickness: =DadsTokens.Border.WidthDefault
+                        DropShadow: =DropShadow.None
+                        Fill: =DadsTokens.Color.Surface
+                        FillPortions: =If(IsMobileLayout, 0, 0)
+                        Height: =If(IsMobileLayout, 720, Parent.Height)
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =DadsTokens.Space.M
+                        LayoutMinHeight: =If(IsMobileLayout, 720, 480)
+                        LayoutMinWidth: =360
+                        PaddingBottom: =DadsTokens.Space.M
+                        PaddingLeft: =DadsTokens.Space.M
+                        PaddingRight: =DadsTokens.Space.M
+                        PaddingTop: =DadsTokens.Space.M
+                        RadiusBottomLeft: =DadsTokens.Radius.Card
+                        RadiusBottomRight: =DadsTokens.Radius.Card
+                        RadiusTopLeft: =DadsTokens.Radius.Card
+                        RadiusTopRight: =DadsTokens.Radius.Card
+                        Width: =If(IsMobileLayout, Parent.Width, 400)
+                      Children:
+                        - lblStaffSearchTitle:
+                            Control: ModernText@1.0.0
+                            Properties:
+                              AutoHeight: =true
+                              Color: =DadsTokens.Color.TextPrimary
+                              FillPortions: =0
+                              Font: =DadsTokens.Font.Family
+                              FontWeight: =DadsTokens.Font.WeightBold
+                              Size: =DadsTokens.Font.Size.SectionTitle
+                              Text: ="職員検索"
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                        - lblStaffKeywordLabel:
+                            Control: ModernText@1.0.0
+                            Properties:
+                              AutoHeight: =true
+                              Color: =DadsTokens.Color.TextPrimary
+                              FillPortions: =0
+                              Font: =DadsTokens.Font.Family
+                              FontWeight: =DadsTokens.Font.WeightBold
+                              Size: =DadsTokens.Font.Size.InputLabel
+                              Text: ="検索"
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                        - txtStaffKeyword:
+                            Control: ModernTextInput@1.0.0
+                            Properties:
+                              AccessibleLabel: ="氏名、職員番号または項目を検索"
+                              Appearance: =Appearance.Outline
+                              BasePaletteColor: =DadsTokens.Color.Primary
+                              BorderColor: =DadsTokens.Color.Border
+                              Color: =DadsTokens.Color.TextPrimary
+                              FillPortions: =0
+                              Font: =DadsTokens.Font.Family
+                              Height: =DadsTokens.Size.ControlMedium
+                              LayoutMinHeight: =DadsTokens.Size.ControlMedium
+                              MaxLength: =100
+                              OnChange: =Set(varStaffPage, 1)
+                              Placeholder: ="氏名・職員番号・項目を検索"
+                              Size: =DadsTokens.Font.Size.Body
+                              TriggerOutput: =TriggerOutput.Keypress
+                              Type: =TextInputType.SingleLine
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                        - conStaffFilterRow:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              BorderStyle: =BorderStyle.None
+                              DropShadow: =DropShadow.None
+                              Fill: =DadsTokens.Color.Transparent
+                              FillPortions: =0
+                              Height: =112
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =DadsTokens.Space.S
+                              LayoutMinHeight: =112
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                            Children:
+                              - conStaffOrgFilter:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    BorderStyle: =BorderStyle.None
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.Transparent
+                                    FillPortions: =1
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =DadsTokens.Space.XS
+                                    LayoutMinWidth: =156
+                                  Children:
+                                    - lblStaffOrgLabel:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          FontWeight: =DadsTokens.Font.WeightBold
+                                          Size: =DadsTokens.Font.Size.InputLabel
+                                          Text: ="組織"
+                                          Width: =Parent.Width
+                                    - ddlStaffOrg:
+                                        Control: ModernDropdown@1.0.0
+                                        Properties:
+                                          AccessibleLabel: ="組織で絞り込み"
+                                          Appearance: =Appearance.Outline
+                                          BasePaletteColor: =DadsTokens.Color.Primary
+                                          Default: ={Value:"すべて"}
+                                          Height: =DadsTokens.Size.ControlMedium
+                                          ItemDisplayText: =ThisItem.Value
+                                          Items: =colStaffOrgOptions
+                                          OnChange: =Set(varStaffPage, 1)
+                                          Size: =DadsTokens.Font.Size.Body
+                                          Width: =Parent.Width
+                              - conStaffStatusFilter:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    BorderStyle: =BorderStyle.None
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.Transparent
+                                    FillPortions: =1
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =DadsTokens.Space.XS
+                                    LayoutMinWidth: =156
+                                  Children:
+                                    - lblStaffStatusLabel:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          FontWeight: =DadsTokens.Font.WeightBold
+                                          Size: =DadsTokens.Font.Size.InputLabel
+                                          Text: ="在籍状態"
+                                          Width: =Parent.Width
+                                    - ddlStaffStatus:
+                                        Control: ModernDropdown@1.0.0
+                                        Properties:
+                                          AccessibleLabel: ="在籍状態で絞り込み"
+                                          Appearance: =Appearance.Outline
+                                          BasePaletteColor: =DadsTokens.Color.Primary
+                                          Default: ={Value:"すべて"}
+                                          Height: =DadsTokens.Size.ControlMedium
+                                          ItemDisplayText: =ThisItem.Value
+                                          Items: =colStaffStatusOptions
+                                          OnChange: =Set(varStaffPage, 1)
+                                          Size: =DadsTokens.Font.Size.Body
+                                          Width: =Parent.Width
+                        - conStaffSearchActions:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              BorderStyle: =BorderStyle.None
+                              DropShadow: =DropShadow.None
+                              Fill: =DadsTokens.Color.Transparent
+                              FillPortions: =0
+                              Height: =DadsTokens.Size.ControlMedium
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =DadsTokens.Space.S
+                              LayoutMinHeight: =DadsTokens.Size.ControlMedium
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                            Children:
+                              - btnStaffSearch:
+                                  Control: ModernButton@1.0.0
+                                  Properties:
+                                    AccessibleLabel: ="指定した条件で職員を検索"
+                                    Appearance: =ButtonAppearance.Primary
+                                    BasePaletteColor: =DadsTokens.Color.Primary
+                                    Color: =DadsTokens.Color.TextOnPrimary
+                                    Font: =DadsTokens.Font.Family
+                                    FontWeight: =DadsTokens.Font.WeightBold
+                                    Height: =DadsTokens.Size.ControlMedium
+                                    OnSelect: |-
+                                      =ClearCollect(
+                                          colStaffSearchResult,
+                                          Filter(
+                                              colStaffUiSample,
+                                              IsBlank(Trim(txtStaffKeyword.Text)) ||
+                                                  Lower(Trim(txtStaffKeyword.Text)) in Lower(職員番号 & "|" & 氏名 & "|" & 所属 & "|" & 在籍状態),
+                                              Coalesce(ddlStaffOrg.Selected.Value, "すべて") = "すべて" ||
+                                                  所属 = ddlStaffOrg.Selected.Value,
+                                              Coalesce(ddlStaffStatus.Selected.Value, "すべて") = "すべて" ||
+                                                  在籍状態 = ddlStaffStatus.Selected.Value
+                                          )
+                                      );
+                                      Set(varStaffPage, 1);
+                                      Set(varSelectedStaff, Blank());
+                                      Set(varStaffLastAction, CountRows(colStaffSearchResult) & "件の職員が見つかりました");
+                                      Notify(CountRows(colStaffSearchResult) & "件の職員が見つかりました。", NotificationType.Success)
+                                    Size: =DadsTokens.Font.Size.Button
+                                    Text: ="検索"
+                                    Width: =112
+                              - btnStaffClear:
+                                  Control: ModernButton@1.0.0
+                                  Properties:
+                                    AccessibleLabel: ="すべての検索条件をクリア"
+                                    Appearance: =ButtonAppearance.Outline
+                                    BasePaletteColor: =DadsTokens.Color.Primary
+                                    Color: =DadsTokens.Color.Primary
+                                    Font: =DadsTokens.Font.Family
+                                    FontWeight: =DadsTokens.Font.WeightBold
+                                    Height: =DadsTokens.Size.ControlMedium
+                                    OnSelect: |-
+                                      =Reset(txtStaffKeyword);
+                                      Reset(ddlStaffOrg);
+                                      Reset(ddlStaffStatus);
+                                      ClearCollect(colStaffSearchResult, colStaffUiSample);
+                                      Set(varStaffPage, 1);
+                                      Set(varSelectedStaff, Blank());
+                                      Set(varStaffLastAction, "検索条件をクリアしました");
+                                      Notify("検索条件をクリアしました。", NotificationType.Information)
+                                    Size: =DadsTokens.Font.Size.Button
+                                    Text: ="条件をクリア"
+                                    Width: =152
+                        - conStaffListHeader:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              BorderStyle: =BorderStyle.None
+                              DropShadow: =DropShadow.None
+                              Fill: =DadsTokens.Color.Transparent
+                              FillPortions: =0
+                              Height: =40
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutMinHeight: =40
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                            Children:
+                              - lblStaffListTitle:
+                                  Control: ModernText@1.0.0
+                                  Properties:
+                                    Color: =DadsTokens.Color.TextPrimary
+                                    FillPortions: =1
+                                    Font: =DadsTokens.Font.Family
+                                    FontWeight: =DadsTokens.Font.WeightBold
+                                    Size: =DadsTokens.Font.Size.SubsectionTitle
+                                    Text: ="職員一覧"
+                              - lblStaffResultCount:
+                                  Control: ModernText@1.0.0
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =DadsTokens.Color.TextSecondary
+                                    FillPortions: =0
+                                    Font: =DadsTokens.Font.Family
+                                    Size: =DadsTokens.Font.Size.Caption
+                                    Text: =CountRows(colStaffSearchResult) & "件"
+                                    Width: =72
+                        - conStaffColumnHeader:
+                            Control: GroupContainer@1.3.0
+                            Variant: ManualLayout
+                            Properties:
+                              BorderColor: =DadsTokens.Color.Divider
+                              BorderStyle: =BorderStyle.Solid
+                              BorderThickness: =DadsTokens.Border.WidthDefault
+                              DropShadow: =DropShadow.None
+                              Fill: =DadsTokens.Color.BackgroundSubtle
+                              FillPortions: =0
+                              Height: =36
+                              LayoutMinHeight: =36
+                              RadiusTopLeft: =DadsTokens.Radius.Control
+                              RadiusTopRight: =DadsTokens.Radius.Control
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                            Children:
+                              - lblStaffColNo:
+                                  Control: ModernText@1.0.0
+                                  Properties:
+                                    Color: =DadsTokens.Color.TextSecondary
+                                    Font: =DadsTokens.Font.Family
+                                    FontWeight: =DadsTokens.Font.WeightBold
+                                    Height: =Parent.Height
+                                    Size: =DadsTokens.Font.Size.Caption
+                                    Text: ="職員番号"
+                                    VerticalAlign: =VerticalAlign.Middle
+                                    Width: =72
+                                    X: =8
+                              - lblStaffColName:
+                                  Control: ModernText@1.0.0
+                                  Properties:
+                                    Color: =DadsTokens.Color.TextSecondary
+                                    Font: =DadsTokens.Font.Family
+                                    FontWeight: =DadsTokens.Font.WeightBold
+                                    Height: =Parent.Height
+                                    Size: =DadsTokens.Font.Size.Caption
+                                    Text: ="氏名"
+                                    VerticalAlign: =VerticalAlign.Middle
+                                    Width: =104
+                                    X: =84
+                              - lblStaffColOrg:
+                                  Control: ModernText@1.0.0
+                                  Properties:
+                                    Color: =DadsTokens.Color.TextSecondary
+                                    Font: =DadsTokens.Font.Family
+                                    FontWeight: =DadsTokens.Font.WeightBold
+                                    Height: =Parent.Height
+                                    Size: =DadsTokens.Font.Size.Caption
+                                    Text: ="所属"
+                                    VerticalAlign: =VerticalAlign.Middle
+                                    Width: =92
+                                    X: =192
+                              - lblStaffColState:
+                                  Control: ModernText@1.0.0
+                                  Properties:
+                                    Color: =DadsTokens.Color.TextSecondary
+                                    Font: =DadsTokens.Font.Family
+                                    FontWeight: =DadsTokens.Font.WeightBold
+                                    Height: =Parent.Height
+                                    Size: =DadsTokens.Font.Size.Caption
+                                    Text: ="状態"
+                                    VerticalAlign: =VerticalAlign.Middle
+                                    Width: =64
+                                    X: =288
+                        - galStaffList:
+                            Control: Gallery@2.15.0
+                            Variant: Vertical
+                            Properties:
+                              AccessibleLabel: ="検索条件に一致する職員一覧"
+                              BorderColor: =DadsTokens.Color.Divider
+                              BorderStyle: =BorderStyle.Solid
+                              BorderThickness: =DadsTokens.Border.WidthDefault
+                              DelayItemLoading: =true
+                              Fill: =DadsTokens.Color.Surface
+                              FillPortions: =1
+                              ItemAccessibleLabel: =ThisItem.職員番号 & " " & ThisItem.氏名 & " " & ThisItem.所属 & " " & ThisItem.在籍状態
+                              Items: |-
+                                =FirstN(
+                                    LastN(
+                                        colStaffSearchResult,
+                                        Max(CountRows(colStaffSearchResult) - ((varStaffPage - 1) * 20), 0)
+                                    ),
+                                    20
+                                )
+                              LoadingSpinner: =LoadingSpinner.Data
+                              LoadingSpinnerColor: =DadsTokens.Color.Primary
+                              Selectable: =true
+                              ShowScrollbar: =true
+                              TemplateFill: =If(ThisItem.職員番号 = varSelectedStaff.職員番号, DadsTokens.Color.PrimarySubtle, DadsTokens.Color.Surface)
+                              TemplatePadding: =0
+                              TemplateSize: =64
+                              Transition: =Transition.None
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                            Children:
+                              - conStaffRowLayout:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: ManualLayout
+                                  Properties:
+                                    BorderStyle: =BorderStyle.None
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.Transparent
+                                    Height: =Parent.TemplateHeight
+                                    Width: =Parent.TemplateWidth
+                                    X: =0
+                                    Y: =0
+                                  Children:
+                                    - lblStaffRowNo:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          Height: =Parent.Height
+                                          Size: =DadsTokens.Font.Size.Caption
+                                          Text: =ThisItem.職員番号
+                                          VerticalAlign: =VerticalAlign.Middle
+                                          Width: =72
+                                          X: =8
+                                    - lblStaffRowName:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          FontWeight: =DadsTokens.Font.WeightBold
+                                          Height: =Parent.Height
+                                          Size: =DadsTokens.Font.Size.Caption
+                                          Text: =ThisItem.氏名
+                                          VerticalAlign: =VerticalAlign.Middle
+                                          Width: =104
+                                          X: =84
+                                    - lblStaffRowOrg:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          Height: =Parent.Height
+                                          Size: =DadsTokens.Font.Size.Caption
+                                          Text: =ThisItem.所属
+                                          VerticalAlign: =VerticalAlign.Middle
+                                          Width: =92
+                                          X: =192
+                                    - lblStaffRowState:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          Align: =Align.Center
+                                          Color: =If(ThisItem.在籍状態 = "在籍", DadsTokens.Color.SuccessText, DadsTokens.Color.TextSecondary)
+                                          Fill: =If(ThisItem.在籍状態 = "在籍", DadsTokens.Color.SuccessBackground, DadsTokens.Color.BackgroundSubtle)
+                                          Font: =DadsTokens.Font.Family
+                                          FontWeight: =DadsTokens.Font.WeightBold
+                                          Height: =32
+                                          RadiusBottomLeft: =DadsTokens.Radius.Full
+                                          RadiusBottomRight: =DadsTokens.Radius.Full
+                                          RadiusTopLeft: =DadsTokens.Radius.Full
+                                          RadiusTopRight: =DadsTokens.Radius.Full
+                                          Size: =DadsTokens.Font.Size.Caption
+                                          Text: =ThisItem.在籍状態
+                                          VerticalAlign: =VerticalAlign.Middle
+                                          Width: =60
+                                          X: =288
+                                          Y: =16
+                                    - btnStaffRowSelect:
+                                        Control: ModernButton@1.0.0
+                                        Properties:
+                                          AccessibleLabel: =ThisItem.氏名 & "の詳細を表示"
+                                          Appearance: =ButtonAppearance.Transparent
+                                          Height: =Parent.Height
+                                          OnSelect: =Set(varSelectedStaff, ThisItem)
+                                          Text: =""
+                                          Tooltip: =ThisItem.氏名 & "を選択"
+                                          Width: =Parent.Width
+                                          X: =0
+                                          Y: =0
+                        - conStaffPaging:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              BorderStyle: =BorderStyle.None
+                              DropShadow: =DropShadow.None
+                              Fill: =DadsTokens.Color.Transparent
+                              FillPortions: =0
+                              Height: =DadsTokens.Size.ControlMedium
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =DadsTokens.Space.S
+                              LayoutMinHeight: =DadsTokens.Size.ControlMedium
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                            Children:
+                              - btnStaffPrev:
+                                  Control: ModernButton@1.0.0
+                                  Properties:
+                                    AccessibleLabel: ="前の20件を表示"
+                                    Appearance: =ButtonAppearance.Outline
+                                    BasePaletteColor: =DadsTokens.Color.Primary
+                                    DisplayMode: =If(varStaffPage <= 1, DisplayMode.Disabled, DisplayMode.Edit)
+                                    Height: =DadsTokens.Size.ControlMedium
+                                    OnSelect: =Set(varStaffPage, Max(1, varStaffPage - 1)); Set(varSelectedStaff, Blank())
+                                    Text: ="前へ"
+                                    Width: =88
+                              - lblStaffPage:
+                                  Control: ModernText@1.0.0
+                                  Properties:
+                                    Align: =Align.Center
+                                    Color: =DadsTokens.Color.TextPrimary
+                                    FillPortions: =1
+                                    Font: =DadsTokens.Font.Family
+                                    Size: =DadsTokens.Font.Size.Body
+                                    Text: =varStaffPage & " / " & Max(1, RoundUp(CountRows(colStaffSearchResult) / 20, 0))
+                                    VerticalAlign: =VerticalAlign.Middle
+                              - btnStaffNext:
+                                  Control: ModernButton@1.0.0
+                                  Properties:
+                                    AccessibleLabel: ="次の20件を表示"
+                                    Appearance: =ButtonAppearance.Outline
+                                    BasePaletteColor: =DadsTokens.Color.Primary
+                                    DisplayMode: =If(varStaffPage * 20 >= CountRows(colStaffSearchResult), DisplayMode.Disabled, DisplayMode.Edit)
+                                    Height: =DadsTokens.Size.ControlMedium
+                                    OnSelect: =Set(varStaffPage, varStaffPage + 1); Set(varSelectedStaff, Blank())
+                                    Text: ="次へ"
+                                    Width: =88
+
+                  - conStaffRightPane:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        BorderColor: =DadsTokens.Color.Border
+                        BorderStyle: =BorderStyle.Solid
+                        BorderThickness: =DadsTokens.Border.WidthDefault
+                        DropShadow: =DropShadow.None
+                        Fill: =DadsTokens.Color.Surface
+                        FillPortions: =1
+                        Height: =If(IsMobileLayout, 960, Parent.Height)
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =DadsTokens.Space.M
+                        LayoutMinHeight: =If(IsMobileLayout, 960, 480)
+                        LayoutMinWidth: =480
+                        LayoutOverflowY: =LayoutOverflow.Scroll
+                        PaddingBottom: =DadsTokens.Space.L
+                        PaddingLeft: =DadsTokens.Space.L
+                        PaddingRight: =DadsTokens.Space.XL
+                        PaddingTop: =DadsTokens.Space.L
+                        RadiusBottomLeft: =DadsTokens.Radius.Card
+                        RadiusBottomRight: =DadsTokens.Radius.Card
+                        RadiusTopLeft: =DadsTokens.Radius.Card
+                        RadiusTopRight: =DadsTokens.Radius.Card
+                        Width: =If(IsMobileLayout, Parent.Width, Parent.Width - 416)
+                      Children:
+                        - conStaffEmptyState:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              BorderColor: =DadsTokens.Color.InfoText
+                              BorderStyle: =BorderStyle.Solid
+                              BorderThickness: =DadsTokens.Border.WidthDefault
+                              DropShadow: =DropShadow.None
+                              Fill: =DadsTokens.Color.InfoBackground
+                              FillPortions: =0
+                              Height: =144
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutGap: =DadsTokens.Space.S
+                              LayoutMinHeight: =144
+                              PaddingBottom: =DadsTokens.Space.L
+                              PaddingLeft: =DadsTokens.Space.L
+                              PaddingRight: =DadsTokens.Space.L
+                              PaddingTop: =DadsTokens.Space.L
+                              RadiusBottomLeft: =DadsTokens.Radius.Card
+                              RadiusBottomRight: =DadsTokens.Radius.Card
+                              RadiusTopLeft: =DadsTokens.Radius.Card
+                              RadiusTopRight: =DadsTokens.Radius.Card
+                              Visible: =IsBlank(varSelectedStaff)
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                            Children:
+                              - lblStaffEmptyTitle:
+                                  Control: ModernText@1.0.0
+                                  Properties:
+                                    AutoHeight: =true
+                                    Color: =DadsTokens.Color.InfoText
+                                    Font: =DadsTokens.Font.Family
+                                    FontWeight: =DadsTokens.Font.WeightBold
+                                    Size: =DadsTokens.Font.Size.SubsectionTitle
+                                    Text: ="職員を選択してください"
+                                    Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                              - lblStaffEmptyBody:
+                                  Control: ModernText@1.0.0
+                                  Properties:
+                                    AutoHeight: =true
+                                    Color: =DadsTokens.Color.TextPrimary
+                                    Font: =DadsTokens.Font.Family
+                                    Size: =DadsTokens.Font.Size.Body
+                                    Text: ="左側の職員一覧から1名を選択すると、基本情報と各種履歴を表示します。"
+                                    Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+
+                        - conStaffDetail:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              BorderStyle: =BorderStyle.None
+                              DropShadow: =DropShadow.None
+                              Fill: =DadsTokens.Color.Transparent
+                              FillPortions: =0
+                              Height: =1264
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutGap: =DadsTokens.Space.M
+                              LayoutMinHeight: =1264
+                              Visible: =Not(IsBlank(varSelectedStaff))
+                              Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                            Children:
+                              - conStaffDetailHeader:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    BorderColor: =DadsTokens.Color.Primary
+                                    BorderStyle: =BorderStyle.Solid
+                                    BorderThickness: =DadsTokens.Border.WidthDefault
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.PrimarySubtle
+                                    FillPortions: =0
+                                    Height: =112
+                                    LayoutDirection: =LayoutDirection.Horizontal
+                                    LayoutGap: =DadsTokens.Space.M
+                                    LayoutMinHeight: =112
+                                    PaddingBottom: =DadsTokens.Space.M
+                                    PaddingLeft: =DadsTokens.Space.L
+                                    PaddingRight: =DadsTokens.Space.L
+                                    PaddingTop: =DadsTokens.Space.M
+                                    RadiusBottomLeft: =DadsTokens.Radius.Card
+                                    RadiusBottomRight: =DadsTokens.Radius.Card
+                                    RadiusTopLeft: =DadsTokens.Radius.Card
+                                    RadiusTopRight: =DadsTokens.Radius.Card
+                                    Width: =Parent.Width
+                                  Children:
+                                    - conStaffPersonTitle:
+                                        Control: GroupContainer@1.3.0
+                                        Variant: AutoLayout
+                                        Properties:
+                                          BorderStyle: =BorderStyle.None
+                                          DropShadow: =DropShadow.None
+                                          Fill: =DadsTokens.Color.Transparent
+                                          FillPortions: =1
+                                          LayoutDirection: =LayoutDirection.Vertical
+                                          LayoutGap: =DadsTokens.Space.XS
+                                        Children:
+                                          - lblStaffPersonName:
+                                              Control: ModernText@1.0.0
+                                              Properties:
+                                                AutoHeight: =true
+                                                Color: =DadsTokens.Color.TextPrimary
+                                                Font: =DadsTokens.Font.Family
+                                                FontWeight: =DadsTokens.Font.WeightBold
+                                                Size: =DadsTokens.Font.Size.SectionTitle
+                                                Text: =varSelectedStaff.氏名
+                                                Width: =Parent.Width
+                                          - lblStaffPersonSub:
+                                              Control: ModernText@1.0.0
+                                              Properties:
+                                                AutoHeight: =true
+                                                Color: =DadsTokens.Color.TextSecondary
+                                                Font: =DadsTokens.Font.Family
+                                                Size: =DadsTokens.Font.Size.Caption
+                                                Text: ="職員番号：" & varSelectedStaff.職員番号 & "　／　所属：" & varSelectedStaff.所属
+                                                Width: =Parent.Width
+                                    - lblStaffPersonStatus:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          Align: =Align.Center
+                                          Color: =If(varSelectedStaff.在籍状態 = "在籍", DadsTokens.Color.SuccessText, DadsTokens.Color.TextSecondary)
+                                          Fill: =If(varSelectedStaff.在籍状態 = "在籍", DadsTokens.Color.SuccessBackground, DadsTokens.Color.BackgroundSubtle)
+                                          FillPortions: =0
+                                          Font: =DadsTokens.Font.Family
+                                          FontWeight: =DadsTokens.Font.WeightBold
+                                          Height: =40
+                                          RadiusBottomLeft: =DadsTokens.Radius.Full
+                                          RadiusBottomRight: =DadsTokens.Radius.Full
+                                          RadiusTopLeft: =DadsTokens.Radius.Full
+                                          RadiusTopRight: =DadsTokens.Radius.Full
+                                          Size: =DadsTokens.Font.Size.Body
+                                          Text: =varSelectedStaff.在籍状態
+                                          VerticalAlign: =VerticalAlign.Middle
+                                          Width: =88
+                              - conStaffBasicInfo:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    BorderColor: =DadsTokens.Color.Border
+                                    BorderStyle: =BorderStyle.Solid
+                                    BorderThickness: =DadsTokens.Border.WidthDefault
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.Surface
+                                    FillPortions: =0
+                                    Height: =224
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =DadsTokens.Space.S
+                                    LayoutMinHeight: =224
+                                    PaddingBottom: =DadsTokens.Space.L
+                                    PaddingLeft: =DadsTokens.Space.L
+                                    PaddingRight: =DadsTokens.Space.L
+                                    PaddingTop: =DadsTokens.Space.L
+                                    RadiusBottomLeft: =DadsTokens.Radius.Card
+                                    RadiusBottomRight: =DadsTokens.Radius.Card
+                                    RadiusTopLeft: =DadsTokens.Radius.Card
+                                    RadiusTopRight: =DadsTokens.Radius.Card
+                                    Width: =Parent.Width
+                                  Children:
+                                    - lblStaffBasicTitle:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          FontWeight: =DadsTokens.Font.WeightBold
+                                          Size: =DadsTokens.Font.Size.SubsectionTitle
+                                          Text: ="職員基本情報"
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                                    - conStaffBasicColumns:
+                                        Control: GroupContainer@1.3.0
+                                        Variant: AutoLayout
+                                        Properties:
+                                          BorderStyle: =BorderStyle.None
+                                          DropShadow: =DropShadow.None
+                                          Fill: =DadsTokens.Color.Transparent
+                                          FillPortions: =1
+                                          LayoutDirection: =If(IsMobileLayout, LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                                          LayoutGap: =DadsTokens.Space.XL
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                                        Children:
+                                          - lblStaffBasicLeft:
+                                              Control: ModernText@1.0.0
+                                              Properties:
+                                                AutoHeight: =true
+                                                Color: =DadsTokens.Color.TextPrimary
+                                                FillPortions: =1
+                                                Font: =DadsTokens.Font.Family
+                                                Size: =DadsTokens.Font.Size.Body
+                                                Text: ="職員番号　" & varSelectedStaff.職員番号 & Char(10) & "氏名　　　" & varSelectedStaff.氏名 & Char(10) & "生年月日　" & Text(varSelectedStaff.生年月日, "yyyy/mm/dd") & Char(10) & "性別　　　" & varSelectedStaff.性別
+                                          - lblStaffBasicRight:
+                                              Control: ModernText@1.0.0
+                                              Properties:
+                                                AutoHeight: =true
+                                                Color: =DadsTokens.Color.TextPrimary
+                                                FillPortions: =1
+                                                Font: =DadsTokens.Font.Family
+                                                Size: =DadsTokens.Font.Size.Body
+                                                Text: ="所属　　　" & varSelectedStaff.所属 & Char(10) & "組織略称　" & varSelectedStaff.組織名略称 & Char(10) & "採用日　　" & Text(varSelectedStaff.採用日, "yyyy/mm/dd") & Char(10) & "退職日　　" & If(IsBlank(varSelectedStaff.退職日), "－", Text(varSelectedStaff.退職日, "yyyy/mm/dd"))
+
+                              - conStaffWorkHistory:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    BorderColor: =DadsTokens.Color.Border
+                                    BorderStyle: =BorderStyle.Solid
+                                    BorderThickness: =DadsTokens.Border.WidthDefault
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.Surface
+                                    FillPortions: =0
+                                    Height: =128
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =DadsTokens.Space.S
+                                    LayoutMinHeight: =128
+                                    PaddingBottom: =DadsTokens.Space.M
+                                    PaddingLeft: =DadsTokens.Space.L
+                                    PaddingRight: =DadsTokens.Space.L
+                                    PaddingTop: =DadsTokens.Space.M
+                                    RadiusBottomLeft: =DadsTokens.Radius.Card
+                                    RadiusBottomRight: =DadsTokens.Radius.Card
+                                    RadiusTopLeft: =DadsTokens.Radius.Card
+                                    RadiusTopRight: =DadsTokens.Radius.Card
+                                    Width: =Parent.Width
+                                  Children:
+                                    - lblStaffWorkHistoryTitle:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          FontWeight: =DadsTokens.Font.WeightBold
+                                          Size: =DadsTokens.Font.Size.SubsectionTitle
+                                          Text: ="給与・勤務条件履歴　" & CountRows(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "給与・勤務条件履歴")) & "件"
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                                    - lblStaffWorkHistoryBody:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          Size: =DadsTokens.Font.Size.Body
+                                          Text: =Coalesce(Concat(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "給与・勤務条件履歴"), 期間 & "　" & 内容, Char(10)), "登録されているレコードはありません（0件）")
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                              - conStaffCommuteHistory:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    BorderColor: =DadsTokens.Color.Border
+                                    BorderStyle: =BorderStyle.Solid
+                                    BorderThickness: =DadsTokens.Border.WidthDefault
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.Surface
+                                    FillPortions: =0
+                                    Height: =128
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =DadsTokens.Space.S
+                                    LayoutMinHeight: =128
+                                    PaddingBottom: =DadsTokens.Space.M
+                                    PaddingLeft: =DadsTokens.Space.L
+                                    PaddingRight: =DadsTokens.Space.L
+                                    PaddingTop: =DadsTokens.Space.M
+                                    RadiusBottomLeft: =DadsTokens.Radius.Card
+                                    RadiusBottomRight: =DadsTokens.Radius.Card
+                                    RadiusTopLeft: =DadsTokens.Radius.Card
+                                    RadiusTopRight: =DadsTokens.Radius.Card
+                                    Width: =Parent.Width
+                                  Children:
+                                    - conStaffCommuteHeader:
+                                        Control: GroupContainer@1.3.0
+                                        Variant: AutoLayout
+                                        Properties:
+                                          BorderStyle: =BorderStyle.None
+                                          DropShadow: =DropShadow.None
+                                          Fill: =DadsTokens.Color.Transparent
+                                          FillPortions: =0
+                                          Height: =40
+                                          LayoutDirection: =LayoutDirection.Horizontal
+                                          LayoutMinHeight: =40
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                                        Children:
+                                          - lblStaffCommuteTitle:
+                                              Control: ModernText@1.0.0
+                                              Properties:
+                                                Color: =DadsTokens.Color.TextPrimary
+                                                FillPortions: =1
+                                                Font: =DadsTokens.Font.Family
+                                                FontWeight: =DadsTokens.Font.WeightBold
+                                                Size: =DadsTokens.Font.Size.SubsectionTitle
+                                                Text: ="通勤支給予定　" & CountRows(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "通勤支給予定")) & "件"
+                                          - btnStaffCommuteLedger:
+                                              Control: ModernButton@1.0.0
+                                              Properties:
+                                                AccessibleLabel: ="選択職員の通勤手当認定簿を表示"
+                                                Appearance: =ButtonAppearance.Outline
+                                                BasePaletteColor: =DadsTokens.Color.Primary
+                                                DisplayMode: =If(CountRows(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "通勤支給予定")) = 0, DisplayMode.Disabled, DisplayMode.Edit)
+                                                Height: =40
+                                                OnSelect: |-
+                                                  =Set(varShowCommutePreview, true);
+                                                  Set(varStaffLastAction, varSelectedStaff.氏名 & "の通勤手当認定簿を表示しました")
+                                                Text: ="認定簿出力"
+                                                Width: =136
+                                    - lblStaffCommuteBody:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          Size: =DadsTokens.Font.Size.Body
+                                          Text: =Coalesce(Concat(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "通勤支給予定"), 期間 & "　" & 内容, Char(10)), "登録されているレコードはありません（0件）")
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                              - conStaffSocialHistory:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    BorderColor: =DadsTokens.Color.Border
+                                    BorderStyle: =BorderStyle.Solid
+                                    BorderThickness: =DadsTokens.Border.WidthDefault
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.Surface
+                                    FillPortions: =0
+                                    Height: =128
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =DadsTokens.Space.S
+                                    LayoutMinHeight: =128
+                                    PaddingBottom: =DadsTokens.Space.M
+                                    PaddingLeft: =DadsTokens.Space.L
+                                    PaddingRight: =DadsTokens.Space.L
+                                    PaddingTop: =DadsTokens.Space.M
+                                    RadiusBottomLeft: =DadsTokens.Radius.Card
+                                    RadiusBottomRight: =DadsTokens.Radius.Card
+                                    RadiusTopLeft: =DadsTokens.Radius.Card
+                                    RadiusTopRight: =DadsTokens.Radius.Card
+                                    Width: =Parent.Width
+                                  Children:
+                                    - lblStaffSocialTitle:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          FontWeight: =DadsTokens.Font.WeightBold
+                                          Size: =DadsTokens.Font.Size.SubsectionTitle
+                                          Text: ="社会保険履歴　" & CountRows(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "社会保険履歴")) & "件"
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                                    - lblStaffSocialBody:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          Size: =DadsTokens.Font.Size.Body
+                                          Text: =Coalesce(Concat(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "社会保険履歴"), 期間 & "　" & 内容, Char(10)), "登録されているレコードはありません（0件）")
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                              - conStaffResidentHistory:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    BorderColor: =DadsTokens.Color.Border
+                                    BorderStyle: =BorderStyle.Solid
+                                    BorderThickness: =DadsTokens.Border.WidthDefault
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.Surface
+                                    FillPortions: =0
+                                    Height: =128
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =DadsTokens.Space.S
+                                    LayoutMinHeight: =128
+                                    PaddingBottom: =DadsTokens.Space.M
+                                    PaddingLeft: =DadsTokens.Space.L
+                                    PaddingRight: =DadsTokens.Space.L
+                                    PaddingTop: =DadsTokens.Space.M
+                                    RadiusBottomLeft: =DadsTokens.Radius.Card
+                                    RadiusBottomRight: =DadsTokens.Radius.Card
+                                    RadiusTopLeft: =DadsTokens.Radius.Card
+                                    RadiusTopRight: =DadsTokens.Radius.Card
+                                    Width: =Parent.Width
+                                  Children:
+                                    - lblStaffResidentTitle:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          FontWeight: =DadsTokens.Font.WeightBold
+                                          Size: =DadsTokens.Font.Size.SubsectionTitle
+                                          Text: ="住民税履歴　" & CountRows(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "住民税履歴")) & "件"
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                                    - lblStaffResidentBody:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          Size: =DadsTokens.Font.Size.Body
+                                          Text: =Coalesce(Concat(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "住民税履歴"), 期間 & "　" & 内容, Char(10)), "登録されているレコードはありません（0件）")
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                              - conStaffTaxHistory:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    BorderColor: =DadsTokens.Color.Border
+                                    BorderStyle: =BorderStyle.Solid
+                                    BorderThickness: =DadsTokens.Border.WidthDefault
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.Surface
+                                    FillPortions: =0
+                                    Height: =128
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =DadsTokens.Space.S
+                                    LayoutMinHeight: =128
+                                    PaddingBottom: =DadsTokens.Space.M
+                                    PaddingLeft: =DadsTokens.Space.L
+                                    PaddingRight: =DadsTokens.Space.L
+                                    PaddingTop: =DadsTokens.Space.M
+                                    RadiusBottomLeft: =DadsTokens.Radius.Card
+                                    RadiusBottomRight: =DadsTokens.Radius.Card
+                                    RadiusTopLeft: =DadsTokens.Radius.Card
+                                    RadiusTopRight: =DadsTokens.Radius.Card
+                                    Width: =Parent.Width
+                                  Children:
+                                    - lblStaffTaxTitle:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          FontWeight: =DadsTokens.Font.WeightBold
+                                          Size: =DadsTokens.Font.Size.SubsectionTitle
+                                          Text: ="税・固定控除設定履歴　" & CountRows(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "税・固定控除設定履歴")) & "件"
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                                    - lblStaffTaxBody:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          Size: =DadsTokens.Font.Size.Body
+                                          Text: =Coalesce(Concat(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "税・固定控除設定履歴"), 期間 & "　" & 内容, Char(10)), "登録されているレコードはありません（0件）")
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                              - conStaffPayrollHistory:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    BorderColor: =DadsTokens.Color.Border
+                                    BorderStyle: =BorderStyle.Solid
+                                    BorderThickness: =DadsTokens.Border.WidthDefault
+                                    DropShadow: =DropShadow.None
+                                    Fill: =DadsTokens.Color.Surface
+                                    FillPortions: =0
+                                    Height: =128
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =DadsTokens.Space.S
+                                    LayoutMinHeight: =128
+                                    PaddingBottom: =DadsTokens.Space.M
+                                    PaddingLeft: =DadsTokens.Space.L
+                                    PaddingRight: =DadsTokens.Space.L
+                                    PaddingTop: =DadsTokens.Space.M
+                                    RadiusBottomLeft: =DadsTokens.Radius.Card
+                                    RadiusBottomRight: =DadsTokens.Radius.Card
+                                    RadiusTopLeft: =DadsTokens.Radius.Card
+                                    RadiusTopRight: =DadsTokens.Radius.Card
+                                    Width: =Parent.Width
+                                  Children:
+                                    - conStaffPayrollHeader:
+                                        Control: GroupContainer@1.3.0
+                                        Variant: AutoLayout
+                                        Properties:
+                                          BorderStyle: =BorderStyle.None
+                                          DropShadow: =DropShadow.None
+                                          Fill: =DadsTokens.Color.Transparent
+                                          FillPortions: =0
+                                          Height: =40
+                                          LayoutDirection: =LayoutDirection.Horizontal
+                                          LayoutMinHeight: =40
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                                        Children:
+                                          - lblStaffPayrollTitle:
+                                              Control: ModernText@1.0.0
+                                              Properties:
+                                                Color: =DadsTokens.Color.TextPrimary
+                                                FillPortions: =1
+                                                Font: =DadsTokens.Font.Family
+                                                FontWeight: =DadsTokens.Font.WeightBold
+                                                Size: =DadsTokens.Font.Size.SubsectionTitle
+                                                Text: ="基準給与簿履歴　" & CountRows(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "基準給与簿履歴")) & "件"
+                                          - btnStaffPayrollDetail:
+                                              Control: ModernButton@1.0.0
+                                              Properties:
+                                                AccessibleLabel: ="選択職員の基準給与簿詳細を表示"
+                                                Appearance: =ButtonAppearance.Outline
+                                                BasePaletteColor: =DadsTokens.Color.Primary
+                                                DisplayMode: =If(CountRows(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "基準給与簿履歴")) = 0, DisplayMode.Disabled, DisplayMode.Edit)
+                                                Height: =40
+                                                OnSelect: |-
+                                                  =Set(varShowPayrollPreview, true);
+                                                  Set(varStaffLastAction, varSelectedStaff.氏名 & "の基準給与簿詳細を表示しました")
+                                                Text: ="詳細表示"
+                                                Width: =120
+                                    - lblStaffPayrollBody:
+                                        Control: ModernText@1.0.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Color: =DadsTokens.Color.TextPrimary
+                                          Font: =DadsTokens.Font.Family
+                                          Size: =DadsTokens.Font.Size.Body
+                                          Text: =Coalesce(Concat(Filter(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "基準給与簿履歴"), 期間 & "　" & 内容, Char(10)), "登録されているレコードはありません（0件）")
+                                          Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+      - conStaffExportOverlay:
+          Control: GroupContainer@1.3.0
+          Variant: ManualLayout
+          Properties:
+            Fill: =RGBA(0, 0, 0, 0.45)
+            Height: =Parent.Height
+            Visible: =varShowStaffExportPreview
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+          Children:
+            - conStaffExportDialog:
+                Control: GroupContainer@1.3.0
+                Variant: ManualLayout
+                Properties:
+                  BorderColor: =DadsTokens.Color.Border
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =DadsTokens.Border.WidthDefault
+                  DropShadow: =DropShadow.Regular
+                  Fill: =DadsTokens.Color.Surface
+                  Height: =560
+                  RadiusBottomLeft: =DadsTokens.Radius.Card
+                  RadiusBottomRight: =DadsTokens.Radius.Card
+                  RadiusTopLeft: =DadsTokens.Radius.Card
+                  RadiusTopRight: =DadsTokens.Radius.Card
+                  Width: =840
+                  X: =(Parent.Width - Self.Width) / 2
+                  Y: =Max(24, (Parent.Height - Self.Height) / 2)
+                Children:
+                  - lblStaffExportDialogTitle:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        Color: =DadsTokens.Color.TextPrimary
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Height: =48
+                        Size: =DadsTokens.Font.Size.SectionTitle
+                        Text: ="検索結果プレビュー"
+                        Width: =640
+                        X: =32
+                        Y: =24
+                  - lblStaffExportDialogNote:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        Color: =DadsTokens.Color.InfoText
+                        Fill: =DadsTokens.Color.InfoBackground
+                        Font: =DadsTokens.Font.Family
+                        Height: =56
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: =CountRows(colStaffExportPreview) & "件を出力対象として確定しました。接続版ではこのデータをPower Automateへ渡します。"
+                        Width: =776
+                        X: =32
+                        Y: =80
+                  - lblStaffExportDialogBody:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        Color: =DadsTokens.Color.TextPrimary
+                        Fill: =DadsTokens.Color.BackgroundSubtle
+                        Font: =DadsTokens.Font.Family
+                        Height: =344
+                        Size: =DadsTokens.Font.Size.Caption
+                        Text: ="職員番号　氏名　　　　　所属　　状態" & Char(10) & Concat(FirstN(colStaffExportPreview, 10), 職員番号 & "　" & 氏名 & "　" & 所属 & "　" & 在籍状態, Char(10)) & If(CountRows(colStaffExportPreview) > 10, Char(10) & "…ほか" & (CountRows(colStaffExportPreview) - 10) & "件", "")
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =776
+                        X: =32
+                        Y: =152
+                  - btnStaffExportDialogClose:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="検索結果プレビューを閉じる"
+                        Appearance: =ButtonAppearance.Primary
+                        BasePaletteColor: =DadsTokens.Color.Primary
+                        Height: =DadsTokens.Size.ControlMedium
+                        OnSelect: =Set(varShowStaffExportPreview, false)
+                        Text: ="閉じる"
+                        Width: =128
+                        X: =680
+                        Y: =504
+
+      - conStaffCommuteOverlay:
+          Control: GroupContainer@1.3.0
+          Variant: ManualLayout
+          Properties:
+            Fill: =RGBA(0, 0, 0, 0.45)
+            Height: =Parent.Height
+            Visible: =varShowCommutePreview
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+          Children:
+            - conStaffCommuteDialog:
+                Control: GroupContainer@1.3.0
+                Variant: ManualLayout
+                Properties:
+                  BorderColor: =DadsTokens.Color.Border
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =DadsTokens.Border.WidthDefault
+                  DropShadow: =DropShadow.Regular
+                  Fill: =DadsTokens.Color.Surface
+                  Height: =520
+                  RadiusBottomLeft: =DadsTokens.Radius.Card
+                  RadiusBottomRight: =DadsTokens.Radius.Card
+                  RadiusTopLeft: =DadsTokens.Radius.Card
+                  RadiusTopRight: =DadsTokens.Radius.Card
+                  Width: =760
+                  X: =(Parent.Width - Self.Width) / 2
+                  Y: =Max(24, (Parent.Height - Self.Height) / 2)
+                Children:
+                  - lblStaffCommuteDialogTitle:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        Color: =DadsTokens.Color.TextPrimary
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Height: =48
+                        Size: =DadsTokens.Font.Size.SectionTitle
+                        Text: ="通勤手当認定簿（テストプレビュー）"
+                        Width: =600
+                        X: =32
+                        Y: =24
+                  - lblStaffCommuteId:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        Color: =DadsTokens.Color.Primary
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Height: =40
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="通勤認定ID：TK-" & varSelectedStaff.職員番号
+                        Width: =696
+                        X: =32
+                        Y: =84
+                  - lblStaffCommuteDialogBody:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        Color: =DadsTokens.Color.TextPrimary
+                        Fill: =DadsTokens.Color.BackgroundSubtle
+                        Font: =DadsTokens.Font.Family
+                        Height: =280
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="職員番号：" & varSelectedStaff.職員番号 & Char(10) & "氏名：" & varSelectedStaff.氏名 & Char(10) & "所属：" & varSelectedStaff.所属 & Char(10) & "認定内容：" & Coalesce(LookUp(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "通勤支給予定", 内容), "登録されているレコードはありません") & Char(10) & "認定期間：" & Coalesce(LookUp(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "通勤支給予定", 期間), "－")
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =696
+                        X: =32
+                        Y: =136
+                  - btnStaffCommuteClose:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="通勤手当認定簿を閉じる"
+                        Appearance: =ButtonAppearance.Primary
+                        BasePaletteColor: =DadsTokens.Color.Primary
+                        Height: =DadsTokens.Size.ControlMedium
+                        OnSelect: =Set(varShowCommutePreview, false)
+                        Text: ="閉じる"
+                        Width: =128
+                        X: =600
+                        Y: =448
+
+      - conStaffPayrollOverlay:
+          Control: GroupContainer@1.3.0
+          Variant: ManualLayout
+          Properties:
+            Fill: =RGBA(0, 0, 0, 0.45)
+            Height: =Parent.Height
+            Visible: =varShowPayrollPreview
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+          Children:
+            - conStaffPayrollDialog:
+                Control: GroupContainer@1.3.0
+                Variant: ManualLayout
+                Properties:
+                  BorderColor: =DadsTokens.Color.Border
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =DadsTokens.Border.WidthDefault
+                  DropShadow: =DropShadow.Regular
+                  Fill: =DadsTokens.Color.Surface
+                  Height: =560
+                  RadiusBottomLeft: =DadsTokens.Radius.Card
+                  RadiusBottomRight: =DadsTokens.Radius.Card
+                  RadiusTopLeft: =DadsTokens.Radius.Card
+                  RadiusTopRight: =DadsTokens.Radius.Card
+                  Width: =840
+                  X: =(Parent.Width - Self.Width) / 2
+                  Y: =Max(24, (Parent.Height - Self.Height) / 2)
+                Children:
+                  - lblStaffPayrollDialogTitle:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        Color: =DadsTokens.Color.TextPrimary
+                        Font: =DadsTokens.Font.Family
+                        FontWeight: =DadsTokens.Font.WeightBold
+                        Height: =48
+                        Size: =DadsTokens.Font.Size.SectionTitle
+                        Text: ="基準給与簿詳細（テストプレビュー）"
+                        Width: =640
+                        X: =32
+                        Y: =24
+                  - lblStaffPayrollDialogBody:
+                      Control: ModernText@1.0.0
+                      Properties:
+                        Color: =DadsTokens.Color.TextPrimary
+                        Fill: =DadsTokens.Color.BackgroundSubtle
+                        Font: =DadsTokens.Font.Family
+                        Height: =392
+                        Size: =DadsTokens.Font.Size.Body
+                        Text: ="職員番号：" & varSelectedStaff.職員番号 & Char(10) & "氏名：" & varSelectedStaff.氏名 & Char(10) & "所属：" & varSelectedStaff.所属 & Char(10) & "採用日：" & Text(varSelectedStaff.採用日, "yyyy/mm/dd") & Char(10) & "給与・勤務条件：" & Coalesce(LookUp(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "給与・勤務条件履歴", 内容), "登録されているレコードはありません") & Char(10) & "基準給与簿：" & Coalesce(LookUp(colStaffHistoryUiSample, 職員番号 = varSelectedStaff.職員番号 && 区分 = "基準給与簿履歴", 内容), "登録されているレコードはありません")
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =776
+                        X: =32
+                        Y: =84
+                  - btnStaffPayrollClose:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="基準給与簿詳細を閉じる"
+                        Appearance: =ButtonAppearance.Primary
+                        BasePaletteColor: =DadsTokens.Color.Primary
+                        Height: =DadsTokens.Size.ControlMedium
+                        OnSelect: =Set(varShowPayrollPreview, false)
+                        Text: ="閉じる"
+                        Width: =128
+                        X: =680
+                        Y: =504
