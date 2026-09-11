@@ -402,7 +402,7 @@ Screens:
                               Width: =432
                               X: =Parent.Width - 456
                               Y: =8
-                  - gal_Kojo_edit_kiso:
+                  - conKojoSummaryBody:
                       Control: GroupContainer@1.3.0
                       Variant: ManualLayout
                       Properties:
@@ -2338,7 +2338,7 @@ Screens:
                   Fill: =DadsTokens.Color.Surface
                   LayoutMinHeight: =824
                 Children:
-                  - gal_Kojo_edit:
+                  - conKojoEditBody:
                       Control: GroupContainer@1.3.0
                       Variant: ManualLayout
                       Properties:
@@ -3598,7 +3598,7 @@ Screens:
                               PaddingLeft: =0
                               PaddingRight: =DadsTokens.Space.S
                               VerticalAlign: =VerticalAlign.Middle
-                  - Gallery1:
+                  - conKojoResidentBody:
                       Control: GroupContainer@1.3.0
                       Variant: ManualLayout
                       Properties:
