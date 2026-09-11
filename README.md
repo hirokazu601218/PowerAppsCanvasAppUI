@@ -2,6 +2,14 @@
 
 デジタル庁デザインシステム（DADS）をPower Appsキャンバスアプリ向けに適用するための、設計資料・Power Fxデザイントークン・共通UI YAMLです。
 
+## 職員マスタ検索 — HTML v0.808優先・v1.05
+
+- [貼り付け用YAML](src/scrStaffMasterSearch_v1.05.paste.yaml)
+- [画面定義YAML（管理用）](src/scrStaffMasterSearch_v1.05.pa.yaml)
+- [HTML・DADS差分／導入手順](docs/HTML_v0.808_DADS差分と導入手順_v1.05.md)
+
+この画面はHTMLの見た目を優先する例外です。外部データ接続・App.Formulas設定なしで使うテスト版で、通常は貼り付け用YAMLを新しい空白画面へ貼り付けてF5で確認します。v1.05はボタンの未対応プロパティとコンテナの版指定を修正しました。ローカル事前検査は実施済み、Studio実機での貼り付け・実行確認は未実施です。
+
 ## 基本方針
 
 - Power Appsへ実装する成果物は、Power AppsのYAMLおよびPower Fxを使用します。
@@ -50,4 +58,3 @@ PowerAppsCanvasAppUI/
 - 右余白には縦スクロールバー用の安全域を含みます。
 - 通知コンテナには右枠欠け防止用の4pxの安全余白を設けています。
 - モバイル時の外側余白は左16px、右24pxです。
-
