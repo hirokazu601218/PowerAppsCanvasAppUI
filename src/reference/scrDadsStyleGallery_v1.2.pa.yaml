@@ -298,7 +298,7 @@ Screens:
                         Size: =DadsTokens.Font.Size.Caption
                         Text: ="補足 14 / Regular　重要情報には使用しません。"
                         Width: =Parent.Width
-      
+
             # ================================================================
             # ボタン
             # ================================================================
@@ -326,7 +326,7 @@ Screens:
                         Size: =DadsTokens.Font.Size.SectionTitle
                         Text: ="ボタン"
                         Width: =Parent.Width
-      
+
                   - conDadsButtonRow:
                       Control: GroupContainer@1.3.0
                       Variant: AutoLayout
@@ -361,7 +361,7 @@ Screens:
                               Size: =DadsTokens.Font.Size.Button
                               Text: ="変更を保存"
                               Width: =If(IsMobileLayout, Parent.Width, 136)
-      
+
                         - btnDadsSecondary:
                             Control: ModernButton@1.0.0
                             Properties:
@@ -382,7 +382,7 @@ Screens:
                               Size: =DadsTokens.Font.Size.Button
                               Text: ="内容を確認"
                               Width: =If(IsMobileLayout, Parent.Width, 136)
-      
+
                         - btnDadsTertiary:
                             Control: ModernButton@1.0.0
                             Properties:
@@ -418,7 +418,7 @@ Screens:
                               Text: ="実行不可"
                               Tooltip: ="必要な入力が完了すると実行できます。"
                               Width: =If(IsMobileLayout, Parent.Width, 120)
-      
+
             # ================================================================
             # 入力欄
             # ================================================================
@@ -446,7 +446,7 @@ Screens:
                         Size: =DadsTokens.Font.Size.InputLabel
                         Text: ="職員番号　※必須"
                         Width: =Min(560, Parent.Width)
-      
+
                   - txtDadsInput:
                       Control: ModernTextInput@1.0.0
                       Properties:
@@ -473,7 +473,7 @@ Screens:
                         Type: =TextInputType.SingleLine
                         ValidationState: =ValidationState.Error
                         Width: =Min(560, Parent.Width)
-      
+
                   - lblDadsInputSupport:
                       Control: ModernText@1.0.0
                       Properties:
@@ -484,7 +484,7 @@ Screens:
                         Size: =DadsTokens.Font.Size.Caption
                         Text: ="半角数字6桁で入力してください。"
                         Width: =Min(560, Parent.Width)
-      
+
                   - lblDadsInputError:
                       Control: ModernText@1.0.0
                       Properties:
@@ -496,7 +496,7 @@ Screens:
                         Text: ="＊職員番号を半角数字6桁で入力してください。"
                         Visible: =true
                         Width: =Min(560, Parent.Width)
-      
+
             # ================================================================
             # カード
             # ================================================================
@@ -534,7 +534,7 @@ Screens:
                         Size: =DadsTokens.Font.Size.SubsectionTitle
                         Text: ="給与計算の対象"
                         Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
-      
+
                   - lblDadsCardBody:
                       Control: ModernText@1.0.0
                       Properties:
@@ -545,7 +545,7 @@ Screens:
                         Size: =DadsTokens.Font.Size.Body
                         Text: ="対象職員と計算対象年月を確認してから、詳細画面へ進んでください。"
                         Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
-      
+
                   - btnDadsCardAction:
                       Control: ModernButton@1.0.0
                       Properties:
@@ -566,7 +566,7 @@ Screens:
                         Size: =DadsTokens.Font.Size.Button
                         Text: ="詳細を表示"
                         Width: =If(IsMobileLayout, Parent.Width - Parent.PaddingLeft - Parent.PaddingRight, 136)
-      
+
             # ================================================================
             # 通知
             # ================================================================
@@ -595,7 +595,7 @@ Screens:
                         Size: =DadsTokens.Font.Size.SectionTitle
                         Text: ="通知"
                         Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
-      
+
                   - conDadsNoticeSuccess:
                       Control: GroupContainer@1.3.0
                       Variant: AutoLayout
@@ -640,7 +640,7 @@ Screens:
                               Size: =DadsTokens.Font.Size.Body
                               Text: ="対象職員のデータを保存しました。"
                               Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
-      
+
                   - conDadsNoticeInfo:
                       Control: GroupContainer@1.3.0
                       Variant: AutoLayout
@@ -685,7 +685,7 @@ Screens:
                               Size: =DadsTokens.Font.Size.Body
                               Text: ="計算結果は保存前に確認できます。"
                               Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
-      
+
                   - conDadsNoticeWarning:
                       Control: GroupContainer@1.3.0
                       Variant: AutoLayout
@@ -730,7 +730,7 @@ Screens:
                               Size: =DadsTokens.Font.Size.Body
                               Text: ="未入力の項目があります。内容を確認してください。"
                               Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
-      
+
                   - conDadsNoticeError:
                       Control: GroupContainer@1.3.0
                       Variant: AutoLayout

@@ -1,60 +1,39 @@
 # PowerAppsCanvasAppUI
 
-デジタル庁デザインシステム（DADS）をPower Appsキャンバスアプリ向けに適用するための、設計資料・Power Fxデザイントークン・共通UI YAMLです。
+非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubをWorkとCodexの共有正本とする。
 
-## 職員マスタ検索 — HTML v0.808優先・v1.05
+**採用設計：B案（Fluent 2＋DADS）。現行コード：v1.08、B案未反映。次の開発版：v1.09。**
 
-- [貼り付け用YAML](src/scrStaffMasterSearch_v1.05.paste.yaml)
-- [画面定義YAML（管理用）](src/scrStaffMasterSearch_v1.05.pa.yaml)
-- [HTML・DADS差分／導入手順](docs/HTML_v0.808_DADS差分と導入手順_v1.05.md)
+## 最初に読む
 
-この画面はHTMLの見た目を優先する例外です。外部データ接続・App.Formulas設定なしで使うテスト版で、通常は貼り付け用YAMLを新しい空白画面へ貼り付けてF5で確認します。v1.05はボタンの未対応プロパティとコンテナの版指定を修正しました。ローカル事前検査は実施済み、Studio実機での貼り付け・実行確認は未実施です。
+1. [共通ルール](AGENTS.md)と[現在地](docs/handoff/STATUS.md)
+2. [要件定義](docs/requirements/requirements.md)
+3. [基本設計](docs/design/basic-design.md)、[詳細設計](docs/design/detailed-design.md)、[B案デザイン基準](docs/design/design-system.md)
+4. [テスト・レビュー基準](docs/testing/acceptance.md)
 
-## 基本方針
+## 最新ソース
 
-- Power Appsへ実装する成果物は、Power AppsのYAMLおよびPower Fxを使用します。
-- 利用可能な部品は、モダンコントロールを優先します。
-- DADSをそのまま再現するのではなく、Power Appsの仕様に合わせて変換したデザイン基準を使用します。
-- HTMLまたは画像は、UIイメージの作成を明示的に依頼された場合だけ使用します。
+- [貼り付け用v1.08](src/staff-master/scrStaffMasterSearch_v1.08.paste.yaml)
+- [画面定義v1.08・管理者用](src/staff-master/scrStaffMasterSearch_v1.08.pa.yaml)
+- [PDF保存接続用Power Fx](src/staff-master/CommuteLedger_v1.08_SavePDF_OnTimerEnd.fx)
+- [導入手順・テストデータ・制約](docs/handoff/install-v1.08.md)
 
-## ディレクトリ構成
+25名のテストデータ内蔵。Studio実行とPDF保存は未検証。現行実装をB案対応済みと取り違えない。
 
-```text
-PowerAppsCanvasAppUI/
-├─ README.md
-├─ docs/
-│  ├─ PowerApps_UI試作ルール.md
-│  ├─ DADS_PowerApps_デザイン基準_v1.01.md
-│  └─ 非常勤給与_PowerApps給与計算UI_要件定義概要_v0.1.md
-└─ src/
-   ├─ DADS_PowerApps_AppFormulas_デザイントークン_v1.0.fx
-   ├─ DADS_PowerApps_共通UIパーツ_v1.0.yaml
-   └─ scrDadsStyleGallery_v1.2.pa.yaml
-```
+## 構成
 
-## Power Appsへの適用順
+| パス | 役割 |
+|---|---|
+| docs/requirements/ | Work：要件 |
+| docs/design/ | Work：設計・デザイン基準・データ契約 |
+| docs/handoff/ | 現在地、導入、運用、変更履歴 |
+| docs/testing/ | 試験計画・証跡・レビュー |
+| docs/reference/ | 旧HTML設計・旧DADS。現行仕様ではない |
+| src/staff-master/ | 現行職員検索YAML・Power Fx |
+| src/kojo/ | 別アプリ控除詳細の最新保管版 |
+| src/reference/ | 旧DADS部品。現行画面の依存物ではない |
+| assets/commute-ledger/ | 認定簿の空様式 |
+| tests/ | 再実行可能な検査 |
 
-1. `docs/PowerApps_UI試作ルール.md` と `docs/DADS_PowerApps_デザイン基準_v1.01.md` を確認します。
-2. `src/DADS_PowerApps_AppFormulas_デザイントークン_v1.0.fx` の内容を `App.Formulas` に貼り付けます。
-3. `src/scrDadsStyleGallery_v1.2.pa.yaml` の内容をコピーし、Power Apps Studioのツリービューへ貼り付けます。
-4. スタイル確認画面で、色、文字、ボタン、入力欄、カード、通知、レスポンシブ表示を確認します。
-5. `src/DADS_PowerApps_共通UIパーツ_v1.0.yaml` を参考に、実際の業務画面を作成します。
-
-## 現在の採用バージョン
-
-| 成果物 | バージョン |
-|---|---:|
-| Power Apps UI試作ルール | 現行版 |
-| DADSベース デザイン基準 | 1.01 |
-| App.Formulas デザイントークン | 1.0 |
-| 共通UIパーツ | 1.0 |
-| スタイル確認用スクリーン | 1.2 |
-| 給与計算UI 要件定義概要 | 0.1 |
-
-## スタイル確認用スクリーン v1.2
-
-- 16:9の画面幅を最大限利用します。
-- デスクトップ時の外側余白は左24px、右32pxです。
-- 右余白には縦スクロールバー用の安全域を含みます。
-- 通知コンテナには右枠欠け防止用の4pxの安全余白を設けています。
-- モバイル時の外側余白は左16px、右24pxです。
+同じ画面の旧版はGit履歴で管理。ZIPや一時ファイルは格納しない。資料版は本文で管理、コード版は0.01刻み。
+Workが設計 → Codexが開発・試験・PR → Workがレビュー → ユーザーのマージ指示。詳細は[運用](docs/handoff/workflow.md)。
