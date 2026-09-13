@@ -2,14 +2,14 @@
 
 非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubをChatGPT SolのWorkで扱う共有正本とする。
 
-**最新試作：v1.11。B案（Fluent 2＋DADS）と職員検索サイドバー開閉を実装。Studio実機確認待ち。**
+**最新試作：v1.11。B案（Fluent 2＋DADS）と職員検索サイドバー開閉を実装。検索データ未表示のユーザー報告あり・原因調査待ち。**
 
 ## 最初に読む
 
 1. [Work運用方針](docs/operations/work-policy.md)と[現在地](docs/handoff/STATUS.md)
 2. [要件定義](docs/requirements/requirements.md)
 3. [基本設計](docs/design/basic-design.md)、[詳細設計](docs/design/detailed-design.md)、[B案デザイン基準](docs/design/design-system.md)
-4. [テスト・レビュー基準](docs/testing/acceptance.md)
+4. [テスト方針](docs/testing/test-policy.md) → [テスト仕様書（95ケース＋スモーク）](docs/testing/test-specification.md) → [既存の要約基準](docs/testing/acceptance.md)
 5. [v1.12以降のコントロール単位差分配布方針](docs/operations/control-diff-policy.md)
 
 ## 最新ソース
@@ -20,7 +20,7 @@
 - [導入手順・テストデータ・制約](docs/handoff/install-v1.11.md)
 - [検査結果](docs/testing/RESULTS.md)、[機械可読結果](docs/testing/v1.11-validation.json)
 
-架空25名と履歴を内蔵。初期表示にデータ接続・App.Formulas・OnStart・OnVisibleは不要。PDF関数の有効化と保存フロー接続は別途必要。Studio実行・PDF保存は未検証。
+架空25名と履歴を内蔵し、データ接続・App.Formulas・OnStart・OnVisibleへの依存なしで初期表示する設計。ただし実機で検索データ未表示の報告があり、動作保証ではありません。PDF関数の有効化と保存フロー接続は別途必要。Studio実行・PDF保存は未検証。
 
 v1.11はv1.08正本から作成し、廃止したCodex v1.09/v1.10ブランチのコードは使用していない。v1.08は新版の実機確認が済むまで復元用に保持する。
 
