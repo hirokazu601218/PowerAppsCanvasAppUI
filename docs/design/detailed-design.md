@@ -1,21 +1,22 @@
-# 詳細設計書 v1.02
+# 詳細設計書 v1.03
 
-対象：v1.08を基にするB案開発。仕様目標と現行の実装名を以下で区別する。
+対象：v1.08正本を基にしたv1.11のB案開発。Studio実機確認を含む残件はSTATUSに記載する。
 
 ## 1. ファイルと部品
 
-管理用pa.yamlのScreens/scrStaffMasterSearch_v108/Childrenと貼付用paste.yamlのルート配列を同一にする。v1.09では画面・部品・変数の版識別子を一括更新し、v108参照の残存を検査する。
+管理用pa.yamlのScreens/scrStaffMasterSearch_v111/Childrenと貼付用paste.yamlのルート配列を同一にする。v1.11では旧v108と別画面へ導入できるよう識別子を111へ移行した。**v1.12以降は111の識別子を固定し、一括改名しない。** 版はファイル名・表示メタ情報・変更履歴で管理する。
 
 | 機能 | 現行部品 | 主なプロパティ |
 |---|---|---|
-| 検索 | txtKeyword108, ddOrg108, ddStatus108, btnSearch108 | Text/Selected/OnSelect |
-| 結果 | galStaff108, lblListTitle108 | Items/Text |
-| ページ | btnPrev108, btnNext108, lblPage108 | OnSelect/DisplayMode/Text |
-| 詳細 | conPerson108, lblName108 | Visible/Text |
-| 履歴 | galWork108, galCommute108, galSocial108, galResident108, galTax108, galPayroll108 | Items |
-| 帳票 | btnCertificate108, conLedgerModal108, pdfLedger108 | OnSelect/Visible/Document |
-| PDF保存 | tmrLedgerPdf108 | OnTimerEnd（任意フロー接続） |
-| サイドバー | conSearchSidebar109, conSearchContent109, conSidebarRail109, btnSidebarToggle109 | Width/Visible/OnSelect/Tooltip |
+| 検索 | txtKeyword111, ddOrg111, ddStatus111, btnSearch111 | Text/Selected/OnSelect |
+| 結果 | galStaff111, lblListTitle111 | Items/Text |
+| ページ | btnPrev111, btnNext111, lblPage111 | OnSelect/DisplayMode/Text |
+| 詳細 | conPerson111, lblName111 | Visible/Text |
+| 履歴 | galWork111, galCommute111, galSocial111, galResident111, galTax111, galPayroll111 | Items |
+| 帳票 | btnCertificate111, conLedgerModal111, pdfLedger111 | OnSelect/Visible/Document |
+| PDF保存 | tmrLedgerPdf111 | OnTimerEnd（任意フロー接続） |
+| サイドバー | conSearchSidebar111, conLeftScroll111, conLeftSurface111, btnSidebarToggle111 | Width/Visible/OnSelect/Tooltip |
+| 文字切替 | btnTextSize111, varLargeText111 | OnSelect、各Size/Height/TemplateSize |
 
 モダンコントロールへ変更する際、Text/Value等は実際の対象部品から出力したコードで確認し、旧部品のプロパティ名を流用しない。
 
@@ -33,7 +34,7 @@
 | Tax | 25 | 税表・固定控除等全項目 |
 | Payroll | 25 | 概要列と全項目詳細 |
 
-項目台帳は[field-inventory.json](field-inventory.json)を参照。これはv1.08から機械抽出した部品表示・テストレコードのキー一覧であり、本番データ辞書の代替ではない。旧HTMLの業務書式・69帳票フィールドは[参考詳細設計](../reference/html-v0.807-detailed.md)の8～11章を参照。旧JavaScript構造や接続URLは移植しない。
+項目台帳は[field-inventory.json](field-inventory.json)を参照。これはv1.11から機械抽出した部品表示・テストレコードのキー一覧であり、本番データ辞書の代替ではない。基本9項目・履歴列・給与詳細15項目・69帳票フィールドについてv1.08との表示式一致を検査する。旧HTMLの業務書式は[参考詳細設計](../reference/html-v0.807-detailed.md)の8～11章を参照。旧JavaScript構造や接続URLは移植しない。
 元HTMLは未知の列も動的表示するため、サンプルにない本番列が存在し得る。本接続前に実データの列台帳を取得して全項目照合すること。推測で列を削らない。
 
 ## 3. 状態遷移
@@ -55,18 +56,19 @@
 
 ## 4. 職員検索サイドバー開閉
 
-v1.09で `varSearchSidebarExpanded109` を追加する。初期値未設定も展開として扱い、App.OnStartへの依存は増やさない。
+v1.11で `varSearchSidebarExpanded111` を追加。初期値未設定も展開として扱い、App.OnStartへの依存は増やさない。
 
 | 対象 | 式・仕様 |
 |---|---|
-| 開閉ボタン OnSelect | `Set(varSearchSidebarExpanded109, !Coalesce(varSearchSidebarExpanded109, true))` |
-| サイドバー Width | `If(Coalesce(varSearchSidebarExpanded109, true), 360, 48)` |
-| 検索内部 Visible | `Coalesce(varSearchSidebarExpanded109, true)` |
-| 折りたたみ操作帯 Visible | `!Coalesce(varSearchSidebarExpanded109, true)` |
-| ボタン表示/説明 | 展開時「検索を閉じる」、折りたたみ時「検索を開く」。Tooltipも同じ状態に追従 |
-| 右詳細 | サイドバー幅と展開時の列間を引いた残幅。固定の左360pxを残さない |
+| 開閉ボタン OnSelect | モーダル中以外で`Set(varSearchSidebarExpanded111, !Coalesce(varSearchSidebarExpanded111, true))` |
+| サイドバー Width | `If(Coalesce(varSearchSidebarExpanded111, true), 360, 48)` |
+| 検索内部 Visible | `Coalesce(varSearchSidebarExpanded111, true)` |
+| 開閉ボタン | 同一ボタンを常時表示。44×44px。展開時は右上、閉鎖時は操作帯上端 |
+| ボタン表示/説明 | 表示文字‹／›。AccessibleLabelとTooltipを「職員検索を閉じる」／「職員検索を開く」に切替 |
+| 右詳細X | `conSearchSidebar111.X + conSearchSidebar111.Width + If(Coalesce(varSearchSidebarExpanded111,true),16,0)` |
+| 右詳細Width | `Parent.Width - Self.X - 16`。折りたたみで328px拡張する |
 
-- `conSearchSidebar109` は展開内容と折りたたみ操作帯の親とし、親幅を開閉する。検索内容を幅0にするだけではなく `Visible=false` にしてTab移動・読み上げ対象から外す。
+- `conSearchSidebar111` は検索内部と常設開閉ボタンの親。`conLeftScroll111.Visible=false`にしてTab移動・読み上げ対象から外す。開閉ごとに別ボタンを生成しない。
 - 職員行のOnSelectでは開閉フラグを変更しない。複数職員を続けて確認する操作を妨げない。
 - 開閉操作では `txtKeyword`、ドロップダウン、抽出結果、選択職員番号、ページ番号、帳票対象をReset/Clear/Setしない。
 - 再展開後は選択行が同じページに見えること。Galleryの任意スクロール量までの厳密な保持は完成条件にせず、選択行が確認できる位置への復帰でよい。
@@ -87,9 +89,27 @@ PDFViewerはScreen直下、Documentに生成PDF。モーダルの位置と表示
 2ページ改ページ、文字の欠け、拡大、保存ファイル名と対象職員、権限は実機で確認。現在A3横起点だが正式用紙サイズは未決。帳票背景は空様式PNGを内蔵しているため、外部画像URL接続は不要。
 TSVコピーは現行の暫定出力。XLSX実装は別のフロー等を設計して承認し、数値型・先頭0・全項目・出力対象を検証する。
 
+## 7. v1.11の部品・配置契約
+
+- 実操作ボタンは`ModernButton@1.0.0`。検索入力は`ModernTextInput@1.0.0`、`Default`で初期値、`Text`で現在値を読む。`TriggerOutput.Keypress`を明示する。
+- 組織・状態・用紙の3ドロップダウンは`Classic/DropDown@2.3.1`を維持。`Selected.Value`と`Default`/`Reset`の既存契約を保つための互換性例外。将来のモダン化は実環境コードを確認した個別パッチとする。
+- 行選択の透明ヒット領域はClassic Button、表セルはLabel、帳票背景はImageを維持。透明行ボタンはText/Tooltip/可視フォーカスを使い、不正なAccessibleLabelを追加しない。
+- `conMain111.Width=Parent.Width`。`conPerson111`を右の縦スクロールの外に配置し、`conRightScroll111.Y=conPerson111.Y+conPerson111.Height+12`とする。
+- `conLeftSurface111`は自動レイアウトの子として`FillPortions=0`、最小寸法を自身の寸法に一致させる。孫のX/Yは手動配置。横長表もスクロール親＋寸法明示した手動Surfaceで分離する。
+- 基本情報は行高64／大文字72。履歴は48／56。見出しとデータセルは同じ列位置・幅の式を使い、節Yは直前のY+Height+20とする。
+- 検索一覧の氏名・在籍状態、番号・所属の4フィールドを保持。不要になった旧4列の見出しコントロールだけを撤去する。
+- 勤務履歴に「適用状態」列を追加し、固定基準日2026/09/11による現行・過去・予定を文字表示。サンプルの金額・経路・保険判定を法定計算の検証結果と扱わない。
+- 簡易出力は5行／ページ、64px行高。表示ページのみの印刷と全結果TSVコピーを区別し、正式認定簿PDFとは別機能にする。
+- モーダル中は背面のボタン・入力・一覧をDisabled。検索／クリア／職員切替は旧帳票・PDFを破棄。開閉自体ではそれらを変更しない。
+
+## 8. v1.12以降
+
+[コントロール単位差分配布方針](../operations/control-diff-policy.md)を適用する。部品IDは111のまま固定。親・子・兄弟の参照を含む最小の完全サブツリーか、対象プロパティのPower Fxを配布する。貼付は追加操作であり自動上書きではない。GitHub完全版と管理版の同期は必須。
+
 ## 変更履歴
 
 | 版 | 内容 |
 |---|---|
+| 1.03 | v1.11実装名、モダン部品、固定サマリー、状態保持、文字切替、差分契約へ更新 |
 | 1.02 | v1.09向け職員検索サイドバーの変数、部品、式、状態保持、アクセシビリティを追加 |
 | 1.01 | 現行部品・データ・B案状態遷移・配置・PDFの具体的実装契約を定義 |

@@ -48,6 +48,9 @@ pad=S('PaddingLeft PaddingRight PaddingTop PaddingBottom')
 radius=S('RadiusTopLeft RadiusTopRight RadiusBottomLeft RadiusBottomRight')
 states=S('DisabledBorderColor DisabledColor DisabledFill FocusedBorderColor FocusedBorderThickness HoverBorderColor HoverColor HoverFill PressedBorderColor PressedColor PressedFill')
 allowed={
+ # Microsoft Learn modern-control-button / modern-control-text-input, checked 2026-09-13.
+ 'ModernButton@1.0.0':geo|border|font|pad|radius|S('Text OnSelect DisplayMode Tooltip AccessibleLabel ContentLanguage Appearance BasePaletteColor Icon IconStyle IconRotation Layout Align VerticalAlign'),
+ 'ModernTextInput@1.0.0':geo|border|font|pad|radius|S('Default Placeholder Type TriggerOutput Appearance BasePaletteColor Fill Align OnChange OnSelect DisplayMode AccessibleLabel ContentLanguage MaxLength Required ValidationState'),
  'Classic/Button@2.2.0':geo|border|font|pad|radius|states|S('Text OnSelect Fill Align VerticalAlign DisplayMode Tooltip TabIndex AutoDisableOnSelect ContentLanguage'),
  'Label@2.5.1':geo|border|font|pad|states|S('Text OnSelect Fill Align VerticalAlign DisplayMode Tooltip TabIndex AutoHeight Wrap LineHeight Live Role Overflow'),
  'Classic/TextInput@2.3.2':geo|border|font|pad|radius|states|S('Text Default HintText Mode OnChange OnSelect Fill Align DisplayMode AccessibleLabel Tooltip TabIndex DelayOutput Clear EnableSpellCheck Format MaxLength Reset LineHeight VirtualKeyboardMode'),

@@ -1,4 +1,4 @@
-# B案デザイン基準 v1.02
+# B案デザイン基準 v1.03
 
 Fluent 2の業務向け密度＋DADSの分かりやすい案内を採用。旧DADS資料は参考扱い。
 
@@ -15,7 +15,11 @@ Fluent 2の業務向け密度＋DADSの分かりやすい案内を採用。旧DA
 | 操作案内 | 16 | 18 | Normal |
 | 更新時刻等補足 | 12 | 14 | Normal |
 
-表字間0、行ボックス20程度、説明24程度。表行40/大文字48、入力・ボタン44、セル左右12。長文は折返しと高さ増加で対応。Boldを常用しない。
+表字間0、行ボックス20程度、説明24程度。v1.11の表行は48/大文字56、入力・ボタン44、セル左右12。長文は折返しと高さ増加で対応。Boldを常用しない。
+
+v1.11の`Size`初期設定は、本文10.5pt／大文字12pt、節見出し12pt／13.5pt、画面タイトル15pt／18pt。1pt=4/3 CSS pxの換算を出発点にした設定であり、OS・ブラウザーの倍率や日本語フォールバックを含む実機校正済み値ではない。現行Modern Button／Text InputのSize単位はpointsである。[Microsoft Button](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/controls/modern-controls/modern-control-button)、[Microsoft Text Input](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/controls/modern-controls/modern-control-text-input)
+
+帳票は固定様式のため、画面本文の文字サイズ切替を適用しない。セル内の余白不足は文字を小さくして解決せず、行高・列幅を調整する。
 
 ## 色・余白
 
@@ -32,7 +36,7 @@ Fluent 2の業務向け密度＋DADSの分かりやすい案内を採用。旧DA
 | 角丸 | 4程度 |
 | サイドバー | 展開360px、折りたたみ操作帯48px程度、境界線1px |
 
-状態は文字でも表示。金額右寄せ、日付yyyy/mm/dd、番号は文字列。全セルを太枠にせず横罫線中心。画像Bの見出しの強さは実装で抑える。
+状態は文字でも表示。金額右寄せ、日付yyyy/mm/dd、番号は文字列。v1.11の業務表は列対応を読み取れる1pxの薄い格子を維持し、基本情報の各値には枠を付けない。画像Bの見出しの強さは実装で抑える。
 
 ## 操作・検証
 
@@ -48,5 +52,6 @@ FluentのBody 1=14/20、Subtitle 2=16/22とDADS業務用Denseを参考にした�
 
 | 版 | 内容 |
 |---|---|
+| 1.03 | v1.11のポイント設定、表行48/56、基本情報と表の枠を具体化。実機校正との区別を明示 |
 | 1.02 | 職員検索サイドバーの幅、操作領域、状態表現を追加 |
 | 1.01 | B案採用、見出し抑制、Canvas設定値の校正を必須化 |

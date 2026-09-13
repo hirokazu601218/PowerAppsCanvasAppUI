@@ -1,0 +1,40 @@
+{
+  "version": "1.11",
+  "status": "prototype-studio-validation-pending",
+  "design": "B (Fluent 2 + DADS)",
+  "sourceBase": {
+    "branch": "main",
+    "commit": "115e08d8e90ba18ecbe2c0c131a0f1420448632d",
+    "version": "1.08"
+  },
+  "controlNamespace": "111",
+  "screen": "scrStaffMasterSearch_v111",
+  "nextDelivery": "v1.12 control-level patches; keep control and variable identifiers stable",
+  "sidebar": {
+    "initialExpanded": true,
+    "expandedWidth": 360,
+    "collapsedWidth": 48,
+    "manualOnly": true,
+    "preserveSearchSelectionPage": true
+  },
+  "validation": {
+    "localChecks": 68,
+    "studioTested": false,
+    "pdfRuntimeTested": false,
+    "report": "../../docs/testing/v1.11-validation.json"
+  },
+  "artifacts": [
+    {
+      "name": "scrStaffMasterSearch_v1.11.paste.yaml",
+      "bytes": 1900211,
+      "sha256": "b2ed2e41cb23fe8c175dee8ec5889057b7d8c7fda9f94381b9c79df9ce6acc92"
+    },
+    {
+      "name": "scrStaffMasterSearch_v1.11.pa.yaml",
+      "bytes": 1966290,
+      "sha256": "5d85605c0265abb65ed6e99f833c521ea73058b03ff2146b305799f95c3f2f4f"
+    }
+  ],
+  "installation": "../../docs/handoff/install-v1.11.md",
+  "patchPolicy": "../../docs/operations/control-diff-policy.md"
+}
