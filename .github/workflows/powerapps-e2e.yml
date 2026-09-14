@@ -1,0 +1,112 @@
+name: Power Apps E2E
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: powerapps-e2e
+  cancel-in-progress: false
+
+jobs:
+  testapp-smoke:
+    name: TestApp smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      OFFICIAL_SAMPLES_REF: 43e3db8d131aeb09415b1faef030e783fd2e320f
+      POWER_APPS_BASE_URL: https://make.powerapps.com
+      POWER_APPS_ENVIRONMENT_ID: 2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb
+      CANVAS_APP_URL: https://apps.powerapps.com/play/e/2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb/a/889f0b48-04cb-4d5d-88ba-153ff6ca3c91?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
+      MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+      MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
+      MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
+      MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
+      MS_USER_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+      MS_AUTH_LOCAL_FILE_PATH: ../../cert/powerapps-test-user.pfx
+      MS_AUTH_CERTIFICATE_PASSWORD: ${{ secrets.POWERAPPS_TEST_CERT_PASSWORD }}
+      MS_AUTH_HEADLESS: true
+      MS_AUTH_WAIT_FOR_MSAL_TOKENS: true
+      MS_AUTH_MSAL_TOKEN_TIMEOUT: 60000
+      HEADLESS: true
+      WORKERS: 1
+      RETRIES: 1
+      TEST_TIMEOUT: 120000
+      OUTPUT_DIRECTORY: ./test-results
+      CI: true
+
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+        with:
+          path: project
+
+      - name: Check out Microsoft Power Platform Playwright samples
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/power-platform-playwright-samples
+          ref: ${{ env.OFFICIAL_SAMPLES_REF }}
+          path: power-platform-playwright
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: power-platform-playwright/package-lock.json
+
+      - name: Validate required authentication secrets
+        shell: bash
+        env:
+          TEST_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+          TEST_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+          TEST_CERT_BASE64: ${{ secrets.POWERAPPS_TEST_CERT_BASE64 }}
+        run: bash project/scripts/validate-powerapps-secrets.sh
+
+      - name: Prepare certificate authentication
+        if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
+        shell: bash
+        env:
+          TEST_CERT_BASE64: ${{ secrets.POWERAPPS_TEST_CERT_BASE64 }}
+        run: |
+          mkdir -p power-platform-playwright/cert
+          printf '%s' "$TEST_CERT_BASE64" | base64 --decode > power-platform-playwright/cert/powerapps-test-user.pfx
+          chmod 600 power-platform-playwright/cert/powerapps-test-user.pfx
+
+      - name: Install official toolkit dependencies
+        working-directory: power-platform-playwright
+        run: npm install
+
+      - name: Build official toolkit
+        working-directory: power-platform-playwright
+        run: npm run build
+
+      - name: Install Chromium
+        working-directory: power-platform-playwright/packages/e2e-tests
+        run: npx playwright install chromium --with-deps
+
+      - name: Add TestApp smoke test
+        shell: bash
+        run: cp project/e2e/testapp-smoke.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/testapp-smoke.test.ts
+
+      - name: Authenticate to Power Apps
+        working-directory: power-platform-playwright/packages/e2e-tests
+        run: npm run auth
+
+      - name: Run TestApp smoke test
+        working-directory: power-platform-playwright/packages/e2e-tests
+        run: npx playwright test tests/northwind/canvas/testapp-smoke.test.ts --project=canvas-app
+
+      - name: Upload test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: powerapps-testapp-evidence-${{ github.run_number }}
+          path: |
+            power-platform-playwright/packages/e2e-tests/test-results/
+            power-platform-playwright/packages/e2e-tests/playwright-report/
+          if-no-files-found: warn
+          retention-days: 30
