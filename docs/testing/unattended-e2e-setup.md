@@ -1,103 +1,77 @@
-# Power Apps 完全無人テスト導入手順
+# Power Apps 完全無人テスト運用手順
 
-## 1. 現在できていること
+## 1. 完了状態
 
-- 公開済み`TestApp`を対象にしたPlaywrightスモークテスト
-- Microsoft公式`power-platform-playwright-samples`の固定版を利用
-- GitHub Actionsの手動実行
-- 成否、トレース、動画、失敗時スクリーンショットの30日保存
-- 成功時スクリーンショットの保存
-- GitHub Actions Run #7で、認証から結果判定まで全工程の合格を確認済み
+職員マスタ検索アプリの無人E2Eテスト環境は構築済み。
 
-テスト内容は次のとおり。
+- 対象アプリ: `職員マスタ検索_自動テスト_v1_11`
+- App ID: `0e5f5c05-b67d-4a27-af71-ebe5e5381221`
+- 環境ID: `2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb`
+- 実行基盤: GitHub Actions + Microsoft Power Platform Playwright samples
+- テストユーザー: `powerapps-test@govaca.onmicrosoft.com`
+- 権限: アプリ利用者（管理者・共同所有者ではない）
+- 実行時刻: 毎日03:00（日本時間）
+- 証跡保存: 14日
+- 料金: 公開リポジトリのGitHub標準ランナーを使用
 
-1. `TextInput1`へ`ChatGPT自動テスト成功`を入力
-2. `Button1`を押す
-3. `Text1`に`入力結果：ChatGPT自動テスト成功`が表示されることを確認
+2026-09-15に、専用ユーザーの無人認証からUI操作、結果判定、証跡保存まで全工程の成功を確認した。
 
-## 2. 初回疎通用の設定
+- 成功した再実行: https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34906474076
+- 定期実行設定後の成功確認: https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34907785873
 
-GitHubの`Settings` → `Secrets and variables` → `Actions` → `Secrets`で次を登録する。
+## 2. 自動テスト内容
+
+`e2e/staff-master-p0.test.ts`は、dynabookでの利用を想定した1366×768で次を確認する。
+
+1. 公開アプリを開く
+2. 「非常勤職員マスタ検索」が表示される
+3. 初期状態が「職員一覧 25件」である
+4. 「山田 太郎」が表示される
+5. 検索欄へ「山田」を入力して検索する
+6. 「職員一覧 2件」になる
+7. 「山田 太郎」と「山田 花子」が表示される
+8. 検索条件をクリアする
+9. 「職員一覧 25件」へ戻る
+10. スクリーンショット、動画、トレース、テスト結果を保存する
+
+## 3. 自動実行条件
+
+`.github/workflows/staff-master-e2e.yml`は次の場合に起動する。
+
+| 条件 | 動作 |
+|---|---|
+| 毎日03:00（日本時間） | 定期実行 |
+| GitHub ActionsのRun workflow | 手動実行 |
+| `e2e/staff-master-p0.test.ts`の変更 | 自動実行 |
+| `.github/workflows/staff-master-e2e.yml`の変更 | 自動実行 |
+
+実行結果はGitHubの `Actions` → `Staff Master E2E` で確認する。証跡は各実行結果の `Artifacts` に `staff-master-evidence-*` として保存される。
+
+## 4. 認証情報
+
+GitHubの `Settings` → `Secrets and variables` → `Actions` → `Secrets` に次を登録する。
 
 | Secret | 値 |
 |---|---|
-| `POWERAPPS_TEST_EMAIL` | テスト用Microsoft組織アカウント |
-| `POWERAPPS_TEST_PASSWORD` | 同アカウントのパスワード |
+| `POWERAPPS_TEST_EMAIL` | `powerapps-test@govaca.onmicrosoft.com` |
+| `POWERAPPS_TEST_PASSWORD` | 専用ユーザーの現在のパスワード |
 
-パスワードはファイルやIssueへ記載しない。Actionsの暗号化Secretだけに登録する。
+パスワードは認証ステップだけに渡される。npmの依存関係導入、ビルド、UIテストには渡されない。ワークフローは専用ユーザー以外のメールアドレスが設定された場合に停止する。
 
-初期値はパスワード認証である。現在のテナントではこの方式による無人実行に成功している。パスワード変更、条件付きアクセス、MFAやSecurity Defaultsの変更後は認証が失敗する可能性があるため、その時点でテナントの方針に合う認証方式を再評価する。
+パスワード変更、MFA、Security Defaults、条件付きアクセスの変更により無人認証が失敗した場合は、セキュリティ設定を緩和せず認証方式を再評価する。
 
-## 3. 証明書認証へ切り替える場合
+## 5. アプリ更新時
 
-現在は設定不要。テナント側のポリシー変更などによりパスワード認証を継続できない場合だけ、Microsoft Entra ID側の対応方式と公式サンプルの対応状況を確認して切り替える。
+1. Power Apps Studioで保存する
+2. 「公開」→「このバージョンの公開」を実行する
+3. GitHubの `Actions` → `Staff Master E2E` → `Run workflow` で確認する
 
-### GitHub Variables
+アプリを公開しただけではGitHub Actionsは即時起動しない。翌日03:00の定期実行を待つか、手動実行する。
 
-`Settings` → `Secrets and variables` → `Actions` → `Variables`で登録する。
+## 6. 関連ファイル
 
-| Variable | 値 |
-|---|---|
-| `POWERAPPS_AUTH_MODE` | `certificate` |
-| `POWERAPPS_AUTH_PROVIDER` | `local-file` |
-
-### GitHub Secrets
-
-| Secret | 値 |
-|---|---|
-| `POWERAPPS_TEST_EMAIL` | 証明書を割り当てたテストユーザー |
-| `POWERAPPS_TEST_CERT_BASE64` | PFXファイルをBase64化した文字列 |
-| `POWERAPPS_TEST_CERT_PASSWORD` | PFXにパスワードを付けた場合のみ |
-
-PFXはActions実行中だけ一時ファイルに復元され、成果物には含めない。
-
-## 4. 実行方法
-
-1. GitHubで`Actions`を開く
-2. `Power Apps E2E`を選ぶ
-3. `Run workflow`を押す
-4. `TestApp smoke test`の結果を確認する
-5. 実行画面の`Artifacts`から`powerapps-testapp-evidence-*`を取得する
-
-## 5. 次段階
-
-> 公開保留：以下の互換スクリプトは暫定版。確認済みなのは文字列変換の実行だけで、Studioでのコンパイル・動作確認は未完了。生成物を検証なしで公開しない。
-
-実アプリ用に次を追加済み。
-
-- `.github/workflows/staff-master-e2e.yml`: 実アプリ専用の手動実行ワークフロー
-- `e2e/staff-master-p0.test.ts`: `INIT-01`、`SRCH-02`、`ZERO-03`の最小P0テスト
-- `tools/patch-v111-studio-compat.mjs`: v1.11を現行Studioへ貼り付ける前の互換修正
-
-現行Studioではv1.11原本に、Galleryの`.Items`参照8か所と`SetFocus` 8個の式エラーが出ることを実機で確認した。次のコマンドで互換修正版を生成する。スクリプトは想定した出現件数と一致しない原本には適用せず停止する。
-
-```bash
-node tools/patch-v111-studio-compat.mjs \
-  src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml \
-  src/staff-master/scrStaffMasterSearch_v1.11.studio-compat.paste.yaml
-```
-
-Power Appsには下書き`職員マスタ検索_自動テスト_v1_11`（App ID: `0e5f5c05-b67d-4a27-af71-ebe5e5381221`）を作成済み。この下書きには途中の手修正が含まれ、最新の式エラー一覧は再取得が必要。暫定生成物の一括再取込みはまだ行わない。
-
-### 暫定スクリプトの既知の問題と公開条件
-
-- `SetFocus(...)`を`Set(varFocusCompat111,true)`へ置換しても、元のフォーカス移動は再現されない。モーダル表示時と終了時のキーボードフォーカスを維持する修正が必要。
-- `galStaff111.Height`の置換式は全検索結果件数を使用しており、2ページ目の残件数を反映しない。25件なら2ページ目は5行分になることを確認する。
-- 他Galleryの`AllItems`への置換は、読み込まれた行数と高さの依存関係を実機で検証する。
-- App checkerの式エラー0件だけでなく、初期25件、山田検索2件、検索後のサイドバー閉鎖、条件クリア、20件＋5件のページング、モーダルのフォーカス移動を確認してから公開する。
-- クラウドブラウザのタブ取得がタイムアウトしており、取込み・公開・実アプリE2E実行は未完了。認証エラーとは確認されていないため、Secret再登録やMFA無効化は行わない。
-
-公開後、GitHubのRepository Variable `POWERAPPS_STAFF_APP_URL`へWebリンクを登録し、`Staff Master E2E`を手動実行する。
-
-このP0テストが安定して合格した後に、`docs/testing/test-specification.md`の残りを優先度順にPlaywrightへ移植する。検索、0件時の古い詳細消去、ページング、サイドバー開閉、職員詳細表示の順で広げる。定期実行は実アプリのP0合格後に追加する。
-
-## 6. 参照
-
-- Microsoft Learn: Power Platform Playwright samples overview
-  - https://learn.microsoft.com/en-us/power-platform/developer/playwright-samples/overview
-- Microsoft Learn: Authentication guide
-  - https://learn.microsoft.com/en-us/power-platform/developer/playwright-samples/authentication-guide
-- Microsoft Learn: CI/CD integration
-  - https://learn.microsoft.com/en-us/power-platform/developer/playwright-samples/cicd
-- 固定した公式サンプルのコミット
-  - https://github.com/microsoft/power-platform-playwright-samples/commit/43e3db8d131aeb09415b1faef030e783fd2e320f
+- `.github/workflows/staff-master-e2e.yml`: 実行条件、認証、証跡保存
+- `e2e/staff-master-p0.test.ts`: P0テスト
+- `docs/testing/test-policy.md`: テスト方針
+- `docs/testing/test-specification.md`: テスト仕様
+- `docs/testing/unattended-e2e-setup.md`: 本書
