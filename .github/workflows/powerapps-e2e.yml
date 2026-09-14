@@ -65,17 +65,17 @@ jobs:
           cache: npm
           cache-dependency-path: power-platform-playwright/package-lock.json
 
-      - name: Validate test user email secret
-        shell: bash
-        env:
-          TEST_EMAIL: ${{ secrets.POWERAPPS_TEST_USER_EMAIL }}
-        run: test -n "$TEST_EMAIL"
-
       - name: Validate test user password secret
         shell: bash
         env:
           TEST_PASSWORD: ${{ secrets.POWERAPPS_TEST_USER_PASSWORD }}
         run: test -n "$TEST_PASSWORD"
+
+      - name: Validate test user email secret
+        shell: bash
+        env:
+          TEST_EMAIL: ${{ secrets.POWERAPPS_TEST_USER_EMAIL }}
+        run: test -n "$TEST_EMAIL"
 
       - name: Prepare certificate authentication
         if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
