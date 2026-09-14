@@ -1,9 +1,91 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Locator } from '@playwright/test';
 
 const CANVAS_FRAME = 'iframe[name="fullscreen-app-host"]';
 
+type Rect = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+async function firstRenderedBox(locator: Locator): Promise<Rect | null> {
+  for (const candidate of await locator.all()) {
+    const box = await candidate.boundingBox();
+    if (box && box.width > 0 && box.height > 0) {
+      return box;
+    }
+  }
+  return null;
+}
+
+function boxesOverlap(a: Rect, b: Rect, tolerance = 1): boolean {
+  const overlapX =
+    Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x);
+  const overlapY =
+    Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y);
+  return overlapX > tolerance && overlapY > tolerance;
+}
+
+async function scrollWidestHorizontalContainer(body: Locator) {
+  return body.evaluate(() => {
+    const scrollingElement = document.scrollingElement as HTMLElement | null;
+    const candidates = Array.from(document.querySelectorAll<HTMLElement>('*'))
+      .filter((element) => {
+        const style = window.getComputedStyle(element);
+        const permitsHorizontalScroll =
+          style.overflowX === 'auto' || style.overflowX === 'scroll';
+        return (
+          permitsHorizontalScroll &&
+          element.clientWidth >= 100 &&
+          element.scrollWidth - element.clientWidth > 10
+        );
+      });
+
+    if (
+      scrollingElement &&
+      scrollingElement.scrollWidth - scrollingElement.clientWidth > 10
+    ) {
+      candidates.push(scrollingElement);
+    }
+
+    const target = candidates.sort(
+      (a, b) =>
+        b.scrollWidth -
+        b.clientWidth -
+        (a.scrollWidth - a.clientWidth),
+    )[0];
+
+    if (!target) {
+      return {
+        found: false,
+        moved: false,
+        before: 0,
+        after: 0,
+        maximum: 0,
+      };
+    }
+
+    const before = target.scrollLeft;
+    const maximum = target.scrollWidth - target.clientWidth;
+    target.scrollLeft = maximum;
+    if (target.scrollLeft === before && maximum > 0) {
+      target.scrollLeft = -maximum;
+    }
+    target.dispatchEvent(new Event('scroll', { bubbles: true }));
+
+    return {
+      found: true,
+      moved: Math.abs(target.scrollLeft - before) > 1,
+      before,
+      after: target.scrollLeft,
+      maximum,
+    };
+  });
+}
+
 test.describe('職員マスタ検索 v1.11 P0', () => {
-  test('初期表示、氏名検索、条件クリアが動作する', async ({ page }) => {
+  test('検索、職員選択、縮小表示、条件クリアが動作する', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 768 });
 
     const appUrl = process.env.CANVAS_APP_URL;
@@ -46,7 +128,96 @@ test.describe('職員マスタ検索 v1.11 P0', () => {
       timeout: 30_000,
     });
     await expect(canvas.getByText('山田 太郎', { exact: true }).first()).toBeVisible();
-    await expect(canvas.getByText('山田 花子', { exact: true }).first()).toBeVisible();
+    const hanakoInList = canvas.getByText('山田 花子', { exact: true }).first();
+    await expect(hanakoInList).toBeVisible();
+
+    // SEL-01: 山田 花子を選択し、右側詳細に本人の氏名と職員番号が表示される。
+    await hanakoInList.click({ force: true });
+    await expect(canvas.getByText('00990000002', { exact: true }).first()).toBeVisible({
+      timeout: 30_000,
+    });
+    await expect
+      .poll(
+        async () => {
+          const names = await canvas
+            .getByText('山田 花子', { exact: true })
+            .all();
+          for (const name of names) {
+            const box = await name.boundingBox();
+            if (box && box.x >= 360 && box.width > 0 && box.height > 0) {
+              return true;
+            }
+          }
+          return false;
+        },
+        {
+          message: '山田 花子の氏名が画面右側の詳細領域に表示されること',
+          timeout: 30_000,
+        },
+      )
+      .toBe(true);
+
+    await page.screenshot({
+      path: 'test-results/staff-master-hanako-detail.png',
+      fullPage: true,
+    });
+
+    // VIS-01/VIS-04: 小さいPCウィンドウでも項目が残り、重ならず、
+    // 横長の履歴表はスクロールして右端まで到達できる。
+    await page.setViewportSize({ width: 900, height: 600 });
+
+    const basicHeading = canvas.getByText('職員基本情報', { exact: true }).first();
+    const workHeading = canvas.getByText(/給与・勤務条件履歴/).first();
+    await expect(basicHeading).toBeVisible({ timeout: 30_000 });
+    await expect(workHeading).toBeVisible({ timeout: 30_000 });
+    await workHeading.scrollIntoViewIfNeeded();
+
+    const nonOverlapPairs = [
+      ['職員番号', '氏名'],
+      ['組織名略称', '生年月日'],
+      ['採用日', '退職日'],
+      ['適用状態', '適用開始日'],
+      ['適用開始日', '適用終了日'],
+      ['適用終了日', '日額単価'],
+      ['日額単価', '所定勤務時間'],
+      ['所定勤務時間', '勤務時間'],
+      ['勤務時間', '超勤基礎単価（参考）'],
+    ] as const;
+
+    for (const [firstText, secondText] of nonOverlapPairs) {
+      const firstBox = await firstRenderedBox(
+        canvas.getByText(firstText, { exact: true }),
+      );
+      const secondBox = await firstRenderedBox(
+        canvas.getByText(secondText, { exact: true }),
+      );
+      expect(firstBox, `${firstText}が縮小画面でも描画されること`).not.toBeNull();
+      expect(secondBox, `${secondText}が縮小画面でも描画されること`).not.toBeNull();
+      expect(
+        boxesOverlap(firstBox!, secondBox!),
+        `${firstText}と${secondText}の文字領域が重ならないこと`,
+      ).toBe(false);
+    }
+
+    const scrollResult = await scrollWidestHorizontalContainer(
+      canvas.locator('body'),
+    );
+    expect(scrollResult.found, '横スクロール可能な領域が存在すること').toBe(true);
+    expect(
+      scrollResult.moved,
+      `横スクロール位置が移動すること: ${JSON.stringify(scrollResult)}`,
+    ).toBe(true);
+
+    const farRightHeader = canvas
+      .getByText('勤務時間終了', { exact: true })
+      .first();
+    await farRightHeader.scrollIntoViewIfNeeded();
+    await expect(farRightHeader).toBeInViewport({ ratio: 0.5 });
+
+    await page.screenshot({
+      path: 'test-results/staff-master-small-viewport.png',
+      fullPage: true,
+    });
 
     // ZERO-03: 条件クリアで25名表示へ戻る。
     const clearButton = canvas.getByRole('button', {
