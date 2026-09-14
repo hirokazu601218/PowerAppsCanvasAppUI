@@ -4,6 +4,8 @@ const CANVAS_FRAME = 'iframe[name="fullscreen-app-host"]';
 
 test.describe('職員マスタ検索 v1.11 P0', () => {
   test('初期表示、氏名検索、条件クリアが動作する', async ({ page }) => {
+    await page.setViewportSize({ width: 1366, height: 768 });
+
     const appUrl = process.env.CANVAS_APP_URL;
     if (!appUrl) {
       throw new Error('CANVAS_APP_URL is required');
