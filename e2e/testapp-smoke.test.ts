@@ -1,8 +1,4 @@
 import { expect, test } from '@playwright/test';
-import {
-  clickCanvasButton,
-  fillCanvasInput,
-} from 'power-platform-playwright-toolkit';
 
 const TEST_VALUE = 'ChatGPT自動テスト成功';
 const CANVAS_FRAME = 'iframe[name="fullscreen-app-host"]';
@@ -29,11 +25,11 @@ test.describe('TestApp smoke test', () => {
       exact: true,
     });
     await input.waitFor({ state: 'visible', timeout: 30_000 });
-    await fillCanvasInput(page, input, TEST_VALUE);
+    await input.fill(TEST_VALUE, { timeout: 30_000 });
 
     const button = canvas.getByRole('button', { name: '実行', exact: true });
     await button.waitFor({ state: 'visible', timeout: 30_000 });
-    await clickCanvasButton(button);
+    await button.click({ force: true, timeout: 30_000 });
 
     await expect(
       canvas.getByText(`入力結果：${TEST_VALUE}`, { exact: true }),
