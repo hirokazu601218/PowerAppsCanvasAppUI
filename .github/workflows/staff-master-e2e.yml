@@ -115,6 +115,8 @@ jobs:
 
       - name: Run staff master P0 test
         working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
         run: npx playwright test tests/northwind/canvas/staff-master-p0.test.ts --project=canvas-app
 
       - name: Upload test evidence
