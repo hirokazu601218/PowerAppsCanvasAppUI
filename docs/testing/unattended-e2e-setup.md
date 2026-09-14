@@ -7,6 +7,7 @@
 - GitHub Actionsの手動実行
 - 成否、トレース、動画、失敗時スクリーンショットの30日保存
 - 成功時スクリーンショットの保存
+- GitHub Actions Run #7で、認証から結果判定まで全工程の合格を確認済み
 
 テスト内容は次のとおり。
 
@@ -25,11 +26,11 @@ GitHubの`Settings` → `Secrets and variables` → `Actions` → `Secrets`で�
 
 パスワードはファイルやIssueへ記載しない。Actionsの暗号化Secretだけに登録する。
 
-初期値はパスワード認証である。テナントのMFAやSecurity Defaultsにより、無人ログインが拒否される場合がある。この場合もMFAを無効化せず、次節の証明書方式へ切り替える。
+初期値はパスワード認証である。現在のテナントではこの方式による無人実行に成功している。パスワード変更、条件付きアクセス、MFAやSecurity Defaultsの変更後は認証が失敗する可能性があるため、その時点でテナントの方針に合う認証方式を再評価する。
 
-## 3. 完全無人化用の証明書設定
+## 3. 証明書認証へ切り替える場合
 
-Microsoft公式がCI/CD向けに推奨する証明書認証を使用する。Microsoft Entra ID側でテストユーザーの証明書ベース認証を構成した後、PFXをGitHub ActionsのSecretへ登録する。
+現在は設定不要。テナント側のポリシー変更などによりパスワード認証を継続できない場合だけ、Microsoft Entra ID側の対応方式と公式サンプルの対応状況を確認して切り替える。
 
 ### GitHub Variables
 
@@ -60,7 +61,14 @@ PFXはActions実行中だけ一時ファイルに復元され、成果物には�
 
 ## 5. 次段階
 
-最小スモークテストが安定して合格した後に、`docs/testing/test-specification.md`の95ケースを優先度順にPlaywrightへ移植する。最初は検索、サイドバー開閉、検索後の自動閉鎖、職員詳細表示を対象とする。
+実アプリ用に次を追加済み。
+
+- `.github/workflows/staff-master-e2e.yml`: 実アプリ専用の手動実行ワークフロー
+- `e2e/staff-master-p0.test.ts`: `INIT-01`、`SRCH-02`、`ZERO-03`の最小P0テスト
+
+実行前に、`src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml`を別のCanvasアプリへ導入して公開する。公開後、GitHubのRepository Variable `POWERAPPS_STAFF_APP_URL`へWebリンクを登録し、`Staff Master E2E`を手動実行する。
+
+このP0テストが安定して合格した後に、`docs/testing/test-specification.md`の残りを優先度順にPlaywrightへ移植する。検索、0件時の古い詳細消去、ページング、サイドバー開閉、職員詳細表示の順で広げる。定期実行は実アプリのP0合格後に追加する。
 
 ## 6. 参照
 
