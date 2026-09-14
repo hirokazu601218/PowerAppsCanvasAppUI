@@ -1,16 +1,24 @@
 # PowerAppsCanvasAppUI
 
-非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubをChatGPT SolのWorkで扱う共有正本とする。
+非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubのmainをChatGPT SolのWorkで扱う共有正本とする。
 
 **最新試作：v1.11。B案（Fluent 2＋DADS）と職員検索サイドバー開閉を実装。検索データ未表示のユーザー報告あり・原因調査待ち。**
 
 ## 最初に読む
 
-1. [Work運用方針](docs/operations/work-policy.md)と[現在地](docs/handoff/STATUS.md)
-2. [要件定義](docs/requirements/requirements.md)
-3. [基本設計](docs/design/basic-design.md)、[詳細設計](docs/design/detailed-design.md)、[B案デザイン基準](docs/design/design-system.md)
-4. [テスト方針](docs/testing/test-policy.md) → [テスト仕様書（95ケース＋スモーク）](docs/testing/test-specification.md) → [既存の要約基準](docs/testing/acceptance.md)
-5. [v1.12以降のコントロール単位差分配布方針](docs/operations/control-diff-policy.md)
+新しい作業への着手時は、次の2資料を最初に確認する。
+
+1. [Work運用方針](docs/operations/work-policy.md)
+2. [現在地と今回の読取り対象](docs/handoff/STATUS.md)
+
+その後、STATUSに記載された対象ソース、要件ID、関連設計、関連テスト、Library資料だけを読む。新しい依存関係や矛盾を発見した場合だけ追加資料を確認する。同一作業中は、運用方針またはSTATUSが更新された場合だけ再読する。
+
+## 正本と保管場所
+
+- GitHubを正本とするもの：YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、変更履歴
+- ChatGPT Libraryで保管するもの：画像、Excel、Word、PDF、HTML原本、検討用資料などGitHubで版管理しない成果物
+- 同じMarkdownをGitHubとLibraryの両方で正本として管理しない
+- Library資料の所在と読取り条件は[Library資料索引](docs/operations/library-materials-index.md)で確認する
 
 ## 最新ソース
 
@@ -32,7 +40,7 @@ v1.12以降は変更した部品・プロパティだけを配布する。部品
 |---|---|
 | docs/requirements/ | 要件定義・受入条件 |
 | docs/design/ | 基本・詳細設計、デザイン基準、データ契約 |
-| docs/operations/ | ChatGPT Sol Workでの運用方針 |
+| docs/operations/ | Work運用方針、差分配布方針、Library資料索引 |
 | docs/handoff/ | 現在地、導入手順、変更履歴 |
 | docs/testing/ | 試験計画・証跡・レビュー |
 | docs/reference/ | 旧HTML設計・旧DADS。現行仕様ではない |
@@ -47,5 +55,3 @@ v1.12以降は変更した部品・プロパティだけを配布する。部品
 同じ画面の旧版は新版確認後にGit履歴へ集約し、ZIPや一時ファイルは格納しない。資料版は本文で管理、コード版は0.01刻みとする。
 
 検査実行：`python tests/validate_v111.py`。ローカル評価器はMicrosoft公式コンパイラやStudio描画エンジンではない。
-
-要件定義、設計、YAML／Power Fx開発、静的テスト、レビューはすべてChatGPT SolのWorkで行う。ユーザーは業務判断、Power Apps Studioでの実機確認、リリース承認を担当する。
