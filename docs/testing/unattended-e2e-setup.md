@@ -47,7 +47,18 @@
 
 実行結果はGitHubの `Actions` → `Staff Master E2E` で確認する。証跡は各実行結果の `Artifacts` に `staff-master-evidence-*` として保存される。
 
-## 4. 認証情報
+## 4. 結果通知
+
+定時実行、Run workflow、テスト設定変更による実行が完了すると、次の固定Issueへ結果を自動追記する。
+
+- 通知先: https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/4
+- 通知項目: 実行種別、完了日時、総合結果、認証結果、P0テスト結果、実行詳細
+- 成功時: スクリーンショット成果物への直接リンクを表示
+- 認証失敗などで成果物がない場合: 「成果物なし」と表示
+
+Issueはリポジトリ所有者へ割り当て済み。GitHub側の通知設定に従い、Web・メール・モバイル通知で確認する。
+
+## 5. 認証情報
 
 GitHubの `Settings` → `Secrets and variables` → `Actions` → `Secrets` に次を登録する。
 
@@ -60,7 +71,7 @@ GitHubの `Settings` → `Secrets and variables` → `Actions` → `Secrets` に
 
 パスワード変更、MFA、Security Defaults、条件付きアクセスの変更により無人認証が失敗した場合は、セキュリティ設定を緩和せず認証方式を再評価する。
 
-## 5. アプリ更新時
+## 6. アプリ更新時
 
 1. Power Apps Studioで保存する
 2. 「公開」→「このバージョンの公開」を実行する
@@ -68,7 +79,7 @@ GitHubの `Settings` → `Secrets and variables` → `Actions` → `Secrets` に
 
 アプリを公開しただけではGitHub Actionsは即時起動しない。翌日03:00の定期実行を待つか、手動実行する。
 
-## 6. 関連ファイル
+## 7. 関連ファイル
 
 - `.github/workflows/staff-master-e2e.yml`: 実行条件、認証、証跡保存
 - `e2e/staff-master-p0.test.ts`: P0テスト
