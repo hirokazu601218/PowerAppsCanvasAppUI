@@ -2,6 +2,9 @@ name: Staff Master E2E
 
 on:
   workflow_dispatch:
+  schedule:
+    # Daily at 03:00 JST (18:00 UTC on the previous day).
+    - cron: '0 18 * * *'
   push:
     branches:
       - main
@@ -128,4 +131,4 @@ jobs:
             power-platform-playwright/packages/e2e-tests/test-results/
             power-platform-playwright/packages/e2e-tests/playwright-report/
           if-no-files-found: warn
-          retention-days: 30
+          retention-days: 14
