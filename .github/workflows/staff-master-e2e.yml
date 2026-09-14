@@ -2,6 +2,12 @@ name: Staff Master E2E
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/staff-master-e2e.yml'
+      - 'e2e/staff-master-p0.test.ts'
 
 permissions:
   contents: read
@@ -20,7 +26,7 @@ jobs:
       OFFICIAL_SAMPLES_REF: 43e3db8d131aeb09415b1faef030e783fd2e320f
       POWER_APPS_BASE_URL: https://make.powerapps.com
       POWER_APPS_ENVIRONMENT_ID: 2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb
-      CANVAS_APP_URL: ${{ vars.POWERAPPS_STAFF_APP_URL }}
+      CANVAS_APP_URL: ${{ vars.POWERAPPS_STAFF_APP_URL || 'https://apps.powerapps.com/play/e/2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb/a/0e5f5c05-b67d-4a27-af71-ebe5e5381221?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d' }}
       MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
       MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
       MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
