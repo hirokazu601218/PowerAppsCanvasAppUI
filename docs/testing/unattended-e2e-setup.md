@@ -65,8 +65,19 @@ PFXはActions実行中だけ一時ファイルに復元され、成果物には�
 
 - `.github/workflows/staff-master-e2e.yml`: 実アプリ専用の手動実行ワークフロー
 - `e2e/staff-master-p0.test.ts`: `INIT-01`、`SRCH-02`、`ZERO-03`の最小P0テスト
+- `tools/patch-v111-studio-compat.mjs`: v1.11を現行Studioへ貼り付ける前の互換修正
 
-実行前に、`src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml`を別のCanvasアプリへ導入して公開する。公開後、GitHubのRepository Variable `POWERAPPS_STAFF_APP_URL`へWebリンクを登録し、`Staff Master E2E`を手動実行する。
+現行Studioではv1.11原本に、Galleryの`.Items`参照8か所と`SetFocus` 8個の式エラーが出ることを実機で確認した。次のコマンドで互換修正版を生成する。スクリプトは想定した出現件数と一致しない原本には適用せず停止する。
+
+```bash
+node tools/patch-v111-studio-compat.mjs \
+  src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml \
+  src/staff-master/scrStaffMasterSearch_v1.11.studio-compat.paste.yaml
+```
+
+Power Appsには下書き`職員マスタ検索_自動テスト_v1_11`（App ID: `0e5f5c05-b67d-4a27-af71-ebe5e5381221`）を作成済み。互換修正版を導入してApp checkerの式エラーが0件になった後に公開する。
+
+公開後、GitHubのRepository Variable `POWERAPPS_STAFF_APP_URL`へWebリンクを登録し、`Staff Master E2E`を手動実行する。
 
 このP0テストが安定して合格した後に、`docs/testing/test-specification.md`の残りを優先度順にPlaywrightへ移植する。検索、0件時の古い詳細消去、ページング、サイドバー開閉、職員詳細表示の順で広げる。定期実行は実アプリのP0合格後に追加する。
 
