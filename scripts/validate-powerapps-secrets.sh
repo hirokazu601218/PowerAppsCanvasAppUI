@@ -2,14 +2,14 @@
 set -euo pipefail
 
 if [[ -z "${TEST_EMAIL:-}" ]]; then
-  echo "Missing GitHub Actions secret: POWERAPPS_TEST_USER_EMAIL" >&2
+  echo "Missing GitHub Actions secret: POWERAPPS_TEST_EMAIL" >&2
   exit 1
 fi
 
 case "${MS_AUTH_CREDENTIAL_TYPE:-password}" in
   password)
     if [[ -z "${TEST_PASSWORD:-}" ]]; then
-      echo "Missing GitHub Actions secret: POWERAPPS_TEST_USER_PASSWORD" >&2
+      echo "Missing GitHub Actions secret: POWERAPPS_TEST_PASSWORD" >&2
       exit 1
     fi
     ;;
