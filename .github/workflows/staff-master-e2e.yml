@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 concurrency:
   group: staff-master-e2e
@@ -132,3 +133,55 @@ jobs:
             power-platform-playwright/packages/e2e-tests/playwright-report/
           if-no-files-found: warn
           retention-days: 14
+
+      - name: Publish result summary and notify
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          case "$JOB_STATUS" in
+            success)
+              result_icon="✅"
+              result_label="合格"
+              ;;
+            cancelled)
+              result_icon="⚪"
+              result_label="キャンセル"
+              ;;
+            *)
+              result_icon="❌"
+              result_label="不合格"
+              ;;
+          esac
+
+          case "${{ github.event_name }}" in
+            schedule) trigger_label="定時実行（毎日03:00 JST）" ;;
+            workflow_dispatch) trigger_label="随時実行（Run workflow）" ;;
+            push) trigger_label="テスト設定変更による自動実行" ;;
+            *) trigger_label="${{ github.event_name }}" ;;
+          esac
+
+          executed_at="$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S JST')"
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          artifact_name="staff-master-evidence-${{ github.run_number }}"
+          comment_file="${RUNNER_TEMP}/staff-master-result.md"
+
+          {
+            echo "## ${result_icon} 職員マスタ自動テスト：${result_label}"
+            echo
+            echo "| 項目 | 結果 |"
+            echo "|---|---|"
+            echo "| 実行種別 | ${trigger_label} |"
+            echo "| 完了日時 | ${executed_at} |"
+            echo "| 総合結果 | **${result_label}** |"
+            echo "| テスト概要 | 起動 → 山田検索（2件・氏名確認）→ 条件クリア（25件確認） |"
+            echo "| 実行詳細 | [GitHub Actionsを開く](${run_url}) |"
+            echo "| スクリーンショット | [成果物一覧を開く](${run_url}#artifacts) → \`${artifact_name}\` |"
+            echo
+            echo "> スクリーンショットを含む成果物の保存期間は14日間です。"
+          } > "$comment_file"
+
+          cat "$comment_file" >> "$GITHUB_STEP_SUMMARY"
+          gh issue comment 4 --repo "$GITHUB_REPOSITORY" --body-file "$comment_file"
