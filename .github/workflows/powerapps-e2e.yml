@@ -6,8 +6,7 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/powerapps-e2e.yml'
-      - 'e2e/**'
+      - 'e2e/testapp-smoke.test.ts'
       - 'scripts/validate-powerapps-secrets.sh'
 
 permissions:
@@ -28,13 +27,10 @@ jobs:
       POWER_APPS_BASE_URL: https://make.powerapps.com
       POWER_APPS_ENVIRONMENT_ID: 2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb
       CANVAS_APP_URL: https://apps.powerapps.com/play/e/2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb/a/889f0b48-04cb-4d5d-88ba-153ff6ca3c91?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
-      MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
       MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
       MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
       MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
-      MS_USER_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
       MS_AUTH_LOCAL_FILE_PATH: ../../cert/powerapps-test-user.pfx
-      MS_AUTH_CERTIFICATE_PASSWORD: ${{ secrets.POWERAPPS_TEST_CERT_PASSWORD }}
       MS_AUTH_HEADLESS: true
       MS_AUTH_WAIT_FOR_MSAL_TOKENS: true
       MS_AUTH_MSAL_TOKEN_TIMEOUT: 60000
@@ -65,18 +61,6 @@ jobs:
           cache: npm
           cache-dependency-path: power-platform-playwright/package-lock.json
 
-      - name: Validate test user password secret
-        shell: bash
-        env:
-          TEST_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
-        run: test -n "$TEST_PASSWORD"
-
-      - name: Validate test user email secret
-        shell: bash
-        env:
-          TEST_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
-        run: test -n "$TEST_EMAIL"
-
       - name: Prepare certificate authentication
         if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
         shell: bash
@@ -105,10 +89,26 @@ jobs:
 
       - name: Authenticate to Power Apps
         working-directory: power-platform-playwright/packages/e2e-tests
-        run: npm run auth
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+          MS_USER_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+          MS_AUTH_CERTIFICATE_PASSWORD: ${{ secrets.POWERAPPS_TEST_CERT_PASSWORD }}
+        shell: bash
+        run: |
+          test -n "$MS_AUTH_EMAIL"
+          if [[ "$MS_AUTH_EMAIL" != "powerapps-test@govaca.onmicrosoft.com" ]]; then
+            echo "::error::Configure the dedicated test user before running this workflow"
+            exit 1
+          fi
+          if [[ "$MS_AUTH_CREDENTIAL_TYPE" == "password" ]]; then
+            test -n "$MS_USER_PASSWORD"
+          fi
+          npm run auth
 
       - name: Run TestApp smoke test
         working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
         run: npx playwright test tests/northwind/canvas/testapp-smoke.test.ts --project=canvas-app
 
       - name: Upload test evidence
