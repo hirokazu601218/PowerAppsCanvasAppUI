@@ -202,7 +202,7 @@ jobs:
             echo "| 総合結果 | **${result_label}** |"
             echo "| Power Apps認証 | ${auth_label} |"
             echo "| P0テスト | ${test_label} |"
-            echo "| テスト概要 | 起動 → 山田検索（2件・氏名確認）→ 条件クリア（25件確認） |"
+            echo "| テスト概要 | 起動 → 山田検索（2件）→ 山田花子選択・右詳細確認 → 900×600表示・非重複・横スクロール確認 → 条件クリア（25件） |"
             echo "| 実行詳細 | [GitHub Actionsを開く](${run_url}) |"
             echo "| スクリーンショット | ${evidence_cell} |"
             echo
