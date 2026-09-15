@@ -1,7 +1,7 @@
 # Phase 1.5 実行記録 — CLI暫定経路とGitHub OIDC
 
 更新日: 2026-09-15  
-状態: **URL直接指定の無変更展開成功／P0共有待ち**  
+状態: **URL直接指定の無変更展開・CanView共有・隔離環境P0成功**  
 対象Issue: [#5](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/5)  
 対象PR: [#6](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/6)
 
@@ -90,7 +90,8 @@ OIDC単体確認も、PACの環境一覧API参照が同一原因で2回続いた
 |---|---|---|---|
 | URL直接配布 | [34922824319](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34922824319) | 基準・隔離テストの両方をDataverse URLで直接指定。Canvas再packを無変更配布経路から分離 | 成功 |
 | App ID取得 | [34923097678](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34923097678) | 隔離テストDataverse Web APIをOIDCで照会 | 成功 |
-| 隔離環境P0 | [34923187435](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34923187435) | 取得したApp IDで既存P0を実行 | アプリ未共有のため失敗 |
+| 初回隔離環境P0 | [34923187435](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34923187435) | 取得したApp IDで既存P0を実行 | アプリ未共有のため失敗 |
+| CanView共有＋P0 | [34925700515](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34925700515) | アプリ所有者向けAPIで専用利用者へCanViewを設定・読戻し後、同一runでP0実行 | 成功 |
 
 URL直接配布runでは、基準環境OIDC認証、Solution `StaffMasterAutomation` 版 `1.11.0.0` の自動export、隔離テスト環境OIDC認証、同一パッケージのimport・publish、SolutionとCanvasアプリの存在確認がすべて成功した。
 
@@ -103,4 +104,41 @@ URL直接配布runでは、基準環境OIDC認証、Solution `StaffMasterAutomat
 | export SHA-256 | `6091481d9f665cd10fad62c550fc163a81e76f834510201f9ba676b55c93ab39` |
 | 証跡保持 | 14日 |
 
-P0の認証処理自体は成功したが、実行画面は「Request access」を表示した。専用テスト利用者へ隔離テストアプリのCanView共有が必要である。これは権限変更のため、実行直前の承認待ちとする。基準アプリの画面、Power Fx、接続、公開状態、共有設定は変更していない。
+初回P0の認証処理自体は成功したが、実行画面は「Request access」を表示した。ユーザー承認後、専用テスト利用者へ隔離テストアプリだけをCanView共有し、P0を再実行した。基準アプリの画面、Power Fx、接続、公開状態、共有設定は変更していない。
+
+## 9. CanView共有と隔離環境P0
+
+### 9.1 試行履歴
+
+| Run | 対応策 | 結果 |
+|---|---|---|
+| [34924448313](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34924448313) | 隔離Dataverseの `systemusers` から専用利用者を照合 | 未共有のため利用者レコードがなく、後続診断前に停止 |
+| [34924558205](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34924558205) | `aadusers` 仮想テーブルへ切替 | ODataパラメータのエスケープ誤りで400 |
+| [34924638111](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34924638111) | ODataパラメータを修正 | `systemusers` は空、`aadusers` のサーバーフィルターが400 |
+| [34924711126](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34924711126) | `aadusers` をフィルターなしで照合し、公式管理モジュールも取得 | 診断完了。ただしアプリ資格情報では `aadusers` がOBOトークンを要求し、Object IDは未解決 |
+| [34924817911](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34924817911) / [34924869864](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34924869864) | 公式管理モジュールから共有APIの経路と要求本文を確定 | 成功 |
+| [34925027688](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34925027688) / [34925246122](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34925246122) | P0認証済み状態から専用利用者のObject IDを抽出 | 認証状態ファイルの探索場所が不一致。共有・P0は未実行 |
+| [34925383989](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34925383989) | 正しい認証状態からObject IDを抽出し、テナント管理APIで共有 | Object ID抽出成功。管理APIは403のため共有・P0は未実行 |
+| [34925639162](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34925639162) | 公式Makerモジュールのアプリ所有者向けAPIを調査 | 成功。テナント管理権限を増やさない経路を確定 |
+| [34925700515](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34925700515) | アプリ所有者向けAPIでCanViewを冪等設定し、読戻し後にP0実行 | **成功** |
+
+各失敗後は同じ呼出しを単純反復せず、利用者解決方法、APIスコープ、認証状態の利用方法を実質的に変更した。テナント管理ロールやPower Platform Management Applicationの追加は行っていない。
+
+### 9.2 成功結果
+
+| 項目 | 結果 |
+|---|---|
+| 共有対象環境 | `StaffMaster-Automation-Test`（`68e00049-b7e5-eda6-9888-9a3cc493c5be`） |
+| 共有対象アプリ | `362ac991-eead-4f07-8373-afdb3ebfdba1` |
+| 共有先 | `powerapps-test@govaca.onmicrosoft.com` |
+| 権限 | `CanView`。CanEditなし |
+| 共有方式 | Power Appsアプリ所有者向け `modifyPermissions` API |
+| 認証 | GitHub OIDC。Client Secretなし |
+| 読戻し検証 | 成功 |
+| P0 | 起動、山田検索2件、山田花子の詳細、900×600表示・非重複・横スクロール、条件クリア25件がすべて成功 |
+| 成功run | [34925700515](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34925700515) |
+| 証跡artifact | `phase1-5-target-evidence-5`（ID `10379427558`） |
+| 証跡保持期限 | 2026-09-29 03:39 UTC |
+| 基準アプリへの影響 | なし |
+
+これにより、Dataverse URL直接指定での基準Solution export、隔離環境import・publish、対象アプリ特定、専用利用者への最小権限共有、隔離環境P0までの無変更配布経路が成立した。次のゲートは、PAC CLI 2.12.2のCanvas pack不具合と分離した編集可能ソースの再構成方式である。
