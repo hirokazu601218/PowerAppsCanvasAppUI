@@ -1,0 +1,210 @@
+name: Phase 1.5 target P0
+
+on:
+  push:
+    branches:
+      - automation/phase1-baseline
+    paths:
+      - '.github/workflows/phase1-5-target-p0.yml'
+      - 'e2e/staff-master-p0.test.ts'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: phase1-5-target-p0
+  cancel-in-progress: false
+
+jobs:
+  staff-master-p0:
+    name: Isolated target app P0 test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      OFFICIAL_SAMPLES_REF: 43e3db8d131aeb09415b1faef030e783fd2e320f
+      POWER_APPS_BASE_URL: https://make.powerapps.com
+      POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+      CANVAS_APP_URL: https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
+      MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
+      MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
+      MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
+      MS_AUTH_LOCAL_FILE_PATH: ../../cert/powerapps-test-user.pfx
+      MS_AUTH_HEADLESS: true
+      MS_AUTH_WAIT_FOR_MSAL_TOKENS: true
+      MS_AUTH_MSAL_TOKEN_TIMEOUT: 60000
+      HEADLESS: true
+      WORKERS: 1
+      RETRIES: 1
+      TEST_TIMEOUT: 120000
+      OUTPUT_DIRECTORY: ./test-results
+      CI: true
+
+    steps:
+      - name: Validate staff app URL
+        shell: bash
+        run: |
+          if [[ -z "$CANVAS_APP_URL" ]]; then
+            echo "::error::Repository variable POWERAPPS_STAFF_APP_URL is not set"
+            exit 1
+          fi
+
+      - name: Check out project
+        uses: actions/checkout@v4
+        with:
+          path: project
+
+      - name: Check out Microsoft Power Platform Playwright samples
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/power-platform-playwright-samples
+          ref: ${{ env.OFFICIAL_SAMPLES_REF }}
+          path: power-platform-playwright
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: power-platform-playwright/package-lock.json
+
+      - name: Install official toolkit dependencies
+        working-directory: power-platform-playwright
+        run: npm install
+
+      - name: Build official toolkit
+        working-directory: power-platform-playwright
+        run: npm run build
+
+      - name: Install Chromium
+        working-directory: power-platform-playwright/packages/e2e-tests
+        run: npx playwright install chromium --with-deps
+
+      - name: Add staff master P0 test
+        shell: bash
+        run: cp project/e2e/staff-master-p0.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/staff-master-p0.test.ts
+
+      - name: Prepare certificate authentication
+        if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
+        shell: bash
+        env:
+          TEST_CERT_BASE64: ${{ secrets.POWERAPPS_TEST_CERT_BASE64 }}
+        run: |
+          mkdir -p power-platform-playwright/cert
+          printf '%s' "$TEST_CERT_BASE64" | base64 --decode > power-platform-playwright/cert/powerapps-test-user.pfx
+          chmod 600 power-platform-playwright/cert/powerapps-test-user.pfx
+
+      - name: Authenticate to Power Apps
+        id: auth
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+          MS_USER_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+          MS_AUTH_CERTIFICATE_PASSWORD: ${{ secrets.POWERAPPS_TEST_CERT_PASSWORD }}
+        shell: bash
+        run: |
+          test -n "$MS_AUTH_EMAIL"
+          if [[ "$MS_AUTH_EMAIL" != "powerapps-test@govaca.onmicrosoft.com" ]]; then
+            echo "::error::Configure the dedicated test user before running this workflow"
+            exit 1
+          fi
+          if [[ "$MS_AUTH_CREDENTIAL_TYPE" == "password" ]]; then
+            test -n "$MS_USER_PASSWORD"
+          fi
+          npm run auth
+
+      - name: Run staff master P0 test
+        id: p0-test
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+        run: npx playwright test tests/northwind/canvas/staff-master-p0.test.ts --project=canvas-app
+
+      - name: Upload test evidence
+        id: evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase1-5-target-evidence-${{ github.run_number }}
+          path: |
+            power-platform-playwright/packages/e2e-tests/test-results/
+            power-platform-playwright/packages/e2e-tests/playwright-report/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Publish result summary and notify
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_STATUS: ${{ job.status }}
+          AUTH_OUTCOME: ${{ steps.auth.outcome }}
+          TEST_OUTCOME: ${{ steps.p0-test.outcome }}
+          ARTIFACT_URL: ${{ steps.evidence.outputs.artifact-url }}
+        run: |
+          case "$JOB_STATUS" in
+            success)
+              result_icon="✅"
+              result_label="合格"
+              ;;
+            cancelled)
+              result_icon="⚪"
+              result_label="キャンセル"
+              ;;
+            *)
+              result_icon="❌"
+              result_label="不合格"
+              ;;
+          esac
+
+          case "${{ github.event_name }}" in
+            schedule) trigger_label="定時実行（毎日03:00 JST）" ;;
+            workflow_dispatch) trigger_label="随時実行（Run workflow）" ;;
+            push) trigger_label="テスト設定変更による自動実行" ;;
+            *) trigger_label="${{ github.event_name }}" ;;
+          esac
+
+          translate_outcome() {
+            case "$1" in
+              success) echo "成功" ;;
+              failure) echo "失敗" ;;
+              skipped) echo "未実行" ;;
+              cancelled) echo "キャンセル" ;;
+              *) echo "不明" ;;
+            esac
+          }
+
+          auth_label="$(translate_outcome "$AUTH_OUTCOME")"
+          test_label="$(translate_outcome "$TEST_OUTCOME")"
+          executed_at="$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S JST')"
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          artifact_name="phase1-5-target-evidence-${{ github.run_number }}"
+          comment_file="${RUNNER_TEMP}/staff-master-result.md"
+
+          if [[ -n "$ARTIFACT_URL" ]]; then
+            evidence_cell="[スクリーンショット成果物を開く](${ARTIFACT_URL}) → \`${artifact_name}\`"
+          else
+            evidence_cell="成果物なし（認証またはテスト開始前に失敗）"
+          fi
+
+          {
+            echo "## ${result_icon} 職員マスタ自動テスト：${result_label}"
+            echo
+            echo "| 項目 | 結果 |"
+            echo "|---|---|"
+            echo "| 実行種別 | ${trigger_label} |"
+            echo "| 完了日時 | ${executed_at} |"
+            echo "| 総合結果 | **${result_label}** |"
+            echo "| Power Apps認証 | ${auth_label} |"
+            echo "| P0テスト | ${test_label} |"
+            echo "| テスト概要 | 起動 → 山田検索（2件）→ 山田花子選択・右詳細確認 → 900×600表示・非重複・横スクロール確認 → 条件クリア（25件） |"
+            echo "| 実行詳細 | [GitHub Actionsを開く](${run_url}) |"
+            echo "| スクリーンショット | ${evidence_cell} |"
+            echo
+            echo "> スクリーンショットを含む成果物の保存期間は14日間です。"
+          } > "$comment_file"
+
+          cat "$comment_file" >> "$GITHUB_STEP_SUMMARY"
+          gh issue comment 5 --repo "$GITHUB_REPOSITORY" --body-file "$comment_file"
