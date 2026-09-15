@@ -21,14 +21,14 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | BUG-SEARCH-001：職員検索データ未表示 |
-| 基準版 | v1.11 |
-| 要件ID | 検索・初期表示に関する要件。着手時に該当IDを確定する |
-| 対象ソース | `src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml`、必要時のみ管理用 `.pa.yaml` |
-| 関連設計 | `docs/design/detailed-design.md` の検索・初期表示部分 |
-| 関連テスト | `docs/testing/test-specification.md` の SMK-01 および検索・初期表示の影響ケース |
+| 対象機能 | Power Apps無人修正・テスト・公開基盤の設計 |
+| 基準版 | P0合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11との差分は初期構築で照合 |
+| 要件ID | AUT-001～AUT-024（`docs/requirements/unattended-development-requirements.md`） |
+| 対象ソース | `.github/workflows/staff-master-e2e.yml`、`e2e/staff-master-p0.test.ts`、`src/staff-master/`。今回は文書設計のみ |
+| 関連設計 | `docs/operations/unattended-development-implementation-plan.md` |
+| 関連テスト | 対象外。文書のリンク・用語・版・記述整合のみ確認 |
 | Library資料 | なし |
-| 未解決事項 | 対象公開版・環境の照合、再現、原因分析 |
+| 未解決事項 | Git統合対応Solutionの初期取込み、サービスプリンシパル作成、公開アプリとGitHub v1.11の差分照合 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -50,11 +50,11 @@
 
 ## ChatGPT Sol Workの次の作業
 
-1. BUG-SEARCH-001の対象公開版・環境を照合し、テスト仕様書SMK-01で再現する。自動実行できない部分だけをユーザーへ依頼し、未実行を合格にしない。
-2. 1366×768／1920×1080、標準／大文字で全履歴、横スクロール、キーボード操作を確認する。
-3. 実機との差があれば、対象部品コード・エラー全文・再現手順を取得し、v1.12の最小パッチで修正する。
-4. PDFの生成・保存、用紙・改ページ、支援技術と200%拡大は別試験として結果を記録する。
-5. v1.11のユーザー確認後、復元元コミットを残してv1.08旧ソースをGit履歴へ集約する。
+1. 無人修正・テスト・公開基盤の要件定義書と段階別構築計画を確定する。
+2. P0合格済み公開アプリをアンマネージドSolutionへ追加し、Power Platform Git統合形式でGitHubへ初期取込みする。
+3. 公開アプリ由来ソースと既存GitHub v1.11を比較し、基準版と復元点を確定する。
+4. 専用サービスプリンシパルとGitHub Actions Secretsを設定する。
+5. 作業ブランチ、Solution反映、追加テスト、P0回帰、自動修復、復元、main統合、タグ、Issue記録を段階的に実装・検証する。
 
 ## 未決・ギャップ
 
