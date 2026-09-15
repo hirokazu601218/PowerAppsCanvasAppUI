@@ -22,13 +22,13 @@
 | 項目 | 指定 |
 |---|---|
 | 対象機能 | Power Apps無人修正・テスト・公開基盤の設計 |
-| 基準版 | P0合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11との差分は初期構築で照合 |
+| 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11との差分は未照合 |
 | 要件ID | AUT-001～AUT-024（`docs/requirements/unattended-development-requirements.md`） |
-| 対象ソース | `.github/workflows/staff-master-e2e.yml`、`e2e/staff-master-p0.test.ts`、`src/staff-master/`。今回は文書設計のみ |
-| 関連設計 | `docs/operations/unattended-development-implementation-plan.md` |
-| 関連テスト | 対象外。文書のリンク・用語・版・記述整合のみ確認 |
+| 対象ソース | `.github/workflows/staff-master-e2e.yml`、`e2e/staff-master-p0.test.ts`、`src/staff-master/`。Phase 1は調査・文書のみ |
+| 関連設計 | `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-baseline.md` |
+| 関連テスト | 既存P0を再実行して合格。文書はリンク・用語・版・記述整合を確認 |
 | Library資料 | なし |
-| 未解決事項 | Git統合対応Solutionの初期取込み、サービスプリンシパル作成、公開アプリとGitHub v1.11の差分照合 |
+| 未解決事項 | 保全・編集経路A/B/Cの選択、サービスプリンシパル作成、公開アプリとGitHub v1.11の差分照合 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -36,10 +36,12 @@
 
 | 項目 | 状態 |
 |---|---|
-| 無人修正・テスト・公開基盤 | Phase 0完了。要件定義書v1.00、段階別構築計画v1.00を作成。実装は未着手 |
+| 無人修正・テスト・公開基盤 | Phase 0完了。Phase 1はP0基準確認完了、ソース保全方式の判断待ち |
+| Phase 1 P0 | run #8 attempt 3が成功。2026-09-15T01:27:59Z完了。証跡は14日保持 |
+| GitHub格納状態 | 画面YAML・個別Power Fxは存在。アプリ全体を再構成できる完全なSolutionソースではない |
+| Power Platform Git統合 | GitHub接続はプレビュー。GitHub Organization、Managed Environment、Azure Key Vault等が必要で、現個人リポジトリのままでは開始不可 |
 | GitHub Actions | `.github/workflows/powerapps-e2e.yml` と `staff-master-e2e.yml` を構築済み |
 | E2Eスクリプト | `e2e/testapp-smoke.test.ts` と `e2e/staff-master-p0.test.ts` を格納済み |
-| Staff Master E2E | run #4が成功。定時・随時実行と結果通知の仕組みを継続確認中 |
 | Power Apps E2E | run #1は失敗。成功実績とは分けて扱い、Actionsで最新結果を確認する |
 | 合否の境界 | ワークフローやスクリプトの存在だけでは合格としない。対象版の実行結果と証跡で判定する |
 
@@ -51,14 +53,15 @@
 
 ## ChatGPT Sol Workの次の作業
 
-1. Phase 1として既存P0を再実行し、開始時点の合格を確認する。
-2. 成功run、App ID、環境ID、公開版を基準記録として確定する。
-3. P0合格済み公開アプリを変更せず取得・保全する方法を確認する。
-4. 公開アプリ由来ソースと既存GitHub v1.11の比較項目・差分記録様式を作る。
-5. Phase 2に必要なPower Platform Git統合の利用可否と初回操作を確認する。
+1. Phase 1の保全・編集経路A/B/Cを決定する。
+2. 選択経路に必要な一回限りの環境・認証準備を人が行う。
+3. 公開アプリを変更せず取得するか、複製先で往復再現性を確認する。
+4. 差分テンプレートで公開アプリ由来ソースと既存GitHub v1.11を比較する。
+5. 基準版をIssue #5で承認後、Phase 2の自動変更パイプラインへ進む。
 
 ## 未決・ギャップ
 
+- Power Appsの保全・編集経路。ネイティブGit統合、CLI暫定、Studio自動操作から選択が必要。
 - 本番列一覧、Dataverseテーブル名・型・ロール、実接続/委任設計は別途。
 - TSVから正式XLSX出力への方式は未決。
 - 帳票A3/A4等の正式用紙と実機改ページは未決。
