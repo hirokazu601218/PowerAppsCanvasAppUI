@@ -121,6 +121,30 @@ jobs:
               "\n".join(out), encoding="utf-8"
           )
           PY
+          python3 - <<'PY'
+          from pathlib import Path
+          source = Path("artifacts/share-diagnostics/OFFICIAL_CMDLET_SOURCE.txt").read_text(encoding="utf-8")
+          keywords = (
+              "set-adminpowerapproleassignment",
+              "get-adminpowerapproleassignment",
+              "roleassign",
+              "principalobjectid",
+              "principaltype",
+              "rolename",
+              "notify",
+              "powerappendpoint",
+              "invokeapi",
+              "apiversion",
+          )
+          selected = [
+              f"{index}: {line}"
+              for index, line in enumerate(source.splitlines(), start=1)
+              if any(keyword in line.lower() for keyword in keywords)
+          ][:300]
+          output = "\n".join(selected) + "\n"
+          Path("artifacts/share-diagnostics/SHARE_API_HIGHLIGHTS.txt").write_text(output, encoding="utf-8")
+          print(output)
+          PY
 
       - name: Verify Power Apps service token availability
         shell: bash
