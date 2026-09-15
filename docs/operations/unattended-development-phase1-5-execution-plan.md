@@ -1,9 +1,10 @@
 # Phase 1.5 実行計画 — CLI暫定経路とGitHub OIDC
 
 更新日: 2026-09-15  
-状態: **実行承認待ち**  
+状態: **自動停止（同一原因2回）**  
 対象Issue: [#5](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/5)  
-対象PR: [#6](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/6)
+対象PR: [#6](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/6)  
+実行記録: [Phase 1.5 実行記録](unattended-development-phase1-5-execution-record.md)
 
 ## 1. 推奨判断
 
@@ -34,12 +35,12 @@ Power Apps Premiumの購入とプレビュー機能に依存せず、次の構�
 | 環境種別 | 開発者 |
 | Dataverse | あり |
 | Managed Environment | いいえ |
-| カスタムSolution | なし。既定Solutionのみ |
+| カスタムSolution | `StaffMasterAutomation`（表示名「職員マスタ自動化」、版 `1.11.0.0`）を作成済み |
 | Power Apps Premium | なし |
 | Power Apps Developer | あり |
 | GitHub Organization | なし |
 | GitHubリポジトリ | 個人アカウント配下、public、管理者権限あり |
-| 専用アプリ登録 | 現在のユーザー所有アプリにはなし |
+| 専用アプリ登録 | `PowerAppsCanvasAppUI-Automation`（Application ID `1c94f011-c447-4af1-968f-ec564f489395`）を作成済み。Client Secret 0件 |
 
 ## 3. ネイティブGit統合を見送る理由
 
@@ -161,3 +162,11 @@ GitHub ActionsからPower Platformへの認証は、GitHub OIDCトークンとMi
 | 7 | GitHub記録 | Issue・PR・証跡・ロールバック版を関連付け |
 
 すべて成功した時点でPhase 1を完了し、無人修正ループのPhase 2へ進む。
+
+## 10. 実行結果（2026-09-15）
+
+OIDC疎通、Solution作成、テスト環境作成、専用サービスプリンシパル作成、GitHub OIDC、両環境へのアプリユーザー追加は完了した。
+
+基準Solutionの自動exportは、環境ID解決時にPAC CLIがPower Platform管理APIの環境一覧へアクセスし、System Customizer権限のサービスプリンシパルでは拒否された。同一の正規化エラーがrun `34921838271` と `34921903514` で2回連続したため、合意済み停止条件に従い自動処理を停止した。基準アプリとテスト環境への内容変更はなく、復元は不要。
+
+次の候補は基準Dataverse URLの直接指定であり、権限拡大は行わない。詳細は実行記録を参照する。
