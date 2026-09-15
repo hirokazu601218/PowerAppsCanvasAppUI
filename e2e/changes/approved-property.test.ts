@@ -42,7 +42,7 @@ test('AUT-SIDEBAR-001 menu icon and sidebar state preservation', async ({ page }
   }
   await c.getByRole('button',{name:'検索条件をクリア',exact:true}).click();
   await c.getByRole('button',{name:'次へ',exact:true}).click();
-  const pageText=c.locator('[data-control-name="lblPage111"]');
+  const pageText=c.getByText('2 / 2',{exact:true});
   await expect(pageText).toBeVisible();
   const before=await pageText.innerText();
   await close().click();
