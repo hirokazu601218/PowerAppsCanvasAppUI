@@ -1,0 +1,367 @@
+name: Step 6 modern Canvas source reconstruction
+
+on:
+  push:
+    branches:
+      - automation/phase1-baseline
+    paths:
+      - '.github/workflows/phase2-source-reconstruction.yml'
+      - 'tools/powerapps-source-reconstruct/**'
+      - 'powerapps/canvas-v3/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+  issues: write
+
+concurrency:
+  group: step6-canvas-source-reconstruction
+  cancel-in-progress: false
+
+env:
+  POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+  POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+  POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
+  POWER_PLATFORM_TARGET_APP_ID: 362ac991-eead-4f07-8373-afdb3ebfdba1
+  SOLUTION_NAME: StaffMasterAutomation
+  APP_NAME: 職員マスタ検索_自動テスト_v1_11
+  POWERAPPS_TOOLING_REF: aed72a37c3b10b08f81c9d2257d5c38da33dccbe
+
+jobs:
+  reconstruct:
+    name: Reconstruct, deploy, and verify editable source
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out project branch
+        uses: actions/checkout@v5
+        with:
+          ref: automation/phase1-baseline
+          path: project
+
+      - name: Check out pinned Microsoft PowerApps Tooling
+        uses: actions/checkout@v5
+        with:
+          repository: microsoft/PowerApps-Tooling
+          ref: ${{ env.POWERAPPS_TOOLING_REF }}
+          path: powerapps-tooling
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Install Power Platform CLI and build reconstruction helper
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/step6
+          dotnet --info > artifacts/step6/DOTNET_INFO.txt
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+          pac help >/dev/null
+          pac --version | tee artifacts/step6/PAC_VERSION.txt
+          dotnet build             project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             --configuration Release             --nologo
+          {
+            echo "POWERAPPS_TOOLING_REPOSITORY=https://github.com/microsoft/PowerApps-Tooling"
+            echo "POWERAPPS_TOOLING_COMMIT=$POWERAPPS_TOOLING_REF"
+          } > artifacts/step6/TOOLCHAIN.env
+
+      - name: Resolve the single baseline Canvas app
+        id: baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t candidates < <(
+            find project/powerapps/solution-src/CanvasApps               -maxdepth 1 -type f -name '*.msapp' -print
+          )
+          if [[ "${#candidates[@]}" -ne 1 ]]; then
+            echo "::error::Expected exactly one baseline .msapp; found ${#candidates[@]}"
+            printf '%s
+' "${candidates[@]}"
+            exit 1
+          fi
+          baseline_msapp="${candidates[0]}"
+          relative_path="${baseline_msapp#project/powerapps/solution-src/}"
+          echo "msapp=$baseline_msapp" >> "$GITHUB_OUTPUT"
+          echo "relative-path=$relative_path" >> "$GITHUB_OUTPUT"
+          sha256sum "$baseline_msapp"             | tee artifacts/step6/BASELINE_MSAPP_SHA256.txt
+          unzip -l "$baseline_msapp"             | tee artifacts/step6/BASELINE_MSAPP_FILES.txt
+
+      - name: Extract active pa.yaml source and msapr reference
+        id: unpack
+        shell: bash
+        env:
+          BASELINE_MSAPP: ${{ steps.baseline.outputs.msapp }}
+        run: |
+          set -euo pipefail
+          editable_dir="$RUNNER_TEMP/editable-source"
+          dotnet run             --configuration Release             --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             -- unpack "$BASELINE_MSAPP" "$editable_dir"
+
+          msapr_path="$(find "$editable_dir" -maxdepth 1 -type f -name '*.msapr' -print -quit)"
+          test -s "$msapr_path"
+          source_count="$(find "$editable_dir/Src" -type f -name '*.pa.yaml' | wc -l)"
+          if [[ "$source_count" -lt 2 ]]; then
+            echo "::error::Modern source extraction produced only $source_count pa.yaml file(s)"
+            exit 1
+          fi
+          test -s "$editable_dir/Src/App.pa.yaml"
+
+          echo "msapr=$msapr_path" >> "$GITHUB_OUTPUT"
+          find "$editable_dir" -type f -printf '%P
+'             | LC_ALL=C sort             | tee artifacts/step6/EDITABLE_SOURCE_FILES.txt
+          find "$editable_dir/Src" -type f -name '*.pa.yaml' -print0             | LC_ALL=C sort -z             | xargs -0 sha256sum             | tee artifacts/step6/EDITABLE_SOURCE_SHA256.txt
+
+      - name: Reconstruct unchanged msapp from active source
+        shell: bash
+        env:
+          BASELINE_MSAPP: ${{ steps.baseline.outputs.msapp }}
+          MSAPR_PATH: ${{ steps.unpack.outputs.msapr }}
+        run: |
+          set -euo pipefail
+          rebuilt_msapp="$RUNNER_TEMP/reconstructed.msapp"
+          dotnet run             --configuration Release             --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             -- pack "$MSAPR_PATH" "$rebuilt_msapp"
+          test -s "$rebuilt_msapp"
+
+          mkdir -p "$RUNNER_TEMP/original-msapp" "$RUNNER_TEMP/rebuilt-msapp"
+          unzip -qq "$BASELINE_MSAPP" -d "$RUNNER_TEMP/original-msapp"
+          unzip -qq "$rebuilt_msapp" -d "$RUNNER_TEMP/rebuilt-msapp"
+          diff -ru             "$RUNNER_TEMP/original-msapp/Src"             "$RUNNER_TEMP/rebuilt-msapp/Src"             > artifacts/step6/LOCAL_SOURCE_DIFF.txt
+          test ! -s artifacts/step6/LOCAL_SOURCE_DIFF.txt
+
+          packed_json="$(find "$RUNNER_TEMP/rebuilt-msapp" -type f -iname 'packed.json' -print -quit)"
+          test -s "$packed_json"
+          jq -e '
+            [..
+              | objects
+              | to_entries[]?
+              | select((.key | ascii_downcase) == "loadfromyaml")
+              | .value]
+            | any(. == true)
+          ' "$packed_json" >/dev/null
+
+          sha256sum "$rebuilt_msapp"             | tee artifacts/step6/RECONSTRUCTED_MSAPP_SHA256.txt
+
+      - name: Build reconstructed and rollback Solutions
+        shell: bash
+        env:
+          CANVAS_RELATIVE_PATH: ${{ steps.baseline.outputs.relative-path }}
+        run: |
+          set -euo pipefail
+          cp -a project/powerapps/solution-src "$RUNNER_TEMP/solution-original"
+          cp -a project/powerapps/solution-src "$RUNNER_TEMP/solution-rebuilt"
+          cp "$RUNNER_TEMP/reconstructed.msapp"             "$RUNNER_TEMP/solution-rebuilt/$CANVAS_RELATIVE_PATH"
+
+          pac solution pack             --folder "$RUNNER_TEMP/solution-original"             --zipfile "$RUNNER_TEMP/baseline-solution.zip"             --packagetype Unmanaged
+          pac solution pack             --folder "$RUNNER_TEMP/solution-rebuilt"             --zipfile "$RUNNER_TEMP/reconstructed-solution.zip"             --packagetype Unmanaged
+
+          sha256sum             "$RUNNER_TEMP/baseline-solution.zip"             "$RUNNER_TEMP/reconstructed-solution.zip"             | tee artifacts/step6/SOLUTION_SHA256.txt
+
+      - name: Authenticate to isolated Dataverse URL with GitHub OIDC
+        id: test-auth
+        shell: bash
+        run: |
+          set -euo pipefail
+          pac auth create             --name step6-test-oidc             --githubFederated             --tenant "$POWER_PLATFORM_TENANT_ID"             --applicationId "$POWER_PLATFORM_CLIENT_ID"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
+          echo "OIDC authentication to the isolated Dataverse URL succeeded."             | tee artifacts/step6/OIDC_AUTH.txt
+
+      - name: Import reconstructed Solution and publish
+        id: deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+          pac solution import             --path "$RUNNER_TEMP/reconstructed-solution.zip"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --force-overwrite             --publish-changes
+          pac solution list             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --json             | tee artifacts/step6/TARGET_SOLUTIONS.json
+          pac canvas list             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             | tee artifacts/step6/TARGET_CANVAS_APPS.txt
+          grep -q "$SOLUTION_NAME" artifacts/step6/TARGET_SOLUTIONS.json
+          grep -q "$APP_NAME" artifacts/step6/TARGET_CANVAS_APPS.txt
+          grep -q "$POWER_PLATFORM_TARGET_APP_ID" artifacts/step6/TARGET_CANVAS_APPS.txt
+
+      - name: Read back the isolated app and compare active source
+        shell: bash
+        run: |
+          set -euo pipefail
+          downloaded_msapp="$RUNNER_TEMP/downloaded-target.msapp"
+          target_dir="$RUNNER_TEMP/target-editable-source"
+          pac canvas download             --name "$POWER_PLATFORM_TARGET_APP_ID"             --file-name "$downloaded_msapp"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --overwrite
+          test -s "$downloaded_msapp"
+
+          dotnet run             --configuration Release             --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             -- unpack "$downloaded_msapp" "$target_dir"
+
+          set +e
+          diff -ru             --exclude='_EditorState.pa.yaml'             "$RUNNER_TEMP/editable-source/Src"             "$target_dir/Src"             > artifacts/step6/SERVER_SOURCE_DIFF.txt
+          diff_status="$?"
+          set -e
+          if [[ "$diff_status" -eq 0 ]]; then
+            echo "SERVER_SOURCE_COMPARISON=exact"               | tee artifacts/step6/SERVER_SOURCE_COMPARISON.env
+          elif [[ "$diff_status" -eq 1 ]]; then
+            echo "SERVER_SOURCE_COMPARISON=normalized-difference-recorded"               | tee artifacts/step6/SERVER_SOURCE_COMPARISON.env
+          else
+            echo "::error::Source comparison failed with status $diff_status"
+            exit "$diff_status"
+          fi
+          sha256sum "$downloaded_msapp"             | tee artifacts/step6/TARGET_MSAPP_SHA256.txt
+
+      - name: Stage canonical editable source artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/step6/canonical/powerapps
+          cp -a "$RUNNER_TEMP/editable-source"             artifacts/step6/canonical/powerapps/canvas-v3
+          test -s artifacts/step6/canonical/powerapps/canvas-v3/baseline.msapr
+          test -s artifacts/step6/canonical/powerapps/canvas-v3/Src/App.pa.yaml
+          {
+            echo "## Step 6 reconstruction gate"
+            echo
+            echo "- Modern source: active *.pa.yaml"
+            echo "- Binary reference: baseline.msapr"
+            echo "- Rebuild engine: Microsoft.PowerPlatform.PowerApps.Persistence"
+            echo "- Tooling commit: $POWERAPPS_TOOLING_REF"
+            echo "- Deployment target: isolated Dataverse URL only"
+            echo "- App ID retained: $POWER_PLATFORM_TARGET_APP_ID"
+            echo "- P0: runs as the next required job"
+          } | tee artifacts/step6/SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Restore baseline if reconstruction or verification fails
+        if: ${{ failure() && steps.test-auth.outcome == 'success' }}
+        shell: bash
+        run: |
+          pac solution import             --path "$RUNNER_TEMP/baseline-solution.zip"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --force-overwrite             --publish-changes
+          echo "ROLLBACK=baseline-restored"             | tee artifacts/step6/ROLLBACK.env
+
+      - name: Preserve PAC diagnostic log
+        if: failure()
+        shell: bash
+        run: |
+          pac_log="$(find "$HOME/.dotnet/tools/.store/microsoft.powerapps.cli.tool"             -type f -name pac-log.txt -print -quit || true)"
+          if [[ -n "$pac_log" ]]; then
+            cp "$pac_log" artifacts/step6/PAC_LOG.txt
+          fi
+
+      - name: Upload reconstruction evidence and source
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: step6-source-reconstruction-${{ github.run_number }}
+          path: artifacts/step6
+          retention-days: 14
+          if-no-files-found: error
+
+  p0:
+    name: Run isolated P0 against reconstructed app
+    needs: reconstruct
+    uses: ./.github/workflows/phase1-5-target-p0.yml
+    secrets: inherit
+
+  finalize:
+    name: Commit editable source after P0 success
+    needs:
+      - reconstruct
+      - p0
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out project branch
+        uses: actions/checkout@v5
+        with:
+          ref: automation/phase1-baseline
+          path: project
+          fetch-depth: 0
+
+      - name: Download verified editable source
+        uses: actions/download-artifact@v5
+        with:
+          name: step6-source-reconstruction-${{ github.run_number }}
+          path: verified
+
+      - name: Commit the active source baseline
+        shell: bash
+        working-directory: project
+        run: |
+          set -euo pipefail
+          source_dir="../verified/canonical/powerapps/canvas-v3"
+          test -s "$source_dir/baseline.msapr"
+          test -s "$source_dir/Src/App.pa.yaml"
+          mkdir -p powerapps/canvas-v3
+          rsync -a --delete "$source_dir/" powerapps/canvas-v3/
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add powerapps/canvas-v3
+          if git diff --cached --quiet; then
+            echo "The verified editable source is already current."
+          else
+            git commit -m "chore: establish active Canvas source baseline [skip ci]"
+            git push origin HEAD:automation/phase1-baseline
+          fi
+
+      - name: Record Step 6 success in Issue 5
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          gh issue comment 5             --repo "$GITHUB_REPOSITORY"             --body "## ✅ ステップ6：編集可能ソース再構成経路が成立
+
+          - Microsoft公式Persistenceライブラリでactive pa.yamlとmsaprを取得
+          - GitHub上の編集可能ソースからmsappとSolutionを再構成
+          - 隔離Dataverse URLへインポート・公開
+          - 固定App IDを維持
+          - 専用利用者によるP0回帰テスト合格
+          - 成功後のみpowerapps/canvas-v3を作業ブランチへ確定
+          - [Actions run]($run_url)"
+
+  rollback-after-p0:
+    name: Restore baseline when P0 fails
+    needs:
+      - reconstruct
+      - p0
+    if: ${{ always() && needs.reconstruct.result == 'success' && needs.p0.result != 'success' }}
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out canonical baseline
+        uses: actions/checkout@v5
+        with:
+          ref: automation/phase1-baseline
+          path: project
+
+      - name: Install Power Platform CLI
+        shell: bash
+        run: |
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+          pac help >/dev/null
+
+      - name: Pack the last accepted baseline
+        shell: bash
+        run: |
+          pac solution pack             --folder project/powerapps/solution-src             --zipfile "$RUNNER_TEMP/baseline-solution.zip"             --packagetype Unmanaged
+          test -s "$RUNNER_TEMP/baseline-solution.zip"
+
+      - name: Authenticate to isolated Dataverse URL with GitHub OIDC
+        shell: bash
+        run: |
+          pac auth create             --name step6-rollback-oidc             --githubFederated             --tenant "$POWER_PLATFORM_TENANT_ID"             --applicationId "$POWER_PLATFORM_CLIENT_ID"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
+
+      - name: Restore and publish the last accepted baseline
+        shell: bash
+        run: |
+          pac solution import             --path "$RUNNER_TEMP/baseline-solution.zip"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --force-overwrite             --publish-changes
+
+      - name: Record P0 failure and rollback
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          gh issue comment 5             --repo "$GITHUB_REPOSITORY"             --body "## ❌ ステップ6：P0不合格のため復元
+
+          再構成版のP0が完了しなかったため、隔離テストアプリを直前の基準Solutionへ復元しました。GitHub正本への確定は行っていません。
+
+          [Actions run]($run_url)"
