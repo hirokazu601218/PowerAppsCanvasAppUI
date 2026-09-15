@@ -23,6 +23,7 @@ jobs:
       TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
       CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
       ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+      DATAVERSE_URL: https://orge762dd9e.crm7.dynamics.com
       APP_ID: 362ac991-eead-4f07-8373-afdb3ebfdba1
       TARGET_EMAIL: hirokazu601218@govaca.onmicrosoft.com
     steps:
@@ -38,10 +39,24 @@ jobs:
         run: |
           set -euo pipefail
 
-          principal_json="$(az rest             --method GET             --url "https://graph.microsoft.com/v1.0/users/$TARGET_EMAIL?%24select=id,userPrincipalName"             --output json)"
-          principal_id="$(jq -r '.id // empty' <<<"$principal_json")"
-          principal_upn="$(jq -r '.userPrincipalName // empty' <<<"$principal_json")"
+          dataverse_token="$(az account get-access-token             --resource "$DATAVERSE_URL/"             --query accessToken             --output tsv)"
+          query="$(python3 - <<'PY'
+          import os
+          import urllib.parse
+          email = os.environ["TARGET_EMAIL"].replace("'", "''")
+          value = f"$select=azureactivedirectoryobjectid,internalemailaddress&$filter=internalemailaddress eq '{email}' and isdisabled eq false"
+          print(urllib.parse.quote(value, safe="$=,&'"))
+          PY
+          )"
+          curl --fail-with-body --silent --show-error             --header "Authorization: Bearer $dataverse_token"             --header "Accept: application/json"             "$DATAVERSE_URL/api/data/v9.2/systemusers?$query"             --output principal.json
 
+          match_count="$(jq '.value | length' principal.json)"
+          if [[ "$match_count" != "1" ]]; then
+            echo "::error::Expected exactly one active Dataverse user for the approved UPN; found $match_count."
+            exit 1
+          fi
+          principal_id="$(jq -r '.value[0].azureactivedirectoryobjectid // empty' principal.json)"
+          principal_upn="$(jq -r '.value[0].internalemailaddress // empty' principal.json)"
           test -n "$principal_id"
           if [[ "${principal_upn,,}" != "${TARGET_EMAIL,,}" ]]; then
             echo "::error::Resolved principal does not match the approved UPN."
