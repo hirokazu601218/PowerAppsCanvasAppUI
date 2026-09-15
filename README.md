@@ -6,12 +6,12 @@
 
 ## 最初に読む
 
-新しい作業への着手時は、次の2資料を最初に確認する。
+作業の入口は[AGENTS.md](AGENTS.md)とする。新しい作業への着手時に必ず読む範囲は、次の短い2か所に限定する。
 
-1. [Work運用方針](docs/operations/work-policy.md)
-2. [現在地と今回の読取り対象](docs/handoff/STATUS.md)
+1. [Work運用方針](docs/operations/work-policy.md)の「1. 方針」
+2. [STATUS](docs/handoff/STATUS.md)の「現在の作業と読取り対象」
 
-その後、STATUSに記載された対象ソース、要件ID、関連設計、関連テスト、Library資料だけを読む。新しい依存関係や矛盾を発見した場合だけ追加資料を確認する。同一作業中は、運用方針またはSTATUSが更新された場合だけ再読する。
+その後はSTATUSに記載された対象ソース、要件ID、関連設計、関連テスト、Library資料だけを基本の読取り対象とする。優先順位、STATUS不一致時の扱い、追加読取りと確認条件はWork運用方針を正本とし、READMEには重複記載しない。
 
 ## 正本と保管場所
 
@@ -38,6 +38,7 @@ v1.12以降は変更した部品・プロパティだけを配布する。部品
 
 | パス | 役割 |
 |---|---|
+| AGENTS.md | エージェント向けの短い作業入口。詳細ルールはWork運用方針を参照 |
 | docs/requirements/ | 要件定義・受入条件 |
 | docs/design/ | 基本・詳細設計、デザイン基準、データ契約 |
 | docs/operations/ | Work運用方針、差分配布方針、Library資料索引 |
