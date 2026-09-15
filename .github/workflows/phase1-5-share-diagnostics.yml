@@ -48,7 +48,7 @@ jobs:
           curl --fail --silent --show-error --get \
             --header "Authorization: Bearer $access_token" \
             --header "Accept: application/json" \
-            --data-urlencode '\$select=systemuserid,azureactivedirectoryobjectid,internalemailaddress,fullname,isdisabled' \
+            --data-urlencode '$select=systemuserid,azureactivedirectoryobjectid,internalemailaddress,fullname,isdisabled' \
             --data-urlencode "\$filter=internalemailaddress eq '$TEST_USER_EMAIL'" \
             "$resource/api/data/v9.2/systemusers" \
             | tee artifacts/share-diagnostics/TEST_USER_SYSTEMUSER.json
@@ -58,7 +58,7 @@ jobs:
             curl --fail --silent --show-error --get \
               --header "Authorization: Bearer $access_token" \
               --header "Accept: application/json" \
-              --data-urlencode '\$select=aaduserid,userprincipalname,mail,displayname' \
+              --data-urlencode '$select=aaduserid,userprincipalname,mail,displayname' \
               --data-urlencode "\$filter=userprincipalname eq '$TEST_USER_EMAIL'" \
               "$resource/api/data/v9.2/aadusers" \
               | tee artifacts/share-diagnostics/TEST_USER_AADUSER.json
