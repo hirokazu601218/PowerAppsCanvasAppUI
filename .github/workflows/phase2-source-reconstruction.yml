@@ -1,0 +1,632 @@
+name: Canvas active source reconstruction
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+  issues: write
+
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+
+env:
+  POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+  POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+  POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
+  POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+  POWER_PLATFORM_TARGET_APP_ID: 362ac991-eead-4f07-8373-afdb3ebfdba1
+  SOLUTION_NAME: StaffMasterAutomation
+  APP_NAME: 職員マスタ検索_自動テスト_v1_11
+  POWERAPPS_TOOLING_REF: aed72a37c3b10b08f81c9d2257d5c38da33dccbe
+
+jobs:
+  reconstruct:
+    name: Reconstruct, deploy, and verify editable source
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out project branch
+        uses: actions/checkout@v5
+        with:
+          ref: automation/phase1-baseline
+          path: project
+
+      - name: Check out pinned Microsoft PowerApps Tooling
+        uses: actions/checkout@v5
+        with:
+          repository: microsoft/PowerApps-Tooling
+          ref: ${{ env.POWERAPPS_TOOLING_REF }}
+          path: powerapps-tooling
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Install Power Platform CLI and build reconstruction helper
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/step6
+          dotnet --info > artifacts/step6/DOTNET_INFO.txt
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+          pac help >/dev/null
+          dotnet tool list --global | grep -i 'microsoft.powerapps.cli.tool' | tee artifacts/step6/PAC_VERSION.txt
+          dotnet build             project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             --configuration Release             --nologo
+          {
+            echo "POWERAPPS_TOOLING_REPOSITORY=https://github.com/microsoft/PowerApps-Tooling"
+            echo "POWERAPPS_TOOLING_COMMIT=$POWERAPPS_TOOLING_REF"
+          } > artifacts/step6/TOOLCHAIN.env
+
+      - name: Resolve the single baseline Canvas app
+        id: baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t candidates < <(
+            find project/powerapps/solution-src/CanvasApps               -maxdepth 1 -type f -name '*.msapp' -print
+          )
+          if [[ "${#candidates[@]}" -ne 1 ]]; then
+            echo "::error::Expected exactly one baseline .msapp; found ${#candidates[@]}"
+            printf '%s\n' "${candidates[@]}"
+            exit 1
+          fi
+          baseline_msapp="${candidates[0]}"
+          relative_path="${baseline_msapp#project/powerapps/solution-src/}"
+          echo "msapp=$baseline_msapp" >> "$GITHUB_OUTPUT"
+          echo "relative-path=$relative_path" >> "$GITHUB_OUTPUT"
+          sha256sum "$baseline_msapp"             | tee artifacts/step6/BASELINE_MSAPP_SHA256.txt
+          unzip -l "$baseline_msapp"             | tee artifacts/step6/BASELINE_MSAPP_FILES.txt
+
+      - name: Load active pa.yaml source and msapr reference
+        id: unpack
+        shell: bash
+        env:
+          BASELINE_MSAPP: ${{ steps.baseline.outputs.msapp }}
+        run: |
+          set -euo pipefail
+          editable_dir="$RUNNER_TEMP/editable-source"
+          active_source_dir="project/powerapps/canvas-v3"
+
+          if [[ -s "$active_source_dir/baseline.msapr" && -s "$active_source_dir/Src/App.pa.yaml" ]]; then
+            cp -a "$active_source_dir" "$editable_dir"
+            source_origin="github-active-source"
+          else
+            dotnet run \
+              --configuration Release \
+              --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj \
+              -- unpack "$BASELINE_MSAPP" "$editable_dir"
+            source_origin="baseline-msapp-bootstrap"
+          fi
+
+          msapr_path="$(find "$editable_dir" -maxdepth 1 -type f -name '*.msapr' -print -quit)"
+          test -s "$msapr_path"
+          source_count="$(find "$editable_dir/Src" -type f -name '*.pa.yaml' | wc -l)"
+          if [[ "$source_count" -lt 2 ]]; then
+            echo "::error::Modern source load produced only $source_count pa.yaml file(s)"
+            exit 1
+          fi
+          test -s "$editable_dir/Src/App.pa.yaml"
+
+          echo "msapr=$msapr_path" >> "$GITHUB_OUTPUT"
+          echo "SOURCE_ORIGIN=$source_origin" | tee artifacts/step6/SOURCE_ORIGIN.env
+          find "$editable_dir" -type f -printf '%P\n' \
+            | LC_ALL=C sort \
+            | tee artifacts/step6/EDITABLE_SOURCE_FILES.txt
+          find "$editable_dir/Src" -type f -name '*.pa.yaml' -print0 \
+            | LC_ALL=C sort -z \
+            | xargs -0 sha256sum \
+            | tee artifacts/step6/EDITABLE_SOURCE_SHA256.txt
+
+      - name: Reconstruct msapp from active GitHub source
+        shell: bash
+        env:
+          BASELINE_MSAPP: ${{ steps.baseline.outputs.msapp }}
+          MSAPR_PATH: ${{ steps.unpack.outputs.msapr }}
+        run: |
+          set -euo pipefail
+          rebuilt_msapp="$RUNNER_TEMP/reconstructed.msapp"
+          dotnet run             --configuration Release             --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             -- pack "$MSAPR_PATH" "$rebuilt_msapp"
+          test -s "$rebuilt_msapp"
+
+          rebuilt_dir="$RUNNER_TEMP/rebuilt-editable-source"
+          dotnet run             --configuration Release             --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             -- unpack "$rebuilt_msapp" "$rebuilt_dir"
+          diff -ru             "$RUNNER_TEMP/editable-source/Src"             "$rebuilt_dir/Src"             > artifacts/step6/LOCAL_SOURCE_DIFF.txt
+          test ! -s artifacts/step6/LOCAL_SOURCE_DIFF.txt
+
+          python3 - "$rebuilt_msapp" > artifacts/step6/PACKED_JSON_VALIDATION.txt <<'PY'
+          import json
+          import sys
+          import zipfile
+
+          archive_path = sys.argv[1]
+          with zipfile.ZipFile(archive_path) as archive:
+              candidates = [
+                  name for name in archive.namelist()
+                  if name.replace("\\", "/").lower().endswith("packed.json")
+              ]
+              if len(candidates) != 1:
+                  raise SystemExit(f"Expected one packed.json, found {len(candidates)}")
+              packed = json.loads(archive.read(candidates[0]))
+
+          flags = []
+          def visit(value):
+              if isinstance(value, dict):
+                  for key, child in value.items():
+                      if key.lower() == "loadfromyaml":
+                          flags.append(child)
+                      visit(child)
+              elif isinstance(value, list):
+                  for child in value:
+                      visit(child)
+
+          visit(packed)
+          if True not in flags:
+              raise SystemExit("Reconstructed package is not marked LoadFromYaml=true")
+          print("LoadFromYaml=true")
+          PY
+
+          sha256sum "$rebuilt_msapp"             | tee artifacts/step6/RECONSTRUCTED_MSAPP_SHA256.txt
+
+      - name: Synchronize the approved Step 7 runtime rule when active
+        shell: bash
+        run: |
+          set -euo pipefail
+          marker_file="project/e2e/changes/step7-meta-label.active"
+          source_file="project/powerapps/canvas-v3/Src/Screen1.pa.yaml"
+          if [[ ! -f "$marker_file" ]]; then
+            echo "RUNTIME_BRIDGE=inactive" | tee artifacts/step6/RUNTIME_BRIDGE.env
+            exit 0
+          fi
+
+          source_matches="$(grep -F -c 'Text: ="v1.11 ／ 自動反映テスト中"' "$source_file" || true)"
+          if [[ "$source_matches" -ne 1 ]]; then
+            echo "::error::Approved Step 7 source value was not found exactly once."
+            exit 1
+          fi
+
+          bridge_dir="$RUNNER_TEMP/runtime-bridge"
+          mkdir -p "$bridge_dir"
+          unzip -q "$RUNNER_TEMP/reconstructed.msapp" -d "$bridge_dir"
+          mapfile -t control_candidates < <(
+            grep -R -l -F --include='*.json' '"Name": "lblMeta111"' "$bridge_dir/Controls" || true
+          )
+          if [[ "${#control_candidates[@]}" -ne 1 ]]; then
+            echo "::error::Expected one compiled control file for lblMeta111; found ${#control_candidates[@]}."
+            exit 1
+          fi
+
+          control_file="${control_candidates[0]}"
+          expected_before='"v1.11  ／  B案・架空25名"'
+          expected_after='"v1.11 ／ 自動反映テスト中"'
+          mapfile -t before_scripts < <(
+            jq -r '
+              .. | objects | select(.Name? == "lblMeta111")
+              | .Rules[]? | select(.Property? == "Text")
+              | .InvariantScript
+            ' "$control_file"
+          )
+          if [[ "${#before_scripts[@]}" -ne 1 || "${before_scripts[0]}" != "$expected_before" ]]; then
+            echo "::error::Compiled lblMeta111.Text did not match the approved pre-change value."
+            exit 1
+          fi
+
+          jq --arg invariant "$expected_after" '
+            walk(
+              if type == "object"
+                and .Name? == "lblMeta111"
+                and (.Rules? | type) == "array"
+              then .Rules |= map(
+                if .Property? == "Text"
+                then .InvariantScript = $invariant
+                else .
+                end
+              )
+              else .
+              end
+            )
+          ' "$control_file" > "$control_file.tmp"
+          mv "$control_file.tmp" "$control_file"
+
+          mapfile -t after_scripts < <(
+            jq -r '
+              .. | objects | select(.Name? == "lblMeta111")
+              | .Rules[]? | select(.Property? == "Text")
+              | .InvariantScript
+            ' "$control_file"
+          )
+          if [[ "${#after_scripts[@]}" -ne 1 || "${after_scripts[0]}" != "$expected_after" ]]; then
+            echo "::error::Compiled lblMeta111.Text synchronization failed."
+            exit 1
+          fi
+
+          jq '.LoadConfiguration.LoadFromYaml = false' \
+            "$bridge_dir/packed.json" > "$bridge_dir/packed.json.tmp"
+          mv "$bridge_dir/packed.json.tmp" "$bridge_dir/packed.json"
+          load_from_yaml="$(jq -r '.LoadConfiguration.LoadFromYaml' "$bridge_dir/packed.json")"
+          if [[ "$load_from_yaml" != "false" ]]; then
+            echo "::error::Runtime package was not switched to compiled-controls loading."
+            exit 1
+          fi
+
+          (
+            cd "$bridge_dir"
+            zip -X -q -r "$RUNNER_TEMP/reconstructed-runtime.msapp" .
+          )
+          mv "$RUNNER_TEMP/reconstructed-runtime.msapp" "$RUNNER_TEMP/reconstructed.msapp"
+          sha256sum "$RUNNER_TEMP/reconstructed.msapp" \
+            | tee artifacts/step6/RUNTIME_MSAPP_SHA256.txt
+          {
+            echo "RUNTIME_BRIDGE=approved-step7-rule"
+            echo "CONTROL=lblMeta111"
+            echo "PROPERTY=Text"
+            echo "SOURCE_MATCHES=$source_matches"
+            echo "COMPILED_MATCHES=${#after_scripts[@]}"
+            echo "LOAD_FROM_YAML=$load_from_yaml"
+            echo "VERIFIED=true"
+          } | tee artifacts/step6/RUNTIME_BRIDGE.env
+
+      - name: Build reconstructed and rollback Solutions
+        shell: bash
+        env:
+          CANVAS_RELATIVE_PATH: ${{ steps.baseline.outputs.relative-path }}
+        run: |
+          set -euo pipefail
+          cp -a project/powerapps/solution-src "$RUNNER_TEMP/solution-original"
+          cp -a project/powerapps/solution-src "$RUNNER_TEMP/solution-rebuilt"
+          cp "$RUNNER_TEMP/reconstructed.msapp"             "$RUNNER_TEMP/solution-rebuilt/$CANVAS_RELATIVE_PATH"
+
+          pac solution pack             --folder "$RUNNER_TEMP/solution-original"             --zipfile "$RUNNER_TEMP/baseline-solution.zip"             --packagetype Unmanaged
+          pac solution pack             --folder "$RUNNER_TEMP/solution-rebuilt"             --zipfile "$RUNNER_TEMP/reconstructed-solution.zip"             --packagetype Unmanaged
+
+          sha256sum             "$RUNNER_TEMP/baseline-solution.zip"             "$RUNNER_TEMP/reconstructed-solution.zip"             | tee artifacts/step6/SOLUTION_SHA256.txt
+
+      - name: Authenticate to isolated Dataverse URL with GitHub OIDC
+        id: test-auth
+        shell: bash
+        run: |
+          set -euo pipefail
+          pac auth create             --name step6-test-oidc             --githubFederated             --tenant "$POWER_PLATFORM_TENANT_ID"             --applicationId "$POWER_PLATFORM_CLIENT_ID"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
+          echo "OIDC authentication to the isolated Dataverse URL succeeded."             | tee artifacts/step6/OIDC_AUTH.txt
+
+      - name: Import reconstructed Solution and publish
+        id: deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+          pac solution import             --path "$RUNNER_TEMP/reconstructed-solution.zip"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --force-overwrite             --publish-changes
+          pac solution list             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --json             | tee artifacts/step6/TARGET_SOLUTIONS.json
+          pac canvas list             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             | tee artifacts/step6/TARGET_CANVAS_APPS.txt
+          grep -q "$SOLUTION_NAME" artifacts/step6/TARGET_SOLUTIONS.json
+          grep -q "$APP_NAME" artifacts/step6/TARGET_CANVAS_APPS.txt
+
+      - name: Sign in automation identity for Power Apps publish API
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.POWER_PLATFORM_CLIENT_ID }}
+          tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Publish latest saved isolated Canvas app
+        id: publish-app
+        shell: bash
+        run: |
+          set -euo pipefail
+          service_token="$(az account get-access-token \
+            --resource https://service.powerapps.com/ \
+            --query accessToken \
+            --output tsv)"
+          app_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID?api-version=2018-10-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2018-10-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+
+          curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $service_token" \
+            --header "Accept: application/json" \
+            "$app_url" \
+            --output artifacts/step6/APP_BEFORE_PUBLISH.json
+          before_publish_time="$(jq -r '.properties.lastPublishTime // ""' artifacts/step6/APP_BEFORE_PUBLISH.json)"
+
+          curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer $service_token" \
+            --header "Accept: application/json" \
+            --header "Content-Type: application/json" \
+            --data '{}' \
+            "$publish_url" \
+            --output artifacts/step6/PUBLISH_RESPONSE.json \
+            --write-out '%{http_code}\n' \
+            > artifacts/step6/PUBLISH_HTTP_STATUS.txt
+
+          published=false
+          for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            curl --fail-with-body --silent --show-error \
+              --header "Authorization: Bearer $service_token" \
+              --header "Accept: application/json" \
+              "$app_url" \
+              --output artifacts/step6/APP_AFTER_PUBLISH.json
+            after_publish_time="$(jq -r '.properties.lastPublishTime // ""' artifacts/step6/APP_AFTER_PUBLISH.json)"
+            after_draft_version="$(jq -r '.properties.lastDraftVersion // ""' artifacts/step6/APP_AFTER_PUBLISH.json)"
+            after_status="$(jq -r '.properties.status // ""' artifacts/step6/APP_AFTER_PUBLISH.json)"
+            if [[ -n "$after_publish_time" && "$after_publish_time" == "$after_draft_version" && "$after_status" == "Ready" ]]; then
+              published=true
+              break
+            fi
+            sleep 5
+          done
+          if [[ "$published" != "true" ]]; then
+            echo "::error::Canvas app did not reach Ready with matching draft and publish versions."
+            exit 1
+          fi
+
+          {
+            echo "PUBLISH_API=Power Apps Publish App"
+            echo "PUBLISH_HTTP_STATUS=$(cat artifacts/step6/PUBLISH_HTTP_STATUS.txt)"
+            echo "ENVIRONMENT_ID=$POWER_APPS_ENVIRONMENT_ID"
+            echo "APP_ID=$POWER_PLATFORM_TARGET_APP_ID"
+            echo "BEFORE_LAST_PUBLISH_TIME=$before_publish_time"
+            echo "AFTER_LAST_PUBLISH_TIME=$after_publish_time"
+            echo "AFTER_LAST_DRAFT_VERSION=$after_draft_version"
+            echo "AFTER_STATUS=$after_status"
+            echo "VERIFIED=true"
+          } | tee artifacts/step6/PUBLISH_RESULT.env
+
+      - name: Read back the isolated app and compare active source
+        shell: bash
+        run: |
+          set -euo pipefail
+          downloaded_msapp="$RUNNER_TEMP/downloaded-target.msapp"
+          target_dir="$RUNNER_TEMP/target-editable-source"
+          pac canvas download             --name "$POWER_PLATFORM_TARGET_APP_ID"             --file-name "$downloaded_msapp"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --overwrite
+          test -s "$downloaded_msapp"
+
+          dotnet run             --configuration Release             --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             -- unpack "$downloaded_msapp" "$target_dir"
+
+          set +e
+          diff -ru             --exclude='_EditorState.pa.yaml'             "$RUNNER_TEMP/editable-source/Src"             "$target_dir/Src"             > artifacts/step6/SERVER_SOURCE_DIFF.txt
+          diff_status="$?"
+          set -e
+          if [[ "$diff_status" -eq 0 ]]; then
+            echo "SERVER_SOURCE_COMPARISON=exact"               | tee artifacts/step6/SERVER_SOURCE_COMPARISON.env
+          elif [[ "$diff_status" -eq 1 ]]; then
+            echo "SERVER_SOURCE_COMPARISON=normalized-difference-recorded"               | tee artifacts/step6/SERVER_SOURCE_COMPARISON.env
+          else
+            echo "::error::Source comparison failed with status $diff_status"
+            exit "$diff_status"
+          fi
+          sha256sum "$downloaded_msapp"             | tee artifacts/step6/TARGET_MSAPP_SHA256.txt
+
+          marker_file="project/e2e/changes/step7-meta-label.active"
+          if [[ -f "$marker_file" ]]; then
+            target_runtime_dir="$RUNNER_TEMP/target-runtime-inspection"
+            mkdir -p "$target_runtime_dir"
+            unzip -q "$downloaded_msapp" -d "$target_runtime_dir"
+            mapfile -t target_control_candidates < <(
+              grep -R -l -F --include='*.json' '"Name": "lblMeta111"' "$target_runtime_dir/Controls" || true
+            )
+            if [[ "${#target_control_candidates[@]}" -ne 1 ]]; then
+              echo "::error::Server package did not contain exactly one lblMeta111 control."
+              exit 1
+            fi
+            mapfile -t target_scripts < <(
+              jq -r '
+                .. | objects | select(.Name? == "lblMeta111")
+                | .Rules[]? | select(.Property? == "Text")
+                | .InvariantScript
+              ' "${target_control_candidates[0]}"
+            )
+            expected_server='"v1.11 ／ 自動反映テスト中"'
+            if [[ "${#target_scripts[@]}" -ne 1 || "${target_scripts[0]}" != "$expected_server" ]]; then
+              echo "::error::Server package did not retain the approved compiled Text rule."
+              exit 1
+            fi
+            server_load_from_yaml="$(jq -r '.LoadConfiguration.LoadFromYaml' "$target_runtime_dir/packed.json")"
+            {
+              echo "SERVER_RUNTIME_CONTROL=lblMeta111"
+              echo "SERVER_RUNTIME_PROPERTY=Text"
+              echo "SERVER_RUNTIME_INVARIANT=${target_scripts[0]}"
+              echo "SERVER_LOAD_FROM_YAML=$server_load_from_yaml"
+              echo "VERIFIED=true"
+            } | tee artifacts/step6/SERVER_RUNTIME_RULE.env
+          else
+            echo "SERVER_RUNTIME_RULE=inactive" | tee artifacts/step6/SERVER_RUNTIME_RULE.env
+          fi
+
+      - name: Stage canonical editable source artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/step6/canonical/powerapps
+          cp -a "$RUNNER_TEMP/editable-source"             artifacts/step6/canonical/powerapps/canvas-v3
+          test -s artifacts/step6/canonical/powerapps/canvas-v3/baseline.msapr
+          test -s artifacts/step6/canonical/powerapps/canvas-v3/Src/App.pa.yaml
+          {
+            echo "## Step 6 reconstruction gate"
+            echo
+            echo "- Modern source: active *.pa.yaml"
+            echo "- Binary reference: baseline.msapr"
+            echo "- Rebuild engine: Microsoft.PowerPlatform.PowerApps.Persistence"
+            echo "- Tooling commit: $POWERAPPS_TOOLING_REF"
+            echo "- Deployment target: isolated Dataverse URL only"
+            echo "- App ID retained: $POWER_PLATFORM_TARGET_APP_ID"
+            echo "- P0: runs as the next required job"
+          } | tee artifacts/step6/SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Restore baseline if reconstruction or verification fails
+        if: ${{ failure() && steps.test-auth.outcome == 'success' }}
+        shell: bash
+        run: |
+          pac solution import             --path "$RUNNER_TEMP/baseline-solution.zip"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --force-overwrite             --publish-changes
+          pac solution publish --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
+          if az account show >/dev/null 2>&1; then
+            service_token="$(az account get-access-token --resource https://service.powerapps.com/ --query accessToken --output tsv)"
+            publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2018-10-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+            curl --fail-with-body --silent --show-error \
+              --request POST \
+              --header "Authorization: Bearer $service_token" \
+              --header "Content-Type: application/json" \
+              --data '{}' \
+              "$publish_url" \
+              --output artifacts/step6/ROLLBACK_PUBLISH_RESPONSE.json
+          fi
+          echo "ROLLBACK=baseline-restored"             | tee artifacts/step6/ROLLBACK.env
+
+      - name: Preserve PAC diagnostic log
+        if: failure()
+        shell: bash
+        run: |
+          pac_log="$(find "$HOME/.dotnet/tools/.store/microsoft.powerapps.cli.tool"             -type f -name pac-log.txt -print -quit || true)"
+          if [[ -n "$pac_log" ]]; then
+            cp "$pac_log" artifacts/step6/PAC_LOG.txt
+          fi
+
+      - name: Upload reconstruction evidence and source
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: step6-source-reconstruction-${{ github.run_number }}
+          path: artifacts/step6
+          retention-days: 14
+          if-no-files-found: error
+
+  p0:
+    name: Run isolated P0 against reconstructed app
+    needs: reconstruct
+    uses: ./.github/workflows/phase1-5-target-p0.yml
+    secrets: inherit
+
+  finalize:
+    name: Commit editable source after P0 success
+    needs:
+      - reconstruct
+      - p0
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out project branch
+        uses: actions/checkout@v5
+        with:
+          ref: automation/phase1-baseline
+          path: project
+          fetch-depth: 0
+
+      - name: Download verified editable source
+        uses: actions/download-artifact@v5
+        with:
+          name: step6-source-reconstruction-${{ github.run_number }}
+          path: verified
+
+      - name: Commit the active source baseline
+        shell: bash
+        working-directory: project
+        run: |
+          set -euo pipefail
+          source_dir="../verified/canonical/powerapps/canvas-v3"
+          test -s "$source_dir/baseline.msapr"
+          test -s "$source_dir/Src/App.pa.yaml"
+          mkdir -p powerapps/canvas-v3
+          rsync -a --delete "$source_dir/" powerapps/canvas-v3/
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add powerapps/canvas-v3
+          if git diff --cached --quiet; then
+            echo "The verified editable source is already current."
+          else
+            git commit -m "chore: establish active Canvas source baseline [skip ci]"
+            git push origin HEAD:automation/phase1-baseline
+          fi
+
+      - name: Record Step 6 success in Issue 5
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          gh issue comment 5             --repo "$GITHUB_REPOSITORY"             --body "## ✅ Canvasアクティブソース配布ゲート：合格
+
+          - Microsoft公式Persistenceライブラリでactive pa.yamlとmsaprを取得
+          - GitHub上の編集可能ソースからmsappとSolutionを再構成
+          - 隔離Dataverse URLへインポート・公開
+          - 固定App IDを維持
+          - 専用利用者によるP0回帰テスト合格
+          - 成功後のみpowerapps/canvas-v3を作業ブランチへ確定
+          - [Actions run]($run_url)"
+
+  rollback-after-p0:
+    name: Restore baseline when P0 fails
+    needs:
+      - reconstruct
+      - p0
+    if: ${{ always() && needs.reconstruct.result == 'success' && needs.p0.result != 'success' }}
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out canonical baseline
+        uses: actions/checkout@v5
+        with:
+          ref: automation/phase1-baseline
+          path: project
+
+      - name: Install Power Platform CLI
+        shell: bash
+        run: |
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+          pac help >/dev/null
+
+      - name: Pack the last accepted baseline
+        shell: bash
+        run: |
+          pac solution pack             --folder project/powerapps/solution-src             --zipfile "$RUNNER_TEMP/baseline-solution.zip"             --packagetype Unmanaged
+          test -s "$RUNNER_TEMP/baseline-solution.zip"
+
+      - name: Authenticate to isolated Dataverse URL with GitHub OIDC
+        shell: bash
+        run: |
+          pac auth create             --name step6-rollback-oidc             --githubFederated             --tenant "$POWER_PLATFORM_TENANT_ID"             --applicationId "$POWER_PLATFORM_CLIENT_ID"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
+
+      - name: Sign in automation identity for rollback publish
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.POWER_PLATFORM_CLIENT_ID }}
+          tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Restore the last accepted baseline draft
+        shell: bash
+        run: |
+          pac solution import             --path "$RUNNER_TEMP/baseline-solution.zip"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --force-overwrite             --publish-changes
+          pac solution publish --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
+
+      - name: Publish the restored isolated Canvas app
+        shell: bash
+        run: |
+          set -euo pipefail
+          service_token="$(az account get-access-token --resource https://service.powerapps.com/ --query accessToken --output tsv)"
+          publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2018-10-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer $service_token" \
+            --header "Content-Type: application/json" \
+            --data '{}' \
+            "$publish_url"
+
+      - name: Record P0 failure and rollback
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          gh issue comment 5             --repo "$GITHUB_REPOSITORY"             --body "## ❌ Canvasアクティブソース配布ゲート：P0不合格のため復元
+
+          再構成版のP0が完了しなかったため、隔離テストアプリを直前の基準Solutionへ復元しました。GitHub正本への確定は行っていません。
+
+          [Actions run]($run_url)"

@@ -1,0 +1,469 @@
+name: Phase 1.5 target P0
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+  issues: write
+
+concurrency:
+  group: phase1-5-target-p0
+  cancel-in-progress: false
+
+jobs:
+  staff-master-p0:
+    name: Isolated target app P0 test
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 30
+
+    env:
+      POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      POWER_PLATFORM_TARGET_APP_ID: 362ac991-eead-4f07-8373-afdb3ebfdba1
+      OFFICIAL_SAMPLES_REF: 43e3db8d131aeb09415b1faef030e783fd2e320f
+      POWER_APPS_BASE_URL: https://make.powerapps.com
+      POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+      CANVAS_APP_URL: https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
+      MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
+      MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
+      MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
+      MS_AUTH_LOCAL_FILE_PATH: ../../cert/powerapps-test-user.pfx
+      MS_AUTH_HEADLESS: true
+      MS_AUTH_WAIT_FOR_MSAL_TOKENS: true
+      MS_AUTH_MSAL_TOKEN_TIMEOUT: 60000
+      HEADLESS: true
+      WORKERS: 1
+      RETRIES: 1
+      TEST_TIMEOUT: 120000
+      OUTPUT_DIRECTORY: ./test-results
+      CI: true
+
+    steps:
+      - name: Validate staff app URL
+        shell: bash
+        run: |
+          if [[ -z "$CANVAS_APP_URL" ]]; then
+            echo "::error::Repository variable POWERAPPS_STAFF_APP_URL is not set"
+            exit 1
+          fi
+
+      - name: Check out project
+        uses: actions/checkout@v4
+        with:
+          path: project
+
+      - name: Check out Microsoft Power Platform Playwright samples
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/power-platform-playwright-samples
+          ref: ${{ env.OFFICIAL_SAMPLES_REF }}
+          path: power-platform-playwright
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: power-platform-playwright/package-lock.json
+
+      - name: Install official toolkit dependencies
+        working-directory: power-platform-playwright
+        run: npm install
+
+      - name: Build official toolkit
+        working-directory: power-platform-playwright
+        run: npm run build
+
+      - name: Install Chromium
+        working-directory: power-platform-playwright/packages/e2e-tests
+        run: npx playwright install chromium --with-deps
+
+      - name: Add staff master P0 test
+        shell: bash
+        run: cp project/e2e/staff-master-p0.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/staff-master-p0.test.ts
+
+      - name: Add approved Step 7 change-specific test when active
+        id: step7-test
+        shell: bash
+        run: |
+          source_file="project/e2e/changes/step7-meta-label.test.ts"
+          marker_file="project/e2e/changes/step7-meta-label.active"
+          target_file="power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/staff-master-step7-meta-label.test.ts"
+          if [[ -f "$source_file" && -f "$marker_file" ]]; then
+            cp "$source_file" "$target_file"
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Prepare certificate authentication
+        if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
+        shell: bash
+        env:
+          TEST_CERT_BASE64: ${{ secrets.POWERAPPS_TEST_CERT_BASE64 }}
+        run: |
+          mkdir -p power-platform-playwright/cert
+          printf '%s' "$TEST_CERT_BASE64" | base64 --decode > power-platform-playwright/cert/powerapps-test-user.pfx
+          chmod 600 power-platform-playwright/cert/powerapps-test-user.pfx
+
+      - name: Authenticate to Power Apps
+        id: auth
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+          MS_USER_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+          MS_AUTH_CERTIFICATE_PASSWORD: ${{ secrets.POWERAPPS_TEST_CERT_PASSWORD }}
+        shell: bash
+        run: |
+          test -n "$MS_AUTH_EMAIL"
+          if [[ "$MS_AUTH_EMAIL" != "powerapps-test@govaca.onmicrosoft.com" ]]; then
+            echo "::error::Configure the dedicated test user before running this workflow"
+            exit 1
+          fi
+          if [[ "$MS_AUTH_CREDENTIAL_TYPE" == "password" ]]; then
+            test -n "$MS_USER_PASSWORD"
+          fi
+          npm run auth
+
+      - name: Resolve dedicated test user object ID
+        id: test-principal
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          state_path="$(find ".playwright-ms-auth" -maxdepth 1 -type f -name "state-$MS_AUTH_EMAIL.json" -print -quit)"
+          test -n "$state_path"
+          export STATE_PATH="$state_path"
+          principal_id="$(python3 - <<'PY'
+          import base64
+          import json
+          import os
+          import re
+          import sys
+
+          uuid = re.compile(r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
+          state = json.load(open(os.environ["STATE_PATH"], encoding="utf-8"))
+          candidates = []
+          inspected = []
+
+          def add(value, source):
+              if isinstance(value, str) and uuid.fullmatch(value) and value not in [item[0] for item in candidates]:
+                  candidates.append((value, source))
+
+          def decode_jwt(value, source):
+              if not isinstance(value, str) or value.count(".") < 2:
+                  return
+              try:
+                  payload_part = value.split(".")[1]
+                  payload_part += "=" * (-len(payload_part) % 4)
+                  payload = json.loads(base64.urlsafe_b64decode(payload_part))
+              except Exception:
+                  return
+              inspected.append(f"{source}:jwt-claims={','.join(sorted(payload.keys()))}")
+              add(payload.get("oid"), f"{source}.jwt.oid")
+
+          def walk(value, source, depth=0):
+              if depth > 12:
+                  return
+              if isinstance(value, dict):
+                  inspected.append(f"{source}:keys={','.join(sorted(map(str, value.keys())))}")
+                  for key, child in value.items():
+                      normalized = str(key).lower()
+                      if normalized in {"oid", "objectid", "object_id", "localaccountid", "userid", "user_id"}:
+                          add(child, f"{source}.{key}")
+                      if normalized == "homeaccountid" and isinstance(child, str):
+                          add(child.split(".")[0], f"{source}.{key}.uid")
+                      if normalized in {"secret", "accesstoken", "idtoken", "token"}:
+                          decode_jwt(child, f"{source}.{key}")
+                      walk(child, f"{source}.{key}", depth + 1)
+              elif isinstance(value, list):
+                  for index, child in enumerate(value):
+                      walk(child, f"{source}[{index}]", depth + 1)
+              elif isinstance(value, str):
+                  decode_jwt(value, source)
+                  stripped = value.strip()
+                  if stripped.startswith(("{", "[")) and len(stripped) < 200000:
+                      try:
+                          walk(json.loads(stripped), f"{source}.json", depth + 1)
+                      except Exception:
+                          pass
+
+          for origin_index, origin in enumerate(state.get("origins", [])):
+              for item_index, item in enumerate(origin.get("localStorage", [])):
+                  name = item.get("name", "")
+                  inspected.append(f"origin[{origin_index}].localStorage[{item_index}].name={name}")
+                  walk(item.get("value", ""), f"origin[{origin_index}].localStorage[{item_index}].value")
+
+          if not candidates:
+              print("Safe MSAL structure diagnostics (no token values):", file=sys.stderr)
+              for line in inspected[:200]:
+                  print(line, file=sys.stderr)
+              raise SystemExit("Could not resolve the test user's Entra object ID from authenticated state")
+          print(candidates[0][0])
+          PY
+          )"
+          echo "::add-mask::$principal_id"
+          echo "principal-object-id=$principal_id" >> "$GITHUB_OUTPUT"
+          echo "Dedicated test user object ID resolved from its authenticated state."
+
+      - name: Sign in automation identity with GitHub OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.POWER_PLATFORM_CLIENT_ID }}
+          tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Resolve the latest published Canvas app URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p project/share-evidence
+          service_token="$(az account get-access-token \
+            --resource https://service.powerapps.com/ \
+            --query accessToken \
+            --output tsv)"
+          app_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID?api-version=2018-10-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $service_token" \
+            --header "Accept: application/json" \
+            "$app_url" \
+            --output project/share-evidence/CURRENT_APP.json
+
+          current_canvas_url="$(jq -r '.properties.appOpenUri // ""' project/share-evidence/CURRENT_APP.json)"
+          if [[ "$current_canvas_url" != https://apps.powerapps.com/play/e/"$POWER_APPS_ENVIRONMENT_ID"/a/"$POWER_PLATFORM_TARGET_APP_ID"* ]]; then
+            echo "::error::Power Apps API returned an unexpected appOpenUri."
+            exit 1
+          fi
+          if [[ "$current_canvas_url" != *"hint="* || "$current_canvas_url" != *"sourcetime="* ]]; then
+            echo "::error::Latest appOpenUri does not contain the expected version cache keys."
+            exit 1
+          fi
+
+          echo "CANVAS_APP_URL=$current_canvas_url" >> "$GITHUB_ENV"
+          {
+            echo "APP_ID=$POWER_PLATFORM_TARGET_APP_ID"
+            echo "ENVIRONMENT_ID=$POWER_APPS_ENVIRONMENT_ID"
+            echo "URL_SOURCE=Power Apps appOpenUri"
+            echo "VERSION_HINT_PRESENT=true"
+            echo "SOURCE_TIME_PRESENT=true"
+          } > project/share-evidence/CURRENT_APP_URL.env
+
+      - name: Share only the isolated app as CanView
+        id: share
+        shell: bash
+        env:
+          TEST_USER_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+          TEST_PRINCIPAL_OBJECT_ID: ${{ steps.test-principal.outputs.principal-object-id }}
+        run: |
+          set -euo pipefail
+          mkdir -p project/share-evidence
+          service_token="$(az account get-access-token \
+            --resource https://service.powerapps.com/ \
+            --query accessToken \
+            --output tsv)"
+          permissions_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/permissions?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          modify_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/modifyPermissions?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+
+          get_permissions() {
+            curl --fail-with-body --silent --show-error \
+              --header "Authorization: Bearer $service_token" \
+              --header "Accept: application/json" \
+              "$permissions_url" \
+              --output project/share-evidence/CURRENT_PERMISSIONS.json
+          }
+
+          has_role() {
+            local role="$1"
+            jq -e --arg id "$TEST_PRINCIPAL_OBJECT_ID" --arg role "$role" '
+              .. | objects
+              | select(
+                  ((.properties?.principal?.id // .principal?.id // "") | ascii_downcase)
+                    == ($id | ascii_downcase)
+                  and (.properties?.roleName // .roleName // "") == $role
+                )
+            ' project/share-evidence/CURRENT_PERMISSIONS.json >/dev/null
+          }
+
+          get_permissions
+          if has_role "CanEdit"; then
+            echo "::error::Dedicated test user already has CanEdit; refusing to broaden or silently change the approved CanView scope."
+            exit 1
+          fi
+
+          share_action="already-present"
+          if ! has_role "CanView"; then
+            jq -n \
+              --arg email "$TEST_USER_EMAIL" \
+              --arg id "$TEST_PRINCIPAL_OBJECT_ID" \
+              '{
+                put: [{
+                  properties: {
+                    roleName: "CanView",
+                    capabilities: [],
+                    NotifyShareTargetOption: "DoNotNotify",
+                    principal: {
+                      email: $email,
+                      id: $id,
+                      type: "User",
+                      tenantId: "null"
+                    }
+                  }
+                }]
+              }' > project/share-evidence/SHARE_REQUEST.json
+            curl --fail-with-body --silent --show-error \
+              --request POST \
+              --header "Authorization: Bearer $service_token" \
+              --header "Accept: application/json" \
+              --header "Content-Type: application/json" \
+              --data-binary @project/share-evidence/SHARE_REQUEST.json \
+              "$modify_url" \
+              --output project/share-evidence/SHARE_RESPONSE.json
+            share_action="created"
+          fi
+
+          verified=false
+          for attempt in 1 2 3 4 5 6; do
+            get_permissions
+            if has_role "CanView"; then
+              verified=true
+              break
+            fi
+            sleep 5
+          done
+          if [[ "$verified" != "true" ]]; then
+            echo "::error::CanView assignment was not visible after verification polling."
+            exit 1
+          fi
+
+          {
+            echo "ENVIRONMENT_ID=$POWER_APPS_ENVIRONMENT_ID"
+            echo "APP_ID=$POWER_PLATFORM_TARGET_APP_ID"
+            echo "PRINCIPAL_EMAIL=$TEST_USER_EMAIL"
+            echo "ROLE=CanView"
+            echo "ACTION=$share_action"
+            echo "VERIFIED=true"
+            echo "VERIFIED_AT=$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S JST')"
+          } > project/share-evidence/SHARE_RESULT.env
+          {
+            echo "## Isolated Canvas app sharing"
+            echo
+            echo "- Target: isolated test app only"
+            echo "- Role: CanView"
+            echo "- Principal: $TEST_USER_EMAIL"
+            echo "- Assignment: $share_action"
+            echo "- Read-back verification: success"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Run approved Step 7 change-specific test
+        id: step7-change-test
+        if: ${{ steps.step7-test.outputs.present == 'true' }}
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+        run: npx playwright test tests/northwind/canvas/staff-master-step7-meta-label.test.ts --project=canvas-app
+
+      - name: Run staff master P0 test
+        id: p0-test
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+        run: npx playwright test tests/northwind/canvas/staff-master-p0.test.ts --project=canvas-app
+
+      - name: Upload test evidence
+        id: evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase1-5-target-evidence-${{ github.run_number }}
+          path: |
+            power-platform-playwright/packages/e2e-tests/test-results/
+            power-platform-playwright/packages/e2e-tests/playwright-report/
+            project/share-evidence/SHARE_RESULT.env
+            project/share-evidence/CURRENT_APP.json
+            project/share-evidence/CURRENT_APP_URL.env
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Publish result summary and notify
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_STATUS: ${{ job.status }}
+          AUTH_OUTCOME: ${{ steps.auth.outcome }}
+          CHANGE_TEST_OUTCOME: ${{ steps.step7-change-test.outcome }}
+          TEST_OUTCOME: ${{ steps.p0-test.outcome }}
+          ARTIFACT_URL: ${{ steps.evidence.outputs.artifact-url }}
+        run: |
+          case "$JOB_STATUS" in
+            success)
+              result_icon="✅"
+              result_label="合格"
+              ;;
+            cancelled)
+              result_icon="⚪"
+              result_label="キャンセル"
+              ;;
+            *)
+              result_icon="❌"
+              result_label="不合格"
+              ;;
+          esac
+
+          case "${{ github.event_name }}" in
+            schedule) trigger_label="定時実行（毎日03:00 JST）" ;;
+            workflow_dispatch) trigger_label="随時実行（Run workflow）" ;;
+            push) trigger_label="テスト設定変更による自動実行" ;;
+            *) trigger_label="${{ github.event_name }}" ;;
+          esac
+
+          translate_outcome() {
+            case "$1" in
+              success) echo "成功" ;;
+              failure) echo "失敗" ;;
+              skipped) echo "未実行" ;;
+              cancelled) echo "キャンセル" ;;
+              *) echo "不明" ;;
+            esac
+          }
+
+          auth_label="$(translate_outcome "$AUTH_OUTCOME")"
+          change_test_label="$(translate_outcome "$CHANGE_TEST_OUTCOME")"
+          test_label="$(translate_outcome "$TEST_OUTCOME")"
+          executed_at="$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S JST')"
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          artifact_name="phase1-5-target-evidence-${{ github.run_number }}"
+          comment_file="${RUNNER_TEMP}/staff-master-result.md"
+
+          if [[ -n "$ARTIFACT_URL" ]]; then
+            evidence_cell="[スクリーンショット成果物を開く](${ARTIFACT_URL}) → \`${artifact_name}\`"
+          else
+            evidence_cell="成果物なし（認証またはテスト開始前に失敗）"
+          fi
+
+          {
+            echo "## ${result_icon} 職員マスタ自動テスト：${result_label}"
+            echo
+            echo "| 項目 | 結果 |"
+            echo "|---|---|"
+            echo "| 実行種別 | ${trigger_label} |"
+            echo "| 完了日時 | ${executed_at} |"
+            echo "| 総合結果 | **${result_label}** |"
+            echo "| Power Apps認証 | ${auth_label} |"
+            echo "| ステップ7変更専用テスト | ${change_test_label} |"
+            echo "| P0テスト | ${test_label} |"
+            echo "| テスト概要 | 起動 → 山田検索（2件）→ 山田花子選択・右詳細確認 → 900×600表示・非重複・横スクロール確認 → 条件クリア（25件） |"
+            echo "| 実行詳細 | [GitHub Actionsを開く](${run_url}) |"
+            echo "| スクリーンショット | ${evidence_cell} |"
+            echo
+            echo "> スクリーンショットを含む成果物の保存期間は14日間です。"
+          } > "$comment_file"
+
+          cat "$comment_file" >> "$GITHUB_STEP_SUMMARY"
+          gh issue comment 5 --repo "$GITHUB_REPOSITORY" --body-file "$comment_file"

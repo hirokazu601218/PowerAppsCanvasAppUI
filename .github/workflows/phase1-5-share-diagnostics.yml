@@ -1,0 +1,220 @@
+name: Phase 1.5 inspect Canvas share API
+
+on:
+  push:
+    branches:
+      - automation/phase1-baseline
+    paths:
+      - .github/workflows/phase1-5-share-diagnostics.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  inspect:
+    name: Inspect official cmdlet and resolve test principal
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 10
+
+    env:
+      POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
+      TEST_USER_EMAIL: powerapps-test@govaca.onmicrosoft.com
+      ADMIN_MODULE_VERSION: 2.0.217
+      MAKER_MODULE_VERSION: 1.0.45
+
+    steps:
+      - name: Sign in with GitHub OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.POWER_PLATFORM_CLIENT_ID }}
+          tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Resolve dedicated test user through Dataverse
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/share-diagnostics
+          resource="${POWER_PLATFORM_TEST_ENVIRONMENT_URL%/}"
+          access_token="$(az account get-access-token \
+            --resource "$resource" \
+            --query accessToken \
+            --output tsv)"
+
+          curl --fail --silent --show-error --get \
+            --header "Authorization: Bearer $access_token" \
+            --header "Accept: application/json" \
+            --data-urlencode '$select=systemuserid,azureactivedirectoryobjectid,internalemailaddress,fullname,isdisabled' \
+            --data-urlencode "\$filter=internalemailaddress eq '$TEST_USER_EMAIL'" \
+            "$resource/api/data/v9.2/systemusers" \
+            | tee artifacts/share-diagnostics/TEST_USER_SYSTEMUSER.json
+          principal_id="$(jq -r '.value[0].azureactivedirectoryobjectid // empty' artifacts/share-diagnostics/TEST_USER_SYSTEMUSER.json)"
+
+          if [[ -z "$principal_id" ]]; then
+            aad_http_status="$(curl --silent --show-error --get \
+              --header "Authorization: Bearer $access_token" \
+              --header "Accept: application/json" \
+              --data-urlencode '$select=aaduserid,userprincipalname,mail,displayname' \
+              --data-urlencode '$top=999' \
+              --output artifacts/share-diagnostics/TEST_USER_AADUSER.json \
+              --write-out '%{http_code}' \
+              "$resource/api/data/v9.2/aadusers")"
+            cat artifacts/share-diagnostics/TEST_USER_AADUSER.json
+            echo
+            echo "AADUSER_HTTP_STATUS=$aad_http_status" | tee artifacts/share-diagnostics/AADUSER_STATUS.env
+            if [[ "$aad_http_status" =~ ^2 ]]; then
+              principal_id="$(jq -r --arg email "$TEST_USER_EMAIL" '
+                .value[]
+                | select((.userprincipalname // "" | ascii_downcase) == ($email | ascii_downcase))
+                | .aaduserid
+              ' artifacts/share-diagnostics/TEST_USER_AADUSER.json | head -n 1)"
+            fi
+          fi
+
+          if [[ -n "$principal_id" ]]; then
+            echo "TEST_USER_PRINCIPAL_OBJECT_ID=$principal_id" | tee artifacts/share-diagnostics/TEST_USER.env
+          else
+            echo "::warning::Dedicated test user was not found through Dataverse systemusers or aadusers"
+            echo "TEST_USER_PRINCIPAL_OBJECT_ID=" | tee artifacts/share-diagnostics/TEST_USER.env
+          fi
+
+      - name: Inspect Microsoft Power Apps admin module source
+        shell: bash
+        run: |
+          set -euo pipefail
+          package_url="https://www.powershellgallery.com/api/v2/package/Microsoft.PowerApps.Administration.PowerShell/$ADMIN_MODULE_VERSION"
+          curl --fail --location --silent --show-error "$package_url" --output admin-module.nupkg
+          mkdir admin-module
+          unzip -q admin-module.nupkg -d admin-module
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          wanted = {
+              "Set-AdminPowerAppRoleAssignment",
+              "Get-AdminPowerAppRoleAssignment",
+              "Add-PowerAppsAccount",
+              "Get-JwtToken",
+          }
+          out = []
+          for path in sorted(Path("admin-module").rglob("*.psm1")):
+              text = path.read_text(encoding="utf-8-sig", errors="replace")
+              for name in sorted(wanted):
+                  match = re.search(rf"(?im)^function\s+{re.escape(name)}\b", text)
+                  if not match:
+                      continue
+                  start = match.start()
+                  next_fn = re.search(r"(?im)^function\s+[A-Za-z0-9_-]+\b", text[match.end():])
+                  end = match.end() + next_fn.start() if next_fn else len(text)
+                  block = text[start:end]
+                  if len(block) > 30000:
+                      block = block[:30000] + "\n# TRUNCATED\n"
+                  out.append(f"### {name} ({path.name})\n{block.rstrip()}\n")
+          missing = wanted - {re.search(r"^### ([^ ]+)", item).group(1) for item in out}
+          if missing:
+              raise SystemExit(f"Missing functions: {sorted(missing)}")
+          Path("artifacts/share-diagnostics/OFFICIAL_CMDLET_SOURCE.txt").write_text(
+              "\n".join(out), encoding="utf-8"
+          )
+          PY
+          python3 - <<'PY'
+          from pathlib import Path
+          source = Path("artifacts/share-diagnostics/OFFICIAL_CMDLET_SOURCE.txt").read_text(encoding="utf-8")
+          keywords = (
+              "set-adminpowerapproleassignment",
+              "get-adminpowerapproleassignment",
+              "roleassign",
+              "principalobjectid",
+              "principaltype",
+              "rolename",
+              "notify",
+              "powerappendpoint",
+              "invokeapi",
+              "apiversion",
+          )
+          selected = [
+              f"{index}: {line}"
+              for index, line in enumerate(source.splitlines(), start=1)
+              if any(keyword in line.lower() for keyword in keywords)
+          ][:300]
+          output = "\n".join(selected) + "\n"
+          Path("artifacts/share-diagnostics/SHARE_API_HIGHLIGHTS.txt").write_text(output, encoding="utf-8")
+          print(output)
+          PY
+          sed -n '170,240p' artifacts/share-diagnostics/OFFICIAL_CMDLET_SOURCE.txt
+
+      - name: Inspect app-owner sharing API
+        shell: bash
+        run: |
+          set -euo pipefail
+          package_url="https://www.powershellgallery.com/api/v2/package/Microsoft.PowerApps.PowerShell/$MAKER_MODULE_VERSION"
+          curl --fail --location --silent --show-error "$package_url" --output maker-module.nupkg
+          mkdir maker-module
+          unzip -q maker-module.nupkg -d maker-module
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          wanted = {"Set-PowerAppRoleAssignment", "Get-PowerAppRoleAssignment"}
+          output = []
+          found = set()
+          for path in sorted(Path("maker-module").rglob("*.psm1")):
+              text = path.read_text(encoding="utf-8-sig", errors="replace")
+              for name in sorted(wanted):
+                  match = re.search(rf"(?im)^function\s+{re.escape(name)}\b", text)
+                  if not match:
+                      continue
+                  next_fn = re.search(r"(?im)^function\s+[A-Za-z0-9_-]+\b", text[match.end():])
+                  end = match.end() + next_fn.start() if next_fn else len(text)
+                  block = text[match.start():end]
+                  output.append(f"### {name} ({path.name})\n{block.rstrip()}\n")
+                  found.add(name)
+          missing = wanted - found
+          if missing:
+              raise SystemExit(f"Missing functions: {sorted(missing)}")
+          result = "\n".join(output)
+          Path("artifacts/share-diagnostics/OWNER_SHARE_API_SOURCE.txt").write_text(result, encoding="utf-8")
+          print(result)
+          PY
+
+      - name: Verify Power Apps service token availability
+        shell: bash
+        run: |
+          set -euo pipefail
+          token="$(az account get-access-token \
+            --resource https://service.powerapps.com/ \
+            --query accessToken \
+            --output tsv)"
+          test -n "$token"
+          echo "POWER_APPS_SERVICE_TOKEN=available" | tee artifacts/share-diagnostics/TOKEN_CHECK.env
+
+      - name: Summarize diagnostics
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Phase 1.5 share diagnostics"
+            echo
+            echo "- Official admin module: $ADMIN_MODULE_VERSION"
+            if [[ -s artifacts/share-diagnostics/TEST_USER.env ]]; then
+              sed 's/^/- /' artifacts/share-diagnostics/TEST_USER.env
+            fi
+            if [[ -s artifacts/share-diagnostics/TOKEN_CHECK.env ]]; then
+              sed 's/^/- /' artifacts/share-diagnostics/TOKEN_CHECK.env
+            fi
+            echo "- No app permission was changed by this diagnostic run."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase1-5-share-diagnostics-${{ github.run_number }}
+          path: artifacts/share-diagnostics
+          retention-days: 14
+          if-no-files-found: warn

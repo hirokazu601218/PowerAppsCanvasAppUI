@@ -1,0 +1,126 @@
+name: Step 7 legacy compiler bridge diagnostic
+
+on:
+  push:
+    branches:
+      - automation/phase1-baseline
+    paths:
+      - '.github/workflows/step7-legacy-compiler-diagnostic.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    name: Inspect PAC SourceCode conversion
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out project branch
+        uses: actions/checkout@v5
+        with:
+          ref: automation/phase1-baseline
+          path: project
+
+      - name: Check out pinned Microsoft PowerApps Tooling
+        uses: actions/checkout@v5
+        with:
+          repository: microsoft/PowerApps-Tooling
+          ref: aed72a37c3b10b08f81c9d2257d5c38da33dccbe
+          path: powerapps-tooling
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Install PAC CLI and build reconstruction helper
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+          pac help >/dev/null
+          dotnet build \
+            project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj \
+            --configuration Release \
+            --nologo
+
+      - name: Reconstruct active modern source
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet run \
+            --configuration Release \
+            --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj \
+            -- pack project/powerapps/canvas-v3/baseline.msapr "$RUNNER_TEMP/modern-reconstructed.msapp"
+          test -s "$RUNNER_TEMP/modern-reconstructed.msapp"
+
+      - name: Convert reconstructed app to PAC SourceCode layout
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          pac canvas unpack \
+            --msapp "$RUNNER_TEMP/modern-reconstructed.msapp" \
+            --sources "$RUNNER_TEMP/pac-source" \
+            --layout SourceCode \
+            --overwrite
+          find "$RUNNER_TEMP/pac-source" -type f -printf '%P\n' \
+            | LC_ALL=C sort \
+            | tee artifacts/PAC_SOURCE_FILES.txt
+          set +e
+          rg -n -F 'v1.11 ／ 自動反映テスト中' "$RUNNER_TEMP/pac-source" \
+            | tee artifacts/NEW_LABEL_MATCHES.txt
+          new_status="${PIPESTATUS[0]}"
+          rg -n -F 'B案・架空25名' "$RUNNER_TEMP/pac-source" \
+            | tee artifacts/OLD_LABEL_MATCHES.txt
+          old_status="${PIPESTATUS[0]}"
+          set -e
+          {
+            echo "NEW_LABEL_FOUND=$([[ "$new_status" -eq 0 ]] && echo true || echo false)"
+            echo "OLD_LABEL_FOUND=$([[ "$old_status" -eq 0 ]] && echo true || echo false)"
+          } | tee artifacts/CONVERSION_RESULT.env
+          cp -a "$RUNNER_TEMP/pac-source" artifacts/pac-source
+
+      - name: Repack with PAC and inspect compiled archive entries
+        shell: bash
+        run: |
+          set -euo pipefail
+          pac canvas pack \
+            --sources "$RUNNER_TEMP/pac-source" \
+            --msapp "$RUNNER_TEMP/pac-packed.msapp" \
+            --layout SourceCode \
+            --overwrite
+          pac canvas pack \
+            --sources "$RUNNER_TEMP/pac-source" \
+            --msapp "$RUNNER_TEMP/pac-packed-no-yaml.msapp" \
+            --layout SourceCode \
+            --disable-load-from-yaml \
+            --overwrite
+
+          for variant in modern-reconstructed pac-packed pac-packed-no-yaml; do
+            archive_dir="artifacts/archives/$variant"
+            mkdir -p "$archive_dir"
+            unzip -q "$RUNNER_TEMP/$variant.msapp" -d "$archive_dir"
+            find "$archive_dir" -type f ! -path '*/Src/*' -print0 \
+              | xargs -0 -r rg -a -n -F 'v1.11 ／ 自動反映テスト中' \
+              > "artifacts/${variant}_NEW_COMPILED_MATCHES.txt" || true
+            find "$archive_dir" -type f ! -path '*/Src/*' -print0 \
+              | xargs -0 -r rg -a -n -F 'B案・架空25名' \
+              > "artifacts/${variant}_OLD_COMPILED_MATCHES.txt" || true
+            sha256sum "$RUNNER_TEMP/$variant.msapp" \
+              > "artifacts/${variant}_SHA256.txt"
+          done
+          cp "$RUNNER_TEMP/pac-packed.msapp" artifacts/pac-packed.msapp
+          cp "$RUNNER_TEMP/pac-packed-no-yaml.msapp" artifacts/pac-packed-no-yaml.msapp
+
+      - name: Upload compiler bridge diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: step7-legacy-compiler-diagnostic-${{ github.run_number }}
+          path: artifacts
+          retention-days: 14
+          if-no-files-found: error

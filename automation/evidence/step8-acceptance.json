@@ -1,0 +1,234 @@
+{
+  "state": "ACCEPTANCE_PASSED",
+  "run_id": 34952452993,
+  "run_attempt": 2,
+  "commit": "190554a284eb7911e1a4200310bb6cd2efc18190",
+  "artifact": {
+    "archive_download_url": "https://api.github.com/repos/hirokazu601218/PowerAppsCanvasAppUI/actions/artifacts/10390581175/zip",
+    "created_at": "2026-09-15T09:38:57Z",
+    "digest": "sha256:b77970ad2684f5c242e680f72b2e14d1f30229126c0009438a8f19a8d9f80b39",
+    "expired": false,
+    "expires_at": "2026-09-29T09:38:55Z",
+    "id": 10390581175,
+    "name": "staff-master-transaction-34952452993-2",
+    "size_in_bytes": 23724945,
+    "updated_at": "2026-09-15T09:38:57Z",
+    "url": "https://api.github.com/repos/hirokazu601218/PowerAppsCanvasAppUI/actions/artifacts/10390581175",
+    "workflow_run": {
+      "head_branch": "automation/phase1-baseline",
+      "head_repository_id": 1365055951,
+      "head_sha": "190554a284eb7911e1a4200310bb6cd2efc18190",
+      "id": 34952452993,
+      "repository_id": 1365055951
+    }
+  },
+  "restored_commit": "260819a4fa30c4d8c8dcd02acc626c26d7823697",
+  "stopped_pr": 8,
+  "stopped_branch": "automation/acceptance-stop-7",
+  "events": [
+    {
+      "at": "2026-09-15T09:33:36.252558+00:00",
+      "stage": "change_test",
+      "outcome": "failure",
+      "attempt": "repair-defect"
+    },
+    {
+      "at": "2026-09-15T09:33:56.072947+00:00",
+      "stage": "p0",
+      "outcome": "success",
+      "attempt": "repair-defect"
+    },
+    {
+      "at": "2026-09-15T09:33:56.073927+00:00",
+      "name": "repair-defect",
+      "gates": {
+        "build": "success",
+        "auth": "success",
+        "import": "success",
+        "publish": "success",
+        "readback": "success",
+        "change_test": "failure",
+        "p0": "success"
+      },
+      "promotable": false,
+      "effective_edit": [
+        {
+          "source": "Src/Screen1.pa.yaml",
+          "control": "lblMeta111",
+          "property": "Text",
+          "before": "=\"v1.11  ／  B案・架空25名\"",
+          "after": "=\"自動修復試験・誤表示A\""
+        }
+      ],
+      "package_sha256": "019f723270880068cb40a443db56e93ed5e116ebc711a740dd00a8e09711655e"
+    },
+    {
+      "at": "2026-09-15T09:33:58.650219+00:00",
+      "fingerprint": "a0acab7bc29a1edffd336e9cce1d98500fe2b9971836ede7fbb5a0f6bafa1f56",
+      "failure": {
+        "case_id": "AUT-META-001",
+        "stage": "change_test",
+        "error": "Error: AUT-META-001: approved header value expect(locator).toBeVisible() failed Locator: locator('iframe[name=\"fullscreen-app-host\"]').contentFrame().getByText('v1.12 ／ B案・架空25名', { exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found"
+      },
+      "state": "REPAIRING",
+      "remedy": "apply-approved-source-formula",
+      "remedy_key": "5dee9699d3fba0ce71906aa290dd8955e5b0db32de931f94d41c1004d78dfccc"
+    },
+    {
+      "at": "2026-09-15T09:34:53.619204+00:00",
+      "stage": "change_test",
+      "outcome": "success",
+      "attempt": "repair-success"
+    },
+    {
+      "at": "2026-09-15T09:35:12.427220+00:00",
+      "stage": "p0",
+      "outcome": "success",
+      "attempt": "repair-success"
+    },
+    {
+      "at": "2026-09-15T09:35:12.428204+00:00",
+      "name": "repair-success",
+      "gates": {
+        "build": "success",
+        "auth": "success",
+        "import": "success",
+        "publish": "success",
+        "readback": "success",
+        "change_test": "success",
+        "p0": "success"
+      },
+      "promotable": true,
+      "effective_edit": [
+        {
+          "source": "Src/Screen1.pa.yaml",
+          "control": "lblMeta111",
+          "property": "Text",
+          "before": "=\"v1.11  ／  B案・架空25名\"",
+          "after": "=\"v1.12  ／  B案・架空25名\""
+        }
+      ],
+      "package_sha256": "8894b41f397a62a37f866458917325c9c0003b9bef7bf0ec4d5d6cbfc503576e"
+    },
+    {
+      "at": "2026-09-15T09:36:07.330719+00:00",
+      "stage": "change_test",
+      "outcome": "failure",
+      "attempt": "stop-defect-1"
+    },
+    {
+      "at": "2026-09-15T09:36:25.644648+00:00",
+      "stage": "p0",
+      "outcome": "success",
+      "attempt": "stop-defect-1"
+    },
+    {
+      "at": "2026-09-15T09:36:25.645601+00:00",
+      "name": "stop-defect-1",
+      "gates": {
+        "build": "success",
+        "auth": "success",
+        "import": "success",
+        "publish": "success",
+        "readback": "success",
+        "change_test": "failure",
+        "p0": "success"
+      },
+      "promotable": false,
+      "effective_edit": [
+        {
+          "source": "Src/Screen1.pa.yaml",
+          "control": "lblMeta111",
+          "property": "Text",
+          "before": "=\"v1.11  ／  B案・架空25名\"",
+          "after": "=\"停止試験・誤表示A\""
+        }
+      ],
+      "package_sha256": "29f897f1f27b980b069b28b8b29d3f51609a58045f24917cd142bd960c9c7817"
+    },
+    {
+      "at": "2026-09-15T09:36:26.463451+00:00",
+      "fingerprint": "a0acab7bc29a1edffd336e9cce1d98500fe2b9971836ede7fbb5a0f6bafa1f56",
+      "failure": {
+        "case_id": "AUT-META-001",
+        "stage": "change_test",
+        "error": "Error: AUT-META-001: approved header value expect(locator).toBeVisible() failed Locator: locator('iframe[name=\"fullscreen-app-host\"]').contentFrame().getByText('v1.12 ／ B案・架空25名', { exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found"
+      },
+      "state": "REPAIRING",
+      "remedy": "stop-remedy-1",
+      "remedy_key": "58383c4cd206384d76f664963f84f6e7137a418dc9293eac7b65719cb14cfd39"
+    },
+    {
+      "at": "2026-09-15T09:37:22.272481+00:00",
+      "stage": "change_test",
+      "outcome": "failure",
+      "attempt": "stop-defect-2"
+    },
+    {
+      "at": "2026-09-15T09:37:40.527164+00:00",
+      "stage": "p0",
+      "outcome": "success",
+      "attempt": "stop-defect-2"
+    },
+    {
+      "at": "2026-09-15T09:37:40.528082+00:00",
+      "name": "stop-defect-2",
+      "gates": {
+        "build": "success",
+        "auth": "success",
+        "import": "success",
+        "publish": "success",
+        "readback": "success",
+        "change_test": "failure",
+        "p0": "success"
+      },
+      "promotable": false,
+      "effective_edit": [
+        {
+          "source": "Src/Screen1.pa.yaml",
+          "control": "lblMeta111",
+          "property": "Text",
+          "before": "=\"v1.11  ／  B案・架空25名\"",
+          "after": "=\"停止試験・誤表示B\""
+        }
+      ],
+      "package_sha256": "de433af30659b47faa30aec54c8d66eb9e37a2fc18460b3d0a371037e058885d"
+    },
+    {
+      "at": "2026-09-15T09:37:41.595969+00:00",
+      "fingerprint": "a0acab7bc29a1edffd336e9cce1d98500fe2b9971836ede7fbb5a0f6bafa1f56",
+      "failure": {
+        "case_id": "AUT-META-001",
+        "stage": "change_test",
+        "error": "Error: AUT-META-001: approved header value expect(locator).toBeVisible() failed Locator: locator('iframe[name=\"fullscreen-app-host\"]').contentFrame().getByText('v1.12 ／ B案・架空25名', { exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found"
+      },
+      "state": "REPAIRING",
+      "remedy": "stop-remedy-2",
+      "remedy_key": "29dd90a4e57ea85e99d7ef33d2153857acb629e5733a4a897926d69960c0b394"
+    },
+    {
+      "at": "2026-09-15T09:37:41.596190+00:00",
+      "fingerprint": "a0acab7bc29a1edffd336e9cce1d98500fe2b9971836ede7fbb5a0f6bafa1f56",
+      "state": "STOPPED",
+      "reason": "no_untried_remedy"
+    },
+    {
+      "at": "2026-09-15T09:38:35.257391+00:00",
+      "stage": "change_test",
+      "outcome": "success",
+      "attempt": "restoration"
+    },
+    {
+      "at": "2026-09-15T09:38:54.679945+00:00",
+      "stage": "p0",
+      "outcome": "success",
+      "attempt": "restoration"
+    },
+    {
+      "at": "2026-09-15T09:38:54.680168+00:00",
+      "stage": "restore",
+      "state": "RESTORED",
+      "commit": "260819a4fa30c4d8c8dcd02acc626c26d7823697"
+    }
+  ]
+}

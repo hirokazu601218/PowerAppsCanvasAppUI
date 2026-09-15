@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "approved": true,
+  "approval_record": "Issue #7; user requested steps 8 through 9 on 2026-09-15",
+  "issue": 7,
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",
+    "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1"
+  },
+  "candidate_version": "1.12",
+  "changes": [
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblMeta111",
+      "property": "Text",
+      "before": "=\"v1.11  ／  B案・架空25名\"",
+      "after": "=\"v1.12  ／  B案・架空25名\""
+    }
+  ],
+  "acceptance": {
+    "case_id": "AUT-META-001",
+    "expected_label": "v1.12 ／ B案・架空25名"
+  }
+}

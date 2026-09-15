@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",
+    "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1"
+  },
+  "baseline_msapp": "powerapps/solution-src/CanvasApps/crb3c_v111_99a38_DocumentUri.msapp",
+  "baseline_sha256": "c127cc4a2e076476572c894b4e081a9280f7213600687b5092ed296f89a9a65c",
+  "bootstrap_good_commit": "260819a4fa30c4d8c8dcd02acc626c26d7823697",
+  "bootstrap_good_run": 34935420385,
+  "solution_name": "StaffMasterAutomation",
+  "tenant_id": "a00c92fa-e1db-4aa6-ab28-356c3203353d",
+  "client_id": "1c94f011-c447-4af1-968f-ec564f489395",
+  "test_user": "powerapps-test@govaca.onmicrosoft.com"
+}

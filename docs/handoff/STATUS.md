@@ -21,14 +21,14 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | Power Apps無人修正・テスト・公開基盤の設計 |
-| 基準版 | P0合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11との差分は初期構築で照合 |
-| 要件ID | AUT-001～AUT-024（`docs/requirements/unattended-development-requirements.md`） |
-| 対象ソース | `.github/workflows/staff-master-e2e.yml`、`e2e/staff-master-p0.test.ts`、`src/staff-master/`。今回は文書設計のみ |
-| 関連設計 | `docs/operations/unattended-development-implementation-plan.md` |
-| 関連テスト | 対象外。文書のリンク・用語・版・記述整合のみ確認 |
+| 対象機能 | Power Apps無人修正・テスト・公開基盤：ステップ9候補検証・成功版確定 |
+| 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11と差分照合済み。P0合格済み公開版を採用し、旧版は参照として保持 |
+| 要件ID | AUT-001～AUT-025、NFR-001～NFR-013（`docs/requirements/unattended-development-requirements.md` v1.03） |
+| 対象ソース | `scripts/automation/`、`tests/automation/`、`automation/`、`config/apps/`、`.github/workflows/staff-master-transaction.yml`、`staff-master-finalize.yml`、`e2e/changes/approved-property.test.ts`、 `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
+| 関連設計 | `docs/operations/staff-master-unattended-runbook.md`、`docs/operations/unattended-development-step8-9-acceptance.md`、 `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md`、`docs/operations/unattended-development-step6-source-reconstruction.md`、`docs/operations/unattended-development-step7-automatic-source-deployment.md` |
+| 関連テスト | 基準環境P0再合格。変更版の再構成・隔離公開・変更専用テスト＋P0成功（run 34934912204）。一時変更の復元・再公開・P0成功（run 34935420385） |
 | Library資料 | なし |
-| 未解決事項 | Git統合対応Solutionの初期取込み、サービスプリンシパル作成、公開アプリとGitHub v1.11の差分照合 |
+| 未解決事項 | v1.12候補の最終テスト、main統合、成功タグの確定 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -36,11 +36,15 @@
 
 | 項目 | 状態 |
 |---|---|
-| 無人修正・テスト・公開基盤 | Phase 0完了。要件定義書v1.00、段階別構築計画v1.00を作成。実装は未着手 |
-| GitHub Actions | `.github/workflows/powerapps-e2e.yml` と `staff-master-e2e.yml` を構築済み |
+| 無人修正・テスト・公開基盤 | 9ステップ中ステップ1～8完了。run 34952452993 attempt 2で自動修復、同一原因と対応策識別、停止、v1.11復元、復元後の表示確認＋P0に合格。ステップ9実行中 |
+| Phase 1 P0 | run #8 attempt 3が成功。2026-09-15T01:27:59Z完了。証跡は14日保持 |
+| 実環境確認 | Azure Subscriptionあり・所有者。対象はDataverse付き開発者環境、非マネージド。Power Apps Premiumなし |
+| GitHub格納状態 | 完全なSolution、active `*.pa.yaml`、`baseline.msapr`、変更専用テスト、厳格な実行時同期ゲートを格納済み。初期ソース確定は `ab1b7456ed8bc7d39cd302c1e23276b789212179`、ステップ7復元確定は `260819a4fa30c4d8c8dcd02acc626c26d7823697` |
+| 推奨経路 | 保持した元msappとactive YAMLを使用し、承認済みの既存プロパティをマニフェスト駆動で実行ルールへ同期してSolutionをパックする。新規構造・記載外変更は停止。元のPersistence実証は履歴として保持 |
+| Power Platform Git統合 | GitHub接続はプレビュー。GitHub Organization、Managed Environment、Azure Key Vault、Premium相当ライセンス等が必要なため当面見送り |
+| GitHub Actions | OIDC、Dataverse URL直接指定、CanView共有、再構成、Solution反映、明示的公開、サーバー側ルール読戻し、変更専用テスト、P0、失敗時復元を連結済み |
 | E2Eスクリプト | `e2e/testapp-smoke.test.ts` と `e2e/staff-master-p0.test.ts` を格納済み |
-| Staff Master E2E | run #4が成功。定時・随時実行と結果通知の仕組みを継続確認中 |
-| Power Apps E2E | run #1は失敗。成功実績とは分けて扱い、Actionsで最新結果を確認する |
+| Power Apps E2E | 基準環境P0はrun #8 attempt 3で成功。隔離環境P0はrun 34925700515、再構成基線はrun 34928950801、ステップ7変更版はrun 34934912204、復元版はrun 34935420385で合格。全試行はIssue #5へ保持 |
 | 合否の境界 | ワークフローやスクリプトの存在だけでは合格としない。対象版の実行結果と証跡で判定する |
 
 ## テスト設計
@@ -51,14 +55,17 @@
 
 ## ChatGPT Sol Workの次の作業
 
-1. Phase 1として既存P0を再実行し、開始時点の合格を確認する。
-2. 成功run、App ID、環境ID、公開版を基準記録として確定する。
-3. P0合格済み公開アプリを変更せず取得・保全する方法を確認する。
-4. 公開アプリ由来ソースと既存GitHub v1.11の比較項目・差分記録様式を作る。
-5. Phase 2に必要なPower Platform Git統合の利用可否と初回操作を確認する。
+ステップ8は実環境受入に合格。2026-09-15のユーザー指示でステップ9まで連続実行を承認済み。
+
+1. v1.12候補を隔離公開し、変更表示テストと既存P0を実行する。
+2. 全ゲート合格後、PR #6の候補SHAを固定してmainへ統合する。
+3. テスト対象とmainの内容一致を再検査し、成功タグv1.12を作る。
+4. Issue #7、受入記録、STATUSを最終結果へ更新する。
 
 ## 未決・ギャップ
 
+- ステップ7では、一時表示変更の無人反映、変更専用テスト＋P0、元表示への復元・再公開・P0を実証した。現行Persistence経路はactive `.pa.yaml` 単独では実行用ルールを再コンパイルしないため、承認対象を厳格照合した実行時ルール同期を使用した。ステップ8で既存プロパティのマニフェスト駆動と修復制御を実証済み。新規コントロール等の一般コンパイルは未対応で、運用ゲートが停止する。
+- 最新P0はステップ8の復元後 `34952452993` attempt 2。以下は過去のステップ7証跡：変更版証跡は `step6-source-reconstruction-13`（ID `10382398248`）と `phase1-5-target-evidence-13`（ID `10383136592`）、復元版証跡は `step6-source-reconstruction-14`（ID `10382428589`）と `phase1-5-target-evidence-14`（ID `10382753247`）。いずれも2026-09-29まで保持する。
 - 本番列一覧、Dataverseテーブル名・型・ロール、実接続/委任設計は別途。
 - TSVから正式XLSX出力への方式は未決。
 - 帳票A3/A4等の正式用紙と実機改ページは未決。

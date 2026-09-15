@@ -1,0 +1,83 @@
+name: Phase 1.5 discover target app
+
+on:
+  push:
+    branches:
+      - automation/phase1-baseline
+    paths:
+      - .github/workflows/phase1-5-target-metadata.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  discover:
+    name: Read imported Canvas app ID from test Dataverse
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 10
+    env:
+      POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
+      APP_SCHEMA_NAME: crb3c_v111_99a38
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Sign in with GitHub OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.POWER_PLATFORM_CLIENT_ID }}
+          tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Query Canvas app record by direct Dataverse URL
+        shell: bash
+        run: |
+          mkdir -p artifacts/target-metadata
+          resource="${POWER_PLATFORM_TEST_ENVIRONMENT_URL%/}"
+          access_token="$(az account get-access-token \
+            --resource "$resource" \
+            --query accessToken \
+            --output tsv)"
+          query_url="$resource/api/data/v9.2/canvasapps?\$select=canvasappid,name,displayname&\$filter=name%20eq%20'$APP_SCHEMA_NAME'"
+          curl --fail --silent --show-error \
+            --header "Authorization: Bearer $access_token" \
+            --header "Accept: application/json" \
+            --header "OData-MaxVersion: 4.0" \
+            --header "OData-Version: 4.0" \
+            "$query_url" \
+            | tee artifacts/target-metadata/CANVAS_APP.json
+          app_id="$(jq -r '.value[0].canvasappid // empty' artifacts/target-metadata/CANVAS_APP.json)"
+          display_name="$(jq -r '.value[0].displayname // empty' artifacts/target-metadata/CANVAS_APP.json)"
+          test -n "$app_id"
+          {
+            echo "CANVAS_APP_ID=$app_id"
+            echo "CANVAS_APP_DISPLAY_NAME=$display_name"
+            echo "CANVAS_APP_PLAY_URL=https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/$app_id?tenantId=$POWER_PLATFORM_TENANT_ID"
+          } | tee artifacts/target-metadata/TARGET_APP.env
+
+      - name: Write summary
+        if: always()
+        shell: bash
+        run: |
+          if [[ -s artifacts/target-metadata/TARGET_APP.env ]]; then
+            {
+              echo "## Imported target Canvas app"
+              echo
+              sed 's/^/- /' artifacts/target-metadata/TARGET_APP.env
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload metadata evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase1-5-target-metadata-${{ github.run_number }}
+          path: artifacts/target-metadata
+          retention-days: 14
+          if-no-files-found: warn

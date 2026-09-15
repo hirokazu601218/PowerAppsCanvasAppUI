@@ -1,0 +1,145 @@
+name: Phase 1.5 direct-URL no-change deployment
+
+on:
+  push:
+    branches:
+      - automation/phase1-baseline
+    paths:
+      - .github/workflows/phase1-5-roundtrip.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  roundtrip:
+    name: Export and import v1.11 by direct Dataverse URL
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 30
+    env:
+      POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      POWER_PLATFORM_SOURCE_ENVIRONMENT_URL: https://org24a2c22d.crm7.dynamics.com/
+      POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
+      SOLUTION_NAME: StaffMasterAutomation
+      SOLUTION_VERSION: 1.11.0.0
+      APP_NAME: 職員マスタ検索_自動テスト_v1_11
+
+    steps:
+      - name: Check out canonical baseline
+        uses: actions/checkout@v5
+        with:
+          ref: automation/phase1-baseline
+
+      - name: Install Power Platform CLI
+        shell: bash
+        run: |
+          mkdir -p artifacts/roundtrip
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+          pac help >/dev/null
+
+      - name: Authenticate to source Dataverse URL with GitHub OIDC
+        shell: bash
+        run: |
+          pac auth create \
+            --name source-oidc \
+            --githubFederated \
+            --tenant "$POWER_PLATFORM_TENANT_ID" \
+            --applicationId "$POWER_PLATFORM_CLIENT_ID" \
+            --environment "$POWER_PLATFORM_SOURCE_ENVIRONMENT_URL"
+          echo "Source OIDC authentication by direct Dataverse URL succeeded." \
+            | tee artifacts/roundtrip/SOURCE_OIDC_AUTH.txt
+
+      - name: Export unchanged baseline Solution from source URL
+        shell: bash
+        run: |
+          export_zip="$RUNNER_TEMP/StaffMasterAutomation_1_11_direct_url.zip"
+          pac solution list \
+            --environment "$POWER_PLATFORM_SOURCE_ENVIRONMENT_URL" \
+            --json \
+            | tee artifacts/roundtrip/SOURCE_SOLUTIONS.json
+          grep -q "$SOLUTION_NAME" artifacts/roundtrip/SOURCE_SOLUTIONS.json
+          pac solution export \
+            --name "$SOLUTION_NAME" \
+            --path "$export_zip" \
+            --environment "$POWER_PLATFORM_SOURCE_ENVIRONMENT_URL" \
+            --overwrite
+          test -s "$export_zip"
+          sha256sum "$export_zip" \
+            | tee artifacts/roundtrip/EXPORTED_SOLUTION_SHA256.txt
+          unzip -l "$export_zip" \
+            | tee artifacts/roundtrip/EXPORTED_SOLUTION_FILES.txt
+          unzip -p "$export_zip" solution.xml \
+            > artifacts/roundtrip/EXPORTED_SOLUTION_XML.txt
+          grep -q "<UniqueName>$SOLUTION_NAME</UniqueName>" \
+            artifacts/roundtrip/EXPORTED_SOLUTION_XML.txt
+          grep -q "<Version>$SOLUTION_VERSION</Version>" \
+            artifacts/roundtrip/EXPORTED_SOLUTION_XML.txt
+
+      - name: Authenticate to isolated test Dataverse URL with GitHub OIDC
+        shell: bash
+        run: |
+          pac auth create \
+            --name test-oidc \
+            --githubFederated \
+            --tenant "$POWER_PLATFORM_TENANT_ID" \
+            --applicationId "$POWER_PLATFORM_CLIENT_ID" \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
+          echo "Test OIDC authentication by direct Dataverse URL succeeded." \
+            | tee artifacts/roundtrip/TEST_OIDC_AUTH.txt
+
+      - name: Import unchanged Solution and publish in isolated test environment
+        shell: bash
+        run: |
+          export_zip="$RUNNER_TEMP/StaffMasterAutomation_1_11_direct_url.zip"
+          pac solution import \
+            --path "$export_zip" \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL" \
+            --force-overwrite \
+            --publish-changes
+          pac solution list \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL" \
+            --json \
+            | tee artifacts/roundtrip/TARGET_SOLUTIONS.json
+          pac canvas list \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL" \
+            | tee artifacts/roundtrip/TARGET_CANVAS_APPS.txt
+          grep -q "$SOLUTION_NAME" artifacts/roundtrip/TARGET_SOLUTIONS.json
+          grep -q "$APP_NAME" artifacts/roundtrip/TARGET_CANVAS_APPS.txt
+
+      - name: Preserve PAC diagnostic log
+        if: failure()
+        shell: bash
+        run: |
+          pac_log="$(find "$HOME/.dotnet/tools/.store/microsoft.powerapps.cli.tool" -type f -name pac-log.txt -print -quit || true)"
+          if [[ -n "$pac_log" ]]; then
+            cp "$pac_log" artifacts/roundtrip/PAC_LOG.txt
+          fi
+
+      - name: Write execution summary
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p artifacts/roundtrip
+          {
+            echo "## Phase 1.5 direct-URL no-change deployment"
+            echo
+            echo "- Source Dataverse: direct URL"
+            echo "- Target: isolated Developer environment by direct URL"
+            echo "- Package: freshly exported unchanged v1.11 Solution"
+            echo "- Canvas repack: bypassed because PAC 2.12.2 validation throws System.FormatException"
+            echo "- GitHub OIDC: client secret not used"
+            echo "- Evidence retention: 14 days"
+            echo "- Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          } | tee artifacts/roundtrip/SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload round-trip evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase1-5-direct-url-${{ github.run_number }}
+          path: artifacts/roundtrip
+          retention-days: 14
+          if-no-files-found: warn
