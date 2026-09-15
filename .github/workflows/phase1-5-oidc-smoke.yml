@@ -24,7 +24,7 @@ jobs:
       POWER_PLATFORM_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Power Platform CLI
         shell: bash
