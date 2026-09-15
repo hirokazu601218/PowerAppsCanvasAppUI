@@ -1,0 +1,70 @@
+name: Phase 1.5 unpack baseline
+
+on:
+  push:
+    branches:
+      - automation/phase1-baseline
+    paths:
+      - .github/workflows/phase1-5-unpack-baseline.yml
+      - powerapps/baseline/StaffMasterAutomation_1_11_0_0.zip.b64.part01
+      - powerapps/baseline/StaffMasterAutomation_1_11_0_0.zip.b64.part02
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unpack-baseline:
+    name: Unpack v1.11 Solution baseline
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out working branch
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: automation/phase1-baseline
+
+      - name: Install Power Platform CLI
+        shell: bash
+        run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+
+      - name: Reconstruct exported Solution
+        shell: bash
+        run: |
+          cat powerapps/baseline/StaffMasterAutomation_1_11_0_0.zip.b64.part* \
+            | base64 --decode \
+            > "$RUNNER_TEMP/StaffMasterAutomation_1_11_0_0.zip"
+          echo "80e0f0b2991df26fdacdc0a92d6f043dc6bd077e231ff157119be83e2f57cd82  $RUNNER_TEMP/StaffMasterAutomation_1_11_0_0.zip" \
+            | sha256sum --check
+
+      - name: Unpack Solution source
+        shell: bash
+        run: |
+          rm -rf powerapps/solution-src powerapps/canvas-src
+          pac solution unpack \
+            --zipfile "$RUNNER_TEMP/StaffMasterAutomation_1_11_0_0.zip" \
+            --folder powerapps/solution-src \
+            --packagetype Unmanaged
+
+      - name: Unpack Canvas App source
+        shell: bash
+        run: |
+          MSAPP_PATH="$(find powerapps/solution-src -type f -name '*.msapp' -print -quit)"
+          test -n "$MSAPP_PATH"
+          pac canvas unpack \
+            --msapp "$MSAPP_PATH" \
+            --sources powerapps/canvas-src
+
+      - name: Commit canonical baseline sources
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add powerapps/solution-src powerapps/canvas-src
+          if git diff --cached --quiet; then
+            echo "No baseline source changes."
+            exit 0
+          fi
+          git commit -m "chore: unpack v1.11 solution baseline"
+          git push origin HEAD:automation/phase1-baseline
