@@ -1,11 +1,6 @@
 name: Phase 1.5 OIDC smoke
 
 on:
-  push:
-    branches:
-      - automation/phase1-baseline
-    paths:
-      - .github/workflows/phase1-5-oidc-smoke.yml
   workflow_dispatch:
 
 permissions:
@@ -21,7 +16,7 @@ jobs:
     env:
       POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
       POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
-      POWER_PLATFORM_TEST_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+      POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
@@ -38,7 +33,5 @@ jobs:
             --githubFederated \
             --tenant "$POWER_PLATFORM_TENANT_ID" \
             --applicationId "$POWER_PLATFORM_CLIENT_ID" \
-            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID"
-          pac solution list \
-            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID" \
-            --json
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
+          echo "OIDC token exchange completed. Dataverse access is validated by the round-trip workflow."
