@@ -123,22 +123,42 @@ jobs:
           dotnet run             --configuration Release             --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             -- pack "$MSAPR_PATH" "$rebuilt_msapp"
           test -s "$rebuilt_msapp"
 
-          mkdir -p "$RUNNER_TEMP/original-msapp" "$RUNNER_TEMP/rebuilt-msapp"
-          unzip -qq "$BASELINE_MSAPP" -d "$RUNNER_TEMP/original-msapp"
-          unzip -qq "$rebuilt_msapp" -d "$RUNNER_TEMP/rebuilt-msapp"
-          diff -ru             "$RUNNER_TEMP/original-msapp/Src"             "$RUNNER_TEMP/rebuilt-msapp/Src"             > artifacts/step6/LOCAL_SOURCE_DIFF.txt
+          rebuilt_dir="$RUNNER_TEMP/rebuilt-editable-source"
+          dotnet run             --configuration Release             --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             -- unpack "$rebuilt_msapp" "$rebuilt_dir"
+          diff -ru             "$RUNNER_TEMP/editable-source/Src"             "$rebuilt_dir/Src"             > artifacts/step6/LOCAL_SOURCE_DIFF.txt
           test ! -s artifacts/step6/LOCAL_SOURCE_DIFF.txt
 
-          packed_json="$(find "$RUNNER_TEMP/rebuilt-msapp" -type f -iname 'packed.json' -print -quit)"
-          test -s "$packed_json"
-          jq -e '
-            [..
-              | objects
-              | to_entries[]?
-              | select((.key | ascii_downcase) == "loadfromyaml")
-              | .value]
-            | any(. == true)
-          ' "$packed_json" >/dev/null
+          python3 - "$rebuilt_msapp" > artifacts/step6/PACKED_JSON_VALIDATION.txt <<'PY'
+          import json
+          import sys
+          import zipfile
+
+          archive_path = sys.argv[1]
+          with zipfile.ZipFile(archive_path) as archive:
+              candidates = [
+                  name for name in archive.namelist()
+                  if name.replace("\\", "/").lower().endswith("packed.json")
+              ]
+              if len(candidates) != 1:
+                  raise SystemExit(f"Expected one packed.json, found {len(candidates)}")
+              packed = json.loads(archive.read(candidates[0]))
+
+          flags = []
+          def visit(value):
+              if isinstance(value, dict):
+                  for key, child in value.items():
+                      if key.lower() == "loadfromyaml":
+                          flags.append(child)
+                      visit(child)
+              elif isinstance(value, list):
+                  for child in value:
+                      visit(child)
+
+          visit(packed)
+          if True not in flags:
+              raise SystemExit("Reconstructed package is not marked LoadFromYaml=true")
+          print("LoadFromYaml=true")
+          PY
 
           sha256sum "$rebuilt_msapp"             | tee artifacts/step6/RECONSTRUCTED_MSAPP_SHA256.txt
 
