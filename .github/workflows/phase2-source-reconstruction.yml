@@ -253,6 +253,15 @@ jobs:
             exit 1
           fi
 
+          jq '.LoadConfiguration.LoadFromYaml = false' \
+            "$bridge_dir/packed.json" > "$bridge_dir/packed.json.tmp"
+          mv "$bridge_dir/packed.json.tmp" "$bridge_dir/packed.json"
+          load_from_yaml="$(jq -r '.LoadConfiguration.LoadFromYaml' "$bridge_dir/packed.json")"
+          if [[ "$load_from_yaml" != "false" ]]; then
+            echo "::error::Runtime package was not switched to compiled-controls loading."
+            exit 1
+          fi
+
           (
             cd "$bridge_dir"
             zip -X -q -r "$RUNNER_TEMP/reconstructed-runtime.msapp" .
@@ -266,6 +275,7 @@ jobs:
             echo "PROPERTY=Text"
             echo "SOURCE_MATCHES=$source_matches"
             echo "COMPILED_MATCHES=${#after_scripts[@]}"
+            echo "LOAD_FROM_YAML=$load_from_yaml"
             echo "VERIFIED=true"
           } | tee artifacts/step6/RUNTIME_BRIDGE.env
 
@@ -397,6 +407,42 @@ jobs:
             exit "$diff_status"
           fi
           sha256sum "$downloaded_msapp"             | tee artifacts/step6/TARGET_MSAPP_SHA256.txt
+
+          marker_file="project/e2e/changes/step7-meta-label.active"
+          if [[ -f "$marker_file" ]]; then
+            target_runtime_dir="$RUNNER_TEMP/target-runtime-inspection"
+            mkdir -p "$target_runtime_dir"
+            unzip -q "$downloaded_msapp" -d "$target_runtime_dir"
+            mapfile -t target_control_candidates < <(
+              grep -R -l -F --include='*.json' '"Name": "lblMeta111"' "$target_runtime_dir/Controls" || true
+            )
+            if [[ "${#target_control_candidates[@]}" -ne 1 ]]; then
+              echo "::error::Server package did not contain exactly one lblMeta111 control."
+              exit 1
+            fi
+            mapfile -t target_scripts < <(
+              jq -r '
+                .. | objects | select(.Name? == "lblMeta111")
+                | .Rules[]? | select(.Property? == "Text")
+                | .InvariantScript
+              ' "${target_control_candidates[0]}"
+            )
+            expected_server='"v1.11 ／ 自動反映テスト中"'
+            if [[ "${#target_scripts[@]}" -ne 1 || "${target_scripts[0]}" != "$expected_server" ]]; then
+              echo "::error::Server package did not retain the approved compiled Text rule."
+              exit 1
+            fi
+            server_load_from_yaml="$(jq -r '.LoadConfiguration.LoadFromYaml' "$target_runtime_dir/packed.json")"
+            {
+              echo "SERVER_RUNTIME_CONTROL=lblMeta111"
+              echo "SERVER_RUNTIME_PROPERTY=Text"
+              echo "SERVER_RUNTIME_INVARIANT=${target_scripts[0]}"
+              echo "SERVER_LOAD_FROM_YAML=$server_load_from_yaml"
+              echo "VERIFIED=true"
+            } | tee artifacts/step6/SERVER_RUNTIME_RULE.env
+          else
+            echo "SERVER_RUNTIME_RULE=inactive" | tee artifacts/step6/SERVER_RUNTIME_RULE.env
+          fi
 
       - name: Stage canonical editable source artifact
         shell: bash
