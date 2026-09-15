@@ -41,8 +41,7 @@ jobs:
             --tenant "$POWER_PLATFORM_TENANT_ID" \
             --applicationId "$POWER_PLATFORM_CLIENT_ID" \
             --environment "$POWER_PLATFORM_SOURCE_ENVIRONMENT_ID"
-          pac auth select --name source-oidc
-          pac org who
+          pac solution list --environment "$POWER_PLATFORM_SOURCE_ENVIRONMENT_ID"
 
       - name: Export baseline artifacts without changing the app
         shell: bash
