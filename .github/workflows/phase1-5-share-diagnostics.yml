@@ -55,14 +55,24 @@ jobs:
           principal_id="$(jq -r '.value[0].azureactivedirectoryobjectid // empty' artifacts/share-diagnostics/TEST_USER_SYSTEMUSER.json)"
 
           if [[ -z "$principal_id" ]]; then
-            curl --fail --silent --show-error --get \
+            aad_http_status="$(curl --silent --show-error --get \
               --header "Authorization: Bearer $access_token" \
               --header "Accept: application/json" \
               --data-urlencode '$select=aaduserid,userprincipalname,mail,displayname' \
-              --data-urlencode "\$filter=userprincipalname eq '$TEST_USER_EMAIL'" \
-              "$resource/api/data/v9.2/aadusers" \
-              | tee artifacts/share-diagnostics/TEST_USER_AADUSER.json
-            principal_id="$(jq -r '.value[0].aaduserid // empty' artifacts/share-diagnostics/TEST_USER_AADUSER.json)"
+              --data-urlencode '$top=999' \
+              --output artifacts/share-diagnostics/TEST_USER_AADUSER.json \
+              --write-out '%{http_code}' \
+              "$resource/api/data/v9.2/aadusers")"
+            cat artifacts/share-diagnostics/TEST_USER_AADUSER.json
+            echo
+            echo "AADUSER_HTTP_STATUS=$aad_http_status" | tee artifacts/share-diagnostics/AADUSER_STATUS.env
+            if [[ "$aad_http_status" =~ ^2 ]]; then
+              principal_id="$(jq -r --arg email "$TEST_USER_EMAIL" '
+                .value[]
+                | select((.userprincipalname // "" | ascii_downcase) == ($email | ascii_downcase))
+                | .aaduserid
+              ' artifacts/share-diagnostics/TEST_USER_AADUSER.json | head -n 1)"
+            fi
           fi
 
           if [[ -n "$principal_id" ]]; then
