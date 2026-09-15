@@ -1,7 +1,7 @@
 # Phase 1.5 実行計画 — CLI暫定経路とGitHub OIDC
 
 更新日: 2026-09-15  
-状態: **自動停止（同一原因2回）**  
+状態: **URL直接指定の無変更展開成功／P0共有待ち**  
 対象Issue: [#5](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/5)  
 対象PR: [#6](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/6)  
 実行記録: [Phase 1.5 実行記録](unattended-development-phase1-5-execution-record.md)
@@ -19,7 +19,7 @@ Power Apps Premiumの購入とプレビュー機能に依存せず、次の構�
 - Client Secretは作成・保存しない。
 - 公開済みP0合格アプリを直接上書きせず、別の自動化テスト環境へ配置する。
 - 無変更の往復試験とP0が成功した場合だけ、この経路を採用する。
-- 同一原因が2回続くか、round-tripで意味差分が出た場合は停止し、Studio UI自動化へ切り替えるか再判断する。
+- 同じ対応策を単純反復しない。同一原因が2回続いても承認範囲内に未試行の実質的に異なる対応策があれば続行し、新対応策がない場合は停止する。
 
 ## 2. 実環境で確認した状態
 
@@ -68,7 +68,7 @@ flowchart TD
     C --> T["自動化テスト環境へimport・publish"]
     T --> E["追加テスト＋P0"]
     E -->|成功| M["main統合・v1.12タグ"]
-    E -->|同一原因2回| R["直前合格Solutionへ復元"]
+    E -->|新対応策なし| R["直前合格Solutionへ復元"]
 ```
 
 GitHub ActionsからPower Platformへの認証は、GitHub OIDCトークンとMicrosoft EntraのFederated Credentialを使う。`pac auth create --githubFederated` が公式CLIで提供されているため、長期Client Secretを作らない。
@@ -89,7 +89,7 @@ GitHub ActionsからPower Platformへの認証は、GitHub OIDCトークンとMi
 2. GitHub Environment `powerapps-test` を信頼対象にしたFederated Credentialを作る。
 3. Client Secretは作らない。
 4. 2つのサンドボックス環境へApplication Userとして追加する。
-5. 初期PoCではサンドボックス限定でSystem Administratorを付与する。本番環境には付与しない。
+5. 初期PoCでは隔離テスト環境にSystem Administrator、基準環境にSystem Customizerを付与する。本番環境には付与しない。
 6. 成立後に必要権限を調査し、専用の最小権限ロールへ縮小する。
 
 ### 5.3 GitHub
@@ -104,14 +104,14 @@ GitHub ActionsからPower Platformへの認証は、GitHub OIDCトークンとMi
 
 最初の試験ではPower Fxや画面を一切変更しない。
 
-1. 基準Solutionをexportする。
-2. Solutionと `.msapp` をunpackする。
-3. 何も変更せずpackする。
-4. 自動化テスト環境へimportし、publishする。
-5. 構造差分と式差分をテンプレートで確認する。
-6. 既存P0を実行する。
-7. P0合格かつ意味差分なしなら暫定経路を採用する。
-8. 失敗時は最大修復をせず、原因を記録する。同一原因が2回続けば停止する。
+1. 基準Dataverse URLを直接指定して基準Solutionをexportする。
+2. 取得済みSolutionと `.msapp` のunpack結果をGitHub正本として保持する。
+3. 配布経路の無変更試験では、外部編集を加えずexportした同じSolutionパッケージを使用する。
+4. 隔離テストDataverse URLを直接指定してimportし、publishする。
+5. Canvasの再パック検証は配布経路から分離し、非推奨CLIの不具合を別ゲートとして扱う。
+6. 既存P0を隔離テストアプリへ実行する。
+7. P0合格後に、編集可能ソースからの再構成方式を採用判定する。
+8. 失敗時は原因と試行済み対応策を記録する。同じ対応策は繰り返さず、承認範囲内に未試行の新対応策があれば続行する。
 
 ## 7. 変更境界
 
@@ -147,7 +147,7 @@ GitHub ActionsからPower Platformへの認証は、GitHub OIDCトークンとMi
 - GitHub Organizationへの移行が必要
 - Client Secretの発行が必要
 - round-tripで意味差分が出る
-- 同一原因が2回連続する
+- 同じ原因・同じ対応策が反復し、承認範囲内に未試行の新対応策がない
 
 ## 9. 実行順と完了条件
 
@@ -157,7 +157,7 @@ GitHub ActionsからPower Platformへの認証は、GitHub OIDCトークンとMi
 | 2 | Solution化 | export成功 |
 | 3 | 自動化テスト環境作成 | Dataverse利用可能 |
 | 4 | OIDCサービスプリンシパル構築 | GitHub Actionsから `pac auth who` 成功 |
-| 5 | 無変更round-trip | import・publish成功、意味差分なし |
+| 5 | URL直接指定の無変更配布 | 基準環境export、隔離環境import・publish、対象アプリ存在確認が成功 |
 | 6 | P0実行 | 全P0成功 |
 | 7 | GitHub記録 | Issue・PR・証跡・ロールバック版を関連付け |
 
@@ -165,8 +165,14 @@ GitHub ActionsからPower Platformへの認証は、GitHub OIDCトークンとMi
 
 ## 10. 実行結果（2026-09-15）
 
-OIDC疎通、Solution作成、テスト環境作成、専用サービスプリンシパル作成、GitHub OIDC、両環境へのアプリユーザー追加は完了した。
+OIDC、Solution作成、隔離テスト環境、専用サービスプリンシパル、GitHub OIDC、両環境へのアプリユーザー追加は完了した。基準環境のロールはSystem Customizer、隔離テスト環境はSystem Administratorであり、本番環境には権限を付与していない。
 
-基準Solutionの自動exportは、環境ID解決時にPAC CLIがPower Platform管理APIの環境一覧へアクセスし、System Customizer権限のサービスプリンシパルでは拒否された。同一の正規化エラーがrun `34921838271` と `34921903514` で2回連続したため、合意済み停止条件に従い自動処理を停止した。基準アプリとテスト環境への内容変更はなく、復元は不要。
+環境IDを指定した自動exportは、PAC CLIによるPower Platform管理APIの環境探索で2回失敗した。ユーザー承認後、基準Dataverse URL `https://org24a2c22d.crm7.dynamics.com/` を直接指定する新対応策へ切り替え、run [34922824319](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34922824319) で次をすべて確認した。
 
-次の候補は基準Dataverse URLの直接指定であり、権限拡大は行わない。詳細は実行記録を参照する。
+- 基準環境へのGitHub OIDC認証
+- `StaffMasterAutomation` 版 `1.11.0.0` の自動export
+- 隔離テストDataverse URLへのGitHub OIDC認証
+- 同一の無変更Solutionパッケージのimport・publish
+- 隔離環境内のSolutionとCanvasアプリの存在
+
+隔離テストアプリはApp ID `362ac991-eead-4f07-8373-afdb3ebfdba1` で作成された。P0 run [34923187435](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34923187435) は、専用テスト利用者にアプリが未共有のため「Request access」で停止した。次はこの隔離テストアプリだけを専用テスト利用者へCanView共有し、P0を再実行する。基準アプリの内容・公開状態・共有設定は変更しない。
