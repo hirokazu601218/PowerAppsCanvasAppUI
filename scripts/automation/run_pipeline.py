@@ -17,6 +17,7 @@ import xml.etree.ElementTree as ET
 
 import bridge
 import policy
+import releases
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'artifacts/automation'
@@ -34,6 +35,8 @@ SUMMARY = {'request': REQUEST, 'commit': os.environ.get('GITHUB_SHA'),
 TOUCHED = False
 RESTORED = False
 STAGE = 'scope'
+GOOD_REF = releases.last_good(ROOT,CFG['target'],RELEASE['last_good_commit'])
+SUMMARY['last_good_ref']=GOOD_REF
 
 
 def event(**row):
@@ -203,7 +206,7 @@ def restore():
     directory=OUT/'restoration'
     directory.mkdir(exist_ok=True)
     root=TMP/'last-good'
-    ref=RELEASE.get('last_good_ref') or RELEASE['last_good_commit']
+    ref=GOOD_REF
     sha=subprocess.check_output(['git','rev-parse',f'{ref}^{{commit}}'],text=True,cwd=ROOT).strip()
     SUMMARY['restored_commit']=sha
     if not root.exists():
