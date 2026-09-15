@@ -62,7 +62,7 @@ jobs:
           dotnet --info > artifacts/step6/DOTNET_INFO.txt
           dotnet tool install --global Microsoft.PowerApps.CLI.Tool
           pac help >/dev/null
-          pac --version | tee artifacts/step6/PAC_VERSION.txt
+          dotnet tool list --global | grep -i 'microsoft.powerapps.cli.tool' | tee artifacts/step6/PAC_VERSION.txt
           dotnet build             project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             --configuration Release             --nologo
           {
             echo "POWERAPPS_TOOLING_REPOSITORY=https://github.com/microsoft/PowerApps-Tooling"
