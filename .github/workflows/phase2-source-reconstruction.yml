@@ -248,7 +248,9 @@ jobs:
             --header "Content-Type: application/json" \
             --data '{}' \
             "$publish_url" \
-            --output artifacts/step6/PUBLISH_RESPONSE.json
+            --output artifacts/step6/PUBLISH_RESPONSE.json \
+            --write-out '%{http_code}\n' \
+            > artifacts/step6/PUBLISH_HTTP_STATUS.txt
 
           published=false
           for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
@@ -258,23 +260,28 @@ jobs:
               "$app_url" \
               --output artifacts/step6/APP_AFTER_PUBLISH.json
             after_publish_time="$(jq -r '.properties.lastPublishTime // ""' artifacts/step6/APP_AFTER_PUBLISH.json)"
-            if [[ -n "$after_publish_time" && "$after_publish_time" != "$before_publish_time" ]]; then
+            after_draft_version="$(jq -r '.properties.lastDraftVersion // ""' artifacts/step6/APP_AFTER_PUBLISH.json)"
+            after_status="$(jq -r '.properties.status // ""' artifacts/step6/APP_AFTER_PUBLISH.json)"
+            if [[ -n "$after_publish_time" && "$after_publish_time" == "$after_draft_version" && "$after_status" == "Ready" ]]; then
               published=true
               break
             fi
             sleep 5
           done
           if [[ "$published" != "true" ]]; then
-            echo "::error::Canvas app publish time did not advance after Publish App."
+            echo "::error::Canvas app did not reach Ready with matching draft and publish versions."
             exit 1
           fi
 
           {
             echo "PUBLISH_API=Power Apps Publish App"
+            echo "PUBLISH_HTTP_STATUS=$(cat artifacts/step6/PUBLISH_HTTP_STATUS.txt)"
             echo "ENVIRONMENT_ID=$POWER_APPS_ENVIRONMENT_ID"
             echo "APP_ID=$POWER_PLATFORM_TARGET_APP_ID"
             echo "BEFORE_LAST_PUBLISH_TIME=$before_publish_time"
             echo "AFTER_LAST_PUBLISH_TIME=$after_publish_time"
+            echo "AFTER_LAST_DRAFT_VERSION=$after_draft_version"
+            echo "AFTER_STATUS=$after_status"
             echo "VERIFIED=true"
           } | tee artifacts/step6/PUBLISH_RESULT.env
 

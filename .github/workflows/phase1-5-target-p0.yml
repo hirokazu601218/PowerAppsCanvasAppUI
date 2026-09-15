@@ -219,6 +219,41 @@ jobs:
           tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
           allow-no-subscriptions: true
 
+      - name: Resolve the latest published Canvas app URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p project/share-evidence
+          service_token="$(az account get-access-token \
+            --resource https://service.powerapps.com/ \
+            --query accessToken \
+            --output tsv)"
+          app_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID?api-version=2018-10-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $service_token" \
+            --header "Accept: application/json" \
+            "$app_url" \
+            --output project/share-evidence/CURRENT_APP.json
+
+          current_canvas_url="$(jq -r '.properties.appOpenUri // ""' project/share-evidence/CURRENT_APP.json)"
+          if [[ "$current_canvas_url" != https://apps.powerapps.com/play/e/"$POWER_APPS_ENVIRONMENT_ID"/a/"$POWER_PLATFORM_TARGET_APP_ID"* ]]; then
+            echo "::error::Power Apps API returned an unexpected appOpenUri."
+            exit 1
+          fi
+          if [[ "$current_canvas_url" != *"hint="* || "$current_canvas_url" != *"sourcetime="* ]]; then
+            echo "::error::Latest appOpenUri does not contain the expected version cache keys."
+            exit 1
+          fi
+
+          echo "CANVAS_APP_URL=$current_canvas_url" >> "$GITHUB_ENV"
+          {
+            echo "APP_ID=$POWER_PLATFORM_TARGET_APP_ID"
+            echo "ENVIRONMENT_ID=$POWER_APPS_ENVIRONMENT_ID"
+            echo "URL_SOURCE=Power Apps appOpenUri"
+            echo "VERSION_HINT_PRESENT=true"
+            echo "SOURCE_TIME_PRESENT=true"
+          } > project/share-evidence/CURRENT_APP_URL.env
+
       - name: Share only the isolated app as CanView
         id: share
         shell: bash
@@ -350,6 +385,8 @@ jobs:
             power-platform-playwright/packages/e2e-tests/test-results/
             power-platform-playwright/packages/e2e-tests/playwright-report/
             project/share-evidence/SHARE_RESULT.env
+            project/share-evidence/CURRENT_APP.json
+            project/share-evidence/CURRENT_APP_URL.env
           if-no-files-found: warn
           retention-days: 14
 
