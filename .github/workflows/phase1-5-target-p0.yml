@@ -136,39 +136,67 @@ jobs:
           import json
           import os
           import re
+          import sys
 
           uuid = re.compile(r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
           state = json.load(open(os.environ["STATE_PATH"], encoding="utf-8"))
           candidates = []
+          inspected = []
 
-          def add(value):
-              if isinstance(value, str) and uuid.fullmatch(value) and value not in candidates:
-                  candidates.append(value)
+          def add(value, source):
+              if isinstance(value, str) and uuid.fullmatch(value) and value not in [item[0] for item in candidates]:
+                  candidates.append((value, source))
 
-          for origin in state.get("origins", []):
-              for item in origin.get("localStorage", []):
-                  try:
-                      value = json.loads(item.get("value", ""))
-                  except Exception:
-                      continue
-                  if isinstance(value, dict):
-                      add(value.get("localAccountId"))
-                      add(value.get("oid"))
-                      for key in ("secret", "accessToken", "idToken"):
-                          token = value.get(key)
-                          if not isinstance(token, str) or token.count(".") < 2:
-                              continue
-                          try:
-                              payload_part = token.split(".")[1]
-                              payload_part += "=" * (-len(payload_part) % 4)
-                              payload = json.loads(base64.urlsafe_b64decode(payload_part))
-                              add(payload.get("oid"))
-                          except Exception:
-                              pass
+          def decode_jwt(value, source):
+              if not isinstance(value, str) or value.count(".") < 2:
+                  return
+              try:
+                  payload_part = value.split(".")[1]
+                  payload_part += "=" * (-len(payload_part) % 4)
+                  payload = json.loads(base64.urlsafe_b64decode(payload_part))
+              except Exception:
+                  return
+              inspected.append(f"{source}:jwt-claims={','.join(sorted(payload.keys()))}")
+              add(payload.get("oid"), f"{source}.jwt.oid")
+
+          def walk(value, source, depth=0):
+              if depth > 12:
+                  return
+              if isinstance(value, dict):
+                  inspected.append(f"{source}:keys={','.join(sorted(map(str, value.keys())))}")
+                  for key, child in value.items():
+                      normalized = str(key).lower()
+                      if normalized in {"oid", "objectid", "object_id", "localaccountid", "userid", "user_id"}:
+                          add(child, f"{source}.{key}")
+                      if normalized == "homeaccountid" and isinstance(child, str):
+                          add(child.split(".")[0], f"{source}.{key}.uid")
+                      if normalized in {"secret", "accesstoken", "idtoken", "token"}:
+                          decode_jwt(child, f"{source}.{key}")
+                      walk(child, f"{source}.{key}", depth + 1)
+              elif isinstance(value, list):
+                  for index, child in enumerate(value):
+                      walk(child, f"{source}[{index}]", depth + 1)
+              elif isinstance(value, str):
+                  decode_jwt(value, source)
+                  stripped = value.strip()
+                  if stripped.startswith(("{", "[")) and len(stripped) < 200000:
+                      try:
+                          walk(json.loads(stripped), f"{source}.json", depth + 1)
+                      except Exception:
+                          pass
+
+          for origin_index, origin in enumerate(state.get("origins", [])):
+              for item_index, item in enumerate(origin.get("localStorage", [])):
+                  name = item.get("name", "")
+                  inspected.append(f"origin[{origin_index}].localStorage[{item_index}].name={name}")
+                  walk(item.get("value", ""), f"origin[{origin_index}].localStorage[{item_index}].value")
 
           if not candidates:
+              print("Safe MSAL structure diagnostics (no token values):", file=sys.stderr)
+              for line in inspected[:200]:
+                  print(line, file=sys.stderr)
               raise SystemExit("Could not resolve the test user's Entra object ID from authenticated state")
-          print(candidates[0])
+          print(candidates[0][0])
           PY
           )"
           echo "::add-mask::$principal_id"
