@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
   issues: write
 
 concurrency:
@@ -21,9 +22,13 @@ jobs:
   staff-master-p0:
     name: Isolated target app P0 test
     runs-on: ubuntu-latest
+    environment: powerapps-test
     timeout-minutes: 30
 
     env:
+      POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      POWER_PLATFORM_TARGET_APP_ID: 362ac991-eead-4f07-8373-afdb3ebfdba1
       OFFICIAL_SAMPLES_REF: 43e3db8d131aeb09415b1faef030e783fd2e320f
       POWER_APPS_BASE_URL: https://make.powerapps.com
       POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
@@ -115,6 +120,174 @@ jobs:
           fi
           npm run auth
 
+      - name: Resolve dedicated test user object ID
+        id: test-principal
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          state_path="$(find "$HOME/.playwright-ms-auth" -maxdepth 1 -type f -name "state-$MS_AUTH_EMAIL.json" -print -quit)"
+          test -n "$state_path"
+          export STATE_PATH="$state_path"
+          principal_id="$(python3 - <<'PY'
+          import base64
+          import json
+          import os
+          import re
+
+          uuid = re.compile(r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
+          state = json.load(open(os.environ["STATE_PATH"], encoding="utf-8"))
+          candidates = []
+
+          def add(value):
+              if isinstance(value, str) and uuid.fullmatch(value) and value not in candidates:
+                  candidates.append(value)
+
+          for origin in state.get("origins", []):
+              for item in origin.get("localStorage", []):
+                  try:
+                      value = json.loads(item.get("value", ""))
+                  except Exception:
+                      continue
+                  if isinstance(value, dict):
+                      add(value.get("localAccountId"))
+                      add(value.get("oid"))
+                      for key in ("secret", "accessToken", "idToken"):
+                          token = value.get(key)
+                          if not isinstance(token, str) or token.count(".") < 2:
+                              continue
+                          try:
+                              payload_part = token.split(".")[1]
+                              payload_part += "=" * (-len(payload_part) % 4)
+                              payload = json.loads(base64.urlsafe_b64decode(payload_part))
+                              add(payload.get("oid"))
+                          except Exception:
+                              pass
+
+          if not candidates:
+              raise SystemExit("Could not resolve the test user's Entra object ID from authenticated state")
+          print(candidates[0])
+          PY
+          )"
+          echo "::add-mask::$principal_id"
+          echo "principal-object-id=$principal_id" >> "$GITHUB_OUTPUT"
+          echo "Dedicated test user object ID resolved from its authenticated state."
+
+      - name: Sign in automation identity with GitHub OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.POWER_PLATFORM_CLIENT_ID }}
+          tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Share only the isolated app as CanView
+        id: share
+        shell: bash
+        env:
+          TEST_USER_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+          TEST_PRINCIPAL_OBJECT_ID: ${{ steps.test-principal.outputs.principal-object-id }}
+        run: |
+          set -euo pipefail
+          mkdir -p project/share-evidence
+          service_token="$(az account get-access-token \
+            --resource https://service.powerapps.com/ \
+            --query accessToken \
+            --output tsv)"
+          permissions_url="https://api.powerapps.com/providers/Microsoft.PowerApps/scopes/admin/environments/$POWER_APPS_ENVIRONMENT_ID/apps/$POWER_PLATFORM_TARGET_APP_ID/permissions?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          modify_url="https://api.powerapps.com/providers/Microsoft.PowerApps/scopes/admin/environments/$POWER_APPS_ENVIRONMENT_ID/apps/$POWER_PLATFORM_TARGET_APP_ID/modifyPermissions?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+
+          get_permissions() {
+            curl --fail-with-body --silent --show-error \
+              --header "Authorization: Bearer $service_token" \
+              --header "Accept: application/json" \
+              "$permissions_url" \
+              --output project/share-evidence/CURRENT_PERMISSIONS.json
+          }
+
+          has_role() {
+            local role="$1"
+            jq -e --arg id "$TEST_PRINCIPAL_OBJECT_ID" --arg role "$role" '
+              .. | objects
+              | select(
+                  ((.properties?.principal?.id // .principal?.id // "") | ascii_downcase)
+                    == ($id | ascii_downcase)
+                  and (.properties?.roleName // .roleName // "") == $role
+                )
+            ' project/share-evidence/CURRENT_PERMISSIONS.json >/dev/null
+          }
+
+          get_permissions
+          if has_role "CanEdit"; then
+            echo "::error::Dedicated test user already has CanEdit; refusing to broaden or silently change the approved CanView scope."
+            exit 1
+          fi
+
+          share_action="already-present"
+          if ! has_role "CanView"; then
+            jq -n \
+              --arg email "$TEST_USER_EMAIL" \
+              --arg id "$TEST_PRINCIPAL_OBJECT_ID" \
+              '{
+                put: [{
+                  properties: {
+                    roleName: "CanView",
+                    capabilities: [],
+                    NotifyShareTargetOption: "DoNotNotify",
+                    principal: {
+                      email: $email,
+                      id: $id,
+                      type: "User",
+                      tenantId: "null"
+                    }
+                  }
+                }]
+              }' > project/share-evidence/SHARE_REQUEST.json
+            curl --fail-with-body --silent --show-error \
+              --request POST \
+              --header "Authorization: Bearer $service_token" \
+              --header "Accept: application/json" \
+              --header "Content-Type: application/json" \
+              --data-binary @project/share-evidence/SHARE_REQUEST.json \
+              "$modify_url" \
+              --output project/share-evidence/SHARE_RESPONSE.json
+            share_action="created"
+          fi
+
+          verified=false
+          for attempt in 1 2 3 4 5 6; do
+            get_permissions
+            if has_role "CanView"; then
+              verified=true
+              break
+            fi
+            sleep 5
+          done
+          if [[ "$verified" != "true" ]]; then
+            echo "::error::CanView assignment was not visible after verification polling."
+            exit 1
+          fi
+
+          {
+            echo "ENVIRONMENT_ID=$POWER_APPS_ENVIRONMENT_ID"
+            echo "APP_ID=$POWER_PLATFORM_TARGET_APP_ID"
+            echo "PRINCIPAL_EMAIL=$TEST_USER_EMAIL"
+            echo "ROLE=CanView"
+            echo "ACTION=$share_action"
+            echo "VERIFIED=true"
+            echo "VERIFIED_AT=$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S JST')"
+          } > project/share-evidence/SHARE_RESULT.env
+          {
+            echo "## Isolated Canvas app sharing"
+            echo
+            echo "- Target: isolated test app only"
+            echo "- Role: CanView"
+            echo "- Principal: $TEST_USER_EMAIL"
+            echo "- Assignment: $share_action"
+            echo "- Read-back verification: success"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Run staff master P0 test
         id: p0-test
         working-directory: power-platform-playwright/packages/e2e-tests
@@ -131,6 +304,7 @@ jobs:
           path: |
             power-platform-playwright/packages/e2e-tests/test-results/
             power-platform-playwright/packages/e2e-tests/playwright-report/
+            project/share-evidence/SHARE_RESULT.env
           if-no-files-found: warn
           retention-days: 14
 
