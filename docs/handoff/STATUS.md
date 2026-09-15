@@ -28,7 +28,7 @@
 | 関連設計 | `docs/operations/staff-master-unattended-runbook.md`、`docs/operations/unattended-development-step8-9-acceptance.md`、 `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md`、`docs/operations/unattended-development-step6-source-reconstruction.md`、`docs/operations/unattended-development-step7-automatic-source-deployment.md` |
 | 関連テスト | ステップ8受入run 34952452993、v1.12変更テスト＋P0・安全制御10件run 34954109942、mainとタグの確定run 34954509560が合格 |
 | Library資料 | なし |
-| 未解決事項 | 基盤の承認済み9ステップは完了。新規画面・構造・接続の一般コンパイルは対象外。次の修正指示で対応範囲を確認 |
+| 未解決事項 | Issue #12追加テストのlocator不具合を対処中。復元確認完了までv1.13再展開を停止。詳細は下記 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -86,3 +86,11 @@
 - モダンコントロールの提供状況・アクセシビリティ・PDF実験機能は環境で確認。
 - 生成画像は概念図。省略項目と濃い見出しは要件・設計書で補正済み。
 - 今回の配置モデル画像もStudioスクリーンショットではない。実機校正は未実施。
+
+## Issue #12 原因分析・対処（2026-09-15）
+
+- 初回run `34968864160`：v1.13候補のビルド・公開・読戻し・P0成功。追加テストが表示ラベルをクリックし、透明な行選択ボタンに遮られて失敗。実際の行ボタンを名前とroleで指定するよう修正した。
+- 復元run `34974840163`：行ボタンクリックと検索欄閉鎖は成功。職員番号の `.first()` が非表示の一覧セルを選び、詳細表示を誤判定。詳細ヘッダーの一意な職員番号・所属で検証するよう修正した。v1.12の再公開・読戻し・P0は成功したが、追加テスト不合格のため復元完了扱いにはしない。
+- 復元概要の `not required` 誤表示を修正。復元成功・失敗・未実施を区別する既存テストを補強し、合格した。
+- ユーザーの「原因分析して対処」指示に基づき、修正したテストで再度復元確認を実施。復元全ゲート合格後にのみv1.13再展開・追加テスト・P0・成功版確定へ進む。既存P0は変更していない。
+- 詳細な試行・判断記録は [Issue #12](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/12)。
