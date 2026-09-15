@@ -1,6 +1,6 @@
 {
-  "mode": "release",
+  "mode": "restore",
   "issue": 12,
-  "request": "sidebar-v1.13-01",
+  "request": "sidebar-v1.13-restore-02",
   "approved": true
 }
