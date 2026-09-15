@@ -6,7 +6,7 @@
 
 ChatGPT Libraryに保管する資料の所在、用途、関連機能、読取り条件を管理する。資料の内容はLibraryに置き、この索引には複製しない。
 
-YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、変更履歴はGitHubを正本とする。Library内のMarkdownがGitHubの文書と重複する場合、そのLibraryファイルは参考・検討用・非正本として扱う。
+YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、変更履歴はGitHubを正本とする。Library内のMarkdownがGitHubの文書と重複する場合、そのLibraryファイルは参考・検討用・非正本として扱う。Libraryの「skills」フォルダ内のMarkdownは保管ルール文書であり、自動実行される正式なSkillまたはSKILL.mdではない。
 
 ## 資料一覧
 
@@ -21,6 +21,6 @@ YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、�
 
 ## 更新ルール
 
-- Library資料を追加、移動、改名または役割変更した場合に、この索引を更新する。
-- STATUSには、その作業で実際に読むLibrary資料だけを記載する。関係しない資料は読まない。
+- PowerAppsCanvasAppUIに関係するLibrary資料を追加、移動、改名、削除または役割変更した場合は、この索引を更新する。
+- 現在の作業で読むLibrary資料が変わる場合は、STATUSも更新する。STATUSには実際に読むLibrary資料だけを記載し、関係しない資料は読まない。
 - Library資料が不要になっても、削除判断はこの索引だけで行わず、利用箇所を確認する。
