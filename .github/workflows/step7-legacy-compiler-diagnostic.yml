@@ -84,6 +84,38 @@ jobs:
           } | tee artifacts/CONVERSION_RESULT.env
           cp -a "$RUNNER_TEMP/pac-source" artifacts/pac-source
 
+      - name: Repack with PAC and inspect compiled archive entries
+        shell: bash
+        run: |
+          set -euo pipefail
+          pac canvas pack \
+            --sources "$RUNNER_TEMP/pac-source" \
+            --msapp "$RUNNER_TEMP/pac-packed.msapp" \
+            --layout SourceCode \
+            --overwrite
+          pac canvas pack \
+            --sources "$RUNNER_TEMP/pac-source" \
+            --msapp "$RUNNER_TEMP/pac-packed-no-yaml.msapp" \
+            --layout SourceCode \
+            --disable-load-from-yaml \
+            --overwrite
+
+          for variant in modern-reconstructed pac-packed pac-packed-no-yaml; do
+            archive_dir="artifacts/archives/$variant"
+            mkdir -p "$archive_dir"
+            unzip -q "$RUNNER_TEMP/$variant.msapp" -d "$archive_dir"
+            find "$archive_dir" -type f ! -path '*/Src/*' -print0 \
+              | xargs -0 -r rg -a -n -F 'v1.11 ／ 自動反映テスト中' \
+              > "artifacts/${variant}_NEW_COMPILED_MATCHES.txt" || true
+            find "$archive_dir" -type f ! -path '*/Src/*' -print0 \
+              | xargs -0 -r rg -a -n -F 'B案・架空25名' \
+              > "artifacts/${variant}_OLD_COMPILED_MATCHES.txt" || true
+            sha256sum "$RUNNER_TEMP/$variant.msapp" \
+              > "artifacts/${variant}_SHA256.txt"
+          done
+          cp "$RUNNER_TEMP/pac-packed.msapp" artifacts/pac-packed.msapp
+          cp "$RUNNER_TEMP/pac-packed-no-yaml.msapp" artifacts/pac-packed-no-yaml.msapp
+
       - name: Upload compiler bridge diagnostic
         if: always()
         uses: actions/upload-artifact@v4
