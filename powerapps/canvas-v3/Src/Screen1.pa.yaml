@@ -168,7 +168,7 @@ Screens:
                               PaddingRight: =8
                               PaddingTop: =4
                               Size: =9
-                              Text: ="v1.11  ／  B案・架空25名"
+                              Text: ="v1.11 ／ 自動反映テスト中"
                               Tooltip: =Self.Text
                               Width: =174
                               X: =Parent.Width-686

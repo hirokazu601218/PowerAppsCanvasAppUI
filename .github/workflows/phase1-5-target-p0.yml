@@ -2,12 +2,6 @@ name: Phase 1.5 target P0
 
 on:
   workflow_call:
-  push:
-    branches:
-      - automation/phase1-baseline
-    paths:
-      - '.github/workflows/phase1-5-target-p0.yml'
-      - 'e2e/staff-master-p0.test.ts'
   workflow_dispatch:
 
 permissions:
@@ -91,6 +85,20 @@ jobs:
       - name: Add staff master P0 test
         shell: bash
         run: cp project/e2e/staff-master-p0.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/staff-master-p0.test.ts
+
+      - name: Add approved Step 7 change-specific test when active
+        id: step7-test
+        shell: bash
+        run: |
+          source_file="project/e2e/changes/step7-meta-label.test.ts"
+          marker_file="project/e2e/changes/step7-meta-label.active"
+          target_file="power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/staff-master-step7-meta-label.test.ts"
+          if [[ -f "$source_file" && -f "$marker_file" ]]; then
+            cp "$source_file" "$target_file"
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Prepare certificate authentication
         if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
@@ -317,6 +325,14 @@ jobs:
             echo "- Read-back verification: success"
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Run approved Step 7 change-specific test
+        id: step7-change-test
+        if: ${{ steps.step7-test.outputs.present == 'true' }}
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+        run: npx playwright test tests/northwind/canvas/staff-master-step7-meta-label.test.ts --project=canvas-app
+
       - name: Run staff master P0 test
         id: p0-test
         working-directory: power-platform-playwright/packages/e2e-tests
@@ -344,6 +360,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           JOB_STATUS: ${{ job.status }}
           AUTH_OUTCOME: ${{ steps.auth.outcome }}
+          CHANGE_TEST_OUTCOME: ${{ steps.step7-change-test.outcome }}
           TEST_OUTCOME: ${{ steps.p0-test.outcome }}
           ARTIFACT_URL: ${{ steps.evidence.outputs.artifact-url }}
         run: |
@@ -380,6 +397,7 @@ jobs:
           }
 
           auth_label="$(translate_outcome "$AUTH_OUTCOME")"
+          change_test_label="$(translate_outcome "$CHANGE_TEST_OUTCOME")"
           test_label="$(translate_outcome "$TEST_OUTCOME")"
           executed_at="$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S JST')"
           run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
@@ -401,6 +419,7 @@ jobs:
             echo "| 完了日時 | ${executed_at} |"
             echo "| 総合結果 | **${result_label}** |"
             echo "| Power Apps認証 | ${auth_label} |"
+            echo "| ステップ7変更専用テスト | ${change_test_label} |"
             echo "| P0テスト | ${test_label} |"
             echo "| テスト概要 | 起動 → 山田検索（2件）→ 山田花子選択・右詳細確認 → 900×600表示・非重複・横スクロール確認 → 条件クリア（25件） |"
             echo "| 実行詳細 | [GitHub Actionsを開く](${run_url}) |"

@@ -1,4 +1,4 @@
-name: Step 6 modern Canvas source reconstruction
+name: Canvas active source reconstruction
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
       - '.github/workflows/phase2-source-reconstruction.yml'
       - 'tools/powerapps-source-reconstruct/**'
       - 'powerapps/canvas-v3/**'
+      - 'e2e/changes/**'
   workflow_dispatch:
 
 permissions:
@@ -16,7 +17,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: step6-canvas-source-reconstruction
+  group: canvas-active-source-reconstruction
   cancel-in-progress: false
 
 env:
@@ -89,7 +90,7 @@ jobs:
           sha256sum "$baseline_msapp"             | tee artifacts/step6/BASELINE_MSAPP_SHA256.txt
           unzip -l "$baseline_msapp"             | tee artifacts/step6/BASELINE_MSAPP_FILES.txt
 
-      - name: Extract active pa.yaml source and msapr reference
+      - name: Load active pa.yaml source and msapr reference
         id: unpack
         shell: bash
         env:
@@ -97,22 +98,39 @@ jobs:
         run: |
           set -euo pipefail
           editable_dir="$RUNNER_TEMP/editable-source"
-          dotnet run             --configuration Release             --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj             -- unpack "$BASELINE_MSAPP" "$editable_dir"
+          active_source_dir="project/powerapps/canvas-v3"
+
+          if [[ -s "$active_source_dir/baseline.msapr" && -s "$active_source_dir/Src/App.pa.yaml" ]]; then
+            cp -a "$active_source_dir" "$editable_dir"
+            source_origin="github-active-source"
+          else
+            dotnet run \
+              --configuration Release \
+              --project project/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj \
+              -- unpack "$BASELINE_MSAPP" "$editable_dir"
+            source_origin="baseline-msapp-bootstrap"
+          fi
 
           msapr_path="$(find "$editable_dir" -maxdepth 1 -type f -name '*.msapr' -print -quit)"
           test -s "$msapr_path"
           source_count="$(find "$editable_dir/Src" -type f -name '*.pa.yaml' | wc -l)"
           if [[ "$source_count" -lt 2 ]]; then
-            echo "::error::Modern source extraction produced only $source_count pa.yaml file(s)"
+            echo "::error::Modern source load produced only $source_count pa.yaml file(s)"
             exit 1
           fi
           test -s "$editable_dir/Src/App.pa.yaml"
 
           echo "msapr=$msapr_path" >> "$GITHUB_OUTPUT"
-          find "$editable_dir" -type f -printf '%P\n'             | LC_ALL=C sort             | tee artifacts/step6/EDITABLE_SOURCE_FILES.txt
-          find "$editable_dir/Src" -type f -name '*.pa.yaml' -print0             | LC_ALL=C sort -z             | xargs -0 sha256sum             | tee artifacts/step6/EDITABLE_SOURCE_SHA256.txt
+          echo "SOURCE_ORIGIN=$source_origin" | tee artifacts/step6/SOURCE_ORIGIN.env
+          find "$editable_dir" -type f -printf '%P\n' \
+            | LC_ALL=C sort \
+            | tee artifacts/step6/EDITABLE_SOURCE_FILES.txt
+          find "$editable_dir/Src" -type f -name '*.pa.yaml' -print0 \
+            | LC_ALL=C sort -z \
+            | xargs -0 sha256sum \
+            | tee artifacts/step6/EDITABLE_SOURCE_SHA256.txt
 
-      - name: Reconstruct unchanged msapp from active source
+      - name: Reconstruct msapp from active GitHub source
         shell: bash
         env:
           BASELINE_MSAPP: ${{ steps.baseline.outputs.msapp }}
@@ -321,7 +339,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-          gh issue comment 5             --repo "$GITHUB_REPOSITORY"             --body "## ✅ ステップ6：編集可能ソース再構成経路が成立
+          gh issue comment 5             --repo "$GITHUB_REPOSITORY"             --body "## ✅ Canvasアクティブソース配布ゲート：合格
 
           - Microsoft公式Persistenceライブラリでactive pa.yamlとmsaprを取得
           - GitHub上の編集可能ソースからmsappとSolutionを再構成
@@ -377,7 +395,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-          gh issue comment 5             --repo "$GITHUB_REPOSITORY"             --body "## ❌ ステップ6：P0不合格のため復元
+          gh issue comment 5             --repo "$GITHUB_REPOSITORY"             --body "## ❌ Canvasアクティブソース配布ゲート：P0不合格のため復元
 
           再構成版のP0が完了しなかったため、隔離テストアプリを直前の基準Solutionへ復元しました。GitHub正本への確定は行っていません。
 
