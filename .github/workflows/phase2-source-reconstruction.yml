@@ -109,8 +109,7 @@ jobs:
           test -s "$editable_dir/Src/App.pa.yaml"
 
           echo "msapr=$msapr_path" >> "$GITHUB_OUTPUT"
-          find "$editable_dir" -type f -printf '%P
-'             | LC_ALL=C sort             | tee artifacts/step6/EDITABLE_SOURCE_FILES.txt
+          find "$editable_dir" -type f -printf '%P\n'             | LC_ALL=C sort             | tee artifacts/step6/EDITABLE_SOURCE_FILES.txt
           find "$editable_dir/Src" -type f -name '*.pa.yaml' -print0             | LC_ALL=C sort -z             | xargs -0 sha256sum             | tee artifacts/step6/EDITABLE_SOURCE_SHA256.txt
 
       - name: Reconstruct unchanged msapp from active source
