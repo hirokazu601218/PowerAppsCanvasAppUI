@@ -128,7 +128,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          state_path="$(find "$HOME/.playwright-ms-auth" -maxdepth 1 -type f -name "state-$MS_AUTH_EMAIL.json" -print -quit)"
+          state_path="$(find ".playwright-ms-auth" -maxdepth 1 -type f -name "state-$MS_AUTH_EMAIL.json" -print -quit)"
           test -n "$state_path"
           export STATE_PATH="$state_path"
           principal_id="$(python3 - <<'PY'
