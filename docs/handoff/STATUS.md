@@ -28,7 +28,7 @@
 | 関連設計 | `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-baseline.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md` |
 | 関連テスト | 既存P0を再実行して合格。文書はリンク・用語・版・記述整合を確認 |
 | Library資料 | なし |
-| 未解決事項 | CLI暫定経路の実行承認、サービスプリンシパル／OIDC作成、公開アプリとGitHub v1.11の差分照合 |
+| 未解決事項 | 基準Dataverse URL直接指定による追加試行の承認、無変更round-trip、公開アプリとGitHub v1.11の差分照合 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -36,11 +36,11 @@
 
 | 項目 | 状態 |
 |---|---|
-| 無人修正・テスト・公開基盤 | Phase 0完了。Phase 1はP0基準確認完了。Phase 1.5 CLI暫定経路は実行承認待ち |
+| 無人修正・テスト・公開基盤 | Phase 0完了。Phase 1はP0基準確認完了。Phase 1.5は基盤構築済みだが、基準exportが同一原因2回で自動停止 |
 | Phase 1 P0 | run #8 attempt 3が成功。2026-09-15T01:27:59Z完了。証跡は14日保持 |
 | 実環境確認 | Azure Subscriptionあり・所有者。対象はDataverse付き開発者環境、非マネージド。Power Apps Premiumなし |
 | GitHub格納状態 | 画面YAML・個別Power Fxは存在。アプリ全体を再構成できる完全なSolutionソースではない |
-| 推奨経路 | GitHub Organization等を新設せず、CLI暫定経路＋GitHub OIDCで無変更round-tripを先行検証 |
+| 推奨経路 | 最小権限を維持し、基準Dataverse URLを直接指定して管理APIの環境一覧参照を避ける追加試行を判断 |
 | Power Platform Git統合 | GitHub接続はプレビュー。GitHub Organization、Managed Environment、Azure Key Vault、Premium相当ライセンス等が必要なため当面見送り |
 | GitHub Actions | `.github/workflows/powerapps-e2e.yml` と `staff-master-e2e.yml` を構築済み |
 | E2Eスクリプト | `e2e/testapp-smoke.test.ts` と `e2e/staff-master-p0.test.ts` を格納済み |
