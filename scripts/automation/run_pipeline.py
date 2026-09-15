@@ -317,7 +317,9 @@ finally:
     result_text+='| Attempt | Change test | P0 | Promotable |\n|---|---|---|---|\n'
     for row in SUMMARY['attempts']:
         result_text+=f"| {row['name']} | {row['gates']['change_test']} | {row['gates']['p0']} | {row['promotable']} |\n"
-    result_text+=f"\nRestoration: {SUMMARY.get('restoration',{}).get('state','not required')}\n"
+    restoration_state = ('RESTORED' if RESTORED else
+                         'RESTORE_FAILED' if RESTORE_ATTEMPTED else 'not required')
+    result_text+=f"\nRestoration: {restoration_state}\n"
     result_text+=f"\n[Actions run](https://github.com/{os.environ.get('GITHUB_REPOSITORY')}/actions/runs/{SUMMARY['run_id']})\n"
     (OUT/'summary.md').write_text(result_text)
     if os.environ.get('GITHUB_STEP_SUMMARY'):
