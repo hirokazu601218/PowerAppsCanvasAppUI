@@ -34,6 +34,7 @@ SUMMARY = {'request': REQUEST, 'commit': os.environ.get('GITHUB_SHA'),
            'run_id': os.environ.get('GITHUB_RUN_ID'), 'target': CFG['target'], 'attempts': []}
 TOUCHED = False
 RESTORED = False
+RESTORE_ATTEMPTED = False
 STAGE = 'scope'
 GOOD_REF = releases.last_good(ROOT,CFG['target'],RELEASE['last_good_commit'])
 SUMMARY['last_good_ref']=GOOD_REF
@@ -201,7 +202,9 @@ def attempt(name, fixture_formula=None):
 
 
 def restore():
-    global RESTORED,STAGE
+    global RESTORED,RESTORE_ATTEMPTED,STAGE
+    bridge.require(not RESTORE_ATTEMPTED,'RESTORE_FAILED: restoration already attempted')
+    RESTORE_ATTEMPTED=True
     STAGE='restore'
     directory=OUT/'restoration'
     directory.mkdir(exist_ok=True)
@@ -295,7 +298,10 @@ except Exception as error:
     SUMMARY['state']='BLOCKED' if not TOUCHED else 'FAILED'
     SUMMARY['failure']={'stage':STAGE,'error':str(error)}
     event(state=SUMMARY['state'],**SUMMARY['failure'])
-    if TOUCHED and not RESTORED:
+    if RESTORE_ATTEMPTED and not RESTORED:
+        SUMMARY['state']='RESTORE_FAILED'
+        SUMMARY['restore_error']=str(error)
+    elif TOUCHED and not RESTORED:
         try:
             restore()
             SUMMARY['state']='RESTORED_AFTER_FAILURE'
