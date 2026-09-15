@@ -223,8 +223,8 @@ jobs:
             --resource https://service.powerapps.com/ \
             --query accessToken \
             --output tsv)"
-          permissions_url="https://api.powerapps.com/providers/Microsoft.PowerApps/scopes/admin/environments/$POWER_APPS_ENVIRONMENT_ID/apps/$POWER_PLATFORM_TARGET_APP_ID/permissions?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
-          modify_url="https://api.powerapps.com/providers/Microsoft.PowerApps/scopes/admin/environments/$POWER_APPS_ENVIRONMENT_ID/apps/$POWER_PLATFORM_TARGET_APP_ID/modifyPermissions?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          permissions_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/permissions?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          modify_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/modifyPermissions?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
 
           get_permissions() {
             curl --fail-with-body --silent --show-error \
