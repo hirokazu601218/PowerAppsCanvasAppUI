@@ -13,7 +13,7 @@ ChatGPT Sol Workに対する自然言語の修正指示を起点として、職�
 
 ### 2.1 構築済み
 
-- 公開済みテストアプリ：`職員マスタ検索_自動テスト_v1_11`
+- 公開済みテストアプリ：`ハンドメイド職員マスタ検索`
 - App ID：`0e5f5c05-b67d-4a27-af71-ebe5e5381221`
 - 環境ID：`2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb`
 - GitHub ActionsとMicrosoft Power Platform Playwright samplesによる無人E2E
