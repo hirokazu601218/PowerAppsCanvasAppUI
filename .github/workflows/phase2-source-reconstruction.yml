@@ -192,7 +192,7 @@ jobs:
             exit 0
           fi
 
-          source_matches="$(rg -F -c 'Text: ="v1.11 ／ 自動反映テスト中"' "$source_file")"
+          source_matches="$(grep -F -c 'Text: ="v1.11 ／ 自動反映テスト中"' "$source_file" || true)"
           if [[ "$source_matches" -ne 1 ]]; then
             echo "::error::Approved Step 7 source value was not found exactly once."
             exit 1
@@ -202,7 +202,7 @@ jobs:
           mkdir -p "$bridge_dir"
           unzip -q "$RUNNER_TEMP/reconstructed.msapp" -d "$bridge_dir"
           mapfile -t control_candidates < <(
-            rg -l -F '"Name": "lblMeta111"' "$bridge_dir/Controls" --glob '*.json'
+            grep -R -l -F --include='*.json' '"Name": "lblMeta111"' "$bridge_dir/Controls" || true
           )
           if [[ "${#control_candidates[@]}" -ne 1 ]]; then
             echo "::error::Expected one compiled control file for lblMeta111; found ${#control_candidates[@]}."
