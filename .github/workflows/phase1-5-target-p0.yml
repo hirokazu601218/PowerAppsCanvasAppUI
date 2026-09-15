@@ -1,6 +1,7 @@
 name: Phase 1.5 target P0
 
 on:
+  workflow_call:
   push:
     branches:
       - automation/phase1-baseline
