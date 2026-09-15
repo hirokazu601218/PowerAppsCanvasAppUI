@@ -39,7 +39,6 @@ jobs:
             --tenant "$POWER_PLATFORM_TENANT_ID" \
             --applicationId "$POWER_PLATFORM_CLIENT_ID" \
             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID"
-          pac org who
           pac solution list \
             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID" \
             --json
