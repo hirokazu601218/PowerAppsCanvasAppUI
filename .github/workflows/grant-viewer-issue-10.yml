@@ -1,0 +1,124 @@
+name: Grant approved isolated-app viewer
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/grant-viewer-issue-10.yml"
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: grant-viewer-issue-10
+  cancel-in-progress: false
+
+jobs:
+  grant-canview:
+    name: Grant and verify CanView
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 10
+    env:
+      TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+      APP_ID: 362ac991-eead-4f07-8373-afdb3ebfdba1
+      TARGET_EMAIL: hirokazu601218@govaca.onmicrosoft.com
+    steps:
+      - name: Sign in automation identity with GitHub OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.CLIENT_ID }}
+          tenant-id: ${{ env.TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Resolve approved user, grant CanView, and verify
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          principal_json="$(az rest             --method GET             --url "https://graph.microsoft.com/v1.0/users/$TARGET_EMAIL?%24select=id,userPrincipalName"             --output json)"
+          principal_id="$(jq -r '.id // empty' <<<"$principal_json")"
+          principal_upn="$(jq -r '.userPrincipalName // empty' <<<"$principal_json")"
+
+          test -n "$principal_id"
+          if [[ "${principal_upn,,}" != "${TARGET_EMAIL,,}" ]]; then
+            echo "::error::Resolved principal does not match the approved UPN."
+            exit 1
+          fi
+          echo "::add-mask::$principal_id"
+
+          service_token="$(az account get-access-token             --resource https://service.powerapps.com/             --query accessToken             --output tsv)"
+          permissions_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$APP_ID/permissions?api-version=2016-11-01&%24filter=environment%20eq%20%27$ENVIRONMENT_ID%27"
+          modify_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$APP_ID/modifyPermissions?api-version=2016-11-01&%24filter=environment%20eq%20%27$ENVIRONMENT_ID%27"
+
+          get_permissions() {
+            curl --fail-with-body --silent --show-error               --header "Authorization: Bearer $service_token"               --header "Accept: application/json"               "$permissions_url"               --output permissions.json
+          }
+
+          has_role() {
+            local role="$1"
+            jq -e --arg id "$principal_id" --arg role "$role" '
+              .. | objects
+              | select(
+                  ((.properties?.principal?.id // .principal?.id // "") | ascii_downcase)
+                    == ($id | ascii_downcase)
+                  and (.properties?.roleName // .roleName // "") == $role
+                )
+            ' permissions.json >/dev/null
+          }
+
+          get_permissions
+          if has_role "CanEdit"; then
+            echo "::error::Target already has CanEdit; refusing to alter or broaden it."
+            exit 1
+          fi
+
+          action="already-present"
+          if ! has_role "CanView"; then
+            jq -n               --arg email "$TARGET_EMAIL"               --arg id "$principal_id"               '{
+                put: [{
+                  properties: {
+                    roleName: "CanView",
+                    capabilities: [],
+                    NotifyShareTargetOption: "DoNotNotify",
+                    principal: {
+                      email: $email,
+                      id: $id,
+                      type: "User",
+                      tenantId: "null"
+                    }
+                  }
+                }]
+              }' > share-request.json
+
+            curl --fail-with-body --silent --show-error               --request POST               --header "Authorization: Bearer $service_token"               --header "Accept: application/json"               --header "Content-Type: application/json"               --data-binary @share-request.json               "$modify_url"               --output share-response.json
+            action="created"
+          fi
+
+          verified=false
+          for attempt in 1 2 3 4 5 6; do
+            get_permissions
+            if has_role "CanView"; then
+              verified=true
+              break
+            fi
+            sleep 5
+          done
+
+          if [[ "$verified" != "true" ]]; then
+            echo "::error::CanView was not visible in the read-back result."
+            exit 1
+          fi
+
+          {
+            echo "## Approved isolated-app viewer"
+            echo
+            echo "- Environment: $ENVIRONMENT_ID"
+            echo "- App: $APP_ID"
+            echo "- Principal: $TARGET_EMAIL"
+            echo "- Role: CanView"
+            echo "- Assignment: $action"
+            echo "- Read-back verification: success"
+          } >> "$GITHUB_STEP_SUMMARY"
