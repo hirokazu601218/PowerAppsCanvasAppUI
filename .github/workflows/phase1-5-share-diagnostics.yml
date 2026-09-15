@@ -25,6 +25,7 @@ jobs:
       POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
       TEST_USER_EMAIL: powerapps-test@govaca.onmicrosoft.com
       ADMIN_MODULE_VERSION: 2.0.217
+      MAKER_MODULE_VERSION: 1.0.45
 
     steps:
       - name: Sign in with GitHub OIDC
@@ -146,6 +147,40 @@ jobs:
           print(output)
           PY
           sed -n '170,240p' artifacts/share-diagnostics/OFFICIAL_CMDLET_SOURCE.txt
+
+      - name: Inspect app-owner sharing API
+        shell: bash
+        run: |
+          set -euo pipefail
+          package_url="https://www.powershellgallery.com/api/v2/package/Microsoft.PowerApps.PowerShell/$MAKER_MODULE_VERSION"
+          curl --fail --location --silent --show-error "$package_url" --output maker-module.nupkg
+          mkdir maker-module
+          unzip -q maker-module.nupkg -d maker-module
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          wanted = {"Set-PowerAppRoleAssignment", "Get-PowerAppRoleAssignment"}
+          output = []
+          found = set()
+          for path in sorted(Path("maker-module").rglob("*.psm1")):
+              text = path.read_text(encoding="utf-8-sig", errors="replace")
+              for name in sorted(wanted):
+                  match = re.search(rf"(?im)^function\s+{re.escape(name)}\b", text)
+                  if not match:
+                      continue
+                  next_fn = re.search(r"(?im)^function\s+[A-Za-z0-9_-]+\b", text[match.end():])
+                  end = match.end() + next_fn.start() if next_fn else len(text)
+                  block = text[match.start():end]
+                  output.append(f"### {name} ({path.name})\n{block.rstrip()}\n")
+                  found.add(name)
+          missing = wanted - found
+          if missing:
+              raise SystemExit(f"Missing functions: {sorted(missing)}")
+          result = "\n".join(output)
+          Path("artifacts/share-diagnostics/OWNER_SHARE_API_SOURCE.txt").write_text(result, encoding="utf-8")
+          print(result)
+          PY
 
       - name: Verify Power Apps service token availability
         shell: bash
