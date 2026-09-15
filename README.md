@@ -47,7 +47,6 @@ v1.12以降は変更した部品・プロパティだけを配布する。部品
 | docs/reference/ | 旧HTML設計・旧DADS。現行仕様ではない |
 | src/staff-master/ | 現行職員検索YAML・Power Fx |
 | src/staff-master/patches/ | v1.12以降の変更部品、manifest、適用・復元手順 |
-| src/kojo/ | 別アプリ控除詳細の最新保管版 |
 | src/reference/ | 旧DADS部品。現行画面の依存物ではない |
 | assets/commute-ledger/ | 認定簿の空様式 |
 | tests/ | Workから再実行する静的検査 |
