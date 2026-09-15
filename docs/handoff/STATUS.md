@@ -28,7 +28,7 @@
 | 関連設計 | `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-baseline.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md` |
 | 関連テスト | 既存P0を再実行して合格。文書はリンク・用語・版・記述整合を確認 |
 | Library資料 | なし |
-| 未解決事項 | 基準Dataverse URL直接指定による追加試行の承認、無変更round-trip、公開アプリとGitHub v1.11の差分照合 |
+| 未解決事項 | `pac canvas pack` の `System.FormatException`、Studio検証済みSourceCodeの再取得、無変更round-trip、P0 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -36,11 +36,11 @@
 
 | 項目 | 状態 |
 |---|---|
-| 無人修正・テスト・公開基盤 | Phase 0完了。Phase 1はP0基準確認完了。Phase 1.5は基盤構築済みだが、基準exportが同一原因2回で自動停止 |
+| 無人修正・テスト・公開基盤 | Phase 0・Phase 1完了。Phase 1.5はSolution、隔離テスト環境、OIDC、GitHub正本化まで完了。`pac canvas pack` の同一例外2回で自動停止 |
 | Phase 1 P0 | run #8 attempt 3が成功。2026-09-15T01:27:59Z完了。証跡は14日保持 |
 | 実環境確認 | Azure Subscriptionあり・所有者。対象はDataverse付き開発者環境、非マネージド。Power Apps Premiumなし |
-| GitHub格納状態 | 画面YAML・個別Power Fxは存在。アプリ全体を再構成できる完全なSolutionソースではない |
-| 推奨経路 | 最小権限を維持し、基準Dataverse URLを直接指定して管理APIの環境一覧参照を避ける追加試行を判断 |
+| GitHub格納状態 | 公開P0版から取得した完全なSolutionソースとCanvasソースを `powerapps/` 配下へ格納済み |
+| 推奨経路 | StudioでSourceCodeを検証済みにして再取得する案、またはPAC CLI 2.12.2を避ける案を次回承認前に比較 |
 | Power Platform Git統合 | GitHub接続はプレビュー。GitHub Organization、Managed Environment、Azure Key Vault、Premium相当ライセンス等が必要なため当面見送り |
 | GitHub Actions | `.github/workflows/powerapps-e2e.yml` と `staff-master-e2e.yml` を構築済み |
 | E2Eスクリプト | `e2e/testapp-smoke.test.ts` と `e2e/staff-master-p0.test.ts` を格納済み |
@@ -55,12 +55,11 @@
 
 ## ChatGPT Sol Workの次の作業
 
-1. Phase 1.5のCLI暫定経路＋GitHub OIDC計画の承認を得る。
-2. 公開アプリを変更せず `.msapp` を取得し、ハッシュを記録する。
-3. カスタムSolution、2個目の開発者環境、OIDCサービスプリンシパルを作成する。
-4. 無変更round-tripとP0を実行し、暫定経路の採否を決定する。
-5. 差分テンプレートで公開アプリ由来ソースと既存GitHub v1.11を比較する。
-6. 基準版をIssue #5で確定後、Phase 2の自動変更パイプラインへ進む。
+1. Issue #5と実行記録を基に、`System.FormatException`の回避候補を比較する。
+2. 次の修正方針を提示し、ユーザー承認を得る。
+3. 承認後、Studio検証済みSourceCodeの再取得または別CLI版で無変更round-tripを1回実行する。
+4. import成功後、隔離テスト環境のテスト利用者権限を確認してP0を実行する。
+5. round-tripとP0の両方が成功した場合だけPhase 2へ進む。
 
 ## 未決・ギャップ
 
