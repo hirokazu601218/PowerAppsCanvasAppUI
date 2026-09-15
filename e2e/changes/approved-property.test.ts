@@ -27,7 +27,8 @@ test('AUT-SIDEBAR-001 menu icon and sidebar state preservation', async ({ page }
   await input.fill('山田');
   await c.getByRole('button',{name:'検索',exact:true}).click();
   await expect(c.getByText(/職員一覧\s*2件/).first()).toBeVisible();
-  await c.getByText('山田 花子',{exact:true}).first().click();
+  // The transparent row button owns pointer events above the display labels.
+  await c.getByRole('button',{name:'00990000002 山田 花子 詳細を表示',exact:true}).click();
   for(let i=0;i<2;i++){
     await close().click();
     await expect(open()).toHaveText(legacy?'›':'☰');
