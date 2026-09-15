@@ -28,7 +28,7 @@
 | 関連設計 | `docs/operations/staff-master-unattended-runbook.md`、`docs/operations/unattended-development-step8-9-acceptance.md`、 `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md`、`docs/operations/unattended-development-step6-source-reconstruction.md`、`docs/operations/unattended-development-step7-automatic-source-deployment.md` |
 | 関連テスト | ステップ8受入run 34952452993、v1.12変更テスト＋P0・安全制御10件run 34954109942、mainとタグの確定run 34954509560が合格 |
 | Library資料 | なし |
-| 未解決事項 | Issue #12追加テストのlocator不具合を対処中。復元確認完了までv1.13再展開を停止。詳細は下記 |
+| 未解決事項 | Issue #12追加テストのlocator不具合を修正。復元run 34975611706で全ゲート合格。v1.13再展開を実施。詳細は下記 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -94,3 +94,5 @@
 - 復元概要の `not required` 誤表示を修正。復元成功・失敗・未実施を区別する既存テストを補強し、合格した。
 - ユーザーの「原因分析して対処」指示に基づき、修正したテストで再度復元確認を実施。復元全ゲート合格後にのみv1.13再展開・追加テスト・P0・成功版確定へ進む。既存P0は変更していない。
 - 詳細な試行・判断記録は [Issue #12](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/12)。
+
+復元確認run `34975611706` は `RESTORED`、追加テスト・P0とも合格。候補アプリを変更せずテストの参照先修正だけで解消した。これを根拠にv1.13の再展開へ進む。
