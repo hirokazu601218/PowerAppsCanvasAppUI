@@ -35,7 +35,7 @@ jobs:
           cat powerapps/baseline/StaffMasterAutomation_1_11_0_0.zip.b64.part* \
             | base64 --decode \
             > "$RUNNER_TEMP/StaffMasterAutomation_1_11_0_0.zip"
-          echo "80e0f0b2991df26fdacdc0a92d6f043dc6bd077e231ff157119be83e2f57cd82  $RUNNER_TEMP/StaffMasterAutomation_1_11_0_0.zip" \
+          echo "08ba313f78030c96541c7aa359ac402de34fab044fbb27d29ce97009f4d155ed  $RUNNER_TEMP/StaffMasterAutomation_1_11_0_0.zip" \
             | sha256sum --check
 
       - name: Unpack Solution source
