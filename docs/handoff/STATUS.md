@@ -23,12 +23,12 @@
 |---|---|
 | 対象機能 | Power Apps無人修正・テスト・公開基盤の設計 |
 | 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11との差分は未照合 |
-| 要件ID | AUT-001～AUT-024（`docs/requirements/unattended-development-requirements.md`） |
-| 対象ソース | `.github/workflows/staff-master-e2e.yml`、`e2e/staff-master-p0.test.ts`、`src/staff-master/`。Phase 1は調査・文書のみ |
+| 要件ID | AUT-001～AUT-025、NFR-001～NFR-013（`docs/requirements/unattended-development-requirements.md` v1.02） |
+| 対象ソース | `.github/workflows/phase1-5-roundtrip.yml`、`phase1-5-target-metadata.yml`、`phase1-5-target-p0.yml`、`phase1-5-share-diagnostics.yml`、`e2e/staff-master-p0.test.ts`、`powerapps/`、`src/staff-master/` |
 | 関連設計 | `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-baseline.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md` |
-| 関連テスト | 既存P0を再実行して合格。文書はリンク・用語・版・記述整合を確認 |
+| 関連テスト | 基準環境P0再合格。URL直接指定の無変更Solution展開成功。隔離アプリへのCanView付与・読戻し検証後、隔離環境P0成功（run 34925700515） |
 | Library資料 | なし |
-| 未解決事項 | 隔離テストアプリの専用テスト利用者へのCanView共有、隔離環境P0、編集可能Canvasソースからの再構成方式 |
+| 未解決事項 | 編集可能Canvasソースからの再構成方式、公開アプリ由来ソースとGitHub v1.11の差分照合 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -36,15 +36,15 @@
 
 | 項目 | 状態 |
 |---|---|
-| 無人修正・テスト・公開基盤 | Phase 0・Phase 1完了。Phase 1.5はDataverse URL直接指定による基準Solution自動export、隔離環境import・publish、テストApp ID取得まで成功。P0はアプリ未共有で停止 |
+| 無人修正・テスト・公開基盤 | Phase 0・Phase 1完了。Phase 1.5の無変更配布基線も完了。Dataverse URL直接指定のexport/import/publish、隔離アプリへのCanView共有・読戻し検証、隔離環境P0が成功 |
 | Phase 1 P0 | run #8 attempt 3が成功。2026-09-15T01:27:59Z完了。証跡は14日保持 |
 | 実環境確認 | Azure Subscriptionあり・所有者。対象はDataverse付き開発者環境、非マネージド。Power Apps Premiumなし |
-| GitHub格納状態 | 公開P0版から取得した完全なSolutionソースとCanvasソースを `powerapps/` 配下へ格納済み |
-| 推奨経路 | 隔離テストアプリを専用テスト利用者へCanView共有してP0を再実行。配布経路から分離したCanvas再構成方式はP0合格後に比較 |
+| GitHub格納状態 | 公開P0版から取得した完全なSolutionパッケージと展開ソースを `powerapps/` 配下へ格納済み。編集可能Canvasソースからの再構成方式は未確定 |
+| 推奨経路 | アプリ所有者向けAPIで固定対象へCanViewを冪等設定するURL直接指定の無変更配布基線を採用。次は配布経路から分離してCanvas再構成方式を比較 |
 | Power Platform Git統合 | GitHub接続はプレビュー。GitHub Organization、Managed Environment、Azure Key Vault、Premium相当ライセンス等が必要なため当面見送り |
-| GitHub Actions | `.github/workflows/powerapps-e2e.yml` と `staff-master-e2e.yml` を構築済み |
+| GitHub Actions | 既存E2Eに加え、OIDC疎通、URL直接指定round-trip、対象App ID取得、CanView共有・隔離P0、共有診断ワークフローを構築済み |
 | E2Eスクリプト | `e2e/testapp-smoke.test.ts` と `e2e/staff-master-p0.test.ts` を格納済み |
-| Power Apps E2E | run #1は失敗。成功実績とは分けて扱い、Actionsで最新結果を確認する |
+| Power Apps E2E | 基準環境P0はrun #8 attempt 3で成功。隔離環境P0はrun 34925700515で成功。初回のRequest access失敗と全診断試行は実行記録へ保持 |
 | 合否の境界 | ワークフローやスクリプトの存在だけでは合格としない。対象版の実行結果と証跡で判定する |
 
 ## テスト設計
@@ -55,15 +55,17 @@
 
 ## ChatGPT Sol Workの次の作業
 
-1. 専用テスト利用者 `powerapps-test@govaca.onmicrosoft.com` へ、隔離テストアプリ `362ac991-eead-4f07-8373-afdb3ebfdba1` のCanViewを付与する。
-2. 隔離環境P0を再実行し、検索・職員選択・縮小表示・条件クリアを確認する。
-3. P0合格後、PAC CLI 2.12.2のCanvas pack不具合と切り離して、編集可能ソースからの再構成方式を比較する。
-4. 承認範囲内に未試行の新対応策がある限り続行し、同じ対応策は単純反復しない。
-5. 新対応策が尽きた場合または権限・費用・本番変更など承認範囲を超える場合に停止する。
+1. 失敗済みの `pac canvas pack` 単純再試行を除外し、編集可能Canvasソースからの再構成方式を比較する。
+2. 必要権限、追加費用、プレビュー依存、意味差分、無人実行性を比較し、最小リスクの候補を選ぶ。
+3. アプリまたはSolutionソースを変更する前に、修正方針・変更範囲・追加テストを提示して承認を得る。
+4. 承認後、隔離環境だけで小変更の再構成・公開・追加テスト・P0を実証する。
+5. 再構成経路が成立した後、公開アプリ由来ソースとGitHub v1.11の差分を照合する。
+6. 承認範囲内に未試行の新対応策がある限り続行し、同じ対応策は単純反復しない。新対応策が尽きた場合または権限・費用・本番変更など範囲を超える場合に停止する。
 
 ## 未決・ギャップ
 
-- Dataverse URL直接指定のSolution配布経路は成功した。`pac canvas pack/unpack` は非推奨かつ2.12.2で失敗するため、編集可能ソースの再構成方式を別ゲートとして扱う。
+- Dataverse URL直接指定のSolution配布経路と、固定された隔離アプリへのCanView共有・P0は成功した。`pac canvas pack/unpack` は非推奨かつ2.12.2で失敗するため、編集可能ソースの再構成方式を別ゲートとして扱う。
+- 最終P0 runは `34925700515`。証跡artifact `phase1-5-target-evidence-5`（ID `10379427558`）は2026-09-29 03:39:32 UTCまで保持する。
 - 本番列一覧、Dataverseテーブル名・型・ロール、実接続/委任設計は別途。
 - TSVから正式XLSX出力への方式は未決。
 - 帳票A3/A4等の正式用紙と実機改ページは未決。
