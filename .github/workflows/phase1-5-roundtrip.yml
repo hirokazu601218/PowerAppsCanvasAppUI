@@ -1,0 +1,140 @@
+name: Phase 1.5 no-change round trip
+
+on:
+  push:
+    branches:
+      - automation/phase1-baseline
+    paths:
+      - .github/workflows/phase1-5-roundtrip.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  roundtrip:
+    name: Pack and import v1.11 into isolated test environment
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 30
+    env:
+      POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      POWER_PLATFORM_TEST_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+      SOLUTION_NAME: StaffMasterAutomation
+    steps:
+      - name: Check out canonical baseline
+        uses: actions/checkout@v5
+        with:
+          ref: automation/phase1-baseline
+
+      - name: Install Power Platform CLI
+        shell: bash
+        run: |
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+          pac --version
+
+      - name: Validate canonical source inventory
+        shell: bash
+        run: |
+          test -s powerapps/canvas-src/CanvasManifest.json
+          test -s powerapps/canvas-src/Src/App.fx.yaml
+          test -s powerapps/canvas-src/Other/Src/Screen1.pa.yaml
+          test -s powerapps/solution-src/Other/Solution.xml
+          test -s powerapps/solution-src/CanvasApps/crb3c_v111_99a38_DocumentUri.msapp
+          test "$(wc -c < powerapps/canvas-src/Other/Src/Screen1.pa.yaml)" -gt 1000000
+          grep -q '<UniqueName>StaffMasterAutomation</UniqueName>' powerapps/solution-src/Other/Solution.xml
+          grep -q '<Version>1.11.0.0</Version>' powerapps/solution-src/Other/Solution.xml
+
+      - name: Pack Canvas app without source changes
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/solution-src" artifacts/roundtrip
+          cp -a powerapps/solution-src/. "$RUNNER_TEMP/solution-src/"
+          solution_msapp="$RUNNER_TEMP/solution-src/CanvasApps/crb3c_v111_99a38_DocumentUri.msapp"
+          pac canvas pack \
+            --sources powerapps/canvas-src \
+            --msapp "$solution_msapp" \
+            --layout SourceCode \
+            --overwrite
+          sha256sum "$solution_msapp" \
+            | tee artifacts/roundtrip/PACKED_MSAPP_SHA256.txt
+
+      - name: Verify editable Power Fx survives round trip
+        shell: bash
+        run: |
+          solution_msapp="$RUNNER_TEMP/solution-src/CanvasApps/crb3c_v111_99a38_DocumentUri.msapp"
+          pac canvas unpack \
+            --msapp "$solution_msapp" \
+            --sources "$RUNNER_TEMP/repacked-canvas-src" \
+            --layout SourceCode \
+            --overwrite
+          cmp powerapps/canvas-src/Src/App.fx.yaml \
+            "$RUNNER_TEMP/repacked-canvas-src/Src/App.fx.yaml"
+          cmp powerapps/canvas-src/Src/Screen1.fx.yaml \
+            "$RUNNER_TEMP/repacked-canvas-src/Src/Screen1.fx.yaml"
+          find "$RUNNER_TEMP/repacked-canvas-src" -type f -print \
+            | LC_ALL=C sort \
+            > artifacts/roundtrip/REPACKED_SOURCE_FILES.txt
+
+      - name: Pack unmanaged Solution
+        shell: bash
+        run: |
+          pac solution pack \
+            --folder "$RUNNER_TEMP/solution-src" \
+            --zipfile "$RUNNER_TEMP/StaffMasterAutomation_1_11_roundtrip.zip" \
+            --packagetype Unmanaged
+          sha256sum "$RUNNER_TEMP/StaffMasterAutomation_1_11_roundtrip.zip" \
+            | tee artifacts/roundtrip/PACKED_SOLUTION_SHA256.txt
+
+      - name: Authenticate to isolated test environment with GitHub OIDC
+        shell: bash
+        run: |
+          pac auth create \
+            --name test-oidc \
+            --githubFederated \
+            --tenant "$POWER_PLATFORM_TENANT_ID" \
+            --applicationId "$POWER_PLATFORM_CLIENT_ID" \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID"
+          pac org who | tee artifacts/roundtrip/PAC_ORG_WHO.txt
+
+      - name: Import and publish in isolated test environment
+        shell: bash
+        run: |
+          pac solution import \
+            --path "$RUNNER_TEMP/StaffMasterAutomation_1_11_roundtrip.zip" \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID" \
+            --force-overwrite \
+            --publish-changes
+          pac solution list \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID" \
+            --json \
+            | tee artifacts/roundtrip/SOLUTIONS.json
+          pac canvas list \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID" \
+            | tee artifacts/roundtrip/CANVAS_APPS.txt
+          grep -q "$SOLUTION_NAME" artifacts/roundtrip/SOLUTIONS.json
+
+      - name: Write execution summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Phase 1.5 no-change round trip"
+            echo
+            echo "- Source: published P0-passing v1.11 Solution"
+            echo "- Target: isolated Developer environment"
+            echo "- GitHub OIDC: client secret not used"
+            echo "- Evidence retention: 14 days"
+            echo "- Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          } | tee artifacts/roundtrip/SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload round-trip evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase1-5-roundtrip-${{ github.run_number }}
+          path: artifacts/roundtrip
+          retention-days: 14
+          if-no-files-found: warn
