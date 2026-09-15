@@ -231,8 +231,8 @@ jobs:
             --resource https://service.powerapps.com/ \
             --query accessToken \
             --output tsv)"
-          app_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
-          publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          app_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID?api-version=2018-10-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2018-10-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
 
           curl --fail-with-body --silent --show-error \
             --header "Authorization: Bearer $service_token" \
@@ -331,7 +331,7 @@ jobs:
           pac solution publish --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
           if az account show >/dev/null 2>&1; then
             service_token="$(az account get-access-token --resource https://service.powerapps.com/ --query accessToken --output tsv)"
-            publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+            publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2018-10-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
             curl --fail-with-body --silent --show-error \
               --request POST \
               --header "Authorization: Bearer $service_token" \
@@ -477,7 +477,7 @@ jobs:
         run: |
           set -euo pipefail
           service_token="$(az account get-access-token --resource https://service.powerapps.com/ --query accessToken --output tsv)"
-          publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2018-10-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
           curl --fail-with-body --silent --show-error \
             --request POST \
             --header "Authorization: Bearer $service_token" \
