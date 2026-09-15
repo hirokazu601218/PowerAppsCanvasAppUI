@@ -1,0 +1,133 @@
+name: Phase 1.5 inspect Canvas share API
+
+on:
+  push:
+    branches:
+      - automation/phase1-baseline
+    paths:
+      - .github/workflows/phase1-5-share-diagnostics.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  inspect:
+    name: Inspect official cmdlet and resolve test principal
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 10
+
+    env:
+      POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
+      TEST_USER_EMAIL: powerapps-test@govaca.onmicrosoft.com
+      ADMIN_MODULE_VERSION: 2.0.217
+
+    steps:
+      - name: Sign in with GitHub OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.POWER_PLATFORM_CLIENT_ID }}
+          tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Resolve dedicated test user in isolated Dataverse
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/share-diagnostics
+          resource="${POWER_PLATFORM_TEST_ENVIRONMENT_URL%/}"
+          access_token="$(az account get-access-token \
+            --resource "$resource" \
+            --query accessToken \
+            --output tsv)"
+          encoded_email="$(jq -rn --arg value "$TEST_USER_EMAIL" '$value|@uri')"
+          query_url="$resource/api/data/v9.2/systemusers?\$select=systemuserid,azureactivedirectoryobjectid,internalemailaddress,fullname,isdisabled&\$filter=internalemailaddress%20eq%20'$encoded_email'"
+          curl --fail --silent --show-error \
+            --header "Authorization: Bearer $access_token" \
+            --header "Accept: application/json" \
+            "$query_url" \
+            | tee artifacts/share-diagnostics/TEST_USER.json
+          principal_id="$(jq -r '.value[0].azureactivedirectoryobjectid // empty' artifacts/share-diagnostics/TEST_USER.json)"
+          test -n "$principal_id"
+          echo "TEST_USER_PRINCIPAL_OBJECT_ID=$principal_id" | tee artifacts/share-diagnostics/TEST_USER.env
+
+      - name: Inspect Microsoft Power Apps admin module source
+        shell: bash
+        run: |
+          set -euo pipefail
+          package_url="https://www.powershellgallery.com/api/v2/package/Microsoft.PowerApps.Administration.PowerShell/$ADMIN_MODULE_VERSION"
+          curl --fail --location --silent --show-error "$package_url" --output admin-module.nupkg
+          mkdir admin-module
+          unzip -q admin-module.nupkg -d admin-module
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          wanted = {
+              "Set-AdminPowerAppRoleAssignment",
+              "Get-AdminPowerAppRoleAssignment",
+              "Add-PowerAppsAccount",
+              "Get-JwtToken",
+          }
+          out = []
+          for path in sorted(Path("admin-module").rglob("*.psm1")):
+              text = path.read_text(encoding="utf-8-sig", errors="replace")
+              for name in sorted(wanted):
+                  match = re.search(rf"(?im)^function\s+{re.escape(name)}\b", text)
+                  if not match:
+                      continue
+                  start = match.start()
+                  next_fn = re.search(r"(?im)^function\s+[A-Za-z0-9_-]+\b", text[match.end():])
+                  end = match.end() + next_fn.start() if next_fn else len(text)
+                  block = text[start:end]
+                  if len(block) > 30000:
+                      block = block[:30000] + "\n# TRUNCATED\n"
+                  out.append(f"### {name} ({path.name})\n{block.rstrip()}\n")
+          missing = wanted - {re.search(r"^### ([^ ]+)", item).group(1) for item in out}
+          if missing:
+              raise SystemExit(f"Missing functions: {sorted(missing)}")
+          Path("artifacts/share-diagnostics/OFFICIAL_CMDLET_SOURCE.txt").write_text(
+              "\n".join(out), encoding="utf-8"
+          )
+          PY
+
+      - name: Verify Power Apps service token availability
+        shell: bash
+        run: |
+          set -euo pipefail
+          token="$(az account get-access-token \
+            --resource https://service.powerapps.com/ \
+            --query accessToken \
+            --output tsv)"
+          test -n "$token"
+          echo "POWER_APPS_SERVICE_TOKEN=available" | tee artifacts/share-diagnostics/TOKEN_CHECK.env
+
+      - name: Summarize diagnostics
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Phase 1.5 share diagnostics"
+            echo
+            echo "- Official admin module: $ADMIN_MODULE_VERSION"
+            if [[ -s artifacts/share-diagnostics/TEST_USER.env ]]; then
+              sed 's/^/- /' artifacts/share-diagnostics/TEST_USER.env
+            fi
+            if [[ -s artifacts/share-diagnostics/TOKEN_CHECK.env ]]; then
+              sed 's/^/- /' artifacts/share-diagnostics/TOKEN_CHECK.env
+            fi
+            echo "- No app permission was changed by this diagnostic run."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase1-5-share-diagnostics-${{ github.run_number }}
+          path: artifacts/share-diagnostics
+          retention-days: 14
+          if-no-files-found: warn
