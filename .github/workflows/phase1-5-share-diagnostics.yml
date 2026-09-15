@@ -145,6 +145,7 @@ jobs:
           Path("artifacts/share-diagnostics/SHARE_API_HIGHLIGHTS.txt").write_text(output, encoding="utf-8")
           print(output)
           PY
+          sed -n '170,240p' artifacts/share-diagnostics/OFFICIAL_CMDLET_SOURCE.txt
 
       - name: Verify Power Apps service token availability
         shell: bash
