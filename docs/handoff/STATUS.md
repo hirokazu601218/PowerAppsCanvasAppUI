@@ -21,14 +21,14 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | Power Apps無人修正・テスト・公開基盤：ステップ1～9完了・テスト公開運用開始 |
+| 対象機能 | Issue #12：検索領域開閉アイコンを横三本線へ変更（v1.13候補） |
 | 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11と差分照合済み。P0合格済み公開版を採用し、旧版は参照として保持 |
 | 要件ID | AUT-001～AUT-025、NFR-001～NFR-013（`docs/requirements/unattended-development-requirements.md` v1.03） |
 | 対象ソース | `scripts/automation/`、`tests/automation/`、`automation/`、`config/apps/`、`.github/workflows/staff-master-transaction.yml`、`staff-master-finalize.yml`、`e2e/changes/approved-property.test.ts`、 `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
 | 関連設計 | `docs/operations/staff-master-unattended-runbook.md`、`docs/operations/unattended-development-step8-9-acceptance.md`、 `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md`、`docs/operations/unattended-development-step6-source-reconstruction.md`、`docs/operations/unattended-development-step7-automatic-source-deployment.md` |
 | 関連テスト | ステップ8受入run 34952452993、v1.12変更テスト＋P0・安全制御10件run 34954109942、mainとタグの確定run 34954509560が合格 |
 | Library資料 | なし |
-| 未解決事項 | 基盤の承認済み9ステップは完了。新規画面・構造・接続の一般コンパイルは対象外。次の修正指示で対応範囲を確認 |
+| 未解決事項 | Issue #12追加テストのlocator不具合を修正。復元run 34975611706で全ゲート合格。v1.13再展開を実施。詳細は下記 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -69,7 +69,7 @@
 | 8 | 自動修復・停止・合格版復元 | 完了 |
 | 9 | v1.12検証・main統合・成功タグ・運用開始 | 完了 |
 
-次はこのWorkで修正指示を受け、[運用手順](../operations/staff-master-unattended-runbook.md) に従って方針提示・承認後に実行する。次の成功版はv1.13。現時点では新しい変更指示は未受領。
+次はこのWorkで修正指示を受け、[運用手順](../operations/staff-master-unattended-runbook.md) に従って方針提示・承認後に実行する。次の成功版はv1.13。Issue #12：検索サイドバーの横三本線変更を承認済み。v1.13候補の追加テスト・P0を実施し、全ゲート成功後に確定する。
 
 [受入・成功版確定記録](../operations/unattended-development-step8-9-acceptance.md)、[成功タグv1.12](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.12)、[Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7) を参照する。
 
@@ -86,3 +86,13 @@
 - モダンコントロールの提供状況・アクセシビリティ・PDF実験機能は環境で確認。
 - 生成画像は概念図。省略項目と濃い見出しは要件・設計書で補正済み。
 - 今回の配置モデル画像もStudioスクリーンショットではない。実機校正は未実施。
+
+## Issue #12 原因分析・対処（2026-09-15）
+
+- 初回run `34968864160`：v1.13候補のビルド・公開・読戻し・P0成功。追加テストが表示ラベルをクリックし、透明な行選択ボタンに遮られて失敗。実際の行ボタンを名前とroleで指定するよう修正した。
+- 復元run `34974840163`：行ボタンクリックと検索欄閉鎖は成功。職員番号の `.first()` が非表示の一覧セルを選び、詳細表示を誤判定。詳細ヘッダーの一意な職員番号・所属で検証するよう修正した。v1.12の再公開・読戻し・P0は成功したが、追加テスト不合格のため復元完了扱いにはしない。
+- 復元概要の `not required` 誤表示を修正。復元成功・失敗・未実施を区別する既存テストを補強し、合格した。
+- ユーザーの「原因分析して対処」指示に基づき、修正したテストで再度復元確認を実施。復元全ゲート合格後にのみv1.13再展開・追加テスト・P0・成功版確定へ進む。既存P0は変更していない。
+- 詳細な試行・判断記録は [Issue #12](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/12)。
+
+復元確認run `34975611706` は `RESTORED`、追加テスト・P0とも合格。候補アプリを変更せずテストの参照先修正だけで解消した。これを根拠にv1.13の再展開へ進む。

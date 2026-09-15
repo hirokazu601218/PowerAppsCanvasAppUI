@@ -43,6 +43,9 @@ class DriverTests(unittest.TestCase):
                 with self.assertRaises((RuntimeError,ValueError)):
                     exec(compile(ast.Module(body=tree.body[index:],type_ignores=[]),'driver','exec'),scope)
             result=json.loads((root/'artifacts/automation/result.json').read_text())
+            summary=(root/'artifacts/automation/summary.md').read_text()
+            expected={'auth':'not required','p0':'RESTORED','restore_failure':'RESTORE_FAILED'}[scenario]
+            self.assertIn(f'Restoration: {expected}\n',summary)
             return result,calls
 
     def test_auth_failure_does_not_touch_or_restore_app(self):

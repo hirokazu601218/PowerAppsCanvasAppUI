@@ -1,25 +1,32 @@
 {
   "schema": 1,
   "approved": true,
-  "approval_record": "Issue #7; user requested steps 8 through 9 on 2026-09-15",
-  "issue": 7,
+  "approval_record": "Work: 横三本線変更と追加テスト/P0を承認。STATUS更新確認不要も承認。",
+  "issue": 12,
   "target": {
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",
     "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1"
   },
-  "candidate_version": "1.12",
+  "candidate_version": "1.13",
   "changes": [
     {
       "source": "Src/Screen1.pa.yaml",
       "control": "lblMeta111",
       "property": "Text",
       "before": "=\"v1.11  ／  B案・架空25名\"",
-      "after": "=\"v1.12  ／  B案・架空25名\""
+      "after": "=\"v1.13  ／  B案・架空25名\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnSidebarToggle111",
+      "property": "Text",
+      "before": "=If(Coalesce(varSearchSidebarExpanded111,true),\"‹\",\"›\")",
+      "after": "=\"☰\""
     }
   ],
   "acceptance": {
     "case_id": "AUT-META-001",
-    "expected_label": "v1.12 ／ B案・架空25名"
+    "expected_label": "v1.13 ／ B案・架空25名"
   }
 }

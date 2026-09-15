@@ -168,7 +168,7 @@ Screens:
                               PaddingRight: =8
                               PaddingTop: =4
                               Size: =9
-                              Text: ="v1.12  ／  B案・架空25名"
+                              Text: ="v1.13  ／  B案・架空25名"
                               Tooltip: =Self.Text
                               Width: =174
                               X: =Parent.Width-686
@@ -5981,7 +5981,7 @@ Screens:
                               Height: =44
                               OnSelect: =If(!(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111)),Set(varSearchSidebarExpanded111,!Coalesce(varSearchSidebarExpanded111,true)))
                               Size: =18
-                              Text: =If(Coalesce(varSearchSidebarExpanded111,true),"‹","›")
+                              Text: ="☰"
                               Tooltip: =Self.AccessibleLabel
                               Width: =44
                               X: =If(Coalesce(varSearchSidebarExpanded111,true),Parent.Width-48,2)
