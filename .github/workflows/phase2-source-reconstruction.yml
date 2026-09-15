@@ -181,6 +181,94 @@ jobs:
 
           sha256sum "$rebuilt_msapp"             | tee artifacts/step6/RECONSTRUCTED_MSAPP_SHA256.txt
 
+      - name: Synchronize the approved Step 7 runtime rule when active
+        shell: bash
+        run: |
+          set -euo pipefail
+          marker_file="project/e2e/changes/step7-meta-label.active"
+          source_file="project/powerapps/canvas-v3/Src/Screen1.pa.yaml"
+          if [[ ! -f "$marker_file" ]]; then
+            echo "RUNTIME_BRIDGE=inactive" | tee artifacts/step6/RUNTIME_BRIDGE.env
+            exit 0
+          fi
+
+          source_matches="$(rg -F -c 'Text: ="v1.11 ／ 自動反映テスト中"' "$source_file")"
+          if [[ "$source_matches" -ne 1 ]]; then
+            echo "::error::Approved Step 7 source value was not found exactly once."
+            exit 1
+          fi
+
+          bridge_dir="$RUNNER_TEMP/runtime-bridge"
+          mkdir -p "$bridge_dir"
+          unzip -q "$RUNNER_TEMP/reconstructed.msapp" -d "$bridge_dir"
+          mapfile -t control_candidates < <(
+            rg -l -F '"Name": "lblMeta111"' "$bridge_dir/Controls" --glob '*.json'
+          )
+          if [[ "${#control_candidates[@]}" -ne 1 ]]; then
+            echo "::error::Expected one compiled control file for lblMeta111; found ${#control_candidates[@]}."
+            exit 1
+          fi
+
+          control_file="${control_candidates[0]}"
+          expected_before='"v1.11  ／  B案・架空25名"'
+          expected_after='"v1.11 ／ 自動反映テスト中"'
+          mapfile -t before_scripts < <(
+            jq -r '
+              .. | objects | select(.Name? == "lblMeta111")
+              | .Rules[]? | select(.Property? == "Text")
+              | .InvariantScript
+            ' "$control_file"
+          )
+          if [[ "${#before_scripts[@]}" -ne 1 || "${before_scripts[0]}" != "$expected_before" ]]; then
+            echo "::error::Compiled lblMeta111.Text did not match the approved pre-change value."
+            exit 1
+          fi
+
+          jq --arg invariant "$expected_after" '
+            walk(
+              if type == "object"
+                and .Name? == "lblMeta111"
+                and (.Rules? | type) == "array"
+              then .Rules |= map(
+                if .Property? == "Text"
+                then .InvariantScript = $invariant
+                else .
+                end
+              )
+              else .
+              end
+            )
+          ' "$control_file" > "$control_file.tmp"
+          mv "$control_file.tmp" "$control_file"
+
+          mapfile -t after_scripts < <(
+            jq -r '
+              .. | objects | select(.Name? == "lblMeta111")
+              | .Rules[]? | select(.Property? == "Text")
+              | .InvariantScript
+            ' "$control_file"
+          )
+          if [[ "${#after_scripts[@]}" -ne 1 || "${after_scripts[0]}" != "$expected_after" ]]; then
+            echo "::error::Compiled lblMeta111.Text synchronization failed."
+            exit 1
+          fi
+
+          (
+            cd "$bridge_dir"
+            zip -X -q -r "$RUNNER_TEMP/reconstructed-runtime.msapp" .
+          )
+          mv "$RUNNER_TEMP/reconstructed-runtime.msapp" "$RUNNER_TEMP/reconstructed.msapp"
+          sha256sum "$RUNNER_TEMP/reconstructed.msapp" \
+            | tee artifacts/step6/RUNTIME_MSAPP_SHA256.txt
+          {
+            echo "RUNTIME_BRIDGE=approved-step7-rule"
+            echo "CONTROL=lblMeta111"
+            echo "PROPERTY=Text"
+            echo "SOURCE_MATCHES=$source_matches"
+            echo "COMPILED_MATCHES=${#after_scripts[@]}"
+            echo "VERIFIED=true"
+          } | tee artifacts/step6/RUNTIME_BRIDGE.env
+
       - name: Build reconstructed and rollback Solutions
         shell: bash
         env:
