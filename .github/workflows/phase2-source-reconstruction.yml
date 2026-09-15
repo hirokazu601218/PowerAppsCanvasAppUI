@@ -24,6 +24,7 @@ env:
   POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
   POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
   POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
+  POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
   POWER_PLATFORM_TARGET_APP_ID: 362ac991-eead-4f07-8373-afdb3ebfdba1
   SOLUTION_NAME: StaffMasterAutomation
   APP_NAME: 職員マスタ検索_自動テスト_v1_11
@@ -214,6 +215,69 @@ jobs:
           grep -q "$SOLUTION_NAME" artifacts/step6/TARGET_SOLUTIONS.json
           grep -q "$APP_NAME" artifacts/step6/TARGET_CANVAS_APPS.txt
 
+      - name: Sign in automation identity for Power Apps publish API
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.POWER_PLATFORM_CLIENT_ID }}
+          tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Publish latest saved isolated Canvas app
+        id: publish-app
+        shell: bash
+        run: |
+          set -euo pipefail
+          service_token="$(az account get-access-token \
+            --resource https://service.powerapps.com/ \
+            --query accessToken \
+            --output tsv)"
+          app_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+
+          curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $service_token" \
+            --header "Accept: application/json" \
+            "$app_url" \
+            --output artifacts/step6/APP_BEFORE_PUBLISH.json
+          before_publish_time="$(jq -r '.properties.lastPublishTime // ""' artifacts/step6/APP_BEFORE_PUBLISH.json)"
+
+          curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer $service_token" \
+            --header "Accept: application/json" \
+            --header "Content-Type: application/json" \
+            --data '{}' \
+            "$publish_url" \
+            --output artifacts/step6/PUBLISH_RESPONSE.json
+
+          published=false
+          for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            curl --fail-with-body --silent --show-error \
+              --header "Authorization: Bearer $service_token" \
+              --header "Accept: application/json" \
+              "$app_url" \
+              --output artifacts/step6/APP_AFTER_PUBLISH.json
+            after_publish_time="$(jq -r '.properties.lastPublishTime // ""' artifacts/step6/APP_AFTER_PUBLISH.json)"
+            if [[ -n "$after_publish_time" && "$after_publish_time" != "$before_publish_time" ]]; then
+              published=true
+              break
+            fi
+            sleep 5
+          done
+          if [[ "$published" != "true" ]]; then
+            echo "::error::Canvas app publish time did not advance after Publish App."
+            exit 1
+          fi
+
+          {
+            echo "PUBLISH_API=Power Apps Publish App"
+            echo "ENVIRONMENT_ID=$POWER_APPS_ENVIRONMENT_ID"
+            echo "APP_ID=$POWER_PLATFORM_TARGET_APP_ID"
+            echo "BEFORE_LAST_PUBLISH_TIME=$before_publish_time"
+            echo "AFTER_LAST_PUBLISH_TIME=$after_publish_time"
+            echo "VERIFIED=true"
+          } | tee artifacts/step6/PUBLISH_RESULT.env
+
       - name: Read back the isolated app and compare active source
         shell: bash
         run: |
@@ -264,6 +328,18 @@ jobs:
         shell: bash
         run: |
           pac solution import             --path "$RUNNER_TEMP/baseline-solution.zip"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --force-overwrite             --publish-changes
+          pac solution publish --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
+          if az account show >/dev/null 2>&1; then
+            service_token="$(az account get-access-token --resource https://service.powerapps.com/ --query accessToken --output tsv)"
+            publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+            curl --fail-with-body --silent --show-error \
+              --request POST \
+              --header "Authorization: Bearer $service_token" \
+              --header "Content-Type: application/json" \
+              --data '{}' \
+              "$publish_url" \
+              --output artifacts/step6/ROLLBACK_PUBLISH_RESPONSE.json
+          fi
           echo "ROLLBACK=baseline-restored"             | tee artifacts/step6/ROLLBACK.env
 
       - name: Preserve PAC diagnostic log
@@ -383,10 +459,31 @@ jobs:
         run: |
           pac auth create             --name step6-rollback-oidc             --githubFederated             --tenant "$POWER_PLATFORM_TENANT_ID"             --applicationId "$POWER_PLATFORM_CLIENT_ID"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
 
-      - name: Restore and publish the last accepted baseline
+      - name: Sign in automation identity for rollback publish
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.POWER_PLATFORM_CLIENT_ID }}
+          tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Restore the last accepted baseline draft
         shell: bash
         run: |
           pac solution import             --path "$RUNNER_TEMP/baseline-solution.zip"             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             --force-overwrite             --publish-changes
+          pac solution publish --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
+
+      - name: Publish the restored isolated Canvas app
+        shell: bash
+        run: |
+          set -euo pipefail
+          service_token="$(az account get-access-token --resource https://service.powerapps.com/ --query accessToken --output tsv)"
+          publish_url="https://api.powerapps.com/providers/Microsoft.PowerApps/apps/$POWER_PLATFORM_TARGET_APP_ID/publish?api-version=2016-11-01&%24filter=environment%20eq%20%27$POWER_APPS_ENVIRONMENT_ID%27"
+          curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer $service_token" \
+            --header "Content-Type: application/json" \
+            --data '{}' \
+            "$publish_url"
 
       - name: Record P0 failure and rollback
         if: always()
