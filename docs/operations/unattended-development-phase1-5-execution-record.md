@@ -10,7 +10,7 @@
 | 項目 | 結果 |
 |---|---|
 | 基準Solution | `StaffMasterAutomation`、表示名「職員マスタ自動化」、版 `1.11.0.0` |
-| 基準アプリ | `職員マスタ検索_自動テスト_v1_11` をSolutionへ追加 |
+| 基準アプリ | `ハンドメイド職員マスタ検索` をSolutionへ追加 |
 | 専用テスト環境 | `StaffMaster-Automation-Test` |
 | テスト環境ID | `68e00049-b7e5-eda6-9888-9a3cc493c5be` |
 | テストDataverse URL | `https://orge762dd9e.crm7.dynamics.com/` |

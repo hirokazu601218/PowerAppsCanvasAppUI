@@ -4,7 +4,7 @@
 
 職員マスタ検索アプリの無人E2Eテスト環境は構築済み。
 
-- 対象アプリ: `職員マスタ検索_自動テスト_v1_11`
+- 対象アプリ: `ハンドメイド職員マスタ検索`
 - App ID: `0e5f5c05-b67d-4a27-af71-ebe5e5381221`
 - 環境ID: `2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb`
 - 実行基盤: GitHub Actions + Microsoft Power Platform Playwright samples

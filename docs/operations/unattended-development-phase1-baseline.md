@@ -16,7 +16,7 @@ MicrosoftのPower Platform Git IntegrationをGitHubで使うには、GitHub Orga
 
 | 項目 | 確定値 |
 |---|---|
-| アプリ名 | `職員マスタ検索_自動テスト_v1_11` |
+| アプリ名 | `ハンドメイド職員マスタ検索` |
 | App ID | `0e5f5c05-b67d-4a27-af71-ebe5e5381221` |
 | Environment ID | `2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb` |
 | 実行URL | `https://apps.powerapps.com/play/e/2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb/a/0e5f5c05-b67d-4a27-af71-ebe5e5381221?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d` |
