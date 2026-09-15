@@ -21,10 +21,10 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | Power Apps無人修正・テスト・公開基盤の設計 |
+| 対象機能 | Power Apps無人修正・テスト・公開基盤：ステップ8～9実装・受入 |
 | 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11との差分は未照合 |
 | 要件ID | AUT-001～AUT-025、NFR-001～NFR-013（`docs/requirements/unattended-development-requirements.md` v1.02） |
-| 対象ソース | `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
+| 対象ソース | `scripts/automation/`、`tests/automation/`、`automation/`、`config/apps/`、`.github/workflows/staff-master-transaction.yml`、`e2e/changes/approved-property.test.ts`、 `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
 | 関連設計 | `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md`、`docs/operations/unattended-development-step6-source-reconstruction.md`、`docs/operations/unattended-development-step7-automatic-source-deployment.md` |
 | 関連テスト | 基準環境P0再合格。変更版の再構成・隔離公開・変更専用テスト＋P0成功（run 34934912204）。一時変更の復元・再公開・P0成功（run 34935420385） |
 | Library資料 | なし |
@@ -55,7 +55,7 @@
 
 ## ChatGPT Sol Workの次の作業
 
-次はステップ8「原因分析・自動修復・反復制御の汎用化」とする。
+ステップ8～9を実行中。2026-09-15のユーザー指示で連続実行を承認済み。Issue #7へ記録する。
 
 1. ステップ7専用の表示ルール同期を、承認済み変更マニフェストから対象コントロール・プロパティ・変更前後値を検証する汎用ゲートへ置き換える。
 2. テストケースID＋失敗工程＋正規化エラーの原因指紋と、試行済み対応策の台帳を実装する。
@@ -63,7 +63,7 @@
 4. 同じ対応策の単純反復を拒否し、新対応策が尽きた場合の停止と合格版復元を検証する。
 5. 変更専用テストとP0、Issue・PR・Actions・14日証跡の相互追跡を維持する。
 
-基準・本番アプリ、課金、接続、権限、v1.12採番は変更しない。
+ステップ8受入後、ステップ9でv1.12候補の検証・main統合・タグ付け・テスト公開を行う。基準・本番アプリ、課金、接続、権限は変更しない。
 
 ## 未決・ギャップ
 

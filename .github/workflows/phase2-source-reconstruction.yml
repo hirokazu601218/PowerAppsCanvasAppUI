@@ -1,14 +1,6 @@
 name: Canvas active source reconstruction
 
 on:
-  push:
-    branches:
-      - automation/phase1-baseline
-    paths:
-      - '.github/workflows/phase2-source-reconstruction.yml'
-      - 'tools/powerapps-source-reconstruct/**'
-      - 'powerapps/canvas-v3/**'
-      - 'e2e/changes/**'
   workflow_dispatch:
 
 permissions:
@@ -17,7 +9,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: canvas-active-source-reconstruction
+  group: staff-master-isolated-environment
   cancel-in-progress: false
 
 env:
