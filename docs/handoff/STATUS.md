@@ -24,11 +24,11 @@
 | 対象機能 | Power Apps無人修正・テスト・公開基盤の設計 |
 | 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11との差分は未照合 |
 | 要件ID | AUT-001～AUT-025、NFR-001～NFR-013（`docs/requirements/unattended-development-requirements.md` v1.02） |
-| 対象ソース | `.github/workflows/phase1-5-roundtrip.yml`、`phase1-5-target-metadata.yml`、`phase1-5-target-p0.yml`、`phase1-5-share-diagnostics.yml`、`e2e/staff-master-p0.test.ts`、`powerapps/`、`src/staff-master/` |
-| 関連設計 | `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-baseline.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md` |
-| 関連テスト | 基準環境P0再合格。URL直接指定の無変更Solution展開成功。隔離アプリへのCanView付与・読戻し検証後、隔離環境P0成功（run 34925700515） |
+| 対象ソース | `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
+| 関連設計 | `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md`、`docs/operations/unattended-development-step6-source-reconstruction.md` |
+| 関連テスト | 基準環境P0再合格。URL直接指定の無変更Solution展開成功。activeソース再構成・隔離公開・固定App ID再取得・ソース完全一致・隔離環境P0成功（run 34928950801） |
 | Library資料 | なし |
-| 未解決事項 | 編集可能Canvasソースからの再構成方式、公開アプリ由来ソースとGitHub v1.11の差分照合 |
+| 未解決事項 | 小変更での修正→公開→変更専用テスト＋P0の一周検証、公開アプリ由来activeソースと旧GitHub v1.11ソースの差分照合 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -36,15 +36,15 @@
 
 | 項目 | 状態 |
 |---|---|
-| 無人修正・テスト・公開基盤 | Phase 0・Phase 1完了。Phase 1.5の無変更配布基線も完了。Dataverse URL直接指定のexport/import/publish、隔離アプリへのCanView共有・読戻し検証、隔離環境P0が成功 |
+| 無人修正・テスト・公開基盤 | 9ステップ中ステップ1～6完了。Dataverse URL直接指定の配布、CanView共有、activeソース再構成、隔離公開、再取得完全一致、隔離P0まで成功 |
 | Phase 1 P0 | run #8 attempt 3が成功。2026-09-15T01:27:59Z完了。証跡は14日保持 |
 | 実環境確認 | Azure Subscriptionあり・所有者。対象はDataverse付き開発者環境、非マネージド。Power Apps Premiumなし |
-| GitHub格納状態 | 公開P0版から取得した完全なSolutionパッケージと展開ソースを `powerapps/` 配下へ格納済み。編集可能Canvasソースからの再構成方式は未確定 |
-| 推奨経路 | アプリ所有者向けAPIで固定対象へCanViewを冪等設定するURL直接指定の無変更配布基線を採用。次は配布経路から分離してCanvas再構成方式を比較 |
+| GitHub格納状態 | 完全なSolutionに加え、再構成可能なactive `*.pa.yaml` と `baseline.msapr` を `powerapps/canvas-v3/` へ格納済み。成功確定commitは `ab1b7456ed8bc7d39cd302c1e23276b789212179` |
+| 推奨経路 | Microsoft公式 `PowerApps-Tooling` のPersistenceライブラリを固定commitで使用し、`baseline.msapr`＋active `pa.yaml`から再構成する。非推奨 `pac canvas pack/unpack` は使用しない |
 | Power Platform Git統合 | GitHub接続はプレビュー。GitHub Organization、Managed Environment、Azure Key Vault、Premium相当ライセンス等が必要なため当面見送り |
-| GitHub Actions | 既存E2Eに加え、OIDC疎通、URL直接指定round-trip、対象App ID取得、CanView共有・隔離P0、共有診断ワークフローを構築済み |
+| GitHub Actions | OIDC、URL直接指定round-trip、CanView共有、隔離P0に加え、再構成→Solutionパック→隔離公開→再取得比較→P0→成功時ソース確定のゲートを構築済み |
 | E2Eスクリプト | `e2e/testapp-smoke.test.ts` と `e2e/staff-master-p0.test.ts` を格納済み |
-| Power Apps E2E | 基準環境P0はrun #8 attempt 3で成功。隔離環境P0はrun 34925700515で成功。初回のRequest access失敗と全診断試行は実行記録へ保持 |
+| Power Apps E2E | 基準環境P0はrun #8 attempt 3で成功。隔離環境P0はrun 34925700515、再構成版P0はrun 34928950801で成功（1 passed）。全試行はIssue #5と実行記録へ保持 |
 | 合否の境界 | ワークフローやスクリプトの存在だけでは合格としない。対象版の実行結果と証跡で判定する |
 
 ## テスト設計
@@ -55,17 +55,18 @@
 
 ## ChatGPT Sol Workの次の作業
 
-1. 失敗済みの `pac canvas pack` 単純再試行を除外し、編集可能Canvasソースからの再構成方式を比較する。
-2. 必要権限、追加費用、プレビュー依存、意味差分、無人実行性を比較し、最小リスクの候補を選ぶ。
-3. アプリまたはSolutionソースを変更する前に、修正方針・変更範囲・追加テストを提示して承認を得る。
-4. 承認後、隔離環境だけで小変更の再構成・公開・追加テスト・P0を実証する。
-5. 再構成経路が成立した後、公開アプリ由来ソースとGitHub v1.11の差分を照合する。
-6. 承認範囲内に未試行の新対応策がある限り続行し、同じ対応策は単純反復しない。新対応策が尽きた場合または権限・費用・本番変更など範囲を超える場合に停止する。
+1. ステップ7の小さな表示変更候補、変更範囲、変更専用テスト、復元条件を提示し、ユーザー承認を得る。
+2. 承認後、`powerapps/canvas-v3/Src/Screen1.pa.yaml` を作業ブランチで変更する。
+3. activeソースからmsappとSolutionを再構成し、隔離Dataverse URLへ反映・公開する。
+4. 変更専用テストと既存P0を実行し、両方の合格を確認する。
+5. 成功時は変更版を作業ブランチへ確定し、失敗時は直前の合格Solutionへ復元する。
+6. 公開アプリ由来activeソースと旧GitHub v1.11ソースの差分照合を継続する。
+7. 承認範囲内に未試行の新対応策がある限り続行し、同じ対応策は単純反復しない。新対応策が尽きた場合または権限・費用・本番変更など範囲を超える場合に停止する。
 
 ## 未決・ギャップ
 
-- Dataverse URL直接指定のSolution配布経路と、固定された隔離アプリへのCanView共有・P0は成功した。`pac canvas pack/unpack` は非推奨かつ2.12.2で失敗するため、編集可能ソースの再構成方式を別ゲートとして扱う。
-- 最終P0 runは `34925700515`。証跡artifact `phase1-5-target-evidence-5`（ID `10379427558`）は2026-09-29 03:39:32 UTCまで保持する。
+- Dataverse URL直接指定のSolution配布、固定隔離アプリへのCanView共有・P0、Microsoft公式Persistenceライブラリによるactiveソース再構成は成功した。次の未完了ゲートは、意図的な小変更を含む変更専用テスト＋P0の一周検証。
+- 最終P0 runは `34928950801`。再構成証跡 `step6-source-reconstruction-6`（ID `10381275802`）は2026-09-29 04:29:53 UTC、P0証跡 `phase1-5-target-evidence-6`（ID `10380538667`）は2026-09-29 04:31:55 UTCまで保持する。
 - 本番列一覧、Dataverseテーブル名・型・ロール、実接続/委任設計は別途。
 - TSVから正式XLSX出力への方式は未決。
 - 帳票A3/A4等の正式用紙と実機改ページは未決。
