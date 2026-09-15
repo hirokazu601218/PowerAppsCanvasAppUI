@@ -25,10 +25,10 @@
 | 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11との差分は未照合 |
 | 要件ID | AUT-001～AUT-024（`docs/requirements/unattended-development-requirements.md`） |
 | 対象ソース | `.github/workflows/staff-master-e2e.yml`、`e2e/staff-master-p0.test.ts`、`src/staff-master/`。Phase 1は調査・文書のみ |
-| 関連設計 | `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-baseline.md` |
+| 関連設計 | `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-baseline.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md` |
 | 関連テスト | 既存P0を再実行して合格。文書はリンク・用語・版・記述整合を確認 |
 | Library資料 | なし |
-| 未解決事項 | 保全・編集経路A/B/Cの選択、サービスプリンシパル作成、公開アプリとGitHub v1.11の差分照合 |
+| 未解決事項 | CLI暫定経路の実行承認、サービスプリンシパル／OIDC作成、公開アプリとGitHub v1.11の差分照合 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -36,10 +36,12 @@
 
 | 項目 | 状態 |
 |---|---|
-| 無人修正・テスト・公開基盤 | Phase 0完了。Phase 1はP0基準確認完了、ソース保全方式の判断待ち |
+| 無人修正・テスト・公開基盤 | Phase 0完了。Phase 1はP0基準確認完了。Phase 1.5 CLI暫定経路は実行承認待ち |
 | Phase 1 P0 | run #8 attempt 3が成功。2026-09-15T01:27:59Z完了。証跡は14日保持 |
+| 実環境確認 | Azure Subscriptionあり・所有者。対象はDataverse付き開発者環境、非マネージド。Power Apps Premiumなし |
 | GitHub格納状態 | 画面YAML・個別Power Fxは存在。アプリ全体を再構成できる完全なSolutionソースではない |
-| Power Platform Git統合 | GitHub接続はプレビュー。GitHub Organization、Managed Environment、Azure Key Vault等が必要で、現個人リポジトリのままでは開始不可 |
+| 推奨経路 | GitHub Organization等を新設せず、CLI暫定経路＋GitHub OIDCで無変更round-tripを先行検証 |
+| Power Platform Git統合 | GitHub接続はプレビュー。GitHub Organization、Managed Environment、Azure Key Vault、Premium相当ライセンス等が必要なため当面見送り |
 | GitHub Actions | `.github/workflows/powerapps-e2e.yml` と `staff-master-e2e.yml` を構築済み |
 | E2Eスクリプト | `e2e/testapp-smoke.test.ts` と `e2e/staff-master-p0.test.ts` を格納済み |
 | Power Apps E2E | run #1は失敗。成功実績とは分けて扱い、Actionsで最新結果を確認する |
@@ -53,15 +55,16 @@
 
 ## ChatGPT Sol Workの次の作業
 
-1. Phase 1の保全・編集経路A/B/Cを決定する。
-2. 選択経路に必要な一回限りの環境・認証準備を人が行う。
-3. 公開アプリを変更せず取得するか、複製先で往復再現性を確認する。
-4. 差分テンプレートで公開アプリ由来ソースと既存GitHub v1.11を比較する。
-5. 基準版をIssue #5で承認後、Phase 2の自動変更パイプラインへ進む。
+1. Phase 1.5のCLI暫定経路＋GitHub OIDC計画の承認を得る。
+2. 公開アプリを変更せず `.msapp` を取得し、ハッシュを記録する。
+3. カスタムSolution、2個目の開発者環境、OIDCサービスプリンシパルを作成する。
+4. 無変更round-tripとP0を実行し、暫定経路の採否を決定する。
+5. 差分テンプレートで公開アプリ由来ソースと既存GitHub v1.11を比較する。
+6. 基準版をIssue #5で確定後、Phase 2の自動変更パイプラインへ進む。
 
 ## 未決・ギャップ
 
-- Power Appsの保全・編集経路。ネイティブGit統合、CLI暫定、Studio自動操作から選択が必要。
+- CLI暫定経路は `pac canvas pack/unpack` の非推奨機能を含むため、無変更round-tripの成功を採用条件とする。
 - 本番列一覧、Dataverseテーブル名・型・ロール、実接続/委任設計は別途。
 - TSVから正式XLSX出力への方式は未決。
 - 帳票A3/A4等の正式用紙と実機改ページは未決。
