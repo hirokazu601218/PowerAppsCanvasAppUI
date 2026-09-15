@@ -34,7 +34,7 @@ jobs:
           tenant-id: ${{ env.POWER_PLATFORM_TENANT_ID }}
           allow-no-subscriptions: true
 
-      - name: Resolve dedicated test user in isolated Dataverse
+      - name: Resolve dedicated test user through Dataverse
         shell: bash
         run: |
           set -euo pipefail
@@ -44,16 +44,33 @@ jobs:
             --resource "$resource" \
             --query accessToken \
             --output tsv)"
-          encoded_email="$(jq -rn --arg value "$TEST_USER_EMAIL" '$value|@uri')"
-          query_url="$resource/api/data/v9.2/systemusers?\$select=systemuserid,azureactivedirectoryobjectid,internalemailaddress,fullname,isdisabled&\$filter=internalemailaddress%20eq%20'$encoded_email'"
-          curl --fail --silent --show-error \
+
+          curl --fail --silent --show-error --get \
             --header "Authorization: Bearer $access_token" \
             --header "Accept: application/json" \
-            "$query_url" \
-            | tee artifacts/share-diagnostics/TEST_USER.json
-          principal_id="$(jq -r '.value[0].azureactivedirectoryobjectid // empty' artifacts/share-diagnostics/TEST_USER.json)"
-          test -n "$principal_id"
-          echo "TEST_USER_PRINCIPAL_OBJECT_ID=$principal_id" | tee artifacts/share-diagnostics/TEST_USER.env
+            --data-urlencode '\$select=systemuserid,azureactivedirectoryobjectid,internalemailaddress,fullname,isdisabled' \
+            --data-urlencode "\$filter=internalemailaddress eq '$TEST_USER_EMAIL'" \
+            "$resource/api/data/v9.2/systemusers" \
+            | tee artifacts/share-diagnostics/TEST_USER_SYSTEMUSER.json
+          principal_id="$(jq -r '.value[0].azureactivedirectoryobjectid // empty' artifacts/share-diagnostics/TEST_USER_SYSTEMUSER.json)"
+
+          if [[ -z "$principal_id" ]]; then
+            curl --fail --silent --show-error --get \
+              --header "Authorization: Bearer $access_token" \
+              --header "Accept: application/json" \
+              --data-urlencode '\$select=aaduserid,userprincipalname,mail,displayname' \
+              --data-urlencode "\$filter=userprincipalname eq '$TEST_USER_EMAIL'" \
+              "$resource/api/data/v9.2/aadusers" \
+              | tee artifacts/share-diagnostics/TEST_USER_AADUSER.json
+            principal_id="$(jq -r '.value[0].aaduserid // empty' artifacts/share-diagnostics/TEST_USER_AADUSER.json)"
+          fi
+
+          if [[ -n "$principal_id" ]]; then
+            echo "TEST_USER_PRINCIPAL_OBJECT_ID=$principal_id" | tee artifacts/share-diagnostics/TEST_USER.env
+          else
+            echo "::warning::Dedicated test user was not found through Dataverse systemusers or aadusers"
+            echo "TEST_USER_PRINCIPAL_OBJECT_ID=" | tee artifacts/share-diagnostics/TEST_USER.env
+          fi
 
       - name: Inspect Microsoft Power Apps admin module source
         shell: bash
