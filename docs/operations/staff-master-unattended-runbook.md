@@ -1,6 +1,6 @@
 # 職員マスタ 無人修正・テスト公開の運用手順
 
-更新：2026-09-15。構築と受入は [Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7) に記録する。
+更新：2026-09-15。v1.12でテスト公開運用を開始。構築と受入は [Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7) に記録する。
 
 ## 1. 指示から成功版まで
 
@@ -37,7 +37,7 @@
 
 成功時だけ0.01加算する。最初の成功タグは `v1.12`。ソース上の候補版表示は成功採番を意味しない。
 
-正本はmainと成功タグ。成功タグの注釈にrun、候補commit、main commit、環境、App ID、公開版、Solutionハッシュ、全ゲート結果を永久保存する。次回実行時は同じ対象の有効な成功タグを選び、なければ初期合格commit `260819a4fa30c4d8c8dcd02acc626c26d7823697` を使う。`automation/release.json` は初期基準と候補設定であり、最新成功状態はタグの注釈から判断する。
+正本はmainと成功タグ。成功タグの注釈にrun、候補commit、main commit、環境、App ID、公開版、Solutionハッシュ、全ゲート結果を永久保存する。次回実行時は同じ対象の有効な成功タグを選び、なければ `automation/release.json` の `last_good_commit` を使う。初期合格commitは `260819a4fa30c4d8c8dcd02acc626c26d7823697`。`automation/release.json` は合格確定後に更新する控えであり、正本の受領記録はタグの注釈に保持する。
 
 手動回復が必要な場合は、合格タグからブランチを作り `automation/run.json` を `mode: restore` にして実行する。基準commitへのcheckout→再構築→同じ隔離URLへのインポート→公開→読戻し→表示確認＋P0で復元を確認する。
 

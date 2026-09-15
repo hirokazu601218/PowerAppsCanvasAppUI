@@ -1,0 +1,73 @@
+{
+  "candidate_commit": "40d0fcc26192b172c75c974527316f42237214c8",
+  "gates": {
+    "auth": "success",
+    "build": "success",
+    "change_test": "success",
+    "import": "success",
+    "p0": "success",
+    "publish": "success",
+    "readback": "success"
+  },
+  "issue": 7,
+  "main_commit": "2acf72884fade8235bd04cc49be70250203618b8",
+  "package_sha256": "44ca3288a77d4aba31063cdfadc223e5f5c9035b0518f6158f7162e45f1feda5",
+  "published": {
+    "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1",
+    "draft_version": "2026-09-15T09:46:00Z",
+    "status": "Ready",
+    "version": "2026-09-15T09:46:00Z"
+  },
+  "run_attempt": 1,
+  "run_id": 34954109942,
+  "schema": 1,
+  "state": "TESTED_RELEASE",
+  "target": {
+    "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1",
+    "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be"
+  },
+  "version": "1.12",
+  "finalization_run": 34954509560,
+  "acceptance_run": 34952452993,
+  "artifacts": {
+    "candidate": {
+      "archive_download_url": "https://api.github.com/repos/hirokazu601218/PowerAppsCanvasAppUI/actions/artifacts/10390892015/zip",
+      "created_at": "2026-09-15T09:47:05Z",
+      "digest": "sha256:7508acee7fba6873af79a78d81ce67229e856fea7510f45d0488920a7101bac7",
+      "expired": false,
+      "expires_at": "2026-09-29T09:47:03Z",
+      "id": 10390892015,
+      "name": "staff-master-transaction-34954109942-1",
+      "size_in_bytes": 3418500,
+      "updated_at": "2026-09-15T09:47:05Z",
+      "url": "https://api.github.com/repos/hirokazu601218/PowerAppsCanvasAppUI/actions/artifacts/10390892015",
+      "workflow_run": {
+        "head_branch": "automation/phase1-baseline",
+        "head_repository_id": 1365055951,
+        "head_sha": "40d0fcc26192b172c75c974527316f42237214c8",
+        "id": 34954109942,
+        "repository_id": 1365055951
+      }
+    },
+    "finalization": {
+      "archive_download_url": "https://api.github.com/repos/hirokazu601218/PowerAppsCanvasAppUI/actions/artifacts/10390287550/zip",
+      "created_at": "2026-09-15T09:48:16Z",
+      "digest": "sha256:79932b57658f894f271235f5e78f4c0ba9428dd08f1664a5b64a0d050e6644b0",
+      "expired": false,
+      "expires_at": "2026-09-29T09:48:14Z",
+      "id": 10390287550,
+      "name": "staff-master-release-34954509560",
+      "size_in_bytes": 3420224,
+      "updated_at": "2026-09-15T09:48:16Z",
+      "url": "https://api.github.com/repos/hirokazu601218/PowerAppsCanvasAppUI/actions/artifacts/10390287550",
+      "workflow_run": {
+        "head_branch": "main",
+        "head_repository_id": 1365055951,
+        "head_sha": "2acf72884fade8235bd04cc49be70250203618b8",
+        "id": 34954509560,
+        "repository_id": 1365055951
+      }
+    }
+  }
+}
