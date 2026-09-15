@@ -1,7 +1,7 @@
 # Phase 1.5 実行計画 — CLI暫定経路とGitHub OIDC
 
 更新日: 2026-09-15  
-状態: **URL直接指定の無変更展開成功／P0共有待ち**  
+状態: **URL直接指定の無変更展開・CanView共有・隔離環境P0成功**  
 対象Issue: [#5](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/5)  
 対象PR: [#6](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/6)  
 実行記録: [Phase 1.5 実行記録](unattended-development-phase1-5-execution-record.md)
@@ -99,6 +99,7 @@ GitHub ActionsからPower Platformへの認証は、GitHub OIDCトークンとMi
 3. ワークフローへ `id-token: write` を付与する。
 4. OIDCで `pac auth create --githubFederated` を実行する。
 5. branch / PR / workflow / issueの命名と証跡保持を既存要件へ合わせる。
+6. 個別承認済みの隔離テストアプリに限り、専用テスト利用者へ `CanView` を冪等付与し、読戻し検証する。`CanEdit` などへの権限拡大は拒否する。
 
 ## 6. 採用判定用round-trip
 
@@ -161,7 +162,7 @@ GitHub ActionsからPower Platformへの認証は、GitHub OIDCトークンとMi
 | 6 | P0実行 | 全P0成功 |
 | 7 | GitHub記録 | Issue・PR・証跡・ロールバック版を関連付け |
 
-すべて成功した時点でPhase 1を完了し、無人修正ループのPhase 2へ進む。
+順序1～7の成功をもってPhase 1.5の無変更配布基線を完了とする。次のゲートは、編集可能Canvasソースから意味差分なくアプリを再構成できる方式の選定・実証とする。
 
 ## 10. 実行結果（2026-09-15）
 
@@ -175,4 +176,10 @@ OIDC、Solution作成、隔離テスト環境、専用サービスプリンシ�
 - 同一の無変更Solutionパッケージのimport・publish
 - 隔離環境内のSolutionとCanvasアプリの存在
 
-隔離テストアプリはApp ID `362ac991-eead-4f07-8373-afdb3ebfdba1` で作成された。P0 run [34923187435](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34923187435) は、専用テスト利用者にアプリが未共有のため「Request access」で停止した。次はこの隔離テストアプリだけを専用テスト利用者へCanView共有し、P0を再実行する。基準アプリの内容・公開状態・共有設定は変更しない。
+隔離テストアプリはApp ID `362ac991-eead-4f07-8373-afdb3ebfdba1` で作成された。初回P0 run [34923187435](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34923187435) は、専用テスト利用者にアプリが未共有のため「Request access」で停止した。
+
+個別承認に基づき、テナント管理APIで権限を拡大せず、アプリ所有者向けPower Apps APIを使用して隔離テストアプリだけを `powerapps-test@govaca.onmicrosoft.com` へ `CanView` 共有した。ワークフローは対象環境・App ID・利用者・ロールを固定し、`CanEdit` を拒否して、付与後の読戻し検証を行う。最終run [34925700515](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34925700515) で共有、検証、P0のすべてが成功した。
+
+証跡artifactは `phase1-5-target-evidence-5`（ID `10379427558`、SHA-256 `1bc8db8f60ddb6435a7726c107ab538b202b4a88587cf4d17c535f9f9e808be8`）で、保持期限は2026-09-29 03:39:32 UTCである。基準アプリの内容・公開状態・共有設定、本番環境、テナント管理ロール、Client Secretはいずれも変更していない。
+
+これによりURL直接指定の無変更配布基線は成立した。次は、失敗済みの `pac canvas pack` 単純再試行を除外し、編集可能Canvasソースからの再構成方式を比較・実証する。
