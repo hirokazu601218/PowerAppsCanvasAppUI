@@ -29,17 +29,20 @@ test('AUT-SIDEBAR-001 menu icon and sidebar state preservation', async ({ page }
   await expect(c.getByText(/職員一覧\s*2件/).first()).toBeVisible();
   // The transparent row button owns pointer events above the display labels.
   await c.getByRole('button',{name:'00990000002 山田 花子 詳細を表示',exact:true}).click();
+  // Verify the selected employee in the persistent detail summary, not hidden list cells.
+  const selected=c.getByText('職員番号：00990000002 ／ 所属：02総務課',{exact:true});
+  await expect(selected).toBeVisible();
   for(let i=0;i<2;i++){
     await close().click();
     await expect(open()).toHaveText(legacy?'›':'☰');
     await expect(input).toBeHidden();
-    await expect(c.getByText('00990000002',{exact:true}).first()).toBeVisible();
+    await expect(selected).toBeVisible();
     await page.screenshot({path:process.env.OUTPUT_DIRECTORY+'/sidebar-closed-'+i+'.png'});
     await open().click();
     await expect(close()).toHaveText(legacy?'‹':'☰');
     await expect(input).toHaveValue('山田');
     await expect(c.getByText(/職員一覧\s*2件/).first()).toBeVisible();
-    await expect(c.getByText('00990000002',{exact:true}).first()).toBeVisible();
+    await expect(selected).toBeVisible();
   }
   await c.getByRole('button',{name:'検索条件をクリア',exact:true}).click();
   await c.getByRole('button',{name:'次へ',exact:true}).click();
