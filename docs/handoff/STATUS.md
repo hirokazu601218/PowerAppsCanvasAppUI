@@ -36,6 +36,7 @@
 
 | 項目 | 状態 |
 |---|---|
+| 無人修正・テスト・公開基盤 | Phase 0完了。要件定義書v1.00、段階別構築計画v1.00を作成。実装は未着手 |
 | GitHub Actions | `.github/workflows/powerapps-e2e.yml` と `staff-master-e2e.yml` を構築済み |
 | E2Eスクリプト | `e2e/testapp-smoke.test.ts` と `e2e/staff-master-p0.test.ts` を格納済み |
 | Staff Master E2E | run #4が成功。定時・随時実行と結果通知の仕組みを継続確認中 |
@@ -50,11 +51,11 @@
 
 ## ChatGPT Sol Workの次の作業
 
-1. 無人修正・テスト・公開基盤の要件定義書と段階別構築計画を確定する。
-2. P0合格済み公開アプリをアンマネージドSolutionへ追加し、Power Platform Git統合形式でGitHubへ初期取込みする。
-3. 公開アプリ由来ソースと既存GitHub v1.11を比較し、基準版と復元点を確定する。
-4. 専用サービスプリンシパルとGitHub Actions Secretsを設定する。
-5. 作業ブランチ、Solution反映、追加テスト、P0回帰、自動修復、復元、main統合、タグ、Issue記録を段階的に実装・検証する。
+1. Phase 1として既存P0を再実行し、開始時点の合格を確認する。
+2. 成功run、App ID、環境ID、公開版を基準記録として確定する。
+3. P0合格済み公開アプリを変更せず取得・保全する方法を確認する。
+4. 公開アプリ由来ソースと既存GitHub v1.11の比較項目・差分記録様式を作る。
+5. Phase 2に必要なPower Platform Git統合の利用可否と初回操作を確認する。
 
 ## 未決・ギャップ
 
