@@ -79,8 +79,7 @@ jobs:
           )
           if [[ "${#candidates[@]}" -ne 1 ]]; then
             echo "::error::Expected exactly one baseline .msapp; found ${#candidates[@]}"
-            printf '%s
-' "${candidates[@]}"
+            printf '%s\n' "${candidates[@]}"
             exit 1
           fi
           baseline_msapp="${candidates[0]}"
