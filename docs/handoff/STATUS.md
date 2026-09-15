@@ -21,7 +21,7 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | Power Apps無人修正・テスト・公開基盤：ステップ1～9完了・テスト公開運用開始 |
+| 対象機能 | Issue #12：検索領域開閉アイコンを横三本線へ変更（v1.13候補） |
 | 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11と差分照合済み。P0合格済み公開版を採用し、旧版は参照として保持 |
 | 要件ID | AUT-001～AUT-025、NFR-001～NFR-013（`docs/requirements/unattended-development-requirements.md` v1.03） |
 | 対象ソース | `scripts/automation/`、`tests/automation/`、`automation/`、`config/apps/`、`.github/workflows/staff-master-transaction.yml`、`staff-master-finalize.yml`、`e2e/changes/approved-property.test.ts`、 `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
@@ -69,7 +69,7 @@
 | 8 | 自動修復・停止・合格版復元 | 完了 |
 | 9 | v1.12検証・main統合・成功タグ・運用開始 | 完了 |
 
-次はこのWorkで修正指示を受け、[運用手順](../operations/staff-master-unattended-runbook.md) に従って方針提示・承認後に実行する。次の成功版はv1.13。現時点では新しい変更指示は未受領。
+次はこのWorkで修正指示を受け、[運用手順](../operations/staff-master-unattended-runbook.md) に従って方針提示・承認後に実行する。次の成功版はv1.13。Issue #12：検索サイドバーの横三本線変更を承認済み。v1.13候補の追加テスト・P0を実施し、全ゲート成功後に確定する。
 
 [受入・成功版確定記録](../operations/unattended-development-step8-9-acceptance.md)、[成功タグv1.12](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.12)、[Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7) を参照する。
 
