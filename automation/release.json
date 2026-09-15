@@ -1,8 +1,10 @@
 {
   "schema": 1,
-  "last_success_version": "1.11",
-  "last_good_commit": "260819a4fa30c4d8c8dcd02acc626c26d7823697",
-  "last_good_run": 34935420385,
+  "last_success_version": "1.12",
+  "last_good_commit": "2acf72884fade8235bd04cc49be70250203618b8",
+  "last_good_run": 34954109942,
   "candidate_version": "1.12",
-  "status": "candidate"
+  "status": "accepted",
+  "last_good_ref": "v1.12",
+  "receipt": "automation/evidence/v1.12-release.json"
 }
