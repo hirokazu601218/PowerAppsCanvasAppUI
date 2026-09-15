@@ -21,7 +21,7 @@ jobs:
     env:
       POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
       POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
-      POWER_PLATFORM_TEST_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+      POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
       SOLUTION_NAME: StaffMasterAutomation
     steps:
       - name: Check out canonical baseline
@@ -58,6 +58,7 @@ jobs:
             --sources powerapps/canvas-src \
             --msapp "$solution_msapp" \
             --layout SourceCode \
+            --disable-load-from-yaml \
             --overwrite
           sha256sum "$solution_msapp" \
             | tee artifacts/roundtrip/PACKED_MSAPP_SHA256.txt
@@ -97,7 +98,7 @@ jobs:
             --githubFederated \
             --tenant "$POWER_PLATFORM_TENANT_ID" \
             --applicationId "$POWER_PLATFORM_CLIENT_ID" \
-            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID"
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"
           echo "GitHub OIDC authentication succeeded." | tee artifacts/roundtrip/OIDC_AUTH.txt
 
       - name: Import and publish in isolated test environment
@@ -105,17 +106,26 @@ jobs:
         run: |
           pac solution import \
             --path "$RUNNER_TEMP/StaffMasterAutomation_1_11_roundtrip.zip" \
-            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID" \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL" \
             --force-overwrite \
             --publish-changes
           pac solution list \
-            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID" \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL" \
             --json \
             | tee artifacts/roundtrip/SOLUTIONS.json
           pac canvas list \
-            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID" \
+            --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL" \
             | tee artifacts/roundtrip/CANVAS_APPS.txt
           grep -q "$SOLUTION_NAME" artifacts/roundtrip/SOLUTIONS.json
+
+      - name: Preserve PAC diagnostic log
+        if: failure()
+        shell: bash
+        run: |
+          pac_log="$(find "$HOME/.dotnet/tools/.store/microsoft.powerapps.cli.tool" -type f -name pac-log.txt -print -quit || true)"
+          if [[ -n "$pac_log" ]]; then
+            cp "$pac_log" artifacts/roundtrip/PAC_LOG.txt
+          fi
 
       - name: Write execution summary
         if: always()
