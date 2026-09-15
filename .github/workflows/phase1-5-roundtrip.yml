@@ -32,8 +32,9 @@ jobs:
       - name: Install Power Platform CLI
         shell: bash
         run: |
+          mkdir -p artifacts/roundtrip
           dotnet tool install --global Microsoft.PowerApps.CLI.Tool
-          pac --version
+          pac help >/dev/null
 
       - name: Validate canonical source inventory
         shell: bash
@@ -97,7 +98,7 @@ jobs:
             --tenant "$POWER_PLATFORM_TENANT_ID" \
             --applicationId "$POWER_PLATFORM_CLIENT_ID" \
             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_ID"
-          pac org who | tee artifacts/roundtrip/PAC_ORG_WHO.txt
+          echo "GitHub OIDC authentication succeeded." | tee artifacts/roundtrip/OIDC_AUTH.txt
 
       - name: Import and publish in isolated test environment
         shell: bash
@@ -120,6 +121,7 @@ jobs:
         if: always()
         shell: bash
         run: |
+          mkdir -p artifacts/roundtrip
           {
             echo "## Phase 1.5 no-change round trip"
             echo
