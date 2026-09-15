@@ -1,0 +1,47 @@
+name: Phase 1.5 OIDC smoke test
+
+on:
+  push:
+    branches:
+      - automation/phase1-baseline
+    paths:
+      - .github/workflows/phase1-5-oidc-smoke.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  verify-power-platform-oidc:
+    name: Verify Power Platform OIDC
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 15
+    env:
+      POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      POWER_PLATFORM_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Power Platform CLI
+        shell: bash
+        run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+
+      - name: Authenticate with GitHub OIDC
+        shell: bash
+        run: |
+          pac auth create \
+            --name github-oidc \
+            --githubFederated \
+            --tenant "$POWER_PLATFORM_TENANT_ID" \
+            --applicationId "$POWER_PLATFORM_CLIENT_ID" \
+            --environment "$POWER_PLATFORM_ENVIRONMENT_URL"
+
+      - name: Verify Dataverse connection
+        shell: bash
+        run: |
+          pac auth select --name github-oidc
+          pac org who
