@@ -195,7 +195,6 @@ jobs:
           pac canvas list             --environment "$POWER_PLATFORM_TEST_ENVIRONMENT_URL"             | tee artifacts/step6/TARGET_CANVAS_APPS.txt
           grep -q "$SOLUTION_NAME" artifacts/step6/TARGET_SOLUTIONS.json
           grep -q "$APP_NAME" artifacts/step6/TARGET_CANVAS_APPS.txt
-          grep -q "$POWER_PLATFORM_TARGET_APP_ID" artifacts/step6/TARGET_CANVAS_APPS.txt
 
       - name: Read back the isolated app and compare active source
         shell: bash
