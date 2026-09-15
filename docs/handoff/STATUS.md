@@ -8,7 +8,7 @@
 | 共有正本 | GitHub main。YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、変更履歴 |
 | Library | GitHubで版管理しない画像、Excel、Word、PDF、HTML原本、検討用資料を保管 |
 | 採用デザイン | B案。要件／基本・詳細設計／デザイン基準v1.03 |
-| 最新成功版 | 隔離テストアプリv1.12、架空25名内蔵。公開P0合格基準から版表示を更新し、変更テスト＋P0合格。成功タグv1.12 |
+| 最新成功版 | 隔離テストアプリv1.13、架空25名内蔵。検索開閉を横三本線へ変更。追加テスト2件＋P0合格、成功タグv1.13 |
 | B案実装 | モダンボタン・検索入力、固定サマリー、2段一覧、文字サイズ切替、全項目保持 |
 | 職員検索サイドバー開閉 | 実装。手動開閉360px／48px。条件・選択・ページ保持 |
 | v1.13以降 | 部品差分配布。111のコントロール・変数IDは固定 |
@@ -21,14 +21,14 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | Issue #12：検索領域開閉アイコンを横三本線へ変更（v1.13候補） |
+| 対象機能 | Issue #12完了：検索領域開閉アイコンを横三本線へ変更（成功版v1.13） |
 | 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11と差分照合済み。P0合格済み公開版を採用し、旧版は参照として保持 |
 | 要件ID | AUT-001～AUT-025、NFR-001～NFR-013（`docs/requirements/unattended-development-requirements.md` v1.03） |
 | 対象ソース | `scripts/automation/`、`tests/automation/`、`automation/`、`config/apps/`、`.github/workflows/staff-master-transaction.yml`、`staff-master-finalize.yml`、`e2e/changes/approved-property.test.ts`、 `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
 | 関連設計 | `docs/operations/staff-master-unattended-runbook.md`、`docs/operations/unattended-development-step8-9-acceptance.md`、 `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md`、`docs/operations/unattended-development-step6-source-reconstruction.md`、`docs/operations/unattended-development-step7-automatic-source-deployment.md` |
 | 関連テスト | ステップ8受入run 34952452993、v1.12変更テスト＋P0・安全制御10件run 34954109942、mainとタグの確定run 34954509560が合格 |
 | Library資料 | なし |
-| 未解決事項 | Issue #12追加テストのlocator不具合を修正。復元run 34975611706で全ゲート合格。v1.13再展開を実施。詳細は下記 |
+| 未解決事項 | Issue #12の失敗原因は解消。v1.13公開・追加テスト・P0・main統合・成功タグ確定済み。次の修正指示待ち |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -69,14 +69,14 @@
 | 8 | 自動修復・停止・合格版復元 | 完了 |
 | 9 | v1.12検証・main統合・成功タグ・運用開始 | 完了 |
 
-次はこのWorkで修正指示を受け、[運用手順](../operations/staff-master-unattended-runbook.md) に従って方針提示・承認後に実行する。次の成功版はv1.13。Issue #12：検索サイドバーの横三本線変更を承認済み。v1.13候補の追加テスト・P0を実施し、全ゲート成功後に確定する。
+次はこのWorkで修正指示を受け、[運用手順](../operations/staff-master-unattended-runbook.md) に従って方針提示・承認後に実行する。Issue #12はv1.13として完了。次の成功版候補はv1.14。追加の修正指示をこのWorkで受け付ける。
 
 [受入・成功版確定記録](../operations/unattended-development-step8-9-acceptance.md)、[成功タグv1.12](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.12)、[Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7) を参照する。
 
 ## 未決・ギャップ
 
 - ステップ7では、一時表示変更の無人反映、変更専用テスト＋P0、元表示への復元・再公開・P0を実証した。現行Persistence経路はactive `.pa.yaml` 単独では実行用ルールを再コンパイルしないため、承認対象を厳格照合した実行時ルール同期を使用した。ステップ8で既存プロパティのマニフェスト駆動と修復制御を実証済み。新規コントロール等の一般コンパイルは未対応で、運用ゲートが停止する。
-- 最新P0はv1.12候補の `34954109942`。成功タグv1.12、公開App ID `362ac991-eead-4f07-8373-afdb3ebfdba1`。以下は過去のステップ7証跡：変更版証跡は `step6-source-reconstruction-13`（ID `10382398248`）と `phase1-5-target-evidence-13`（ID `10383136592`）、復元版証跡は `step6-source-reconstruction-14`（ID `10382428589`）と `phase1-5-target-evidence-14`（ID `10382753247`）。いずれも2026-09-29まで保持する。
+- 最新P0はv1.13の `34976128110`。成功タグv1.13、公開App ID `362ac991-eead-4f07-8373-afdb3ebfdba1`。以下は過去のステップ7証跡：変更版証跡は `step6-source-reconstruction-13`（ID `10382398248`）と `phase1-5-target-evidence-13`（ID `10383136592`）、復元版証跡は `step6-source-reconstruction-14`（ID `10382428589`）と `phase1-5-target-evidence-14`（ID `10382753247`）。いずれも2026-09-29まで保持する。
 - 本番列一覧、Dataverseテーブル名・型・ロール、実接続/委任設計は別途。
 - TSVから正式XLSX出力への方式は未決。
 - 帳票A3/A4等の正式用紙と実機改ページは未決。
@@ -96,3 +96,10 @@
 - 詳細な試行・判断記録は [Issue #12](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/12)。
 
 復元確認run `34975611706` は `RESTORED`、追加テスト・P0とも合格。候補アプリを変更せずテストの参照先修正だけで解消した。これを根拠にv1.13の再展開へ進む。
+
+### 完了結果
+
+- 再展開run [34976128110](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34976128110)：build/auth/import/publish/readback/change_test/p0すべて成功。追加テスト2件合格。開閉2往復、条件・選択・ページ保持を確認。公開スクリーンショットでも横三本線を確認。
+- PR #13をmain `f1f0dd83d7198c09f8a862c6a747b0c48087a522` へ統合。確定run [34976590043](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34976590043) 成功、[v1.13](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.13)を確定。
+- 詳細artifact `10399029288` は2026-09-29まで保持。成功タグの注釈とIssueに恒久記録を保持。
+- アプリ一覧の表示名は既存の `職員マスタ検索_自動テスト_v1_11`。画面内の版表示はv1.13。今回、アプリ一覧名の変更は行っていない。
