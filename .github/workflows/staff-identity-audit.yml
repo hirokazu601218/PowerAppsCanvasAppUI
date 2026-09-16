@@ -1,7 +1,7 @@
 name: Staff Dataverse read-only identity audit
 on:
   push:
-    branches: [automation/dataverse-staff-basic]
+    branches: [automation/dataverse-remaining]
     paths: ['.github/workflows/staff-identity-audit.yml']
   workflow_dispatch: {}
 permissions:
@@ -16,7 +16,7 @@ jobs:
     environment: powerapps-test
     timeout-minutes: 10
     env:
-      WORK_STARTED_EPOCH: '1789547016'
+      WORK_STARTED_EPOCH: '1789556647'
     steps:
       - uses: actions/checkout@v5
       - name: Check original Work deadline
@@ -35,3 +35,5 @@ jobs:
           path: artifacts/identity-audit.json
           retention-days: 14
 # Audit attempt 2: resolve user without requiring a Dataverse systemuser row.
+
+# Resolve the dedicated user by exact app email and then immutable directory object ID.
