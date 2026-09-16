@@ -1,5 +1,8 @@
 import { expect, test } from '@playwright/test';
 
+test.describe.configure({ retries: 0 });
+test.use({ video: 'off', ignoreHTTPSErrors: false });
+
 test('Dataverse v1.15 dedicated-user read access and search regression', async ({ page }) => {
   test.setTimeout(180000);
   const url = process.env.CANVAS_APP_URL;
@@ -36,6 +39,7 @@ test('Dataverse v1.15 dedicated-user read access and search regression', async (
     console.log('DATAVERSE_SEARCH_REGRESSION_PASSED');
   } finally {
     // Visible synthetic application text only. No cookies, tokens, network or storage state.
+    console.log('VISIBLE_PLAYER_TEXT', (await page.locator('body').innerText()).slice(0,16000));
     const rendered = await app.locator('body').innerText({ timeout: 5000 }).catch(() => 'APP_FRAME_UNAVAILABLE');
     console.log('VISIBLE_APP_TEXT', rendered.slice(0,14000));
     await page.screenshot({ path: 'test-results/dataverse-access.png', fullPage: true });
