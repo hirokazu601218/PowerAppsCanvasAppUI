@@ -145,19 +145,24 @@ def build(root, output, manifest=None):
 
 def verify_download(path, root, manifest):
     archive = read_archive(path)
+    # A release can update dozens of properties in the same large source file.
+    # Parse each immutable downloaded document once; keep every comparison below.
+    documents = {k: yaml.safe_load(v) for k, v in archive.items()
+                 if k.startswith('Src/') and k.endswith('.pa.yaml')}
+    compiled = [json.loads(v) for k, v in archive.items()
+                if k.startswith('Controls/') and k.endswith('.json')]
     for change in manifest['changes']:
-        doc = yaml.safe_load(archive[change['source']])
+        doc = documents[change['source']]
         matches = nodes(doc, change['control'])
         require(len(matches) == 1, 'server source control mismatch')
         require(matches[0]['Properties'][change['property']] == change['after'], 'server source value mismatch')
-        rules = [r for k, v in archive.items() if k.startswith('Controls/') and k.endswith('.json')
-                 for r in runtime_rules(json.loads(v), change['control'], change['property'])]
+        rules = [r for data in compiled for r in runtime_rules(data, change['control'], change['property'])]
         require(len(rules) == 1 and rules[0]['InvariantScript'] == formula_literal(change['after']),
                 'server compiled value mismatch')
     # Compare all semantic source, including properties not mentioned in the manifest.
     for k, v in archive.items():
         if k.startswith('Src/') and k.endswith('.pa.yaml') and not k.endswith('_EditorState.pa.yaml'):
-            require(yaml.safe_load(v) == yaml.safe_load((Path(root) / 'powerapps/canvas-v3' / k).read_bytes()),
+            require(documents[k] == yaml.safe_load((Path(root) / 'powerapps/canvas-v3' / k).read_bytes()),
                     f'server source drift: {k}')
     return {'server_sha256': digest(Path(path).read_bytes()), 'source_and_rules': 'exact'}
 
