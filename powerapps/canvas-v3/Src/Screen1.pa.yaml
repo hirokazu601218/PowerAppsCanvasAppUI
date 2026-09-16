@@ -186,10 +186,7 @@ Screens:
                               Font: ="Segoe UI"
                               FontWeight: =FontWeight.Semibold
                               Height: =44
-                              OnSelect: |-
-                                =Refresh('M_職員基本'); With({demoStaff:StaffBasicView},
-                                Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); ClearCollect(colResult111,demoStaff); Set(varResultsReady111,true); Set(varStaffChosen111,true); Set(varPage111,1); Set(varStaff111,First(colResult111)); Reset(galStaff111); Set(varReport111,""); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,""); Set(varLedgerStatus111,""); Notify("Dataverseのテストデータを表示しています",NotificationType.Success)
-                                ); Set(varReport111,""); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,"")
+                              OnSelect: =Refresh('M_職員基本'); Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,""); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,""); Set(varLedgerStatus111,"")
                               RadiusBottomLeft: =4
                               RadiusBottomRight: =4
                               RadiusTopLeft: =4
@@ -3954,10 +3951,7 @@ Screens:
                                           Font: ="Segoe UI"
                                           FontWeight: =FontWeight.Semibold
                                           Height: =44
-                                          OnSelect: |-
-                                            =With({demoStaff:StaffBasicView},
-                                            Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); ClearCollect(colResult111,demoStaff); Set(varResultsReady111,true); Set(varStaffChosen111,true); Set(varPage111,1); Set(varStaff111,First(colResult111)); Reset(galStaff111)
-                                            ); Set(varReport111,""); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,"")
+                                          OnSelect: =Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,""); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,""); Set(varLedgerStatus111,"")
                                           RadiusBottomLeft: =4
                                           RadiusBottomRight: =4
                                           RadiusTopLeft: =4
