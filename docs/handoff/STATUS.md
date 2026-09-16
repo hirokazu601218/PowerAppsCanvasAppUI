@@ -20,18 +20,21 @@
 
 ## 現在の作業と読取り対象
 
-| 項目 | 指定 |
+|項目|指定|
 |---|---|
-| 対象機能 | Issue #29：v1.14タグ内READMEの訂正と版不整合の自動防止 |
-| 基準版 | 公開成功版v1.14。アプリの再配布・改名は対象外 |
-| 要件ID | AUT-026・AUT-031（無人開発要件v1.06） |
-| 対象ソース | finalize_release.py、readme_release.py、release_snapshot.py、releases.py、repair_v114_readme.py、finalize/修復workflow |
-| 関連設計 | 運用手順、ルートREADME、無人開発要件、変更履歴 |
-| 関連テスト | テスト仕様v1.04 §7.6。基盤単体28件ローカル合格。Actionsでも28件合格。実行結果は下記参照 |
-| Library資料 | 今回は参照不要。GitHubを正本とする |
-| 未解決事項 | タグ訂正・main/タグ内の版照合は完了。Power Appsの手動改名と既存PDF等のギャップは保持 |
+|対象機能|M_職員基本のDataverse移行、工程2～7。60分で中断・報告|
+|基準版|公開v1.14。現時点でアプリ/Dataverseに変更なし|
+|対象ソース|scripts/automation/staff_dataverse.py、staff_data_contract.py、automation/dataverse-run.json、.github/workflows/staff-dataverse.yml|
+|関連設計|docs/design/dataverse-staff-basic.md、Work運用方針|
+|関連テスト|tests/automation/test_staff_data_contract.py、既存基盤テスト|
+|資料|添付M_職員基本_テーブル定義書.xlsxの読取記録と本Work確定回答。旧HTMLは今回の正本ではない|
+|工程2|設計書作成。25論理項目、24保存列、在籍状態は日付から導出|
+|工程3|読取専用preflightを準備。GitHub pushが自動承認レビューで拒否され実行未了|
+|工程4～7|未実施。テーブル作成、投入、接続、回帰の実環境証跡なし|
+|再開条件|指定リポジトリへの変更送信/Actions実行について明示承認を受ける。別経路で拒否を迂回しない|
+|60分制御|新フローの期限チェック案あり。既存全フローへの適用・実行検証は未完了|
 
-新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
+旧STATUSのIssue #29作業から、ユーザーの最新指示により切替。旧成功版の結果を今回の合格として扱わない。
 
 ## Issue #29：READMEと成功タグの整合（2026-09-16）
 

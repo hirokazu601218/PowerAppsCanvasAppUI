@@ -1,0 +1,45 @@
+name: Staff Dataverse staged setup
+on:
+  push:
+    branches: [automation/dataverse-staff-basic]
+    paths: [automation/dataverse-run.json]
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  dataverse:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check original Work deadline
+        run: |
+          python - <<'PY'
+          import json,time
+          from datetime import datetime
+          r=json.load(open('automation/dataverse-run.json'))
+          remaining=3600-(time.time()-datetime.fromisoformat(r['started_at']).timestamp())
+          assert remaining>120, 'PAUSED_TIME_LIMIT: resume requires a new user instruction'
+          with open(__import__('os').environ['GITHUB_ENV'],'a') as f:
+              f.write('REMAINING_SECONDS='+str(int(remaining)-60)+'\n')
+          PY
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Stage 3 read-only Dataverse preflight
+        run: timeout "$REMAINING_SECONDS" python -u scripts/automation/staff_dataverse.py
+      - name: Preserve non-secret evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: staff-dataverse-${{ github.run_id }}
+          path: artifacts/dataverse
+          retention-days: 14
+          if-no-files-found: warn
