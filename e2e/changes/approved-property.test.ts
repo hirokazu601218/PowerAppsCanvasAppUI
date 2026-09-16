@@ -110,11 +110,11 @@ test('AUT-LAYOUT-001 responsive basic fields, density and canvas-width preservat
       expect(basic.height).toBe(52+Math.ceil(9/columns)*rowHeight);
       if(current&&width===1920&&!large)expect(columns).toBe(6);
       const main=await rectangle(control('conMain111')),header=await rectangle(control('conHeader111'));
-      const margin=current?Math.min(16,Math.max(0,(width-1366)/2)):0;
+      const margin=current?16:0;
       expect(Math.abs(header.x-main.x-margin)).toBeLessThan(1.1);
       expect(Math.abs(main.width-header.width-2*margin)).toBeLessThan(1.1);
       // At design/canvas width no extra margin is deducted from business data.
-      if(width===1366){expect(header.width).toBe(main.width);expect(basic.width).toBeGreaterThan(900);}
+      if(width===1366){expect(header.width).toBe(main.width-2*margin);expect(basic.width).toBe(936);}
       const name=await rectangle(control('lblName111')),badge=await rectangle(control('lblBadge111'));
       if(current){expect(Math.abs(badge.x-name.x-name.width-8)).toBeLessThan(1.1);expect(Math.abs(badge.y+badge.height/2-name.y-name.height/2)).toBeLessThan(1.1);}
       expect(badge.x+badge.width).toBeLessThanOrEqual((await rectangle(control('conPerson111'))).x+(await rectangle(control('conPerson111'))).width);
