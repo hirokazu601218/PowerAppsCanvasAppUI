@@ -22,16 +22,23 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | Issue #27：指定一覧名「自動開発_職員マスタ検索」への統一、最大10工程の事前提示、追加承認待ち不要、途中進捗、終了時の工程別結果。Power Apps実体の改名はユーザー担当 |
-| 基準版 | 公開成功版v1.14、固定App ID `362ac991-eead-4f07-8373-afdb3ebfdba1`。過去の一覧名は履歴として保持。指定表示名への手動変更は未確認 |
-| 要件ID | AUT-003/004、AUT-026～AUT-030、NFR-012（無人開発要件v1.05）、Work運用方針v1.06 |
-| 対象ソース | `config/apps/staff-master.json`、`scripts/automation/readme_release.py`、`app_metadata.py`、`run_pipeline.py`、配布用 `*.meta.xml`、旧実証フローのAPP_NAME、`tests/automation/test_app_metadata.py`、`test_readme_release.py` |
-| 関連設計 | `docs/operations/work-policy.md`、`staff-master-unattended-runbook.md`、無人開発要件、ルートREADME、文書索引、変更履歴。アプリの画面設計は変更なし |
-| 関連テスト | テスト仕様v1.03 §7.5。名称メタデータ3件＋README5件の単体テスト合格。文書はリンク・記述整合を確認。Power Apps実体の改名・配布・E2E・P0は今回対象外 |
-| Library資料 | 今回の運用・名称変更では添付資料の参照は不要。GitHubの現行設定・運用文書を使用 |
-| 未解決事項 | Power Apps上の手動改名はユーザー担当・完了未確認。指定名はconfigと文書に反映。GitHubから今回の実体変更・配布は実施しない。PDF等の既存ギャップは保持 |
+| 対象機能 | Issue #29：v1.14タグ内READMEの訂正と版不整合の自動防止 |
+| 基準版 | 公開成功版v1.14。アプリの再配布・改名は対象外 |
+| 要件ID | AUT-026・AUT-031（無人開発要件v1.06） |
+| 対象ソース | finalize_release.py、readme_release.py、release_snapshot.py、releases.py、repair_v114_readme.py、finalize/修復workflow |
+| 関連設計 | 運用手順、ルートREADME、無人開発要件、変更履歴 |
+| 関連テスト | テスト仕様v1.04 §7.6。基盤単体28件ローカル合格。GitHub反映・訂正の実行結果は下記へ追記 |
+| Library資料 | 今回は参照不要。GitHubを正本とする |
+| 未解決事項 | タグ訂正はGitHub反映後に実行・検証。Power Appsの手動改名と既存PDF等のギャップは保持 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
+
+## Issue #29：READMEと成功タグの整合（2026-09-16）
+
+- 原因：旧フローがタグ作成後にREADMEを更新していたため、v1.14タグにはv1.13表記が残った。
+- README生成・コミット・機械照合をタグ作成前へ移動。schema 2で検証済みソースとREADME訂正commitを区別する。
+- 基盤単体28件ローカル合格。元タグ保全・README限定差分・競合拒否・再実行を含む。
+- v1.14訂正は専用Actionsで実行予定。結果確認後にここへrun・訂正結果を追記する。元の公開・追加E2E・P0証跡はrun 35053952599を保持し、今回は再配布しない。
 
 ## Issue #27：名称と工程報告の更新（2026-09-16）
 

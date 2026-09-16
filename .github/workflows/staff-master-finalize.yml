@@ -4,7 +4,6 @@ on:
     branches: [main]
     paths:
       - automation/run.json
-      - .github/workflows/staff-master-finalize.yml
   workflow_dispatch:
 permissions:
   contents: write
@@ -26,7 +25,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verify the exact tested tree and create the success tag
+      - name: Verify tested payload, prepare README, verify its version, then tag
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/automation/finalize_release.py

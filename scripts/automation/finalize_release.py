@@ -8,6 +8,7 @@ from decimal import Decimal
 
 import policy
 import readme_release
+import release_snapshot
 from releases import git, successes
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -66,6 +67,10 @@ existing=[receipt for _,name,receipt in records if name==tag]
 if existing:
     receipt=existing[0]
     require(receipt['main_commit']==SHA and receipt['candidate_commit']==candidate,'tag already belongs to another release')
+    require(receipt.get('schema')==2,'legacy tag requires explicit documentation repair')
+    release_snapshot.verify(ROOT,receipt,git(ROOT,'rev-parse',f'{tag}^{{commit}}'))
+    prepared={'state':'PREPARED' if receipt.get('readme_branch') else 'UNCHANGED',
+              'head':receipt['release_commit'],'branch':receipt.get('readme_branch')}
 else:
     previous=records[-1][0] if records else Decimal(RELEASE['last_success_version'])
     require(Decimal(version)==previous+Decimal('0.01'),'success version must increment by 0.01')
@@ -74,13 +79,17 @@ else:
              'candidate_commit':candidate,'run_id':run['id'],'run_attempt':run['run_attempt'],
              'issue':REQUEST['issue'],'target':CFG['target'],'published':published,
              'package_sha256':attempt['package_sha256'],'gates':attempt['gates']}
+    prepared=readme_release.prepare(ROOT,receipt,REPO)
+    receipt=release_snapshot.create_receipt(ROOT,receipt,prepared['head'],REPO,prepared.get('branch'))
+    verification=release_snapshot.verify(ROOT,receipt,prepared['head'])
+    (OUT/'snapshot-verification.json').write_text(json.dumps(verification,indent=2)+'\n')
     (OUT/'release.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
     subprocess.run(['git','config','user.name','github-actions[bot]'],cwd=ROOT,check=True)
     subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],cwd=ROOT,check=True)
-    subprocess.run(['git','tag','-a',tag,SHA,'-F',str(OUT/'release.json')],cwd=ROOT,check=True)
+    subprocess.run(['git','tag','-a',tag,receipt['release_commit'],'-F',str(OUT/'release.json')],cwd=ROOT,check=True)
     subprocess.run(['git','push','origin',f'refs/tags/{tag}'],cwd=ROOT,check=True)
 (OUT/'release.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
-readme_result=readme_release.publish(ROOT,receipt,REPO)
+readme_result=readme_release.publish(ROOT,receipt,REPO,prepared=prepared)
 readme_message=f"README update: **{readme_result['state']}**.\n"
 if readme_result['state']=='PENDING_WORK_PR':
     print('::warning::Release is verified; README still requires the authorized Work PR handoff.')
@@ -93,6 +102,7 @@ message=(f"Success version **{tag}** is finalized.\n\n"
          f"- [Verified transaction](https://github.com/{REPO}/actions/runs/{run['id']})\n"
          f"- [Success tag](https://github.com/{REPO}/tree/{tag})\n"
          f"- Main commit: `{SHA}`\n- Candidate commit: `{candidate}`\n"
+         f"- README-corrected tag commit: `{receipt['release_commit']}`\n"
          f"- Published isolated App ID: `{published['app_id']}`\n"
          f"- Change acceptance and existing P0: passed\n"
          f"- Solution SHA-256: `{attempt['package_sha256']}`\n\n"
