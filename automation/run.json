@@ -1,6 +1,6 @@
 {
-  "mode": "restore",
+  "mode": "release",
   "issue": 23,
-  "request": "layout-v114-baseline-04",
+  "request": "layout-v114-release-05",
   "approved": true
 }
