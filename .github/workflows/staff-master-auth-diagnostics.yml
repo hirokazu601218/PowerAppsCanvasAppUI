@@ -1,0 +1,79 @@
+name: Staff Master authentication diagnostics
+on:
+  push:
+    branches: [automation/change-*]
+    paths: [.github/workflows/staff-master-auth-diagnostics.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 10
+    env:
+      MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
+      MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
+      MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
+      MS_AUTH_LOCAL_FILE_PATH: ../../cert/powerapps-test-user.pfx
+      MS_AUTH_HEADLESS: true
+      MS_AUTH_WAIT_FOR_MSAL_TOKENS: true
+      MS_AUTH_MSAL_TOKEN_TIMEOUT: 60000
+      HEADLESS: true
+      CI: true
+      POWER_APPS_BASE_URL: https://make.powerapps.com
+      POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: microsoft/power-platform-playwright-samples
+          ref: 43e3db8d131aeb09415b1faef030e783fd2e320f
+          path: power-platform-playwright
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: power-platform-playwright/package-lock.json
+      - name: Install the existing pinned toolkit
+        working-directory: power-platform-playwright
+        run: npm ci
+      - name: Build the existing toolkit
+        working-directory: power-platform-playwright
+        run: npm run build
+      - name: Install Chromium
+        working-directory: power-platform-playwright/packages/e2e-tests
+        run: npx playwright install chromium --with-deps
+      - name: Prepare existing certificate configuration
+        if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
+        env:
+          TEST_CERT_BASE64: ${{ secrets.POWERAPPS_TEST_CERT_BASE64 }}
+        run: |
+          mkdir -p power-platform-playwright/cert
+          printf '%s' "$TEST_CERT_BASE64" | base64 --decode > power-platform-playwright/cert/powerapps-test-user.pfx
+          chmod 600 power-platform-playwright/cert/powerapps-test-user.pfx
+      - name: Diagnose authentication using the unchanged official flow
+        id: auth
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+          MS_USER_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+          MS_AUTH_CERTIFICATE_PASSWORD: ${{ secrets.POWERAPPS_TEST_CERT_PASSWORD }}
+        run: |
+          test "$MS_AUTH_EMAIL" = "powerapps-test@govaca.onmicrosoft.com"
+          npm run auth
+      - name: Preserve only the library's failed-screen PNG
+        if: ${{ failure() && steps.auth.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: staff-master-auth-diagnostic-${{ github.run_id }}
+          path: power-platform-playwright/packages/e2e-tests/.playwright-ms-auth/screenshots/*-failed-*.png
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: warn
+      - name: Record diagnostic scope
+        if: always()
+        run: |
+          echo 'Authentication diagnosis only. No application build, import, publish, role change, or state/token upload is performed.' >> "$GITHUB_STEP_SUMMARY"
