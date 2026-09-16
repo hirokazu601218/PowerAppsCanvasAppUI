@@ -5,11 +5,12 @@
 非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubのmainをChatGPT SolのWorkで扱う共有正本とする。
 
 <!-- staff-master-release:start -->
-最新成功版：**[v1.13](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.13)**（隔離テストアプリ）。追加テスト・既存P0・公開後の読戻し照合が合格しています。
+最新成功版：**[v1.14](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.14)**（隔離テストアプリ）。追加テスト・既存P0・公開後の読戻し照合が合格しています。
 
-- [検証結果](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/34976128110)
-- [変更要求](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/12)
-- アプリ一覧名は `職員マスタ検索_自動テスト_v1_11`。画面内版表示と上記成功タグで版を確認します。
+- [検証結果](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35053952599)
+- [変更要求](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/23)
+- 公開日時（UTC）：2026-09-16T04:03:25Z
+- アプリ一覧名（指定）：`自動開発_職員マスタ検索`。画面内版表示と上記成功タグで版を確認します。表示名の手動変更状況はSTATUSを参照してください。
 <!-- staff-master-release:end -->
 
 [隔離テストアプリを開く](https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d)。共有済みアカウントでサインインしてください。架空25名の検証用アプリです。
