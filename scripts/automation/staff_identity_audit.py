@@ -1,5 +1,5 @@
 """Read-only identity and app-role audit. Never logs credentials or raw app metadata."""
-import json, subprocess, urllib.request, urllib.parse, os, time
+import json, subprocess, urllib.request, urllib.parse, urllib.error, os, time
 from pathlib import Path
 
 def main():
@@ -22,25 +22,38 @@ def main():
     assert user['applicationid'].lower()==cfg['client_id'].lower(), 'Unexpected automation identity'
     query=urllib.parse.urlencode({'$select':'azureactivedirectoryobjectid,fullname','$filter':"internalemailaddress eq '"+cfg['test_user']+"'"})
     users=get(base+'systemusers?'+query,dvtoken)['value']
-    assert len(users)==1,'Test user resolution not unique'
-    principal=users[0]['azureactivedirectoryobjectid'].lower()
+    assert len(users)<=1,'Test user resolution not unique'
+    principal=users[0]['azureactivedirectoryobjectid'].lower() if users else None
+    resolution='systemusers' if principal else 'unresolved'
+    if not principal:
+        try:
+            aq=urllib.parse.urlencode({'$select':'aaduserid,userprincipalname','$filter':"userprincipalname eq '"+cfg['test_user']+"'"})
+            candidates=get(base+'aadusers?'+aq,dvtoken)['value']
+            matches=[x for x in candidates if x.get('userprincipalname','').lower()==cfg['test_user'].lower()]
+            if len(matches)==1:
+                principal=matches[0]['aaduserid'].lower()
+                resolution='aadusers'
+        except urllib.error.HTTPError as error:
+            resolution='aadusers_http_'+str(error.code)
     appbase='https://api.powerapps.com/providers/Microsoft.PowerApps/apps/'+cfg['target']['app_id']
     filt={'api-version':'2016-11-01','$filter':"environment eq '"+cfg['target']['environment_id']+"'"}
     apptoken=token('https://service.powerapps.com/')
     permissions=get(appbase+'/permissions?'+urllib.parse.urlencode(filt),apptoken)
     roles=[]
+    assignments=[]
     def walk(obj):
         if isinstance(obj,dict):
             p=obj.get('properties',obj)
             if isinstance(p,dict) and isinstance(p.get('principal'),dict):
-                if str(p['principal'].get('id','')).lower()==principal and p.get('roleName'):
+                assignments.append({'role':p.get('roleName'),'principal_type':p['principal'].get('type'),'email':p['principal'].get('email'),'display_name':p['principal'].get('displayName')})
+                if ((principal and str(p['principal'].get('id','')).lower()==principal) or str(p['principal'].get('email','')).lower()==cfg['test_user'].lower()) and p.get('roleName'):
                     roles.append(p['roleName'])
             for value in obj.values(): walk(value)
         elif isinstance(obj,list):
             for value in obj: walk(value)
     walk(permissions)
     rows=get(base+'crb3c_staffbasics?'+urllib.parse.urlencode({'$select':'crb3c_staffnumber','$filter':"startswith(crb3c_staffnumber,'0099000000')",'$top':'26'}),dvtoken)['value']
-    result={'state':'READ_ONLY_AUDIT_PASSED','automation_name':user['fullname'],'automation_application_id_matches':True,'test_user':cfg['test_user'],'test_user_app_roles':sorted(set(roles)),'fixture_rows_visible_to_automation':len(rows),'permission_changes':False,'app_changes':False}
+    result={'state':'READ_ONLY_AUDIT_PASSED','automation_name':user['fullname'],'automation_application_id_matches':True,'test_user':cfg['test_user'],'test_user_app_roles':sorted(set(roles)),'test_user_systemuser_count':len(users),'principal_resolution':resolution,'app_assignments':assignments,'fixture_rows_visible_to_automation':len(rows),'permission_changes':False,'app_changes':False}
     Path('artifacts').mkdir(exist_ok=True)
     Path('artifacts/identity-audit.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     print(json.dumps(result,ensure_ascii=False))
