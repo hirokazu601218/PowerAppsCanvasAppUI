@@ -1,6 +1,5 @@
 {
-  "mode": "seed5",
-  "started_at": "2026-09-16T08:05:37.733578+00:00",
-  "limit_seconds": 3600,
-  "attempt": 4
+  "mode": "seed25",
+  "started_at": "2026-09-16T09:07:18.416Z",
+  "reason": "工程7：既存5件を保持し架空25名へ拡充。別Work停止後の再開。"
 }

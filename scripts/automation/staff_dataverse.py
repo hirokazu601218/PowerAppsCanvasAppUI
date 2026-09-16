@@ -1,6 +1,6 @@
 """Staged setup in the existing isolated Dataverse environment.
 
-preflight reads only; provision creates the approved table/key; seed5 adds fixtures.
+preflight reads only; provision creates the approved table/key; seed5/seed25 add synthetic fixtures.
 No license, identity, access-role or app changes. Tokens are never logged.
 """
 import json
@@ -24,7 +24,7 @@ def main():
     started = datetime.fromisoformat(request['started_at']).timestamp()
     if time.time() - started >= 3600:
         raise RuntimeError('PAUSED_TIME_LIMIT: original Work deadline reached')
-    if request['mode'] not in ('preflight','provision','seed5'):
+    if request['mode'] not in ('preflight','provision','seed5','seed25'):
         raise RuntimeError('Unsupported stage')
     url = cfg['target']['dataverse_url'].rstrip('/')
     token = subprocess.check_output(
@@ -112,7 +112,9 @@ def main():
     (out/'table-result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     print(json.dumps(result,ensure_ascii=False),flush=True)
     if request['mode']=='provision': return
-    rows=json.loads((ROOT/'tests/fixtures/staff-basic-5.json').read_text())
+    fixture_count = 25 if request['mode']=='seed25' else 5
+    rows=json.loads((ROOT/('tests/fixtures/staff-basic-'+str(fixture_count)+'.json')).read_text())
+    assert len(rows)==fixture_count, 'Unexpected fixture size'
     validate(rows)
     for row in rows:
         record=payload(row)
@@ -127,7 +129,7 @@ def main():
             if isinstance(value,str) and value.endswith('T00:00:00Z'):
                 assert actual_value[:10]==value[:10],key
             else: assert actual_value==value,key
-    result.update(stage=5,state='SEED5_VERIFIED',fixture_count=len(rows))
+    result.update(stage=7 if request['mode']=='seed25' else 5,state='SEED25_VERIFIED' if request['mode']=='seed25' else 'SEED5_VERIFIED',fixture_count=len(rows))
     (out/'seed-result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     print(json.dumps(result,ensure_ascii=False),flush=True)
 
