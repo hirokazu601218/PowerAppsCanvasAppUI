@@ -23,9 +23,32 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
   await page.addInitScript(()=>{
     const original=URL.createObjectURL.bind(URL);
     (window as any).__ledgerPdfs=[];
+    const capture=(data:any,depth=0)=>{
+      if(depth>5||data==null)return;
+      if(typeof data==='string'){
+        if(data.startsWith('data:application/pdf;base64,')) (window as any).__ledgerPdfs.push(data);
+        else if(data.startsWith('JVBERi0')) (window as any).__ledgerPdfs.push('data:application/pdf;base64,'+data);
+        return;
+      }
+      const bytes=data instanceof ArrayBuffer?new Uint8Array(data):ArrayBuffer.isView(data)?new Uint8Array(data.buffer,data.byteOffset,data.byteLength):null;
+      if(bytes){
+        if(bytes.length>5 && String.fromCharCode(...bytes.slice(0,5))==='%PDF-'){
+          const reader=new FileReader();reader.onload=()=>{(window as any).__ledgerPdfs.push(reader.result);};
+          reader.readAsDataURL(new Blob([bytes.slice()],{type:'application/pdf'}));
+        }
+        return;
+      }
+      if(typeof data==='object')for(const value of Object.values(data).slice(0,50))capture(value,depth+1);
+    };
+    // The built-in PDF viewer may receive the PDF by postMessage without a blob URL.
+    // Retain only values with an actual PDF header; no other message data is stored.
+    window.addEventListener('message',event=>capture(event.data));
     URL.createObjectURL=(blob:Blob|MediaSource)=>{
-      if(blob instanceof Blob && blob.type.toLowerCase().includes('pdf')){
-        const reader=new FileReader();reader.onload=()=>{(window as any).__ledgerPdfs.push(reader.result);};reader.readAsDataURL(blob);
+      if(blob instanceof Blob){
+        void blob.slice(0,5).text().then(header=>{
+          if(header!=='%PDF-')return;
+          const reader=new FileReader();reader.onload=()=>{(window as any).__ledgerPdfs.push(reader.result);};reader.readAsDataURL(blob);
+        });
       }
       return original(blob);
     };
@@ -66,9 +89,14 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
   // Generate at 200%: print size must remain independent of screen zoom.
   await c.getByRole('button',{name:'PDFを作成',exact:true}).click();
   await expect(ctl('lblLedgerStatus111')).toContainText('PDFを作成しました',{timeout:90000});
-  const frame=page.frames().find(f=>f.name()==='fullscreen-app-host')!;
-  await expect.poll(()=>frame.evaluate(()=>(window as any).__ledgerPdfs.length),{timeout:15000}).toBeGreaterThan(0);
-  const pdf=await frame.evaluate(()=>(window as any).__ledgerPdfs.at(-1)) as string;
+  let pdf='';
+  await expect.poll(async()=>{
+    for(const frame of page.frames()){
+      const found=await frame.evaluate(()=>(window as any).__ledgerPdfs?.at(-1)).catch(()=>undefined);
+      if(found)pdf=found;
+    }
+    return pdf.length;
+  },{timeout:15000}).toBeGreaterThan(0);
   const path=`${process.env.OUTPUT_DIRECTORY}/ledger-A4-landscape.pdf`;
   writeFileSync(path,Buffer.from(pdf.split(',')[1],'base64'));
   const result=execFileSync('python',['-c',`import json,sys\nfrom pypdf import PdfReader\nr=PdfReader(sys.argv[1]);assert len(r.pages)==2, f'Expected 2 pages, got {len(r.pages)}'\nboxes=[[float(p.mediabox.width),float(p.mediabox.height)] for p in r.pages]\nassert all(abs(w-841.89)<1 and abs(h-595.28)<1 for w,h in boxes),boxes\nprint(json.dumps({'pages':len(r.pages),'points':boxes}))`,path],{encoding:'utf8'});

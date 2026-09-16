@@ -342,5 +342,6 @@
   "acceptance": {
     "case_id": "AUT-LEDGER-117",
     "expected_label": "v1.17 ／ Dataverse・25名"
-  }
+  },
+  "ledger_preview_to_front": true
 }

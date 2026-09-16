@@ -83,18 +83,6 @@ Screens:
                   RadiusBottomRight: =8
                   RadiusTopLeft: =8
                   RadiusTopRight: =8
-      - pdfLedger111:
-          Control: PDFViewer@2.5.0
-          Properties:
-            Document: =varLedgerPdf111
-            Fill: =Color.White
-            Height: =conLedgerScroll111.Height
-            ShowControls: =true
-            Visible: =conStaffMaster111.Visible && conLedgerModal111.Visible && Coalesce(varLedgerPdfView111,false)
-            Width: =conLedgerScroll111.Width
-            X: =conStaffMaster111.X + conLedgerModal111.X + conLedgerPanel111.X + conLedgerScroll111.X
-            Y: =conStaffMaster111.Y + conLedgerModal111.Y + conLedgerPanel111.Y + conLedgerScroll111.Y
-            Zoom: =100
       - conStaffMaster111:
           Control: GroupContainer@1.5.0
           Variant: ManualLayout
@@ -7215,3 +7203,15 @@ Screens:
                   Start: =varLedgerPdfRequested111
                   Visible: =false
                   Width: =1
+      - pdfLedger111:
+          Control: PDFViewer@2.5.0
+          Properties:
+            Document: =varLedgerPdf111
+            Fill: =Color.White
+            Height: =conLedgerScroll111.Height
+            ShowControls: =true
+            Visible: =conStaffMaster111.Visible && conLedgerModal111.Visible && Coalesce(varLedgerPdfView111,false)
+            Width: =conLedgerScroll111.Width
+            X: =conStaffMaster111.X + conLedgerModal111.X + conLedgerPanel111.X + conLedgerScroll111.X
+            Y: =conStaffMaster111.Y + conLedgerModal111.Y + conLedgerPanel111.Y + conLedgerScroll111.Y
+            Zoom: =100

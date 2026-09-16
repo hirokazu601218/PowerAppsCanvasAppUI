@@ -75,6 +75,34 @@ def formula_literal(value):
     return value[1:]
 
 
+def ledger_preview_order(documents, compiled, manifest, apply=False):
+    """Approved v1.17 repair: move the existing screen-level PDF above the modal.
+
+    This permits no added/removed controls, arbitrary reorder, or property edits.
+    Studio omits ZIndex from YAML and represents it through child order.
+    """
+    enabled = manifest.get('ledger_preview_to_front', False)
+    require(type(enabled) is bool, 'invalid ledger preview order approval')
+    if not enabled:
+        return
+    screen = nodes(documents['Src/Screen1.pa.yaml'], 'Screen1')
+    require(len(screen) == 1, 'preview screen must be unique')
+    before = ['ScreenContainer1', 'pdfLedger111', 'conStaffMaster111']
+    after = ['ScreenContainer1', 'conStaffMaster111', 'pdfLedger111']
+    children = screen[0]['Children']
+    require([next(iter(c)) for c in children] == (before if apply else after),
+            'unapproved screen child order')
+    if apply:
+        by_name = {next(iter(c)): c for c in children}
+        screen[0]['Children'] = [by_name[n] for n in after]
+    for control, old, new in [('pdfLedger111', '3', '4'), ('conStaffMaster111', '4', '3')]:
+        rules = [r for data in compiled for r in runtime_rules(data, control, 'ZIndex')]
+        require(len(rules) == 1 and rules[0]['InvariantScript'] == (old if apply else new),
+                'preview compiled layer mismatch')
+        if apply:
+            rules[0]['InvariantScript'] = new
+
+
 def build(root, output, manifest=None):
     root, output = Path(root), Path(output)
     config = json.loads((root / 'config/apps/staff-master.json').read_text())
@@ -123,6 +151,7 @@ def build(root, output, manifest=None):
         require(len(rules) == 1, f'compiled rule must be unique: {control}.{prop}')
         require(rules[0]['InvariantScript'] == formula_literal(change['before']), 'compiled baseline mismatch')
         rules[0]['InvariantScript'] = formula_literal(change['after'])
+    ledger_preview_order(expected_docs, list(compiled.values()), manifest, apply=True)
     require(expected_docs == actual_docs, 'unlisted source change or manifest/source mismatch')
     archive.update(source)
     for name, data in compiled.items():
@@ -151,6 +180,7 @@ def verify_download(path, root, manifest):
                  if k.startswith('Src/') and k.endswith('.pa.yaml')}
     compiled = [json.loads(v) for k, v in archive.items()
                 if k.startswith('Controls/') and k.endswith('.json')]
+    ledger_preview_order(documents, compiled, manifest)
     for change in manifest['changes']:
         doc = documents[change['source']]
         matches = nodes(doc, change['control'])

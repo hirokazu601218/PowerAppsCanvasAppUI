@@ -49,6 +49,22 @@ class PolicyTests(unittest.TestCase):
             self.assertEqual(bridge.build(ROOT,a),bridge.build(ROOT,b))
             bridge.verify_download(a,ROOT,manifest)
 
+    def test_preview_order_requires_approval_and_exact_compiled_layers(self):
+        manifest=json.loads((ROOT/'automation/change.json').read_text())
+        self.assertIs(manifest['ledger_preview_to_front'], True)
+        with tempfile.TemporaryDirectory() as t:
+            altered=copy.deepcopy(manifest);altered.pop('ledger_preview_to_front')
+            with self.assertRaisesRegex(bridge.GateError,'unlisted source change'):
+                bridge.build(ROOT,Path(t)/'unapproved.msapp',altered)
+            package=Path(t)/'approved.msapp';bridge.build(ROOT,package)
+            archive=bridge.read_archive(package)
+            docs={k:bridge.yaml.safe_load(v) for k,v in archive.items() if k.startswith('Src/') and k.endswith('.pa.yaml')}
+            compiled=[json.loads(v) for k,v in archive.items() if k.startswith('Controls/') and k.endswith('.json')]
+            rules=[r for d in compiled for r in bridge.runtime_rules(d,'pdfLedger111','ZIndex')]
+            rules[0]['InvariantScript']='3'
+            with self.assertRaisesRegex(bridge.GateError,'compiled layer mismatch'):
+                bridge.ledger_preview_order(docs,compiled,manifest)
+
     def test_manifest_scope_before_value_and_unlisted_change_are_rejected(self):
         manifest=json.loads((ROOT/'automation/change.json').read_text())
         with tempfile.TemporaryDirectory() as t:
