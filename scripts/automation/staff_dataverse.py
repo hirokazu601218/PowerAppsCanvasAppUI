@@ -38,7 +38,7 @@ def main():
             headers={'Authorization': 'Bearer ' + token, 'Accept': 'application/json',
                      'Content-Type':'application/json','MSCRM.SolutionUniqueName':cfg['solution_name']})
         try:
-            with urllib.request.urlopen(req, timeout=45) as res:
+            with urllib.request.urlopen(req, timeout=180 if method != 'GET' else 45) as res:
                 data=res.read()
                 return json.loads(data) if data else {}
         except urllib.error.HTTPError as error:
