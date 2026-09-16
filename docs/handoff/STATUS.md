@@ -16,28 +16,28 @@
 | v1.13以降 | 部品差分配布。111のコントロール・変数IDは固定 |
 | ローカル検査 | 68チェック、8組の配置式、10枚の配置モデル描画。詳細はRESULTS参照 |
 | Studio貼付・動作・見た目 | 旧GitHub v1.11に検索データ未表示の報告（BUG-SEARCH-001）。当該版の再現・原因分析は未完了。今回採用した公開由来基準とv1.12のP0合格とは別に保持 |
-| PDF生成・保存フロー | 実機未検証、接続設定が必要 |
+| PDF生成・保存フロー | v1.17でA4横2ページ生成・プレビューを実機確認。保存先フロー接続は対象外 |
 
 ## 現在の作業と読取り対象
 
 |項目|指定|
 |---|---|
-|対象機能|Issue #35 認定簿表示とA4横2ページPDF。v1.16を保持しv1.17へ更新中|
-|現在公開版|v1.16。職員基本25名Dataverse、勤務・通勤・保険・税控除・給与は共通内蔵合成データ|
-|今回の完了|内蔵データ追加・認定簿の職員番号別取得・履歴0件の出力無効・Studio保存公開・専用ユーザー回帰7件・ソース/実行用数式の完全照合|
-|証跡|run 35098953055、試験commit cf990af19e9c8403299dce6300373f5f23c22b16、docs/testing/hybrid-v1.16-results.md|
-|対象ソース|tests/fixtures/staff-history-synthetic.json、scripts/automation/render_staff_history.py、powerapps/canvas-v3/Src/App.pa.yaml、Screen1.pa.yaml、e2e/hybrid/|
-|関連設計|docs/design/hybrid-test-data.md、docs/design/dataverse-history-readiness.md、docs/design/dataverse-staff-basic.md|
-|関連テスト|7件PASS（P0・既存UI4件・Dataverseアクセス/検索・履歴/給与/認定簿）。再試行0。標準/大文字×幅5条件|
-|保存パッケージ|powerapps/dataverse-v1.16/staff-master.msapp。SHA256 9d1bc8a33e111710736c7ae12e481355a1d6535257e1316c54926b3119c9cf36|
-|共通数式ビルド|基準msapp v1.15＋automation/change.jsonの11プロパティ変更。レビュー用生成物powerapps/test-data/staff-history.fx|
-|権限|専用ユーザーの最小読取権限は前回承認で追加済み。今回の権限・料金変更なし|
-|次の作業|今回指定された残件は完了。履歴の正式テーブルは業務定義が決まり次第Dataverseへ順次移行。今は内蔵データを継続|
+|対象機能|Issue #35 認定簿表示とA4横2ページPDF。v1.17で完了|
+|現在公開版|v1.17。職員基本25名Dataverse、勤務・通勤・保険・税控除・給与は共通内蔵合成データ|
+|今回の完了|上部を帳票幅内へ配置、倍率6択、白背景・青字の閉じる、A4横固定、新幹線欄前で改ページし2ページ、PDFプレビュー前面表示|
+|証跡|run 35110696763、試験commit 5f51e69c644975309ee312eaf9bc68c440a35e5c、docs/testing/ledger-v1.17-results.md、PR #43|
+|対象ソース|powerapps/canvas-v3/Src/Screen1.pa.yaml、automation/change.json、scripts/automation/bridge.py、e2e/hybrid/ledger.test.ts|
+|関連設計|docs/design/ledger-v1.17.md、docs/design/hybrid-test-data.md|
+|関連テスト|ローカル35件、公開先8件PASS（P0・UI4件・Dataverseアクセス/検索・履歴/給与/認定簿・新認定簿/PDF）。最終run再試行0|
+|保存パッケージ|powerapps/dataverse-v1.17/staff-master.msapp。SHA256 90e5d4839b007205286cbb3a311fa77b4a8c94318b535e13a3f098d1352c88de|
+|共通数式ビルド|基準msapp v1.15＋累積47プロパティ変更。PDFビューアーの限定した3部品の表示順と実行時ZIndexも厳密照合|
+|権限|今回の権限・料金変更なし。Dataverse接続とReferences6ファイルを保持|
+|次の作業|依頼5項目は完了。PDF保存先フローは既存どおり未接続。履歴の正式Dataverseテーブルは業務定義確定後|
 |今回の読取り対象|docs/design/ledger-v1.17.md、docs/testing/ledger-v1.17-results.md、e2e/hybrid/ledger.test.ts、automation/change.json|
-|復元注意|旧標準フロー成功タグはv1.14。Dataverse接続を含まないため現行へそのまま復元しない。今回保存したv1.16パッケージと接続メタデータを保全|
-|60分制御|今回Actionsは元Work開始時刻から40分未満を起動条件にし、20分timeout。約26分時点に終了。旧全フローへの共通期限実装は別件|
+|復元注意|旧標準フロー成功タグv1.14はDataverse接続を含まないため現行へそのまま復元しない。今回保存したv1.17パッケージを保全|
+|60分制御|起算13:57:16Zを修復後も維持。最終runは起動50分未満＋10分timeout、14:49:34Zまでに全ゲート成功|
 
-旧STATUSのIssue #29作業から、ユーザーの最新指示により切替。旧成功版の結果を今回の合格として扱わない。
+以前のSTATUSはv1.16作業を記載していたが、Issue #35へ切替えた。公開済みv1.16を保持するため、ユーザー了承のv1.17として反映。v1.16の過去結果はdocs/testing/hybrid-v1.16-results.mdに保持する。
 
 ## Issue #29：READMEと成功タグの整合（2026-09-16）
 
@@ -78,7 +78,7 @@
 
 [テスト方針v1.00](../testing/test-policy.md)、[テスト仕様書v1.03](../testing/test-specification.md)を作成。95ケース定義＋連続スモーク、独立期待値、8表示条件、PDF実体照合、差分回帰を定義した。v1.02ではIssue #23の追加受入、v1.03ではIssue #27の名称維持・工程報告を定義。既存68件のローカル合格は実機合格ではない。
 
-正式PDF用紙、保存先、認定IDと金額の整合fixtureは未決／未実装として仕様書Q1～Q5に記録。
+PDF用紙と改ページはv1.17でA4横2ページとして確定・実機確認。保存先やその他の未決事項は仕様書Q1～Q5を参照。
 
 ## 以前の作業計画（履歴）
 
@@ -103,10 +103,10 @@ Issue #12はv1.13、Issue #23はv1.14として完了。次の修正指示は[運
 ## 未決・ギャップ
 
 - ステップ7では、一時表示変更の無人反映、変更専用テスト＋P0、元表示への復元・再公開・P0を実証した。現行Persistence経路はactive `.pa.yaml` 単独では実行用ルールを再コンパイルしないため、承認対象を厳格照合した実行時ルール同期を使用した。ステップ8で既存プロパティのマニフェスト駆動と修復制御を実証済み。新規コントロール等の一般コンパイルは未対応で、運用ゲートが停止する。
-- 最新P0はv1.14の `35053952599`。成功タグv1.14、公開App ID `362ac991-eead-4f07-8373-afdb3ebfdba1`。詳細artifact `10430230837`は2026-09-30まで保持。恒久記録は注釈タグとIssue #23。過去のステップ7証跡は各ステップの記録を参照する。
+- 最新P0はv1.17の `35110696763`。旧標準フローP0はv1.14の `35053952599`。成功タグv1.14、公開App ID `362ac991-eead-4f07-8373-afdb3ebfdba1`。詳細artifact `10430230837`は2026-09-30まで保持。恒久記録は注釈タグとIssue #23。過去のステップ7証跡は各ステップの記録を参照する。
 - 本番列一覧、Dataverseテーブル名・型・ロール、実接続/委任設計は別途。
 - TSVから正式XLSX出力への方式は未決。
-- 帳票A3/A4等の正式用紙と実機改ページは未決。
+- 帳票用紙はv1.17でA4横固定、新幹線欄前改ページの2ページを実機確認済み。
 - 通勤支給予定と認定簿共通サンプルの金額は未整合。テストデータ改修が必要。
 - 認定ID選択UIは未実装。給与簿詳細はサンプル15項目で、本番の未知列は未収録。
 - 簡易出力は全件TSVコピーと表示中5行の印刷。正式な全件XLSX出力ではない。
