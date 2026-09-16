@@ -23,19 +23,19 @@
 |項目|指定|
 |---|---|
 |対象機能|M_職員基本のDataverse移行、工程2～7。60分で中断・報告|
-|基準版|公開v1.14。現時点でアプリ/Dataverseに変更なし|
-|対象ソース|scripts/automation/staff_dataverse.py、staff_data_contract.py、automation/dataverse-run.json、.github/workflows/staff-dataverse.yml|
-|関連設計|docs/design/dataverse-staff-basic.md、Work運用方針|
+|基準版|公開v1.14は未変更。Dataverseは24保存列・架空5件の構築完了|
+|対象ソース|scripts/automation/staff_dataverse.py、staff_identity_audit.py、staff_data_contract.py、powerapps/canvas-v3/Src/Screen1.pa.yaml、scripts/automation/bridge.py|
+|関連設計|docs/design/dataverse-staff-basic.md、docs/design/dataverse-connection-review.md、Work運用方針|
 |関連テスト|staff_data_contract/schema追加6件、既存28件、合計34件ローカル合格。アプリ実機回帰未実施|
 |資料|添付M_職員基本_テーブル定義書.xlsxの読取記録と本Work確定回答。旧HTMLは今回の正本ではない|
 |工程2|設計書作成。25論理項目、24保存列、在籍状態は日付から導出|
 |工程3|成功。run 35072009746。既存OIDC接続/ソリューション/発行者確認|
 |工程4|成功。run 35072394136、24保存列照合、職員番号代替キーActive|
 |工程5|成功。run 35072724192、架空5名投入・値照合。日付形式の初回失敗は修正済み|
-|工程6|保留。ブラウザの本人アカウントで編集ボタン無効。接続変更・公開・ソース置換未実施|
+|工程6|調査・レビュー完了、接続変更は保留。run 35073900437でAutomation所有権・5件読取を確認。現ブリッジは新規接続に未対応。職員fixture57か所を棚卸し|
 |工程7|未実施。25名への拡充とアプリ回帰は工程6の後|
-|再開条件|GitHub送信は継続承認済み。対象アプリへの本人アカウントの編集権限追加について確認する。自動変更しない|
-|60分制御|新フローの期限チェック案あり。既存全フローへの適用・実行検証は未完了|
+|再開条件|自動化用IDを優先。本人への編集権限追加を前提にした提案は撤回。Studioで接続追加できるユーザーセッションが必要。既存アカウントの権限拡張は事前確認し、対象ユーザーを一意照合してから実施|
+|60分制御|Dataverse構築・今回の読取診断に元のWork開始時刻による期限判定あり。既存全配布フローへの適用・実行検証は未完了|
 
 旧STATUSのIssue #29作業から、ユーザーの最新指示により切替。旧成功版の結果を今回の合格として扱わない。
 
@@ -173,3 +173,13 @@ Issue #12で発生したテストlocatorの誤りを再発防止ルールへ反�
 - ブラウザでM_職員基本の存在、主列=職員番号を確認。本人アカウントの対象アプリ編集操作は無効。公開アプリはv1.14のまま。
 - 既存権限/MFA/課金設定を変更していない。今回のフローは元の作業開始時刻を維持し、期限前停止と中断報告を追加。旧アプリ配布フロー全体の共通期限適用は未完了。
 - fixture JSONが実行入力、CSVは同内容のレビュー用出力。実データなし。
+
+## 自動化用IDによる接続前確認（2026-09-16）
+
+- ユーザー指示によりPowerAppsCanvasAppUI-Automationを優先。本人への権限追加を自動実施しない。
+- 初回診断run 35073770871は対象メールに一致するsystemusers行がなく停止。認証自体は成功。変更処理なし。
+- [再診断run 35073900437](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35073900437)は読取完了。自動化用applicationid一致、アプリOwner=ServicePrincipal、架空5件の読取を確認。
+- 共有情報のユーザー2名はCanView。powerapps-testのメールからの一意照合は未完了（systemusers一致0件、aadusersフィルターHTTP400）。表示名だけで同一人物と断定しない。診断の成功はこの照合の成功を意味しない。
+- ローカルYAML解析でdemoStaff定義57か所、全demoテーブル定義80か所を確認。詳細は[接続前レビュー](../design/dataverse-connection-review.md)。職員番号11桁等、確定仕様との不一致も記録。
+- アプリ新規接続・公開・Power Fx置換・ユーザー権限・課金設定の変更は未実施。工程7も未実施。
+- 今回は読取診断と文書のみ。診断は終了済みで、背景で継続する処理はない。
