@@ -24,6 +24,8 @@
 |---|---|
 |対象機能|M_職員基本のDataverse移行、工程2～7。60分で中断・報告|
 |基準版|テスト公開v1.15、Dataverse24保存列・架空25件。標準自動受入完了タグはv1.14|
+|残件の対象ソース|e2e/staff-dataverse-access.test.ts、scripts/automation/staff_identity_audit.py、.github/workflows/staff-dataverse-acceptance.yml|
+|残件の資料|docs/testing/dataverse-remaining-results.md、docs/design/dataverse-history-readiness.md|
 |対象ソース|scripts/automation/staff_dataverse.py、staff_identity_audit.py、staff_data_contract.py、powerapps/canvas-v3/Src/Screen1.pa.yaml、scripts/automation/bridge.py|
 |関連設計|docs/design/dataverse-staff-basic.md、docs/design/dataverse-connection-review.md、Work運用方針|
 |関連テスト|Dataverse25件API読戻し、Studio状態10/10/5・検索・ページ切替、公開Player25件・検索・再読込合格。既存自動P0は未実施|
@@ -34,7 +36,7 @@
 |工程5|成功。run 35072724192、架空5名投入・値照合。日付形式の初回失敗は修正済み|
 |工程6|Dataverse接続・57か所共通化・旧テストテーブル80定義除去・再読込修正・保存・テスト公開完了|
 |工程7|run 35080574989で25件投入・値読戻し成功。25件画面回帰・公開Player確認完了。専用テストユーザーと全自動P0は残件|
-|次の作業|専用テストユーザーのDataverseアクセス確認と自動試験対応。最新msappを基準とし、旧配布manifestで上書きしない|
+|次の作業|専用ユーザーは認証成功・データ表示失敗。一意なDataverseユーザー照合と最小読取権限案の確認が必要。履歴の元テーブル全列定義も不足。docs/testing/dataverse-remaining-results.md参照|
 |60分制御|Dataverse構築・今回の読取診断に元のWork開始時刻による期限判定あり。既存全配布フローへの適用・実行検証は未完了|
 
 旧STATUSのIssue #29作業から、ユーザーの最新指示により切替。旧成功版の結果を今回の合格として扱わない。
@@ -243,3 +245,12 @@ Issue #12で発生したテストlocatorの誤りを再発防止ルールへ反�
 この記録はDataverse移行の範囲をブラウザで実操作した結果。全P0、全画面幅、PDF生成、履歴機能の合格を意味しない。
 
 詳細：[Dataverse v1.15移行の検証と残件](../design/dataverse-v1.15-migration.md)。
+
+
+## 残件実行：専用ユーザーと履歴の停止条件（2026-09-16）
+
+- 認証は成功したが、専用ユーザーの初期25件表示は失敗。run 35089202365で再試行なしの同じ空表示を確認。既存P0は前提失敗で未実施。
+- run 35089495413の読取監査ではAutomationの25件読取成功。専用ユーザーのメール一致systemusersは0件、共有CanView principalのメールは未設定で一意照合できず。権限不足と断定しない。
+- 権限追加・ユーザー登録・ライセンス変更・アプリ再公開は実施せず停止。v1.15公開版を保持。全run終了済み。
+- 履歴は元データ全列の定義不足。通勤12か月を2か月で代替せず、給与簿概要15項目を全項目扱いにしない。定義書または暫定スキーマの範囲確認が必要。
+- [実行結果・再開条件](../testing/dataverse-remaining-results.md)、[履歴項目の不足整理](../design/dataverse-history-readiness.md)を参照。

@@ -37,6 +37,10 @@ test('Dataverse v1.15 dedicated-user read access and search regression', async (
     await app.getByRole('button', { name: '検索条件をクリア', exact: true }).click();
     await expect(app.getByText('職員一覧 25件', { exact: true })).toBeVisible();
     console.log('DATAVERSE_SEARCH_REGRESSION_PASSED');
+  } catch (error) {
+    // Playwright call logs may contain OAuth redirect fragments. Never publish them.
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(message.replace(/https?:\/\/[^\s"']+/g, '[URL redacted]'));
   } finally {
     // Visible synthetic application text only. No cookies, tokens, network or storage state.
     console.log('VISIBLE_PLAYER_TEXT', (await page.locator('body').innerText()).slice(0,16000));
