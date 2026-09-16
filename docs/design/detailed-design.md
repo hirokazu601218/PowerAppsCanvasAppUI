@@ -123,7 +123,7 @@ TSVコピーは現行の暫定出力。XLSX実装は別のフロー等を設計�
 | lblBadge111 | X=氏名X＋氏名幅＋8。Yは氏名の縦中央に合わせる |
 | lblListC2111.Width | 状態lblListC3111のX＋幅－自分のX。2行目の選択色を右端へ揃える |
 | lblListC0111 | 元は所属ラベルの背面に重なった番号表示。Text空、Fill=#E2E8F0、Height=1、Width=Parent.TemplateWidth、Y=Parent.TemplateHeight-1で区切り線に転用 |
-| conHeader111 | X=`Min(16,Max(0,(Parent.Width-App.DesignWidth)/2))`、Width=`Parent.Width-2*Self.X`。本文コンテナーの寸法式は維持 |
+| conHeader111 | X=`16`、Width=`Parent.Width-2*Self.X`。本文コンテナーの寸法式は維持 |
 
 番号は行ボタンのText/Tooltip、行の読み上げ名、固定サマリーと基本情報に保持する。既に重なっていた番号ラベルだけを線へ転用し、新しい部品やギャラリー構造は増やさない。透明な行ボタンの操作・フォーカスと左選択マーカーを維持する。
 
