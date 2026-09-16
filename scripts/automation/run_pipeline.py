@@ -16,6 +16,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 import bridge
+import app_metadata
 import policy
 import releases
 
@@ -85,6 +86,8 @@ def pack(root, directory, manifest=None):
     shutil.copytree(root / 'powerapps/solution-src', solution)
     matches = list((solution / 'CanvasApps').glob('*.msapp'))
     bridge.require(len(matches)==1, 'expected one Canvas app')
+    # Use the current approved name even when root is an older rollback tag.
+    app_metadata.normalize_display_name(matches[0].with_suffix('.meta.xml'),CFG['display_name'])
     if manifest is not None:
         result = bridge.build(root, matches[0], manifest)
         (directory/'build.json').write_text(json.dumps(result,indent=2))

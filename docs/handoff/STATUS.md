@@ -22,16 +22,25 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | Issue #23の7点はv1.14として公開・検証済み。PR #24で実装、PR #25で生成READMEを統合。現在の差分は完了記録とREADMEの既知のPR制限への引き継ぎ処理 |
-| 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11と差分照合済み。P0合格済み公開版を採用し、旧版は参照として保持 |
-| 要件ID | R04/R09/R10/R11、Issue #23追加条件、AUT-001～AUT-026、NFR-001～NFR-013（無人開発要件v1.04） |
-| 対象ソース | `scripts/automation/`、`tests/automation/`、`automation/`、`config/apps/`、`.github/workflows/staff-master-transaction.yml`、`staff-master-finalize.yml`、`e2e/changes/approved-property.test.ts`、 `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
-| 関連設計 | `docs/design/design-system.md`、`basic-design.md`、`detailed-design.md`各v1.04、`docs/operations/staff-master-unattended-runbook.md`、ルートREADME.md |
-| 関連テスト | `docs/testing/test-specification.md` v1.02 §7.4。v1.13で旧仕様確認後、v1.14で追加E2E4件＋既存P0 1件成功。基盤単体15件成功、README引き継ぎの追加後17件成功。完了記録の文書部分はリンク・記述整合のみ確認 |
-| Library資料 | 今回Workへ添付された赤字①～⑤の画面画像。GitHubコードは公開由来の現行ソースを使用 |
-| 未解決事項 | 今回の7点に未完了なし。Actions単独のPR作成はリポジトリ設定で禁止のため、README生成後のPR処理はWorkが継続する。PDF・本番データ接続・全アクセシビリティ監査等の既存ギャップは下記に保持 |
+| 対象機能 | Issue #27：指定一覧名「自動開発_職員マスタ検索」への統一、最大10工程の事前提示、追加承認待ち不要、途中進捗、終了時の工程別結果。Power Apps実体の改名はユーザー担当 |
+| 基準版 | 公開成功版v1.14、固定App ID `362ac991-eead-4f07-8373-afdb3ebfdba1`。過去の一覧名は履歴として保持。指定表示名への手動変更は未確認 |
+| 要件ID | AUT-003/004、AUT-026～AUT-030、NFR-012（無人開発要件v1.05）、Work運用方針v1.06 |
+| 対象ソース | `config/apps/staff-master.json`、`scripts/automation/readme_release.py`、`app_metadata.py`、`run_pipeline.py`、配布用 `*.meta.xml`、旧実証フローのAPP_NAME、`tests/automation/test_app_metadata.py`、`test_readme_release.py` |
+| 関連設計 | `docs/operations/work-policy.md`、`staff-master-unattended-runbook.md`、無人開発要件、ルートREADME、文書索引、変更履歴。アプリの画面設計は変更なし |
+| 関連テスト | テスト仕様v1.03 §7.5。名称メタデータ3件＋README5件の単体テスト合格。文書はリンク・記述整合を確認。Power Apps実体の改名・配布・E2E・P0は今回対象外 |
+| Library資料 | 今回の運用・名称変更では添付資料の参照は不要。GitHubの現行設定・運用文書を使用 |
+| 未解決事項 | Power Apps上の手動改名はユーザー担当・完了未確認。指定名はconfigと文書に反映。GitHubから今回の実体変更・配布は実施しない。PDF等の既存ギャップは保持 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
+
+## Issue #27：名称と工程報告の更新（2026-09-16）
+
+- 正式な指定一覧名は「自動開発_職員マスタ検索」。旧名「職員マスタ検索_自動テスト_v1_11」は過去の実行記録として保持する。Power Apps上の改名はユーザーが手動実施し、完了は未確認。App ID・URL・画面版v1.14・内部111部品IDを維持。
+- configのdisplay_nameをREADME生成に利用し、配布用メタデータも同期。通常配布と旧タグ復元のpack時に指定名を反映し、旧名へ戻るのを防ぐ。元msapp・過去タグ自体は変更しない。
+- Work運用方針v1.06、無人開発要件v1.05、テスト仕様v1.03、運用手順を更新。開始前は最大10工程提示後に承認待ちなしで実行し、途中は現在工程、終了・停止時は同じ番号の全工程別結果を同じWorkへ示す。
+- 今回の工程は、1 現状確認／2 名称更新／3 報告ルール整備／4 検証／5 GitHub反映／6 Work結果報告。単体テスト8件成功。今回は名称設定・基盤・文書の変更なので、配布・E2E・P0は対象外。公開版v1.14の過去の合格を今回の実行結果として扱わない。
+- 進捗はWorkが確認可能なActions・Issue・ログ等から報告する。1step内部が不明なら処理中の工程範囲と確認中を示す。ランナーからWorkへの直接通知や、Work停止中の常時監視は追加していない。
+- 作業と反映結果は[Issue #27](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/27)から追跡する。
 
 ## 自動化基盤と実行結果
 
@@ -51,7 +60,7 @@
 
 ## テスト設計
 
-[テスト方針v1.00](../testing/test-policy.md)、[テスト仕様書v1.02](../testing/test-specification.md)を作成。95ケース定義＋連続スモーク、独立期待値、8表示条件、PDF実体照合、差分回帰を定義した。v1.02ではIssue #23の追加受入を定義。既存68件のローカル合格は実機合格ではない。
+[テスト方針v1.00](../testing/test-policy.md)、[テスト仕様書v1.03](../testing/test-specification.md)を作成。95ケース定義＋連続スモーク、独立期待値、8表示条件、PDF実体照合、差分回帰を定義した。v1.02ではIssue #23の追加受入、v1.03ではIssue #27の名称維持・工程報告を定義。既存68件のローカル合格は実機合格ではない。
 
 正式PDF用紙、保存先、認定IDと金額の整合fixtureは未決／未実装として仕様書Q1～Q5に記録。
 
@@ -93,7 +102,7 @@ Issue #12はv1.13、Issue #23はv1.14として完了。次の修正指示は[運
 
 - [公開・テストrun 35053952599](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35053952599)：`RELEASE_CANDIDATE_PASSED`。build/auth/import/publish/readback/change_test/p0すべて成功。追加4件、P0 1件で失敗・skip・flakyは0。公開読戻しは`source_and_rules=exact`、初回Player読み込みからv1.14。
 - [PR #24](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/24)の試験対象は`aeddf38e0337107f8b8f194bb757addf72753c7e`。同一treeのmain `d0809b9f32325c37a86ab0265c26e04aaa0f1717`へ統合し、[v1.14](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.14)を確定。注釈タグに全7ゲート・対象・run・パッケージSHA-256を保存。
-- 公開日時（UTC）：`2026-09-16T04:03:25Z`。一覧名は引き続き`職員マスタ検索_自動テスト_v1_11`、画面内表示はv1.14。
+- 公開日時（UTC）：`2026-09-16T04:03:25Z`。この公開時点の一覧名は`職員マスタ検索_自動テスト_v1_11`、画面内表示はv1.14。現在の指定一覧名と手動変更状況はIssue #27の節を参照。
 - 氏名と在籍の間隔8px、選択した所属背景の右端、1pxの`#E2E8F0`区切り線、キーボード選択、検索欄開閉2往復と条件・職員・ページ保持が合格。
 
 | Playerの幅 | 標準文字の列数 | 大きな文字の列数 |
