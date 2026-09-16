@@ -1,0 +1,36 @@
+name: Staff Dataverse read-only identity audit
+on:
+  push:
+    branches: [automation/dataverse-staff-basic]
+    paths: ['.github/workflows/staff-identity-audit.yml']
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 10
+    env:
+      WORK_STARTED_EPOCH: '1789547016'
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check original Work deadline
+        run: python -c "import os,time; assert time.time()-float(os.environ['WORK_STARTED_EPOCH'])<3480, 'PAUSED_TIME_LIMIT'"
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Read automation identity and test account roles
+        run: python scripts/automation/staff_identity_audit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: staff-identity-audit-${{ github.run_id }}
+          path: artifacts/identity-audit.json
+          retention-days: 14
