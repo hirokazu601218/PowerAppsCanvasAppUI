@@ -1,0 +1,33 @@
+name: Approved app edit permission
+on:
+  push:
+    branches: [automation/dataverse-staff-basic]
+    paths: [automation/app-edit-permission.json]
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  grant:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: Reserve ten minutes within original Work deadline
+        run: python -c "import json,time; r=json.load(open('automation/app-edit-permission.json')); assert 0 <= time.time()-r['started_epoch'] < 3000, 'PAUSED_TIME_LIMIT'"
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Resolve approved user and grant app edit permission
+        run: python scripts/automation/app_edit_permission.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: app-edit-permission-${{ github.run_id }}
+          path: artifacts/app-edit-permission
+          retention-days: 14
