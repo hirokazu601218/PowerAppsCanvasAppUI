@@ -1,627 +1,89 @@
 {
-  "schema": 1,
   "approved": true,
-  "approval_record": "Work 2026-09-16: 7点のUI修正、開発・テスト・テスト公開・READMEを含むGitHub文書更新を一括指示。",
-  "issue": 23,
+  "issue": 41,
   "target": {
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",
     "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1"
   },
-  "candidate_version": "1.14",
+  "candidate_version": "1.16",
   "changes": [
+    {
+      "source": "Src/App.pa.yaml",
+      "control": "App",
+      "property": "Formulas",
+      "before": "=StaffReferenceDate = DateValue(Text(DateAdd(Now(), TimeZoneOffset(Now()) + 540, TimeUnit.Minutes), \"yyyy-mm-dd\"), \"en-US\");\nStaffTestCount = CountIf('M_職員基本', true);\nStaffBasicView = If(StaffTestCount <= 100, ForAll(\n    SortByColumns('M_職員基本', \"crb3c_staffnumber\", SortOrder.Ascending) As s,\n    {\n        StaffId: s.crb3c_staffnumber,\n        Name: s.crb3c_fullname,\n        Org: s.crb3c_orgshort,\n        OrgFull: s.crb3c_orgfull,\n        Birth: Text(s.crb3c_birthdate, \"yyyy/mm/dd\"),\n        Sex: Text(s.crb3c_sex),\n        Hire: Text(s.crb3c_hiredate, \"yyyy/mm/dd\"),\n        Leave: Text(s.crb3c_leavedate, \"yyyy/mm/dd\"),\n        Status: If(IsBlank(s.crb3c_hiredate) || s.crb3c_hiredate > StaffReferenceDate, \"採用前\", !IsBlank(s.crb3c_leavedate) && s.crb3c_leavedate < StaffReferenceDate, \"退職\", \"在籍\"),\n        WorkReg: If(Text(s.crb3c_workregistered)=\"登録\",\"登録済\",Text(s.crb3c_workregistered)),\n        Daily: s.crb3c_dailyrate,\n        Hours: If(IsBlank(s.crb3c_workminutes), Blank(), Text(RoundDown(s.crb3c_workminutes/60,0),\"0\") & \":\" & Text(Mod(s.crb3c_workminutes,60),\"00\")),\n        CommuteReg: If(Text(s.crb3c_commuteregistered)=\"登録\",\"登録済\",Text(s.crb3c_commuteregistered)),\n        Method: s.crb3c_commutemethod,\n        Pass: s.crb3c_passamount,\n        Fare: s.crb3c_onewayfare,\n        SocialReg: \"\",\n        Health: Text(s.crb3c_mutualshort),\n        Pension: Text(s.crb3c_pension),\n        ResidentReg: \"\",\n        TaxMay: Blank(),\n        TaxJune: Blank(),\n        TaxJuly: Blank(),\n        FixedReg: If(IsBlank(s.crb3c_taxclass),\"\",\"登録済\"),\n        TaxClass: Text(s.crb3c_taxclass),\n        Employment: Text(s.crb3c_employmentinsurance)\n    }\n));\nStaffWorkHistory = FirstN(Table({StaffId:\"\",Start:Date(2000,1,1),End:Date(2000,1,1),Daily:0,Scheduled:\"\",Hours:\"\",Overtime:0,Change:\"\",Reason:\"\",Finish:\"\",DailyHours:0}), 0);\nStaffCommuteHistory = FirstN(Table({StaffId:\"\",Start:Date(2000,1,1),End:Date(2000,1,1),Method:\"\",April:0,October:0}), 0);\nStaffSocialHistory = FirstN(Table({StaffId:\"\",Category:\"\",Birth:\"\",AgeApril:0,AgeMarch:0,Care:\"\",PensionExempt:\"\",Elderly:\"\",Grade:0,Monthly:0}), 0);\nStaffResidentHistory = FirstN(Table({StaffId:\"\",Amount:0,Period:\"\",Start:Date(2000,1,1),End:Date(2000,1,1)}), 0);\nStaffTaxHistory = FirstN(Table({StaffId:\"\",Start:Date(2000,1,1),End:Date(2000,1,1),TaxClass:\"\",Employment:\"\",Saving:0,Loan:0,Dependents:0,Note:\"\"}), 0);\nStaffPayrollHistory = FirstN(Table({StaffId:\"\",Year:0,PayDate:Date(2000,1,1),Base:0,BaseAdj:0,Commute:0,CommuteAdj:0,Home:0,HomeAdj:0,Overtime:0,OvertimeAdj:0,Gross:0,Deduct:0,DeductAdj:0,Net:0,Note:\"\"}), 0);",
+      "after": "=StaffReferenceDate = DateValue(Text(DateAdd(Now(), TimeZoneOffset(Now()) + 540, TimeUnit.Minutes), \"yyyy-mm-dd\"), \"en-US\");\nStaffTestCount = CountIf('M_職員基本', true);\nStaffBasicView = If(StaffTestCount <= 100, ForAll(\n    SortByColumns('M_職員基本', \"crb3c_staffnumber\", SortOrder.Ascending) As s,\n    {\n        StaffId: s.crb3c_staffnumber,\n        Name: s.crb3c_fullname,\n        Org: s.crb3c_orgshort,\n        OrgFull: s.crb3c_orgfull,\n        Birth: Text(s.crb3c_birthdate, \"yyyy/mm/dd\"),\n        Sex: Text(s.crb3c_sex),\n        Hire: Text(s.crb3c_hiredate, \"yyyy/mm/dd\"),\n        Leave: Text(s.crb3c_leavedate, \"yyyy/mm/dd\"),\n        Status: If(IsBlank(s.crb3c_hiredate) || s.crb3c_hiredate > StaffReferenceDate, \"採用前\", !IsBlank(s.crb3c_leavedate) && s.crb3c_leavedate < StaffReferenceDate, \"退職\", \"在籍\"),\n        WorkReg: If(Text(s.crb3c_workregistered)=\"登録\",\"登録済\",Text(s.crb3c_workregistered)),\n        Daily: s.crb3c_dailyrate,\n        Hours: If(IsBlank(s.crb3c_workminutes), Blank(), Text(RoundDown(s.crb3c_workminutes/60,0),\"0\") & \":\" & Text(Mod(s.crb3c_workminutes,60),\"00\")),\n        CommuteReg: If(Text(s.crb3c_commuteregistered)=\"登録\",\"登録済\",Text(s.crb3c_commuteregistered)),\n        Method: s.crb3c_commutemethod,\n        Pass: s.crb3c_passamount,\n        Fare: s.crb3c_onewayfare,\n        SocialReg: \"\",\n        Health: Text(s.crb3c_mutualshort),\n        Pension: Text(s.crb3c_pension),\n        ResidentReg: \"\",\n        TaxMay: Blank(),\n        TaxJune: Blank(),\n        TaxJuly: Blank(),\n        FixedReg: If(IsBlank(s.crb3c_taxclass),\"\",\"登録済\"),\n        TaxClass: Text(s.crb3c_taxclass),\n        Employment: Text(s.crb3c_employmentinsurance)\n    }\n));\n// Synthetic histories: source is tests/fixtures/staff-history-synthetic.json.\nStaffWorkHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"W-3-CURRENT\", Start:Date(2026,4,1), End:Date(2027,3,31), Daily:15000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"職員03の勤務条件\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000003\", RecordId:\"W-3-PAST\", Start:Date(2025,4,1), End:Date(2026,3,31), Daily:14000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"過去の合成テスト\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000003\", RecordId:\"W-3-FUTURE\", Start:Date(2027,4,1), End:Date(2099,3,31), Daily:16000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"将来の合成テスト\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000005\", RecordId:\"W-5-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:0, Scheduled:\"0:00\", Hours:\"0:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員05の勤務条件\", Finish:\"17:00\", DailyHours:0.0},\n    {StaffId:\"009900000011\", RecordId:\"W-11-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11100, Scheduled:\"8:00\", Hours:\"8:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員11の勤務条件\", Finish:\"17:00\", DailyHours:8.0},\n    {StaffId:\"009900000012\", RecordId:\"W-12-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11200, Scheduled:\"0:00\", Hours:\"0:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員12の勤務条件\", Finish:\"17:00\", DailyHours:0.0},\n    {StaffId:\"009900000025\", RecordId:\"W-25-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:12500, Scheduled:\"6:00\", Hours:\"6:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員25の勤務条件\", Finish:\"17:00\", DailyHours:6.0}\n);\nStaffCommuteHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"C-3-2026\", Start:Date(2026,4,1), End:Date(2027,3,31), Method:\"半年定期\", RecognitionId:\"TEST-TK-003-2026\", Year:2026, Monthly:1300, ICFare:0, LedgerPass:7800, LedgerMonths:6, LedgerFrom:\"架空03駅\", LedgerTo:\"テスト中央駅\", April:7800, May:0, June:0, July:0, August:0, September:0, October:7800, November:0, December:0, January:0, February:0, March:0},\n    {StaffId:\"009900000005\", RecordId:\"C-5-2026\", Start:Date(2026,4,1), End:Date(2027,3,31), Method:\"半年定期\", RecognitionId:\"TEST-TK-005-2026\", Year:2026, Monthly:0, ICFare:0, LedgerPass:0, LedgerMonths:6, LedgerFrom:\"架空05駅\", LedgerTo:\"テスト中央駅\", April:0, May:0, June:0, July:0, August:0, September:0, October:0, November:0, December:0, January:0, February:0, March:0},\n    {StaffId:\"009900000011\", RecordId:\"C-11-2026\", Start:Date(2026,4,1), End:Date(2027,3,31), Method:\"半年定期\", RecognitionId:\"TEST-TK-011-2026\", Year:2026, Monthly:2100, ICFare:0, LedgerPass:12600, LedgerMonths:6, LedgerFrom:\"架空11駅\", LedgerTo:\"テスト中央駅\", April:12600, May:0, June:0, July:0, August:0, September:0, October:12600, November:0, December:0, January:0, February:0, March:0},\n    {StaffId:\"009900000012\", RecordId:\"C-12-2026\", Start:Date(2026,4,1), End:Date(2027,3,31), Method:\"半年定期\", RecognitionId:\"TEST-TK-012-2026\", Year:2026, Monthly:2200, ICFare:0, LedgerPass:13200, LedgerMonths:6, LedgerFrom:\"架空12駅\", LedgerTo:\"テスト中央駅\", April:13200, May:0, June:0, July:0, August:0, September:0, October:13200, November:0, December:0, January:0, February:0, March:0},\n    {StaffId:\"009900000025\", RecordId:\"C-25-2026\", Start:Date(2026,4,1), End:Date(2027,3,31), Method:\"半年定期\", RecognitionId:\"TEST-TK-025-2026\", Year:2026, Monthly:3500, ICFare:0, LedgerPass:21000, LedgerMonths:6, LedgerFrom:\"架空25駅\", LedgerTo:\"テスト中央駅\", April:21000, May:0, June:0, July:0, August:0, September:0, October:21000, November:0, December:0, January:0, February:0, March:0}\n);\nStaffSocialHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"S-3-2026\", Category:\"合成テスト\", Birth:\"2000/04/01\", AgeApril:26, AgeMarch:27, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:203000},\n    {StaffId:\"009900000005\", RecordId:\"S-5-2026\", Category:\"合成テスト\", Birth:\"2000/04/01\", AgeApril:26, AgeMarch:27, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:0},\n    {StaffId:\"009900000011\", RecordId:\"S-11-2026\", Category:\"合成テスト\", Birth:\"1981/04/01\", AgeApril:45, AgeMarch:46, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:211000},\n    {StaffId:\"009900000012\", RecordId:\"S-12-2026\", Category:\"合成テスト\", Birth:\"1982/04/01\", AgeApril:44, AgeMarch:45, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:212000},\n    {StaffId:\"009900000025\", RecordId:\"S-25-2026\", Category:\"合成テスト\", Birth:\"1995/04/01\", AgeApril:31, AgeMarch:32, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:225000}\n);\nStaffTaxHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"T-3-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員03専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000005\", RecordId:\"T-5-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"未設定\", Saving:0, Loan:0, Dependents:0, Note:\"職員05専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000011\", RecordId:\"T-11-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員11専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000012\", RecordId:\"T-12-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"乙\", Employment:\"未加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員12専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000025\", RecordId:\"T-25-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員25専用の合成データ・計算検証対象外\"}\n);\nStaffPayrollHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"P-3-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:\"職員03専用・9月・合成テスト\"},\n    {StaffId:\"009900000003\", RecordId:\"P-3-2026-08\", Year:2026, PayDate:Date(2026,8,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:\"職員03専用・8月・合成テスト\"},\n    {StaffId:\"009900000005\", RecordId:\"P-5-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:0, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:0, Deduct:0, DeductAdj:0, Net:0, Note:\"職員05専用・9月・合成テスト\"},\n    {StaffId:\"009900000011\", RecordId:\"P-11-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:\"職員11専用・9月・合成テスト\"},\n    {StaffId:\"009900000011\", RecordId:\"P-11-2026-08\", Year:2026, PayDate:Date(2026,8,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:\"職員11専用・8月・合成テスト\"},\n    {StaffId:\"009900000012\", RecordId:\"P-12-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:224000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:224000, Deduct:21200, DeductAdj:0, Net:202800, Note:\"職員12専用・9月・合成テスト\"},\n    {StaffId:\"009900000025\", RecordId:\"P-25-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:250000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:250000, Deduct:22500, DeductAdj:0, Net:227500, Note:\"職員25専用・9月・合成テスト\"}\n);\nStaffResidentHistory = FirstN(Table({StaffId:\"\",Amount:0,Period:\"\",Start:Date(2000,1,1),End:Date(2000,1,1)}),0);\nStaffLedgerTemplate = Table(\n    {Field:\"event_date_year\", Value:\"8\"},\n    {Field:\"event_date_month\", Value:\"4\"},\n    {Field:\"event_date_day\", Value:\"1\"},\n    {Field:\"submitted_date_year\", Value:\"8\"},\n    {Field:\"submitted_date_month\", Value:\"4\"},\n    {Field:\"submitted_date_day\", Value:\"1\"},\n    {Field:\"accepted_date_year\", Value:\"8\"},\n    {Field:\"accepted_date_month\", Value:\"4\"},\n    {Field:\"accepted_date_day\", Value:\"1\"},\n    {Field:\"route_1_transport\", Value:\"テスト鉄道\"},\n    {Field:\"route_1_ticket_type\", Value:\"6箇月定期（合成）\"},\n    {Field:\"route_1_other_basis\", Value:\"\"},\n    {Field:\"route_1_season_basis\", Value:\"\"},\n    {Field:\"route_1_other_amount\", Value:\"0\"},\n    {Field:\"route_1_period_start_year\", Value:\"令和8年\"},\n    {Field:\"route_1_period_start_month\", Value:\"4月から\"},\n    {Field:\"route_1_payment_months\", Value:\"4・10月\"},\n    {Field:\"route_1_remarks\", Value:\"合成テスト・正式認定には使用不可\"},\n    {Field:\"route_2_transport\", Value:\"\"},\n    {Field:\"route_2_section_from\", Value:\"\"},\n    {Field:\"route_2_section_to\", Value:\"\"},\n    {Field:\"route_2_ticket_type\", Value:\"\"},\n    {Field:\"route_2_other_basis\", Value:\"\"},\n    {Field:\"route_2_season_basis\", Value:\"\"},\n    {Field:\"route_2_other_amount\", Value:\"\"},\n    {Field:\"route_2_season_amount\", Value:\"\"},\n    {Field:\"route_2_season_months\", Value:\"\"},\n    {Field:\"route_2_monthly_amount\", Value:\"\"},\n    {Field:\"route_2_period_start_year\", Value:\"\"},\n    {Field:\"route_2_period_start_month\", Value:\"\"},\n    {Field:\"route_2_payment_months\", Value:\"\"},\n    {Field:\"route_2_remarks\", Value:\"\"},\n    {Field:\"route_3_transport\", Value:\"\"},\n    {Field:\"route_3_section_from\", Value:\"\"},\n    {Field:\"route_3_section_to\", Value:\"\"},\n    {Field:\"route_3_ticket_type\", Value:\"\"},\n    {Field:\"route_3_other_basis\", Value:\"\"},\n    {Field:\"route_3_season_basis\", Value:\"\"},\n    {Field:\"route_3_other_amount\", Value:\"\"},\n    {Field:\"route_3_season_amount\", Value:\"\"},\n    {Field:\"route_3_season_months\", Value:\"\"},\n    {Field:\"route_3_monthly_amount\", Value:\"\"},\n    {Field:\"route_3_period_start_year\", Value:\"\"},\n    {Field:\"route_3_period_start_month\", Value:\"\"},\n    {Field:\"route_3_payment_months\", Value:\"\"},\n    {Field:\"route_3_remarks\", Value:\"\"},\n    {Field:\"route_4_transport\", Value:\"\"},\n    {Field:\"route_4_section_from\", Value:\"\"},\n    {Field:\"route_4_section_to\", Value:\"\"},\n    {Field:\"route_4_ticket_type\", Value:\"\"},\n    {Field:\"route_4_other_basis\", Value:\"\"},\n    {Field:\"route_4_season_basis\", Value:\"\"},\n    {Field:\"route_4_other_amount\", Value:\"\"},\n    {Field:\"route_4_season_amount\", Value:\"\"},\n    {Field:\"route_4_season_months\", Value:\"\"},\n    {Field:\"route_4_monthly_amount\", Value:\"\"},\n    {Field:\"route_4_period_start_year\", Value:\"\"},\n    {Field:\"route_4_period_start_month\", Value:\"\"},\n    {Field:\"route_4_payment_months\", Value:\"\"},\n    {Field:\"route_4_remarks\", Value:\"\"}\n);"
+    },
     {
       "source": "Src/Screen1.pa.yaml",
       "control": "lblMeta111",
       "property": "Text",
-      "before": "=\"v1.11  ／  B案・架空25名\"",
-      "after": "=\"v1.14  ／  B案・架空25名\""
+      "before": "=\"v1.15 ／ Dataverse・\" & Text(StaffTestCount) & \"名\"",
+      "after": "=\"v1.16 ／ Dataverse・\" & Text(StaffTestCount) & \"名\""
     },
     {
       "source": "Src/Screen1.pa.yaml",
-      "control": "btnSidebarToggle111",
+      "control": "lblSectionWork111",
       "property": "Text",
-      "before": "=If(Coalesce(varSearchSidebarExpanded111,true),\"‹\",\"›\")",
-      "after": "=\"☰\""
+      "before": "=With({demoStaff:StaffBasicView,\ndemoWork:StaffWorkHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"給与・勤務条件履歴\" & \"　\" & Text(CountRows(Filter(demoWork,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（履歴未接続）\"",
+      "after": "=With({demoStaff:StaffBasicView,\ndemoWork:StaffWorkHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"給与・勤務条件履歴\" & \"　\" & Text(CountRows(Filter(demoWork,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（内蔵テスト）\""
     },
     {
       "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey0111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey0111",
-      "property": "X",
-      "before": "=8+Mod(0,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(0,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal0111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal0111",
-      "property": "X",
-      "before": "=8+Mod(0,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(0,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey0111",
-      "property": "Y",
-      "before": "=52+RoundDown(0/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
-      "after": "=52+RoundDown(0/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal0111",
-      "property": "Y",
-      "before": "=52+RoundDown(0/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
-      "after": "=lblBasicKey0111.Y+lblBasicKey0111.Height"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal0111",
-      "property": "Height",
-      "before": "=64",
-      "after": "=If(Coalesce(varLargeText111,false),28,24)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal0111",
-      "property": "PaddingTop",
-      "before": "=4",
-      "after": "=0"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey1111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey1111",
-      "property": "X",
-      "before": "=8+Mod(1,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(1,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal1111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal1111",
-      "property": "X",
-      "before": "=8+Mod(1,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(1,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey1111",
-      "property": "Y",
-      "before": "=52+RoundDown(1/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
-      "after": "=52+RoundDown(1/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal1111",
-      "property": "Y",
-      "before": "=52+RoundDown(1/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
-      "after": "=lblBasicKey1111.Y+lblBasicKey1111.Height"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal1111",
-      "property": "Height",
-      "before": "=64",
-      "after": "=If(Coalesce(varLargeText111,false),28,24)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal1111",
-      "property": "PaddingTop",
-      "before": "=4",
-      "after": "=0"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey2111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey2111",
-      "property": "X",
-      "before": "=8+Mod(2,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(2,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal2111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal2111",
-      "property": "X",
-      "before": "=8+Mod(2,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(2,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey2111",
-      "property": "Y",
-      "before": "=52+RoundDown(2/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
-      "after": "=52+RoundDown(2/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal2111",
-      "property": "Y",
-      "before": "=52+RoundDown(2/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
-      "after": "=lblBasicKey2111.Y+lblBasicKey2111.Height"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal2111",
-      "property": "Height",
-      "before": "=64",
-      "after": "=If(Coalesce(varLargeText111,false),28,24)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal2111",
-      "property": "PaddingTop",
-      "before": "=4",
-      "after": "=0"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey3111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey3111",
-      "property": "X",
-      "before": "=8+Mod(3,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(3,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal3111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal3111",
-      "property": "X",
-      "before": "=8+Mod(3,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(3,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey3111",
-      "property": "Y",
-      "before": "=52+RoundDown(3/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
-      "after": "=52+RoundDown(3/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal3111",
-      "property": "Y",
-      "before": "=52+RoundDown(3/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
-      "after": "=lblBasicKey3111.Y+lblBasicKey3111.Height"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal3111",
-      "property": "Height",
-      "before": "=64",
-      "after": "=If(Coalesce(varLargeText111,false),28,24)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal3111",
-      "property": "PaddingTop",
-      "before": "=4",
-      "after": "=0"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey4111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey4111",
-      "property": "X",
-      "before": "=8+Mod(4,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(4,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal4111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal4111",
-      "property": "X",
-      "before": "=8+Mod(4,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(4,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey4111",
-      "property": "Y",
-      "before": "=52+RoundDown(4/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
-      "after": "=52+RoundDown(4/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal4111",
-      "property": "Y",
-      "before": "=52+RoundDown(4/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
-      "after": "=lblBasicKey4111.Y+lblBasicKey4111.Height"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal4111",
-      "property": "Height",
-      "before": "=64",
-      "after": "=If(Coalesce(varLargeText111,false),28,24)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal4111",
-      "property": "PaddingTop",
-      "before": "=4",
-      "after": "=0"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey5111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey5111",
-      "property": "X",
-      "before": "=8+Mod(5,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(5,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal5111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal5111",
-      "property": "X",
-      "before": "=8+Mod(5,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(5,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey5111",
-      "property": "Y",
-      "before": "=52+RoundDown(5/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
-      "after": "=52+RoundDown(5/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal5111",
-      "property": "Y",
-      "before": "=52+RoundDown(5/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
-      "after": "=lblBasicKey5111.Y+lblBasicKey5111.Height"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal5111",
-      "property": "Height",
-      "before": "=64",
-      "after": "=If(Coalesce(varLargeText111,false),28,24)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal5111",
-      "property": "PaddingTop",
-      "before": "=4",
-      "after": "=0"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey6111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey6111",
-      "property": "X",
-      "before": "=8+Mod(6,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(6,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal6111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal6111",
-      "property": "X",
-      "before": "=8+Mod(6,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(6,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey6111",
-      "property": "Y",
-      "before": "=52+RoundDown(6/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
-      "after": "=52+RoundDown(6/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal6111",
-      "property": "Y",
-      "before": "=52+RoundDown(6/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
-      "after": "=lblBasicKey6111.Y+lblBasicKey6111.Height"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal6111",
-      "property": "Height",
-      "before": "=64",
-      "after": "=If(Coalesce(varLargeText111,false),28,24)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal6111",
-      "property": "PaddingTop",
-      "before": "=4",
-      "after": "=0"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey7111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey7111",
-      "property": "X",
-      "before": "=8+Mod(7,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(7,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal7111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal7111",
-      "property": "X",
-      "before": "=8+Mod(7,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(7,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey7111",
-      "property": "Y",
-      "before": "=52+RoundDown(7/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
-      "after": "=52+RoundDown(7/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal7111",
-      "property": "Y",
-      "before": "=52+RoundDown(7/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
-      "after": "=lblBasicKey7111.Y+lblBasicKey7111.Height"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal7111",
-      "property": "Height",
-      "before": "=64",
-      "after": "=If(Coalesce(varLargeText111,false),28,24)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal7111",
-      "property": "PaddingTop",
-      "before": "=4",
-      "after": "=0"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey8111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey8111",
-      "property": "X",
-      "before": "=8+Mod(8,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(8,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal8111",
-      "property": "Width",
-      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
-      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal8111",
-      "property": "X",
-      "before": "=8+Mod(8,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
-      "after": "=8+Mod(8,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicKey8111",
-      "property": "Y",
-      "before": "=52+RoundDown(8/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
-      "after": "=52+RoundDown(8/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal8111",
-      "property": "Y",
-      "before": "=52+RoundDown(8/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
-      "after": "=lblBasicKey8111.Y+lblBasicKey8111.Height"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal8111",
-      "property": "Height",
-      "before": "=64",
-      "after": "=If(Coalesce(varLargeText111,false),28,24)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBasicVal8111",
-      "property": "PaddingTop",
-      "before": "=4",
-      "after": "=0"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "conBasic111",
-      "property": "Height",
-      "before": "=52+RoundUp(9/If(Self.Width>=900,3,If(Self.Width>=560,2,1)),0)*If(Coalesce(varLargeText111,false),104,96)",
-      "after": "=52+RoundUp(9/Min(6,Max(1,RoundDown((Self.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblName111",
-      "property": "Width",
-      "before": "=Parent.Width-120",
-      "after": "=Min(Parent.Width-120,Len(Substitute(Self.Text,\" \",\"\"))*Self.Size*4/3+(Len(Self.Text)-Len(Substitute(Self.Text,\" \",\"\")))*Self.Size*2/3+Self.PaddingLeft+Self.PaddingRight)"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblName111",
-      "property": "PaddingRight",
-      "before": "=8",
-      "after": "=0"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBadge111",
-      "property": "X",
-      "before": "=Parent.Width-96",
-      "after": "=lblName111.X+lblName111.Width+8"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblBadge111",
-      "property": "Y",
-      "before": "=16",
-      "after": "=lblName111.Y+(lblName111.Height-Self.Height)/2"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblListC2111",
-      "property": "Width",
-      "before": "=Parent.TemplateWidth-136",
-      "after": "=lblListC3111.X+lblListC3111.Width-Self.X"
-    },
-    {
-      "source": "Src/Screen1.pa.yaml",
-      "control": "lblListC0111",
+      "control": "lblSectionCommute111",
       "property": "Text",
-      "before": "=ThisItem.StaffId",
-      "after": "=\"\""
+      "before": "=With({demoStaff:StaffBasicView,\ndemoCommute:StaffCommuteHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"通勤支給予定\" & \"　\" & Text(CountRows(Filter(demoCommute,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（履歴未接続）\"",
+      "after": "=With({demoStaff:StaffBasicView,\ndemoCommute:StaffCommuteHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"通勤支給予定\" & \"　\" & Text(CountRows(Filter(demoCommute,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（内蔵テスト）\""
     },
     {
       "source": "Src/Screen1.pa.yaml",
-      "control": "lblListC0111",
-      "property": "Fill",
-      "before": "=If(ThisItem.StaffId=galStaff111.Selected.StaffId,ColorValue(\"#DCEAFF\"),Color.White)",
-      "after": "=ColorValue(\"#E2E8F0\")"
+      "control": "lblSectionSocial111",
+      "property": "Text",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoSocial:StaffSocialHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"社会保険履歴\" & \"　\" & Text(CountRows(Filter(demoSocial,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（履歴未接続）\"",
+      "after": "=With({demoStaff:StaffBasicView,\ndemoSocial:StaffSocialHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"社会保険履歴\" & \"　\" & Text(CountRows(Filter(demoSocial,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（内蔵テスト）\""
     },
     {
       "source": "Src/Screen1.pa.yaml",
-      "control": "lblListC0111",
-      "property": "Height",
-      "before": "=28",
-      "after": "=1"
+      "control": "lblSectionTax111",
+      "property": "Text",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoTax:StaffTaxHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"税・固定控除設定履歴\" & \"　\" & Text(CountRows(Filter(demoTax,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（履歴未接続）\"",
+      "after": "=With({demoStaff:StaffBasicView,\ndemoTax:StaffTaxHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"税・固定控除設定履歴\" & \"　\" & Text(CountRows(Filter(demoTax,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（内蔵テスト）\""
     },
     {
       "source": "Src/Screen1.pa.yaml",
-      "control": "lblListC0111",
-      "property": "Width",
-      "before": "=132",
-      "after": "=Parent.TemplateWidth"
+      "control": "lblSectionPayroll111",
+      "property": "Text",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"基準給与簿履歴\" & \"　\" & Text(CountRows(Filter(demoPayroll,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（履歴未接続）\"",
+      "after": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"基準給与簿履歴\" & \"　\" & Text(CountRows(Filter(demoPayroll,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（内蔵テスト）\""
     },
     {
       "source": "Src/Screen1.pa.yaml",
-      "control": "lblListC0111",
-      "property": "Y",
-      "before": "=36",
-      "after": "=Parent.TemplateHeight-1"
+      "control": "lblSectionPayrollModal111",
+      "property": "Text",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"基準給与簿履歴（テスト項目15列）\" & \"　\" & Text(CountRows(Filter(demoPayroll,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（履歴未接続）\"",
+      "after": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"基準給与簿履歴（テスト項目15列）\" & \"　\" & Text(CountRows(Filter(demoPayroll,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（内蔵テスト）\""
     },
     {
       "source": "Src/Screen1.pa.yaml",
-      "control": "conHeader111",
-      "property": "X",
-      "before": "=0",
-      "after": "=16"
+      "control": "btnCertificate111",
+      "property": "OnSelect",
+      "before": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\nSet(varLedgerStaff111,demoSelected);\nClearCollect(colLedgerFields111,Table({Field:\"employee_name\",Value:varLedgerStaff111.Name},\n{Field:\"employee_number\",Value:varLedgerStaff111.StaffId},\n{Field:\"organization\",Value:varLedgerStaff111.Org},\n{Field:\"event_date_year\",Value:\"8\"},\n{Field:\"event_date_month\",Value:\"6\"},\n{Field:\"event_date_day\",Value:\"1\"},\n{Field:\"submitted_date_year\",Value:\"8\"},\n{Field:\"submitted_date_month\",Value:\"6\"},\n{Field:\"submitted_date_day\",Value:\"1\"},\n{Field:\"accepted_date_year\",Value:\"8\"},\n{Field:\"accepted_date_month\",Value:\"6\"},\n{Field:\"accepted_date_day\",Value:\"1\"},\n{Field:\"route_1_transport\",Value:\"テスト鉄道\"},\n{Field:\"route_1_section_from\",Value:\"中央駅\"},\n{Field:\"route_1_section_to\",Value:\"霞ヶ関駅\"},\n{Field:\"route_1_ticket_type\",Value:\"3箇月定期\"},\n{Field:\"route_1_other_basis\",Value:\"\"},\n{Field:\"route_1_season_basis\",Value:\"2.3\"},\n{Field:\"route_1_other_amount\",Value:\"0\"},\n{Field:\"route_1_season_amount\",Value:\"11,970\"},\n{Field:\"route_1_season_months\",Value:\"3\"},\n{Field:\"route_1_monthly_amount\",Value:\"3,990\"},\n{Field:\"route_1_period_start_year\",Value:\"令和8年\"},\n{Field:\"route_1_period_start_month\",Value:\"6月から\"},\n{Field:\"route_1_payment_months\",Value:\"6・9・12・3月\"},\n{Field:\"route_1_remarks\",Value:\"中央駅〜霞ヶ関駅（架空）\"},\n{Field:\"route_2_transport\",Value:\"テスト地下鉄\"},\n{Field:\"route_2_section_from\",Value:\"霞ヶ関駅\"},\n{Field:\"route_2_section_to\",Value:\"内幸町駅\"},\n{Field:\"route_2_ticket_type\",Value:\"6箇月定期\"},\n{Field:\"route_2_other_basis\",Value:\"\"},\n{Field:\"route_2_season_basis\",Value:\"2.4\"},\n{Field:\"route_2_other_amount\",Value:\"0\"},\n{Field:\"route_2_season_amount\",Value:\"38,940\"},\n{Field:\"route_2_season_months\",Value:\"6\"},\n{Field:\"route_2_monthly_amount\",Value:\"6,490\"},\n{Field:\"route_2_period_start_year\",Value:\"令和8年\"},\n{Field:\"route_2_period_start_month\",Value:\"6月から\"},\n{Field:\"route_2_payment_months\",Value:\"6・12月\"},\n{Field:\"route_2_remarks\",Value:\"霞ヶ関駅〜内幸町駅（架空）\"},\n{Field:\"route_3_transport\",Value:\"\"},\n{Field:\"route_3_section_from\",Value:\"\"},\n{Field:\"route_3_section_to\",Value:\"\"},\n{Field:\"route_3_ticket_type\",Value:\"\"},\n{Field:\"route_3_other_basis\",Value:\"\"},\n{Field:\"route_3_season_basis\",Value:\"\"},\n{Field:\"route_3_other_amount\",Value:\"\"},\n{Field:\"route_3_season_amount\",Value:\"\"},\n{Field:\"route_3_season_months\",Value:\"\"},\n{Field:\"route_3_monthly_amount\",Value:\"\"},\n{Field:\"route_3_period_start_year\",Value:\"\"},\n{Field:\"route_3_period_start_month\",Value:\"\"},\n{Field:\"route_3_payment_months\",Value:\"\"},\n{Field:\"route_3_remarks\",Value:\"\"},\n{Field:\"route_4_transport\",Value:\"\"},\n{Field:\"route_4_section_from\",Value:\"\"},\n{Field:\"route_4_section_to\",Value:\"\"},\n{Field:\"route_4_ticket_type\",Value:\"\"},\n{Field:\"route_4_other_basis\",Value:\"\"},\n{Field:\"route_4_season_basis\",Value:\"\"},\n{Field:\"route_4_other_amount\",Value:\"\"},\n{Field:\"route_4_season_amount\",Value:\"\"},\n{Field:\"route_4_season_months\",Value:\"\"},\n{Field:\"route_4_monthly_amount\",Value:\"\"},\n{Field:\"route_4_period_start_year\",Value:\"\"},\n{Field:\"route_4_period_start_month\",Value:\"\"},\n{Field:\"route_4_payment_months\",Value:\"\"},\n{Field:\"route_4_remarks\",Value:\"\"},\n{Field:\"monthly_amount_total\",Value:\"10,480\"}));\nSet(varLedgerOpen111,true); Set(varLedgerZoom111,1); Set(varLedgerPdfView111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\"); Set(varLedgerFile111,\"\"); Set(varPayroll111,false); Reset(ddLedgerPaper111)))",
+      "after": "=With({s:If(Coalesce(varStaffChosen111,false),varStaff111,First(StaffBasicView))},\nWith({c:LookUp(StaffCommuteHistory,StaffId=s.StaffId)},\nSet(varLedgerStaff111,s);\nClearCollect(colLedgerFields111,StaffLedgerTemplate);\nCollect(colLedgerFields111,Table(\n{Field:\"employee_name\",Value:s.Name},{Field:\"employee_number\",Value:s.StaffId},{Field:\"organization\",Value:s.Org},\n{Field:\"route_1_section_from\",Value:c.LedgerFrom},{Field:\"route_1_section_to\",Value:c.LedgerTo},\n{Field:\"route_1_season_amount\",Value:Text(c.LedgerPass,\"#,##0\")},{Field:\"route_1_season_months\",Value:Text(c.LedgerMonths)},\n{Field:\"route_1_monthly_amount\",Value:Text(c.Monthly,\"#,##0\")},{Field:\"monthly_amount_total\",Value:Text(c.Monthly,\"#,##0\")}));\nSet(varLedgerOpen111,true); Set(varLedgerZoom111,1); Set(varLedgerPdfView111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\"); Set(varLedgerFile111,\"\"); Set(varPayroll111,false); Reset(ddLedgerPaper111)))"
     },
     {
       "source": "Src/Screen1.pa.yaml",
-      "control": "conHeader111",
-      "property": "Width",
-      "before": "=Parent.Width",
-      "after": "=Parent.Width-2*Self.X"
+      "control": "btnPayExport111",
+      "property": "DisplayMode",
+      "before": "=If(varLedgerOpen111,DisplayMode.Disabled,DisplayMode.Edit)",
+      "after": "=If(IsEmpty(Filter(StaffPayrollHistory,StaffId=If(Coalesce(varStaffChosen111,false),varStaff111.StaffId,First(StaffBasicView).StaffId))),DisplayMode.Disabled,DisplayMode.Edit)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblTestNote111",
+      "property": "Text",
+      "before": "=If(StaffTestCount>100,\"テスト対象の上限（100名）を超えたため一覧を表示できません。\",\"テスト環境：職員基本はDataverseの架空データです。履歴データは未接続です。\")",
+      "after": "=If(StaffTestCount>100,\"テスト対象の上限（100名）を超えたため一覧を表示できません。\",\"テスト環境：職員基本はDataverseの架空データです。履歴・帳票は内蔵の合成テストデータです。\")"
     }
-  ],
-  "acceptance": {
-    "case_id": "AUT-LAYOUT-001",
-    "expected_label": "v1.14 ／ B案・架空25名"
-  }
+  ]
 }

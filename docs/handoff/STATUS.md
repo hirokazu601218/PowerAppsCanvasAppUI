@@ -22,22 +22,20 @@
 
 |項目|指定|
 |---|---|
-|対象機能|M_職員基本のDataverse移行、工程2～7。60分で中断・報告|
-|基準版|テスト公開v1.15、Dataverse24保存列・架空25件。標準自動受入完了タグはv1.14|
-|残件の対象ソース|e2e/staff-dataverse-access.test.ts、scripts/automation/staff_identity_audit.py、.github/workflows/staff-dataverse-acceptance.yml|
-|残件の資料|docs/testing/dataverse-remaining-results.md、docs/design/dataverse-history-readiness.md|
-|対象ソース|scripts/automation/staff_dataverse.py、staff_identity_audit.py、staff_data_contract.py、powerapps/canvas-v3/Src/Screen1.pa.yaml、scripts/automation/bridge.py|
-|関連設計|docs/design/dataverse-staff-basic.md、docs/design/dataverse-connection-review.md、Work運用方針|
-|関連テスト|Dataverse25件API読戻し、Studio状態10/10/5・検索・ページ切替、公開Player25件・検索・再読込合格。既存自動P0は未実施|
-|資料|添付M_職員基本_テーブル定義書.xlsxの読取記録と本Work確定回答。旧HTMLは今回の正本ではない|
-|工程2|設計書作成。25論理項目、24保存列、在籍状態は日付から導出|
-|工程3|成功。run 35072009746。既存OIDC接続/ソリューション/発行者確認|
-|工程4|成功。run 35072394136、24保存列照合、職員番号代替キーActive|
-|工程5|成功。run 35072724192、架空5名投入・値照合。日付形式の初回失敗は修正済み|
-|工程6|Dataverse接続・57か所共通化・旧テストテーブル80定義除去・再読込修正・保存・テスト公開完了|
-|工程7|run 35080574989で25件投入・値読戻し成功。25件画面回帰・公開Player確認完了。専用テストユーザーの読取・検索回帰も合格（run 35092609884）。全自動P0は残件|
-|次の作業|専用ユーザーの本人照合・閲覧権限・25件検索回帰は完了（run 35092609884）。職員基本はDataverseを維持し、通勤・給与簿等の未確定データは内蔵の共通テストデータを追加する。内蔵データ追加と全自動P0は未実施|
-|60分制御|Dataverse構築・今回の読取診断に元のWork開始時刻による期限判定あり。既存全配布フローへの適用・実行検証は未完了|
+|対象機能|M_職員基本のDataverse移行と、未確定履歴の共通内蔵テストデータ併用|
+|現在公開版|v1.16。職員基本25名Dataverse、勤務・通勤・保険・税控除・給与は共通内蔵合成データ|
+|今回の完了|内蔵データ追加・認定簿の職員番号別取得・履歴0件の出力無効・Studio保存公開・専用ユーザー回帰7件・ソース/実行用数式の完全照合|
+|証跡|run 35098953055、試験commit cf990af19e9c8403299dce6300373f5f23c22b16、docs/testing/hybrid-v1.16-results.md|
+|対象ソース|tests/fixtures/staff-history-synthetic.json、scripts/automation/render_staff_history.py、powerapps/canvas-v3/Src/App.pa.yaml、Screen1.pa.yaml、e2e/hybrid/|
+|関連設計|docs/design/hybrid-test-data.md、docs/design/dataverse-history-readiness.md、docs/design/dataverse-staff-basic.md|
+|関連テスト|7件PASS（P0・既存UI4件・Dataverseアクセス/検索・履歴/給与/認定簿）。再試行0。標準/大文字×幅5条件|
+|保存パッケージ|powerapps/dataverse-v1.16/staff-master.msapp。SHA256 9d1bc8a33e111710736c7ae12e481355a1d6535257e1316c54926b3119c9cf36|
+|共通数式ビルド|基準msapp v1.15＋automation/change.jsonの11プロパティ変更。レビュー用生成物powerapps/test-data/staff-history.fx|
+|権限|専用ユーザーの最小読取権限は前回承認で追加済み。今回の権限・料金変更なし|
+|次の作業|今回指定された残件は完了。履歴の正式テーブルは業務定義が決まり次第Dataverseへ順次移行。今は内蔵データを継続|
+|別作業|認定簿UI・ズーム・PDF保存接続は停止中の別Workの範囲。今回再開しない|
+|復元注意|旧標準フロー成功タグはv1.14。Dataverse接続を含まないため現行へそのまま復元しない。今回保存したv1.16パッケージと接続メタデータを保全|
+|60分制御|今回Actionsは元Work開始時刻から40分未満を起動条件にし、20分timeout。約26分時点に終了。旧全フローへの共通期限実装は別件|
 
 旧STATUSのIssue #29作業から、ユーザーの最新指示により切替。旧成功版の結果を今回の合格として扱わない。
 
@@ -82,7 +80,7 @@
 
 正式PDF用紙、保存先、認定IDと金額の整合fixtureは未決／未実装として仕様書Q1～Q5に記録。
 
-## ChatGPT Sol Workの次の作業
+## 以前の作業計画（履歴）
 
 ステップ1～9は完了。2026-09-15の承認に基づき、既存プロパティ変更を対象とするテスト公開の運用を開始した。
 
@@ -295,3 +293,11 @@ Issue #12で発生したテストlocatorの誤りを再発防止ルールへ反�
 - 今回の処理は終了済み。課金設定や追加ライセンスの変更なし。
 
 次の作業は、通勤・給与簿等の内蔵合成データの共通定義と12桁職員番号への対応、該当画面の回帰確認。テーブル確定後にDataverseへ順次切り替える。専用ユーザーの本人照合・閲覧権限は解決済みで、再度の権限承認依頼は不要。
+
+## 2026-09-16 残件完了：v1.16 共通内蔵履歴
+
+上記のv1.15時点の未実施記録は履歴として保持する。最新結果は先頭の「現在の作業と読取り対象」と[検証記録](../testing/hybrid-v1.16-results.md)を参照。
+
+勤務7件・通勤5件・保険5件・税控除5件・給与7件と認定簿共通値を実装。Studio保存・テスト公開、専用利用者の7件回帰、YAMLと実行ルール読戻し完全一致を確認。接続関連6ファイルはv1.15とバイト単位で一致。今回指定の残件は完了。
+
+将来の正式履歴Dataverse化・未確定全列・PDF保存接続は引き続き別作業。標準Solution配布フローの旧成功タグを偽って更新せず、現行保存パッケージと試験結果をGitHubへ保全する。

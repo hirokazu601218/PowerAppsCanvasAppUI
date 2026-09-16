@@ -4,7 +4,7 @@
 
 非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubのmainをChatGPT SolのWorkで扱う共有正本とする。
 
-現在のテスト公開版は **v1.15（Dataverse・架空25名）** です。工程7の検索・ページ切替・再読込をStudioと公開Playerで確認しました。履歴は未接続で、既存自動P0・専用テストユーザーのDataverseアクセスは未検証です。[移行結果と残件](docs/design/dataverse-v1.15-migration.md)を参照してください。
+現在のテスト公開版は **v1.16（職員基本：Dataverse、未確定履歴：共通内蔵テストデータ）** です。専用利用者による7件の回帰テストと保存アプリのソース・実行用数式の読戻し照合が合格しました。[検証結果](docs/testing/hybrid-v1.16-results.md)と[データの所在・将来の切替手順](docs/design/hybrid-test-data.md)を参照してください。
 
 <!-- staff-master-release:start -->
 標準自動受入の最終完了版：**[v1.14](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.14)**（隔離テストアプリ）。追加テスト・既存P0・公開後の読戻し照合が合格しています。
@@ -12,7 +12,7 @@
 - [検証結果](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35053952599)
 - [変更要求](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/23)
 - 公開日時（UTC）：2026-09-16T04:03:25Z
-- アプリ一覧名（指定）：`自動開発_職員マスタ検索`。現在の画面内版はv1.15です。上記タグはv1.14の自動受入完了記録です。
+- アプリ一覧名（指定）：`自動開発_職員マスタ検索`。現在の画面内版はv1.16です。上記タグは旧Solution配布フローのv1.14記録であり、今回のStudio公開＋読取受入v1.16とは分けています。
 <!-- staff-master-release:end -->
 
 [隔離テストアプリを開く](https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d)。共有済みアカウントでサインインしてください。架空25名の検証用アプリです。
@@ -47,7 +47,7 @@
 - [累積変更マニフェスト](automation/change.json)、[対象環境・App ID](config/apps/staff-master.json)
 - [無人修正・テスト公開の運用手順](docs/operations/staff-master-unattended-runbook.md)
 - [デザイン基準](docs/design/design-system.md)、[テスト仕様書](docs/testing/test-specification.md)
-- [変更専用E2E](e2e/changes/approved-property.test.ts)、[既存P0回帰](e2e/staff-master-p0.test.ts)
+- [現行Dataverse・履歴・配置・P0回帰](e2e/hybrid/)、[旧版回復用P0](e2e/staff-master-p0.test.ts)
 
 公開後にサーバー側の実行ルールを読戻し、追加テストとP0の両方に合格した候補だけをmainへ統合します。成功タグを作る前に、検証済み記録からREADMEの成功版欄と文書専用コミットを生成します。READMEの版・リンク・検証runと候補版を照合し、テスト済みソースとの差分がREADMEだけであることを確認してから、そのコミットへ成功タグを付けます。不一致ならタグ作成を停止します。現在のリポジトリ設定ではActionsによるPR作成が禁止されているため、生成した変更をこのWorkがPR経由で統合します。ユーザーへの追加確認は不要です。Actionsだけで文書更新完了とはせず、mainへの反映まで確認します。詳細は運用手順を参照してください。
 
