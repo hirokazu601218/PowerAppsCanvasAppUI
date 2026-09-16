@@ -60,7 +60,8 @@ jobs:
         run: npm run build
       - name: Install Chromium
         working-directory: power-platform-playwright/packages/e2e-tests
-        run: npx playwright install chromium --with-deps
+        # Retry a transient package mirror synchronization failure once; keep all integrity checks.
+        run: npx playwright install chromium --with-deps || npx playwright install chromium --with-deps
       - name: Prepare existing certificate configuration
         if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
         env:
@@ -116,4 +117,3 @@ jobs:
         if: always()
         run: |
           echo 'Read-only access/current regression plus unchanged legacy P0. Legacy fixture mismatch is not migration success. No application build, import, publish, role change, or state/token upload is performed.' >> "$GITHUB_STEP_SUMMARY"
-
