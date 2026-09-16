@@ -80,7 +80,15 @@ else:
     subprocess.run(['git','tag','-a',tag,SHA,'-F',str(OUT/'release.json')],cwd=ROOT,check=True)
     subprocess.run(['git','push','origin',f'refs/tags/{tag}'],cwd=ROOT,check=True)
 (OUT/'release.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
-readme_release.publish(ROOT,receipt,REPO)
+readme_result=readme_release.publish(ROOT,receipt,REPO)
+readme_message=f"README update: **{readme_result['state']}**.\n"
+if readme_result['state']=='PENDING_WORK_PR':
+    print('::warning::Release is verified; README still requires the authorized Work PR handoff.')
+    readme_message+=(f"Work must finish the generated branch `{readme_result['branch']}` "
+                     f"at `{readme_result['head']}` through a documentation PR. "
+                     "Do not report the entire request complete until main README is verified.\n")
+elif readme_result.get('pr'):
+    readme_message+=f"Documentation PR: {readme_result['pr']}\n"
 message=(f"Success version **{tag}** is finalized.\n\n"
          f"- [Verified transaction](https://github.com/{REPO}/actions/runs/{run['id']})\n"
          f"- [Success tag](https://github.com/{REPO}/tree/{tag})\n"
@@ -88,6 +96,7 @@ message=(f"Success version **{tag}** is finalized.\n\n"
          f"- Published isolated App ID: `{published['app_id']}`\n"
          f"- Change acceptance and existing P0: passed\n"
          f"- Solution SHA-256: `{attempt['package_sha256']}`\n\n"
+         f"{readme_message}\n"
          "The annotated tag stores the permanent release receipt. Detailed artifacts are retained for 14 days.\n")
 (OUT/'summary.md').write_text(message)
 subprocess.run(['gh','issue','comment',str(REQUEST['issue']),'--repo',REPO,'--body-file',str(OUT/'summary.md')],

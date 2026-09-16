@@ -10,7 +10,7 @@
 | 共有正本 | GitHub main。YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、変更履歴 |
 | Library | GitHubで版管理しない画像、Excel、Word、PDF、HTML原本、検討用資料を保管 |
 | 採用デザイン | B案。要件／基本・詳細設計／デザイン基準v1.04。v1.14の追加条件を含む |
-| 最新成功版 | 隔離テストアプリv1.13、架空25名内蔵。検索開閉を横三本線へ変更。追加テスト2件＋P0合格、成功タグv1.13 |
+| 最新成功版 | 隔離テストアプリv1.14、架空25名内蔵。密度・最大6列・氏名横の状態・一覧背景と区切り線・左右余白を反映。追加E2E4件＋P0合格、成功タグv1.14。run 35053952599 |
 | B案実装 | モダンボタン・検索入力、固定サマリー、2段一覧、文字サイズ切替、全項目保持 |
 | 職員検索サイドバー開閉 | 実装。手動開閉360px／48px。条件・選択・ページ保持 |
 | v1.13以降 | 部品差分配布。111のコントロール・変数IDは固定 |
@@ -22,14 +22,14 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | Issue #23：基本情報の密度・最大6列、氏名横の状態、一覧選択色と区切り線、業務領域を維持する余白、README自動更新。開発・テスト・公開・文書更新まで承認済み |
+| 対象機能 | Issue #23の7点はv1.14として公開・検証済み。PR #24で実装、PR #25で生成READMEを統合。現在の差分は完了記録とREADMEの既知のPR制限への引き継ぎ処理 |
 | 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11と差分照合済み。P0合格済み公開版を採用し、旧版は参照として保持 |
 | 要件ID | R04/R09/R10/R11、Issue #23追加条件、AUT-001～AUT-026、NFR-001～NFR-013（無人開発要件v1.04） |
 | 対象ソース | `scripts/automation/`、`tests/automation/`、`automation/`、`config/apps/`、`.github/workflows/staff-master-transaction.yml`、`staff-master-finalize.yml`、`e2e/changes/approved-property.test.ts`、 `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
 | 関連設計 | `docs/design/design-system.md`、`basic-design.md`、`detailed-design.md`各v1.04、`docs/operations/staff-master-unattended-runbook.md`、ルートREADME.md |
-| 関連テスト | `docs/testing/test-specification.md` v1.02 §7.4、変更専用E2E4件、既存P0、`tests/automation/`。先に成功版v1.13で新locatorを検証する |
+| 関連テスト | `docs/testing/test-specification.md` v1.02 §7.4。v1.13で旧仕様確認後、v1.14で追加E2E4件＋既存P0 1件成功。基盤単体15件成功、README引き継ぎの追加後17件成功。完了記録の文書部分はリンク・記述整合のみ確認 |
 | Library資料 | 今回Workへ添付された赤字①～⑤の画面画像。GitHubコードは公開由来の現行ソースを使用 |
-| 未解決事項 | v1.14候補を実装中。公開アプリの追加テスト・P0・成功版確定は未完了。最新成功版は引き続きv1.13 |
+| 未解決事項 | 今回の7点に未完了なし。Actions単独のPR作成はリポジトリ設定で禁止のため、README生成後のPR処理はWorkが継続する。PDF・本番データ接続・全アクセシビリティ監査等の既存ギャップは下記に保持 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -47,6 +47,7 @@
 | E2Eスクリプト | `e2e/testapp-smoke.test.ts` と `e2e/staff-master-p0.test.ts` を格納済み |
 | Power Apps E2E | 基準環境P0はrun #8 attempt 3で成功。隔離環境P0はrun 34925700515、再構成基線はrun 34928950801、ステップ7変更版はrun 34934912204、復元版はrun 34935420385で合格。ステップ8の自動修復・停止・復元はrun 34952452993、v1.12候補はrun 34954109942で合格。全試行はIssue #5と#7へ保持 |
 | 合否の境界 | ワークフローやスクリプトの存在だけでは合格としない。対象版の実行結果と証跡で判定する |
+| v1.14実行結果 | run 35053952599で7ゲート、追加E2E4件、既存P0 1件、基盤単体15件合格。幅5条件×文字2条件。PR #24統合と成功タグv1.14、README生成・PR #25統合まで確認 |
 
 ## テスト設計
 
@@ -70,14 +71,14 @@
 | 8 | 自動修復・停止・合格版復元 | 完了 |
 | 9 | v1.12検証・main統合・成功タグ・運用開始 | 完了 |
 
-Issue #12はv1.13として完了。現在はIssue #23の承認済み修正をv1.14候補として進める。[運用手順](../operations/staff-master-unattended-runbook.md) に従い、既存の承認範囲内では追加確認なしで修正・テスト・隔離公開・文書更新まで実施する。
+Issue #12はv1.13、Issue #23はv1.14として完了。次の修正指示は[運用手順](../operations/staff-master-unattended-runbook.md) に従い、既存の承認範囲内では追加確認なしで修正・テスト・隔離公開・READMEを含む文書更新まで実施する。ActionsがREADMEのPR作成を禁止された場合は、Workが生成ブランチの確認・PR統合を継続する。
 
 [受入・成功版確定記録](../operations/unattended-development-step8-9-acceptance.md)、[成功タグv1.12](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.12)、[Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7) を参照する。
 
 ## 未決・ギャップ
 
 - ステップ7では、一時表示変更の無人反映、変更専用テスト＋P0、元表示への復元・再公開・P0を実証した。現行Persistence経路はactive `.pa.yaml` 単独では実行用ルールを再コンパイルしないため、承認対象を厳格照合した実行時ルール同期を使用した。ステップ8で既存プロパティのマニフェスト駆動と修復制御を実証済み。新規コントロール等の一般コンパイルは未対応で、運用ゲートが停止する。
-- 最新P0はv1.13の `34976128110`。成功タグv1.13、公開App ID `362ac991-eead-4f07-8373-afdb3ebfdba1`。以下は過去のステップ7証跡：変更版証跡は `step6-source-reconstruction-13`（ID `10382398248`）と `phase1-5-target-evidence-13`（ID `10383136592`）、復元版証跡は `step6-source-reconstruction-14`（ID `10382428589`）と `phase1-5-target-evidence-14`（ID `10382753247`）。いずれも2026-09-29まで保持する。
+- 最新P0はv1.14の `35053952599`。成功タグv1.14、公開App ID `362ac991-eead-4f07-8373-afdb3ebfdba1`。詳細artifact `10430230837`は2026-09-30まで保持。恒久記録は注釈タグとIssue #23。過去のステップ7証跡は各ステップの記録を参照する。
 - 本番列一覧、Dataverseテーブル名・型・ロール、実接続/委任設計は別途。
 - TSVから正式XLSX出力への方式は未決。
 - 帳票A3/A4等の正式用紙と実機改ページは未決。
@@ -86,7 +87,34 @@ Issue #12はv1.13として完了。現在はIssue #23の承認済み修正をv1.
 - 簡易出力は全件TSVコピーと表示中5行の印刷。正式な全件XLSX出力ではない。
 - モダンコントロールの提供状況・アクセシビリティ・PDF実験機能は環境で確認。
 - 生成画像は概念図。省略項目と濃い見出しは要件・設計書で補正済み。
-- 今回の配置モデル画像もStudioスクリーンショットではない。実機校正は未実施。
+- 旧v1.11の配置モデル画像はStudioスクリーンショットではない。v1.14は公開Playerの画面・要素座標・機能を検証済み。Studioの表示モード切替そのものと全スクリーンリーダー・200%拡大監査は今回の自動試験に含めていない。
+
+## Issue #23 完了結果と再発防止（2026-09-16）
+
+- [公開・テストrun 35053952599](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35053952599)：`RELEASE_CANDIDATE_PASSED`。build/auth/import/publish/readback/change_test/p0すべて成功。追加4件、P0 1件で失敗・skip・flakyは0。公開読戻しは`source_and_rules=exact`、初回Player読み込みからv1.14。
+- [PR #24](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/24)の試験対象は`aeddf38e0337107f8b8f194bb757addf72753c7e`。同一treeのmain `d0809b9f32325c37a86ab0265c26e04aaa0f1717`へ統合し、[v1.14](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.14)を確定。注釈タグに全7ゲート・対象・run・パッケージSHA-256を保存。
+- 公開日時（UTC）：`2026-09-16T04:03:25Z`。一覧名は引き続き`職員マスタ検索_自動テスト_v1_11`、画面内表示はv1.14。
+- 氏名と在籍の間隔8px、選択した所属背景の右端、1pxの`#E2E8F0`区切り線、キーボード選択、検索欄開閉2往復と条件・職員・ページ保持が合格。
+
+| Playerの幅 | 標準文字の列数 | 大きな文字の列数 |
+|---:|---:|---:|
+| 900px | 2 | 1 |
+| 1100px | 2 | 2 |
+| 1366px | 4 | 3 |
+| 1600px | 5 | 4 |
+| 1920px | 6 | 5 |
+
+検索欄を閉じた1920pxでは両文字サイズとも6列。1366pxの基本情報幅935pxを維持。1920px標準の基本情報高さは340pxから180pxへ短縮。ヘッダー左右16pxを本文に揃え、本文・詳細の幅を狭めていない。大きな文字と9項目の保持を確認したが、テスト仕様95ケース全体の合格を意味しない。
+
+| 試行・問題 | 判明した原因と対処 |
+|---|---|
+| run 35050273024 | Player内幅はviewportより1px小さく、選択したgallery行のアクセシブル名には`. Selected.`が付く。実際のmain幅を測定し、氏名・番号・既知の選択suffixを含む一意な行を照合。`.first()`による回避は行わない |
+| run 35051495406 | 公開/readback成功直後でも初回Playerが前の版を読み込んだ。UI配置・一覧・開閉とP0は合格。版テストだけを、固定URL再読み込みで版一致を最大90秒確認する手順に変更し、各観測版を保存。古い版を合格とはしない |
+| run 35052461896 | 新しいテストを復元版v1.13の旧仕様期待値で実行し、追加4件・P0とも合格。候補/復元の両経路を確認してから再公開 |
+| run 35052917449、attempt 1/2 | 認証画面のパスワード欄待機10秒で停止。アプリ変更前。資格情報拒否の証拠はなく、同じ条件の診断run 35053614903と最終runでは成功。根因は未確定。既存認証ライブラリの失敗画面PNGのみ1日保存する処理を追加し、資格情報・認証状態は保存対象に含めない |
+| run 35054573508 | 成功タグとREADME生成後、ActionsのPR作成禁止で停止。生成差分とタグを確認してWorkから[PR #25](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/25)を統合しREADMEを更新。今後は既知の拒否だけを`PENDING_WORK_PR`としてブランチ/SHAを保存し、Issueに引き継ぐ。未知の失敗は停止。単体テストで両者を検証 |
+
+失敗段階が後続P0の名前で誤表示される問題も、最初に失敗したゲートを記録するよう修正。復元失敗時の各ゲートも保持する。README引き継ぎ追加後の基盤単体テストは17件成功。最終化run 35054573508自体の失敗履歴は消さず、公開成功・文書更新の完了を分けて記録する。今後もmainのREADMEまで確認してから依頼全体の完了を報告する。
 
 ## Issue #12 原因分析・対処（2026-09-15）
 
