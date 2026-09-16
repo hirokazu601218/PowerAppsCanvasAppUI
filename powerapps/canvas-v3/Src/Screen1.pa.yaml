@@ -169,7 +169,7 @@ Screens:
                               PaddingRight: =8
                               PaddingTop: =4
                               Size: =9
-                              Text: ="v1.15 ／ Dataverse・" & Text(StaffTestCount) & "名"
+                              Text: ="v1.16 ／ Dataverse・" & Text(StaffTestCount) & "名"
                               Tooltip: =Self.Text
                               Width: =174
                               X: =Parent.Width-686
@@ -259,7 +259,7 @@ Screens:
                         PaddingRight: =12
                         PaddingTop: =4
                         Size: =If(Coalesce(varLargeText111,false),13.5,12)
-                        Text: =If(StaffTestCount>100,"テスト対象の上限（100名）を超えたため一覧を表示できません。","テスト環境：職員基本はDataverseの架空データです。履歴データは未接続です。")
+                        Text: =If(StaffTestCount>100,"テスト対象の上限（100名）を超えたため一覧を表示できません。","テスト環境：職員基本はDataverseの架空データです。履歴・帳票は内蔵の合成テストデータです。")
                         Tooltip: =Self.Text
                         Width: =Parent.Width-32
                         X: =16
@@ -774,7 +774,7 @@ Screens:
                                             With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
                                             "給与・勤務条件履歴" & "　" & Text(CountRows(Filter(demoWork,StaffId=demoSelected.StaffId))) & "件"
                                             )
-                                            ) & "（履歴未接続）"
+                                            ) & "（内蔵テスト）"
                                           Tooltip: =Self.Text
                                           Width: =Parent.Width
                                     - conHScrollWork111:
@@ -1336,7 +1336,7 @@ Screens:
                                             With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
                                             "通勤支給予定" & "　" & Text(CountRows(Filter(demoCommute,StaffId=demoSelected.StaffId))) & "件"
                                             )
-                                            ) & "（履歴未接続）"
+                                            ) & "（内蔵テスト）"
                                           Tooltip: =Self.Text
                                           Width: =Parent.Width-160
                                     - conHScrollCommute111:
@@ -1642,78 +1642,15 @@ Screens:
                                           FontWeight: =FontWeight.Semibold
                                           Height: =44
                                           OnSelect: |-
-                                            =With({demoStaff:StaffBasicView},
-                                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                            Set(varLedgerStaff111,demoSelected);
-                                            ClearCollect(colLedgerFields111,Table({Field:"employee_name",Value:varLedgerStaff111.Name},
-                                            {Field:"employee_number",Value:varLedgerStaff111.StaffId},
-                                            {Field:"organization",Value:varLedgerStaff111.Org},
-                                            {Field:"event_date_year",Value:"8"},
-                                            {Field:"event_date_month",Value:"6"},
-                                            {Field:"event_date_day",Value:"1"},
-                                            {Field:"submitted_date_year",Value:"8"},
-                                            {Field:"submitted_date_month",Value:"6"},
-                                            {Field:"submitted_date_day",Value:"1"},
-                                            {Field:"accepted_date_year",Value:"8"},
-                                            {Field:"accepted_date_month",Value:"6"},
-                                            {Field:"accepted_date_day",Value:"1"},
-                                            {Field:"route_1_transport",Value:"テスト鉄道"},
-                                            {Field:"route_1_section_from",Value:"中央駅"},
-                                            {Field:"route_1_section_to",Value:"霞ヶ関駅"},
-                                            {Field:"route_1_ticket_type",Value:"3箇月定期"},
-                                            {Field:"route_1_other_basis",Value:""},
-                                            {Field:"route_1_season_basis",Value:"2.3"},
-                                            {Field:"route_1_other_amount",Value:"0"},
-                                            {Field:"route_1_season_amount",Value:"11,970"},
-                                            {Field:"route_1_season_months",Value:"3"},
-                                            {Field:"route_1_monthly_amount",Value:"3,990"},
-                                            {Field:"route_1_period_start_year",Value:"令和8年"},
-                                            {Field:"route_1_period_start_month",Value:"6月から"},
-                                            {Field:"route_1_payment_months",Value:"6・9・12・3月"},
-                                            {Field:"route_1_remarks",Value:"中央駅〜霞ヶ関駅（架空）"},
-                                            {Field:"route_2_transport",Value:"テスト地下鉄"},
-                                            {Field:"route_2_section_from",Value:"霞ヶ関駅"},
-                                            {Field:"route_2_section_to",Value:"内幸町駅"},
-                                            {Field:"route_2_ticket_type",Value:"6箇月定期"},
-                                            {Field:"route_2_other_basis",Value:""},
-                                            {Field:"route_2_season_basis",Value:"2.4"},
-                                            {Field:"route_2_other_amount",Value:"0"},
-                                            {Field:"route_2_season_amount",Value:"38,940"},
-                                            {Field:"route_2_season_months",Value:"6"},
-                                            {Field:"route_2_monthly_amount",Value:"6,490"},
-                                            {Field:"route_2_period_start_year",Value:"令和8年"},
-                                            {Field:"route_2_period_start_month",Value:"6月から"},
-                                            {Field:"route_2_payment_months",Value:"6・12月"},
-                                            {Field:"route_2_remarks",Value:"霞ヶ関駅〜内幸町駅（架空）"},
-                                            {Field:"route_3_transport",Value:""},
-                                            {Field:"route_3_section_from",Value:""},
-                                            {Field:"route_3_section_to",Value:""},
-                                            {Field:"route_3_ticket_type",Value:""},
-                                            {Field:"route_3_other_basis",Value:""},
-                                            {Field:"route_3_season_basis",Value:""},
-                                            {Field:"route_3_other_amount",Value:""},
-                                            {Field:"route_3_season_amount",Value:""},
-                                            {Field:"route_3_season_months",Value:""},
-                                            {Field:"route_3_monthly_amount",Value:""},
-                                            {Field:"route_3_period_start_year",Value:""},
-                                            {Field:"route_3_period_start_month",Value:""},
-                                            {Field:"route_3_payment_months",Value:""},
-                                            {Field:"route_3_remarks",Value:""},
-                                            {Field:"route_4_transport",Value:""},
-                                            {Field:"route_4_section_from",Value:""},
-                                            {Field:"route_4_section_to",Value:""},
-                                            {Field:"route_4_ticket_type",Value:""},
-                                            {Field:"route_4_other_basis",Value:""},
-                                            {Field:"route_4_season_basis",Value:""},
-                                            {Field:"route_4_other_amount",Value:""},
-                                            {Field:"route_4_season_amount",Value:""},
-                                            {Field:"route_4_season_months",Value:""},
-                                            {Field:"route_4_monthly_amount",Value:""},
-                                            {Field:"route_4_period_start_year",Value:""},
-                                            {Field:"route_4_period_start_month",Value:""},
-                                            {Field:"route_4_payment_months",Value:""},
-                                            {Field:"route_4_remarks",Value:""},
-                                            {Field:"monthly_amount_total",Value:"10,480"}));
+                                            =With({s:If(Coalesce(varStaffChosen111,false),varStaff111,First(StaffBasicView))},
+                                            With({c:LookUp(StaffCommuteHistory,StaffId=s.StaffId)},
+                                            Set(varLedgerStaff111,s);
+                                            ClearCollect(colLedgerFields111,StaffLedgerTemplate);
+                                            Collect(colLedgerFields111,Table(
+                                            {Field:"employee_name",Value:s.Name},{Field:"employee_number",Value:s.StaffId},{Field:"organization",Value:s.Org},
+                                            {Field:"route_1_section_from",Value:c.LedgerFrom},{Field:"route_1_section_to",Value:c.LedgerTo},
+                                            {Field:"route_1_season_amount",Value:Text(c.LedgerPass,"#,##0")},{Field:"route_1_season_months",Value:Text(c.LedgerMonths)},
+                                            {Field:"route_1_monthly_amount",Value:Text(c.Monthly,"#,##0")},{Field:"monthly_amount_total",Value:Text(c.Monthly,"#,##0")}));
                                             Set(varLedgerOpen111,true); Set(varLedgerZoom111,1); Set(varLedgerPdfView111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,""); Set(varLedgerStatus111,""); Set(varLedgerFile111,""); Set(varPayroll111,false); Reset(ddLedgerPaper111)))
                                           RadiusBottomLeft: =4
                                           RadiusBottomRight: =4
@@ -1769,7 +1706,7 @@ Screens:
                                             With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
                                             "社会保険履歴" & "　" & Text(CountRows(Filter(demoSocial,StaffId=demoSelected.StaffId))) & "件"
                                             )
-                                            ) & "（履歴未接続）"
+                                            ) & "（内蔵テスト）"
                                           Tooltip: =Self.Text
                                           Width: =Parent.Width
                                     - conHScrollSocial111:
@@ -2538,7 +2475,7 @@ Screens:
                                             With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
                                             "税・固定控除設定履歴" & "　" & Text(CountRows(Filter(demoTax,StaffId=demoSelected.StaffId))) & "件"
                                             )
-                                            ) & "（履歴未接続）"
+                                            ) & "（内蔵テスト）"
                                           Tooltip: =Self.Text
                                           Width: =Parent.Width
                                     - conHScrollTax111:
@@ -2983,7 +2920,7 @@ Screens:
                                             With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
                                             "基準給与簿履歴" & "　" & Text(CountRows(Filter(demoPayroll,StaffId=demoSelected.StaffId))) & "件"
                                             )
-                                            ) & "（履歴未接続）"
+                                            ) & "（内蔵テスト）"
                                           Tooltip: =Self.Text
                                           Width: =Parent.Width-160
                                     - conHScrollPayroll111:
@@ -4432,7 +4369,7 @@ Screens:
                         BorderColor: =ColorValue("#0B4A8B")
                         BorderThickness: =1
                         Color: =ColorValue("#0F6CBD")
-                        DisplayMode: =If(varLedgerOpen111,DisplayMode.Disabled,DisplayMode.Edit)
+                        DisplayMode: =If(IsEmpty(Filter(StaffPayrollHistory,StaffId=If(Coalesce(varStaffChosen111,false),varStaff111.StaffId,First(StaffBasicView).StaffId))),DisplayMode.Disabled,DisplayMode.Edit)
                         Font: ="Segoe UI"
                         FontWeight: =FontWeight.Semibold
                         Height: =44
@@ -4519,7 +4456,7 @@ Screens:
                                 With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
                                 "基準給与簿履歴（テスト項目15列）" & "　" & Text(CountRows(Filter(demoPayroll,StaffId=demoSelected.StaffId))) & "件"
                                 )
-                                ) & "（履歴未接続）"
+                                ) & "（内蔵テスト）"
                               Tooltip: =Self.Text
                               Width: =Parent.Width
                         - conHScrollPayrollModal111:

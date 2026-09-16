@@ -42,10 +42,107 @@ App:
               Employment: Text(s.crb3c_employmentinsurance)
           }
       ));
-      StaffWorkHistory = FirstN(Table({StaffId:"",Start:Date(2000,1,1),End:Date(2000,1,1),Daily:0,Scheduled:"",Hours:"",Overtime:0,Change:"",Reason:"",Finish:"",DailyHours:0}), 0);
-      StaffCommuteHistory = FirstN(Table({StaffId:"",Start:Date(2000,1,1),End:Date(2000,1,1),Method:"",April:0,October:0}), 0);
-      StaffSocialHistory = FirstN(Table({StaffId:"",Category:"",Birth:"",AgeApril:0,AgeMarch:0,Care:"",PensionExempt:"",Elderly:"",Grade:0,Monthly:0}), 0);
-      StaffResidentHistory = FirstN(Table({StaffId:"",Amount:0,Period:"",Start:Date(2000,1,1),End:Date(2000,1,1)}), 0);
-      StaffTaxHistory = FirstN(Table({StaffId:"",Start:Date(2000,1,1),End:Date(2000,1,1),TaxClass:"",Employment:"",Saving:0,Loan:0,Dependents:0,Note:""}), 0);
-      StaffPayrollHistory = FirstN(Table({StaffId:"",Year:0,PayDate:Date(2000,1,1),Base:0,BaseAdj:0,Commute:0,CommuteAdj:0,Home:0,HomeAdj:0,Overtime:0,OvertimeAdj:0,Gross:0,Deduct:0,DeductAdj:0,Net:0,Note:""}), 0);
+      // Synthetic histories: source is tests/fixtures/staff-history-synthetic.json.
+      StaffWorkHistory = Table(
+          {StaffId:"009900000003", RecordId:"W-3-CURRENT", Start:Date(2026,4,1), End:Date(2027,3,31), Daily:15000, Scheduled:"7:45", Hours:"7:45", Overtime:0, Change:"合成テスト", Reason:"職員03の勤務条件", Finish:"17:00", DailyHours:7.75},
+          {StaffId:"009900000003", RecordId:"W-3-PAST", Start:Date(2025,4,1), End:Date(2026,3,31), Daily:14000, Scheduled:"7:45", Hours:"7:45", Overtime:0, Change:"合成テスト", Reason:"過去の合成テスト", Finish:"17:00", DailyHours:7.75},
+          {StaffId:"009900000003", RecordId:"W-3-FUTURE", Start:Date(2027,4,1), End:Date(2099,3,31), Daily:16000, Scheduled:"7:45", Hours:"7:45", Overtime:0, Change:"合成テスト", Reason:"将来の合成テスト", Finish:"17:00", DailyHours:7.75},
+          {StaffId:"009900000005", RecordId:"W-5-CURRENT", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:0, Scheduled:"0:00", Hours:"0:00", Overtime:0, Change:"合成テスト", Reason:"職員05の勤務条件", Finish:"17:00", DailyHours:0.0},
+          {StaffId:"009900000011", RecordId:"W-11-CURRENT", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11100, Scheduled:"8:00", Hours:"8:00", Overtime:0, Change:"合成テスト", Reason:"職員11の勤務条件", Finish:"17:00", DailyHours:8.0},
+          {StaffId:"009900000012", RecordId:"W-12-CURRENT", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11200, Scheduled:"0:00", Hours:"0:00", Overtime:0, Change:"合成テスト", Reason:"職員12の勤務条件", Finish:"17:00", DailyHours:0.0},
+          {StaffId:"009900000025", RecordId:"W-25-CURRENT", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:12500, Scheduled:"6:00", Hours:"6:00", Overtime:0, Change:"合成テスト", Reason:"職員25の勤務条件", Finish:"17:00", DailyHours:6.0}
+      );
+      StaffCommuteHistory = Table(
+          {StaffId:"009900000003", RecordId:"C-3-2026", Start:Date(2026,4,1), End:Date(2027,3,31), Method:"半年定期", RecognitionId:"TEST-TK-003-2026", Year:2026, Monthly:1300, ICFare:0, LedgerPass:7800, LedgerMonths:6, LedgerFrom:"架空03駅", LedgerTo:"テスト中央駅", April:7800, May:0, June:0, July:0, August:0, September:0, October:7800, November:0, December:0, January:0, February:0, March:0},
+          {StaffId:"009900000005", RecordId:"C-5-2026", Start:Date(2026,4,1), End:Date(2027,3,31), Method:"半年定期", RecognitionId:"TEST-TK-005-2026", Year:2026, Monthly:0, ICFare:0, LedgerPass:0, LedgerMonths:6, LedgerFrom:"架空05駅", LedgerTo:"テスト中央駅", April:0, May:0, June:0, July:0, August:0, September:0, October:0, November:0, December:0, January:0, February:0, March:0},
+          {StaffId:"009900000011", RecordId:"C-11-2026", Start:Date(2026,4,1), End:Date(2027,3,31), Method:"半年定期", RecognitionId:"TEST-TK-011-2026", Year:2026, Monthly:2100, ICFare:0, LedgerPass:12600, LedgerMonths:6, LedgerFrom:"架空11駅", LedgerTo:"テスト中央駅", April:12600, May:0, June:0, July:0, August:0, September:0, October:12600, November:0, December:0, January:0, February:0, March:0},
+          {StaffId:"009900000012", RecordId:"C-12-2026", Start:Date(2026,4,1), End:Date(2027,3,31), Method:"半年定期", RecognitionId:"TEST-TK-012-2026", Year:2026, Monthly:2200, ICFare:0, LedgerPass:13200, LedgerMonths:6, LedgerFrom:"架空12駅", LedgerTo:"テスト中央駅", April:13200, May:0, June:0, July:0, August:0, September:0, October:13200, November:0, December:0, January:0, February:0, March:0},
+          {StaffId:"009900000025", RecordId:"C-25-2026", Start:Date(2026,4,1), End:Date(2027,3,31), Method:"半年定期", RecognitionId:"TEST-TK-025-2026", Year:2026, Monthly:3500, ICFare:0, LedgerPass:21000, LedgerMonths:6, LedgerFrom:"架空25駅", LedgerTo:"テスト中央駅", April:21000, May:0, June:0, July:0, August:0, September:0, October:21000, November:0, December:0, January:0, February:0, March:0}
+      );
+      StaffSocialHistory = Table(
+          {StaffId:"009900000003", RecordId:"S-3-2026", Category:"合成テスト", Birth:"2000/04/01", AgeApril:26, AgeMarch:27, Care:"テスト・判定対象外", PensionExempt:"テスト・判定対象外", Elderly:"テスト・判定対象外", Grade:0, Monthly:203000},
+          {StaffId:"009900000005", RecordId:"S-5-2026", Category:"合成テスト", Birth:"2000/04/01", AgeApril:26, AgeMarch:27, Care:"テスト・判定対象外", PensionExempt:"テスト・判定対象外", Elderly:"テスト・判定対象外", Grade:0, Monthly:0},
+          {StaffId:"009900000011", RecordId:"S-11-2026", Category:"合成テスト", Birth:"1981/04/01", AgeApril:45, AgeMarch:46, Care:"テスト・判定対象外", PensionExempt:"テスト・判定対象外", Elderly:"テスト・判定対象外", Grade:0, Monthly:211000},
+          {StaffId:"009900000012", RecordId:"S-12-2026", Category:"合成テスト", Birth:"1982/04/01", AgeApril:44, AgeMarch:45, Care:"テスト・判定対象外", PensionExempt:"テスト・判定対象外", Elderly:"テスト・判定対象外", Grade:0, Monthly:212000},
+          {StaffId:"009900000025", RecordId:"S-25-2026", Category:"合成テスト", Birth:"1995/04/01", AgeApril:31, AgeMarch:32, Care:"テスト・判定対象外", PensionExempt:"テスト・判定対象外", Elderly:"テスト・判定対象外", Grade:0, Monthly:225000}
+      );
+      StaffTaxHistory = Table(
+          {StaffId:"009900000003", RecordId:"T-3-2026", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:"甲", Employment:"加入", Saving:0, Loan:0, Dependents:0, Note:"職員03専用の合成データ・計算検証対象外"},
+          {StaffId:"009900000005", RecordId:"T-5-2026", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:"甲", Employment:"未設定", Saving:0, Loan:0, Dependents:0, Note:"職員05専用の合成データ・計算検証対象外"},
+          {StaffId:"009900000011", RecordId:"T-11-2026", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:"甲", Employment:"加入", Saving:0, Loan:0, Dependents:0, Note:"職員11専用の合成データ・計算検証対象外"},
+          {StaffId:"009900000012", RecordId:"T-12-2026", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:"乙", Employment:"未加入", Saving:0, Loan:0, Dependents:0, Note:"職員12専用の合成データ・計算検証対象外"},
+          {StaffId:"009900000025", RecordId:"T-25-2026", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:"甲", Employment:"加入", Saving:0, Loan:0, Dependents:0, Note:"職員25専用の合成データ・計算検証対象外"}
+      );
+      StaffPayrollHistory = Table(
+          {StaffId:"009900000003", RecordId:"P-3-2026-09", Year:2026, PayDate:Date(2026,9,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:"職員03専用・9月・合成テスト"},
+          {StaffId:"009900000003", RecordId:"P-3-2026-08", Year:2026, PayDate:Date(2026,8,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:"職員03専用・8月・合成テスト"},
+          {StaffId:"009900000005", RecordId:"P-5-2026-09", Year:2026, PayDate:Date(2026,9,18), Base:0, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:0, Deduct:0, DeductAdj:0, Net:0, Note:"職員05専用・9月・合成テスト"},
+          {StaffId:"009900000011", RecordId:"P-11-2026-09", Year:2026, PayDate:Date(2026,9,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:"職員11専用・9月・合成テスト"},
+          {StaffId:"009900000011", RecordId:"P-11-2026-08", Year:2026, PayDate:Date(2026,8,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:"職員11専用・8月・合成テスト"},
+          {StaffId:"009900000012", RecordId:"P-12-2026-09", Year:2026, PayDate:Date(2026,9,18), Base:224000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:224000, Deduct:21200, DeductAdj:0, Net:202800, Note:"職員12専用・9月・合成テスト"},
+          {StaffId:"009900000025", RecordId:"P-25-2026-09", Year:2026, PayDate:Date(2026,9,18), Base:250000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:250000, Deduct:22500, DeductAdj:0, Net:227500, Note:"職員25専用・9月・合成テスト"}
+      );
+      StaffResidentHistory = FirstN(Table({StaffId:"",Amount:0,Period:"",Start:Date(2000,1,1),End:Date(2000,1,1)}),0);
+      StaffLedgerTemplate = Table(
+          {Field:"event_date_year", Value:"8"},
+          {Field:"event_date_month", Value:"4"},
+          {Field:"event_date_day", Value:"1"},
+          {Field:"submitted_date_year", Value:"8"},
+          {Field:"submitted_date_month", Value:"4"},
+          {Field:"submitted_date_day", Value:"1"},
+          {Field:"accepted_date_year", Value:"8"},
+          {Field:"accepted_date_month", Value:"4"},
+          {Field:"accepted_date_day", Value:"1"},
+          {Field:"route_1_transport", Value:"テスト鉄道"},
+          {Field:"route_1_ticket_type", Value:"6箇月定期（合成）"},
+          {Field:"route_1_other_basis", Value:""},
+          {Field:"route_1_season_basis", Value:""},
+          {Field:"route_1_other_amount", Value:"0"},
+          {Field:"route_1_period_start_year", Value:"令和8年"},
+          {Field:"route_1_period_start_month", Value:"4月から"},
+          {Field:"route_1_payment_months", Value:"4・10月"},
+          {Field:"route_1_remarks", Value:"合成テスト・正式認定には使用不可"},
+          {Field:"route_2_transport", Value:""},
+          {Field:"route_2_section_from", Value:""},
+          {Field:"route_2_section_to", Value:""},
+          {Field:"route_2_ticket_type", Value:""},
+          {Field:"route_2_other_basis", Value:""},
+          {Field:"route_2_season_basis", Value:""},
+          {Field:"route_2_other_amount", Value:""},
+          {Field:"route_2_season_amount", Value:""},
+          {Field:"route_2_season_months", Value:""},
+          {Field:"route_2_monthly_amount", Value:""},
+          {Field:"route_2_period_start_year", Value:""},
+          {Field:"route_2_period_start_month", Value:""},
+          {Field:"route_2_payment_months", Value:""},
+          {Field:"route_2_remarks", Value:""},
+          {Field:"route_3_transport", Value:""},
+          {Field:"route_3_section_from", Value:""},
+          {Field:"route_3_section_to", Value:""},
+          {Field:"route_3_ticket_type", Value:""},
+          {Field:"route_3_other_basis", Value:""},
+          {Field:"route_3_season_basis", Value:""},
+          {Field:"route_3_other_amount", Value:""},
+          {Field:"route_3_season_amount", Value:""},
+          {Field:"route_3_season_months", Value:""},
+          {Field:"route_3_monthly_amount", Value:""},
+          {Field:"route_3_period_start_year", Value:""},
+          {Field:"route_3_period_start_month", Value:""},
+          {Field:"route_3_payment_months", Value:""},
+          {Field:"route_3_remarks", Value:""},
+          {Field:"route_4_transport", Value:""},
+          {Field:"route_4_section_from", Value:""},
+          {Field:"route_4_section_to", Value:""},
+          {Field:"route_4_ticket_type", Value:""},
+          {Field:"route_4_other_basis", Value:""},
+          {Field:"route_4_season_basis", Value:""},
+          {Field:"route_4_other_amount", Value:""},
+          {Field:"route_4_season_amount", Value:""},
+          {Field:"route_4_season_months", Value:""},
+          {Field:"route_4_monthly_amount", Value:""},
+          {Field:"route_4_period_start_year", Value:""},
+          {Field:"route_4_period_start_month", Value:""},
+          {Field:"route_4_payment_months", Value:""},
+          {Field:"route_4_remarks", Value:""}
+      );
     Theme: =PowerAppsTheme
