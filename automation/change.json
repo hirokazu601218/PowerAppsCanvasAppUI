@@ -1,21 +1,21 @@
 {
   "schema": 1,
   "approved": true,
-  "approval_record": "Work: 横三本線変更と追加テスト/P0を承認。STATUS更新確認不要も承認。",
-  "issue": 12,
+  "approval_record": "Work 2026-09-16: 7点のUI修正、開発・テスト・テスト公開・READMEを含むGitHub文書更新を一括指示。",
+  "issue": 23,
   "target": {
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",
     "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1"
   },
-  "candidate_version": "1.13",
+  "candidate_version": "1.14",
   "changes": [
     {
       "source": "Src/Screen1.pa.yaml",
       "control": "lblMeta111",
       "property": "Text",
       "before": "=\"v1.11  ／  B案・架空25名\"",
-      "after": "=\"v1.13  ／  B案・架空25名\""
+      "after": "=\"v1.14  ／  B案・架空25名\""
     },
     {
       "source": "Src/Screen1.pa.yaml",
@@ -23,10 +23,605 @@
       "property": "Text",
       "before": "=If(Coalesce(varSearchSidebarExpanded111,true),\"‹\",\"›\")",
       "after": "=\"☰\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey0111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey0111",
+      "property": "X",
+      "before": "=8+Mod(0,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(0,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal0111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal0111",
+      "property": "X",
+      "before": "=8+Mod(0,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(0,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey0111",
+      "property": "Y",
+      "before": "=52+RoundDown(0/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
+      "after": "=52+RoundDown(0/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal0111",
+      "property": "Y",
+      "before": "=52+RoundDown(0/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
+      "after": "=lblBasicKey0111.Y+lblBasicKey0111.Height"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal0111",
+      "property": "Height",
+      "before": "=64",
+      "after": "=If(Coalesce(varLargeText111,false),28,24)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal0111",
+      "property": "PaddingTop",
+      "before": "=4",
+      "after": "=0"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey1111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey1111",
+      "property": "X",
+      "before": "=8+Mod(1,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(1,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal1111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal1111",
+      "property": "X",
+      "before": "=8+Mod(1,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(1,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey1111",
+      "property": "Y",
+      "before": "=52+RoundDown(1/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
+      "after": "=52+RoundDown(1/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal1111",
+      "property": "Y",
+      "before": "=52+RoundDown(1/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
+      "after": "=lblBasicKey1111.Y+lblBasicKey1111.Height"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal1111",
+      "property": "Height",
+      "before": "=64",
+      "after": "=If(Coalesce(varLargeText111,false),28,24)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal1111",
+      "property": "PaddingTop",
+      "before": "=4",
+      "after": "=0"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey2111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey2111",
+      "property": "X",
+      "before": "=8+Mod(2,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(2,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal2111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal2111",
+      "property": "X",
+      "before": "=8+Mod(2,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(2,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey2111",
+      "property": "Y",
+      "before": "=52+RoundDown(2/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
+      "after": "=52+RoundDown(2/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal2111",
+      "property": "Y",
+      "before": "=52+RoundDown(2/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
+      "after": "=lblBasicKey2111.Y+lblBasicKey2111.Height"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal2111",
+      "property": "Height",
+      "before": "=64",
+      "after": "=If(Coalesce(varLargeText111,false),28,24)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal2111",
+      "property": "PaddingTop",
+      "before": "=4",
+      "after": "=0"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey3111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey3111",
+      "property": "X",
+      "before": "=8+Mod(3,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(3,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal3111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal3111",
+      "property": "X",
+      "before": "=8+Mod(3,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(3,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey3111",
+      "property": "Y",
+      "before": "=52+RoundDown(3/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
+      "after": "=52+RoundDown(3/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal3111",
+      "property": "Y",
+      "before": "=52+RoundDown(3/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
+      "after": "=lblBasicKey3111.Y+lblBasicKey3111.Height"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal3111",
+      "property": "Height",
+      "before": "=64",
+      "after": "=If(Coalesce(varLargeText111,false),28,24)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal3111",
+      "property": "PaddingTop",
+      "before": "=4",
+      "after": "=0"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey4111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey4111",
+      "property": "X",
+      "before": "=8+Mod(4,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(4,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal4111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal4111",
+      "property": "X",
+      "before": "=8+Mod(4,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(4,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey4111",
+      "property": "Y",
+      "before": "=52+RoundDown(4/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
+      "after": "=52+RoundDown(4/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal4111",
+      "property": "Y",
+      "before": "=52+RoundDown(4/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
+      "after": "=lblBasicKey4111.Y+lblBasicKey4111.Height"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal4111",
+      "property": "Height",
+      "before": "=64",
+      "after": "=If(Coalesce(varLargeText111,false),28,24)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal4111",
+      "property": "PaddingTop",
+      "before": "=4",
+      "after": "=0"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey5111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey5111",
+      "property": "X",
+      "before": "=8+Mod(5,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(5,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal5111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal5111",
+      "property": "X",
+      "before": "=8+Mod(5,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(5,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey5111",
+      "property": "Y",
+      "before": "=52+RoundDown(5/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
+      "after": "=52+RoundDown(5/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal5111",
+      "property": "Y",
+      "before": "=52+RoundDown(5/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
+      "after": "=lblBasicKey5111.Y+lblBasicKey5111.Height"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal5111",
+      "property": "Height",
+      "before": "=64",
+      "after": "=If(Coalesce(varLargeText111,false),28,24)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal5111",
+      "property": "PaddingTop",
+      "before": "=4",
+      "after": "=0"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey6111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey6111",
+      "property": "X",
+      "before": "=8+Mod(6,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(6,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal6111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal6111",
+      "property": "X",
+      "before": "=8+Mod(6,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(6,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey6111",
+      "property": "Y",
+      "before": "=52+RoundDown(6/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
+      "after": "=52+RoundDown(6/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal6111",
+      "property": "Y",
+      "before": "=52+RoundDown(6/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
+      "after": "=lblBasicKey6111.Y+lblBasicKey6111.Height"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal6111",
+      "property": "Height",
+      "before": "=64",
+      "after": "=If(Coalesce(varLargeText111,false),28,24)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal6111",
+      "property": "PaddingTop",
+      "before": "=4",
+      "after": "=0"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey7111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey7111",
+      "property": "X",
+      "before": "=8+Mod(7,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(7,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal7111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal7111",
+      "property": "X",
+      "before": "=8+Mod(7,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(7,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey7111",
+      "property": "Y",
+      "before": "=52+RoundDown(7/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
+      "after": "=52+RoundDown(7/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal7111",
+      "property": "Y",
+      "before": "=52+RoundDown(7/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
+      "after": "=lblBasicKey7111.Y+lblBasicKey7111.Height"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal7111",
+      "property": "Height",
+      "before": "=64",
+      "after": "=If(Coalesce(varLargeText111,false),28,24)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal7111",
+      "property": "PaddingTop",
+      "before": "=4",
+      "after": "=0"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey8111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey8111",
+      "property": "X",
+      "before": "=8+Mod(8,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(8,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal8111",
+      "property": "Width",
+      "before": "=(Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))",
+      "after": "=(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal8111",
+      "property": "X",
+      "before": "=8+Mod(8,If(Parent.Width>=900,3,If(Parent.Width>=560,2,1)))*((Parent.Width-16)/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))))",
+      "after": "=8+Mod(8,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicKey8111",
+      "property": "Y",
+      "before": "=52+RoundDown(8/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)",
+      "after": "=52+RoundDown(8/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal8111",
+      "property": "Y",
+      "before": "=52+RoundDown(8/(If(Parent.Width>=900,3,If(Parent.Width>=560,2,1))),0)*If(Coalesce(varLargeText111,false),104,96)+If(Coalesce(varLargeText111,false),32,28)",
+      "after": "=lblBasicKey8111.Y+lblBasicKey8111.Height"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal8111",
+      "property": "Height",
+      "before": "=64",
+      "after": "=If(Coalesce(varLargeText111,false),28,24)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBasicVal8111",
+      "property": "PaddingTop",
+      "before": "=4",
+      "after": "=0"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conBasic111",
+      "property": "Height",
+      "before": "=52+RoundUp(9/If(Self.Width>=900,3,If(Self.Width>=560,2,1)),0)*If(Coalesce(varLargeText111,false),104,96)",
+      "after": "=52+RoundUp(9/Min(6,Max(1,RoundDown((Self.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))),0)*If(Coalesce(varLargeText111,false),72,64)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblName111",
+      "property": "Width",
+      "before": "=Parent.Width-120",
+      "after": "=Min(Parent.Width-120,Len(Substitute(Self.Text,\" \",\"\"))*Self.Size*4/3+(Len(Self.Text)-Len(Substitute(Self.Text,\" \",\"\")))*Self.Size*2/3+Self.PaddingLeft+Self.PaddingRight)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblName111",
+      "property": "PaddingRight",
+      "before": "=8",
+      "after": "=0"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBadge111",
+      "property": "X",
+      "before": "=Parent.Width-96",
+      "after": "=lblName111.X+lblName111.Width+8"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblBadge111",
+      "property": "Y",
+      "before": "=16",
+      "after": "=lblName111.Y+(lblName111.Height-Self.Height)/2"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblListC2111",
+      "property": "Width",
+      "before": "=Parent.TemplateWidth-136",
+      "after": "=lblListC3111.X+lblListC3111.Width-Self.X"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblListC0111",
+      "property": "Text",
+      "before": "=ThisItem.StaffId",
+      "after": "=\"\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblListC0111",
+      "property": "Fill",
+      "before": "=If(ThisItem.StaffId=galStaff111.Selected.StaffId,ColorValue(\"#DCEAFF\"),Color.White)",
+      "after": "=ColorValue(\"#E2E8F0\")"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblListC0111",
+      "property": "Height",
+      "before": "=28",
+      "after": "=1"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblListC0111",
+      "property": "Width",
+      "before": "=132",
+      "after": "=Parent.TemplateWidth"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblListC0111",
+      "property": "Y",
+      "before": "=36",
+      "after": "=Parent.TemplateHeight-1"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conHeader111",
+      "property": "X",
+      "before": "=0",
+      "after": "=Min(16,Max(0,(Parent.Width-App.DesignWidth)/2))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conHeader111",
+      "property": "Width",
+      "before": "=Parent.Width",
+      "after": "=Parent.Width-2*Self.X"
     }
   ],
   "acceptance": {
-    "case_id": "AUT-META-001",
-    "expected_label": "v1.13 ／ B案・架空25名"
+    "case_id": "AUT-LAYOUT-001",
+    "expected_label": "v1.14 ／ B案・架空25名"
   }
 }
