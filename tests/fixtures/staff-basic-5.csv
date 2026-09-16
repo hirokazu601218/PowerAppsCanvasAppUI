@@ -1,0 +1,6 @@
+staffnumber,fullname,lastname,firstname,taxclass,workminutes,hiredate,pension,orgshort,employmentinsurance,mutualshort,mutuallong,dailyrate,leavedate,passamount,onewayfare,commutemethod,commuteregistered,workregistered
+009900000001,試験　採用予定,試験,採用予定,甲,465,,,,,,,,,,,,,
+009900000002,試験　未来採用,試験,未来採用,乙,480,2099-04-01,,01秘書課,,,,,,,,,,
+009900000003,試験　在籍,試験,在籍,甲,465,2026-04-01,加入,02総務課,加入,加入,未加入,15000,,,,,,
+009900000004,試験　退職,試験,退職,乙,360,2025-04-01,,03会計課,,,,,2026-03-31,,,,,
+009900000005,試験　零円,試験,零円,甲,0,2026-04-01,,,,,,0,,0,0,支給なし,未登録,登録
