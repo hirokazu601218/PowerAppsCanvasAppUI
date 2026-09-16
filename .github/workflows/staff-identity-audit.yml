@@ -35,3 +35,5 @@ jobs:
           path: artifacts/identity-audit.json
           retention-days: 14
 # Audit attempt 2: resolve user without requiring a Dataverse systemuser row.
+
+# Resolve the dedicated user by exact app email and then immutable directory object ID.

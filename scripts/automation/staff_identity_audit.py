@@ -41,6 +41,7 @@ def main():
     permissions=get(appbase+'/permissions?'+urllib.parse.urlencode(filt),apptoken)
     roles=[]
     assignments=[]
+    matched_principals=set()
     def walk(obj):
         if isinstance(obj,dict):
             p=obj.get('properties',obj)
@@ -48,12 +49,27 @@ def main():
                 assignments.append({'role':p.get('roleName'),'principal_type':p['principal'].get('type'),'email':p['principal'].get('email'),'display_name':p['principal'].get('displayName')})
                 if ((principal and str(p['principal'].get('id','')).lower()==principal) or str(p['principal'].get('email','')).lower()==cfg['test_user'].lower()) and p.get('roleName'):
                     roles.append(p['roleName'])
+                    if str(p['principal'].get('email','')).lower()==cfg['test_user'].lower() and p['principal'].get('type')=='User':
+                        matched_principals.add(p['principal']['id'])
             for value in obj.values(): walk(value)
         elif isinstance(obj,list):
             for value in obj: walk(value)
     walk(permissions)
+    assert len(matched_principals)<=1, 'App user resolution not unique'
+    dv_account_summary=[]
+    if len(matched_principals)==1:
+        oid=next(iter(matched_principals))
+        import uuid
+        oid=str(uuid.UUID(oid))
+        q=urllib.parse.urlencode({'$select':'systemuserid,isdisabled,accessmode', '$filter':'azureactivedirectoryobjectid eq '+oid})
+        resolved=get(base+'systemusers?'+q,dvtoken)['value']
+        for account in resolved:
+            rq=base+'systemusers('+account['systemuserid']+')/systemuserroles_association?$select=name'
+            role_names=[r['name'] for r in get(rq,dvtoken)['value']]
+            dv_account_summary.append({'isdisabled':account['isdisabled'],'accessmode':account['accessmode'],'direct_role_names':role_names})
+        resolution='exact_app_email_then_aad_object_id'
     rows=get(base+'crb3c_staffbasics?'+urllib.parse.urlencode({'$select':'crb3c_staffnumber','$filter':"startswith(crb3c_staffnumber,'0099000000')",'$top':'26'}),dvtoken)['value']
-    result={'state':'READ_ONLY_AUDIT_PASSED','automation_name':user['fullname'],'automation_application_id_matches':True,'test_user':cfg['test_user'],'test_user_app_roles':sorted(set(roles)),'test_user_systemuser_count':len(users),'principal_resolution':resolution,'app_assignments':assignments,'fixture_rows_visible_to_automation':len(rows),'permission_changes':False,'app_changes':False}
+    result={'state':'READ_ONLY_AUDIT_PASSED','automation_name':user['fullname'],'automation_application_id_matches':True,'test_user':cfg['test_user'],'test_user_app_roles':sorted(set(roles)),'test_user_systemuser_count':len(users),'principal_resolution':resolution,'app_assignments':assignments,'fixture_rows_visible_to_automation':len(rows),'test_user_dataverse_accounts_by_exact_app_identity':dv_account_summary,'exact_app_identity_count':len(matched_principals),'permission_changes':False,'app_changes':False}
     Path('artifacts').mkdir(exist_ok=True)
     Path('artifacts/identity-audit.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     print(json.dumps(result,ensure_ascii=False))
