@@ -134,7 +134,7 @@ Screens:
                         RadiusTopLeft: =0
                         RadiusTopRight: =0
                         Width: =Parent.Width-2*Self.X
-                        X: =Min(16,Max(0,(Parent.Width-App.DesignWidth)/2))
+                        X: =16
                       Children:
                         - lblApp111:
                             Control: Label@2.5.1
