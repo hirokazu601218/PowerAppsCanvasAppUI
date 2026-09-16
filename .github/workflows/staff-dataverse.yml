@@ -33,8 +33,26 @@ jobs:
           client-id: 1c94f011-c447-4af1-968f-ec564f489395
           tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
           allow-no-subscriptions: true
-      - name: Stage 3 read-only Dataverse preflight
-        run: timeout "$REMAINING_SECONDS" python -u scripts/automation/staff_dataverse.py
+      - name: Execute requested Dataverse stage within original deadline
+        run: |
+          remaining=$(python - <<'PY'
+          import json,time
+          from datetime import datetime
+          r=json.load(open('automation/dataverse-run.json'))
+          print(max(0,int(3600-(time.time()-datetime.fromisoformat(r['started_at']).timestamp()))-60))
+          PY
+          )
+          if [ "$remaining" -le 0 ]; then
+            echo 'PAUSED_TIME_LIMIT: no further changes' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          timeout --kill-after=5 "$remaining" python -u scripts/automation/staff_dataverse.py
+      - name: Report interrupted or failed execution
+        if: failure() || cancelled()
+        run: |
+          mkdir -p artifacts/dataverse
+          printf '%s\n' '処理は未完了です。最後の成功記録を確認し、変更要求を再送する前にサーバー状態を読戻してください。60分期限後の自動再開は禁止です。' > artifacts/dataverse/interruption.md
+          cat artifacts/dataverse/interruption.md >> "$GITHUB_STEP_SUMMARY"
       - name: Preserve non-secret evidence
         if: always()
         uses: actions/upload-artifact@v4
