@@ -21,7 +21,7 @@
 | [README.md](../README.md) | リポジトリ案内 | リポジトリ全体の目的、正本、最新ソース、主要フォルダを案内するトップページ。 |
 | [docs/README.md](README.md) | ドキュメント分類一覧 | 対象アプリの識別情報と、全Markdownの対象区分・概要をまとめた本索引。 |
 | [docs/design/basic-design.md](design/basic-design.md) | 基本設計書 | 画面構成、配置、検索サイドバー、状態保持などの基本設計。 |
-| [docs/design/design-system.md](design/design-system.md) | B案デザイン基準 | B案の文字、色、余白、操作性、アクセシビリティに関するデザイン基準。 |
+| [docs/design/design-system.md](design/design-system.md) | デザイン基準 | B案の文字、色、余白、操作性、アクセシビリティに関するデザイン基準。 |
 | [docs/design/detailed-design.md](design/detailed-design.md) | 詳細設計書 | コントロール、データ契約、状態遷移、配置式、帳票・出力を定めた詳細設計。 |
 | [docs/handoff/CHANGELOG.md](handoff/CHANGELOG.md) | 変更履歴 | アプリ、文書構成、運用ルールの版ごとの変更履歴。 |
 | [docs/handoff/install-v1.08.md](handoff/install-v1.08.md) | v1.08導入・検査手順 | v1.08のStudio導入方法、内蔵テストデータ、操作確認、検査結果。 |
