@@ -1,6 +1,6 @@
 {
-  "mode": "release",
-  "issue": 12,
-  "request": "sidebar-v1.13-release-04",
+  "mode": "restore",
+  "issue": 23,
+  "request": "layout-v114-baseline-01",
   "approved": true
 }
