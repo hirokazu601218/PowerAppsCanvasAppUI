@@ -6,7 +6,7 @@
 
 - README更新を成功タグ作成前へ移動し、タグ版・README版・リンク・検証run・ハッシュとREADME限定差分を自動検証。不整合なら停止。
 - schema 2受領記録を導入し、復元版選定でも検証。既存タグは通常フローで上書きしない。
-- v1.14のみ元タグをarchive/v1.14-before-readme-fixへ保全してREADME限定訂正する専用処理を追加。atomic/lease・再実行検証付き。実行結果はSTATUSへ記録する。
+- v1.14のみ元タグをarchive/v1.14-before-readme-fixへ保全してREADME限定訂正する専用処理を追加。atomic/lease・再実行検証付き。[run 35064281800](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35064281800)で28件と訂正が成功。main/タグ内ともv1.14を確認。詳細はSTATUSを参照。
 - 基盤単体28件ローカル合格。無人開発要件v1.06・テスト仕様v1.04・運用手順・READMEを更新。Work運用方針の履歴行の位置も訂正。
 - Power Apps実体・公開版・元のE2E/P0証跡は変更しない。
 

@@ -27,9 +27,9 @@
 | 要件ID | AUT-026・AUT-031（無人開発要件v1.06） |
 | 対象ソース | finalize_release.py、readme_release.py、release_snapshot.py、releases.py、repair_v114_readme.py、finalize/修復workflow |
 | 関連設計 | 運用手順、ルートREADME、無人開発要件、変更履歴 |
-| 関連テスト | テスト仕様v1.04 §7.6。基盤単体28件ローカル合格。GitHub反映・訂正の実行結果は下記へ追記 |
+| 関連テスト | テスト仕様v1.04 §7.6。基盤単体28件ローカル合格。Actionsでも28件合格。実行結果は下記参照 |
 | Library資料 | 今回は参照不要。GitHubを正本とする |
-| 未解決事項 | タグ訂正はGitHub反映後に実行・検証。Power Appsの手動改名と既存PDF等のギャップは保持 |
+| 未解決事項 | タグ訂正・main/タグ内の版照合は完了。Power Appsの手動改名と既存PDF等のギャップは保持 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -38,7 +38,10 @@
 - 原因：旧フローがタグ作成後にREADMEを更新していたため、v1.14タグにはv1.13表記が残った。
 - README生成・コミット・機械照合をタグ作成前へ移動。schema 2で検証済みソースとREADME訂正commitを区別する。
 - 基盤単体28件ローカル合格。元タグ保全・README限定差分・競合拒否・再実行を含む。
-- v1.14訂正は専用Actionsで実行予定。結果確認後にここへrun・訂正結果を追記する。元の公開・追加E2E・P0証跡はrun 35053952599を保持し、今回は再配布しない。
+- [PR #30](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/30)統合後、[run 35064281800](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35064281800)で基盤単体28件・タグ保全・訂正が成功。mainとv1.14タグ内のREADMEがともにv1.14であることを読戻し確認。
+- 訂正前の注釈object `5137c995c2760e9da94f6ec4d82779054eee5e89`を`archive/v1.14-before-readme-fix`へそのまま保全。訂正後タグは`88d4f373fadd25e507c8c9b6b70d6b0c150046e1`を参照し、元の検証済みcommitとの差分はREADME.mdのみ。
+- 元の公開・追加E2E・P0証跡はrun 35053952599、公開日時2026-09-16T04:03:25Zを保持。今回は再配布・実機E2E/P0を実行していない。
+- PR更新直後の初回mergeはGitHubのmergeable判定待ちで405となった。cleanを読戻し確認後のmergeは成功。タグ訂正Actionsに失敗・再実行はない。
 
 ## Issue #27：名称と工程報告の更新（2026-09-16）
 
