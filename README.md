@@ -1,5 +1,7 @@
 # PowerAppsCanvasAppUI
 
+> 対象アプリ：共通（自動テスト／ハンドメイド）
+
 非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubのmainをChatGPT SolのWorkで扱う共有正本とする。
 
 **最新試作：v1.11。B案（Fluent 2＋DADS）と職員検索サイドバー開閉を実装。検索データ未表示のユーザー報告あり・原因調査待ち。**
@@ -7,6 +9,8 @@
 ## 最初に読む
 
 作業の入口は[AGENTS.md](AGENTS.md)とする。新しい作業への着手時に必ず読む範囲は、次の短い2か所に限定する。
+
+文書ごとの対象アプリは、[ドキュメント分類一覧](docs/README.md)で確認する。
 
 1. [Work運用方針](docs/operations/work-policy.md)の「1. 方針」
 2. [STATUS](docs/handoff/STATUS.md)の「現在の作業と読取り対象」

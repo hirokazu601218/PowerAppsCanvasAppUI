@@ -1,5 +1,7 @@
 # ステップ6：Canvas編集可能ソース再構成 実行結果
 
+> 対象アプリ：自動テスト専用
+
 更新日：2026-09-15  
 対象Issue：[Issue #5](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/5)  
 対象PR：[PR #6](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/6)

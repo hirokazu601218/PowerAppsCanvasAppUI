@@ -1,5 +1,7 @@
 # Phase 1 公開アプリ基準版の保全・Git統合事前確認
 
+> 対象アプリ：ハンドメイド専用
+
 更新日: 2026-09-15  
 状態: **判断待ち（P0基準確認は完了、ソース保全方式は未決）**  
 追跡Issue: [#5](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/5)

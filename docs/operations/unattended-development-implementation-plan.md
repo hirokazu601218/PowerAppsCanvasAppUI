@@ -1,5 +1,7 @@
 # Power Apps無人修正・テスト・公開基盤 段階別構築計画 v1.03
 
+> 対象アプリ：共通（自動テスト／ハンドメイド）
+
 更新日：2026-09-15  
 関連要件：[Power Apps無人修正・テスト・公開基盤 要件定義書](../requirements/unattended-development-requirements.md)
 

@@ -1,5 +1,7 @@
 # ステップ8～9 受入・成功版確定記録
 
+> 対象アプリ：自動テスト専用
+
 更新：2026-09-15。指示と承認：[Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7)。構築PR：[PR #6](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/6)。
 
 ## ステップ8：合格
