@@ -4,7 +4,7 @@
 
 非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubのmainをChatGPT SolのWorkで扱う共有正本とする。
 
-現在のテスト公開版は **v1.16（職員基本：Dataverse、未確定履歴：共通内蔵テストデータ）** です。専用利用者による7件の回帰テストと保存アプリのソース・実行用数式の読戻し照合が合格しました。[検証結果](docs/testing/hybrid-v1.16-results.md)と[データの所在・将来の切替手順](docs/design/hybrid-test-data.md)を参照してください。
+現在のテスト公開版は **v1.17（認定簿表示・A4横2ページPDF）** です。上部操作の帳票幅内配置、倍率6択、白背景・青字の閉じる、用紙A4横固定、新幹線欄直前の改ページを反映しました。専用利用者の8件の受入・回帰、実PDFのページ数・寸法、保存ソースと実行用数式の読戻しが合格しています。[検証結果](docs/testing/ledger-v1.17-results.md)を参照してください。職員基本25名はDataverse、未確定履歴は共通内蔵テストデータを継続します。
 
 <!-- staff-master-release:start -->
 標準自動受入の最終完了版：**[v1.14](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.14)**（隔離テストアプリ）。追加テスト・既存P0・公開後の読戻し照合が合格しています。
@@ -12,7 +12,7 @@
 - [検証結果](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35053952599)
 - [変更要求](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/23)
 - 公開日時（UTC）：2026-09-16T04:03:25Z
-- アプリ一覧名（指定）：`自動開発_職員マスタ検索`。現在の画面内版はv1.16です。上記タグは旧Solution配布フローのv1.14記録であり、今回のStudio公開＋読取受入v1.16とは分けています。
+- アプリ一覧名（指定）：`自動開発_職員マスタ検索`。現在の画面内版はv1.17です。上記タグは旧Solution配布フローのv1.14記録であり、今回のStudio公開＋読取受入v1.17とは分けています。
 <!-- staff-master-release:end -->
 
 [隔離テストアプリを開く](https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d)。共有済みアカウントでサインインしてください。架空25名の検証用アプリです。

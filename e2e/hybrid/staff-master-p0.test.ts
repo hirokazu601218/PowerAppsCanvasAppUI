@@ -87,7 +87,7 @@ async function scrollWidestHorizontalContainer(body: Locator) {
   });
 }
 
-test.describe('職員マスタ検索 v1.16 P0 (Dataverse fixture)', () => {
+test.describe('職員マスタ検索 v1.17 P0 (Dataverse fixture)', () => {
   test('検索、職員選択、縮小表示、条件クリアが動作する', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 768 });
 

@@ -1,0 +1,24 @@
+{
+  "server_sha256": "90e5d4839b007205286cbb3a311fa77b4a8c94318b535e13a3f098d1352c88de",
+  "source_and_rules": "exact",
+  "reference_metadata": "6 files unchanged",
+  "state": "accepted",
+  "acceptance_run": 35110696763,
+  "tested_commit": "5f51e69c644975309ee312eaf9bc68c440a35e5c",
+  "e2e_passed": 8,
+  "pdf": {
+    "pages": 2,
+    "points": [
+      [
+        841.89,
+        595.28
+      ],
+      [
+        841.89,
+        595.28
+      ]
+    ],
+    "second_page_starts": "新幹線鉄道等利用者"
+  },
+  "published_at": "2026-09-16T14:35:29Z"
+}

@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'scripts/automation'))
@@ -48,6 +49,22 @@ class PolicyTests(unittest.TestCase):
             self.assertEqual(bridge.build(ROOT,a),bridge.build(ROOT,b))
             bridge.verify_download(a,ROOT,manifest)
 
+    def test_preview_order_requires_approval_and_exact_compiled_layers(self):
+        manifest=json.loads((ROOT/'automation/change.json').read_text())
+        self.assertIs(manifest['ledger_preview_to_front'], True)
+        with tempfile.TemporaryDirectory() as t:
+            altered=copy.deepcopy(manifest);altered.pop('ledger_preview_to_front')
+            with self.assertRaisesRegex(bridge.GateError,'unlisted source change'):
+                bridge.build(ROOT,Path(t)/'unapproved.msapp',altered)
+            package=Path(t)/'approved.msapp';bridge.build(ROOT,package)
+            archive=bridge.read_archive(package)
+            docs={k:bridge.yaml.safe_load(v) for k,v in archive.items() if k.startswith('Src/') and k.endswith('.pa.yaml')}
+            compiled=[json.loads(v) for k,v in archive.items() if k.startswith('Controls/') and k.endswith('.json')]
+            rules=[r for d in compiled for r in bridge.runtime_rules(d,'pdfLedger111','ZIndex')]
+            rules[0]['InvariantScript']='2'
+            with self.assertRaisesRegex(bridge.GateError,'compiled layer mismatch'):
+                bridge.ledger_preview_order(docs,compiled,manifest)
+
     def test_manifest_scope_before_value_and_unlisted_change_are_rejected(self):
         manifest=json.loads((ROOT/'automation/change.json').read_text())
         with tempfile.TemporaryDirectory() as t:
@@ -62,8 +79,13 @@ class PolicyTests(unittest.TestCase):
 
     def test_omitted_baseline_property_is_not_a_general_addition_permission(self):
         manifest=json.loads((ROOT/'automation/change.json').read_text())
-        header=next(c for c in manifest['changes'] if c['control']=='conHeader111' and c['property']=='X')
-        with tempfile.TemporaryDirectory() as t:
+        # Keep this regression independent of the current release manifest.
+        # The original v1.11 fixture omits X=0 from YAML but carries its runtime rule.
+        baseline=ROOT/'powerapps/solution-src/CanvasApps/crb3c_v111_99a38_DocumentUri.msapp'
+        archive=bridge.read_archive(baseline)
+        header={'source':'Src/Screen1.pa.yaml','control':'conHeader111','property':'X',
+                'before':'=0','after':'=16'}
+        with tempfile.TemporaryDirectory() as t, patch.object(bridge,'read_archive',return_value=archive):
             for variation in ('wrong_default','unknown_property'):
                 altered=copy.deepcopy(manifest);edit=copy.deepcopy(header)
                 if variation=='wrong_default':edit['before']='=1'
@@ -71,6 +93,7 @@ class PolicyTests(unittest.TestCase):
                 altered['changes']=[edit]
                 with self.assertRaisesRegex(bridge.GateError,'property addition is not supported'):
                     bridge.build(ROOT,Path(t)/'bad.msapp',altered)
+
 
 
 if __name__ == '__main__':
