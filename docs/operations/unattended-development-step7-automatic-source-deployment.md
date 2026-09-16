@@ -1,5 +1,7 @@
 # ステップ7 実行結果 — GitHubソース自動反映・変更テスト・復元
 
+> 対象アプリ：自動テスト専用
+
 更新日：2026-09-15  
 状態：**完了**  
 対象Issue：[Issue #5](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/5)  

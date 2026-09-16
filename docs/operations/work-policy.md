@@ -1,5 +1,7 @@
 # ChatGPT Sol Work 運用方針 v1.05
 
+> 対象アプリ：共通（自動テスト／ハンドメイド）
+
 ## 1. 方針
 
 本プロジェクトの要件定義、基本設計、詳細設計、Power Apps Source Code形式YAML／Power Fxの開発、静的テスト、レビュー、GitHub反映をChatGPT SolのWorkで行う。

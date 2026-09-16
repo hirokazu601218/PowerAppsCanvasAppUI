@@ -1,5 +1,7 @@
 # Phase 1.5 実行記録 — CLI暫定経路とGitHub OIDC
 
+> 対象アプリ：共通（自動テスト／ハンドメイド）
+
 更新日: 2026-09-15  
 状態: **URL直接指定の無変更展開・CanView共有・隔離環境P0成功**  
 対象Issue: [#5](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/5)  
