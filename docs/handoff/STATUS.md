@@ -22,7 +22,7 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | Issue #23：基本情報の密度・最大6列、氏名横の状態、一覧選択色と区切り線、幅依存余白、README自動更新。開発・テスト・公開・文書更新まで承認済み |
+| 対象機能 | Issue #23：基本情報の密度・最大6列、氏名横の状態、一覧選択色と区切り線、業務領域を維持する余白、README自動更新。開発・テスト・公開・文書更新まで承認済み |
 | 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11と差分照合済み。P0合格済み公開版を採用し、旧版は参照として保持 |
 | 要件ID | R04/R09/R10/R11、Issue #23追加条件、AUT-001～AUT-026、NFR-001～NFR-013（無人開発要件v1.04） |
 | 対象ソース | `scripts/automation/`、`tests/automation/`、`automation/`、`config/apps/`、`.github/workflows/staff-master-transaction.yml`、`staff-master-finalize.yml`、`e2e/changes/approved-property.test.ts`、 `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
