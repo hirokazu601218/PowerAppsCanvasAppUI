@@ -1,7 +1,7 @@
-"""Read-only preflight for the existing isolated Dataverse environment.
+"""Staged setup in the existing isolated Dataverse environment.
 
-No environment, license, permission, table or application mutations.
-Never writes access tokens to logs or artifacts.
+preflight reads only; provision creates the approved table/key; seed5 adds fixtures.
+No license, identity, access-role or app changes. Tokens are never logged.
 """
 import json
 import os
