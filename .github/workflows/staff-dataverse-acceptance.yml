@@ -118,4 +118,4 @@ jobs:
       - name: Record diagnostic scope
         if: always()
         run: |
-          echo 'Read-only access/current regression plus unchanged legacy P0. Legacy fixture mismatch is not migration success. No application build, import, publish, role change, or state/token upload is performed.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Permission verification: dedicated-user read-only Dataverse access and current search regression only. Legacy P0 is explicitly skipped because it targets obsolete embedded fixtures; full regression remains pending. No application build, import, publish, role change, or state/token upload is performed.' >> "$GITHUB_STEP_SUMMARY"
