@@ -7,6 +7,7 @@ import subprocess
 from decimal import Decimal
 
 import policy
+import readme_release
 from releases import git, successes
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -79,6 +80,7 @@ else:
     subprocess.run(['git','tag','-a',tag,SHA,'-F',str(OUT/'release.json')],cwd=ROOT,check=True)
     subprocess.run(['git','push','origin',f'refs/tags/{tag}'],cwd=ROOT,check=True)
 (OUT/'release.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
+readme_release.publish(ROOT,receipt,REPO)
 message=(f"Success version **{tag}** is finalized.\n\n"
          f"- [Verified transaction](https://github.com/{REPO}/actions/runs/{run['id']})\n"
          f"- [Success tag](https://github.com/{REPO}/tree/{tag})\n"
