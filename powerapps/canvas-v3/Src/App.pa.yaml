@@ -8,4 +8,44 @@
 # ************************************************************************************************
 App:
   Properties:
+    Formulas: |-
+      =StaffReferenceDate = DateValue(Text(DateAdd(Now(), TimeZoneOffset(Now()) + 540, TimeUnit.Minutes), "yyyy-mm-dd"), "en-US");
+      StaffTestCount = CountIf('M_職員基本', true);
+      StaffBasicView = If(StaffTestCount <= 100, ForAll(
+          SortByColumns('M_職員基本', "crb3c_staffnumber", SortOrder.Ascending) As s,
+          {
+              StaffId: s.crb3c_staffnumber,
+              Name: s.crb3c_fullname,
+              Org: s.crb3c_orgshort,
+              OrgFull: s.crb3c_orgfull,
+              Birth: Text(s.crb3c_birthdate, "yyyy/mm/dd"),
+              Sex: Text(s.crb3c_sex),
+              Hire: Text(s.crb3c_hiredate, "yyyy/mm/dd"),
+              Leave: Text(s.crb3c_leavedate, "yyyy/mm/dd"),
+              Status: If(IsBlank(s.crb3c_hiredate) || s.crb3c_hiredate > StaffReferenceDate, "採用前", !IsBlank(s.crb3c_leavedate) && s.crb3c_leavedate < StaffReferenceDate, "退職", "在籍"),
+              WorkReg: If(Text(s.crb3c_workregistered)="登録","登録済",Text(s.crb3c_workregistered)),
+              Daily: s.crb3c_dailyrate,
+              Hours: If(IsBlank(s.crb3c_workminutes), Blank(), Text(RoundDown(s.crb3c_workminutes/60,0),"0") & ":" & Text(Mod(s.crb3c_workminutes,60),"00")),
+              CommuteReg: If(Text(s.crb3c_commuteregistered)="登録","登録済",Text(s.crb3c_commuteregistered)),
+              Method: s.crb3c_commutemethod,
+              Pass: s.crb3c_passamount,
+              Fare: s.crb3c_onewayfare,
+              SocialReg: "",
+              Health: Text(s.crb3c_mutualshort),
+              Pension: Text(s.crb3c_pension),
+              ResidentReg: "",
+              TaxMay: Blank(),
+              TaxJune: Blank(),
+              TaxJuly: Blank(),
+              FixedReg: If(IsBlank(s.crb3c_taxclass),"","登録済"),
+              TaxClass: Text(s.crb3c_taxclass),
+              Employment: Text(s.crb3c_employmentinsurance)
+          }
+      ));
+      StaffWorkHistory = FirstN(Table({StaffId:"",Start:Date(2000,1,1),End:Date(2000,1,1),Daily:0,Scheduled:"",Hours:"",Overtime:0,Change:"",Reason:"",Finish:"",DailyHours:0}), 0);
+      StaffCommuteHistory = FirstN(Table({StaffId:"",Start:Date(2000,1,1),End:Date(2000,1,1),Method:"",April:0,October:0}), 0);
+      StaffSocialHistory = FirstN(Table({StaffId:"",Category:"",Birth:"",AgeApril:0,AgeMarch:0,Care:"",PensionExempt:"",Elderly:"",Grade:0,Monthly:0}), 0);
+      StaffResidentHistory = FirstN(Table({StaffId:"",Amount:0,Period:"",Start:Date(2000,1,1),End:Date(2000,1,1)}), 0);
+      StaffTaxHistory = FirstN(Table({StaffId:"",Start:Date(2000,1,1),End:Date(2000,1,1),TaxClass:"",Employment:"",Saving:0,Loan:0,Dependents:0,Note:""}), 0);
+      StaffPayrollHistory = FirstN(Table({StaffId:"",Year:0,PayDate:Date(2000,1,1),Base:0,BaseAdj:0,Commute:0,CommuteAdj:0,Home:0,HomeAdj:0,Overtime:0,OvertimeAdj:0,Gross:0,Deduct:0,DeductAdj:0,Net:0,Note:""}), 0);
     Theme: =PowerAppsTheme
