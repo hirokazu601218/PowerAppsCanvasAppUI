@@ -610,7 +610,7 @@
       "control": "conHeader111",
       "property": "X",
       "before": "=0",
-      "after": "=Min(16,Max(0,(Parent.Width-App.DesignWidth)/2))"
+      "after": "=16"
     },
     {
       "source": "Src/Screen1.pa.yaml",
