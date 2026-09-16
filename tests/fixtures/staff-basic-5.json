@@ -1,0 +1,7 @@
+[
+  {"staffnumber":"009900000001","fullname":"試験　採用予定","lastname":"試験","firstname":"採用予定","taxclass":"甲","workminutes":465,"hiredate":null,"pension":null},
+  {"staffnumber":"009900000002","fullname":"試験　未来採用","lastname":"試験","firstname":"未来採用","taxclass":"乙","workminutes":480,"hiredate":"2099-04-01","orgshort":"01秘書課"},
+  {"staffnumber":"009900000003","fullname":"試験　在籍","lastname":"試験","firstname":"在籍","taxclass":"甲","workminutes":465,"hiredate":"2026-04-01","pension":"加入","employmentinsurance":"加入","mutualshort":"加入","mutuallong":"未加入","dailyrate":15000,"orgshort":"02総務課"},
+  {"staffnumber":"009900000004","fullname":"試験　退職","lastname":"試験","firstname":"退職","taxclass":"乙","workminutes":360,"hiredate":"2025-04-01","leavedate":"2026-03-31","orgshort":"03会計課"},
+  {"staffnumber":"009900000005","fullname":"試験　零円","lastname":"試験","firstname":"零円","taxclass":"甲","workminutes":0,"hiredate":"2026-04-01","dailyrate":0,"passamount":0,"onewayfare":0,"commutemethod":"支給なし","commuteregistered":"未登録","workregistered":"登録"}
+]
