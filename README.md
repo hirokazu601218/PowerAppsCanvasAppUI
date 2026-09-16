@@ -4,20 +4,22 @@
 
 非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubのmainをChatGPT SolのWorkで扱う共有正本とする。
 
+現在のテスト公開版は **v1.15（Dataverse・架空25名）** です。工程7の検索・ページ切替・再読込をStudioと公開Playerで確認しました。履歴は未接続で、既存自動P0・専用テストユーザーのDataverseアクセスは未検証です。[移行結果と残件](docs/design/dataverse-v1.15-migration.md)を参照してください。
+
 <!-- staff-master-release:start -->
-最新成功版：**[v1.14](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.14)**（隔離テストアプリ）。追加テスト・既存P0・公開後の読戻し照合が合格しています。
+標準自動受入の最終完了版：**[v1.14](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.14)**（隔離テストアプリ）。追加テスト・既存P0・公開後の読戻し照合が合格しています。
 
 - [検証結果](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35053952599)
 - [変更要求](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/23)
 - 公開日時（UTC）：2026-09-16T04:03:25Z
-- アプリ一覧名（指定）：`自動開発_職員マスタ検索`。画面内版表示と上記成功タグで版を確認します。表示名の手動変更状況はSTATUSを参照してください。
+- アプリ一覧名（指定）：`自動開発_職員マスタ検索`。現在の画面内版はv1.15です。上記タグはv1.14の自動受入完了記録です。
 <!-- staff-master-release:end -->
 
 [隔離テストアプリを開く](https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d)。共有済みアカウントでサインインしてください。架空25名の検証用アプリです。
 
 検索・一覧・固定サマリー・履歴・文字サイズ切替・検索領域の開閉に対応。v1.14では、基本情報の密度と最大6列の可変配置、氏名横の在籍表示、一覧の選択色・区切り線、業務領域を維持した左右余白を反映しました。幅5条件×文字サイズ2条件、追加E2E4件と既存P0の結果は[STATUS](docs/handoff/STATUS.md)で確認できます。
 
-一覧表示名はユーザーがPower Appsで手動変更します（変更完了は未確認）。同じApp ID・URLを継続利用し、次回配布・復元でも指定名を維持します。内部の`111`を含む部品名・スキーマ名や、画面内の成功版v1.14は改名対象ではありません。
+一覧表示名「自動開発_職員マスタ検索」はStudio・公開Playerで確認済みです。同じApp ID・URLを継続利用し、内部の`111`を含む部品IDも維持しています。
 
 自動化を開始する前に、このWorkへ最大10工程を示し、追加承認を待たずに進めます。実行中は現在工程、終了・停止時は全工程の成功／失敗／対象外／未実施を同じWorkへ報告します。詳細は[運用手順](docs/operations/staff-master-unattended-runbook.md)を参照してください。
 
