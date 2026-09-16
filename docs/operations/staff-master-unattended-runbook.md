@@ -2,19 +2,21 @@
 
 > 対象アプリ：自動テスト専用
 
-更新：2026-09-15。v1.12でテスト公開運用を開始。構築と受入は [Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7) に記録する。
+更新：2026-09-16。v1.12でテスト公開運用を開始。構築と受入は [Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7)、v1.14の配置とREADME更新は [Issue #23](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/23) に記録する。
 
 ## 1. 指示から成功版まで
 
 1. このWorkで修正を指示する。Workが変更箇所、追加テスト、対象外、復元条件を提示する。
 2. 承認後、指示単位のIssueと `automation/change-<issue>` ブランチ、PRを作る。
 3. `powerapps/canvas-v3/Src/` を変更し、`automation/change.json` に承認記録と累積変更を記載する。`before` は保持している元のmsappの値、`after` は今回公開する値とする。既存合格版から引き継ぐ変更も含める。
-4. 変更に対応する独立した受入テストを用意する。現在のテストはヘッダー版表示の `AUT-META-001`。別の要求では、その要求の観測可能な結果を検査するテストを追加する。既存P0を削除・緩和しない。
+4. 変更に対応する独立した受入テストを用意する。現在は `AUT-META-001`、`AUT-SIDEBAR-001`、`AUT-LAYOUT-001`、`AUT-LIST-001`。要件・基本/詳細設計・デザイン基準・テスト仕様・STATUS・README本文を同じ変更で更新する。新しいlocatorは直前成功版にも旧仕様の期待値で実行して復元経路を確認する。既存P0を削除・緩和しない。
 5. `automation/run.json` を `mode: release`、今回のIssue、未使用のrequest ID、`approved: true` へ変更してpushする。コードだけのpushでは配布せず、この要求ファイルの更新で開始する。
 6. Actionsが対象制限→パック→URL直接指定OIDC→隔離インポート→明示的公開→読戻し照合→変更テスト→P0を実行する。
 7. 不合格時はWorkがIssueと証跡を調べ、原因指紋と対応策の実際の差分を記録する。承認範囲内に未試行の対応策があれば修復して新しいrequest IDで再実行する。Actionsに推論モデルや新しい課金契約は組み込まない。
 8. 新対応策がない場合は停止する。配布後の未知の失敗はランナーが実行開始時に固定した合格版へ自動復元し、変更表示とP0で確認する。Workが失敗PRを閉じ、ブランチを保持する。
 9. 全ゲート合格後、Workが候補SHAを固定してPRをmerge方式でmainへ統合する。自動確定処理が候補とmainのツリー一致、最新runの成功、artifact内の全ゲート・固定App ID・公開状態・Solutionハッシュを再検証し、成功タグを付ける。
+10. 確定処理が`scripts/automation/readme_release.py`でREADMEの成功版欄を生成し、専用ブランチとPRを作成・統合する。手書き本文は変更しない。文書PRはアプリの試験対象コミットへ含めず、成功タグは試験済みの統合コミットを指す。READMEの更新だけで再配布は起動しない。
+11. WorkがmainのREADME、成功タグ、公開版、Actions、文書PRを確認し、STATUSと変更履歴へ結果を反映してこのWorkで報告する。READMEのPR作成/統合に失敗した場合は、artifact内の生成結果から文書PRを完了する。公開アプリの合格を取り消したり、自動でリポジトリ権限を緩めたりしない。
 
 指示の承認は範囲内の修復、テスト、テスト用公開まで有効。基準・本番、課金、権限、接続の変更は別の承認範囲となる。
 
@@ -57,4 +59,4 @@
 
 旧 `src/staff-master/scrStaffMasterSearch_v1.11.pa.yaml` は356個のプロパティ保持ノード、公開アプリ由来activeソースは360個で、355個の名前を共有する。公開版にはStudioの画面と外側コンテナーがあり、既定値の省略や式の差もある。文字列比較の差をすべて機能差とは判定しない。
 
-詳細は [機械可読差分](staff-master-baseline-comparison.json) にプロパティ名と値のハッシュで保存した。採用判断は既に承認された「P0合格済み公開アプリを基準」とし、旧ソースは履歴・参照として保持する。旧版を混ぜて再配布しない。今回の候補は公開基準から `lblMeta111.Text` の版表示だけを変更する。
+詳細は [機械可読差分](staff-master-baseline-comparison.json) にプロパティ名と値のハッシュで保存した。採用判断は既に承認された「P0合格済み公開アプリを基準」とし、旧ソースは履歴・参照として保持する。旧版を混ぜて再配布しない。初回v1.12は版表示だけの変更だったが、現在の累積差分は`automation/change.json`で管理する。
