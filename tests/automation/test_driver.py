@@ -34,7 +34,8 @@ class DriverTests(unittest.TestCase):
                     if scenario=='auth':raise RuntimeError('auth rejected')
                 def attempt(*args):
                     scope['TOUCHED']=True;scope['STAGE']='p0'
-                    return {'promotable':False}
+                    return {'promotable':False,'gates':{'change_test':'failure' if scenario=='change_test' else 'success',
+                                                       'p0':'success' if scenario=='change_test' else 'failure'}}
                 def restore():
                     calls.append('restore');scope['RESTORE_ATTEMPTED']=True
                     if scenario=='restore_failure':raise RuntimeError('restore rejected')
@@ -44,7 +45,7 @@ class DriverTests(unittest.TestCase):
                     exec(compile(ast.Module(body=tree.body[index:],type_ignores=[]),'driver','exec'),scope)
             result=json.loads((root/'artifacts/automation/result.json').read_text())
             summary=(root/'artifacts/automation/summary.md').read_text()
-            expected={'auth':'not required','p0':'RESTORED','restore_failure':'RESTORE_FAILED'}[scenario]
+            expected={'auth':'not required','p0':'RESTORED','change_test':'RESTORED','restore_failure':'RESTORE_FAILED'}[scenario]
             self.assertIn(f'Restoration: {expected}\n',summary)
             return result,calls
 
@@ -54,6 +55,11 @@ class DriverTests(unittest.TestCase):
 
     def test_failed_p0_restores_instead_of_promoting(self):
         result,calls=self.exercise('p0')
+        self.assertEqual(result['state'],'RESTORED_AFTER_FAILURE');self.assertEqual(calls,['restore'])
+
+    def test_failed_change_test_is_not_reported_as_successful_p0_stage(self):
+        result,calls=self.exercise('change_test')
+        self.assertEqual(result['failure']['stage'],'change_test')
         self.assertEqual(result['state'],'RESTORED_AFTER_FAILURE');self.assertEqual(calls,['restore'])
 
     def test_restore_failure_stops_without_a_second_deployment(self):

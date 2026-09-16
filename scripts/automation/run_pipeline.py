@@ -225,6 +225,10 @@ def restore():
     url=deploy(package,directory,root,manifest)
     expected=manifest['acceptance']['expected_label'] if manifest else 'v1.11 ／ B案・架空25名'
     checks=test_ui(directory,url,expected)
+    passed=all(x=='success' for x in checks.values())
+    SUMMARY['restoration']={'state':'RESTORED' if passed else 'RESTORE_FAILED','commit':sha,'gates':checks}
+    if not passed:
+        STAGE='restore'
     bridge.require(all(x=='success' for x in checks.values()),'RESTORE_FAILED: restored tests did not pass')
     RESTORED=True
     SUMMARY['restoration']={'state':'RESTORED','commit':sha,'gates':checks}
@@ -287,6 +291,8 @@ try:
         acceptance()
     elif REQUEST['mode']=='release':
         row=attempt('release-candidate')
+        if not row['promotable']:
+            STAGE=next(gate for gate,state in row['gates'].items() if state!='success')
         bridge.require(row['promotable'],'candidate failed: Work must analyze and propose a new remedy')
         SUMMARY['state']='RELEASE_CANDIDATE_PASSED'
     elif REQUEST['mode']=='restore':

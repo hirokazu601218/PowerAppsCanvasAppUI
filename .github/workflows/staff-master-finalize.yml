@@ -10,6 +10,7 @@ permissions:
   contents: write
   actions: read
   issues: write
+  pull-requests: write
 concurrency:
   group: staff-master-isolated-environment
   cancel-in-progress: false

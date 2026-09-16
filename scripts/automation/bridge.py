@@ -16,6 +16,12 @@ class GateError(ValueError):
     pass
 
 
+# These baseline properties exist in the runtime package but are omitted from
+# Studio YAML because they have their default value. Keep this allowlist narrow;
+# this does not permit new controls or arbitrary new properties.
+OMITTED_BASELINE = {('Src/Screen1.pa.yaml', 'conHeader111', 'X'): '=0'}
+
+
 def require(ok, message):
     if not ok:
         raise GateError(message)
@@ -106,8 +112,11 @@ def build(root, output, manifest=None):
         matches = nodes(expected_docs[name], control)
         require(len(matches) == 1, f'control must be unique: {control}')
         props = matches[0]['Properties']
-        require(prop in props, f'property addition is not supported: {control}.{prop}')
-        require(props[prop] == change['before'], f'baseline formula mismatch: {control}.{prop}')
+        if prop not in props:
+            require(OMITTED_BASELINE.get(identity) == change['before'],
+                    f'property addition is not supported: {control}.{prop}')
+        else:
+            require(props[prop] == change['before'], f'baseline formula mismatch: {control}.{prop}')
         formula_literal(change['after'])
         props[prop] = change['after']
         rules = [r for data in compiled.values() for r in runtime_rules(data, control, prop)]
@@ -136,19 +145,24 @@ def build(root, output, manifest=None):
 
 def verify_download(path, root, manifest):
     archive = read_archive(path)
+    # A release can update dozens of properties in the same large source file.
+    # Parse each immutable downloaded document once; keep every comparison below.
+    documents = {k: yaml.safe_load(v) for k, v in archive.items()
+                 if k.startswith('Src/') and k.endswith('.pa.yaml')}
+    compiled = [json.loads(v) for k, v in archive.items()
+                if k.startswith('Controls/') and k.endswith('.json')]
     for change in manifest['changes']:
-        doc = yaml.safe_load(archive[change['source']])
+        doc = documents[change['source']]
         matches = nodes(doc, change['control'])
         require(len(matches) == 1, 'server source control mismatch')
         require(matches[0]['Properties'][change['property']] == change['after'], 'server source value mismatch')
-        rules = [r for k, v in archive.items() if k.startswith('Controls/') and k.endswith('.json')
-                 for r in runtime_rules(json.loads(v), change['control'], change['property'])]
+        rules = [r for data in compiled for r in runtime_rules(data, change['control'], change['property'])]
         require(len(rules) == 1 and rules[0]['InvariantScript'] == formula_literal(change['after']),
                 'server compiled value mismatch')
     # Compare all semantic source, including properties not mentioned in the manifest.
     for k, v in archive.items():
         if k.startswith('Src/') and k.endswith('.pa.yaml') and not k.endswith('_EditorState.pa.yaml'):
-            require(yaml.safe_load(v) == yaml.safe_load((Path(root) / 'powerapps/canvas-v3' / k).read_bytes()),
+            require(documents[k] == yaml.safe_load((Path(root) / 'powerapps/canvas-v3' / k).read_bytes()),
                     f'server source drift: {k}')
     return {'server_sha256': digest(Path(path).read_bytes()), 'source_and_rules': 'exact'}
 

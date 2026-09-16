@@ -2,14 +2,14 @@
 
 > 対象アプリ：自動テスト専用
 
-更新日：2026-09-15
+更新日：2026-09-16
 
 | 項目 | 状態 |
 |---|---|
 | 実施環境 | ChatGPT SolのWorkへ一本化 |
 | 共有正本 | GitHub main。YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、変更履歴 |
 | Library | GitHubで版管理しない画像、Excel、Word、PDF、HTML原本、検討用資料を保管 |
-| 採用デザイン | B案。要件／基本・詳細設計／デザイン基準v1.03 |
+| 採用デザイン | B案。要件／基本・詳細設計／デザイン基準v1.04。v1.14の追加条件を含む |
 | 最新成功版 | 隔離テストアプリv1.13、架空25名内蔵。検索開閉を横三本線へ変更。追加テスト2件＋P0合格、成功タグv1.13 |
 | B案実装 | モダンボタン・検索入力、固定サマリー、2段一覧、文字サイズ切替、全項目保持 |
 | 職員検索サイドバー開閉 | 実装。手動開閉360px／48px。条件・選択・ページ保持 |
@@ -22,14 +22,14 @@
 
 | 項目 | 指定 |
 |---|---|
-| 対象機能 | Issue #12完了：検索領域開閉アイコンを横三本線へ変更（成功版v1.13） |
+| 対象機能 | Issue #23：基本情報の密度・最大6列、氏名横の状態、一覧選択色と区切り線、業務領域を維持する余白、README自動更新。開発・テスト・公開・文書更新まで承認済み |
 | 基準版 | P0再合格済み公開アプリ `職員マスタ検索_自動テスト_v1_11`。GitHub v1.11と差分照合済み。P0合格済み公開版を採用し、旧版は参照として保持 |
-| 要件ID | AUT-001～AUT-025、NFR-001～NFR-013（`docs/requirements/unattended-development-requirements.md` v1.03） |
+| 要件ID | R04/R09/R10/R11、Issue #23追加条件、AUT-001～AUT-026、NFR-001～NFR-013（無人開発要件v1.04） |
 | 対象ソース | `scripts/automation/`、`tests/automation/`、`automation/`、`config/apps/`、`.github/workflows/staff-master-transaction.yml`、`staff-master-finalize.yml`、`e2e/changes/approved-property.test.ts`、 `.github/workflows/phase2-source-reconstruction.yml`、`phase1-5-target-p0.yml`、`tools/powerapps-source-reconstruct/`、`powerapps/canvas-v3/`、`powerapps/solution-src/`、`e2e/staff-master-p0.test.ts` |
-| 関連設計 | `docs/operations/staff-master-unattended-runbook.md`、`docs/operations/unattended-development-step8-9-acceptance.md`、 `docs/operations/unattended-development-implementation-plan.md`、`docs/operations/unattended-development-phase1-5-execution-plan.md`、`docs/operations/unattended-development-step6-source-reconstruction.md`、`docs/operations/unattended-development-step7-automatic-source-deployment.md` |
-| 関連テスト | ステップ8受入run 34952452993、v1.12変更テスト＋P0・安全制御10件run 34954109942、mainとタグの確定run 34954509560が合格 |
-| Library資料 | なし |
-| 未解決事項 | Issue #12の失敗原因は解消。v1.13公開・追加テスト・P0・main統合・成功タグ確定済み。次の修正指示待ち |
+| 関連設計 | `docs/design/design-system.md`、`basic-design.md`、`detailed-design.md`各v1.04、`docs/operations/staff-master-unattended-runbook.md`、ルートREADME.md |
+| 関連テスト | `docs/testing/test-specification.md` v1.02 §7.4、変更専用E2E4件、既存P0、`tests/automation/`。先に成功版v1.13で新locatorを検証する |
+| Library資料 | 今回Workへ添付された赤字①～⑤の画面画像。GitHubコードは公開由来の現行ソースを使用 |
+| 未解決事項 | v1.14候補を実装中。公開アプリの追加テスト・P0・成功版確定は未完了。最新成功版は引き続きv1.13 |
 
 新しい作業へ切り替える時は、この表の対象ソース、要件ID、関連設計、関連テスト、Library資料を更新する。文書だけの変更では関連テストを「対象外。リンク・記述整合のみ確認」とする。
 
@@ -50,7 +50,7 @@
 
 ## テスト設計
 
-[テスト方針v1.00](../testing/test-policy.md)、[テスト仕様書v1.01](../testing/test-specification.md)を作成。95ケース定義＋連続スモーク、独立期待値、8表示条件、PDF実体照合、差分回帰を定義した。ケースID・表構造・25名の期待データ整合を文書検査済み。既存68件のローカル合格は実機合格ではない。
+[テスト方針v1.00](../testing/test-policy.md)、[テスト仕様書v1.02](../testing/test-specification.md)を作成。95ケース定義＋連続スモーク、独立期待値、8表示条件、PDF実体照合、差分回帰を定義した。v1.02ではIssue #23の追加受入を定義。既存68件のローカル合格は実機合格ではない。
 
 正式PDF用紙、保存先、認定IDと金額の整合fixtureは未決／未実装として仕様書Q1～Q5に記録。
 
@@ -70,7 +70,7 @@
 | 8 | 自動修復・停止・合格版復元 | 完了 |
 | 9 | v1.12検証・main統合・成功タグ・運用開始 | 完了 |
 
-次はこのWorkで修正指示を受け、[運用手順](../operations/staff-master-unattended-runbook.md) に従って方針提示・承認後に実行する。Issue #12はv1.13として完了。次の成功版候補はv1.14。追加の修正指示をこのWorkで受け付ける。
+Issue #12はv1.13として完了。現在はIssue #23の承認済み修正をv1.14候補として進める。[運用手順](../operations/staff-master-unattended-runbook.md) に従い、既存の承認範囲内では追加確認なしで修正・テスト・隔離公開・文書更新まで実施する。
 
 [受入・成功版確定記録](../operations/unattended-development-step8-9-acceptance.md)、[成功タグv1.12](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.12)、[Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7) を参照する。
 
