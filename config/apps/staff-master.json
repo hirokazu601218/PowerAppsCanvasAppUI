@@ -1,5 +1,6 @@
 {
   "schema": 1,
+  "display_name": "自動開発_職員マスタ検索",
   "target": {
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",

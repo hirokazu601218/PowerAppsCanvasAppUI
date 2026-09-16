@@ -25,7 +25,7 @@ jobs:
       POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
       SOLUTION_NAME: StaffMasterAutomation
       SOLUTION_VERSION: 1.11.0.0
-      APP_NAME: 職員マスタ検索_自動テスト_v1_11
+      APP_NAME: 自動開発_職員マスタ検索
 
     steps:
       - name: Check out canonical baseline

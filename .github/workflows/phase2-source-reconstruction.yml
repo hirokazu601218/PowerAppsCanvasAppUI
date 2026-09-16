@@ -19,7 +19,7 @@ env:
   POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
   POWER_PLATFORM_TARGET_APP_ID: 362ac991-eead-4f07-8373-afdb3ebfdba1
   SOLUTION_NAME: StaffMasterAutomation
-  APP_NAME: 職員マスタ検索_自動テスト_v1_11
+  APP_NAME: 自動開発_職員マスタ検索
   POWERAPPS_TOOLING_REF: aed72a37c3b10b08f81c9d2257d5c38da33dccbe
 
 jobs:

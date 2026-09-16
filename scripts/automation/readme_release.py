@@ -8,6 +8,7 @@ import policy
 
 START='<!-- staff-master-release:start -->'
 END='<!-- staff-master-release:end -->'
+DISPLAY_NAME=json.loads((Path(__file__).resolve().parents[2]/'config/apps/staff-master.json').read_text())['display_name']
 
 
 def render(text, receipt, repo):
@@ -22,7 +23,7 @@ def render(text, receipt, repo):
            f'- [検証結果](https://github.com/{repo}/actions/runs/{receipt["run_id"]})\n'
            f'- [変更要求](https://github.com/{repo}/issues/{receipt["issue"]})\n'
            f'- 公開日時（UTC）：{receipt["published"]["version"]}\n'
-           '- アプリ一覧名は `職員マスタ検索_自動テスト_v1_11`。画面内版表示と上記成功タグで版を確認します。\n'
+           f'- アプリ一覧名（指定）：`{DISPLAY_NAME}`。画面内版表示と上記成功タグで版を確認します。表示名の手動変更状況はSTATUSを参照してください。\n'
            f'{END}')
     return text[:text.index(START)]+block+text[text.index(END)+len(END):]
 

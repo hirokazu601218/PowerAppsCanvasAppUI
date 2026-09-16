@@ -22,6 +22,8 @@ class ReadmeReleaseTests(unittest.TestCase):
         self.assertTrue(result.startswith('manual intro\n'))
         self.assertTrue(result.endswith('\nmanual instructions\n'))
         self.assertIn('/tree/v1.14',result)
+        self.assertIn('自動開発_職員マスタ検索',result)
+        self.assertNotIn('職員マスタ検索_自動テスト_v1_11',result)
         self.assertIn('/actions/runs/123',result)
         self.assertEqual(result,readme_release.render(result,self.receipt,'owner/repo'))
 
