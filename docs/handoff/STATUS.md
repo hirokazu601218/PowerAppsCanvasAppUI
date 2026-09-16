@@ -22,7 +22,7 @@
 
 |項目|指定|
 |---|---|
-|対象機能|M_職員基本のDataverse移行と、未確定履歴の共通内蔵テストデータ併用|
+|対象機能|Issue #35 認定簿表示とA4横2ページPDF。v1.16を保持しv1.17へ更新中|
 |現在公開版|v1.16。職員基本25名Dataverse、勤務・通勤・保険・税控除・給与は共通内蔵合成データ|
 |今回の完了|内蔵データ追加・認定簿の職員番号別取得・履歴0件の出力無効・Studio保存公開・専用ユーザー回帰7件・ソース/実行用数式の完全照合|
 |証跡|run 35098953055、試験commit cf990af19e9c8403299dce6300373f5f23c22b16、docs/testing/hybrid-v1.16-results.md|
@@ -33,7 +33,7 @@
 |共通数式ビルド|基準msapp v1.15＋automation/change.jsonの11プロパティ変更。レビュー用生成物powerapps/test-data/staff-history.fx|
 |権限|専用ユーザーの最小読取権限は前回承認で追加済み。今回の権限・料金変更なし|
 |次の作業|今回指定された残件は完了。履歴の正式テーブルは業務定義が決まり次第Dataverseへ順次移行。今は内蔵データを継続|
-|別作業|認定簿UI・ズーム・PDF保存接続は停止中の別Workの範囲。今回再開しない|
+|今回の読取り対象|docs/design/ledger-v1.17.md、docs/testing/ledger-v1.17-results.md、e2e/hybrid/ledger.test.ts、automation/change.json|
 |復元注意|旧標準フロー成功タグはv1.14。Dataverse接続を含まないため現行へそのまま復元しない。今回保存したv1.16パッケージと接続メタデータを保全|
 |60分制御|今回Actionsは元Work開始時刻から40分未満を起動条件にし、20分timeout。約26分時点に終了。旧全フローへの共通期限実装は別件|
 

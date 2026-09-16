@@ -169,7 +169,7 @@ Screens:
                               PaddingRight: =8
                               PaddingTop: =4
                               Size: =9
-                              Text: ="v1.16 ／ Dataverse・" & Text(StaffTestCount) & "名"
+                              Text: ="v1.17 ／ Dataverse・" & Text(StaffTestCount) & "名"
                               Tooltip: =Self.Text
                               Width: =174
                               X: =Parent.Width-686
@@ -5511,8 +5511,8 @@ Screens:
                         RadiusBottomRight: =0
                         RadiusTopLeft: =0
                         RadiusTopRight: =0
-                        Width: =Parent.Width-32
-                        X: =16
+                        Width: =Min(Parent.Width-32,1122*(Value(Substitute(ddLedgerPaper111.Selected.Value,"%",""))/100))
+                        X: =(Parent.Width-Self.Width)/2
                         Y: =16
                       Children:
                         - conLedgerHeader111:
@@ -5520,7 +5520,7 @@ Screens:
                             Variant: ManualLayout
                             Properties:
                               DropShadow: =DropShadow.None
-                              Fill: =ColorValue("#073B78")
+                              Fill: =Color.White
                               Height: =72
                               RadiusBottomLeft: =0
                               RadiusBottomRight: =0
@@ -5531,7 +5531,7 @@ Screens:
                               - lblLedgerTitle111:
                                   Control: Label@2.5.1
                                   Properties:
-                                    Color: =Color.White
+                                    Color: =ColorValue("#073B78")
                                     Fill: =RGBA(0,0,0,0)
                                     Font: ="Segoe UI"
                                     Height: =34
@@ -5549,7 +5549,7 @@ Screens:
                               - lblLedgerStaff111:
                                   Control: Label@2.5.1
                                   Properties:
-                                    Color: =Color.White
+                                    Color: =ColorValue("#073B78")
                                     Fill: =RGBA(0,0,0,0)
                                     Font: ="Segoe UI"
                                     Height: =24
@@ -5596,7 +5596,7 @@ Screens:
                             Properties:
                               DropShadow: =DropShadow.None
                               Fill: =Color.White
-                              Height: =108
+                              Height: =If(IsBlank(varLedgerSavedUrl111),108,156)
                               RadiusBottomLeft: =0
                               RadiusBottomRight: =0
                               RadiusTopLeft: =0
@@ -5607,7 +5607,7 @@ Screens:
                               - btnLedgerFit111:
                                   Control: ModernButton@1.0.0
                                   Properties:
-                                    AccessibleLabel: ="幅に合わせる"
+                                    AccessibleLabel: ="表示倍率を100%に戻す"
                                     Appearance: =ButtonAppearance.Outline
                                     BasePaletteColor: =ColorValue("#0F6CBD")
                                     BorderColor: =ColorValue("#0B4A8B")
@@ -5617,21 +5617,21 @@ Screens:
                                     Font: ="Segoe UI"
                                     FontWeight: =FontWeight.Semibold
                                     Height: =44
-                                    OnSelect: =Set(varLedgerZoom111,1); Set(varLedgerPdfView111,false)
+                                    OnSelect: =Set(varLedgerZoom111,1); Reset(ddLedgerPaper111); Set(varLedgerPdfView111,false)
                                     RadiusBottomLeft: =4
                                     RadiusBottomRight: =4
                                     RadiusTopLeft: =4
                                     RadiusTopRight: =4
                                     Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                    Text: ="幅に合わせる"
-                                    Tooltip: ="幅に合わせる"
-                                    Width: =144
+                                    Text: ="100%に戻す"
+                                    Tooltip: ="表示倍率を100%に戻す"
+                                    Width: =120
                                     X: =12
                                     Y: =10
                               - btnLedgerZoom111:
                                   Control: ModernButton@1.0.0
                                   Properties:
-                                    AccessibleLabel: ="150%で表示"
+                                    AccessibleLabel: ="PDFプレビューから帳票に戻る"
                                     Appearance: =ButtonAppearance.Outline
                                     BasePaletteColor: =ColorValue("#0F6CBD")
                                     BorderColor: =ColorValue("#0B4A8B")
@@ -5641,16 +5641,16 @@ Screens:
                                     Font: ="Segoe UI"
                                     FontWeight: =FontWeight.Semibold
                                     Height: =44
-                                    OnSelect: =Set(varLedgerZoom111,1.5); Set(varLedgerPdfView111,false)
+                                    OnSelect: =Set(varLedgerPdfView111,false)
                                     RadiusBottomLeft: =4
                                     RadiusBottomRight: =4
                                     RadiusTopLeft: =4
                                     RadiusTopRight: =4
                                     Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                    Text: ="150%で表示"
-                                    Tooltip: ="150%で表示"
-                                    Width: =144
-                                    X: =164
+                                    Text: ="帳票に戻る"
+                                    Tooltip: ="PDFプレビューから帳票に戻る"
+                                    Width: =120
+                                    X: =140
                                     Y: =10
                               - lblLedgerPaper111:
                                   Control: Label@2.5.1
@@ -5665,32 +5665,32 @@ Screens:
                                     PaddingRight: =0
                                     PaddingTop: =4
                                     Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                    Text: ="PDF用紙"
+                                    Text: ="表示倍率"
                                     Width: =64
                                     Wrap: =false
-                                    X: =324
+                                    X: =268
                                     Y: =10
                               - ddLedgerPaper111:
                                   Control: Classic/DropDown@2.3.1
                                   Properties:
-                                    AccessibleLabel: ="PDFの用紙サイズ"
+                                    AccessibleLabel: ="認定簿の表示倍率"
                                     BorderColor: =ColorValue("#CBD5E1")
                                     BorderThickness: =1
                                     ChevronBackground: =ColorValue("#FFFFFF")
                                     ChevronFill: =ColorValue("#1F2937")
                                     Color: =ColorValue("#1F2937")
-                                    Default: ="A3"
+                                    Default: ="100%"
                                     DisplayMode: =If(varLedgerExport111,DisplayMode.Disabled,DisplayMode.Edit)
                                     Fill: =ColorValue("#FFFFFF")
                                     Font: ="Segoe UI"
                                     Height: =44
-                                    Items: =["A3","A4"]
+                                    Items: =["50%","75%","100%","125%","150%","200%"]
                                     Items.Value: =Value
                                     SelectionColor: =ColorValue("#073B78")
                                     SelectionFill: =ColorValue("#DCEAFF")
                                     Size: =If(Coalesce(varLargeText111,false),12,10.5)
                                     Width: =88
-                                    X: =392
+                                    X: =336
                                     Y: =10
                               - btnLedgerPdf111:
                                   Control: ModernButton@1.0.0
@@ -5713,8 +5713,8 @@ Screens:
                                     Size: =If(Coalesce(varLargeText111,false),12,10.5)
                                     Text: ="PDFを作成"
                                     Tooltip: ="PDFを作成"
-                                    Width: =136
-                                    X: =496
+                                    Width: =116
+                                    X: =432
                                     Y: =10
                               - btnLedgerSaved111:
                                   Control: ModernButton@1.0.0
@@ -5739,8 +5739,8 @@ Screens:
                                     Tooltip: ="保存したPDFを開く"
                                     Visible: =!IsBlank(varLedgerSavedUrl111)
                                     Width: =200
-                                    X: =644
-                                    Y: =10
+                                    X: =12
+                                    Y: =102
                               - lblLedgerStatus111:
                                   Control: Label@2.5.1
                                   Properties:
@@ -5755,7 +5755,7 @@ Screens:
                                     PaddingRight: =0
                                     PaddingTop: =4
                                     Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                    Text: =If(IsBlank(varLedgerStatus111),"2枚の帳票を縦に表示します。拡大すると横にもスクロールできます。",varLedgerStatus111)
+                                    Text: =If(IsBlank(varLedgerStatus111),"表示倍率を選択できます。PDFはA4横・2ページで作成します。",varLedgerStatus111)
                                     Width: =Parent.Width-24
                                     X: =12
                                     Y: =58
@@ -5765,7 +5765,7 @@ Screens:
                             Properties:
                               DropShadow: =DropShadow.None
                               Fill: =ColorValue("#E9ECEF")
-                              Height: =Parent.Height-200
+                              Height: =Parent.Height-Self.Y-12
                               LayoutDirection: =LayoutDirection.Vertical
                               LayoutOverflowX: =LayoutOverflow.Scroll
                               LayoutOverflowY: =LayoutOverflow.Scroll
@@ -5774,9 +5774,9 @@ Screens:
                               RadiusTopLeft: =0
                               RadiusTopRight: =0
                               Visible: =!varLedgerPdfView111
-                              Width: =Parent.Width-24
-                              X: =12
-                              Y: =188
+                              Width: =Parent.Width
+                              X: =conLedgerHeader111.X
+                              Y: =72+conLedgerToolbar111.Height+8
                             Children:
                               - conLedgerPages111:
                                   Control: GroupContainer@1.5.0
@@ -5793,7 +5793,7 @@ Screens:
                                     RadiusBottomRight: =0
                                     RadiusTopLeft: =0
                                     RadiusTopRight: =0
-                                    Width: =If(varLedgerExport111,1122,Max(480,conLedgerScroll111.Width-28)*Coalesce(varLedgerZoom111,1))
+                                    Width: =If(varLedgerExport111,1122,1122*(Value(Substitute(ddLedgerPaper111.Selected.Value,"%",""))/100))
                                   Children:
                                     - conLedgerSheet1111:
                                         Control: GroupContainer@1.5.0
@@ -5801,7 +5801,7 @@ Screens:
                                         Properties:
                                           DropShadow: =DropShadow.None
                                           Fill: =Color.White
-                                          Height: =If(varLedgerExport111,Parent.Width * 297 / 420,Parent.Width * 794 / 1122)
+                                          Height: =If(varLedgerExport111,Parent.Width*210/297,Parent.Width*794/1122)
                                           RadiusBottomLeft: =0
                                           RadiusBottomRight: =0
                                           RadiusTopLeft: =0
@@ -7166,7 +7166,7 @@ Screens:
                                         Properties:
                                           DropShadow: =DropShadow.None
                                           Fill: =Color.White
-                                          Height: =If(varLedgerExport111,Parent.Width * 297 / 420,Parent.Width * 1084 / 1122)
+                                          Height: =If(varLedgerExport111,Parent.Width*210/297,Parent.Width*1084/1122)
                                           RadiusBottomLeft: =0
                                           RadiusBottomRight: =0
                                           RadiusTopLeft: =0
@@ -7205,7 +7205,7 @@ Screens:
                   OnTimerEnd: |-
                     =Set(varLedgerPdfRequested111,false);
                     IfError(
-                        Set(varLedgerPdf111,PDF(conLedgerPages111,{Size:ddLedgerPaper111.Selected.Value,Orientation:"Landscape",Margin:"0mm",DPI:144,ExpandContainers:true}));
+                        Set(varLedgerPdf111,PDF(conLedgerPages111,{Size:"A4",Orientation:"Landscape",Margin:"0mm",DPI:96,ExpandContainers:true}));
                         Set(varLedgerPdfView111,true);
                         Set(varLedgerStatus111,"PDFを作成しました。保存先フローは未接続です。"),
                         Set(varLedgerStatus111,"PDFを作成できませんでした。" & FirstError.Message);

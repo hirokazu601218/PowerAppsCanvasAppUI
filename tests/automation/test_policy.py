@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'scripts/automation'))
@@ -62,8 +63,13 @@ class PolicyTests(unittest.TestCase):
 
     def test_omitted_baseline_property_is_not_a_general_addition_permission(self):
         manifest=json.loads((ROOT/'automation/change.json').read_text())
-        header=next(c for c in manifest['changes'] if c['control']=='conHeader111' and c['property']=='X')
-        with tempfile.TemporaryDirectory() as t:
+        # Keep this regression independent of the current release manifest.
+        # The original v1.11 fixture omits X=0 from YAML but carries its runtime rule.
+        baseline=ROOT/'powerapps/solution-src/CanvasApps/crb3c_v111_99a38_DocumentUri.msapp'
+        archive=bridge.read_archive(baseline)
+        header={'source':'Src/Screen1.pa.yaml','control':'conHeader111','property':'X',
+                'before':'=0','after':'=16'}
+        with tempfile.TemporaryDirectory() as t, patch.object(bridge,'read_archive',return_value=archive):
             for variation in ('wrong_default','unknown_property'):
                 altered=copy.deepcopy(manifest);edit=copy.deepcopy(header)
                 if variation=='wrong_default':edit['before']='=1'
@@ -71,6 +77,7 @@ class PolicyTests(unittest.TestCase):
                 altered['changes']=[edit]
                 with self.assertRaisesRegex(bridge.GateError,'property addition is not supported'):
                     bridge.build(ROOT,Path(t)/'bad.msapp',altered)
+
 
 
 if __name__ == '__main__':

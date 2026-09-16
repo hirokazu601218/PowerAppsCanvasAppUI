@@ -1,12 +1,12 @@
 {
   "approved": true,
-  "issue": 41,
+  "issue": 35,
   "target": {
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",
     "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1"
   },
-  "candidate_version": "1.16",
+  "candidate_version": "1.17",
   "changes": [
     {
       "source": "Src/App.pa.yaml",
@@ -20,7 +20,7 @@
       "control": "lblMeta111",
       "property": "Text",
       "before": "=\"v1.15 ／ Dataverse・\" & Text(StaffTestCount) & \"名\"",
-      "after": "=\"v1.16 ／ Dataverse・\" & Text(StaffTestCount) & \"名\""
+      "after": "=\"v1.17 ／ Dataverse・\" & Text(StaffTestCount) & \"名\""
     },
     {
       "source": "Src/Screen1.pa.yaml",
@@ -84,6 +84,263 @@
       "property": "Text",
       "before": "=If(StaffTestCount>100,\"テスト対象の上限（100名）を超えたため一覧を表示できません。\",\"テスト環境：職員基本はDataverseの架空データです。履歴データは未接続です。\")",
       "after": "=If(StaffTestCount>100,\"テスト対象の上限（100名）を超えたため一覧を表示できません。\",\"テスト環境：職員基本はDataverseの架空データです。履歴・帳票は内蔵の合成テストデータです。\")"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerPanel111",
+      "property": "Width",
+      "before": "=Parent.Width-32",
+      "after": "=Min(Parent.Width-32,1122*(Value(Substitute(ddLedgerPaper111.Selected.Value,\"%\",\"\"))/100))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerPanel111",
+      "property": "X",
+      "before": "=16",
+      "after": "=(Parent.Width-Self.Width)/2"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerHeader111",
+      "property": "Fill",
+      "before": "=ColorValue(\"#073B78\")",
+      "after": "=Color.White"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblLedgerTitle111",
+      "property": "Color",
+      "before": "=Color.White",
+      "after": "=ColorValue(\"#073B78\")"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblLedgerStaff111",
+      "property": "Color",
+      "before": "=Color.White",
+      "after": "=ColorValue(\"#073B78\")"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerFit111",
+      "property": "Text",
+      "before": "=\"幅に合わせる\"",
+      "after": "=\"100%に戻す\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerFit111",
+      "property": "AccessibleLabel",
+      "before": "=\"幅に合わせる\"",
+      "after": "=\"表示倍率を100%に戻す\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerFit111",
+      "property": "Tooltip",
+      "before": "=\"幅に合わせる\"",
+      "after": "=\"表示倍率を100%に戻す\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerFit111",
+      "property": "Width",
+      "before": "=144",
+      "after": "=120"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerFit111",
+      "property": "OnSelect",
+      "before": "=Set(varLedgerZoom111,1); Set(varLedgerPdfView111,false)",
+      "after": "=Set(varLedgerZoom111,1); Reset(ddLedgerPaper111); Set(varLedgerPdfView111,false)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerZoom111",
+      "property": "Text",
+      "before": "=\"150%で表示\"",
+      "after": "=\"帳票に戻る\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerZoom111",
+      "property": "AccessibleLabel",
+      "before": "=\"150%で表示\"",
+      "after": "=\"PDFプレビューから帳票に戻る\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerZoom111",
+      "property": "Tooltip",
+      "before": "=\"150%で表示\"",
+      "after": "=\"PDFプレビューから帳票に戻る\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerZoom111",
+      "property": "Width",
+      "before": "=144",
+      "after": "=120"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerZoom111",
+      "property": "X",
+      "before": "=164",
+      "after": "=140"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerZoom111",
+      "property": "OnSelect",
+      "before": "=Set(varLedgerZoom111,1.5); Set(varLedgerPdfView111,false)",
+      "after": "=Set(varLedgerPdfView111,false)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblLedgerPaper111",
+      "property": "Text",
+      "before": "=\"PDF用紙\"",
+      "after": "=\"表示倍率\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblLedgerPaper111",
+      "property": "X",
+      "before": "=324",
+      "after": "=268"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "ddLedgerPaper111",
+      "property": "AccessibleLabel",
+      "before": "=\"PDFの用紙サイズ\"",
+      "after": "=\"認定簿の表示倍率\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "ddLedgerPaper111",
+      "property": "Items",
+      "before": "=[\"A3\",\"A4\"]",
+      "after": "=[\"50%\",\"75%\",\"100%\",\"125%\",\"150%\",\"200%\"]"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "ddLedgerPaper111",
+      "property": "Default",
+      "before": "=\"A3\"",
+      "after": "=\"100%\""
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "ddLedgerPaper111",
+      "property": "X",
+      "before": "=392",
+      "after": "=336"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerPdf111",
+      "property": "X",
+      "before": "=496",
+      "after": "=432"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerPdf111",
+      "property": "Width",
+      "before": "=136",
+      "after": "=116"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerSaved111",
+      "property": "X",
+      "before": "=644",
+      "after": "=12"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLedgerSaved111",
+      "property": "Y",
+      "before": "=10",
+      "after": "=102"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerToolbar111",
+      "property": "Height",
+      "before": "=108",
+      "after": "=If(IsBlank(varLedgerSavedUrl111),108,156)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblLedgerStatus111",
+      "property": "Text",
+      "before": "=If(IsBlank(varLedgerStatus111),\"2枚の帳票を縦に表示します。拡大すると横にもスクロールできます。\",varLedgerStatus111)",
+      "after": "=If(IsBlank(varLedgerStatus111),\"表示倍率を選択できます。PDFはA4横・2ページで作成します。\",varLedgerStatus111)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerScroll111",
+      "property": "Y",
+      "before": "=188",
+      "after": "=72+conLedgerToolbar111.Height+8"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerScroll111",
+      "property": "Height",
+      "before": "=Parent.Height-200",
+      "after": "=Parent.Height-Self.Y-12"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerScroll111",
+      "property": "X",
+      "before": "=12",
+      "after": "=conLedgerHeader111.X"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerScroll111",
+      "property": "Width",
+      "before": "=Parent.Width-24",
+      "after": "=Parent.Width"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerPages111",
+      "property": "Width",
+      "before": "=If(varLedgerExport111,1122,Max(480,conLedgerScroll111.Width-28)*Coalesce(varLedgerZoom111,1))",
+      "after": "=If(varLedgerExport111,1122,1122*(Value(Substitute(ddLedgerPaper111.Selected.Value,\"%\",\"\"))/100))"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerSheet1111",
+      "property": "Height",
+      "before": "=If(varLedgerExport111,Parent.Width * 297 / 420,Parent.Width * 794 / 1122)",
+      "after": "=If(varLedgerExport111,Parent.Width*210/297,Parent.Width*794/1122)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "conLedgerSheet2111",
+      "property": "Height",
+      "before": "=If(varLedgerExport111,Parent.Width * 297 / 420,Parent.Width * 1084 / 1122)",
+      "after": "=If(varLedgerExport111,Parent.Width*210/297,Parent.Width*1084/1122)"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "tmrLedgerPdf111",
+      "property": "OnTimerEnd",
+      "before": "=Set(varLedgerPdfRequested111,false);\nIfError(\n    Set(varLedgerPdf111,PDF(conLedgerPages111,{Size:ddLedgerPaper111.Selected.Value,Orientation:\"Landscape\",Margin:\"0mm\",DPI:144,ExpandContainers:true}));\n    Set(varLedgerPdfView111,true);\n    Set(varLedgerStatus111,\"PDFを作成しました。保存先フローは未接続です。\"),\n    Set(varLedgerStatus111,\"PDFを作成できませんでした。\" & FirstError.Message);\n    Notify(varLedgerStatus111,NotificationType.Error)\n);\nSet(varLedgerExport111,false)",
+      "after": "=Set(varLedgerPdfRequested111,false);\nIfError(\n    Set(varLedgerPdf111,PDF(conLedgerPages111,{Size:\"A4\",Orientation:\"Landscape\",Margin:\"0mm\",DPI:96,ExpandContainers:true}));\n    Set(varLedgerPdfView111,true);\n    Set(varLedgerStatus111,\"PDFを作成しました。保存先フローは未接続です。\"),\n    Set(varLedgerStatus111,\"PDFを作成できませんでした。\" & FirstError.Message);\n    Notify(varLedgerStatus111,NotificationType.Error)\n);\nSet(varLedgerExport111,false)"
     }
-  ]
+  ],
+  "approval_record": "Work: 認定簿5項目変更、既存v1.16保持、v1.17リリース承認。",
+  "acceptance": {
+    "case_id": "AUT-LEDGER-117",
+    "expected_label": "v1.17 ／ Dataverse・25名"
+  }
 }

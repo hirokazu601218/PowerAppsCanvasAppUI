@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test.describe.configure({ retries: 0 });
 test.use({ video: 'off', ignoreHTTPSErrors: false });
 
-test('Dataverse v1.16 dedicated-user read access and search regression', async ({ page }) => {
+test('Dataverse v1.17 dedicated-user read access and search regression', async ({ page }) => {
   test.setTimeout(180000);
   const url = process.env.CANVAS_APP_URL;
   if (!url || !url.includes('/a/362ac991-eead-4f07-8373-afdb3ebfdba1')) throw new Error('Unexpected target');
@@ -11,7 +11,7 @@ test('Dataverse v1.16 dedicated-user read access and search regression', async (
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
   const app = page.frameLocator('iframe[name="fullscreen-app-host"]');
   try {
-    await expect(app.getByText('v1.16 ／ Dataverse・25名', { exact: true })).toBeVisible({ timeout: 60000 });
+    await expect(app.getByText('v1.17 ／ Dataverse・25名', { exact: true })).toBeVisible({ timeout: 60000 });
     await expect(app.getByText('職員一覧 25件', { exact: true })).toBeVisible();
     await expect(app.getByRole('button', { name: '009900000001 試験 採用予定 詳細を表示', exact: true })).toBeVisible();
     console.log('DATAVERSE_DEDICATED_USER_ACCESS_PASSED');
