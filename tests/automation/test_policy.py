@@ -60,5 +60,18 @@ class PolicyTests(unittest.TestCase):
                     bridge.build(ROOT,Path(t)/'bad.msapp',altered)
 
 
+    def test_omitted_baseline_property_is_not_a_general_addition_permission(self):
+        manifest=json.loads((ROOT/'automation/change.json').read_text())
+        header=next(c for c in manifest['changes'] if c['control']=='conHeader111' and c['property']=='X')
+        with tempfile.TemporaryDirectory() as t:
+            for variation in ('wrong_default','unknown_property'):
+                altered=copy.deepcopy(manifest);edit=copy.deepcopy(header)
+                if variation=='wrong_default':edit['before']='=1'
+                else:edit['property']='UnapprovedProperty'
+                altered['changes']=[edit]
+                with self.assertRaisesRegex(bridge.GateError,'property addition is not supported'):
+                    bridge.build(ROOT,Path(t)/'bad.msapp',altered)
+
+
 if __name__ == '__main__':
     unittest.main()
