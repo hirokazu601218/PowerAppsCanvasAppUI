@@ -108,7 +108,7 @@ def main():
         time.sleep(2)
     else: raise RuntimeError('Alternate key not yet active; stop before data writes')
     api('PublishXml','POST',{'ParameterXml':'<importexportxml><entities><entity>'+name+'</entity></entities></importexportxml>'})
-    result.update(stage=4,state='TABLE_VERIFIED',columns=24,key_state='Active',entity_set=meta['EntitySetName'])
+    result.update(stage=4,mode=request['mode'],state='TABLE_VERIFIED',columns=24,key_state='Active',entity_set=meta['EntitySetName'])
     (out/'table-result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     print(json.dumps(result,ensure_ascii=False),flush=True)
     if request['mode']=='provision': return

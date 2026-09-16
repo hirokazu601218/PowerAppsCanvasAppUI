@@ -18,7 +18,7 @@ class StaffSchemaTests(unittest.TestCase):
             self.assertIn(converted['crb3c_taxclass'],[100000000,100000001])
         self.assertNotIn('crb3c_hiredate',payload(rows[0]))
         self.assertNotIn('crb3c_pension',payload(rows[0]))
-        self.assertEqual(payload(rows[2])['crb3c_hiredate'],'2026-04-01T00:00:00Z')
+        self.assertEqual(payload(rows[2])['crb3c_hiredate'],'2026-04-01')
 
     def test_metadata_preserves_approved_contract(self):
         m=table(1041)

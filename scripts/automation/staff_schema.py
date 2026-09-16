@@ -71,6 +71,5 @@ def payload(row):
         value=row.get(name)
         if value in ('',None): continue
         if kind=='choice': value=100000000+arg.index(value)
-        if kind=='date': value+='T00:00:00Z'
         result[PREFIX+name]=value
     return result
