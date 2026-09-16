@@ -1,4 +1,5 @@
 import copy
+import json
 from pathlib import Path
 import sys
 import tempfile
@@ -36,7 +37,8 @@ class ReadmeReleaseTests(unittest.TestCase):
             root=Path(directory);(root/'README.md').write_text(self.text)
             with patch.object(readme_release.subprocess,'run') as run, patch.object(
                     readme_release.subprocess,'check_output',side_effect=['doc-sha\n','https://github.com/owner/repo/pull/10\n']) as output:
-                readme_release.publish(root,self.receipt,'owner/repo')
+                result=readme_release.publish(root,self.receipt,'owner/repo')
+            self.assertEqual(result['state'],'MERGED')
             commands=[call.args[0] for call in run.call_args_list]
             pushes=[c for c in commands if c[:2]==['git','push']]
             self.assertEqual(len(pushes),1)
@@ -44,3 +46,27 @@ class ReadmeReleaseTests(unittest.TestCase):
             self.assertIn(['gh','pr','merge','https://github.com/owner/repo/pull/10','--repo','owner/repo',
                            '--merge','--match-head-commit','doc-sha'],commands)
             self.assertIn('--body-file',output.call_args_list[1].args[0])
+
+    def test_bot_pr_restriction_records_work_handoff_without_merge(self):
+        error=readme_release.subprocess.CalledProcessError(1,['gh','pr','create'],
+              stderr='GraphQL: GitHub Actions is not permitted to create or approve pull requests (createPullRequest)')
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'README.md').write_text(self.text)
+            with patch.object(readme_release.subprocess,'run') as run, patch.object(
+                    readme_release.subprocess,'check_output',side_effect=['doc-sha\n',error]):
+                result=readme_release.publish(root,self.receipt,'owner/repo')
+            self.assertEqual(result['state'],'PENDING_WORK_PR')
+            self.assertEqual(result['head'],'doc-sha')
+            self.assertEqual(result,json.loads((root/'artifacts/release/readme-update.json').read_text()))
+            self.assertFalse(any(c.args[0][:3]==['gh','pr','merge'] for c in run.call_args_list))
+            self.assertIn('/tree/v1.14',(root/'README.md').read_text())
+
+    def test_unexpected_pr_error_is_not_treated_as_handoff(self):
+        error=readme_release.subprocess.CalledProcessError(1,['gh','pr','create'],stderr='network error')
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'README.md').write_text(self.text)
+            with patch.object(readme_release.subprocess,'run'), patch.object(
+                    readme_release.subprocess,'check_output',side_effect=['doc-sha\n',error]):
+                with self.assertRaises(readme_release.subprocess.CalledProcessError):
+                    readme_release.publish(root,self.receipt,'owner/repo')
+            self.assertFalse((root/'artifacts/release/readme-update.json').exists())
