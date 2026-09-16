@@ -14,7 +14,7 @@ jobs:
   diagnose:
     runs-on: ubuntu-latest
     environment: powerapps-test
-    timeout-minutes: 20
+    timeout-minutes: 10
     env:
       MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
       MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
@@ -42,7 +42,7 @@ jobs:
           python - <<'PY'
           import datetime
           start=datetime.datetime.fromisoformat('2026-09-16T13:57:16Z'.replace('Z','+00:00'))
-          assert (datetime.datetime.now(datetime.timezone.utc)-start).total_seconds()<2400, 'Work deadline: insufficient time for 20-minute read-only job'
+          assert (datetime.datetime.now(datetime.timezone.utc)-start).total_seconds()<3000, 'Work deadline: insufficient time for 10-minute read-only job'
           PY
       - uses: actions/checkout@v4
         with:

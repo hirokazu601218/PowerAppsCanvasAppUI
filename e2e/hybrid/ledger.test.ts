@@ -26,11 +26,15 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
     const capture=(data:any,depth=0)=>{
       if(depth>5||data==null)return;
       if(typeof data==='string'){
+        if(data.startsWith('{') || data.startsWith('[')){try{capture(JSON.parse(data),depth+1);}catch{}return;}
+        if(data.startsWith('%PDF-')){
+          const bytes=Uint8Array.from(data,(c:string)=>c.charCodeAt(0)&255);capture(bytes,depth+1);return;
+        }
         if(data.startsWith('data:application/pdf;base64,')) (window as any).__ledgerPdfs.push(data);
         else if(data.startsWith('JVBERi0')) (window as any).__ledgerPdfs.push('data:application/pdf;base64,'+data);
         return;
       }
-      const bytes=data instanceof ArrayBuffer?new Uint8Array(data):ArrayBuffer.isView(data)?new Uint8Array(data.buffer,data.byteOffset,data.byteLength):null;
+      const bytes=Array.isArray(data)&&data.length>5&&data.slice(0,5).join(',')==='37,80,68,70,45'?new Uint8Array(data):data instanceof ArrayBuffer?new Uint8Array(data):ArrayBuffer.isView(data)?new Uint8Array(data.buffer,data.byteOffset,data.byteLength):null;
       if(bytes){
         if(bytes.length>5 && String.fromCharCode(...bytes.slice(0,5))==='%PDF-'){
           const reader=new FileReader();reader.onload=()=>{(window as any).__ledgerPdfs.push(reader.result);};

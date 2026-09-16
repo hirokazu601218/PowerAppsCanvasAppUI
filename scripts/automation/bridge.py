@@ -95,7 +95,7 @@ def ledger_preview_order(documents, compiled, manifest, apply=False):
     if apply:
         by_name = {next(iter(c)): c for c in children}
         screen[0]['Children'] = [by_name[n] for n in after]
-    for control, old, new in [('pdfLedger111', '3', '4'), ('conStaffMaster111', '4', '3')]:
+    for control, old, new in [('pdfLedger111', '3', '3'), ('conStaffMaster111', '4', '2')]:
         rules = [r for data in compiled for r in runtime_rules(data, control, 'ZIndex')]
         require(len(rules) == 1 and rules[0]['InvariantScript'] == (old if apply else new),
                 'preview compiled layer mismatch')

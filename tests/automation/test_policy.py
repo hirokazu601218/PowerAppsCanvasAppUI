@@ -61,7 +61,7 @@ class PolicyTests(unittest.TestCase):
             docs={k:bridge.yaml.safe_load(v) for k,v in archive.items() if k.startswith('Src/') and k.endswith('.pa.yaml')}
             compiled=[json.loads(v) for k,v in archive.items() if k.startswith('Controls/') and k.endswith('.json')]
             rules=[r for d in compiled for r in bridge.runtime_rules(d,'pdfLedger111','ZIndex')]
-            rules[0]['InvariantScript']='3'
+            rules[0]['InvariantScript']='2'
             with self.assertRaisesRegex(bridge.GateError,'compiled layer mismatch'):
                 bridge.ledger_preview_order(docs,compiled,manifest)
 
