@@ -54,6 +54,8 @@
 
 スクリーンショット・動画・トレース、実行ログ、パック、読戻しは14日保持。Issue概要とタグの受領記録は保持期限なし。テスト利用者のCanView共有は既存設定を利用する。
 
+認証が配布前に失敗した場合はアプリ不具合と分ける。公式認証ライブラリが保存した`*-failed-*.png`だけを専用artifactへ1日保持し、Cookie・storage state・トークン・資格情報は収集しない。2回連続して同じ認証画面で停止したら単純な再実行を止め、`staff-master-auth-diagnostics.yml`で同じID・設定・URLの認証だけを診断する。このワークフローにはアプリのbuild/import/publishやOIDC権限を含めない。診断結果と停止画面を確認して次の処理を決める。MFA・条件付きアクセス・資格情報を自動変更しない。
+
 通常の配布は `staff-master-transaction.yml` のみを使う。`phase2-source-reconstruction.yml` は旧実証用でpush起動を廃止した。旧phase1.5系は調査記録として保持し、通常運用で再実行しない。隔離環境を書き換える現行・復元処理は共通concurrency groupで直列化する。
 
 ## 6. 公開版と旧GitHub版の差分

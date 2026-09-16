@@ -115,6 +115,15 @@ jobs:
           test -n "$MS_USER_PASSWORD"
         fi
         npm run auth
+    - name: Preserve only the library's failed authentication screen
+      if: ${{ failure() && steps.auth.outcome == 'failure' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: staff-master-auth-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
+        path: power-platform-playwright/packages/e2e-tests/.playwright-ms-auth/screenshots/*-failed-*.png
+        include-hidden-files: true
+        retention-days: 1
+        if-no-files-found: warn
     - name: Sign in automation identity with GitHub OIDC
       uses: azure/login@v2
       with:
