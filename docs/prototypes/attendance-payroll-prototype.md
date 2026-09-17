@@ -1,6 +1,6 @@
-# 勤務時間報告・給与計算：2画面プロトタイプ v0.3
+# 勤務時間報告・給与計算：2画面プロトタイプ v0.31
 
-仕様更新日：2026/09/17。内容の版：v0.3。
+仕様更新日：2026/09/17。内容の版：v0.31。
 
 > このファイルを勤務報告・給与計算2画面の独立プロトタイプの正本とします。既存公開アプリへの統合・実機検証は未実施です。
 
@@ -21,7 +21,7 @@
 | 段階 | 計算式 |
 |---|---|
 | ① 基本額 | 日額単価 × 実際に勤務した日数 |
-| 欠勤控除用の時間単価 | 日額単価 ÷ 7.75時間 |
+| 欠勤控除用の時間単価 | 職員基本情報の「欠勤時間単価」を参照 |
 | ② 欠勤控除 | 時間単価 × 勤務した日の欠勤時間合計 |
 | ③ 超過勤務手当 | 職員基本情報の超過勤務時間単価 × 超過勤務時間合計 |
 | ④ 合計（切捨て前） | ① − ② ＋ ③ |
@@ -57,19 +57,18 @@
 
 ## 4. 画面2：数値入りの計算過程
 
-日額9,750円、実勤務20日、勤務した日の欠勤1時間、超過勤務1時間（単価1,950円/時）の表示例です。
+日額9,750円、欠勤時間単価1,250円/時（架空の設定値）、実勤務20日、勤務した日の欠勤1時間、超過勤務1時間（単価1,950円/時）の表示例です。
 
 | 表示段 | UIに見える式 |
 |---|---|
 | ① 基本額 | **9,750円/日 × 20日 ＝ 195,000円** |
-| 欠勤時間単価 | 9,750円 ÷ 7.75時間 ≈ 1,258.064516円/時 |
-| ② 欠勤控除 | **（9,750円 ÷ 7.75時間）×（60分 ÷ 60）時間 ≈ 1,258.064516円** |
-| ③ 超過勤務手当 | **1,950円/時 ×（60分 ÷ 60）時間 ≈ 1,950円** |
-| ④ 合計から切捨て | **① − ② ＋ ③ ≈ 195,691.935484円 → 195,691円** |
+| ② 欠勤控除 | **1,250円/時 × 1時間 ＝ 1,250円** |
+| ③ 超過勤務手当 | **1,950円/時 × 1時間 ＝ 1,950円** |
+| ④ 合計から切捨て | **① − ② ＋ ③ ≈ 195,700円 → 195,700円** |
 
 中間額は画面上のみ小数6桁の概数（≈／約）で表示します。内部の計算ではその表示値を使わず、丸めていない数値を使います。最後に `RoundDown(合計, 0)` を一度だけ適用します。この試作の入力制約では合計は非負です。
 
-欠勤がない場合も欠勤0分・控除0円を表示します。時間の掛け算は「分÷60」の形で示し、循環小数の時間表示による誤解を防ぎます。未登録月を0円として扱いません。対象や報告書登録版が変わったら旧結果を隠して再計算を促します。
+欠勤がない場合も欠勤0時間・控除0円を表示します。UIでは分から時間への換算式を表示せず、1時間、0.5時間のように表示します。1分など循環小数となる時間は「約0.016667時間」と小数6桁の概数で表示します。計算内部では元の分数÷60を使い、表示値を再利用しません。未登録月を0円として扱いません。対象や報告書登録版が変わったら旧結果を隠して再計算を促します。
 
 ## 5. 内蔵データ
 
@@ -77,16 +76,20 @@ Dataverse定義ではなく試作用のコレクションです。
 
 | コレクション | 用途 |
 |---|---|
-| colStaff | 職員番号、氏名、日額、超過勤務時間単価、所定465分 |
+| colStaff | 職員番号、氏名、日額、欠勤時間単価、超過勤務時間単価、所定465分 |
 | colDraft | 編集中の1名・1か月の明細 |
 | colAttendance | 登録済みの日別明細。勤務日区分、全日欠勤区分、通常勤務分、欠勤分、超過勤務分等 |
 | colMonths | 職員番号＋勤務月の登録状態と登録版 |
 
 `PlannedDay` は旧版からの内部名を引き継いでいますが、現版では「勤務日」選択の印です。勤務予定日数を給与計算に使うものではありません。日数は `CountIf(rows, RegularMinutes>0)`、控除対象時間は `Sum(Filter(rows, RegularMinutes>0), AbsenceMinutes)` で計算します。`FullDayAbsence` は全日欠勤記録です。
 
-00001：試験 太郎、日額9,750円、超過勤務単価1,950円/時。00002：試験 花子、日額9,000円、超過勤務単価1,875円/時。両名とも所定7時間45分。
+00001：試験 太郎、日額9,750円、欠勤時間単価1,250円/時、超過勤務単価1,950円/時。00002：試験 花子、日額9,000円、欠勤時間単価1,200円/時、超過勤務単価1,875円/時。両名とも所定7時間45分。
 
 00001の2026/09は計算確認用に1～20日を勤務日とし、9/1を通常6時間45分＋欠勤1時間＋超過1時間としています。他の勤務日は通常7時間45分、21～30日は非勤務です。土日祝日判定を示すものではない架空データです。00002は未登録です。
+
+### 未反映タスク：ABS-RATE-001
+
+[Issue #51：次回の職員基本テーブル編集時に欠勤時間単価を追加](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/51) は未完了です。今回は内蔵 `colStaff.AbsenceHourlyRate` のみ追加し、Dataverse実テーブルは変更していません。単価1,250円／1,200円は独立して設定した架空の試験値で、日額から算出した本番単価ではありません。実テーブルの項目・精度・設定方法は次回編集時に確定します。実テーブルへの追加を読戻し確認し、証跡を残してからIssueを閉じます。
 
 ## 6. 導入・更新手順
 
@@ -102,8 +105,8 @@ YAMLはコントロール貼り付け形式です。コードフェンス行は�
 ```powerfx
 // 試作専用：再実行すると登録内容を初期化します。
 ClearCollect(colStaff,
-    {StaffNo:"00001", StaffName:"試験 太郎", StaffLabel:"00001  試験 太郎", DailyRate:9750, OvertimeHourlyRate:1950, ScheduledMinutes:465},
-    {StaffNo:"00002", StaffName:"試験 花子", StaffLabel:"00002  試験 花子", DailyRate:9000, OvertimeHourlyRate:1875, ScheduledMinutes:465}
+    {StaffNo:"00001", StaffName:"試験 太郎", StaffLabel:"00001  試験 太郎", DailyRate:9750, AbsenceHourlyRate:1250, OvertimeHourlyRate:1950, ScheduledMinutes:465},
+    {StaffNo:"00002", StaffName:"試験 花子", StaffLabel:"00002  試験 花子", DailyRate:9000, AbsenceHourlyRate:1200, OvertimeHourlyRate:1875, ScheduledMinutes:465}
 );
 // 計算確認用：1～20日を勤務日に設定。土日祝日判定を行うサンプルではありません。
 // 9/1は通常6時間45分＋欠勤1時間＋超過1時間。他の勤務日は通常7時間45分。
@@ -837,9 +840,9 @@ Set(varTotalBeforeTruncation,0); Set(varFinalPay,0)
             With({m:LookUp(colMonths,StaffNo=varPayStaff.StaffNo && WorkMonth=varPayMonth)},
                 If(IsBlank(m),
                     Notify("対象月の報告書は未登録です。",NotificationType.Warning),
-                    varPayStaff.ScheduledMinutes<>465 || IsBlank(varPayStaff.DailyRate) || varPayStaff.DailyRate<0 ||
+                    varPayStaff.ScheduledMinutes<>465 || IsBlank(varPayStaff.AbsenceHourlyRate) || varPayStaff.AbsenceHourlyRate<0 || IsBlank(varPayStaff.DailyRate) || varPayStaff.DailyRate<0 ||
                     IsBlank(varPayStaff.OvertimeHourlyRate) || varPayStaff.OvertimeHourlyRate<0,
-                    Notify("日額・超過勤務単価・所定時間465分を確認してください。",NotificationType.Error),
+                    Notify("日額・欠勤時間単価・超過勤務単価・所定時間465分を確認してください。",NotificationType.Error),
                     With({rows:Filter(colAttendance,StaffNo=varPayStaff.StaffNo && WorkMonth=varPayMonth)},
                         Set(varWorkDays,CountIf(rows,RegularMinutes>0));
                         Set(varRegularMinutes,Sum(rows,RegularMinutes));
@@ -847,8 +850,8 @@ Set(varTotalBeforeTruncation,0); Set(varFinalPay,0)
                         Set(varOvertimeMinutes,Sum(rows,OvertimeMinutes))
                     );
                     Set(varBasePay,varPayStaff.DailyRate*varWorkDays);
-                    // 7時間45分=465分=7.75時間。時間単価は途中で丸めない。
-                    Set(varAbsenceHourlyRate,varPayStaff.DailyRate/(465/60));
+                    // 職員基本情報の欠勤時間単価を使用。日額から再計算しない。
+                    Set(varAbsenceHourlyRate,varPayStaff.AbsenceHourlyRate);
                     // 各項目は丸めず保持。最終合計のみ円未満を切り捨て。
                     Set(varAbsenceDeduction,varAbsenceHourlyRate*(varAbsenceMinutes/60));
                     Set(varOvertimePay,varPayStaff.OvertimeHourlyRate*(varOvertimeMinutes/60));
@@ -909,7 +912,7 @@ Set(varTotalBeforeTruncation,0); Set(varFinalPay,0)
     - lblAbsRate:
         Control: Label@2.5.1
         Properties:
-          Text: =If(varCalcReady && ddPayStaff.Selected.StaffNo=varPayStaff.StaffNo && Date(Year(dpPayMonth.SelectedDate),Month(dpPayMonth.SelectedDate),1)=varPayMonth && LookUp(colMonths,StaffNo=varPayStaff.StaffNo && WorkMonth=varPayMonth,Revision)=varPayRevision,"時間単価：" & Text(varPayStaff.DailyRate,"#,##0") & "円 ÷ 7.75時間 ＝ 約" & Text(varAbsenceHourlyRate,"#,##0.000000") & "円/時（計算では丸めない）","—")
+          Text: =""
           X: =40
           Y: =366
           Width: =1270
@@ -917,14 +920,15 @@ Set(varTotalBeforeTruncation,0); Set(varFinalPay,0)
           Size: =16
           Font: ="Meiryo"
           Color: =RGBA(28, 45, 65, 1)
+          Visible: =false
     - lblAbsFormula:
         Control: Label@2.5.1
         Properties:
-          Text: =If(varCalcReady && ddPayStaff.Selected.StaffNo=varPayStaff.StaffNo && Date(Year(dpPayMonth.SelectedDate),Month(dpPayMonth.SelectedDate),1)=varPayMonth && LookUp(colMonths,StaffNo=varPayStaff.StaffNo && WorkMonth=varPayMonth,Revision)=varPayRevision,"（" & Text(varPayStaff.DailyRate,"#,##0") & "円 ÷ 7.75時間）×（" & Text(varAbsenceMinutes) & "分 ÷ 60）時間 ≈ " & Text(varAbsenceDeduction,"#,##0.######") & "円","—")
+          Text: =If(varCalcReady && ddPayStaff.Selected.StaffNo=varPayStaff.StaffNo && Date(Year(dpPayMonth.SelectedDate),Month(dpPayMonth.SelectedDate),1)=varPayMonth && LookUp(colMonths,StaffNo=varPayStaff.StaffNo && WorkMonth=varPayMonth,Revision)=varPayRevision,Text(varAbsenceHourlyRate,"#,##0.######") & "円/時 × " & If(Mod(varAbsenceMinutes,3)<>0,"約","") & Text(varAbsenceMinutes/60,"0.######") & "時間" & " ＝ " & Text(varAbsenceDeduction,"#,##0.######") & "円","—")
           X: =40
-          Y: =408
+          Y: =376
           Width: =1270
-          Height: =44
+          Height: =60
           Size: =22
           Font: ="Meiryo"
           Color: =RGBA(28, 45, 65, 1)
@@ -944,7 +948,7 @@ Set(varTotalBeforeTruncation,0); Set(varFinalPay,0)
     - lblOTFormula:
         Control: Label@2.5.1
         Properties:
-          Text: =If(varCalcReady && ddPayStaff.Selected.StaffNo=varPayStaff.StaffNo && Date(Year(dpPayMonth.SelectedDate),Month(dpPayMonth.SelectedDate),1)=varPayMonth && LookUp(colMonths,StaffNo=varPayStaff.StaffNo && WorkMonth=varPayMonth,Revision)=varPayRevision,Text(varPayStaff.OvertimeHourlyRate,"#,##0") & "円/時 ×（" & Text(varOvertimeMinutes) & "分 ÷ 60）時間 ≈ " & Text(varOvertimePay,"#,##0.######") & "円","—")
+          Text: =If(varCalcReady && ddPayStaff.Selected.StaffNo=varPayStaff.StaffNo && Date(Year(dpPayMonth.SelectedDate),Month(dpPayMonth.SelectedDate),1)=varPayMonth && LookUp(colMonths,StaffNo=varPayStaff.StaffNo && WorkMonth=varPayMonth,Revision)=varPayRevision,Text(varPayStaff.OvertimeHourlyRate,"#,##0.######") & "円/時 × " & If(Mod(varOvertimeMinutes,3)<>0,"約","") & Text(varOvertimeMinutes/60,"0.######") & "時間" & " ＝ " & Text(varOvertimePay,"#,##0.######") & "円","—")
           X: =40
           Y: =506
           Width: =1270
@@ -1010,7 +1014,7 @@ Set(varWorkDays,CountIf(rows,RegularMinutes>0));
 Set(varAbsenceMinutes,Sum(Filter(rows,RegularMinutes>0),AbsenceMinutes));
 Set(varOvertimeMinutes,Sum(rows,OvertimeMinutes));
 Set(varBasePay,varPayStaff.DailyRate*varWorkDays);
-Set(varAbsenceHourlyRate,varPayStaff.DailyRate/(465/60));
+Set(varAbsenceHourlyRate,varPayStaff.AbsenceHourlyRate);
 Set(varAbsenceDeduction,varAbsenceHourlyRate*(varAbsenceMinutes/60));
 Set(varOvertimePay,varPayStaff.OvertimeHourlyRate*(varOvertimeMinutes/60));
 Set(varTotalBeforeTruncation,varBasePay-varAbsenceDeduction+varOvertimePay);
@@ -1019,20 +1023,20 @@ Set(varFinalPay,RoundDown(varTotalBeforeTruncation,0));
 
 ## 8. 確認シナリオ
 
-日額9,750円、超過勤務単価1,950円/時の期待値。小数部分は説明用の概数で、計算途中は丸めません。
+日額9,750円、欠勤時間単価1,250円/時、超過勤務単価1,950円/時の期待値。小数部分は説明用の概数で、計算途中は丸めません。
 
 | 条件 | 計算する勤務日数 | 欠勤控除（概数） | 最終支給額 |
 |---|---:|---:|---:|
 | 実勤務20日、欠勤・超過なし | 20日 | 0円 | 195,000円 |
-| 実勤務20日、そのうち欠勤1時間、超過なし | 20日 | 1,258.064516円 | 193,741円 |
-| 実勤務20日、そのうち欠勤1時間、超過1時間（内蔵例） | 20日 | 1,258.064516円 | 195,691円 |
+| 実勤務20日、そのうち欠勤1時間、超過なし | 20日 | 1,250円 | 193,750円 |
+| 実勤務20日、そのうち欠勤1時間、超過1時間（内蔵例） | 20日 | 1,250円 | 195,700円 |
 | 勤務予定20日のうち全日欠勤1日、他は全時間勤務 | 19日 | 0円 | 185,250円 |
-| 実勤務20日、そのうち欠勤30分、超過なし | 20日 | 629.032258円 | 194,370円 |
+| 実勤務20日、そのうち欠勤30分、超過なし | 20日 | 625円 | 194,375円 |
 | 勤務予定20日すべて全日欠勤 | 0日 | 0円 | 0円 |
 | 登録済み全日非勤務 | 0日 | 0円 | 0円 |
-| 実勤務20日、そのうち欠勤1分、超過1分 | 20日 | 20.967742円 | 195,011円 |
+| 実勤務20日、そのうち欠勤1分、超過1分 | 20日 | 20.833333円 | 195,011円 |
 
-最後の例は超過勤務手当32.5円を丸めず足し、合計195,011.532258…円から円未満を切り捨てます。欠勤控除や超過勤務手当を先に整数化しないことを確認するケースです。
+最後の例は超過勤務手当32.5円を丸めず足し、合計195,011.666666…円から円未満を切り捨てます。欠勤控除や超過勤務手当を先に整数化しないことを確認するケースです。
 
 実機で確認する項目：全日欠勤を勤務日数・控除対象から除外／未登録月の通知／分60・負数・小数・空欄の拒否／勤務日の通常＋欠勤が465分／全日欠勤は欠勤465分のみ／未確認日があれば登録不可／再登録時の重複防止／報告書更新後の再計算／計算式の表示と結果の一致。
 
@@ -1048,4 +1052,6 @@ Set(varFinalPay,RoundDown(varTotalBeforeTruncation,0));
 - [Microsoft公式：Patch](https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-patch)
 
 給与計算・端数処理はユーザー指定によります。
+
+
 
