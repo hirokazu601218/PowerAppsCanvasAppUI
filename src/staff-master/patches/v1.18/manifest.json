@@ -1,8 +1,8 @@
 {
-  "state": "UNCOMPILED_CANDIDATE_NOT_DEPLOYED",
+  "state": "STUDIO_COMPILED_PUBLISHED_PENDING_ACCEPTANCE",
   "baseVersion": "1.17",
   "targetVersion": "1.18",
-  "base_commit": "c98777dda8c663c41710683d0bdb03bb55047f3b",
+  "base_commit": "a6ab7ca1a7090031d4c364560e8b17419a7e2832",
   "baseline_source_sha256": {
     "App.pa.yaml": "4958192603f995b14eb6218e037cc5bf5e61da85c050fb11405ad45274f0acae",
     "Screen1.pa.yaml": "9dca4ec63ac9b043963b5de93fb7c2ffcd62d69b9d281c64c14d30a54e011b79"
@@ -363,5 +363,8 @@
       "after": "=Set(varStaff111,ThisItem); Set(varStaffChosen111,true); Set(varReport111,\"\"); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,\"\"); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)",
       "property_file": "properties/galStaff111.OnSelect.fx"
     }
-  ]
+  ],
+  "baseline_msapp": "powerapps/dataverse-v1.18/staff-master.msapp",
+  "baseline_sha256": "74c16fa86102a7dc52682f9342ef8bb8d71520c35b7cb3a18083fc6165cfa49e",
+  "readback_run": 35171416472
 }

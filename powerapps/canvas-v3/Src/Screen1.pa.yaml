@@ -157,7 +157,7 @@ Screens:
                               PaddingRight: =8
                               PaddingTop: =4
                               Size: =9
-                              Text: ="v1.17 ／ Dataverse・" & Text(StaffTestCount) & "名"
+                              Text: ="v1.18 ／ Dataverse・" & Text(StaffTestCount) & "名"
                               Tooltip: =Self.Text
                               Width: =174
                               X: =Parent.Width-686
@@ -174,7 +174,7 @@ Screens:
                               Font: ="Segoe UI"
                               FontWeight: =FontWeight.Semibold
                               Height: =44
-                              OnSelect: =Refresh('M_職員基本'); Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,""); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,""); Set(varLedgerStatus111,"")
+                              OnSelect: =IfError(Refresh('M_職員基本'); Refresh('T_通勤'),Notify("Dataverseの再読込に失敗しました。",NotificationType.Error)); Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,""); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,""); Set(varLedgerStatus111,""); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)
                               RadiusBottomLeft: =4
                               RadiusBottomRight: =4
                               RadiusTopLeft: =4
@@ -247,7 +247,7 @@ Screens:
                         PaddingRight: =12
                         PaddingTop: =4
                         Size: =If(Coalesce(varLargeText111,false),13.5,12)
-                        Text: =If(StaffTestCount>100,"テスト対象の上限（100名）を超えたため一覧を表示できません。","テスト環境：職員基本はDataverseの架空データです。履歴・帳票は内蔵の合成テストデータです。")
+                        Text: =If(StaffTestCount>100,"テスト対象の上限（100名）を超えたため一覧を表示できません。","テスト環境：職員基本・通勤・認定簿はDataverseの架空データです。その他の履歴・給与簿は内蔵テストデータです。")
                         Tooltip: =Self.Text
                         Width: =Parent.Width-32
                         X: =16
@@ -1318,13 +1318,7 @@ Screens:
                                           PaddingRight: =8
                                           PaddingTop: =4
                                           Size: =If(Coalesce(varLargeText111,false),13.5,12)
-                                          Text: |-
-                                            =With({demoStaff:StaffBasicView,
-                                            demoCommute:StaffCommuteHistory},
-                                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                            "通勤支給予定" & "　" & Text(CountRows(Filter(demoCommute,StaffId=demoSelected.StaffId))) & "件"
-                                            )
-                                            ) & "（内蔵テスト）"
+                                          Text: =IfError("通勤支給予定　" & Text(CountRows(StaffCommuteHistory)) & "件（行を選択）","通勤データを取得できません")
                                           Tooltip: =Self.Text
                                           Width: =Parent.Width-160
                                     - conHScrollCommute111:
@@ -1381,7 +1375,7 @@ Screens:
                                                       PaddingRight: =12
                                                       PaddingTop: =4
                                                       Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                      Text: ="適用開始日"
+                                                      Text: ="適用開始日 / 認定ID"
                                                       Tooltip: =Self.Text
                                                       Width: =(If(Coalesce(varLargeText111,false),157,135))*Max(0.9,Min(1,conHScrollCommute111.Width/(If(Coalesce(varLargeText111,false),854,735))))
                                                 - lblHCommute1111:
@@ -1468,21 +1462,16 @@ Screens:
                                                     Control: Gallery@2.15.0
                                                     Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
                                                     Properties:
-                                                      AccessibleLabel: ="Commute 履歴"
+                                                      AccessibleLabel: ="通勤認定一覧。表示する行を選択してください"
+                                                      Default: =First(StaffCommuteHistory)
                                                       DisplayMode: =If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,DisplayMode.Edit)
                                                       Fill: =ColorValue("#FFFFFF")
                                                       Height: =Parent.Height-Self.Y
-                                                      ItemAccessibleLabel: ="テストデータ行"
-                                                      Items: |-
-                                                        =With({demoStaff:StaffBasicView,
-                                                        demoCommute:StaffCommuteHistory},
-                                                        With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                                        Filter(demoCommute,StaffId=demoSelected.StaffId)
-                                                        )
-                                                        )
-                                                      Selectable: =false
+                                                      ItemAccessibleLabel: =ThisItem.crb3c_recognitionid & " " & Text(ThisItem.crb3c_startdate,"yyyy/mm/dd") & " " & ThisItem.crb3c_method
+                                                      Items: =StaffCommuteHistory
                                                       ShowScrollbar: =false
-                                                      TemplateFill: =ColorValue("#FFFFFF")
+                                                      TabIndex: =0
+                                                      TemplateFill: =If(ThisItem.IsSelected,ColorValue("#E6F2FF"),Color.White)
                                                       TemplateSize: =If(Coalesce(varLargeText111,false),56,48)
                                                       Width: =Parent.Width
                                                       Y: =If(Coalesce(varLargeText111,false),64,56)
@@ -1493,16 +1482,17 @@ Screens:
                                                             BorderColor: =ColorValue("#CBD5E1")
                                                             BorderThickness: =1
                                                             Color: =ColorValue("#242424")
-                                                            Fill: =ColorValue("#FFFFFF")
+                                                            Fill: =RGBA(0,0,0,0)
                                                             Font: ="Segoe UI"
                                                             Height: =If(Coalesce(varLargeText111,false),56,48)
                                                             LineHeight: =1.4
+                                                            OnSelect: =Select(Parent)
                                                             PaddingBottom: =4
                                                             PaddingLeft: =12
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =If(ThisItem.Start=Date(2099,3,31),"",Text(ThisItem.Start,"yyyy/mm/dd"))
+                                                            Text: =Text(ThisItem.crb3c_startdate,"yyyy/mm/dd") & Char(10) & ThisItem.crb3c_recognitionid
                                                             Tooltip: =Self.Text
                                                             Width: =lblHCommute1110.Width
                                                             X: =lblHCommute1110.X
@@ -1512,16 +1502,17 @@ Screens:
                                                             BorderColor: =ColorValue("#CBD5E1")
                                                             BorderThickness: =1
                                                             Color: =ColorValue("#242424")
-                                                            Fill: =ColorValue("#FFFFFF")
+                                                            Fill: =RGBA(0,0,0,0)
                                                             Font: ="Segoe UI"
                                                             Height: =If(Coalesce(varLargeText111,false),56,48)
                                                             LineHeight: =1.4
+                                                            OnSelect: =Select(Parent)
                                                             PaddingBottom: =4
                                                             PaddingLeft: =12
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =If(ThisItem.End=Date(2099,3,31),"",Text(ThisItem.End,"yyyy/mm/dd"))
+                                                            Text: =Text(ThisItem.crb3c_enddate,"yyyy/mm/dd")
                                                             Tooltip: =Self.Text
                                                             Width: =lblHCommute1111.Width
                                                             X: =lblHCommute1111.X
@@ -1531,16 +1522,17 @@ Screens:
                                                             BorderColor: =ColorValue("#CBD5E1")
                                                             BorderThickness: =1
                                                             Color: =ColorValue("#242424")
-                                                            Fill: =ColorValue("#FFFFFF")
+                                                            Fill: =RGBA(0,0,0,0)
                                                             Font: ="Segoe UI"
                                                             Height: =If(Coalesce(varLargeText111,false),56,48)
                                                             LineHeight: =1.4
+                                                            OnSelect: =Select(Parent)
                                                             PaddingBottom: =4
                                                             PaddingLeft: =12
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.Method)
+                                                            Text: =ThisItem.crb3c_method
                                                             Tooltip: =Self.Text
                                                             Width: =lblHCommute1112.Width
                                                             X: =lblHCommute1112.X
@@ -1551,16 +1543,17 @@ Screens:
                                                             BorderColor: =ColorValue("#CBD5E1")
                                                             BorderThickness: =1
                                                             Color: =ColorValue("#242424")
-                                                            Fill: =ColorValue("#FFFFFF")
+                                                            Fill: =RGBA(0,0,0,0)
                                                             Font: ="Segoe UI"
                                                             Height: =If(Coalesce(varLargeText111,false),56,48)
                                                             LineHeight: =1.4
+                                                            OnSelect: =Select(Parent)
                                                             PaddingBottom: =4
                                                             PaddingLeft: =12
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.April,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_month04),Blank(),Text(ThisItem.crb3c_month04,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHCommute1113.Width
                                                             X: =lblHCommute1113.X
@@ -1571,16 +1564,17 @@ Screens:
                                                             BorderColor: =ColorValue("#CBD5E1")
                                                             BorderThickness: =1
                                                             Color: =ColorValue("#242424")
-                                                            Fill: =ColorValue("#FFFFFF")
+                                                            Fill: =RGBA(0,0,0,0)
                                                             Font: ="Segoe UI"
                                                             Height: =If(Coalesce(varLargeText111,false),56,48)
                                                             LineHeight: =1.4
+                                                            OnSelect: =Select(Parent)
                                                             PaddingBottom: =4
                                                             PaddingLeft: =12
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.October,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_month10),Blank(),Text(ThisItem.crb3c_month10,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHCommute1114.Width
                                                             X: =lblHCommute1114.X
@@ -1600,13 +1594,7 @@ Screens:
                                           Size: =If(Coalesce(varLargeText111,false),12,10.5)
                                           Text: ="登録されているレコードはありません（0件）"
                                           Tooltip: =Self.Text
-                                          Visible: |-
-                                            =With({demoStaff:StaffBasicView,
-                                            demoCommute:StaffCommuteHistory},
-                                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                            IsEmpty(Filter(demoCommute,StaffId=demoSelected.StaffId))
-                                            )
-                                            )
+                                          Visible: =IfError(IsEmpty(StaffCommuteHistory),false)
                                           Width: =Parent.Width-2
                                           X: =1
                                           Y: =26
@@ -1619,27 +1607,28 @@ Screens:
                                           BorderColor: =ColorValue("#0B4A8B")
                                           BorderThickness: =1
                                           Color: =ColorValue("#0F6CBD")
-                                          DisplayMode: |-
-                                            =If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,With({demoStaff:StaffBasicView,
-                                            demoCommute:StaffCommuteHistory},
-                                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                            If(varLedgerOpen111,DisplayMode.Disabled,If(IsEmpty(Filter(demoCommute,StaffId=demoSelected.StaffId)),DisplayMode.Disabled,DisplayMode.Edit))
-                                            )
-                                            ))
+                                          DisplayMode: =If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,IfError(If(!IsBlank(galCommute111.Selected.crb3c_commuteid) && galCommute111.Selected.職員基本.職員番号 = StaffSelected.StaffId,DisplayMode.Edit,DisplayMode.Disabled),DisplayMode.Disabled))
                                           Font: ="Segoe UI"
                                           FontWeight: =FontWeight.Semibold
                                           Height: =44
                                           OnSelect: |-
-                                            =With({s:If(Coalesce(varStaffChosen111,false),varStaff111,First(StaffBasicView))},
-                                            With({c:LookUp(StaffCommuteHistory,StaffId=s.StaffId)},
-                                            Set(varLedgerStaff111,s);
-                                            ClearCollect(colLedgerFields111,StaffLedgerTemplate);
-                                            Collect(colLedgerFields111,Table(
-                                            {Field:"employee_name",Value:s.Name},{Field:"employee_number",Value:s.StaffId},{Field:"organization",Value:s.Org},
-                                            {Field:"route_1_section_from",Value:c.LedgerFrom},{Field:"route_1_section_to",Value:c.LedgerTo},
-                                            {Field:"route_1_season_amount",Value:Text(c.LedgerPass,"#,##0")},{Field:"route_1_season_months",Value:Text(c.LedgerMonths)},
-                                            {Field:"route_1_monthly_amount",Value:Text(c.Monthly,"#,##0")},{Field:"monthly_amount_total",Value:Text(c.Monthly,"#,##0")}));
-                                            Set(varLedgerOpen111,true); Set(varLedgerZoom111,1); Set(varLedgerPdfView111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,""); Set(varLedgerStatus111,""); Set(varLedgerFile111,""); Set(varPayroll111,false); Reset(ddLedgerPaper111)))
+                                            =IfError(
+                                                With({c:galCommute111.Selected,s:StaffSelected},
+                                                    If(IsBlank(c.crb3c_commuteid) || c.職員基本.職員番号 <> s.StaffId,
+                                                        Notify("通勤の行を選択してください。",NotificationType.Warning),
+                                                        Set(varLedgerStaff111,s);
+                                                        Set(varLedgerCommute111,c);
+                                                        ClearCollect(colLedgerFields111,StaffLedgerFields);
+                                                        Set(varLedgerOpen111,true); Set(varLedgerZoom111,1);
+                                                        Set(varLedgerPdfView111,false); Set(varLedgerExport111,false);
+                                                        Set(varLedgerPdfRequested111,false); Set(varLedgerPdf111,Blank());
+                                                        Set(varLedgerSavedUrl111,""); Set(varLedgerStatus111,"");
+                                                        Set(varLedgerFile111,""); Set(varPayroll111,false); Reset(ddLedgerPaper111)
+                                                    )
+                                                ),
+                                                Clear(colLedgerFields111); Set(varLedgerOpen111,false);
+                                                Notify("通勤データを取得できませんでした。再読込してください。",NotificationType.Error)
+                                            )
                                           RadiusBottomLeft: =4
                                           RadiusBottomRight: =4
                                           RadiusTopLeft: =4
@@ -3853,7 +3842,7 @@ Screens:
                                           OnSelect: |-
                                             =With({demoStaff:StaffBasicView},
                                             ClearCollect(colResult111,Filter(demoStaff As s,(IsBlank(Trim(txtKeyword111.Text)) || Lower(Trim(txtKeyword111.Text)) in Lower(Text(s.StaffId) & "|" & Text(s.Name) & "|" & Text(s.OrgFull) & "|" & Text(s.Org) & "|" & Text(s.Birth) & "|" & Text(s.Sex) & "|" & Text(s.Hire) & "|" & Text(s.Leave) & "|" & Text(s.Status) & "|" & Text(s.WorkReg) & "|" & Text(s.Daily) & "|" & Text(s.Hours) & "|" & Text(s.CommuteReg) & "|" & Text(s.Method) & "|" & Text(s.Pass) & "|" & Text(s.Fare) & "|" & Text(s.SocialReg) & "|" & Text(s.Health) & "|" & Text(s.Pension) & "|" & Text(s.ResidentReg) & "|" & Text(s.TaxMay) & "|" & Text(s.TaxJune) & "|" & Text(s.TaxJuly) & "|" & Text(s.FixedReg) & "|" & Text(s.TaxClass) & "|" & Text(s.Employment))) && (ddOrg111.Selected.Value="すべて" || s.Org=ddOrg111.Selected.Value) && (ddStatus111.Selected.Value="すべて" || s.Status=ddStatus111.Selected.Value))); Set(varResultsReady111,true); Set(varStaffChosen111,true); Set(varPage111,1); Set(varStaff111,First(colResult111)); Reset(galStaff111); Notify(Text(CountRows(colResult111)) & "件見つかりました",NotificationType.Information)
-                                            ); Set(varReport111,""); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,"")
+                                            ); Set(varReport111,""); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,""); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)
                                           RadiusBottomLeft: =4
                                           RadiusBottomRight: =4
                                           RadiusTopLeft: =4
@@ -3876,7 +3865,7 @@ Screens:
                                           Font: ="Segoe UI"
                                           FontWeight: =FontWeight.Semibold
                                           Height: =44
-                                          OnSelect: =Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,""); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,""); Set(varLedgerStatus111,"")
+                                          OnSelect: =Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,""); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,""); Set(varLedgerStatus111,""); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)
                                           RadiusBottomLeft: =4
                                           RadiusBottomRight: =4
                                           RadiusTopLeft: =4
@@ -4025,7 +4014,7 @@ Screens:
                                             FirstN(LastN(demoResults,Max(CountRows(demoResults)-(Coalesce(varPage111,1)-1)*20,0)),20)
                                             )
                                             )
-                                          OnSelect: =Set(varStaff111,ThisItem); Set(varStaffChosen111,true); Set(varReport111,""); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,"")
+                                          OnSelect: =Set(varStaff111,ThisItem); Set(varStaffChosen111,true); Set(varReport111,""); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,""); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)
                                           ShowScrollbar: =false
                                           TemplateSize: =If(Coalesce(varLargeText111,false),80,72)
                                           Width: =Parent.Width
@@ -5547,7 +5536,7 @@ Screens:
                                     PaddingRight: =0
                                     PaddingTop: =4
                                     Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                    Text: =varLedgerStaff111.Name & "　職員番号：" & varLedgerStaff111.StaffId & "　（テスト）"
+                                    Text: =varLedgerStaff111.Name & "　職員番号：" & varLedgerStaff111.StaffId & "　認定ID：" & varLedgerCommute111.crb3c_recognitionid
                                     Width: =Parent.Width-160
                                     Wrap: =false
                                     X: =20

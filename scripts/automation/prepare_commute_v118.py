@@ -3,12 +3,14 @@
 Studio connection/compile and live ledger tests are mandatory before promotion.
 """
 import hashlib
+import sys
 import json
 import re
 from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
 OUT = ROOT / 'src/staff-master/patches/v1.18-candidate'
 SOURCE = ROOT / 'powerapps/canvas-v3/Src'
 
@@ -50,7 +52,7 @@ def expression(item):
         'era_year': f'If(Year({v}) >= 2019,"令和" & Text(Year({v})-2018,"0") & "年",Text(Year({v}),"0") & "年")',
         'start_month': f'Text(Month({v}),"0") & "月から"',
         'amount': f'Text({v},"#,##0")', 'integer': f'Text({v},"0")',
-        'decimal': f'Text({v},"0.####")', 'paymonth': f'Text({v},"0") & "月"',
+        'decimal': f'If(Mod({v},1)=0,Text({v},"0"),Text({v},"0.####"))', 'paymonth': f'Text({v},"0") & "月"',
     }[kind]
     return f'If(IsBlank({v}),Blank(),{formatted})'
 
@@ -59,8 +61,11 @@ def render_ledger():
     return 'StaffLedgerFields = With({c:varLedgerCommute111,s:varLedgerStaff111},Table(\n    ' + ',\n    '.join(rows) + '\n));'
 
 def candidate():
-    app = yaml.safe_load((SOURCE / 'App.pa.yaml').read_text())
-    screen = yaml.safe_load((SOURCE / 'Screen1.pa.yaml').read_text())
+    # Historical patch preparation always uses the immutable published v1.17 package.
+    from scripts.automation.bridge import read_archive
+    archive = read_archive(ROOT / 'powerapps/dataverse-v1.17/staff-master.msapp')
+    app = yaml.safe_load(archive['Src/App.pa.yaml'])
+    screen = yaml.safe_load(archive['Src/Screen1.pa.yaml'])
     controls = {n: (v, path) for n, v, path in nodes(screen)}
     changes = []
     def edit(name, prop, after):
@@ -161,4 +166,4 @@ def write():
     print(f'Prepared {len(changes)} property edits and {len(mappings())} ledger mappings; active source unchanged')
 
 if __name__ == '__main__':
-    write()
+    raise SystemExit('v1.18 is Studio-compiled and published. Use the applied v1.18 manifest; do not regenerate a candidate over the active source.')

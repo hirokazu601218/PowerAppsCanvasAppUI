@@ -1,8 +1,8 @@
-name: Staff ledger v1.17 read-only acceptance
+name: Staff ledger v1.18 read-only acceptance
 on:
   push:
-    branches: [automation/change-ledger-v117]
-    paths: [.github/workflows/staff-ledger-acceptance.yml, e2e/hybrid/**]
+    branches: [automation/commute-v118-apply]
+    paths: [.github/workflows/staff-ledger-acceptance.yml, e2e/hybrid/**, e2e/commute-v118/**]
   workflow_dispatch:
 permissions:
   contents: read
@@ -28,7 +28,7 @@ jobs:
       POWER_APPS_BASE_URL: https://make.powerapps.com
       POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
       CANVAS_APP_URL: https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
-      EXPECTED_LABEL: v1.17 ／ Dataverse・25名
+      EXPECTED_LABEL: v1.18 ／ Dataverse・25名
       WORKERS: 1
       RETRIES: 0
       TEST_TIMEOUT: 180000
@@ -41,7 +41,7 @@ jobs:
         run: |
           python - <<'PY'
           import datetime
-          start=datetime.datetime.fromisoformat('2026-09-16T13:57:16Z'.replace('Z','+00:00'))
+          start=datetime.datetime.fromisoformat('2026-09-17T01:07:06Z'.replace('Z','+00:00'))
           assert (datetime.datetime.now(datetime.timezone.utc)-start).total_seconds()<3000, 'Work deadline: insufficient time for 10-minute read-only job'
           PY
       - uses: actions/checkout@v4
@@ -95,6 +95,7 @@ jobs:
         run: |
           mkdir -p power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/hybrid
           cp project/e2e/hybrid/*.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/hybrid/
+          cp project/e2e/commute-v118/*.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/hybrid/
       - name: Install PDF inspection dependency
         run: python -m pip install pypdf==5.3.0
       - name: Verify Dataverse, P0, responsive UI, histories and ledger
@@ -130,18 +131,7 @@ jobs:
         working-directory: project
         run: |
           python -m pip install PyYAML==6.0.3
-          python - <<'PYCODE'
-          import json
-          from pathlib import Path
-          from scripts.automation.bridge import verify_download, read_archive
-          p=Path('artifacts/hybrid/readback.msapp')
-          result=verify_download(p,Path('.'),json.loads(Path('automation/change.json').read_text()))
-          actual=read_archive(p); baseline=read_archive('powerapps/dataverse-v1.15/staff-master.msapp')
-          for name in ['Connections/Connections.json','References/DataSources.json']:
-              if name in baseline: assert json.loads(actual[name])==json.loads(baseline[name]), name
-          Path('artifacts/hybrid/readback-result.json').write_text(json.dumps(result,indent=2))
-          print(result)
-          PYCODE
+          python scripts/automation/verify_commute_release.py artifacts/hybrid/readback.msapp artifacts/hybrid/readback-result.json
       - name: Preserve saved package and verification
         if: always()
         uses: actions/upload-artifact@v4
@@ -152,4 +142,4 @@ jobs:
           if-no-files-found: warn
       - name: Record diagnostic scope
         if: always()
-        run: echo 'Read-only acceptance of Studio-published v1.17. No role change, app import or rollback. Dedicated user; 8 tests including P0 and four UI regressions. Old v1.14 fixtures retained separately.' >> "$GITHUB_STEP_SUMMARY"
+        run: echo 'Read-only acceptance of Studio-published v1.18. No role change, app import or rollback. Dedicated user; 9 tests including P0 and four UI regressions. Old v1.14 fixtures retained separately.' >> "$GITHUB_STEP_SUMMARY"
