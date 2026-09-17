@@ -49,6 +49,7 @@ def validate_rows(rows,parents):
   d=row['data'];sid=d['crb3c_staffnumber'];assert re.fullmatch(r'[0-9]{12}',sid) and sid in by
   assert re.fullmatch(r'TK-[0-9]{6}',d['crb3c_recognitionid'])
   p=by[sid];assert d['crb3c_fullname']==p['crb3c_fullname']
+  assert row['parent_id']==p['crb3c_staffbasicid']
   assert d['crb3c_startdate']<=d['crb3c_enddate']
   if p.get('crb3c_hiredate'):assert d['crb3c_startdate']>=p['crb3c_hiredate'][:10]
   if p.get('crb3c_leavedate'):assert d['crb3c_enddate']<=p['crb3c_leavedate'][:10]
