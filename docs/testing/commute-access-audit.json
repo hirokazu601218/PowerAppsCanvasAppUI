@@ -1,0 +1,37 @@
+{
+  "app_changes": false,
+  "permission_changes": false,
+  "role_assignment_scope": [
+    {
+      "direct_team_count": 0,
+      "direct_user_count": 1,
+      "only_target_user": true,
+      "role_id": "abbe5d58-c4b1-f111-aaac-e4fb1eff79c7"
+    }
+  ],
+  "roles": [
+    {
+      "id": "abbe5d58-c4b1-f111-aaac-e4fb1eff79c7",
+      "name": "StaffMaster Test Reader"
+    }
+  ],
+  "state": "PERMISSION_APPROVAL_REQUIRED",
+  "tables": {
+    "crb3c_commute": {
+      "granted": false,
+      "read_privilege_id": "bd83beda-3ba8-4323-89e8-eb6dbb55c143",
+      "read_privilege_name": "prvReadcrb3c_Commute",
+      "returned_depths": []
+    },
+    "crb3c_staffbasic": {
+      "granted": true,
+      "read_privilege_id": "cb9cce7e-7cf2-4e7f-b9bf-64e37b519ba1",
+      "read_privilege_name": "prvReadcrb3c_StaffBasic",
+      "returned_depths": [
+        "Global"
+      ]
+    }
+  },
+  "user": "powerapps-test@govaca.onmicrosoft.com",
+  "checked_run": 35166925612
+}

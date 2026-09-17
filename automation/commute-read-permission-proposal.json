@@ -1,0 +1,30 @@
+{
+  "approved": false,
+  "reason": "New T_通勤 table lacks dedicated-user Read privilege; user requires prior permission-change approval.",
+  "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+  "target_user": "powerapps-test@govaca.onmicrosoft.com",
+  "existing_role_name": "StaffMaster Test Reader",
+  "existing_role_id": "abbe5d58-c4b1-f111-aaac-e4fb1eff79c7",
+  "proposed_addition": {
+    "table": "crb3c_commute",
+    "privilege_name": "prvReadcrb3c_Commute",
+    "privilege_id": "bd83beda-3ba8-4323-89e8-eb6dbb55c143",
+    "depth": "Global"
+  },
+  "unchanged_operations": [
+    "Create",
+    "Write",
+    "Delete",
+    "Append",
+    "AppendTo",
+    "Assign",
+    "Share"
+  ],
+  "preconditions": [
+    "Explicit user approval for this addition",
+    "Role assigned only to the exact dedicated test user and no teams",
+    "Verify target environment, privilege ID and current role again before addition"
+  ],
+  "charges_or_license_changes": false,
+  "status": "PROPOSAL_ONLY_NOT_APPLIED"
+}

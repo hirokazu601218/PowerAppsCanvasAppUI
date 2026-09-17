@@ -22,6 +22,26 @@
 
 |項目|指定|
 |---|---|
+|対象機能|通勤の内蔵データ削除・Dataverse参照・認定簿検証・合格後公開（次候補v1.18）|
+|現在公開版|v1.17を保持。本作業では公開アプリ・接続・YAML／Fxをまだ変更していない|
+|現在の工程|①確認完了、②移行方針案作成。通勤Read権限不足につき③～⑤は停止。⑥監査と再開計画をGitHub記録|
+|停止理由|ユーザー指定「権限変更や追加料金が発生しなければ最後まで」。新しいT_通勤のRead追加は未承認|
+|必要な承認|専用テスト利用者だけに割当済みのStaffMaster Test ReaderへT_通勤のRead=Globalだけ追加。他操作・管理者権限・ライセンス変更なし|
+|対象ソース|scripts/automation/commute_access_audit.py、.github/workflows/commute-access-audit.yml、automation/commute-read-permission-proposal.json|
+|関連設計|docs/design/commute-app-migration-plan.md、dataverse-commute.md、hybrid-test-data.md、ledger-v1.17.md|
+|関連テスト・証跡|docs/testing/commute-access-audit.json。read-only run 35166791941、scope再確認run 35166925612成功|
+|権限確認結果|職員基本Readあり、通勤Readなし（継承含む）。既存Readerロールは対象ユーザー1名・チーム0にのみ割当|
+|今回の追加読取り対象|powerapps/canvas-v3/Src/App.pa.yaml、Screen1.pa.yaml、render_staff_history.py、e2e/hybrid、automation/change.json、staff-ledger-acceptance.yml|
+|Library資料|今回追加の読取りなし。現行GitHubソースと実環境の権限が正本。旧添付HTMLの再移植はしない|
+|再開位置|ユーザー承認後、提案JSONの対象・ロール割当先・特権を再確認してReadのみ付与。Studio接続追加→Fx修正→実機検証→合格後公開|
+|60分制御|起算2026-09-17T00:27:45.992Z。60分前に権限承認条件で停止。両監査run終了済み、自動再開なし|
+
+最新依頼により前回の「テーブルのみ完了」から「アプリ取得元切替」へ変更。内蔵通勤5件と認定簿の合成値は公開版にまだ残る。今回の確認をアプリ修正・実機表示試験・公開完了と扱わない。
+
+## 前回完了：通勤テーブル・6件追加（PR #44）
+
+|項目|指定|
+|---|---|
 |対象機能|COM-DV-001～003。添付定義からT_通勤を追加し、M_職員基本の子として合成データを登録|
 |現在公開版|v1.17を維持。職員基本25名はDataverse、通勤等の画面データは引き続き内蔵|
 |現在の工程|全5工程完了。通勤84項目・親Lookup・6件を作成。実環境検証結果をGitHubへ記録|
