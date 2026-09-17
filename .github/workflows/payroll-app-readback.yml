@@ -1,0 +1,40 @@
+name: Payroll v1.19 final published app readback
+on:
+  push:
+    branches: [automation/payroll-v119]
+    paths: [.github/workflows/payroll-app-readback.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  readback:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce original Work deadline
+        run: |
+          python - <<'PYCODE'
+          import datetime
+          start=datetime.datetime.fromisoformat('2026-09-17T04:11:05+00:00')
+          assert (datetime.datetime.now(datetime.timezone.utc)-start).total_seconds()<3120, 'PAUSED_TIME_LIMIT'
+          PYCODE
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Read saved app with unchanged automation access
+        run: |
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool --version 2.12.2
+          pac auth create --name payroll-app-readback --githubFederated --tenant a00c92fa-e1db-4aa6-ab28-356c3203353d --applicationId 1c94f011-c447-4af1-968f-ec564f489395 --environment https://orge762dd9e.crm7.dynamics.com/
+          mkdir -p artifacts/payroll-app
+          pac canvas download --name 362ac991-eead-4f07-8373-afdb3ebfdba1 --file-name artifacts/payroll-app/readback.msapp --environment https://orge762dd9e.crm7.dynamics.com/ --overwrite
+      - uses: actions/upload-artifact@v4
+        with:
+          name: payroll-app-readback-${{ github.run_id }}
+          path: artifacts/payroll-app
+          retention-days: 14
