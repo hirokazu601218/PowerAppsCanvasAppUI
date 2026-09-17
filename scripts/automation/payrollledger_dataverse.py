@@ -109,4 +109,8 @@ def main():
  assert after==parents,'Parent data changed'
  result.update(state='SEED_AND_RELATIONSHIP_VERIFIED',seed_count=len(rows),created_count=created,child_counts=counts,parents_unchanged=True,all_163_values_verified=True)
  save('seed-fixtures.json',rows);save('result.json',result);print(json.dumps(result,ensure_ascii=False),flush=True)
+ from payrollledger_access import ensure_read_access
+ access=ensure_read_access(api,cfg,request,meta,rows,save)
+ result.update(state='PAYROLL_TABLE_DATA_AND_READ_ACCESS_VERIFIED',read_access=access)
+ save('result.json',result);print(json.dumps(result,ensure_ascii=False),flush=True)
 if __name__=='__main__':main()

@@ -22,6 +22,8 @@ YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、�
 | 非常勤給与_ファイル格納ルール.md | `/非常勤給与/skills/` | Library保管ルール | 非常勤給与プロジェクト全体の格納先判断 | Libraryへ成果物を保存・整理する時 | Library側の管理ルール。ただし本リポジトリの正本区分はGitHub運用方針を優先 |
 | T_通勤_テーブル定義書.xlsx | 添付ID `libfile_7d3a1d264cc0819195f053d0522a3a83`（フォルダ未確認） | Excel原本 | 通勤84項目・作成条件、COM-DV-001～003 | 通勤テーブルの作成・項目変更時 | 原本は添付。実装対応表はGitHub `config/dataverse/commute-columns.json` |
 
+| 05_基準給与簿DB_v0.1 (3)_テーブル定義書.xlsx | 添付ID `libfile_83586a2630948191b1204fa937bb6cec`（フォルダ未確認） | Excel原本 | 基準給与簿163項目、PAY-DV-001～005 | 基準給与簿テーブルの作成・項目変更時 | 原本は添付。実装対応表はGitHub `config/dataverse/payrollledger-columns.json` |
+
 ## 更新ルール
 
 - PowerAppsCanvasAppUIに関係するLibrary資料を追加、移動、改名、削除または役割変更した場合は、この索引を更新する。
