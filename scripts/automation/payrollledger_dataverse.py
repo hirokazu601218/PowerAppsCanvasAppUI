@@ -1,4 +1,4 @@
-"""Staged payrollledger setup. Existing OIDC only; no permissions, billing or app edits."""
+"""Staged payroll ledger setup using existing OIDC; no billing or app edits."""
 import json, os, subprocess, time, urllib.request, urllib.error
 from pathlib import Path
 from datetime import datetime, timezone
@@ -53,6 +53,7 @@ def main():
  assert meta['OwnershipType']=='UserOwned' and meta['PrimaryNameAttribute']=='crb3c_name'
  for exp in attributes(lcid):
   a=actual[exp['SchemaName'].lower()]
+  assert any(l['LanguageCode']==lcid and l['Label']==exp['DisplayName']['LocalizedLabels'][0]['Label'] for l in a['DisplayName']['LocalizedLabels']),a['LogicalName']
   typ=exp['@odata.type'].split('.')[-1].replace('AttributeMetadata','')
   assert a['AttributeType']==typ and a['RequiredLevel']['Value']==exp['RequiredLevel']['Value'],a['LogicalName']
   for key in ('MaxLength','MinValue','MaxValue','Precision','Format'):
@@ -78,6 +79,9 @@ def main():
  if request['mode']=='provision':return
  rows=build_fixtures(parents,pm['PrimaryIdAttribute'])
  validate_rows(rows,parents)
+ existing_ids={r[meta['PrimaryIdAttribute']] for r in api(meta['EntitySetName']+'?$select='+meta['PrimaryIdAttribute'])['value']}
+ assert existing_ids <= {r['id'] for r in rows},'Unexpected existing child data; no writes'
+ created=0
  nav=rel['ReferencingEntityNavigationPropertyName']
  for fixture in rows:
   key=fixture['id'];data=fixture['data']; sid=data['crb3c_staffnumber']
@@ -87,14 +91,13 @@ def main():
    assert request['mode']=='seed','Missing seed row'
    payload={**data,meta['PrimaryIdAttribute']:key,nav+'@odata.bind':'/'+pm['EntitySetName']+"(crb3c_staffnumber='"+sid+"')"}
    api(path,'PATCH',payload,{'If-None-Match':'*'})
+   created+=1
   read=api(path+'?$expand='+nav+'($select=crb3c_staffnumber,crb3c_fullname)')
   assert read['_crb3c_staffbasicid_value']==fixture['parent_id']
   assert read[nav]['crb3c_staffnumber']==sid and read[nav]['crb3c_fullname']==data['crb3c_fullname']
   for field,value in data.items():
    observed=read.get(field)
-   if value is not None and field.endswith(('startdate','enddate','eventdate','submitteddate','receiveddate','recognitionstart')):
-    assert observed[:10]==value[:10],field
-   else:assert observed==value,(sid,field)
+   assert observed==value,(sid,field)
  # Query all linked rows; show zero/one/many through parent expansion.
  pnav=rel['ReferencedEntityNavigationPropertyName']
  expanded=api(pm['EntitySetName']+'?$select=crb3c_staffnumber&$expand='+pnav+'($select='+meta['PrimaryIdAttribute']+')')['value']
@@ -104,6 +107,6 @@ def main():
  # Parents remain unchanged by this operation.
  after=api(pm['EntitySetName']+'?$select='+','.join(fields)+'&$orderby=crb3c_staffnumber')['value']
  assert after==parents,'Parent data changed'
- result.update(state='SEED_AND_RELATIONSHIP_VERIFIED',seed_count=len(rows),child_counts=counts,parents_unchanged=True,all_163_values_verified=True)
+ result.update(state='SEED_AND_RELATIONSHIP_VERIFIED',seed_count=len(rows),created_count=created,child_counts=counts,parents_unchanged=True,all_163_values_verified=True)
  save('seed-fixtures.json',rows);save('result.json',result);print(json.dumps(result,ensure_ascii=False),flush=True)
 if __name__=='__main__':main()

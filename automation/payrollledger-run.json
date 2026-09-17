@@ -1,7 +1,7 @@
 {
   "approved": true,
-  "mode": "preflight",
+  "mode": "provision",
   "started_at": "2026-09-17T03:41:43.436Z",
-  "request_id": "payrollledger-definition-and-environment-check",
+  "request_id": "payrollledger-create-163-columns-and-parent-relationship",
   "read_permission_approved": true
 }
