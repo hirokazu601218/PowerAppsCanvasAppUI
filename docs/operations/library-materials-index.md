@@ -23,6 +23,8 @@ YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、�
 | T_通勤_テーブル定義書.xlsx | 添付ID `libfile_7d3a1d264cc0819195f053d0522a3a83`（フォルダ未確認） | Excel原本 | 通勤84項目・作成条件、COM-DV-001～003 | 通勤テーブルの作成・項目変更時 | 原本は添付。実装対応表はGitHub `config/dataverse/commute-columns.json` |
 | 05_基準給与簿DB_v0.1 (3)_テーブル定義書.xlsx | 添付ID `libfile_83586a2630948191b1204fa937bb6cec`（フォルダ未確認） | Excel原本 | 基準給与簿163項目、PAY-DV-001～005 | 基準給与簿テーブルの作成・項目変更時 | 原本は添付。実装対応表はGitHub `config/dataverse/payrollledger-columns.json` |
 
+| 勤務報告_給与試算_2画面_v0.1.md | `/非常勤給与/` | 参考Markdown（内容v0.3） | 勤務報告入力・給与計算過程表示の独立プロトタイプ | 過去の検討経緯確認時。開発時はGitHub正本を読む | 非正本。GitHub `docs/prototypes/attendance-payroll-prototype.md` を優先 |
+
 ## 更新ルール
 
 - PowerAppsCanvasAppUIに関係するLibrary資料を追加、移動、改名、削除または役割変更した場合は、この索引を更新する。
