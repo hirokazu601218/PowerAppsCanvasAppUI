@@ -1,4 +1,4 @@
-name: Commute v1.18 published app readback
+name: Commute v1.18 final published app readback
 on:
   push:
     branches: [automation/commute-v118-apply]
