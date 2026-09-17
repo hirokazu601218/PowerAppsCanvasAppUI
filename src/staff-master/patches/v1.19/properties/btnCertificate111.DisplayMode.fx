@@ -1,0 +1,1 @@
+If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,IfError(If(!IsBlank(galCommute111.Selected.T_通勤) && galCommute111.Selected.職員基本.職員番号 = StaffSelected.StaffId,DisplayMode.Edit,DisplayMode.Disabled),DisplayMode.Disabled))

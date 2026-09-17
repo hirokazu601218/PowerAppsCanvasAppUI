@@ -119,6 +119,11 @@ App:
           {Field:"route_4_remarks",Value:c.crb3c_route4_remarks},
           {Field:"monthly_amount_total",Value:If(IsBlank(c.crb3c_monthlytotal),Blank(),Text(c.crb3c_monthlytotal,"#,##0"))}
       ));
+      // Payroll history is filtered on its parent employee in Dataverse.
+      StaffPayrollHistory = SortByColumns(
+          Filter('T_基準給与簿', '職員基本'.職員番号 = StaffSelected.StaffId),
+          "crb3c_payment_date",SortOrder.Descending,"crb3c_sequence",SortOrder.Descending
+      );
       // Synthetic histories: source is tests/fixtures/staff-history-synthetic.json.
       StaffWorkHistory = Table(
           {StaffId:"009900000003", RecordId:"W-3-CURRENT", Start:Date(2026,4,1), End:Date(2027,3,31), Daily:15000, Scheduled:"7:45", Hours:"7:45", Overtime:0, Change:"合成テスト", Reason:"職員03の勤務条件", Finish:"17:00", DailyHours:7.75},
@@ -142,15 +147,6 @@ App:
           {StaffId:"009900000011", RecordId:"T-11-2026", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:"甲", Employment:"加入", Saving:0, Loan:0, Dependents:0, Note:"職員11専用の合成データ・計算検証対象外"},
           {StaffId:"009900000012", RecordId:"T-12-2026", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:"乙", Employment:"未加入", Saving:0, Loan:0, Dependents:0, Note:"職員12専用の合成データ・計算検証対象外"},
           {StaffId:"009900000025", RecordId:"T-25-2026", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:"甲", Employment:"加入", Saving:0, Loan:0, Dependents:0, Note:"職員25専用の合成データ・計算検証対象外"}
-      );
-      StaffPayrollHistory = Table(
-          {StaffId:"009900000003", RecordId:"P-3-2026-09", Year:2026, PayDate:Date(2026,9,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:"職員03専用・9月・合成テスト"},
-          {StaffId:"009900000003", RecordId:"P-3-2026-08", Year:2026, PayDate:Date(2026,8,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:"職員03専用・8月・合成テスト"},
-          {StaffId:"009900000005", RecordId:"P-5-2026-09", Year:2026, PayDate:Date(2026,9,18), Base:0, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:0, Deduct:0, DeductAdj:0, Net:0, Note:"職員05専用・9月・合成テスト"},
-          {StaffId:"009900000011", RecordId:"P-11-2026-09", Year:2026, PayDate:Date(2026,9,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:"職員11専用・9月・合成テスト"},
-          {StaffId:"009900000011", RecordId:"P-11-2026-08", Year:2026, PayDate:Date(2026,8,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:"職員11専用・8月・合成テスト"},
-          {StaffId:"009900000012", RecordId:"P-12-2026-09", Year:2026, PayDate:Date(2026,9,18), Base:224000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:224000, Deduct:21200, DeductAdj:0, Net:202800, Note:"職員12専用・9月・合成テスト"},
-          {StaffId:"009900000025", RecordId:"P-25-2026-09", Year:2026, PayDate:Date(2026,9,18), Base:250000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:250000, Deduct:22500, DeductAdj:0, Net:227500, Note:"職員25専用・9月・合成テスト"}
       );
       StaffResidentHistory = FirstN(Table({StaffId:"",Amount:0,Period:"",Start:Date(2000,1,1),End:Date(2000,1,1)}),0);
     Theme: =PowerAppsTheme

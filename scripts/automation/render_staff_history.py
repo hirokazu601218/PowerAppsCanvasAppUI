@@ -9,7 +9,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
-KINDS = ('Work', 'Social', 'Tax', 'Payroll')
+KINDS = ('Work', 'Social', 'Tax')
 MARKER = '// Synthetic histories: source is tests/fixtures/staff-history-synthetic.json.\n'
 
 def literal(value, key):
@@ -38,8 +38,6 @@ def validate(fixtures):
         assert len({r['RecordId'] for r in rows}) == len(rows), kind + ': duplicate record ID'
         for row in rows:
             assert re.fullmatch(r'[0-9]{12}', row['StaffId']) and row['StaffId'] in parents
-    for row in fixtures['Payroll']:
-        assert row['Gross'] - row['Deduct'] - row['DeductAdj'] == row['Net']
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
