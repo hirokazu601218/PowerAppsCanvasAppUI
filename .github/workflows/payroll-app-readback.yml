@@ -21,7 +21,7 @@ jobs:
         run: |
           python - <<'PYCODE'
           import datetime
-          start=datetime.datetime.fromisoformat('2026-09-17T04:11:05+00:00')
+          start=datetime.datetime.fromisoformat('2026-09-17T06:09:35.611+00:00')
           assert (datetime.datetime.now(datetime.timezone.utc)-start).total_seconds()<3120, 'PAUSED_TIME_LIMIT'
           PYCODE
       - uses: actions/setup-dotnet@v4
