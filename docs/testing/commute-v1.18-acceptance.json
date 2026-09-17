@@ -1,0 +1,15 @@
+{
+  "run": 35171721975,
+  "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35171721975",
+  "commit": "c743055b7fec5571f9fec16db2c6d44199f68f71",
+  "user": "powerapps-test@govaca.onmicrosoft.com",
+  "result": "success",
+  "tests_passed": 9,
+  "retries": 0,
+  "test_duration_minutes": 3.4,
+  "job_finished_at": "2026-09-17T01:49:58Z",
+  "package_sha256": "74c16fa86102a7dc52682f9342ef8bb8d71520c35b7cb3a18083fc6165cfa49e",
+  "additional_local_check": "Properties.json connection reference equality; altered gallery runtime and connection references rejected",
+  "controls": 360,
+  "unapproved_semantic_source_differences": 0
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "case": "gallery_runtime",
+    "rejected": "runtime formula mismatch: galCommute111.TemplateFill"
+  },
+  {
+    "case": "connection",
+    "rejected": "connection property drift: LocalConnectionReferences"
+  }
+]

@@ -109,6 +109,6 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
   await c.getByRole('button',{name:'PDFプレビューから帳票に戻る',exact:true}).click();
   await c.getByRole('button',{name:'表示倍率を100%に戻す',exact:true}).click();
   await expect.poll(async()=>(await rectangle(ctl('conLedgerSheet1111'))).width).toBeCloseTo(1122,0);
-  await c.getByRole('button',{name:'閉じる',exact:true}).click();
+  await ctl('btnLedgerClose111').getByRole('button').click();
   await expect(ctl('conLedgerModal111')).toBeHidden();
 });

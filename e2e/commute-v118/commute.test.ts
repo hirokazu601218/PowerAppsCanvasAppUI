@@ -1,4 +1,4 @@
-// Pending Studio connection and compile. These tests must pass before publishing v1.18.
+// Published v1.18 acceptance: six real Dataverse fixture records and zero-child cases.
 import {test, expect} from '@playwright/test';
 test.describe.configure({retries: 0});
 test.use({video: 'off', ignoreHTTPSErrors: false});
@@ -27,7 +27,7 @@ test('COM-APP-001 six Dataverse records, chosen recognition, dates, money and bl
     await selectStaff(item.staff);
     await expect(ctl('lblSectionCommute111')).toContainText(item.staff.endsWith('003') ? '2件' : '1件');
     await expect(ctl('lblSectionCommute111')).not.toContainText('内蔵テスト');
-    await ctl('galCommute111').getByText(new RegExp(item.id)).click();
+    await app.getByRole('listitem', {name: new RegExp('^' + item.id + ' ')}).click();
     await ctl('btnCertificate111').getByRole('button').click();
     await expect(ctl('conLedgerModal111')).toBeVisible();
     await expect(ctl('lblLedgerStaff111')).toContainText(item.id);

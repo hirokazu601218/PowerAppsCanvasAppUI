@@ -72,7 +72,9 @@ class CommuteAppCandidateTests(unittest.TestCase):
     def test_candidate_fixture_preserves_other_histories(self):
         before = json.loads((ROOT / 'tests/fixtures/staff-history-synthetic.json').read_text())
         after = json.loads((OUT / 'staff-history-synthetic.json').read_text())
-        self.assertEqual(set(before) - set(after), {'Commute', 'LedgerTemplate'})
+        self.assertNotIn('Commute', before)
+        self.assertNotIn('LedgerTemplate', before)
+        self.assertEqual(before, after)
         for key in after:
             self.assertEqual(after[key], before[key])
         # Re-running the proposed renderer must retain Dataverse formulas.
