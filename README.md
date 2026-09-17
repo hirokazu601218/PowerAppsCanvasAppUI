@@ -4,7 +4,7 @@
 
 非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubのmainをChatGPT SolのWorkで扱う共有正本とする。
 
-現在のテスト公開版は **v1.18（通勤・認定簿のDataverse切替）** です。職員基本25名と通勤6件をDataverseから読み、選択した認定IDの69項目を認定簿へ表示します。通勤の内蔵fixture・共通帳票ダミーを削除し、未確定の勤務・保険・税控除・給与簿は内蔵データを継続します。[検証結果](docs/testing/commute-v1.18-results.md)を参照してください。
+現在のテスト公開版は **v1.19（基準給与簿のDataverse切替）** です。職員基本25名・通勤6件・給与7件をDataverseから参照します。給与の内蔵データを削除し、一覧・詳細・主要15項目の出力を統一しました。勤務・保険・税控除は従来の内蔵テストを継続します。公開後照合で「最新データを読込」の給与Refresh追加1式が未反映と判明し、ブラウザー自動承認レビューの拒否により補正待ちです。専用テストユーザーの自動受入10件とローカル検査50件は合格。[確認結果・残件](docs/testing/payroll-v1.19-results.md)。
 
 <!-- staff-master-release:start -->
 標準自動受入の最終完了版：**[v1.14](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.14)**（隔離テストアプリ）。追加テスト・既存P0・公開後の読戻し照合が合格しています。
@@ -12,7 +12,7 @@
 - [検証結果](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35053952599)
 - [変更要求](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/23)
 - 公開日時（UTC）：2026-09-16T04:03:25Z
-- アプリ一覧名（指定）：`自動開発_職員マスタ検索`。現在の画面内版はv1.18です。上記タグは旧Solution配布フローのv1.14記録であり、今回のStudio公開＋読取受入v1.18とは分けています。
+- アプリ一覧名（指定）：`自動開発_職員マスタ検索`。現在の画面内版はv1.19です。上記タグは旧Solution配布フローのv1.14記録であり、今回のStudio公開＋読取受入v1.18とは分けています。
 <!-- staff-master-release:end -->
 
 [隔離テストアプリを開く](https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d)。共有済みアカウントでサインインしてください。架空25名の検証用アプリです。

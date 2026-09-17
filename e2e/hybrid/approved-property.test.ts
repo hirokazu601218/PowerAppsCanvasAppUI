@@ -85,8 +85,8 @@ async function hasBackground(locator: Locator, color: string) {
 
 test('AUT-LAYOUT-001 responsive basic fields, density and canvas-width preservation',async ({page})=>{
   test.setTimeout(180_000);
-  const current=process.env.EXPECTED_LABEL==='v1.18 ／ Dataverse・25名';
-  expect(['v1.18 ／ Dataverse・25名']).toContain(process.env.EXPECTED_LABEL);
+  const current=process.env.EXPECTED_LABEL==='v1.19 ／ Dataverse・25名';
+  expect(['v1.19 ／ Dataverse・25名']).toContain(process.env.EXPECTED_LABEL);
   await page.setViewportSize({width:1366,height:1000});
   await page.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded',timeout:60000});
   const c=page.frameLocator('iframe[name="fullscreen-app-host"]');
@@ -147,7 +147,7 @@ test('AUT-LAYOUT-001 responsive basic fields, density and canvas-width preservat
 });
 
 test('AUT-LIST-001 selected row coverage, subtle separators and keyboard selection',async ({page})=>{
-  const current=process.env.EXPECTED_LABEL==='v1.18 ／ Dataverse・25名';
+  const current=process.env.EXPECTED_LABEL==='v1.19 ／ Dataverse・25名';
   await page.setViewportSize({width:1366,height:900});
   await page.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded',timeout:60000});
   const c=page.frameLocator('iframe[name="fullscreen-app-host"]');

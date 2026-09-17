@@ -6,8 +6,8 @@
     "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",
     "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1"
   },
-  "baseline_msapp": "powerapps/dataverse-v1.18/staff-master.msapp",
-  "baseline_sha256": "74c16fa86102a7dc52682f9342ef8bb8d71520c35b7cb3a18083fc6165cfa49e",
+  "baseline_msapp": "powerapps/dataverse-v1.19/staff-master.msapp",
+  "baseline_sha256": "dd0372d0a6e052e055682959b855e5e9c38e8f9d0b5d316852bb334c1f2bd420",
   "bootstrap_good_commit": "260819a4fa30c4d8c8dcd02acc626c26d7823697",
   "bootstrap_good_run": 34935420385,
   "solution_name": "StaffMasterAutomation",

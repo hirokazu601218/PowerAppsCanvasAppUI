@@ -1,0 +1,1 @@
+IfError(IsEmpty(StaffPayrollHistory),false)

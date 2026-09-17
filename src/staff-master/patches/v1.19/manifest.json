@@ -1,0 +1,562 @@
+{
+  "state": "PUBLISHED_WITH_ONE_PENDING_REFRESH_CORRECTION",
+  "baseVersion": "1.18",
+  "targetVersion": "1.19",
+  "changes": [
+    {
+      "source": "Src/App.pa.yaml",
+      "control": "App",
+      "parent_path": "App",
+      "property": "Formulas",
+      "operation": "property_update",
+      "before": "=StaffReferenceDate = DateValue(Text(DateAdd(Now(), TimeZoneOffset(Now()) + 540, TimeUnit.Minutes), \"yyyy-mm-dd\"), \"en-US\");\nStaffTestCount = CountIf('M_職員基本', true);\nStaffBasicView = If(StaffTestCount <= 100, ForAll(\n    SortByColumns('M_職員基本', \"crb3c_staffnumber\", SortOrder.Ascending) As s,\n    {\n        StaffId: s.crb3c_staffnumber,\n        Name: s.crb3c_fullname,\n        Org: s.crb3c_orgshort,\n        OrgFull: s.crb3c_orgfull,\n        Birth: Text(s.crb3c_birthdate, \"yyyy/mm/dd\"),\n        Sex: Text(s.crb3c_sex),\n        Hire: Text(s.crb3c_hiredate, \"yyyy/mm/dd\"),\n        Leave: Text(s.crb3c_leavedate, \"yyyy/mm/dd\"),\n        Status: If(IsBlank(s.crb3c_hiredate) || s.crb3c_hiredate > StaffReferenceDate, \"採用前\", !IsBlank(s.crb3c_leavedate) && s.crb3c_leavedate < StaffReferenceDate, \"退職\", \"在籍\"),\n        WorkReg: If(Text(s.crb3c_workregistered)=\"登録\",\"登録済\",Text(s.crb3c_workregistered)),\n        Daily: s.crb3c_dailyrate,\n        Hours: If(IsBlank(s.crb3c_workminutes), Blank(), Text(RoundDown(s.crb3c_workminutes/60,0),\"0\") & \":\" & Text(Mod(s.crb3c_workminutes,60),\"00\")),\n        CommuteReg: If(Text(s.crb3c_commuteregistered)=\"登録\",\"登録済\",Text(s.crb3c_commuteregistered)),\n        Method: s.crb3c_commutemethod,\n        Pass: s.crb3c_passamount,\n        Fare: s.crb3c_onewayfare,\n        SocialReg: \"\",\n        Health: Text(s.crb3c_mutualshort),\n        Pension: Text(s.crb3c_pension),\n        ResidentReg: \"\",\n        TaxMay: Blank(),\n        TaxJune: Blank(),\n        TaxJuly: Blank(),\n        FixedReg: If(IsBlank(s.crb3c_taxclass),\"\",\"登録済\"),\n        TaxClass: Text(s.crb3c_taxclass),\n        Employment: Text(s.crb3c_employmentinsurance)\n    }\n));\n// Commute records come only from Dataverse; no built-in commute fallback.\nStaffSelected = If(Coalesce(varStaffChosen111,false),varStaff111,First(StaffBasicView));\nStaffCommuteHistory = SortByColumns(\n    Filter('T_通勤', '職員基本'.職員番号 = StaffSelected.StaffId),\n    \"crb3c_startdate\",SortOrder.Ascending,\"crb3c_recognitionid\",SortOrder.Ascending\n);\nStaffLedgerFields = With({c:varLedgerCommute111,s:varLedgerStaff111},Table(\n    {Field:\"employee_name\",Value:s.Name},\n    {Field:\"employee_number\",Value:s.StaffId},\n    {Field:\"organization\",Value:s.Org},\n    {Field:\"event_date_year\",Value:If(IsBlank(c.crb3c_eventdate),Blank(),If(Year(c.crb3c_eventdate) >= 2019, Text(Year(c.crb3c_eventdate)-2018,\"0\"), Text(Year(c.crb3c_eventdate),\"0\")))},\n    {Field:\"event_date_month\",Value:If(IsBlank(c.crb3c_eventdate),Blank(),Text(Month(c.crb3c_eventdate),\"0\"))},\n    {Field:\"event_date_day\",Value:If(IsBlank(c.crb3c_eventdate),Blank(),Text(Day(c.crb3c_eventdate),\"0\"))},\n    {Field:\"submitted_date_year\",Value:If(IsBlank(c.crb3c_submitteddate),Blank(),If(Year(c.crb3c_submitteddate) >= 2019, Text(Year(c.crb3c_submitteddate)-2018,\"0\"), Text(Year(c.crb3c_submitteddate),\"0\")))},\n    {Field:\"submitted_date_month\",Value:If(IsBlank(c.crb3c_submitteddate),Blank(),Text(Month(c.crb3c_submitteddate),\"0\"))},\n    {Field:\"submitted_date_day\",Value:If(IsBlank(c.crb3c_submitteddate),Blank(),Text(Day(c.crb3c_submitteddate),\"0\"))},\n    {Field:\"accepted_date_year\",Value:If(IsBlank(c.crb3c_receiveddate),Blank(),If(Year(c.crb3c_receiveddate) >= 2019, Text(Year(c.crb3c_receiveddate)-2018,\"0\"), Text(Year(c.crb3c_receiveddate),\"0\")))},\n    {Field:\"accepted_date_month\",Value:If(IsBlank(c.crb3c_receiveddate),Blank(),Text(Month(c.crb3c_receiveddate),\"0\"))},\n    {Field:\"accepted_date_day\",Value:If(IsBlank(c.crb3c_receiveddate),Blank(),Text(Day(c.crb3c_receiveddate),\"0\"))},\n    {Field:\"route_1_transport\",Value:c.crb3c_route1_operator},\n    {Field:\"route_1_section_from\",Value:c.crb3c_route1_from},\n    {Field:\"route_1_section_to\",Value:c.crb3c_route1_to},\n    {Field:\"route_1_ticket_type\",Value:c.crb3c_route1_tickettype},\n    {Field:\"route_1_other_basis\",Value:If(IsBlank(c.crb3c_route1_ticketbasis),Blank(),If(Mod(c.crb3c_route1_ticketbasis,1)=0,Text(c.crb3c_route1_ticketbasis,\"0\"),Text(c.crb3c_route1_ticketbasis,\"0.####\")))},\n    {Field:\"route_1_season_basis\",Value:If(IsBlank(c.crb3c_route1_distancekm),Blank(),If(Mod(c.crb3c_route1_distancekm,1)=0,Text(c.crb3c_route1_distancekm,\"0\"),Text(c.crb3c_route1_distancekm,\"0.####\")))},\n    {Field:\"route_1_other_amount\",Value:If(IsBlank(c.crb3c_route1_ticketamount),Blank(),Text(c.crb3c_route1_ticketamount,\"#,##0\"))},\n    {Field:\"route_1_season_amount\",Value:If(IsBlank(c.crb3c_route1_passamount),Blank(),Text(c.crb3c_route1_passamount,\"#,##0\"))},\n    {Field:\"route_1_season_months\",Value:If(IsBlank(c.crb3c_route1_passmonths),Blank(),Text(c.crb3c_route1_passmonths,\"0\"))},\n    {Field:\"route_1_monthly_amount\",Value:If(IsBlank(c.crb3c_route1_amount),Blank(),Text(c.crb3c_route1_amount,\"#,##0\"))},\n    {Field:\"route_1_period_start_year\",Value:If(IsBlank(c.crb3c_route1_recognitionstart),Blank(),If(Year(c.crb3c_route1_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route1_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route1_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_1_period_start_month\",Value:If(IsBlank(c.crb3c_route1_recognitionstart),Blank(),Text(Month(c.crb3c_route1_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_1_payment_months\",Value:If(IsBlank(c.crb3c_route1_paymonth),Blank(),Text(c.crb3c_route1_paymonth,\"0\") & \"月\")},\n    {Field:\"route_1_remarks\",Value:c.crb3c_route1_remarks},\n    {Field:\"route_2_transport\",Value:c.crb3c_route2_operator},\n    {Field:\"route_2_section_from\",Value:c.crb3c_route2_from},\n    {Field:\"route_2_section_to\",Value:c.crb3c_route2_to},\n    {Field:\"route_2_ticket_type\",Value:c.crb3c_route2_tickettype},\n    {Field:\"route_2_other_basis\",Value:If(IsBlank(c.crb3c_route2_ticketbasis),Blank(),If(Mod(c.crb3c_route2_ticketbasis,1)=0,Text(c.crb3c_route2_ticketbasis,\"0\"),Text(c.crb3c_route2_ticketbasis,\"0.####\")))},\n    {Field:\"route_2_season_basis\",Value:If(IsBlank(c.crb3c_route2_distancekm),Blank(),If(Mod(c.crb3c_route2_distancekm,1)=0,Text(c.crb3c_route2_distancekm,\"0\"),Text(c.crb3c_route2_distancekm,\"0.####\")))},\n    {Field:\"route_2_other_amount\",Value:If(IsBlank(c.crb3c_route2_ticketamount),Blank(),Text(c.crb3c_route2_ticketamount,\"#,##0\"))},\n    {Field:\"route_2_season_amount\",Value:If(IsBlank(c.crb3c_route2_passamount),Blank(),Text(c.crb3c_route2_passamount,\"#,##0\"))},\n    {Field:\"route_2_season_months\",Value:If(IsBlank(c.crb3c_route2_passmonths),Blank(),Text(c.crb3c_route2_passmonths,\"0\"))},\n    {Field:\"route_2_monthly_amount\",Value:If(IsBlank(c.crb3c_route2_amount),Blank(),Text(c.crb3c_route2_amount,\"#,##0\"))},\n    {Field:\"route_2_period_start_year\",Value:If(IsBlank(c.crb3c_route2_recognitionstart),Blank(),If(Year(c.crb3c_route2_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route2_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route2_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_2_period_start_month\",Value:If(IsBlank(c.crb3c_route2_recognitionstart),Blank(),Text(Month(c.crb3c_route2_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_2_payment_months\",Value:If(IsBlank(c.crb3c_route2_paymonth),Blank(),Text(c.crb3c_route2_paymonth,\"0\") & \"月\")},\n    {Field:\"route_2_remarks\",Value:c.crb3c_route2_remarks},\n    {Field:\"route_3_transport\",Value:c.crb3c_route3_operator},\n    {Field:\"route_3_section_from\",Value:c.crb3c_route3_from},\n    {Field:\"route_3_section_to\",Value:c.crb3c_route3_to},\n    {Field:\"route_3_ticket_type\",Value:c.crb3c_route3_tickettype},\n    {Field:\"route_3_other_basis\",Value:If(IsBlank(c.crb3c_route3_ticketbasis),Blank(),If(Mod(c.crb3c_route3_ticketbasis,1)=0,Text(c.crb3c_route3_ticketbasis,\"0\"),Text(c.crb3c_route3_ticketbasis,\"0.####\")))},\n    {Field:\"route_3_season_basis\",Value:If(IsBlank(c.crb3c_route3_distancekm),Blank(),If(Mod(c.crb3c_route3_distancekm,1)=0,Text(c.crb3c_route3_distancekm,\"0\"),Text(c.crb3c_route3_distancekm,\"0.####\")))},\n    {Field:\"route_3_other_amount\",Value:If(IsBlank(c.crb3c_route3_ticketamount),Blank(),Text(c.crb3c_route3_ticketamount,\"#,##0\"))},\n    {Field:\"route_3_season_amount\",Value:If(IsBlank(c.crb3c_route3_passamount),Blank(),Text(c.crb3c_route3_passamount,\"#,##0\"))},\n    {Field:\"route_3_season_months\",Value:If(IsBlank(c.crb3c_route3_passmonths),Blank(),Text(c.crb3c_route3_passmonths,\"0\"))},\n    {Field:\"route_3_monthly_amount\",Value:If(IsBlank(c.crb3c_route3_amount),Blank(),Text(c.crb3c_route3_amount,\"#,##0\"))},\n    {Field:\"route_3_period_start_year\",Value:If(IsBlank(c.crb3c_route3_recognitionstart),Blank(),If(Year(c.crb3c_route3_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route3_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route3_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_3_period_start_month\",Value:If(IsBlank(c.crb3c_route3_recognitionstart),Blank(),Text(Month(c.crb3c_route3_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_3_payment_months\",Value:If(IsBlank(c.crb3c_route3_paymonth),Blank(),Text(c.crb3c_route3_paymonth,\"0\") & \"月\")},\n    {Field:\"route_3_remarks\",Value:c.crb3c_route3_remarks},\n    {Field:\"route_4_transport\",Value:c.crb3c_route4_operator},\n    {Field:\"route_4_section_from\",Value:c.crb3c_route4_from},\n    {Field:\"route_4_section_to\",Value:c.crb3c_route4_to},\n    {Field:\"route_4_ticket_type\",Value:c.crb3c_route4_tickettype},\n    {Field:\"route_4_other_basis\",Value:If(IsBlank(c.crb3c_route4_ticketbasis),Blank(),If(Mod(c.crb3c_route4_ticketbasis,1)=0,Text(c.crb3c_route4_ticketbasis,\"0\"),Text(c.crb3c_route4_ticketbasis,\"0.####\")))},\n    {Field:\"route_4_season_basis\",Value:If(IsBlank(c.crb3c_route4_distancekm),Blank(),If(Mod(c.crb3c_route4_distancekm,1)=0,Text(c.crb3c_route4_distancekm,\"0\"),Text(c.crb3c_route4_distancekm,\"0.####\")))},\n    {Field:\"route_4_other_amount\",Value:If(IsBlank(c.crb3c_route4_ticketamount),Blank(),Text(c.crb3c_route4_ticketamount,\"#,##0\"))},\n    {Field:\"route_4_season_amount\",Value:If(IsBlank(c.crb3c_route4_passamount),Blank(),Text(c.crb3c_route4_passamount,\"#,##0\"))},\n    {Field:\"route_4_season_months\",Value:If(IsBlank(c.crb3c_route4_passmonths),Blank(),Text(c.crb3c_route4_passmonths,\"0\"))},\n    {Field:\"route_4_monthly_amount\",Value:If(IsBlank(c.crb3c_route4_amount),Blank(),Text(c.crb3c_route4_amount,\"#,##0\"))},\n    {Field:\"route_4_period_start_year\",Value:If(IsBlank(c.crb3c_route4_recognitionstart),Blank(),If(Year(c.crb3c_route4_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route4_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route4_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_4_period_start_month\",Value:If(IsBlank(c.crb3c_route4_recognitionstart),Blank(),Text(Month(c.crb3c_route4_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_4_payment_months\",Value:If(IsBlank(c.crb3c_route4_paymonth),Blank(),Text(c.crb3c_route4_paymonth,\"0\") & \"月\")},\n    {Field:\"route_4_remarks\",Value:c.crb3c_route4_remarks},\n    {Field:\"monthly_amount_total\",Value:If(IsBlank(c.crb3c_monthlytotal),Blank(),Text(c.crb3c_monthlytotal,\"#,##0\"))}\n));\n// Synthetic histories: source is tests/fixtures/staff-history-synthetic.json.\nStaffWorkHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"W-3-CURRENT\", Start:Date(2026,4,1), End:Date(2027,3,31), Daily:15000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"職員03の勤務条件\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000003\", RecordId:\"W-3-PAST\", Start:Date(2025,4,1), End:Date(2026,3,31), Daily:14000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"過去の合成テスト\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000003\", RecordId:\"W-3-FUTURE\", Start:Date(2027,4,1), End:Date(2099,3,31), Daily:16000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"将来の合成テスト\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000005\", RecordId:\"W-5-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:0, Scheduled:\"0:00\", Hours:\"0:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員05の勤務条件\", Finish:\"17:00\", DailyHours:0.0},\n    {StaffId:\"009900000011\", RecordId:\"W-11-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11100, Scheduled:\"8:00\", Hours:\"8:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員11の勤務条件\", Finish:\"17:00\", DailyHours:8.0},\n    {StaffId:\"009900000012\", RecordId:\"W-12-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11200, Scheduled:\"0:00\", Hours:\"0:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員12の勤務条件\", Finish:\"17:00\", DailyHours:0.0},\n    {StaffId:\"009900000025\", RecordId:\"W-25-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:12500, Scheduled:\"6:00\", Hours:\"6:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員25の勤務条件\", Finish:\"17:00\", DailyHours:6.0}\n);\nStaffSocialHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"S-3-2026\", Category:\"合成テスト\", Birth:\"2000/04/01\", AgeApril:26, AgeMarch:27, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:203000},\n    {StaffId:\"009900000005\", RecordId:\"S-5-2026\", Category:\"合成テスト\", Birth:\"2000/04/01\", AgeApril:26, AgeMarch:27, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:0},\n    {StaffId:\"009900000011\", RecordId:\"S-11-2026\", Category:\"合成テスト\", Birth:\"1981/04/01\", AgeApril:45, AgeMarch:46, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:211000},\n    {StaffId:\"009900000012\", RecordId:\"S-12-2026\", Category:\"合成テスト\", Birth:\"1982/04/01\", AgeApril:44, AgeMarch:45, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:212000},\n    {StaffId:\"009900000025\", RecordId:\"S-25-2026\", Category:\"合成テスト\", Birth:\"1995/04/01\", AgeApril:31, AgeMarch:32, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:225000}\n);\nStaffTaxHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"T-3-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員03専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000005\", RecordId:\"T-5-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"未設定\", Saving:0, Loan:0, Dependents:0, Note:\"職員05専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000011\", RecordId:\"T-11-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員11専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000012\", RecordId:\"T-12-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"乙\", Employment:\"未加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員12専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000025\", RecordId:\"T-25-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員25専用の合成データ・計算検証対象外\"}\n);\nStaffPayrollHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"P-3-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:\"職員03専用・9月・合成テスト\"},\n    {StaffId:\"009900000003\", RecordId:\"P-3-2026-08\", Year:2026, PayDate:Date(2026,8,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:\"職員03専用・8月・合成テスト\"},\n    {StaffId:\"009900000005\", RecordId:\"P-5-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:0, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:0, Deduct:0, DeductAdj:0, Net:0, Note:\"職員05専用・9月・合成テスト\"},\n    {StaffId:\"009900000011\", RecordId:\"P-11-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:\"職員11専用・9月・合成テスト\"},\n    {StaffId:\"009900000011\", RecordId:\"P-11-2026-08\", Year:2026, PayDate:Date(2026,8,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:\"職員11専用・8月・合成テスト\"},\n    {StaffId:\"009900000012\", RecordId:\"P-12-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:224000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:224000, Deduct:21200, DeductAdj:0, Net:202800, Note:\"職員12専用・9月・合成テスト\"},\n    {StaffId:\"009900000025\", RecordId:\"P-25-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:250000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:250000, Deduct:22500, DeductAdj:0, Net:227500, Note:\"職員25専用・9月・合成テスト\"}\n);\nStaffResidentHistory = FirstN(Table({StaffId:\"\",Amount:0,Period:\"\",Start:Date(2000,1,1),End:Date(2000,1,1)}),0);",
+      "after": "=StaffReferenceDate = DateValue(Text(DateAdd(Now(), TimeZoneOffset(Now()) + 540, TimeUnit.Minutes), \"yyyy-mm-dd\"), \"en-US\");\nStaffTestCount = CountIf('M_職員基本', true);\nStaffBasicView = If(StaffTestCount <= 100, ForAll(\n    SortByColumns('M_職員基本', \"crb3c_staffnumber\", SortOrder.Ascending) As s,\n    {\n        StaffId: s.crb3c_staffnumber,\n        Name: s.crb3c_fullname,\n        Org: s.crb3c_orgshort,\n        OrgFull: s.crb3c_orgfull,\n        Birth: Text(s.crb3c_birthdate, \"yyyy/mm/dd\"),\n        Sex: Text(s.crb3c_sex),\n        Hire: Text(s.crb3c_hiredate, \"yyyy/mm/dd\"),\n        Leave: Text(s.crb3c_leavedate, \"yyyy/mm/dd\"),\n        Status: If(IsBlank(s.crb3c_hiredate) || s.crb3c_hiredate > StaffReferenceDate, \"採用前\", !IsBlank(s.crb3c_leavedate) && s.crb3c_leavedate < StaffReferenceDate, \"退職\", \"在籍\"),\n        WorkReg: If(Text(s.crb3c_workregistered)=\"登録\",\"登録済\",Text(s.crb3c_workregistered)),\n        Daily: s.crb3c_dailyrate,\n        Hours: If(IsBlank(s.crb3c_workminutes), Blank(), Text(RoundDown(s.crb3c_workminutes/60,0),\"0\") & \":\" & Text(Mod(s.crb3c_workminutes,60),\"00\")),\n        CommuteReg: If(Text(s.crb3c_commuteregistered)=\"登録\",\"登録済\",Text(s.crb3c_commuteregistered)),\n        Method: s.crb3c_commutemethod,\n        Pass: s.crb3c_passamount,\n        Fare: s.crb3c_onewayfare,\n        SocialReg: \"\",\n        Health: Text(s.crb3c_mutualshort),\n        Pension: Text(s.crb3c_pension),\n        ResidentReg: \"\",\n        TaxMay: Blank(),\n        TaxJune: Blank(),\n        TaxJuly: Blank(),\n        FixedReg: If(IsBlank(s.crb3c_taxclass),\"\",\"登録済\"),\n        TaxClass: Text(s.crb3c_taxclass),\n        Employment: Text(s.crb3c_employmentinsurance)\n    }\n));\n// Commute records come only from Dataverse; no built-in commute fallback.\nStaffSelected = If(Coalesce(varStaffChosen111,false),varStaff111,First(StaffBasicView));\nStaffCommuteHistory = SortByColumns(\n    Filter('T_通勤', '職員基本'.職員番号 = StaffSelected.StaffId),\n    \"crb3c_startdate\",SortOrder.Ascending,\"crb3c_recognitionid\",SortOrder.Ascending\n);\nStaffLedgerFields = With({c:varLedgerCommute111,s:varLedgerStaff111},Table(\n    {Field:\"employee_name\",Value:s.Name},\n    {Field:\"employee_number\",Value:s.StaffId},\n    {Field:\"organization\",Value:s.Org},\n    {Field:\"event_date_year\",Value:If(IsBlank(c.crb3c_eventdate),Blank(),If(Year(c.crb3c_eventdate) >= 2019, Text(Year(c.crb3c_eventdate)-2018,\"0\"), Text(Year(c.crb3c_eventdate),\"0\")))},\n    {Field:\"event_date_month\",Value:If(IsBlank(c.crb3c_eventdate),Blank(),Text(Month(c.crb3c_eventdate),\"0\"))},\n    {Field:\"event_date_day\",Value:If(IsBlank(c.crb3c_eventdate),Blank(),Text(Day(c.crb3c_eventdate),\"0\"))},\n    {Field:\"submitted_date_year\",Value:If(IsBlank(c.crb3c_submitteddate),Blank(),If(Year(c.crb3c_submitteddate) >= 2019, Text(Year(c.crb3c_submitteddate)-2018,\"0\"), Text(Year(c.crb3c_submitteddate),\"0\")))},\n    {Field:\"submitted_date_month\",Value:If(IsBlank(c.crb3c_submitteddate),Blank(),Text(Month(c.crb3c_submitteddate),\"0\"))},\n    {Field:\"submitted_date_day\",Value:If(IsBlank(c.crb3c_submitteddate),Blank(),Text(Day(c.crb3c_submitteddate),\"0\"))},\n    {Field:\"accepted_date_year\",Value:If(IsBlank(c.crb3c_receiveddate),Blank(),If(Year(c.crb3c_receiveddate) >= 2019, Text(Year(c.crb3c_receiveddate)-2018,\"0\"), Text(Year(c.crb3c_receiveddate),\"0\")))},\n    {Field:\"accepted_date_month\",Value:If(IsBlank(c.crb3c_receiveddate),Blank(),Text(Month(c.crb3c_receiveddate),\"0\"))},\n    {Field:\"accepted_date_day\",Value:If(IsBlank(c.crb3c_receiveddate),Blank(),Text(Day(c.crb3c_receiveddate),\"0\"))},\n    {Field:\"route_1_transport\",Value:c.crb3c_route1_operator},\n    {Field:\"route_1_section_from\",Value:c.crb3c_route1_from},\n    {Field:\"route_1_section_to\",Value:c.crb3c_route1_to},\n    {Field:\"route_1_ticket_type\",Value:c.crb3c_route1_tickettype},\n    {Field:\"route_1_other_basis\",Value:If(IsBlank(c.crb3c_route1_ticketbasis),Blank(),If(Mod(c.crb3c_route1_ticketbasis,1)=0,Text(c.crb3c_route1_ticketbasis,\"0\"),Text(c.crb3c_route1_ticketbasis,\"0.####\")))},\n    {Field:\"route_1_season_basis\",Value:If(IsBlank(c.crb3c_route1_distancekm),Blank(),If(Mod(c.crb3c_route1_distancekm,1)=0,Text(c.crb3c_route1_distancekm,\"0\"),Text(c.crb3c_route1_distancekm,\"0.####\")))},\n    {Field:\"route_1_other_amount\",Value:If(IsBlank(c.crb3c_route1_ticketamount),Blank(),Text(c.crb3c_route1_ticketamount,\"#,##0\"))},\n    {Field:\"route_1_season_amount\",Value:If(IsBlank(c.crb3c_route1_passamount),Blank(),Text(c.crb3c_route1_passamount,\"#,##0\"))},\n    {Field:\"route_1_season_months\",Value:If(IsBlank(c.crb3c_route1_passmonths),Blank(),Text(c.crb3c_route1_passmonths,\"0\"))},\n    {Field:\"route_1_monthly_amount\",Value:If(IsBlank(c.crb3c_route1_amount),Blank(),Text(c.crb3c_route1_amount,\"#,##0\"))},\n    {Field:\"route_1_period_start_year\",Value:If(IsBlank(c.crb3c_route1_recognitionstart),Blank(),If(Year(c.crb3c_route1_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route1_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route1_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_1_period_start_month\",Value:If(IsBlank(c.crb3c_route1_recognitionstart),Blank(),Text(Month(c.crb3c_route1_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_1_payment_months\",Value:If(IsBlank(c.crb3c_route1_paymonth),Blank(),Text(c.crb3c_route1_paymonth,\"0\") & \"月\")},\n    {Field:\"route_1_remarks\",Value:c.crb3c_route1_remarks},\n    {Field:\"route_2_transport\",Value:c.crb3c_route2_operator},\n    {Field:\"route_2_section_from\",Value:c.crb3c_route2_from},\n    {Field:\"route_2_section_to\",Value:c.crb3c_route2_to},\n    {Field:\"route_2_ticket_type\",Value:c.crb3c_route2_tickettype},\n    {Field:\"route_2_other_basis\",Value:If(IsBlank(c.crb3c_route2_ticketbasis),Blank(),If(Mod(c.crb3c_route2_ticketbasis,1)=0,Text(c.crb3c_route2_ticketbasis,\"0\"),Text(c.crb3c_route2_ticketbasis,\"0.####\")))},\n    {Field:\"route_2_season_basis\",Value:If(IsBlank(c.crb3c_route2_distancekm),Blank(),If(Mod(c.crb3c_route2_distancekm,1)=0,Text(c.crb3c_route2_distancekm,\"0\"),Text(c.crb3c_route2_distancekm,\"0.####\")))},\n    {Field:\"route_2_other_amount\",Value:If(IsBlank(c.crb3c_route2_ticketamount),Blank(),Text(c.crb3c_route2_ticketamount,\"#,##0\"))},\n    {Field:\"route_2_season_amount\",Value:If(IsBlank(c.crb3c_route2_passamount),Blank(),Text(c.crb3c_route2_passamount,\"#,##0\"))},\n    {Field:\"route_2_season_months\",Value:If(IsBlank(c.crb3c_route2_passmonths),Blank(),Text(c.crb3c_route2_passmonths,\"0\"))},\n    {Field:\"route_2_monthly_amount\",Value:If(IsBlank(c.crb3c_route2_amount),Blank(),Text(c.crb3c_route2_amount,\"#,##0\"))},\n    {Field:\"route_2_period_start_year\",Value:If(IsBlank(c.crb3c_route2_recognitionstart),Blank(),If(Year(c.crb3c_route2_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route2_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route2_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_2_period_start_month\",Value:If(IsBlank(c.crb3c_route2_recognitionstart),Blank(),Text(Month(c.crb3c_route2_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_2_payment_months\",Value:If(IsBlank(c.crb3c_route2_paymonth),Blank(),Text(c.crb3c_route2_paymonth,\"0\") & \"月\")},\n    {Field:\"route_2_remarks\",Value:c.crb3c_route2_remarks},\n    {Field:\"route_3_transport\",Value:c.crb3c_route3_operator},\n    {Field:\"route_3_section_from\",Value:c.crb3c_route3_from},\n    {Field:\"route_3_section_to\",Value:c.crb3c_route3_to},\n    {Field:\"route_3_ticket_type\",Value:c.crb3c_route3_tickettype},\n    {Field:\"route_3_other_basis\",Value:If(IsBlank(c.crb3c_route3_ticketbasis),Blank(),If(Mod(c.crb3c_route3_ticketbasis,1)=0,Text(c.crb3c_route3_ticketbasis,\"0\"),Text(c.crb3c_route3_ticketbasis,\"0.####\")))},\n    {Field:\"route_3_season_basis\",Value:If(IsBlank(c.crb3c_route3_distancekm),Blank(),If(Mod(c.crb3c_route3_distancekm,1)=0,Text(c.crb3c_route3_distancekm,\"0\"),Text(c.crb3c_route3_distancekm,\"0.####\")))},\n    {Field:\"route_3_other_amount\",Value:If(IsBlank(c.crb3c_route3_ticketamount),Blank(),Text(c.crb3c_route3_ticketamount,\"#,##0\"))},\n    {Field:\"route_3_season_amount\",Value:If(IsBlank(c.crb3c_route3_passamount),Blank(),Text(c.crb3c_route3_passamount,\"#,##0\"))},\n    {Field:\"route_3_season_months\",Value:If(IsBlank(c.crb3c_route3_passmonths),Blank(),Text(c.crb3c_route3_passmonths,\"0\"))},\n    {Field:\"route_3_monthly_amount\",Value:If(IsBlank(c.crb3c_route3_amount),Blank(),Text(c.crb3c_route3_amount,\"#,##0\"))},\n    {Field:\"route_3_period_start_year\",Value:If(IsBlank(c.crb3c_route3_recognitionstart),Blank(),If(Year(c.crb3c_route3_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route3_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route3_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_3_period_start_month\",Value:If(IsBlank(c.crb3c_route3_recognitionstart),Blank(),Text(Month(c.crb3c_route3_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_3_payment_months\",Value:If(IsBlank(c.crb3c_route3_paymonth),Blank(),Text(c.crb3c_route3_paymonth,\"0\") & \"月\")},\n    {Field:\"route_3_remarks\",Value:c.crb3c_route3_remarks},\n    {Field:\"route_4_transport\",Value:c.crb3c_route4_operator},\n    {Field:\"route_4_section_from\",Value:c.crb3c_route4_from},\n    {Field:\"route_4_section_to\",Value:c.crb3c_route4_to},\n    {Field:\"route_4_ticket_type\",Value:c.crb3c_route4_tickettype},\n    {Field:\"route_4_other_basis\",Value:If(IsBlank(c.crb3c_route4_ticketbasis),Blank(),If(Mod(c.crb3c_route4_ticketbasis,1)=0,Text(c.crb3c_route4_ticketbasis,\"0\"),Text(c.crb3c_route4_ticketbasis,\"0.####\")))},\n    {Field:\"route_4_season_basis\",Value:If(IsBlank(c.crb3c_route4_distancekm),Blank(),If(Mod(c.crb3c_route4_distancekm,1)=0,Text(c.crb3c_route4_distancekm,\"0\"),Text(c.crb3c_route4_distancekm,\"0.####\")))},\n    {Field:\"route_4_other_amount\",Value:If(IsBlank(c.crb3c_route4_ticketamount),Blank(),Text(c.crb3c_route4_ticketamount,\"#,##0\"))},\n    {Field:\"route_4_season_amount\",Value:If(IsBlank(c.crb3c_route4_passamount),Blank(),Text(c.crb3c_route4_passamount,\"#,##0\"))},\n    {Field:\"route_4_season_months\",Value:If(IsBlank(c.crb3c_route4_passmonths),Blank(),Text(c.crb3c_route4_passmonths,\"0\"))},\n    {Field:\"route_4_monthly_amount\",Value:If(IsBlank(c.crb3c_route4_amount),Blank(),Text(c.crb3c_route4_amount,\"#,##0\"))},\n    {Field:\"route_4_period_start_year\",Value:If(IsBlank(c.crb3c_route4_recognitionstart),Blank(),If(Year(c.crb3c_route4_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route4_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route4_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_4_period_start_month\",Value:If(IsBlank(c.crb3c_route4_recognitionstart),Blank(),Text(Month(c.crb3c_route4_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_4_payment_months\",Value:If(IsBlank(c.crb3c_route4_paymonth),Blank(),Text(c.crb3c_route4_paymonth,\"0\") & \"月\")},\n    {Field:\"route_4_remarks\",Value:c.crb3c_route4_remarks},\n    {Field:\"monthly_amount_total\",Value:If(IsBlank(c.crb3c_monthlytotal),Blank(),Text(c.crb3c_monthlytotal,\"#,##0\"))}\n));\n// Payroll history is filtered on its parent employee in Dataverse.\nStaffPayrollHistory = SortByColumns(\n    Filter('T_基準給与簿', '職員基本'.職員番号 = StaffSelected.StaffId),\n    \"crb3c_payment_date\",SortOrder.Descending,\"crb3c_sequence\",SortOrder.Descending\n);\n// Synthetic histories: source is tests/fixtures/staff-history-synthetic.json.\nStaffWorkHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"W-3-CURRENT\", Start:Date(2026,4,1), End:Date(2027,3,31), Daily:15000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"職員03の勤務条件\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000003\", RecordId:\"W-3-PAST\", Start:Date(2025,4,1), End:Date(2026,3,31), Daily:14000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"過去の合成テスト\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000003\", RecordId:\"W-3-FUTURE\", Start:Date(2027,4,1), End:Date(2099,3,31), Daily:16000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"将来の合成テスト\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000005\", RecordId:\"W-5-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:0, Scheduled:\"0:00\", Hours:\"0:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員05の勤務条件\", Finish:\"17:00\", DailyHours:0.0},\n    {StaffId:\"009900000011\", RecordId:\"W-11-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11100, Scheduled:\"8:00\", Hours:\"8:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員11の勤務条件\", Finish:\"17:00\", DailyHours:8.0},\n    {StaffId:\"009900000012\", RecordId:\"W-12-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11200, Scheduled:\"0:00\", Hours:\"0:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員12の勤務条件\", Finish:\"17:00\", DailyHours:0.0},\n    {StaffId:\"009900000025\", RecordId:\"W-25-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:12500, Scheduled:\"6:00\", Hours:\"6:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員25の勤務条件\", Finish:\"17:00\", DailyHours:6.0}\n);\nStaffSocialHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"S-3-2026\", Category:\"合成テスト\", Birth:\"2000/04/01\", AgeApril:26, AgeMarch:27, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:203000},\n    {StaffId:\"009900000005\", RecordId:\"S-5-2026\", Category:\"合成テスト\", Birth:\"2000/04/01\", AgeApril:26, AgeMarch:27, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:0},\n    {StaffId:\"009900000011\", RecordId:\"S-11-2026\", Category:\"合成テスト\", Birth:\"1981/04/01\", AgeApril:45, AgeMarch:46, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:211000},\n    {StaffId:\"009900000012\", RecordId:\"S-12-2026\", Category:\"合成テスト\", Birth:\"1982/04/01\", AgeApril:44, AgeMarch:45, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:212000},\n    {StaffId:\"009900000025\", RecordId:\"S-25-2026\", Category:\"合成テスト\", Birth:\"1995/04/01\", AgeApril:31, AgeMarch:32, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:225000}\n);\nStaffTaxHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"T-3-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員03専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000005\", RecordId:\"T-5-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"未設定\", Saving:0, Loan:0, Dependents:0, Note:\"職員05専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000011\", RecordId:\"T-11-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員11専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000012\", RecordId:\"T-12-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"乙\", Employment:\"未加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員12専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000025\", RecordId:\"T-25-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員25専用の合成データ・計算検証対象外\"}\n);\nStaffResidentHistory = FirstN(Table({StaffId:\"\",Amount:0,Period:\"\",Start:Date(2000,1,1),End:Date(2000,1,1)}),0);",
+      "property_file": "properties/App.Formulas.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblMeta111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conHeader111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=\"v1.18 ／ Dataverse・\" & Text(StaffTestCount) & \"名\"",
+      "after": "=\"v1.19 ／ Dataverse・\" & Text(StaffTestCount) & \"名\"",
+      "property_file": "properties/lblMeta111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblTestNote111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=If(StaffTestCount>100,\"テスト対象の上限（100名）を超えたため一覧を表示できません。\",\"テスト環境：職員基本・通勤・認定簿はDataverseの架空データです。その他の履歴・給与簿は内蔵テストデータです。\")",
+      "after": "=If(StaffTestCount>100,\"テスト対象の上限（100名）を超えたため一覧を表示できません。\",\"テスト環境：職員基本・通勤・認定簿・基準給与簿はDataverseの架空データです。勤務・保険・税控除の履歴は内蔵テストデータです。\")",
+      "property_file": "properties/lblTestNote111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galPayroll111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children",
+      "property": "Items",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\nFilter(demoPayroll,StaffId=demoSelected.StaffId)\n)\n)",
+      "after": "=StaffPayrollHistory",
+      "property_file": "properties/galPayroll111.Items.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galPayroll111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children",
+      "property": "ItemAccessibleLabel",
+      "operation": "property_update",
+      "before": "=\"テストデータ行\"",
+      "after": "=ThisItem.crb3c_staffnumber & \" \" & ThisItem.crb3c_payment_date",
+      "property_file": "properties/galPayroll111.ItemAccessibleLabel.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblSectionPayroll111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"基準給与簿履歴\" & \"　\" & Text(CountRows(Filter(demoPayroll,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（内蔵テスト）\"",
+      "after": "=IfError(\"基準給与簿履歴　\" & Text(CountRows(StaffPayrollHistory)) & \"件（Dataverse）\",\"給与データを取得できません\")",
+      "property_file": "properties/lblSectionPayroll111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblEmptyPayroll111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children",
+      "property": "Visible",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\nIsEmpty(Filter(demoPayroll,StaffId=demoSelected.StaffId))\n)\n)",
+      "after": "=IfError(IsEmpty(StaffPayrollHistory),false)",
+      "property_file": "properties/lblEmptyPayroll111.Visible.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll1110",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Year)",
+      "after": "=ThisItem.crb3c_period_year",
+      "property_file": "properties/lblCPayroll1110.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll1111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=If(ThisItem.PayDate=Date(2099,3,31),\"\",Text(ThisItem.PayDate,\"yyyy/mm/dd\"))",
+      "after": "=ThisItem.crb3c_payment_date",
+      "property_file": "properties/lblCPayroll1111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll1112",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Base,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_basepay_current),Blank(),Text(ThisItem.crb3c_basepay_current,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll1112.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll1113",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.BaseAdj,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_basepay_adjustment),Blank(),Text(ThisItem.crb3c_basepay_adjustment,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll1113.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll1114",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Commute,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_commuting_allowance_current),Blank(),Text(ThisItem.crb3c_commuting_allowance_current,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll1114.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll1115",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.CommuteAdj,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_commuting_allowance_adjustment),Blank(),Text(ThisItem.crb3c_commuting_allowance_adjustment,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll1115.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll1116",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Home,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_telework_allowance_current),Blank(),Text(ThisItem.crb3c_telework_allowance_current,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll1116.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll1117",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.HomeAdj,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_telework_allowance_adjustment),Blank(),Text(ThisItem.crb3c_telework_allowance_adjustment,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll1117.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll1118",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Overtime,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_overtime_allowance_current),Blank(),Text(ThisItem.crb3c_overtime_allowance_current,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll1118.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll1119",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.OvertimeAdj,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_overtime_allowance_adjustment),Blank(),Text(ThisItem.crb3c_overtime_allowance_adjustment,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll1119.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll11110",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Gross,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_gross),Blank(),Text(ThisItem.crb3c_gross,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll11110.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll11111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Deduct,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_deduction_total_current),Blank(),Text(ThisItem.crb3c_deduction_total_current,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll11111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll11112",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.DeductAdj,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_deduction_total_adjustment),Blank(),Text(ThisItem.crb3c_deduction_total_adjustment,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll11112.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll11113",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Net,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_net),Blank(),Text(ThisItem.crb3c_net,\"#,##0\"))",
+      "property_file": "properties/lblCPayroll11113.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayroll11114",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionPayroll111/Children/conHScrollPayroll111/Children/conSurfacePayroll111/Children/galPayroll111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Note)",
+      "after": "=ThisItem.crb3c_remarks",
+      "property_file": "properties/lblCPayroll11114.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galPayrollModal111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children",
+      "property": "Items",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\nFilter(demoPayroll,StaffId=demoSelected.StaffId)\n)\n)",
+      "after": "=StaffPayrollHistory",
+      "property_file": "properties/galPayrollModal111.Items.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galPayrollModal111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children",
+      "property": "ItemAccessibleLabel",
+      "operation": "property_update",
+      "before": "=\"テストデータ行\"",
+      "after": "=ThisItem.crb3c_staffnumber & \" \" & ThisItem.crb3c_payment_date",
+      "property_file": "properties/galPayrollModal111.ItemAccessibleLabel.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblSectionPayrollModal111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"基準給与簿履歴（テスト項目15列）\" & \"　\" & Text(CountRows(Filter(demoPayroll,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（内蔵テスト）\"",
+      "after": "=IfError(\"基準給与簿履歴（主要15項目）　\" & Text(CountRows(StaffPayrollHistory)) & \"件（Dataverse）\",\"給与データを取得できません\")",
+      "property_file": "properties/lblSectionPayrollModal111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblEmptyPayrollModal111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children",
+      "property": "Visible",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\nIsEmpty(Filter(demoPayroll,StaffId=demoSelected.StaffId))\n)\n)",
+      "after": "=IfError(IsEmpty(StaffPayrollHistory),false)",
+      "property_file": "properties/lblEmptyPayrollModal111.Visible.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal1110",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Year)",
+      "after": "=ThisItem.crb3c_period_year",
+      "property_file": "properties/lblCPayrollModal1110.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal1111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=If(ThisItem.PayDate=Date(2099,3,31),\"\",Text(ThisItem.PayDate,\"yyyy/mm/dd\"))",
+      "after": "=ThisItem.crb3c_payment_date",
+      "property_file": "properties/lblCPayrollModal1111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal1112",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Base,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_basepay_current),Blank(),Text(ThisItem.crb3c_basepay_current,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal1112.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal1113",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.BaseAdj,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_basepay_adjustment),Blank(),Text(ThisItem.crb3c_basepay_adjustment,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal1113.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal1114",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Commute,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_commuting_allowance_current),Blank(),Text(ThisItem.crb3c_commuting_allowance_current,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal1114.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal1115",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.CommuteAdj,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_commuting_allowance_adjustment),Blank(),Text(ThisItem.crb3c_commuting_allowance_adjustment,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal1115.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal1116",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Home,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_telework_allowance_current),Blank(),Text(ThisItem.crb3c_telework_allowance_current,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal1116.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal1117",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.HomeAdj,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_telework_allowance_adjustment),Blank(),Text(ThisItem.crb3c_telework_allowance_adjustment,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal1117.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal1118",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Overtime,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_overtime_allowance_current),Blank(),Text(ThisItem.crb3c_overtime_allowance_current,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal1118.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal1119",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.OvertimeAdj,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_overtime_allowance_adjustment),Blank(),Text(ThisItem.crb3c_overtime_allowance_adjustment,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal1119.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal11110",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Gross,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_gross),Blank(),Text(ThisItem.crb3c_gross,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal11110.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal11111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Deduct,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_deduction_total_current),Blank(),Text(ThisItem.crb3c_deduction_total_current,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal11111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal11112",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.DeductAdj,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_deduction_total_adjustment),Blank(),Text(ThisItem.crb3c_deduction_total_adjustment,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal11112.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal11113",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Net,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_net),Blank(),Text(ThisItem.crb3c_net,\"#,##0\"))",
+      "property_file": "properties/lblCPayrollModal11113.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCPayrollModal11114",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children/conSectionPayrollModal111/Children/conHScrollPayrollModal111/Children/conSurfacePayrollModal111/Children/galPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Note)",
+      "after": "=ThisItem.crb3c_remarks",
+      "property_file": "properties/lblCPayrollModal11114.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblPayrollModalTitle111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"基準給与簿・全テスト項目　\" & demoSelected.Name\n)\n)",
+      "after": "=\"基準給与簿　\" & StaffSelected.Name & \"　職員番号：\" & StaffSelected.StaffId",
+      "property_file": "properties/lblPayrollModalTitle111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblPayrollCaution111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=\"実際の給与簿の追加列は未収録です。元Excelの全列を再現したものではありません。\"",
+      "after": "=\"基準給与簿163項目のうち、主要15項目を表示しています。給与項目の出力は表示先頭の支給日が対象です。\"",
+      "property_file": "properties/lblPayrollCaution111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnPayExport111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children",
+      "property": "DisplayMode",
+      "operation": "property_update",
+      "before": "=If(IsEmpty(Filter(StaffPayrollHistory,StaffId=If(Coalesce(varStaffChosen111,false),varStaff111.StaffId,First(StaffBasicView).StaffId))),DisplayMode.Disabled,DisplayMode.Edit)",
+      "after": "=IfError(If(IsEmpty(StaffPayrollHistory),DisplayMode.Disabled,DisplayMode.Edit),DisplayMode.Disabled)",
+      "property_file": "properties/btnPayExport111.DisplayMode.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnPayExport111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conPayrollModal111/Children",
+      "property": "OnSelect",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoPayroll:StaffPayrollHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\nClearCollect(colReport111,With({p:First(Filter(demoPayroll,StaffId=demoSelected.StaffId))},Table({Key:\"給与期間対象年\",Value:Text(p.Year)},{Key:\"支給年月日\",Value:If(p.PayDate=Date(2099,3,31),\"\",Text(p.PayDate,\"yyyy/mm/dd\"))},{Key:\"俸給支給額・当給与期間分\",Value:Text(p.Base,\"#,##0\")},{Key:\"俸給支給額・返納・追給分\",Value:Text(p.BaseAdj,\"#,##0\")},{Key:\"通勤手当・当給与期間分\",Value:Text(p.Commute,\"#,##0\")},{Key:\"通勤手当・返納・追給分\",Value:Text(p.CommuteAdj,\"#,##0\")},{Key:\"在宅勤務等手当・当給与期間分\",Value:Text(p.Home,\"#,##0\")},{Key:\"在宅勤務等手当・返納・追給分\",Value:Text(p.HomeAdj,\"#,##0\")},{Key:\"超過勤務手当等・当給与期間分\",Value:Text(p.Overtime,\"#,##0\")},{Key:\"超過勤務手当等・返納・追給分\",Value:Text(p.OvertimeAdj,\"#,##0\")},{Key:\"給与支給総額\",Value:Text(p.Gross,\"#,##0\")},{Key:\"控除額計・当給与期間分\",Value:Text(p.Deduct,\"#,##0\")},{Key:\"控除額計・返納・追給分\",Value:Text(p.DeductAdj,\"#,##0\")},{Key:\"現金支給額\",Value:Text(p.Net,\"#,##0\")},{Key:\"備考\",Value:Text(p.Note)}))); Set(varTsv111,Concat(colReport111,Key & Char(9) & Value,Char(10))); Set(varReport111,\"基準給与簿（簡易・テスト）\"); Set(varReportPage111,1); Set(varPayroll111,false)\n)\n)",
+      "after": "=IfError(If(!IsEmpty(StaffPayrollHistory),ClearCollect(colReport111,With({p:First(StaffPayrollHistory)},Table({Key:\"給与期間対象年\",Value:p.crb3c_period_year},{Key:\"支給年月日\",Value:p.crb3c_payment_date},{Key:\"俸給支給額・当給与期間分\",Value:If(IsBlank(p.crb3c_basepay_current),Blank(),Text(p.crb3c_basepay_current,\"#,##0\"))},{Key:\"俸給支給額・返納・追給分\",Value:If(IsBlank(p.crb3c_basepay_adjustment),Blank(),Text(p.crb3c_basepay_adjustment,\"#,##0\"))},{Key:\"通勤手当・当給与期間分\",Value:If(IsBlank(p.crb3c_commuting_allowance_current),Blank(),Text(p.crb3c_commuting_allowance_current,\"#,##0\"))},{Key:\"通勤手当・返納・追給分\",Value:If(IsBlank(p.crb3c_commuting_allowance_adjustment),Blank(),Text(p.crb3c_commuting_allowance_adjustment,\"#,##0\"))},{Key:\"在宅勤務等手当・当給与期間分\",Value:If(IsBlank(p.crb3c_telework_allowance_current),Blank(),Text(p.crb3c_telework_allowance_current,\"#,##0\"))},{Key:\"在宅勤務等手当・返納・追給分\",Value:If(IsBlank(p.crb3c_telework_allowance_adjustment),Blank(),Text(p.crb3c_telework_allowance_adjustment,\"#,##0\"))},{Key:\"超過勤務手当等・当給与期間分\",Value:If(IsBlank(p.crb3c_overtime_allowance_current),Blank(),Text(p.crb3c_overtime_allowance_current,\"#,##0\"))},{Key:\"超過勤務手当等・返納・追給分\",Value:If(IsBlank(p.crb3c_overtime_allowance_adjustment),Blank(),Text(p.crb3c_overtime_allowance_adjustment,\"#,##0\"))},{Key:\"給与支給総額\",Value:If(IsBlank(p.crb3c_gross),Blank(),Text(p.crb3c_gross,\"#,##0\"))},{Key:\"控除額計・当給与期間分\",Value:If(IsBlank(p.crb3c_deduction_total_current),Blank(),Text(p.crb3c_deduction_total_current,\"#,##0\"))},{Key:\"控除額計・返納・追給分\",Value:If(IsBlank(p.crb3c_deduction_total_adjustment),Blank(),Text(p.crb3c_deduction_total_adjustment,\"#,##0\"))},{Key:\"現金支給額\",Value:If(IsBlank(p.crb3c_net),Blank(),Text(p.crb3c_net,\"#,##0\"))},{Key:\"備考\",Value:p.crb3c_remarks}))); Set(varTsv111,Concat(colReport111,Key & Char(9) & Value,Char(10))); Set(varReport111,\"基準給与簿（主要15項目）\"); Set(varReportPage111,1); Set(varPayroll111,false)),Notify(\"給与データを取得できませんでした。再読込してください。\",NotificationType.Error))",
+      "property_file": "properties/btnPayExport111.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galCommute111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children",
+      "property": "ItemAccessibleLabel",
+      "operation": "compiler_display_name_normalization",
+      "before": "=ThisItem.crb3c_recognitionid & \" \" & Text(ThisItem.crb3c_startdate,\"yyyy/mm/dd\") & \" \" & ThisItem.crb3c_method",
+      "after": "=ThisItem.通勤認定ID & \" \" & Text(ThisItem.適用開始日,\"yyyy/mm/dd\") & \" \" & ThisItem.支給方式",
+      "property_file": "properties/galCommute111.ItemAccessibleLabel.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1110",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Text",
+      "operation": "compiler_display_name_normalization",
+      "before": "=Text(ThisItem.crb3c_startdate,\"yyyy/mm/dd\") & Char(10) & ThisItem.crb3c_recognitionid",
+      "after": "=Text(ThisItem.適用開始日,\"yyyy/mm/dd\") & Char(10) & ThisItem.通勤認定ID",
+      "property_file": "properties/lblCCommute1110.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Text",
+      "operation": "compiler_display_name_normalization",
+      "before": "=Text(ThisItem.crb3c_enddate,\"yyyy/mm/dd\")",
+      "after": "=Text(ThisItem.適用終了日,\"yyyy/mm/dd\")",
+      "property_file": "properties/lblCCommute1111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1112",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Text",
+      "operation": "compiler_display_name_normalization",
+      "before": "=ThisItem.crb3c_method",
+      "after": "=ThisItem.支給方式",
+      "property_file": "properties/lblCCommute1112.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1113",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Text",
+      "operation": "compiler_display_name_normalization",
+      "before": "=If(IsBlank(ThisItem.crb3c_month04),Blank(),Text(ThisItem.crb3c_month04,\"#,##0\"))",
+      "after": "=If(IsBlank(ThisItem.通勤4月),Blank(),Text(ThisItem.通勤4月,\"#,##0\"))",
+      "property_file": "properties/lblCCommute1113.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1114",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Text",
+      "operation": "compiler_display_name_normalization",
+      "before": "=If(IsBlank(ThisItem.crb3c_month10),Blank(),Text(ThisItem.crb3c_month10,\"#,##0\"))",
+      "after": "=If(IsBlank(ThisItem.通勤10月),Blank(),Text(ThisItem.通勤10月,\"#,##0\"))",
+      "property_file": "properties/lblCCommute1114.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnCertificate111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children",
+      "property": "DisplayMode",
+      "operation": "compiler_display_name_normalization",
+      "before": "=If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,IfError(If(!IsBlank(galCommute111.Selected.crb3c_commuteid) && galCommute111.Selected.職員基本.職員番号 = StaffSelected.StaffId,DisplayMode.Edit,DisplayMode.Disabled),DisplayMode.Disabled))",
+      "after": "=If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,IfError(If(!IsBlank(galCommute111.Selected.T_通勤) && galCommute111.Selected.職員基本.職員番号 = StaffSelected.StaffId,DisplayMode.Edit,DisplayMode.Disabled),DisplayMode.Disabled))",
+      "property_file": "properties/btnCertificate111.DisplayMode.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnCertificate111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children",
+      "property": "OnSelect",
+      "operation": "compiler_display_name_normalization",
+      "before": "=IfError(\n    With({c:galCommute111.Selected,s:StaffSelected},\n        If(IsBlank(c.crb3c_commuteid) || c.職員基本.職員番号 <> s.StaffId,\n            Notify(\"通勤の行を選択してください。\",NotificationType.Warning),\n            Set(varLedgerStaff111,s);\n            Set(varLedgerCommute111,c);\n            ClearCollect(colLedgerFields111,StaffLedgerFields);\n            Set(varLedgerOpen111,true); Set(varLedgerZoom111,1);\n            Set(varLedgerPdfView111,false); Set(varLedgerExport111,false);\n            Set(varLedgerPdfRequested111,false); Set(varLedgerPdf111,Blank());\n            Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\");\n            Set(varLedgerFile111,\"\"); Set(varPayroll111,false); Reset(ddLedgerPaper111)\n        )\n    ),\n    Clear(colLedgerFields111); Set(varLedgerOpen111,false);\n    Notify(\"通勤データを取得できませんでした。再読込してください。\",NotificationType.Error)\n)",
+      "after": "=IfError(\n    With({c:galCommute111.Selected,s:StaffSelected},\n        If(IsBlank(c.T_通勤) || c.職員基本.職員番号 <> s.StaffId,\n            Notify(\"通勤の行を選択してください。\",NotificationType.Warning),\n            Set(varLedgerStaff111,s);\n            Set(varLedgerCommute111,c);\n            ClearCollect(colLedgerFields111,StaffLedgerFields);\n            Set(varLedgerOpen111,true); Set(varLedgerZoom111,1);\n            Set(varLedgerPdfView111,false); Set(varLedgerExport111,false);\n            Set(varLedgerPdfRequested111,false); Set(varLedgerPdf111,Blank());\n            Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\");\n            Set(varLedgerFile111,\"\"); Set(varPayroll111,false); Reset(ddLedgerPaper111)\n        )\n    ),\n    Clear(colLedgerFields111); Set(varLedgerOpen111,false);\n    Notify(\"通勤データを取得できませんでした。再読込してください。\",NotificationType.Error)\n)",
+      "property_file": "properties/btnCertificate111.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblLedgerStaff111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conLedgerModal111/Children/conLedgerPanel111/Children/conLedgerHeader111/Children",
+      "property": "Text",
+      "operation": "compiler_display_name_normalization",
+      "before": "=varLedgerStaff111.Name & \"　職員番号：\" & varLedgerStaff111.StaffId & \"　認定ID：\" & varLedgerCommute111.crb3c_recognitionid",
+      "after": "=varLedgerStaff111.Name & \"　職員番号：\" & varLedgerStaff111.StaffId & \"　認定ID：\" & varLedgerCommute111.通勤認定ID",
+      "property_file": "properties/lblLedgerStaff111.Text.fx"
+    }
+  ],
+  "pending_changes": [
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLoad111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conHeader111/Children",
+      "property": "OnSelect",
+      "operation": "property_update",
+      "before": "=IfError(Refresh('M_職員基本'); Refresh('T_通勤'),Notify(\"Dataverseの再読込に失敗しました。\",NotificationType.Error)); Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,\"\"); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\"); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)",
+      "after": "=IfError(Refresh('M_職員基本'); Refresh('T_通勤'); Refresh('T_基準給与簿'),Notify(\"Dataverseの再読込に失敗しました。\",NotificationType.Error)); Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,\"\"); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\"); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)",
+      "property_file": "properties/btnLoad111.OnSelect.fx"
+    }
+  ],
+  "studio_property_changes": 45,
+  "compiler_name_normalizations": 9,
+  "readback_run": 35182918673
+}

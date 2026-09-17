@@ -1,4 +1,4 @@
-// Published v1.18 acceptance: six real Dataverse fixture records and zero-child cases.
+// Published v1.19 acceptance: six real Dataverse fixture records and zero-child cases.
 import {test, expect} from '@playwright/test';
 test.describe.configure({retries: 0});
 test.use({video: 'off', ignoreHTTPSErrors: false});
@@ -9,7 +9,7 @@ test('COM-APP-001 six Dataverse records, chosen recognition, dates, money and bl
   await page.goto(process.env.CANVAS_APP_URL!, {waitUntil: 'domcontentloaded'});
   const app = page.frameLocator('iframe[name="fullscreen-app-host"]');
   const ctl = (name: string) => app.locator(`[data-control-name="${name}"]`);
-  await expect(app.getByText('v1.18 ／ Dataverse・25名', {exact: true})).toBeVisible({timeout: 60000});
+  await expect(app.getByText('v1.19 ／ Dataverse・25名', {exact: true})).toBeVisible({timeout: 60000});
   const selectStaff = async (id: string) => {
     await app.getByRole('searchbox', {name: '氏名・職員番号・項目を検索', exact: true}).fill(id);
     await app.getByRole('button', {name: '検索', exact: true}).click();

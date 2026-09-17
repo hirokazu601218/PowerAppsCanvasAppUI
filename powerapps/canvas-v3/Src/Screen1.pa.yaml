@@ -157,7 +157,7 @@ Screens:
                               PaddingRight: =8
                               PaddingTop: =4
                               Size: =9
-                              Text: ="v1.18 ／ Dataverse・" & Text(StaffTestCount) & "名"
+                              Text: ="v1.19 ／ Dataverse・" & Text(StaffTestCount) & "名"
                               Tooltip: =Self.Text
                               Width: =174
                               X: =Parent.Width-686
@@ -247,7 +247,7 @@ Screens:
                         PaddingRight: =12
                         PaddingTop: =4
                         Size: =If(Coalesce(varLargeText111,false),13.5,12)
-                        Text: =If(StaffTestCount>100,"テスト対象の上限（100名）を超えたため一覧を表示できません。","テスト環境：職員基本・通勤・認定簿はDataverseの架空データです。その他の履歴・給与簿は内蔵テストデータです。")
+                        Text: =If(StaffTestCount>100,"テスト対象の上限（100名）を超えたため一覧を表示できません。","テスト環境：職員基本・通勤・認定簿・基準給与簿はDataverseの架空データです。勤務・保険・税控除の履歴は内蔵テストデータです。")
                         Tooltip: =Self.Text
                         Width: =Parent.Width-32
                         X: =16
@@ -1467,7 +1467,7 @@ Screens:
                                                       DisplayMode: =If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,DisplayMode.Edit)
                                                       Fill: =ColorValue("#FFFFFF")
                                                       Height: =Parent.Height-Self.Y
-                                                      ItemAccessibleLabel: =ThisItem.crb3c_recognitionid & " " & Text(ThisItem.crb3c_startdate,"yyyy/mm/dd") & " " & ThisItem.crb3c_method
+                                                      ItemAccessibleLabel: =ThisItem.通勤認定ID & " " & Text(ThisItem.適用開始日,"yyyy/mm/dd") & " " & ThisItem.支給方式
                                                       Items: =StaffCommuteHistory
                                                       ShowScrollbar: =false
                                                       TabIndex: =0
@@ -1492,7 +1492,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.crb3c_startdate,"yyyy/mm/dd") & Char(10) & ThisItem.crb3c_recognitionid
+                                                            Text: =Text(ThisItem.適用開始日,"yyyy/mm/dd") & Char(10) & ThisItem.通勤認定ID
                                                             Tooltip: =Self.Text
                                                             Width: =lblHCommute1110.Width
                                                             X: =lblHCommute1110.X
@@ -1512,7 +1512,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.crb3c_enddate,"yyyy/mm/dd")
+                                                            Text: =Text(ThisItem.適用終了日,"yyyy/mm/dd")
                                                             Tooltip: =Self.Text
                                                             Width: =lblHCommute1111.Width
                                                             X: =lblHCommute1111.X
@@ -1532,7 +1532,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =ThisItem.crb3c_method
+                                                            Text: =ThisItem.支給方式
                                                             Tooltip: =Self.Text
                                                             Width: =lblHCommute1112.Width
                                                             X: =lblHCommute1112.X
@@ -1553,7 +1553,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =If(IsBlank(ThisItem.crb3c_month04),Blank(),Text(ThisItem.crb3c_month04,"#,##0"))
+                                                            Text: =If(IsBlank(ThisItem.通勤4月),Blank(),Text(ThisItem.通勤4月,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHCommute1113.Width
                                                             X: =lblHCommute1113.X
@@ -1574,7 +1574,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =If(IsBlank(ThisItem.crb3c_month10),Blank(),Text(ThisItem.crb3c_month10,"#,##0"))
+                                                            Text: =If(IsBlank(ThisItem.通勤10月),Blank(),Text(ThisItem.通勤10月,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHCommute1114.Width
                                                             X: =lblHCommute1114.X
@@ -1607,14 +1607,14 @@ Screens:
                                           BorderColor: =ColorValue("#0B4A8B")
                                           BorderThickness: =1
                                           Color: =ColorValue("#0F6CBD")
-                                          DisplayMode: =If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,IfError(If(!IsBlank(galCommute111.Selected.crb3c_commuteid) && galCommute111.Selected.職員基本.職員番号 = StaffSelected.StaffId,DisplayMode.Edit,DisplayMode.Disabled),DisplayMode.Disabled))
+                                          DisplayMode: =If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,IfError(If(!IsBlank(galCommute111.Selected.T_通勤) && galCommute111.Selected.職員基本.職員番号 = StaffSelected.StaffId,DisplayMode.Edit,DisplayMode.Disabled),DisplayMode.Disabled))
                                           Font: ="Segoe UI"
                                           FontWeight: =FontWeight.Semibold
                                           Height: =44
                                           OnSelect: |-
                                             =IfError(
                                                 With({c:galCommute111.Selected,s:StaffSelected},
-                                                    If(IsBlank(c.crb3c_commuteid) || c.職員基本.職員番号 <> s.StaffId,
+                                                    If(IsBlank(c.T_通勤) || c.職員基本.職員番号 <> s.StaffId,
                                                         Notify("通勤の行を選択してください。",NotificationType.Warning),
                                                         Set(varLedgerStaff111,s);
                                                         Set(varLedgerCommute111,c);
@@ -2891,13 +2891,7 @@ Screens:
                                           PaddingRight: =8
                                           PaddingTop: =4
                                           Size: =If(Coalesce(varLargeText111,false),13.5,12)
-                                          Text: |-
-                                            =With({demoStaff:StaffBasicView,
-                                            demoPayroll:StaffPayrollHistory},
-                                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                            "基準給与簿履歴" & "　" & Text(CountRows(Filter(demoPayroll,StaffId=demoSelected.StaffId))) & "件"
-                                            )
-                                            ) & "（内蔵テスト）"
+                                          Text: =IfError("基準給与簿履歴　" & Text(CountRows(StaffPayrollHistory)) & "件（Dataverse）","給与データを取得できません")
                                           Tooltip: =Self.Text
                                           Width: =Parent.Width-160
                                     - conHScrollPayroll111:
@@ -3245,14 +3239,8 @@ Screens:
                                                       DisplayMode: =If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,DisplayMode.Edit)
                                                       Fill: =ColorValue("#FFFFFF")
                                                       Height: =Parent.Height-Self.Y
-                                                      ItemAccessibleLabel: ="テストデータ行"
-                                                      Items: |-
-                                                        =With({demoStaff:StaffBasicView,
-                                                        demoPayroll:StaffPayrollHistory},
-                                                        With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                                        Filter(demoPayroll,StaffId=demoSelected.StaffId)
-                                                        )
-                                                        )
+                                                      ItemAccessibleLabel: =ThisItem.crb3c_staffnumber & " " & ThisItem.crb3c_payment_date
+                                                      Items: =StaffPayrollHistory
                                                       Selectable: =false
                                                       ShowScrollbar: =false
                                                       TemplateFill: =ColorValue("#FFFFFF")
@@ -3275,7 +3263,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.Year)
+                                                            Text: =ThisItem.crb3c_period_year
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll1110.Width
                                                             X: =lblHPayroll1110.X
@@ -3294,7 +3282,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =If(ThisItem.PayDate=Date(2099,3,31),"",Text(ThisItem.PayDate,"yyyy/mm/dd"))
+                                                            Text: =ThisItem.crb3c_payment_date
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll1111.Width
                                                             X: =lblHPayroll1111.X
@@ -3314,7 +3302,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.Base,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_basepay_current),Blank(),Text(ThisItem.crb3c_basepay_current,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll1112.Width
                                                             X: =lblHPayroll1112.X
@@ -3333,7 +3321,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.BaseAdj,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_basepay_adjustment),Blank(),Text(ThisItem.crb3c_basepay_adjustment,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll1113.Width
                                                             X: =lblHPayroll1113.X
@@ -3352,7 +3340,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.Commute,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_commuting_allowance_current),Blank(),Text(ThisItem.crb3c_commuting_allowance_current,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll1114.Width
                                                             X: =lblHPayroll1114.X
@@ -3371,7 +3359,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.CommuteAdj,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_commuting_allowance_adjustment),Blank(),Text(ThisItem.crb3c_commuting_allowance_adjustment,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll1115.Width
                                                             X: =lblHPayroll1115.X
@@ -3390,7 +3378,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.Home,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_telework_allowance_current),Blank(),Text(ThisItem.crb3c_telework_allowance_current,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll1116.Width
                                                             X: =lblHPayroll1116.X
@@ -3409,7 +3397,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.HomeAdj,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_telework_allowance_adjustment),Blank(),Text(ThisItem.crb3c_telework_allowance_adjustment,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll1117.Width
                                                             X: =lblHPayroll1117.X
@@ -3428,7 +3416,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.Overtime,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_overtime_allowance_current),Blank(),Text(ThisItem.crb3c_overtime_allowance_current,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll1118.Width
                                                             X: =lblHPayroll1118.X
@@ -3447,7 +3435,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.OvertimeAdj,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_overtime_allowance_adjustment),Blank(),Text(ThisItem.crb3c_overtime_allowance_adjustment,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll1119.Width
                                                             X: =lblHPayroll1119.X
@@ -3467,7 +3455,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.Gross,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_gross),Blank(),Text(ThisItem.crb3c_gross,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll11110.Width
                                                             X: =lblHPayroll11110.X
@@ -3487,7 +3475,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.Deduct,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_deduction_total_current),Blank(),Text(ThisItem.crb3c_deduction_total_current,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll11111.Width
                                                             X: =lblHPayroll11111.X
@@ -3506,7 +3494,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.DeductAdj,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_deduction_total_adjustment),Blank(),Text(ThisItem.crb3c_deduction_total_adjustment,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll11112.Width
                                                             X: =lblHPayroll11112.X
@@ -3526,7 +3514,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.Net,"#,##0")
+                                                            Text: =If(IsBlank(ThisItem.crb3c_net),Blank(),Text(ThisItem.crb3c_net,"#,##0"))
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll11113.Width
                                                             X: =lblHPayroll11113.X
@@ -3545,7 +3533,7 @@ Screens:
                                                             PaddingRight: =12
                                                             PaddingTop: =4
                                                             Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                            Text: =Text(ThisItem.Note)
+                                                            Text: =ThisItem.crb3c_remarks
                                                             Tooltip: =Self.Text
                                                             Width: =lblHPayroll11114.Width
                                                             X: =lblHPayroll11114.X
@@ -3565,13 +3553,7 @@ Screens:
                                           Size: =If(Coalesce(varLargeText111,false),12,10.5)
                                           Text: ="登録されているレコードはありません（0件）"
                                           Tooltip: =Self.Text
-                                          Visible: |-
-                                            =With({demoStaff:StaffBasicView,
-                                            demoPayroll:StaffPayrollHistory},
-                                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                            IsEmpty(Filter(demoPayroll,StaffId=demoSelected.StaffId))
-                                            )
-                                            )
+                                          Visible: =IfError(IsEmpty(StaffPayrollHistory),false)
                                           Width: =Parent.Width-2
                                           X: =1
                                           Y: =26
@@ -4329,12 +4311,7 @@ Screens:
                         PaddingRight: =8
                         PaddingTop: =4
                         Size: =If(Coalesce(varLargeText111,false),13.5,12)
-                        Text: |-
-                          =With({demoStaff:StaffBasicView},
-                          With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                          "基準給与簿・全テスト項目　" & demoSelected.Name
-                          )
-                          )
+                        Text: ="基準給与簿　" & StaffSelected.Name & "　職員番号：" & StaffSelected.StaffId
                         Tooltip: =Self.Text
                         Width: =Parent.Width-348
                   - btnPayExport111:
@@ -4346,17 +4323,11 @@ Screens:
                         BorderColor: =ColorValue("#0B4A8B")
                         BorderThickness: =1
                         Color: =ColorValue("#0F6CBD")
-                        DisplayMode: =If(IsEmpty(Filter(StaffPayrollHistory,StaffId=If(Coalesce(varStaffChosen111,false),varStaff111.StaffId,First(StaffBasicView).StaffId))),DisplayMode.Disabled,DisplayMode.Edit)
+                        DisplayMode: =IfError(If(IsEmpty(StaffPayrollHistory),DisplayMode.Disabled,DisplayMode.Edit),DisplayMode.Disabled)
                         Font: ="Segoe UI"
                         FontWeight: =FontWeight.Semibold
                         Height: =44
-                        OnSelect: |-
-                          =With({demoStaff:StaffBasicView,
-                          demoPayroll:StaffPayrollHistory},
-                          With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                          ClearCollect(colReport111,With({p:First(Filter(demoPayroll,StaffId=demoSelected.StaffId))},Table({Key:"給与期間対象年",Value:Text(p.Year)},{Key:"支給年月日",Value:If(p.PayDate=Date(2099,3,31),"",Text(p.PayDate,"yyyy/mm/dd"))},{Key:"俸給支給額・当給与期間分",Value:Text(p.Base,"#,##0")},{Key:"俸給支給額・返納・追給分",Value:Text(p.BaseAdj,"#,##0")},{Key:"通勤手当・当給与期間分",Value:Text(p.Commute,"#,##0")},{Key:"通勤手当・返納・追給分",Value:Text(p.CommuteAdj,"#,##0")},{Key:"在宅勤務等手当・当給与期間分",Value:Text(p.Home,"#,##0")},{Key:"在宅勤務等手当・返納・追給分",Value:Text(p.HomeAdj,"#,##0")},{Key:"超過勤務手当等・当給与期間分",Value:Text(p.Overtime,"#,##0")},{Key:"超過勤務手当等・返納・追給分",Value:Text(p.OvertimeAdj,"#,##0")},{Key:"給与支給総額",Value:Text(p.Gross,"#,##0")},{Key:"控除額計・当給与期間分",Value:Text(p.Deduct,"#,##0")},{Key:"控除額計・返納・追給分",Value:Text(p.DeductAdj,"#,##0")},{Key:"現金支給額",Value:Text(p.Net,"#,##0")},{Key:"備考",Value:Text(p.Note)}))); Set(varTsv111,Concat(colReport111,Key & Char(9) & Value,Char(10))); Set(varReport111,"基準給与簿（簡易・テスト）"); Set(varReportPage111,1); Set(varPayroll111,false)
-                          )
-                          )
+                        OnSelect: =IfError(If(!IsEmpty(StaffPayrollHistory),ClearCollect(colReport111,With({p:First(StaffPayrollHistory)},Table({Key:"給与期間対象年",Value:p.crb3c_period_year},{Key:"支給年月日",Value:p.crb3c_payment_date},{Key:"俸給支給額・当給与期間分",Value:If(IsBlank(p.crb3c_basepay_current),Blank(),Text(p.crb3c_basepay_current,"#,##0"))},{Key:"俸給支給額・返納・追給分",Value:If(IsBlank(p.crb3c_basepay_adjustment),Blank(),Text(p.crb3c_basepay_adjustment,"#,##0"))},{Key:"通勤手当・当給与期間分",Value:If(IsBlank(p.crb3c_commuting_allowance_current),Blank(),Text(p.crb3c_commuting_allowance_current,"#,##0"))},{Key:"通勤手当・返納・追給分",Value:If(IsBlank(p.crb3c_commuting_allowance_adjustment),Blank(),Text(p.crb3c_commuting_allowance_adjustment,"#,##0"))},{Key:"在宅勤務等手当・当給与期間分",Value:If(IsBlank(p.crb3c_telework_allowance_current),Blank(),Text(p.crb3c_telework_allowance_current,"#,##0"))},{Key:"在宅勤務等手当・返納・追給分",Value:If(IsBlank(p.crb3c_telework_allowance_adjustment),Blank(),Text(p.crb3c_telework_allowance_adjustment,"#,##0"))},{Key:"超過勤務手当等・当給与期間分",Value:If(IsBlank(p.crb3c_overtime_allowance_current),Blank(),Text(p.crb3c_overtime_allowance_current,"#,##0"))},{Key:"超過勤務手当等・返納・追給分",Value:If(IsBlank(p.crb3c_overtime_allowance_adjustment),Blank(),Text(p.crb3c_overtime_allowance_adjustment,"#,##0"))},{Key:"給与支給総額",Value:If(IsBlank(p.crb3c_gross),Blank(),Text(p.crb3c_gross,"#,##0"))},{Key:"控除額計・当給与期間分",Value:If(IsBlank(p.crb3c_deduction_total_current),Blank(),Text(p.crb3c_deduction_total_current,"#,##0"))},{Key:"控除額計・返納・追給分",Value:If(IsBlank(p.crb3c_deduction_total_adjustment),Blank(),Text(p.crb3c_deduction_total_adjustment,"#,##0"))},{Key:"現金支給額",Value:If(IsBlank(p.crb3c_net),Blank(),Text(p.crb3c_net,"#,##0"))},{Key:"備考",Value:p.crb3c_remarks}))); Set(varTsv111,Concat(colReport111,Key & Char(9) & Value,Char(10))); Set(varReport111,"基準給与簿（主要15項目）"); Set(varReportPage111,1); Set(varPayroll111,false)),Notify("給与データを取得できませんでした。再読込してください。",NotificationType.Error))
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
                         RadiusTopLeft: =4
@@ -4427,13 +4398,7 @@ Screens:
                               PaddingRight: =8
                               PaddingTop: =4
                               Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                              Text: |-
-                                =With({demoStaff:StaffBasicView,
-                                demoPayroll:StaffPayrollHistory},
-                                With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                "基準給与簿履歴（テスト項目15列）" & "　" & Text(CountRows(Filter(demoPayroll,StaffId=demoSelected.StaffId))) & "件"
-                                )
-                                ) & "（内蔵テスト）"
+                              Text: =IfError("基準給与簿履歴（主要15項目）　" & Text(CountRows(StaffPayrollHistory)) & "件（Dataverse）","給与データを取得できません")
                               Tooltip: =Self.Text
                               Width: =Parent.Width
                         - conHScrollPayrollModal111:
@@ -4780,14 +4745,8 @@ Screens:
                                           AccessibleLabel: ="PayrollModal 履歴"
                                           Fill: =ColorValue("#FFFFFF")
                                           Height: =Parent.Height-Self.Y
-                                          ItemAccessibleLabel: ="テストデータ行"
-                                          Items: |-
-                                            =With({demoStaff:StaffBasicView,
-                                            demoPayroll:StaffPayrollHistory},
-                                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                            Filter(demoPayroll,StaffId=demoSelected.StaffId)
-                                            )
-                                            )
+                                          ItemAccessibleLabel: =ThisItem.crb3c_staffnumber & " " & ThisItem.crb3c_payment_date
+                                          Items: =StaffPayrollHistory
                                           Selectable: =false
                                           ShowScrollbar: =false
                                           TemplateFill: =ColorValue("#FFFFFF")
@@ -4810,7 +4769,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.Year)
+                                                Text: =ThisItem.crb3c_period_year
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal1110.Width
                                                 X: =lblHPayrollModal1110.X
@@ -4829,7 +4788,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =If(ThisItem.PayDate=Date(2099,3,31),"",Text(ThisItem.PayDate,"yyyy/mm/dd"))
+                                                Text: =ThisItem.crb3c_payment_date
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal1111.Width
                                                 X: =lblHPayrollModal1111.X
@@ -4849,7 +4808,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.Base,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_basepay_current),Blank(),Text(ThisItem.crb3c_basepay_current,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal1112.Width
                                                 X: =lblHPayrollModal1112.X
@@ -4868,7 +4827,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.BaseAdj,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_basepay_adjustment),Blank(),Text(ThisItem.crb3c_basepay_adjustment,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal1113.Width
                                                 X: =lblHPayrollModal1113.X
@@ -4887,7 +4846,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.Commute,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_commuting_allowance_current),Blank(),Text(ThisItem.crb3c_commuting_allowance_current,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal1114.Width
                                                 X: =lblHPayrollModal1114.X
@@ -4906,7 +4865,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.CommuteAdj,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_commuting_allowance_adjustment),Blank(),Text(ThisItem.crb3c_commuting_allowance_adjustment,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal1115.Width
                                                 X: =lblHPayrollModal1115.X
@@ -4925,7 +4884,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.Home,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_telework_allowance_current),Blank(),Text(ThisItem.crb3c_telework_allowance_current,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal1116.Width
                                                 X: =lblHPayrollModal1116.X
@@ -4944,7 +4903,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.HomeAdj,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_telework_allowance_adjustment),Blank(),Text(ThisItem.crb3c_telework_allowance_adjustment,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal1117.Width
                                                 X: =lblHPayrollModal1117.X
@@ -4963,7 +4922,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.Overtime,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_overtime_allowance_current),Blank(),Text(ThisItem.crb3c_overtime_allowance_current,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal1118.Width
                                                 X: =lblHPayrollModal1118.X
@@ -4982,7 +4941,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.OvertimeAdj,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_overtime_allowance_adjustment),Blank(),Text(ThisItem.crb3c_overtime_allowance_adjustment,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal1119.Width
                                                 X: =lblHPayrollModal1119.X
@@ -5002,7 +4961,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.Gross,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_gross),Blank(),Text(ThisItem.crb3c_gross,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal11110.Width
                                                 X: =lblHPayrollModal11110.X
@@ -5022,7 +4981,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.Deduct,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_deduction_total_current),Blank(),Text(ThisItem.crb3c_deduction_total_current,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal11111.Width
                                                 X: =lblHPayrollModal11111.X
@@ -5041,7 +5000,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.DeductAdj,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_deduction_total_adjustment),Blank(),Text(ThisItem.crb3c_deduction_total_adjustment,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal11112.Width
                                                 X: =lblHPayrollModal11112.X
@@ -5061,7 +5020,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.Net,"#,##0")
+                                                Text: =If(IsBlank(ThisItem.crb3c_net),Blank(),Text(ThisItem.crb3c_net,"#,##0"))
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal11113.Width
                                                 X: =lblHPayrollModal11113.X
@@ -5080,7 +5039,7 @@ Screens:
                                                 PaddingRight: =12
                                                 PaddingTop: =4
                                                 Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                                Text: =Text(ThisItem.Note)
+                                                Text: =ThisItem.crb3c_remarks
                                                 Tooltip: =Self.Text
                                                 Width: =lblHPayrollModal11114.Width
                                                 X: =lblHPayrollModal11114.X
@@ -5100,13 +5059,7 @@ Screens:
                               Size: =If(Coalesce(varLargeText111,false),12,10.5)
                               Text: ="登録されているレコードはありません（0件）"
                               Tooltip: =Self.Text
-                              Visible: |-
-                                =With({demoStaff:StaffBasicView,
-                                demoPayroll:StaffPayrollHistory},
-                                With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
-                                IsEmpty(Filter(demoPayroll,StaffId=demoSelected.StaffId))
-                                )
-                                )
+                              Visible: =IfError(IsEmpty(StaffPayrollHistory),false)
                               Width: =Parent.Width-3
                               X: =1
                               Y: =38
@@ -5124,7 +5077,7 @@ Screens:
                         PaddingRight: =8
                         PaddingTop: =4
                         Size: =If(Coalesce(varLargeText111,false),13.5,12)
-                        Text: ="実際の給与簿の追加列は未収録です。元Excelの全列を再現したものではありません。"
+                        Text: ="基準給与簿163項目のうち、主要15項目を表示しています。給与項目の出力は表示先頭の支給日が対象です。"
                         Tooltip: =Self.Text
                         Width: =Parent.Width
                         Y: =conHScrollPayrollModal111.Y+conHScrollPayrollModal111.Height+16
@@ -5536,7 +5489,7 @@ Screens:
                                     PaddingRight: =0
                                     PaddingTop: =4
                                     Size: =If(Coalesce(varLargeText111,false),12,10.5)
-                                    Text: =varLedgerStaff111.Name & "　職員番号：" & varLedgerStaff111.StaffId & "　認定ID：" & varLedgerCommute111.crb3c_recognitionid
+                                    Text: =varLedgerStaff111.Name & "　職員番号：" & varLedgerStaff111.StaffId & "　認定ID：" & varLedgerCommute111.通勤認定ID
                                     Width: =Parent.Width-160
                                     Wrap: =false
                                     X: =20

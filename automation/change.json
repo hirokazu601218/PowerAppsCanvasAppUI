@@ -1,19 +1,20 @@
 {
   "approved": true,
-  "issue": 35,
+  "issue": 49,
   "target": {
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",
     "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1"
   },
-  "candidate_version": "1.18",
+  "candidate_version": "1.19",
   "changes": [],
-  "approval_record": "Work: 認定簿5項目変更、既存v1.16保持、v1.17リリース承認。",
+  "approval_record": "Work: 給与のDataverse移行、必要な読取権限、Studioオーバーライド、検証後公開、GitHub反映は承認済み。追加料金は事前確認。",
   "acceptance": {
-    "case_id": "AUT-LEDGER-117",
-    "expected_label": "v1.17 ／ Dataverse・25名"
+    "case_id": "PAY-APP-001",
+    "expected_label": "v1.19 ／ Dataverse・25名"
   },
   "ledger_preview_to_front": false,
   "studio_compiled_baseline": true,
-  "release_manifest": "src/staff-master/patches/v1.18/manifest.json"
+  "release_manifest": "src/staff-master/patches/v1.19/manifest.json",
+  "pending_correction": "btnLoad111.OnSelect must also Refresh(T_基準給与簿); browser auto-review blocked the correction after initial publication."
 }

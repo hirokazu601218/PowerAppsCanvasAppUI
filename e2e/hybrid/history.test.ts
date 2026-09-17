@@ -7,20 +7,21 @@ test('HYBRID-001 histories, zero values, payroll and same-name ledger isolation'
   await page.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded'});
   const c=page.frameLocator('iframe[name="fullscreen-app-host"]');
   const control=(n:string)=>c.locator(`[data-control-name="${n}"]`);
-  await expect(c.getByText('v1.18 ／ Dataverse・25名',{exact:true})).toBeVisible({timeout:60000});
+  await expect(c.getByText('v1.19 ／ Dataverse・25名',{exact:true})).toBeVisible({timeout:60000});
   const select=async(id:string)=>{
     await c.getByRole('searchbox',{name:'氏名・職員番号・項目を検索',exact:true}).fill(id);
     await c.getByRole('button',{name:'検索',exact:true}).click();
     await c.getByRole('button',{name:new RegExp('^'+id+' .* 詳細を表示$')}).click();
   };
   await select('009900000003');
-  for(const [section,count] of [['Work',3],['Social',1],['Tax',1],['Payroll',2]] as const){
+  for(const [section,count] of [['Work',3],['Social',1],['Tax',1]] as const){
     await expect(control('lblSection'+section+'111')).toContainText(`${count}件（内蔵テスト）`);
   }
+  await expect(control('lblSectionPayroll111')).toContainText('3件（Dataverse）');
   await expect(control('galWork111')).toContainText('15,000');
   await control('btnPayrollOpen111').getByRole('button').click();
-  await expect(control('galPayrollModal111')).toContainText('職員03専用・9月・合成テスト');
-  await expect(control('galPayrollModal111')).toContainText('職員03専用・8月・合成テスト');
+  await expect(control('galPayrollModal111')).toContainText('令和08年06月23日');
+  await expect(control('galPayrollModal111')).toContainText('令和08年04月23日');
   await control('btnPayClose111').getByRole('button').click();
   await expect(control('lblSectionCommute111')).toContainText('2件（行を選択）');
   await select('009900000011');

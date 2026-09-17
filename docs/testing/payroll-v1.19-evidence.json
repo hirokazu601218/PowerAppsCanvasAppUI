@@ -1,0 +1,75 @@
+{
+  "version": "1.19",
+  "published": true,
+  "scope": "isolated developer test app",
+  "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1",
+  "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+  "source_commit": "756594da21ae1113e358f6375ee9cf5c99926ec3",
+  "work_start": "2026-09-17T04:11:05.724Z",
+  "work_stop_deadline": "2026-09-17T05:11:05.724Z",
+  "readback_run": 35182918673,
+  "package_sha256": "dd0372d0a6e052e055682959b855e5e9c38e8f9d0b5d316852bb334c1f2bd420",
+  "intended_properties_applied": 45,
+  "studio_column_name_normalizations": 9,
+  "controls_including_App": 361,
+  "formula_errors": 0,
+  "source_compiled_rules_connections": "exact",
+  "embedded_histories_remaining": {
+    "Work": 7,
+    "Social": 5,
+    "Tax": 5
+  },
+  "embedded_payroll_rows": 0,
+  "studio_preview": {
+    "payroll_rows": 7,
+    "staff_with_rows": 5,
+    "zero_child_staff": [
+      "009900000001",
+      "009900000025"
+    ],
+    "same_name_staff": [
+      "009900000011",
+      "009900000012"
+    ],
+    "latest_payment_date": "令和08年06月23日",
+    "latest_gross": 253000,
+    "latest_adjustment": -2000,
+    "latest_net": 243000,
+    "display_detail_export": "passed",
+    "blank_vs_zero": "zero displayed as 0",
+    "reload_existing_values": "passed; freshness after database mutation not verified"
+  },
+  "local_unit_tests": {
+    "passed": 50,
+    "failed": 0
+  },
+  "acceptance": {
+    "run_id": 35183359299,
+    "state": "success",
+    "test_user": "powerapps-test@govaca.onmicrosoft.com",
+    "passed": 10,
+    "failed": 0,
+    "test_duration": "4.2m",
+    "readback_sha256": "dd0372d0a6e052e055682959b855e5e9c38e8f9d0b5d316852bb334c1f2bd420",
+    "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35183359299"
+  },
+  "pending": [
+    {
+      "control": "btnLoad111",
+      "property": "OnSelect",
+      "change": "Add Refresh('T_基準給与簿') inside existing IfError",
+      "state": "blocked_by_browser_auto_review",
+      "reason": "Browser reconnection/navigation may discard unsaved nontrivial formula state. Read-only DOM confirmation also rejected. No alternate app write performed."
+    }
+  ],
+  "new_permissions": false,
+  "new_billing_configuration": false,
+  "new_license_purchase": false,
+  "overall_state": "PUBLISHED_WITH_PENDING_REFRESH_CORRECTION",
+  "pull_request": 50,
+  "studio_other_findings": {
+    "accessibility": 533,
+    "performance": 11,
+    "scope": "outside this data-source migration; difference from baseline not measured"
+  }
+}
