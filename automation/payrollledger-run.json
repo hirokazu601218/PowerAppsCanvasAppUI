@@ -1,7 +1,8 @@
 {
   "approved": true,
-  "mode": "seed",
+  "mode": "verify",
   "started_at": "2026-09-17T03:41:43.436Z",
-  "request_id": "payrollledger-seed-seven-and-approved-read",
+  "request_id": "payrollledger-final-read-only-verification",
   "read_permission_approved": true
 }
+
