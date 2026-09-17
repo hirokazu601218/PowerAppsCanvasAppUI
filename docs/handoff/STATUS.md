@@ -23,15 +23,18 @@
 | 項目 | 指定 |
 |---|---|
 | 対象機能 | PAY-DV-001～005。添付からT_基準給与簿を作成し、職員基本の子として整合する合成データを登録 |
-| 現在の工程 | ①実環境・定義確認完了、②163列と親Lookup作成完了、③7件投入中、④権限・読戻し検証待ち、⑤main記録待ち |
+| 現在の工程 | 全5工程完了。163列・親Lookup・7件登録、読取り権限、書込みなしの最終検証に合格 |
 | 現在公開版 | v1.18。職員基本・通勤はDataverse、給与・勤務・保険・税控除は内蔵。アプリ切替は今回対象外 |
 | 承認済み | テーブル作成・読取りに必要な権限追加、必要時のアプリ編集ロック引継ぎ、GitHub変更送信。追加料金設定は未承認で変更しない |
 | 対象ソース | config/dataverse/payrollledger-columns.json、scripts/automation/payrollledger_schema.py・payrollledger_dataverse.py・payrollledger_access.py、automation/payrollledger-run.json、.github/workflows/payrollledger-dataverse.yml |
 | 関連設計 | docs/design/dataverse-payrollledger.md |
 | 関連テスト | tests/automation/test_payrollledger_schema.py、tests/fixtures/payrollledger-7.json |
 | 原本 | 05_基準給与簿DB_v0.1 (3)_テーブル定義書.xlsx、添付ID libfile_83586a2630948191b1204fa937bb6cec |
-| 証跡 | preflight run 35179428426、provision run 35179675557成功。ローカル5件成功 |
+| 証跡 | preflight 35179428426、provision 35179675557、seed 35179933809、verify 35180031165すべて成功。ローカル5件成功。docs/testing/payrollledger-dataverse-results.md・evidence.json |
 | 60分制御 | 起算2026-09-17T03:41:43.436Z、期限04:41:43.436Z。工程変更・修復で延長しない |
+| 今回の権限・料金 | 承認済みの専用Readerへ基準給与簿Read=Globalのみ追加。各行ReadAccessのみを検証。料金設定変更なし |
+| GitHub記録 | PR #48。設計・対応表・fixture・実環境証跡をmainへ統合 |
+| 次の作業 | 今回依頼は完了。給与取得元のDataverse切替・内蔵Payroll削除・アプリ検証と公開は後続の別依頼 |
 | STATUS不一致の処理 | 通勤v1.18完了の旧STATUSから最新依頼の基準給与簿テーブル追加へ移行。通勤の完了記録は以下に保存 |
 
 ## 前回完了：通勤Dataverse切替v1.18

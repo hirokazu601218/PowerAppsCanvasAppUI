@@ -1,0 +1,199 @@
+{
+  "preflight_run": 35179428426,
+  "provision_run": 35179675557,
+  "seed_run": 35179933809,
+  "seed": {
+    "mode": "seed",
+    "checked_at": "2026-09-17T03:54:48.582638+00:00",
+    "state": "PAYROLL_TABLE_DATA_AND_READ_ACCESS_VERIFIED",
+    "parent_count": 25,
+    "parent_entity_set": "crb3c_staffbasics",
+    "parent_primary_id": "crb3c_staffbasicid",
+    "child_exists": true,
+    "base_language": 1041,
+    "organization_id": "9efe0732-a9b0-f111-8ade-002248f061b1",
+    "business_columns": 163,
+    "child_entity_set": "crb3c_payrollledgers",
+    "relationship": "crb3c_staffbasic_payrollledger",
+    "delete_behavior": "Restrict",
+    "seed_count": 7,
+    "created_count": 7,
+    "child_counts": {
+      "009900000018": 0,
+      "009900000012": 1,
+      "009900000025": 0,
+      "009900000013": 0,
+      "009900000016": 0,
+      "009900000019": 0,
+      "009900000005": 1,
+      "009900000017": 0,
+      "009900000011": 1,
+      "009900000002": 0,
+      "009900000007": 0,
+      "009900000021": 0,
+      "009900000024": 0,
+      "009900000022": 0,
+      "009900000014": 0,
+      "009900000020": 0,
+      "009900000015": 0,
+      "009900000004": 1,
+      "009900000003": 3,
+      "009900000006": 0,
+      "009900000023": 0,
+      "009900000001": 0,
+      "009900000010": 0,
+      "009900000008": 0,
+      "009900000009": 0
+    },
+    "parents_unchanged": true,
+    "all_163_values_verified": true,
+    "read_access": {
+      "state": "READ_ACCESS_VERIFIED",
+      "table": "crb3c_payrollledger",
+      "role": "StaffMaster Test Reader",
+      "permission_changed": true,
+      "only_payroll_read_changed": true,
+      "depth": "Global",
+      "readable_rows": 7,
+      "rights": [
+        {
+          "id": "0d617116-0f6e-5a2f-b73f-e49cd6ad2a6a",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "b018f583-555f-5f31-8dd8-dc09b42a9c3e",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "22a8ca01-e9cb-5771-a574-f81716b02880",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "5b64a4c2-4491-564e-a8e9-2f1eeba76951",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "69142286-20d0-5ffe-b458-7d3810c6bc1f",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "cac5655f-2620-521f-bed0-8cc5e243f039",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "92811ba4-393f-516c-9c0c-d068b1af459a",
+          "rights": "ReadAccess"
+        }
+      ],
+      "billing_changes": false
+    }
+  },
+  "approved_read_addition": {
+    "table": "crb3c_payrollledger",
+    "privilege_id": "1b26de18-b638-46a8-8d34-cc68b12c4701",
+    "privilege_name": "prvReadcrb3c_PayrollLedger",
+    "depth": "Global",
+    "role_id": "abbe5d58-c4b1-f111-aaac-e4fb1eff79c7",
+    "role_name": "StaffMaster Test Reader",
+    "direct_user_count": 1,
+    "direct_team_count": 0,
+    "needs_grant": true
+  },
+  "local_tests": {
+    "passed": 5,
+    "failed": 0
+  },
+  "scope": {
+    "table_created": true,
+    "app_changed": false,
+    "app_payroll_source": "embedded",
+    "billing_settings_changed": false
+  },
+  "verify_run": 35180031165,
+  "verify": {
+    "mode": "verify",
+    "checked_at": "2026-09-17T03:56:21.660570+00:00",
+    "state": "PAYROLL_TABLE_DATA_AND_READ_ACCESS_VERIFIED",
+    "parent_count": 25,
+    "parent_entity_set": "crb3c_staffbasics",
+    "parent_primary_id": "crb3c_staffbasicid",
+    "child_exists": true,
+    "base_language": 1041,
+    "organization_id": "9efe0732-a9b0-f111-8ade-002248f061b1",
+    "business_columns": 163,
+    "child_entity_set": "crb3c_payrollledgers",
+    "relationship": "crb3c_staffbasic_payrollledger",
+    "delete_behavior": "Restrict",
+    "seed_count": 7,
+    "created_count": 0,
+    "child_counts": {
+      "009900000018": 0,
+      "009900000012": 1,
+      "009900000025": 0,
+      "009900000013": 0,
+      "009900000016": 0,
+      "009900000019": 0,
+      "009900000005": 1,
+      "009900000017": 0,
+      "009900000011": 1,
+      "009900000002": 0,
+      "009900000007": 0,
+      "009900000021": 0,
+      "009900000024": 0,
+      "009900000022": 0,
+      "009900000014": 0,
+      "009900000020": 0,
+      "009900000015": 0,
+      "009900000004": 1,
+      "009900000003": 3,
+      "009900000006": 0,
+      "009900000023": 0,
+      "009900000001": 0,
+      "009900000010": 0,
+      "009900000008": 0,
+      "009900000009": 0
+    },
+    "parents_unchanged": true,
+    "all_163_values_verified": true,
+    "read_access": {
+      "state": "READ_ACCESS_VERIFIED",
+      "table": "crb3c_payrollledger",
+      "role": "StaffMaster Test Reader",
+      "permission_changed": false,
+      "only_payroll_read_changed": true,
+      "depth": "Global",
+      "readable_rows": 7,
+      "rights": [
+        {
+          "id": "0d617116-0f6e-5a2f-b73f-e49cd6ad2a6a",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "b018f583-555f-5f31-8dd8-dc09b42a9c3e",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "22a8ca01-e9cb-5771-a574-f81716b02880",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "5b64a4c2-4491-564e-a8e9-2f1eeba76951",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "69142286-20d0-5ffe-b458-7d3810c6bc1f",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "cac5655f-2620-521f-bed0-8cc5e243f039",
+          "rights": "ReadAccess"
+        },
+        {
+          "id": "92811ba4-393f-516c-9c0c-d068b1af459a",
+          "rights": "ReadAccess"
+        }
+      ],
+      "billing_changes": false
+    }
+  }
+}
