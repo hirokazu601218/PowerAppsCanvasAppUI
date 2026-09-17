@@ -34,3 +34,5 @@ jobs:
           name: commute-access-audit-${{ github.run_id }}
           path: artifacts/commute-access-audit.json
           retention-days: 14
+
+# Verify the existing reader role is assigned only to the dedicated test user.

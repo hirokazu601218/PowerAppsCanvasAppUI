@@ -26,13 +26,18 @@ assert len(users) == 1 and not users[0]['isdisabled'], 'Resolve active dedicated
 uid = users[0]['systemuserid']
 privileges = get('systemusers(' + uid + ')/Microsoft.Dynamics.CRM.RetrieveUserPrivileges()')['RolePrivileges']
 roles = get('systemusers(' + uid + ')/systemuserroles_association?$select=name,roleid')['value']
+role_scope = []
+for role in roles:
+    users = get('roles(' + role['roleid'] + ')/systemuserroles_association?$select=systemuserid')['value']
+    teams = get('roles(' + role['roleid'] + ')/teamroles_association?$select=teamid')['value']
+    role_scope.append({'role_id': role['roleid'], 'direct_user_count': len(users), 'direct_team_count': len(teams), 'only_target_user': len(users) == 1 and users[0]['systemuserid'] == uid and not teams})
 tables = {}
 for name in ('crb3c_staffbasic', 'crb3c_commute'):
     meta = get("EntityDefinitions(LogicalName='" + name + "')?$select=LogicalName,Privileges")
     needed = next(p for p in meta['Privileges'] if p['PrivilegeType'] == 'Read')
     granted = [p for p in privileges if p['PrivilegeId'] == needed['PrivilegeId']]
     tables[name] = {'read_privilege_id': needed['PrivilegeId'], 'read_privilege_name': needed['Name'], 'granted': bool(granted), 'returned_depths': [p['Depth'] for p in granted]}
-result = {'user': cfg['test_user'], 'roles': [{'name': r['name'], 'id': r['roleid']} for r in roles], 'tables': tables, 'permission_changes': False, 'app_changes': False, 'state': 'ACCESS_PRESENT' if tables['crb3c_commute']['granted'] else 'PERMISSION_APPROVAL_REQUIRED'}
+result = {'user': cfg['test_user'], 'roles': [{'name': r['name'], 'id': r['roleid']} for r in roles], 'tables': tables, 'role_assignment_scope': role_scope, 'permission_changes': False, 'app_changes': False, 'state': 'ACCESS_PRESENT' if tables['crb3c_commute']['granted'] else 'PERMISSION_APPROVAL_REQUIRED'}
 Path('artifacts').mkdir(exist_ok=True)
 Path('artifacts/commute-access-audit.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
 print(json.dumps(result, ensure_ascii=False))
