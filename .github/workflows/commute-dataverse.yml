@@ -1,0 +1,63 @@
+name: Commute Dataverse staged setup
+on:
+  push:
+    branches: [automation/dataverse-commute]
+    paths: [automation/commute-run.json]
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  dataverse:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check original Work deadline
+        run: |
+          python - <<'PY'
+          import json,time
+          from datetime import datetime
+          r=json.load(open('automation/commute-run.json'))
+          remaining=3600-(time.time()-datetime.fromisoformat(r['started_at']).timestamp())
+          assert remaining>120, 'PAUSED_TIME_LIMIT: resume requires a new user instruction'
+          with open(__import__('os').environ['GITHUB_ENV'],'a') as f:
+              f.write('REMAINING_SECONDS='+str(int(remaining)-60)+'\n')
+          PY
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Execute requested Dataverse stage within original deadline
+        run: |
+          remaining=$(python - <<'PY'
+          import json,time
+          from datetime import datetime
+          r=json.load(open('automation/commute-run.json'))
+          print(max(0,int(3600-(time.time()-datetime.fromisoformat(r['started_at']).timestamp()))-60))
+          PY
+          )
+          if [ "$remaining" -le 0 ]; then
+            echo 'PAUSED_TIME_LIMIT: no further changes' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          timeout --kill-after=5 "$remaining" python -u scripts/automation/commute_dataverse.py
+      - name: Report interrupted or failed execution
+        if: failure() || cancelled()
+        run: |
+          mkdir -p artifacts/commute
+          printf '%s\n' '処理は未完了です。最後の成功記録を確認し、変更要求を再送する前にサーバー状態を読戻してください。60分期限後の自動再開は禁止です。' > artifacts/commute/interruption.md
+          cat artifacts/commute/interruption.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve non-secret evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: commute-dataverse-${{ github.run_id }}
+          path: artifacts/commute
+          retention-days: 14
+          if-no-files-found: warn
