@@ -22,21 +22,24 @@
 
 |項目|指定|
 |---|---|
-|対象機能|通勤の内蔵データ削除・Dataverse参照・認定簿検証・合格後公開（次候補v1.18）|
-|現在公開版|v1.17を保持。本作業では公開アプリ・接続・YAML／Fxをまだ変更していない|
-|現在の工程|①確認完了、②移行方針案作成。通勤Read権限不足につき③～⑤は停止。⑥監査と再開計画をGitHub記録|
-|停止理由|ユーザー指定「権限変更や追加料金が発生しなければ最後まで」。新しいT_通勤のRead追加は未承認|
-|必要な承認|専用テスト利用者だけに割当済みのStaffMaster Test ReaderへT_通勤のRead=Globalだけ追加。他操作・管理者権限・ライセンス変更なし|
-|対象ソース|scripts/automation/commute_access_audit.py、.github/workflows/commute-access-audit.yml、automation/commute-read-permission-proposal.json|
+|対象機能|通勤の内蔵データ削除・Dataverse参照・認定簿検証・合格後公開（候補v1.18）|
+|現在公開版|v1.17。今回アプリ接続・保存・公開・現行YAML/Fxは未変更|
+|工程① 読取り権限|完了。ユーザー承認に基づきStaffMaster Test ReaderへT_通勤のRead=Globalだけ追加。対象利用者1名・チーム0、他特権差分なし、6行Readを確認|
+|工程② 接続追加|停止。Studioは編集可能。T_通勤追加クリックを自動承認審査が拒否|
+|工程③ Fx整理|35プロパティの修正候補と認定簿69項目対応を準備。内蔵通勤・共通帳票ダミー除去、他履歴保持、選択認定・0件・再読込対応。現行ソースへ未反映|
+|工程④ 検証|候補ローカル5件PASS。6件/同姓同名/0件/再読込E2Eを準備。公式コンパイル・実機・PDFは未実施|
+|工程⑤ 公開|未実施。v1.17を維持|
+|工程⑥ 記録|権限結果・未反映候補・停止点をGitHubへ記録|
+|停止理由|一般的なDataverse Premium注意表示を理由に、自動承認審査が追加料金なしと確定できないと判断。現在の環境詳細はDeveloper、既存職員基本は既にDataverseを利用|
+|承認済み|T_通勤 Readの追加、別Work完了後の編集ロック引継ぎ、GitHub変更送信。ロック引継ぎ承認を再度求めない|
+|次の確認|T_通勤を既存アプリに接続追加する操作の再開承認。ライセンス購入・従量課金は未操作で、引き続き別承認が必要|
+|対象ソース|scripts/automation/prepare_commute_v118.py、src/staff-master/patches/v1.18-candidate、tests/automation/test_commute_app_candidate.py、e2e/commute-v118|
 |関連設計|docs/design/commute-app-migration-plan.md、dataverse-commute.md、hybrid-test-data.md、ledger-v1.17.md|
-|関連テスト・証跡|docs/testing/commute-access-audit.json。read-only run 35166791941、scope再確認run 35166925612成功|
-|権限確認結果|職員基本Readあり、通勤Readなし（継承含む）。既存Readerロールは対象ユーザー1名・チーム0にのみ割当|
-|今回の追加読取り対象|powerapps/canvas-v3/Src/App.pa.yaml、Screen1.pa.yaml、render_staff_history.py、e2e/hybrid、automation/change.json、staff-ledger-acceptance.yml|
-|Library資料|今回追加の読取りなし。現行GitHubソースと実環境の権限が正本。旧添付HTMLの再移植はしない|
-|再開位置|ユーザー承認後、提案JSONの対象・ロール割当先・特権を再確認してReadのみ付与。Studio接続追加→Fx修正→実機検証→合格後公開|
-|60分制御|起算2026-09-17T00:27:45.992Z。60分前に権限承認条件で停止。両監査run終了済み、自動再開なし|
+|関連証跡|docs/testing/commute-read-grant.json、commute-v118-preparation.md。成功run 35167594382|
+|再開位置|Studioで接続T_通勤追加→現在の保存済みソースとの照合→35変更を既存111コントロールへ適用→コンパイル→6件と0件/帳票/PDF回帰→合格後公開→strict読戻し|
+|60分制御|起算2026-09-17T00:39:24.429Z、上限01:39:24.429Z。権限runは終了済み。接続操作の審査拒否により期限前に停止し、自動再開しない|
 
-最新依頼により前回の「テーブルのみ完了」から「アプリ取得元切替」へ変更。内蔵通勤5件と認定簿の合成値は公開版にまだ残る。今回の確認をアプリ修正・実機表示試験・公開完了と扱わない。
+候補作成・ローカル5件PASSはアプリ反映・実機試験・公開完了を意味しない。公開版には内蔵通勤5件と共通帳票ダミーが残っている。今回追加したソースはレビュー・再開用で、現行コード生成・標準配布フローへまだ組み込まない。
 
 ## 前回完了：通勤テーブル・6件追加（PR #44）
 

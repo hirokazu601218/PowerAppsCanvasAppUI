@@ -1,5 +1,5 @@
 {
-  "approved": false,
+  "approved": true,
   "reason": "New T_通勤 table lacks dedicated-user Read privilege; user requires prior permission-change approval.",
   "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
   "target_user": "powerapps-test@govaca.onmicrosoft.com",
@@ -26,5 +26,9 @@
     "Verify target environment, privilege ID and current role again before addition"
   ],
   "charges_or_license_changes": false,
-  "status": "PROPOSAL_ONLY_NOT_APPLIED"
+  "status": "APPLIED_AND_VERIFIED",
+  "approval": "ユーザー: 権限付与して進めて",
+  "work_started_at": "2026-09-17T00:39:24.429Z",
+  "execution_run": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35167594382",
+  "verified_readable_fixture_count": 6
 }

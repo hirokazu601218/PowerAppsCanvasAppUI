@@ -1,0 +1,367 @@
+{
+  "state": "UNCOMPILED_CANDIDATE_NOT_DEPLOYED",
+  "baseVersion": "1.17",
+  "targetVersion": "1.18",
+  "base_commit": "c98777dda8c663c41710683d0bdb03bb55047f3b",
+  "baseline_source_sha256": {
+    "App.pa.yaml": "4958192603f995b14eb6218e037cc5bf5e61da85c050fb11405ad45274f0acae",
+    "Screen1.pa.yaml": "9dca4ec63ac9b043963b5de93fb7c2ffcd62d69b9d281c64c14d30a54e011b79"
+  },
+  "dependencies": [
+    "Studio data source T_通勤 connected in existing environment",
+    "Approved dedicated-user Read permission",
+    "Existing controls and 111 identifiers preserved"
+  ],
+  "changes": [
+    {
+      "source": "Src/App.pa.yaml",
+      "control": "App",
+      "parent_path": "App",
+      "property": "Formulas",
+      "operation": "property_update",
+      "before": "=StaffReferenceDate = DateValue(Text(DateAdd(Now(), TimeZoneOffset(Now()) + 540, TimeUnit.Minutes), \"yyyy-mm-dd\"), \"en-US\");\nStaffTestCount = CountIf('M_職員基本', true);\nStaffBasicView = If(StaffTestCount <= 100, ForAll(\n    SortByColumns('M_職員基本', \"crb3c_staffnumber\", SortOrder.Ascending) As s,\n    {\n        StaffId: s.crb3c_staffnumber,\n        Name: s.crb3c_fullname,\n        Org: s.crb3c_orgshort,\n        OrgFull: s.crb3c_orgfull,\n        Birth: Text(s.crb3c_birthdate, \"yyyy/mm/dd\"),\n        Sex: Text(s.crb3c_sex),\n        Hire: Text(s.crb3c_hiredate, \"yyyy/mm/dd\"),\n        Leave: Text(s.crb3c_leavedate, \"yyyy/mm/dd\"),\n        Status: If(IsBlank(s.crb3c_hiredate) || s.crb3c_hiredate > StaffReferenceDate, \"採用前\", !IsBlank(s.crb3c_leavedate) && s.crb3c_leavedate < StaffReferenceDate, \"退職\", \"在籍\"),\n        WorkReg: If(Text(s.crb3c_workregistered)=\"登録\",\"登録済\",Text(s.crb3c_workregistered)),\n        Daily: s.crb3c_dailyrate,\n        Hours: If(IsBlank(s.crb3c_workminutes), Blank(), Text(RoundDown(s.crb3c_workminutes/60,0),\"0\") & \":\" & Text(Mod(s.crb3c_workminutes,60),\"00\")),\n        CommuteReg: If(Text(s.crb3c_commuteregistered)=\"登録\",\"登録済\",Text(s.crb3c_commuteregistered)),\n        Method: s.crb3c_commutemethod,\n        Pass: s.crb3c_passamount,\n        Fare: s.crb3c_onewayfare,\n        SocialReg: \"\",\n        Health: Text(s.crb3c_mutualshort),\n        Pension: Text(s.crb3c_pension),\n        ResidentReg: \"\",\n        TaxMay: Blank(),\n        TaxJune: Blank(),\n        TaxJuly: Blank(),\n        FixedReg: If(IsBlank(s.crb3c_taxclass),\"\",\"登録済\"),\n        TaxClass: Text(s.crb3c_taxclass),\n        Employment: Text(s.crb3c_employmentinsurance)\n    }\n));\n// Synthetic histories: source is tests/fixtures/staff-history-synthetic.json.\nStaffWorkHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"W-3-CURRENT\", Start:Date(2026,4,1), End:Date(2027,3,31), Daily:15000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"職員03の勤務条件\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000003\", RecordId:\"W-3-PAST\", Start:Date(2025,4,1), End:Date(2026,3,31), Daily:14000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"過去の合成テスト\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000003\", RecordId:\"W-3-FUTURE\", Start:Date(2027,4,1), End:Date(2099,3,31), Daily:16000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"将来の合成テスト\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000005\", RecordId:\"W-5-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:0, Scheduled:\"0:00\", Hours:\"0:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員05の勤務条件\", Finish:\"17:00\", DailyHours:0.0},\n    {StaffId:\"009900000011\", RecordId:\"W-11-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11100, Scheduled:\"8:00\", Hours:\"8:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員11の勤務条件\", Finish:\"17:00\", DailyHours:8.0},\n    {StaffId:\"009900000012\", RecordId:\"W-12-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11200, Scheduled:\"0:00\", Hours:\"0:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員12の勤務条件\", Finish:\"17:00\", DailyHours:0.0},\n    {StaffId:\"009900000025\", RecordId:\"W-25-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:12500, Scheduled:\"6:00\", Hours:\"6:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員25の勤務条件\", Finish:\"17:00\", DailyHours:6.0}\n);\nStaffCommuteHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"C-3-2026\", Start:Date(2026,4,1), End:Date(2027,3,31), Method:\"半年定期\", RecognitionId:\"TEST-TK-003-2026\", Year:2026, Monthly:1300, ICFare:0, LedgerPass:7800, LedgerMonths:6, LedgerFrom:\"架空03駅\", LedgerTo:\"テスト中央駅\", April:7800, May:0, June:0, July:0, August:0, September:0, October:7800, November:0, December:0, January:0, February:0, March:0},\n    {StaffId:\"009900000005\", RecordId:\"C-5-2026\", Start:Date(2026,4,1), End:Date(2027,3,31), Method:\"半年定期\", RecognitionId:\"TEST-TK-005-2026\", Year:2026, Monthly:0, ICFare:0, LedgerPass:0, LedgerMonths:6, LedgerFrom:\"架空05駅\", LedgerTo:\"テスト中央駅\", April:0, May:0, June:0, July:0, August:0, September:0, October:0, November:0, December:0, January:0, February:0, March:0},\n    {StaffId:\"009900000011\", RecordId:\"C-11-2026\", Start:Date(2026,4,1), End:Date(2027,3,31), Method:\"半年定期\", RecognitionId:\"TEST-TK-011-2026\", Year:2026, Monthly:2100, ICFare:0, LedgerPass:12600, LedgerMonths:6, LedgerFrom:\"架空11駅\", LedgerTo:\"テスト中央駅\", April:12600, May:0, June:0, July:0, August:0, September:0, October:12600, November:0, December:0, January:0, February:0, March:0},\n    {StaffId:\"009900000012\", RecordId:\"C-12-2026\", Start:Date(2026,4,1), End:Date(2027,3,31), Method:\"半年定期\", RecognitionId:\"TEST-TK-012-2026\", Year:2026, Monthly:2200, ICFare:0, LedgerPass:13200, LedgerMonths:6, LedgerFrom:\"架空12駅\", LedgerTo:\"テスト中央駅\", April:13200, May:0, June:0, July:0, August:0, September:0, October:13200, November:0, December:0, January:0, February:0, March:0},\n    {StaffId:\"009900000025\", RecordId:\"C-25-2026\", Start:Date(2026,4,1), End:Date(2027,3,31), Method:\"半年定期\", RecognitionId:\"TEST-TK-025-2026\", Year:2026, Monthly:3500, ICFare:0, LedgerPass:21000, LedgerMonths:6, LedgerFrom:\"架空25駅\", LedgerTo:\"テスト中央駅\", April:21000, May:0, June:0, July:0, August:0, September:0, October:21000, November:0, December:0, January:0, February:0, March:0}\n);\nStaffSocialHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"S-3-2026\", Category:\"合成テスト\", Birth:\"2000/04/01\", AgeApril:26, AgeMarch:27, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:203000},\n    {StaffId:\"009900000005\", RecordId:\"S-5-2026\", Category:\"合成テスト\", Birth:\"2000/04/01\", AgeApril:26, AgeMarch:27, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:0},\n    {StaffId:\"009900000011\", RecordId:\"S-11-2026\", Category:\"合成テスト\", Birth:\"1981/04/01\", AgeApril:45, AgeMarch:46, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:211000},\n    {StaffId:\"009900000012\", RecordId:\"S-12-2026\", Category:\"合成テスト\", Birth:\"1982/04/01\", AgeApril:44, AgeMarch:45, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:212000},\n    {StaffId:\"009900000025\", RecordId:\"S-25-2026\", Category:\"合成テスト\", Birth:\"1995/04/01\", AgeApril:31, AgeMarch:32, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:225000}\n);\nStaffTaxHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"T-3-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員03専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000005\", RecordId:\"T-5-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"未設定\", Saving:0, Loan:0, Dependents:0, Note:\"職員05専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000011\", RecordId:\"T-11-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員11専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000012\", RecordId:\"T-12-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"乙\", Employment:\"未加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員12専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000025\", RecordId:\"T-25-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員25専用の合成データ・計算検証対象外\"}\n);\nStaffPayrollHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"P-3-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:\"職員03専用・9月・合成テスト\"},\n    {StaffId:\"009900000003\", RecordId:\"P-3-2026-08\", Year:2026, PayDate:Date(2026,8,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:\"職員03専用・8月・合成テスト\"},\n    {StaffId:\"009900000005\", RecordId:\"P-5-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:0, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:0, Deduct:0, DeductAdj:0, Net:0, Note:\"職員05専用・9月・合成テスト\"},\n    {StaffId:\"009900000011\", RecordId:\"P-11-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:\"職員11専用・9月・合成テスト\"},\n    {StaffId:\"009900000011\", RecordId:\"P-11-2026-08\", Year:2026, PayDate:Date(2026,8,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:\"職員11専用・8月・合成テスト\"},\n    {StaffId:\"009900000012\", RecordId:\"P-12-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:224000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:224000, Deduct:21200, DeductAdj:0, Net:202800, Note:\"職員12専用・9月・合成テスト\"},\n    {StaffId:\"009900000025\", RecordId:\"P-25-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:250000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:250000, Deduct:22500, DeductAdj:0, Net:227500, Note:\"職員25専用・9月・合成テスト\"}\n);\nStaffResidentHistory = FirstN(Table({StaffId:\"\",Amount:0,Period:\"\",Start:Date(2000,1,1),End:Date(2000,1,1)}),0);\nStaffLedgerTemplate = Table(\n    {Field:\"event_date_year\", Value:\"8\"},\n    {Field:\"event_date_month\", Value:\"4\"},\n    {Field:\"event_date_day\", Value:\"1\"},\n    {Field:\"submitted_date_year\", Value:\"8\"},\n    {Field:\"submitted_date_month\", Value:\"4\"},\n    {Field:\"submitted_date_day\", Value:\"1\"},\n    {Field:\"accepted_date_year\", Value:\"8\"},\n    {Field:\"accepted_date_month\", Value:\"4\"},\n    {Field:\"accepted_date_day\", Value:\"1\"},\n    {Field:\"route_1_transport\", Value:\"テスト鉄道\"},\n    {Field:\"route_1_ticket_type\", Value:\"6箇月定期（合成）\"},\n    {Field:\"route_1_other_basis\", Value:\"\"},\n    {Field:\"route_1_season_basis\", Value:\"\"},\n    {Field:\"route_1_other_amount\", Value:\"0\"},\n    {Field:\"route_1_period_start_year\", Value:\"令和8年\"},\n    {Field:\"route_1_period_start_month\", Value:\"4月から\"},\n    {Field:\"route_1_payment_months\", Value:\"4・10月\"},\n    {Field:\"route_1_remarks\", Value:\"合成テスト・正式認定には使用不可\"},\n    {Field:\"route_2_transport\", Value:\"\"},\n    {Field:\"route_2_section_from\", Value:\"\"},\n    {Field:\"route_2_section_to\", Value:\"\"},\n    {Field:\"route_2_ticket_type\", Value:\"\"},\n    {Field:\"route_2_other_basis\", Value:\"\"},\n    {Field:\"route_2_season_basis\", Value:\"\"},\n    {Field:\"route_2_other_amount\", Value:\"\"},\n    {Field:\"route_2_season_amount\", Value:\"\"},\n    {Field:\"route_2_season_months\", Value:\"\"},\n    {Field:\"route_2_monthly_amount\", Value:\"\"},\n    {Field:\"route_2_period_start_year\", Value:\"\"},\n    {Field:\"route_2_period_start_month\", Value:\"\"},\n    {Field:\"route_2_payment_months\", Value:\"\"},\n    {Field:\"route_2_remarks\", Value:\"\"},\n    {Field:\"route_3_transport\", Value:\"\"},\n    {Field:\"route_3_section_from\", Value:\"\"},\n    {Field:\"route_3_section_to\", Value:\"\"},\n    {Field:\"route_3_ticket_type\", Value:\"\"},\n    {Field:\"route_3_other_basis\", Value:\"\"},\n    {Field:\"route_3_season_basis\", Value:\"\"},\n    {Field:\"route_3_other_amount\", Value:\"\"},\n    {Field:\"route_3_season_amount\", Value:\"\"},\n    {Field:\"route_3_season_months\", Value:\"\"},\n    {Field:\"route_3_monthly_amount\", Value:\"\"},\n    {Field:\"route_3_period_start_year\", Value:\"\"},\n    {Field:\"route_3_period_start_month\", Value:\"\"},\n    {Field:\"route_3_payment_months\", Value:\"\"},\n    {Field:\"route_3_remarks\", Value:\"\"},\n    {Field:\"route_4_transport\", Value:\"\"},\n    {Field:\"route_4_section_from\", Value:\"\"},\n    {Field:\"route_4_section_to\", Value:\"\"},\n    {Field:\"route_4_ticket_type\", Value:\"\"},\n    {Field:\"route_4_other_basis\", Value:\"\"},\n    {Field:\"route_4_season_basis\", Value:\"\"},\n    {Field:\"route_4_other_amount\", Value:\"\"},\n    {Field:\"route_4_season_amount\", Value:\"\"},\n    {Field:\"route_4_season_months\", Value:\"\"},\n    {Field:\"route_4_monthly_amount\", Value:\"\"},\n    {Field:\"route_4_period_start_year\", Value:\"\"},\n    {Field:\"route_4_period_start_month\", Value:\"\"},\n    {Field:\"route_4_payment_months\", Value:\"\"},\n    {Field:\"route_4_remarks\", Value:\"\"}\n);",
+      "after": "=StaffReferenceDate = DateValue(Text(DateAdd(Now(), TimeZoneOffset(Now()) + 540, TimeUnit.Minutes), \"yyyy-mm-dd\"), \"en-US\");\nStaffTestCount = CountIf('M_職員基本', true);\nStaffBasicView = If(StaffTestCount <= 100, ForAll(\n    SortByColumns('M_職員基本', \"crb3c_staffnumber\", SortOrder.Ascending) As s,\n    {\n        StaffId: s.crb3c_staffnumber,\n        Name: s.crb3c_fullname,\n        Org: s.crb3c_orgshort,\n        OrgFull: s.crb3c_orgfull,\n        Birth: Text(s.crb3c_birthdate, \"yyyy/mm/dd\"),\n        Sex: Text(s.crb3c_sex),\n        Hire: Text(s.crb3c_hiredate, \"yyyy/mm/dd\"),\n        Leave: Text(s.crb3c_leavedate, \"yyyy/mm/dd\"),\n        Status: If(IsBlank(s.crb3c_hiredate) || s.crb3c_hiredate > StaffReferenceDate, \"採用前\", !IsBlank(s.crb3c_leavedate) && s.crb3c_leavedate < StaffReferenceDate, \"退職\", \"在籍\"),\n        WorkReg: If(Text(s.crb3c_workregistered)=\"登録\",\"登録済\",Text(s.crb3c_workregistered)),\n        Daily: s.crb3c_dailyrate,\n        Hours: If(IsBlank(s.crb3c_workminutes), Blank(), Text(RoundDown(s.crb3c_workminutes/60,0),\"0\") & \":\" & Text(Mod(s.crb3c_workminutes,60),\"00\")),\n        CommuteReg: If(Text(s.crb3c_commuteregistered)=\"登録\",\"登録済\",Text(s.crb3c_commuteregistered)),\n        Method: s.crb3c_commutemethod,\n        Pass: s.crb3c_passamount,\n        Fare: s.crb3c_onewayfare,\n        SocialReg: \"\",\n        Health: Text(s.crb3c_mutualshort),\n        Pension: Text(s.crb3c_pension),\n        ResidentReg: \"\",\n        TaxMay: Blank(),\n        TaxJune: Blank(),\n        TaxJuly: Blank(),\n        FixedReg: If(IsBlank(s.crb3c_taxclass),\"\",\"登録済\"),\n        TaxClass: Text(s.crb3c_taxclass),\n        Employment: Text(s.crb3c_employmentinsurance)\n    }\n));\n// Commute records come only from Dataverse; no built-in commute fallback.\nStaffSelected = If(Coalesce(varStaffChosen111,false),varStaff111,First(StaffBasicView));\nStaffCommuteHistory = SortByColumns(\n    Filter('T_通勤', '職員基本'.職員番号 = StaffSelected.StaffId),\n    \"crb3c_startdate\",SortOrder.Ascending,\"crb3c_recognitionid\",SortOrder.Ascending\n);\nStaffLedgerFields = With({c:varLedgerCommute111,s:varLedgerStaff111},Table(\n    {Field:\"employee_name\",Value:s.Name},\n    {Field:\"employee_number\",Value:s.StaffId},\n    {Field:\"organization\",Value:s.Org},\n    {Field:\"event_date_year\",Value:If(IsBlank(c.crb3c_eventdate),Blank(),If(Year(c.crb3c_eventdate) >= 2019, Text(Year(c.crb3c_eventdate)-2018,\"0\"), Text(Year(c.crb3c_eventdate),\"0\")))},\n    {Field:\"event_date_month\",Value:If(IsBlank(c.crb3c_eventdate),Blank(),Text(Month(c.crb3c_eventdate),\"0\"))},\n    {Field:\"event_date_day\",Value:If(IsBlank(c.crb3c_eventdate),Blank(),Text(Day(c.crb3c_eventdate),\"0\"))},\n    {Field:\"submitted_date_year\",Value:If(IsBlank(c.crb3c_submitteddate),Blank(),If(Year(c.crb3c_submitteddate) >= 2019, Text(Year(c.crb3c_submitteddate)-2018,\"0\"), Text(Year(c.crb3c_submitteddate),\"0\")))},\n    {Field:\"submitted_date_month\",Value:If(IsBlank(c.crb3c_submitteddate),Blank(),Text(Month(c.crb3c_submitteddate),\"0\"))},\n    {Field:\"submitted_date_day\",Value:If(IsBlank(c.crb3c_submitteddate),Blank(),Text(Day(c.crb3c_submitteddate),\"0\"))},\n    {Field:\"accepted_date_year\",Value:If(IsBlank(c.crb3c_receiveddate),Blank(),If(Year(c.crb3c_receiveddate) >= 2019, Text(Year(c.crb3c_receiveddate)-2018,\"0\"), Text(Year(c.crb3c_receiveddate),\"0\")))},\n    {Field:\"accepted_date_month\",Value:If(IsBlank(c.crb3c_receiveddate),Blank(),Text(Month(c.crb3c_receiveddate),\"0\"))},\n    {Field:\"accepted_date_day\",Value:If(IsBlank(c.crb3c_receiveddate),Blank(),Text(Day(c.crb3c_receiveddate),\"0\"))},\n    {Field:\"route_1_transport\",Value:c.crb3c_route1_operator},\n    {Field:\"route_1_section_from\",Value:c.crb3c_route1_from},\n    {Field:\"route_1_section_to\",Value:c.crb3c_route1_to},\n    {Field:\"route_1_ticket_type\",Value:c.crb3c_route1_tickettype},\n    {Field:\"route_1_other_basis\",Value:If(IsBlank(c.crb3c_route1_ticketbasis),Blank(),Text(c.crb3c_route1_ticketbasis,\"0.####\"))},\n    {Field:\"route_1_season_basis\",Value:If(IsBlank(c.crb3c_route1_distancekm),Blank(),Text(c.crb3c_route1_distancekm,\"0.####\"))},\n    {Field:\"route_1_other_amount\",Value:If(IsBlank(c.crb3c_route1_ticketamount),Blank(),Text(c.crb3c_route1_ticketamount,\"#,##0\"))},\n    {Field:\"route_1_season_amount\",Value:If(IsBlank(c.crb3c_route1_passamount),Blank(),Text(c.crb3c_route1_passamount,\"#,##0\"))},\n    {Field:\"route_1_season_months\",Value:If(IsBlank(c.crb3c_route1_passmonths),Blank(),Text(c.crb3c_route1_passmonths,\"0\"))},\n    {Field:\"route_1_monthly_amount\",Value:If(IsBlank(c.crb3c_route1_amount),Blank(),Text(c.crb3c_route1_amount,\"#,##0\"))},\n    {Field:\"route_1_period_start_year\",Value:If(IsBlank(c.crb3c_route1_recognitionstart),Blank(),If(Year(c.crb3c_route1_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route1_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route1_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_1_period_start_month\",Value:If(IsBlank(c.crb3c_route1_recognitionstart),Blank(),Text(Month(c.crb3c_route1_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_1_payment_months\",Value:If(IsBlank(c.crb3c_route1_paymonth),Blank(),Text(c.crb3c_route1_paymonth,\"0\") & \"月\")},\n    {Field:\"route_1_remarks\",Value:c.crb3c_route1_remarks},\n    {Field:\"route_2_transport\",Value:c.crb3c_route2_operator},\n    {Field:\"route_2_section_from\",Value:c.crb3c_route2_from},\n    {Field:\"route_2_section_to\",Value:c.crb3c_route2_to},\n    {Field:\"route_2_ticket_type\",Value:c.crb3c_route2_tickettype},\n    {Field:\"route_2_other_basis\",Value:If(IsBlank(c.crb3c_route2_ticketbasis),Blank(),Text(c.crb3c_route2_ticketbasis,\"0.####\"))},\n    {Field:\"route_2_season_basis\",Value:If(IsBlank(c.crb3c_route2_distancekm),Blank(),Text(c.crb3c_route2_distancekm,\"0.####\"))},\n    {Field:\"route_2_other_amount\",Value:If(IsBlank(c.crb3c_route2_ticketamount),Blank(),Text(c.crb3c_route2_ticketamount,\"#,##0\"))},\n    {Field:\"route_2_season_amount\",Value:If(IsBlank(c.crb3c_route2_passamount),Blank(),Text(c.crb3c_route2_passamount,\"#,##0\"))},\n    {Field:\"route_2_season_months\",Value:If(IsBlank(c.crb3c_route2_passmonths),Blank(),Text(c.crb3c_route2_passmonths,\"0\"))},\n    {Field:\"route_2_monthly_amount\",Value:If(IsBlank(c.crb3c_route2_amount),Blank(),Text(c.crb3c_route2_amount,\"#,##0\"))},\n    {Field:\"route_2_period_start_year\",Value:If(IsBlank(c.crb3c_route2_recognitionstart),Blank(),If(Year(c.crb3c_route2_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route2_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route2_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_2_period_start_month\",Value:If(IsBlank(c.crb3c_route2_recognitionstart),Blank(),Text(Month(c.crb3c_route2_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_2_payment_months\",Value:If(IsBlank(c.crb3c_route2_paymonth),Blank(),Text(c.crb3c_route2_paymonth,\"0\") & \"月\")},\n    {Field:\"route_2_remarks\",Value:c.crb3c_route2_remarks},\n    {Field:\"route_3_transport\",Value:c.crb3c_route3_operator},\n    {Field:\"route_3_section_from\",Value:c.crb3c_route3_from},\n    {Field:\"route_3_section_to\",Value:c.crb3c_route3_to},\n    {Field:\"route_3_ticket_type\",Value:c.crb3c_route3_tickettype},\n    {Field:\"route_3_other_basis\",Value:If(IsBlank(c.crb3c_route3_ticketbasis),Blank(),Text(c.crb3c_route3_ticketbasis,\"0.####\"))},\n    {Field:\"route_3_season_basis\",Value:If(IsBlank(c.crb3c_route3_distancekm),Blank(),Text(c.crb3c_route3_distancekm,\"0.####\"))},\n    {Field:\"route_3_other_amount\",Value:If(IsBlank(c.crb3c_route3_ticketamount),Blank(),Text(c.crb3c_route3_ticketamount,\"#,##0\"))},\n    {Field:\"route_3_season_amount\",Value:If(IsBlank(c.crb3c_route3_passamount),Blank(),Text(c.crb3c_route3_passamount,\"#,##0\"))},\n    {Field:\"route_3_season_months\",Value:If(IsBlank(c.crb3c_route3_passmonths),Blank(),Text(c.crb3c_route3_passmonths,\"0\"))},\n    {Field:\"route_3_monthly_amount\",Value:If(IsBlank(c.crb3c_route3_amount),Blank(),Text(c.crb3c_route3_amount,\"#,##0\"))},\n    {Field:\"route_3_period_start_year\",Value:If(IsBlank(c.crb3c_route3_recognitionstart),Blank(),If(Year(c.crb3c_route3_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route3_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route3_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_3_period_start_month\",Value:If(IsBlank(c.crb3c_route3_recognitionstart),Blank(),Text(Month(c.crb3c_route3_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_3_payment_months\",Value:If(IsBlank(c.crb3c_route3_paymonth),Blank(),Text(c.crb3c_route3_paymonth,\"0\") & \"月\")},\n    {Field:\"route_3_remarks\",Value:c.crb3c_route3_remarks},\n    {Field:\"route_4_transport\",Value:c.crb3c_route4_operator},\n    {Field:\"route_4_section_from\",Value:c.crb3c_route4_from},\n    {Field:\"route_4_section_to\",Value:c.crb3c_route4_to},\n    {Field:\"route_4_ticket_type\",Value:c.crb3c_route4_tickettype},\n    {Field:\"route_4_other_basis\",Value:If(IsBlank(c.crb3c_route4_ticketbasis),Blank(),Text(c.crb3c_route4_ticketbasis,\"0.####\"))},\n    {Field:\"route_4_season_basis\",Value:If(IsBlank(c.crb3c_route4_distancekm),Blank(),Text(c.crb3c_route4_distancekm,\"0.####\"))},\n    {Field:\"route_4_other_amount\",Value:If(IsBlank(c.crb3c_route4_ticketamount),Blank(),Text(c.crb3c_route4_ticketamount,\"#,##0\"))},\n    {Field:\"route_4_season_amount\",Value:If(IsBlank(c.crb3c_route4_passamount),Blank(),Text(c.crb3c_route4_passamount,\"#,##0\"))},\n    {Field:\"route_4_season_months\",Value:If(IsBlank(c.crb3c_route4_passmonths),Blank(),Text(c.crb3c_route4_passmonths,\"0\"))},\n    {Field:\"route_4_monthly_amount\",Value:If(IsBlank(c.crb3c_route4_amount),Blank(),Text(c.crb3c_route4_amount,\"#,##0\"))},\n    {Field:\"route_4_period_start_year\",Value:If(IsBlank(c.crb3c_route4_recognitionstart),Blank(),If(Year(c.crb3c_route4_recognitionstart) >= 2019,\"令和\" & Text(Year(c.crb3c_route4_recognitionstart)-2018,\"0\") & \"年\",Text(Year(c.crb3c_route4_recognitionstart),\"0\") & \"年\"))},\n    {Field:\"route_4_period_start_month\",Value:If(IsBlank(c.crb3c_route4_recognitionstart),Blank(),Text(Month(c.crb3c_route4_recognitionstart),\"0\") & \"月から\")},\n    {Field:\"route_4_payment_months\",Value:If(IsBlank(c.crb3c_route4_paymonth),Blank(),Text(c.crb3c_route4_paymonth,\"0\") & \"月\")},\n    {Field:\"route_4_remarks\",Value:c.crb3c_route4_remarks},\n    {Field:\"monthly_amount_total\",Value:If(IsBlank(c.crb3c_monthlytotal),Blank(),Text(c.crb3c_monthlytotal,\"#,##0\"))}\n));\n// Synthetic histories: source is tests/fixtures/staff-history-synthetic.json.\nStaffWorkHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"W-3-CURRENT\", Start:Date(2026,4,1), End:Date(2027,3,31), Daily:15000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"職員03の勤務条件\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000003\", RecordId:\"W-3-PAST\", Start:Date(2025,4,1), End:Date(2026,3,31), Daily:14000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"過去の合成テスト\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000003\", RecordId:\"W-3-FUTURE\", Start:Date(2027,4,1), End:Date(2099,3,31), Daily:16000, Scheduled:\"7:45\", Hours:\"7:45\", Overtime:0, Change:\"合成テスト\", Reason:\"将来の合成テスト\", Finish:\"17:00\", DailyHours:7.75},\n    {StaffId:\"009900000005\", RecordId:\"W-5-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:0, Scheduled:\"0:00\", Hours:\"0:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員05の勤務条件\", Finish:\"17:00\", DailyHours:0.0},\n    {StaffId:\"009900000011\", RecordId:\"W-11-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11100, Scheduled:\"8:00\", Hours:\"8:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員11の勤務条件\", Finish:\"17:00\", DailyHours:8.0},\n    {StaffId:\"009900000012\", RecordId:\"W-12-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:11200, Scheduled:\"0:00\", Hours:\"0:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員12の勤務条件\", Finish:\"17:00\", DailyHours:0.0},\n    {StaffId:\"009900000025\", RecordId:\"W-25-CURRENT\", Start:Date(2026,4,1), End:Date(2099,3,31), Daily:12500, Scheduled:\"6:00\", Hours:\"6:00\", Overtime:0, Change:\"合成テスト\", Reason:\"職員25の勤務条件\", Finish:\"17:00\", DailyHours:6.0}\n);\nStaffSocialHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"S-3-2026\", Category:\"合成テスト\", Birth:\"2000/04/01\", AgeApril:26, AgeMarch:27, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:203000},\n    {StaffId:\"009900000005\", RecordId:\"S-5-2026\", Category:\"合成テスト\", Birth:\"2000/04/01\", AgeApril:26, AgeMarch:27, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:0},\n    {StaffId:\"009900000011\", RecordId:\"S-11-2026\", Category:\"合成テスト\", Birth:\"1981/04/01\", AgeApril:45, AgeMarch:46, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:211000},\n    {StaffId:\"009900000012\", RecordId:\"S-12-2026\", Category:\"合成テスト\", Birth:\"1982/04/01\", AgeApril:44, AgeMarch:45, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:212000},\n    {StaffId:\"009900000025\", RecordId:\"S-25-2026\", Category:\"合成テスト\", Birth:\"1995/04/01\", AgeApril:31, AgeMarch:32, Care:\"テスト・判定対象外\", PensionExempt:\"テスト・判定対象外\", Elderly:\"テスト・判定対象外\", Grade:0, Monthly:225000}\n);\nStaffTaxHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"T-3-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員03専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000005\", RecordId:\"T-5-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"未設定\", Saving:0, Loan:0, Dependents:0, Note:\"職員05専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000011\", RecordId:\"T-11-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員11専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000012\", RecordId:\"T-12-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"乙\", Employment:\"未加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員12専用の合成データ・計算検証対象外\"},\n    {StaffId:\"009900000025\", RecordId:\"T-25-2026\", Start:Date(2026,4,1), End:Date(2099,3,31), TaxClass:\"甲\", Employment:\"加入\", Saving:0, Loan:0, Dependents:0, Note:\"職員25専用の合成データ・計算検証対象外\"}\n);\nStaffPayrollHistory = Table(\n    {StaffId:\"009900000003\", RecordId:\"P-3-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:\"職員03専用・9月・合成テスト\"},\n    {StaffId:\"009900000003\", RecordId:\"P-3-2026-08\", Year:2026, PayDate:Date(2026,8,18), Base:300000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:300000, Deduct:20300, DeductAdj:0, Net:279700, Note:\"職員03専用・8月・合成テスト\"},\n    {StaffId:\"009900000005\", RecordId:\"P-5-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:0, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:0, Deduct:0, DeductAdj:0, Net:0, Note:\"職員05専用・9月・合成テスト\"},\n    {StaffId:\"009900000011\", RecordId:\"P-11-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:\"職員11専用・9月・合成テスト\"},\n    {StaffId:\"009900000011\", RecordId:\"P-11-2026-08\", Year:2026, PayDate:Date(2026,8,18), Base:222000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:222000, Deduct:21100, DeductAdj:0, Net:200900, Note:\"職員11専用・8月・合成テスト\"},\n    {StaffId:\"009900000012\", RecordId:\"P-12-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:224000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:224000, Deduct:21200, DeductAdj:0, Net:202800, Note:\"職員12専用・9月・合成テスト\"},\n    {StaffId:\"009900000025\", RecordId:\"P-25-2026-09\", Year:2026, PayDate:Date(2026,9,18), Base:250000, BaseAdj:0, Commute:0, CommuteAdj:0, Home:0, HomeAdj:0, Overtime:0, OvertimeAdj:0, Gross:250000, Deduct:22500, DeductAdj:0, Net:227500, Note:\"職員25専用・9月・合成テスト\"}\n);\nStaffResidentHistory = FirstN(Table({StaffId:\"\",Amount:0,Period:\"\",Start:Date(2000,1,1),End:Date(2000,1,1)}),0);",
+      "property_file": "properties/App.Formulas.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblMeta111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conHeader111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=\"v1.17 ／ Dataverse・\" & Text(StaffTestCount) & \"名\"",
+      "after": "=\"v1.18 ／ Dataverse・\" & Text(StaffTestCount) & \"名\"",
+      "property_file": "properties/lblMeta111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblTestNote111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=If(StaffTestCount>100,\"テスト対象の上限（100名）を超えたため一覧を表示できません。\",\"テスト環境：職員基本はDataverseの架空データです。履歴・帳票は内蔵の合成テストデータです。\")",
+      "after": "=If(StaffTestCount>100,\"テスト対象の上限（100名）を超えたため一覧を表示できません。\",\"テスト環境：職員基本・通勤・認定簿はDataverseの架空データです。その他の履歴・給与簿は内蔵テストデータです。\")",
+      "property_file": "properties/lblTestNote111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblSectionCommute111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoCommute:StaffCommuteHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\n\"通勤支給予定\" & \"　\" & Text(CountRows(Filter(demoCommute,StaffId=demoSelected.StaffId))) & \"件\"\n)\n) & \"（内蔵テスト）\"",
+      "after": "=IfError(\"通勤支給予定　\" & Text(CountRows(StaffCommuteHistory)) & \"件（行を選択）\",\"通勤データを取得できません\")",
+      "property_file": "properties/lblSectionCommute111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galCommute111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children",
+      "property": "Items",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoCommute:StaffCommuteHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\nFilter(demoCommute,StaffId=demoSelected.StaffId)\n)\n)",
+      "after": "=StaffCommuteHistory",
+      "property_file": "properties/galCommute111.Items.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblEmptyCommute111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children",
+      "property": "Visible",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView,\ndemoCommute:StaffCommuteHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\nIsEmpty(Filter(demoCommute,StaffId=demoSelected.StaffId))\n)\n)",
+      "after": "=IfError(IsEmpty(StaffCommuteHistory),false)",
+      "property_file": "properties/lblEmptyCommute111.Visible.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galCommute111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children",
+      "property": "Selectable",
+      "operation": "property_update",
+      "before": "=false",
+      "after": "=true",
+      "property_file": "properties/galCommute111.Selectable.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galCommute111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children",
+      "property": "Default",
+      "operation": "property_add",
+      "before": null,
+      "after": "=First(StaffCommuteHistory)",
+      "property_file": "properties/galCommute111.Default.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galCommute111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children",
+      "property": "AccessibleLabel",
+      "operation": "property_update",
+      "before": "=\"Commute 履歴\"",
+      "after": "=\"通勤認定一覧。表示する行を選択してください\"",
+      "property_file": "properties/galCommute111.AccessibleLabel.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galCommute111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children",
+      "property": "ItemAccessibleLabel",
+      "operation": "property_update",
+      "before": "=\"テストデータ行\"",
+      "after": "=ThisItem.crb3c_recognitionid & \" \" & Text(ThisItem.crb3c_startdate,\"yyyy/mm/dd\") & \" \" & ThisItem.crb3c_method",
+      "property_file": "properties/galCommute111.ItemAccessibleLabel.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galCommute111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children",
+      "property": "TemplateFill",
+      "operation": "property_update",
+      "before": "=ColorValue(\"#FFFFFF\")",
+      "after": "=If(ThisItem.IsSelected,ColorValue(\"#E6F2FF\"),Color.White)",
+      "property_file": "properties/galCommute111.TemplateFill.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galCommute111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children",
+      "property": "TabIndex",
+      "operation": "property_add",
+      "before": null,
+      "after": "=0",
+      "property_file": "properties/galCommute111.TabIndex.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblHCommute1110",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=\"適用開始日\"",
+      "after": "=\"適用開始日 / 認定ID\"",
+      "property_file": "properties/lblHCommute1110.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1110",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=If(ThisItem.Start=Date(2099,3,31),\"\",Text(ThisItem.Start,\"yyyy/mm/dd\"))",
+      "after": "=Text(ThisItem.crb3c_startdate,\"yyyy/mm/dd\") & Char(10) & ThisItem.crb3c_recognitionid",
+      "property_file": "properties/lblCCommute1110.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1110",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "OnSelect",
+      "operation": "property_add",
+      "before": null,
+      "after": "=Select(Parent)",
+      "property_file": "properties/lblCCommute1110.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1110",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Fill",
+      "operation": "property_update",
+      "before": "=ColorValue(\"#FFFFFF\")",
+      "after": "=RGBA(0,0,0,0)",
+      "property_file": "properties/lblCCommute1110.Fill.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=If(ThisItem.End=Date(2099,3,31),\"\",Text(ThisItem.End,\"yyyy/mm/dd\"))",
+      "after": "=Text(ThisItem.crb3c_enddate,\"yyyy/mm/dd\")",
+      "property_file": "properties/lblCCommute1111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "OnSelect",
+      "operation": "property_add",
+      "before": null,
+      "after": "=Select(Parent)",
+      "property_file": "properties/lblCCommute1111.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Fill",
+      "operation": "property_update",
+      "before": "=ColorValue(\"#FFFFFF\")",
+      "after": "=RGBA(0,0,0,0)",
+      "property_file": "properties/lblCCommute1111.Fill.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1112",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.Method)",
+      "after": "=ThisItem.crb3c_method",
+      "property_file": "properties/lblCCommute1112.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1112",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "OnSelect",
+      "operation": "property_add",
+      "before": null,
+      "after": "=Select(Parent)",
+      "property_file": "properties/lblCCommute1112.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1112",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Fill",
+      "operation": "property_update",
+      "before": "=ColorValue(\"#FFFFFF\")",
+      "after": "=RGBA(0,0,0,0)",
+      "property_file": "properties/lblCCommute1112.Fill.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1113",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.April,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_month04),Blank(),Text(ThisItem.crb3c_month04,\"#,##0\"))",
+      "property_file": "properties/lblCCommute1113.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1113",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "OnSelect",
+      "operation": "property_add",
+      "before": null,
+      "after": "=Select(Parent)",
+      "property_file": "properties/lblCCommute1113.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1113",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Fill",
+      "operation": "property_update",
+      "before": "=ColorValue(\"#FFFFFF\")",
+      "after": "=RGBA(0,0,0,0)",
+      "property_file": "properties/lblCCommute1113.Fill.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1114",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=Text(ThisItem.October,\"#,##0\")",
+      "after": "=If(IsBlank(ThisItem.crb3c_month10),Blank(),Text(ThisItem.crb3c_month10,\"#,##0\"))",
+      "property_file": "properties/lblCCommute1114.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1114",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "OnSelect",
+      "operation": "property_add",
+      "before": null,
+      "after": "=Select(Parent)",
+      "property_file": "properties/lblCCommute1114.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblCCommute1114",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children/conHScrollCommute111/Children/conSurfaceCommute111/Children/galCommute111/Children",
+      "property": "Fill",
+      "operation": "property_update",
+      "before": "=ColorValue(\"#FFFFFF\")",
+      "after": "=RGBA(0,0,0,0)",
+      "property_file": "properties/lblCCommute1114.Fill.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnCertificate111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children",
+      "property": "DisplayMode",
+      "operation": "property_update",
+      "before": "=If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,With({demoStaff:StaffBasicView,\ndemoCommute:StaffCommuteHistory},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\nIf(varLedgerOpen111,DisplayMode.Disabled,If(IsEmpty(Filter(demoCommute,StaffId=demoSelected.StaffId)),DisplayMode.Disabled,DisplayMode.Edit))\n)\n))",
+      "after": "=If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false) || !IsBlank(varReport111),DisplayMode.Disabled,IfError(If(!IsBlank(galCommute111.Selected.crb3c_commuteid) && galCommute111.Selected.職員基本.職員番号 = StaffSelected.StaffId,DisplayMode.Edit,DisplayMode.Disabled),DisplayMode.Disabled))",
+      "property_file": "properties/btnCertificate111.DisplayMode.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnCertificate111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conRightScroll111/Children/conRightSurface111/Children/conSectionCommute111/Children",
+      "property": "OnSelect",
+      "operation": "property_update",
+      "before": "=With({s:If(Coalesce(varStaffChosen111,false),varStaff111,First(StaffBasicView))},\nWith({c:LookUp(StaffCommuteHistory,StaffId=s.StaffId)},\nSet(varLedgerStaff111,s);\nClearCollect(colLedgerFields111,StaffLedgerTemplate);\nCollect(colLedgerFields111,Table(\n{Field:\"employee_name\",Value:s.Name},{Field:\"employee_number\",Value:s.StaffId},{Field:\"organization\",Value:s.Org},\n{Field:\"route_1_section_from\",Value:c.LedgerFrom},{Field:\"route_1_section_to\",Value:c.LedgerTo},\n{Field:\"route_1_season_amount\",Value:Text(c.LedgerPass,\"#,##0\")},{Field:\"route_1_season_months\",Value:Text(c.LedgerMonths)},\n{Field:\"route_1_monthly_amount\",Value:Text(c.Monthly,\"#,##0\")},{Field:\"monthly_amount_total\",Value:Text(c.Monthly,\"#,##0\")}));\nSet(varLedgerOpen111,true); Set(varLedgerZoom111,1); Set(varLedgerPdfView111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\"); Set(varLedgerFile111,\"\"); Set(varPayroll111,false); Reset(ddLedgerPaper111)))",
+      "after": "=IfError(\n    With({c:galCommute111.Selected,s:StaffSelected},\n        If(IsBlank(c.crb3c_commuteid) || c.職員基本.職員番号 <> s.StaffId,\n            Notify(\"通勤の行を選択してください。\",NotificationType.Warning),\n            Set(varLedgerStaff111,s);\n            Set(varLedgerCommute111,c);\n            ClearCollect(colLedgerFields111,StaffLedgerFields);\n            Set(varLedgerOpen111,true); Set(varLedgerZoom111,1);\n            Set(varLedgerPdfView111,false); Set(varLedgerExport111,false);\n            Set(varLedgerPdfRequested111,false); Set(varLedgerPdf111,Blank());\n            Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\");\n            Set(varLedgerFile111,\"\"); Set(varPayroll111,false); Reset(ddLedgerPaper111)\n        )\n    ),\n    Clear(colLedgerFields111); Set(varLedgerOpen111,false);\n    Notify(\"通勤データを取得できませんでした。再読込してください。\",NotificationType.Error)\n)",
+      "property_file": "properties/btnCertificate111.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "lblLedgerStaff111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conLedgerModal111/Children/conLedgerPanel111/Children/conLedgerHeader111/Children",
+      "property": "Text",
+      "operation": "property_update",
+      "before": "=varLedgerStaff111.Name & \"　職員番号：\" & varLedgerStaff111.StaffId & \"　（テスト）\"",
+      "after": "=varLedgerStaff111.Name & \"　職員番号：\" & varLedgerStaff111.StaffId & \"　認定ID：\" & varLedgerCommute111.crb3c_recognitionid",
+      "property_file": "properties/lblLedgerStaff111.Text.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnLoad111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conHeader111/Children",
+      "property": "OnSelect",
+      "operation": "property_update",
+      "before": "=Refresh('M_職員基本'); Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,\"\"); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\")",
+      "after": "=IfError(Refresh('M_職員基本'); Refresh('T_通勤'),Notify(\"Dataverseの再読込に失敗しました。\",NotificationType.Error)); Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,\"\"); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\"); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)",
+      "property_file": "properties/btnLoad111.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnSearch111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conSearchSidebar111/Children/conLeftScroll111/Children/conLeftSurface111/Children",
+      "property": "OnSelect",
+      "operation": "property_update",
+      "before": "=With({demoStaff:StaffBasicView},\nClearCollect(colResult111,Filter(demoStaff As s,(IsBlank(Trim(txtKeyword111.Text)) || Lower(Trim(txtKeyword111.Text)) in Lower(Text(s.StaffId) & \"|\" & Text(s.Name) & \"|\" & Text(s.OrgFull) & \"|\" & Text(s.Org) & \"|\" & Text(s.Birth) & \"|\" & Text(s.Sex) & \"|\" & Text(s.Hire) & \"|\" & Text(s.Leave) & \"|\" & Text(s.Status) & \"|\" & Text(s.WorkReg) & \"|\" & Text(s.Daily) & \"|\" & Text(s.Hours) & \"|\" & Text(s.CommuteReg) & \"|\" & Text(s.Method) & \"|\" & Text(s.Pass) & \"|\" & Text(s.Fare) & \"|\" & Text(s.SocialReg) & \"|\" & Text(s.Health) & \"|\" & Text(s.Pension) & \"|\" & Text(s.ResidentReg) & \"|\" & Text(s.TaxMay) & \"|\" & Text(s.TaxJune) & \"|\" & Text(s.TaxJuly) & \"|\" & Text(s.FixedReg) & \"|\" & Text(s.TaxClass) & \"|\" & Text(s.Employment))) && (ddOrg111.Selected.Value=\"すべて\" || s.Org=ddOrg111.Selected.Value) && (ddStatus111.Selected.Value=\"すべて\" || s.Status=ddStatus111.Selected.Value))); Set(varResultsReady111,true); Set(varStaffChosen111,true); Set(varPage111,1); Set(varStaff111,First(colResult111)); Reset(galStaff111); Notify(Text(CountRows(colResult111)) & \"件見つかりました\",NotificationType.Information)\n); Set(varReport111,\"\"); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,\"\")",
+      "after": "=With({demoStaff:StaffBasicView},\nClearCollect(colResult111,Filter(demoStaff As s,(IsBlank(Trim(txtKeyword111.Text)) || Lower(Trim(txtKeyword111.Text)) in Lower(Text(s.StaffId) & \"|\" & Text(s.Name) & \"|\" & Text(s.OrgFull) & \"|\" & Text(s.Org) & \"|\" & Text(s.Birth) & \"|\" & Text(s.Sex) & \"|\" & Text(s.Hire) & \"|\" & Text(s.Leave) & \"|\" & Text(s.Status) & \"|\" & Text(s.WorkReg) & \"|\" & Text(s.Daily) & \"|\" & Text(s.Hours) & \"|\" & Text(s.CommuteReg) & \"|\" & Text(s.Method) & \"|\" & Text(s.Pass) & \"|\" & Text(s.Fare) & \"|\" & Text(s.SocialReg) & \"|\" & Text(s.Health) & \"|\" & Text(s.Pension) & \"|\" & Text(s.ResidentReg) & \"|\" & Text(s.TaxMay) & \"|\" & Text(s.TaxJune) & \"|\" & Text(s.TaxJuly) & \"|\" & Text(s.FixedReg) & \"|\" & Text(s.TaxClass) & \"|\" & Text(s.Employment))) && (ddOrg111.Selected.Value=\"すべて\" || s.Org=ddOrg111.Selected.Value) && (ddStatus111.Selected.Value=\"すべて\" || s.Status=ddStatus111.Selected.Value))); Set(varResultsReady111,true); Set(varStaffChosen111,true); Set(varPage111,1); Set(varStaff111,First(colResult111)); Reset(galStaff111); Notify(Text(CountRows(colResult111)) & \"件見つかりました\",NotificationType.Information)\n); Set(varReport111,\"\"); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,\"\"); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)",
+      "property_file": "properties/btnSearch111.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "btnClear111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conSearchSidebar111/Children/conLeftScroll111/Children/conLeftSurface111/Children",
+      "property": "OnSelect",
+      "operation": "property_update",
+      "before": "=Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,\"\"); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\")",
+      "after": "=Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Reset(galStaff111); Set(varReport111,\"\"); Set(varReportPage111,1); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerExport111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerZoom111,1); Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\"); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)",
+      "property_file": "properties/btnClear111.OnSelect.fx"
+    },
+    {
+      "source": "Src/Screen1.pa.yaml",
+      "control": "galStaff111",
+      "parent_path": "Screens/Screen1/Children/conStaffMaster111/Children/conMain111/Children/conSearchSidebar111/Children/conLeftScroll111/Children/conLeftSurface111/Children",
+      "property": "OnSelect",
+      "operation": "property_update",
+      "before": "=Set(varStaff111,ThisItem); Set(varStaffChosen111,true); Set(varReport111,\"\"); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,\"\")",
+      "after": "=Set(varStaff111,ThisItem); Set(varStaffChosen111,true); Set(varReport111,\"\"); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varLedgerPdfView111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerExport111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,\"\"); Reset(galCommute111); Clear(colLedgerFields111); Set(varLedgerCommute111,Blank()); Set(varLedgerOpen111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerPdfView111,false)",
+      "property_file": "properties/galStaff111.OnSelect.fx"
+    }
+  ]
+}

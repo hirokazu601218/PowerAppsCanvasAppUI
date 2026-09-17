@@ -1,0 +1,416 @@
+[
+  {
+    "field": "employee_name",
+    "source": "staff",
+    "column": "Name",
+    "format": "text"
+  },
+  {
+    "field": "employee_number",
+    "source": "staff",
+    "column": "StaffId",
+    "format": "text"
+  },
+  {
+    "field": "organization",
+    "source": "staff",
+    "column": "Org",
+    "format": "text"
+  },
+  {
+    "field": "event_date_year",
+    "source": "commute",
+    "column": "crb3c_eventdate",
+    "format": "year"
+  },
+  {
+    "field": "event_date_month",
+    "source": "commute",
+    "column": "crb3c_eventdate",
+    "format": "month"
+  },
+  {
+    "field": "event_date_day",
+    "source": "commute",
+    "column": "crb3c_eventdate",
+    "format": "day"
+  },
+  {
+    "field": "submitted_date_year",
+    "source": "commute",
+    "column": "crb3c_submitteddate",
+    "format": "year"
+  },
+  {
+    "field": "submitted_date_month",
+    "source": "commute",
+    "column": "crb3c_submitteddate",
+    "format": "month"
+  },
+  {
+    "field": "submitted_date_day",
+    "source": "commute",
+    "column": "crb3c_submitteddate",
+    "format": "day"
+  },
+  {
+    "field": "accepted_date_year",
+    "source": "commute",
+    "column": "crb3c_receiveddate",
+    "format": "year"
+  },
+  {
+    "field": "accepted_date_month",
+    "source": "commute",
+    "column": "crb3c_receiveddate",
+    "format": "month"
+  },
+  {
+    "field": "accepted_date_day",
+    "source": "commute",
+    "column": "crb3c_receiveddate",
+    "format": "day"
+  },
+  {
+    "field": "route_1_transport",
+    "source": "commute",
+    "column": "crb3c_route1_operator",
+    "format": "text"
+  },
+  {
+    "field": "route_1_section_from",
+    "source": "commute",
+    "column": "crb3c_route1_from",
+    "format": "text"
+  },
+  {
+    "field": "route_1_section_to",
+    "source": "commute",
+    "column": "crb3c_route1_to",
+    "format": "text"
+  },
+  {
+    "field": "route_1_ticket_type",
+    "source": "commute",
+    "column": "crb3c_route1_tickettype",
+    "format": "text"
+  },
+  {
+    "field": "route_1_other_basis",
+    "source": "commute",
+    "column": "crb3c_route1_ticketbasis",
+    "format": "decimal"
+  },
+  {
+    "field": "route_1_season_basis",
+    "source": "commute",
+    "column": "crb3c_route1_distancekm",
+    "format": "decimal"
+  },
+  {
+    "field": "route_1_other_amount",
+    "source": "commute",
+    "column": "crb3c_route1_ticketamount",
+    "format": "amount"
+  },
+  {
+    "field": "route_1_season_amount",
+    "source": "commute",
+    "column": "crb3c_route1_passamount",
+    "format": "amount"
+  },
+  {
+    "field": "route_1_season_months",
+    "source": "commute",
+    "column": "crb3c_route1_passmonths",
+    "format": "integer"
+  },
+  {
+    "field": "route_1_monthly_amount",
+    "source": "commute",
+    "column": "crb3c_route1_amount",
+    "format": "amount"
+  },
+  {
+    "field": "route_1_period_start_year",
+    "source": "commute",
+    "column": "crb3c_route1_recognitionstart",
+    "format": "era_year"
+  },
+  {
+    "field": "route_1_period_start_month",
+    "source": "commute",
+    "column": "crb3c_route1_recognitionstart",
+    "format": "start_month"
+  },
+  {
+    "field": "route_1_payment_months",
+    "source": "commute",
+    "column": "crb3c_route1_paymonth",
+    "format": "paymonth"
+  },
+  {
+    "field": "route_1_remarks",
+    "source": "commute",
+    "column": "crb3c_route1_remarks",
+    "format": "text"
+  },
+  {
+    "field": "route_2_transport",
+    "source": "commute",
+    "column": "crb3c_route2_operator",
+    "format": "text"
+  },
+  {
+    "field": "route_2_section_from",
+    "source": "commute",
+    "column": "crb3c_route2_from",
+    "format": "text"
+  },
+  {
+    "field": "route_2_section_to",
+    "source": "commute",
+    "column": "crb3c_route2_to",
+    "format": "text"
+  },
+  {
+    "field": "route_2_ticket_type",
+    "source": "commute",
+    "column": "crb3c_route2_tickettype",
+    "format": "text"
+  },
+  {
+    "field": "route_2_other_basis",
+    "source": "commute",
+    "column": "crb3c_route2_ticketbasis",
+    "format": "decimal"
+  },
+  {
+    "field": "route_2_season_basis",
+    "source": "commute",
+    "column": "crb3c_route2_distancekm",
+    "format": "decimal"
+  },
+  {
+    "field": "route_2_other_amount",
+    "source": "commute",
+    "column": "crb3c_route2_ticketamount",
+    "format": "amount"
+  },
+  {
+    "field": "route_2_season_amount",
+    "source": "commute",
+    "column": "crb3c_route2_passamount",
+    "format": "amount"
+  },
+  {
+    "field": "route_2_season_months",
+    "source": "commute",
+    "column": "crb3c_route2_passmonths",
+    "format": "integer"
+  },
+  {
+    "field": "route_2_monthly_amount",
+    "source": "commute",
+    "column": "crb3c_route2_amount",
+    "format": "amount"
+  },
+  {
+    "field": "route_2_period_start_year",
+    "source": "commute",
+    "column": "crb3c_route2_recognitionstart",
+    "format": "era_year"
+  },
+  {
+    "field": "route_2_period_start_month",
+    "source": "commute",
+    "column": "crb3c_route2_recognitionstart",
+    "format": "start_month"
+  },
+  {
+    "field": "route_2_payment_months",
+    "source": "commute",
+    "column": "crb3c_route2_paymonth",
+    "format": "paymonth"
+  },
+  {
+    "field": "route_2_remarks",
+    "source": "commute",
+    "column": "crb3c_route2_remarks",
+    "format": "text"
+  },
+  {
+    "field": "route_3_transport",
+    "source": "commute",
+    "column": "crb3c_route3_operator",
+    "format": "text"
+  },
+  {
+    "field": "route_3_section_from",
+    "source": "commute",
+    "column": "crb3c_route3_from",
+    "format": "text"
+  },
+  {
+    "field": "route_3_section_to",
+    "source": "commute",
+    "column": "crb3c_route3_to",
+    "format": "text"
+  },
+  {
+    "field": "route_3_ticket_type",
+    "source": "commute",
+    "column": "crb3c_route3_tickettype",
+    "format": "text"
+  },
+  {
+    "field": "route_3_other_basis",
+    "source": "commute",
+    "column": "crb3c_route3_ticketbasis",
+    "format": "decimal"
+  },
+  {
+    "field": "route_3_season_basis",
+    "source": "commute",
+    "column": "crb3c_route3_distancekm",
+    "format": "decimal"
+  },
+  {
+    "field": "route_3_other_amount",
+    "source": "commute",
+    "column": "crb3c_route3_ticketamount",
+    "format": "amount"
+  },
+  {
+    "field": "route_3_season_amount",
+    "source": "commute",
+    "column": "crb3c_route3_passamount",
+    "format": "amount"
+  },
+  {
+    "field": "route_3_season_months",
+    "source": "commute",
+    "column": "crb3c_route3_passmonths",
+    "format": "integer"
+  },
+  {
+    "field": "route_3_monthly_amount",
+    "source": "commute",
+    "column": "crb3c_route3_amount",
+    "format": "amount"
+  },
+  {
+    "field": "route_3_period_start_year",
+    "source": "commute",
+    "column": "crb3c_route3_recognitionstart",
+    "format": "era_year"
+  },
+  {
+    "field": "route_3_period_start_month",
+    "source": "commute",
+    "column": "crb3c_route3_recognitionstart",
+    "format": "start_month"
+  },
+  {
+    "field": "route_3_payment_months",
+    "source": "commute",
+    "column": "crb3c_route3_paymonth",
+    "format": "paymonth"
+  },
+  {
+    "field": "route_3_remarks",
+    "source": "commute",
+    "column": "crb3c_route3_remarks",
+    "format": "text"
+  },
+  {
+    "field": "route_4_transport",
+    "source": "commute",
+    "column": "crb3c_route4_operator",
+    "format": "text"
+  },
+  {
+    "field": "route_4_section_from",
+    "source": "commute",
+    "column": "crb3c_route4_from",
+    "format": "text"
+  },
+  {
+    "field": "route_4_section_to",
+    "source": "commute",
+    "column": "crb3c_route4_to",
+    "format": "text"
+  },
+  {
+    "field": "route_4_ticket_type",
+    "source": "commute",
+    "column": "crb3c_route4_tickettype",
+    "format": "text"
+  },
+  {
+    "field": "route_4_other_basis",
+    "source": "commute",
+    "column": "crb3c_route4_ticketbasis",
+    "format": "decimal"
+  },
+  {
+    "field": "route_4_season_basis",
+    "source": "commute",
+    "column": "crb3c_route4_distancekm",
+    "format": "decimal"
+  },
+  {
+    "field": "route_4_other_amount",
+    "source": "commute",
+    "column": "crb3c_route4_ticketamount",
+    "format": "amount"
+  },
+  {
+    "field": "route_4_season_amount",
+    "source": "commute",
+    "column": "crb3c_route4_passamount",
+    "format": "amount"
+  },
+  {
+    "field": "route_4_season_months",
+    "source": "commute",
+    "column": "crb3c_route4_passmonths",
+    "format": "integer"
+  },
+  {
+    "field": "route_4_monthly_amount",
+    "source": "commute",
+    "column": "crb3c_route4_amount",
+    "format": "amount"
+  },
+  {
+    "field": "route_4_period_start_year",
+    "source": "commute",
+    "column": "crb3c_route4_recognitionstart",
+    "format": "era_year"
+  },
+  {
+    "field": "route_4_period_start_month",
+    "source": "commute",
+    "column": "crb3c_route4_recognitionstart",
+    "format": "start_month"
+  },
+  {
+    "field": "route_4_payment_months",
+    "source": "commute",
+    "column": "crb3c_route4_paymonth",
+    "format": "paymonth"
+  },
+  {
+    "field": "route_4_remarks",
+    "source": "commute",
+    "column": "crb3c_route4_remarks",
+    "format": "text"
+  },
+  {
+    "field": "monthly_amount_total",
+    "source": "commute",
+    "column": "crb3c_monthlytotal",
+    "format": "amount"
+  }
+]
