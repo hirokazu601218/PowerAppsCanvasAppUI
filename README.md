@@ -1,5 +1,10 @@
 # PowerAppsCanvasAppUI
 
+## 最新の公開記録（2026-09-17）
+
+修正1～5とPDF／Download比較ボタンを公開済みです。[変更内容・検証結果・最新YAML](docs/releases/2026-09-17-ui-pdf-comparison.md)を参照してください。職員情報入りPDFの直接保存は未解決です。以下のv1.19記述と旧配布パッケージは過去の基準です。
+
+
 > 対象アプリ：共通（自動テスト／ハンドメイド）
 
 非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubのmainをChatGPT SolのWorkで扱う共有正本とする。

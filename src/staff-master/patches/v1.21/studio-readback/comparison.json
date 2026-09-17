@@ -1,0 +1,17 @@
+{
+  "added": [
+    "btnLedgerDownload121"
+  ],
+  "removed": [],
+  "changed": [
+    "btnLedgerClose111",
+    "btnLedgerPdf111",
+    "conLedgerHeader111",
+    "ddLedgerPaper111",
+    "lblLedgerPaper111",
+    "lblLedgerTitle111"
+  ],
+  "app_unchanged": true,
+  "connections_unchanged": true,
+  "sha256": "8069168d63e345244ab377d74ae82240ab883d27a4af95eee078ec4f84cfc956"
+}
