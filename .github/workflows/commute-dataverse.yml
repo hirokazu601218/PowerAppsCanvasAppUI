@@ -28,6 +28,8 @@ jobs:
           with open(__import__('os').environ['GITHUB_ENV'],'a') as f:
               f.write('REMAINING_SECONDS='+str(int(remaining)-60)+'\n')
           PY
+      - name: Validate commute schema and fixtures
+        run: python -m unittest discover -s tests/automation -p test_commute_schema.py -v
       - uses: azure/login@v2
         with:
           client-id: 1c94f011-c447-4af1-968f-ec564f489395

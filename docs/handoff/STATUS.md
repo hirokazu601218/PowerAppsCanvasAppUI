@@ -2,7 +2,7 @@
 
 > 対象アプリ：自動テスト専用
 
-更新日：2026-09-16
+更新日：2026-09-17
 
 | 項目 | 状態 |
 |---|---|
@@ -19,6 +19,24 @@
 | PDF生成・保存フロー | v1.17でA4横2ページ生成・プレビューを実機確認。保存先フロー接続は対象外 |
 
 ## 現在の作業と読取り対象
+
+|項目|指定|
+|---|---|
+|対象機能|COM-DV-001～003。添付定義からT_通勤を追加し、M_職員基本の子として合成データを登録|
+|現在公開版|v1.17を維持。職員基本25名はDataverse、通勤等の画面データは引き続き内蔵|
+|現在の工程|全5工程完了。通勤84項目・親Lookup・6件を作成。実環境検証結果をGitHubへ記録|
+|対象ソース|scripts/automation/commute_dataverse.py、commute_schema.py、config/dataverse/commute-columns.json、automation/commute-run.json、.github/workflows/commute-dataverse.yml|
+|関連設計|docs/design/dataverse-commute.md|
+|関連テスト|tests/automation/test_commute_schema.py、tests/fixtures/commute-6.json、docs/testing/commute-dataverse-results.md|
+|Library資料|T_通勤_テーブル定義書.xlsx（添付ID libfile_7d3a1d264cc0819195f053d0522a3a83）。84項目と作成条件|
+|証跡|事前確認run 35164838218、作成run 35165234474、投入run 35165488926成功。ローカル5件合格|
+|権限・料金|既存Automation OIDCと既存テスト環境を利用。権限・ライセンス・課金設定変更なし|
+|次の作業|テーブル・親子関連・テストデータは完了。Canvasの通勤取得元切替・利用者ロール変更は別依頼で実施|
+|60分制御|起算2026-09-16T23:58:50.271Z。修復時にも起算を保持し、2026-09-17T00:58:50Z前に停止・報告|
+
+前回STATUSは認定簿v1.17完了を示していたため、最新依頼の通勤テーブル追加に切替えた。アプリソース・公開・パッケージには変更しない。
+
+## 前回完了：認定簿v1.17（Issue #35）
 
 |項目|指定|
 |---|---|
