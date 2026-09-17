@@ -45,8 +45,13 @@
   },
   "acceptance": {
     "run_id": 35183359299,
-    "state": "in_progress",
-    "test_user": "powerapps-test@govaca.onmicrosoft.com"
+    "state": "success",
+    "test_user": "powerapps-test@govaca.onmicrosoft.com",
+    "passed": 10,
+    "failed": 0,
+    "test_duration": "4.2m",
+    "readback_sha256": "dd0372d0a6e052e055682959b855e5e9c38e8f9d0b5d316852bb334c1f2bd420",
+    "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35183359299"
   },
   "pending": [
     {
@@ -59,5 +64,12 @@
   ],
   "new_permissions": false,
   "new_billing_configuration": false,
-  "new_license_purchase": false
+  "new_license_purchase": false,
+  "overall_state": "PUBLISHED_WITH_PENDING_REFRESH_CORRECTION",
+  "pull_request": 50,
+  "studio_other_findings": {
+    "accessibility": 533,
+    "performance": 11,
+    "scope": "outside this data-source migration; difference from baseline not measured"
+  }
 }
