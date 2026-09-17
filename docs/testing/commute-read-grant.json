@@ -1,0 +1,11 @@
+{
+  "state": "APPROVED_READ_GRANTED_AND_VERIFIED",
+  "user": "powerapps-test@govaca.onmicrosoft.com",
+  "role": "StaffMaster Test Reader",
+  "table": "crb3c_commute",
+  "depth": "Global",
+  "only_read_privilege_changed": true,
+  "readable_fixture_count": 6,
+  "app_changes": false,
+  "billing_changes": false
+}

@@ -26,7 +26,9 @@
     "Verify target environment, privilege ID and current role again before addition"
   ],
   "charges_or_license_changes": false,
-  "status": "APPROVED_FOR_EXECUTION",
+  "status": "APPLIED_AND_VERIFIED",
   "approval": "ユーザー: 権限付与して進めて",
-  "work_started_at": "2026-09-17T00:39:24.429Z"
+  "work_started_at": "2026-09-17T00:39:24.429Z",
+  "execution_run": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35167594382",
+  "verified_readable_fixture_count": 6
 }
