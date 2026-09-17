@@ -61,6 +61,11 @@ def verify(path, root=ROOT):
     require(set(exact)=={n for n in archive if n.startswith(('Controls/','Connections/','References/')) and n.endswith('.json')}, 'metadata file set changed')
     for name in exact:
         require(json.loads(archive[name])==json.loads(baseline[name]),'runtime/metadata drift: '+name)
+    # This Studio package uses Properties.json for its connection references.
+    properties=json.loads(archive['Properties.json'])
+    base_properties=json.loads(baseline['Properties.json'])
+    for key in ['LocalConnectionReferences','LocalDatabaseReferences','ConnectionString','LibraryDependencies']:
+        require(properties[key]==base_properties[key], 'connection property drift: '+key)
     return {'server_sha256':digest(Path(path).read_bytes()),'properties':len(manifest['changes']),'source_and_rules':'exact','runtime_and_connections':'exact'}
 
 if __name__=='__main__':

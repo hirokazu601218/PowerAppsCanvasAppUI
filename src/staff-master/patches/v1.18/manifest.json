@@ -1,5 +1,5 @@
 {
-  "state": "STUDIO_COMPILED_PUBLISHED_PENDING_ACCEPTANCE",
+  "state": "STUDIO_COMPILED_PUBLISHED_ACCEPTED",
   "baseVersion": "1.17",
   "targetVersion": "1.18",
   "base_commit": "a6ab7ca1a7090031d4c364560e8b17419a7e2832",
@@ -366,5 +366,9 @@
   ],
   "baseline_msapp": "powerapps/dataverse-v1.18/staff-master.msapp",
   "baseline_sha256": "74c16fa86102a7dc52682f9342ef8bb8d71520c35b7cb3a18083fc6165cfa49e",
-  "readback_run": 35171416472
+  "readback_run": 35171416472,
+  "acceptance_run": 35171721975,
+  "acceptance_commit": "c743055b7fec5571f9fec16db2c6d44199f68f71",
+  "acceptance_tests": 9,
+  "retries": 0
 }

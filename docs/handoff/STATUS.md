@@ -22,24 +22,24 @@
 
 |項目|指定|
 |---|---|
-|対象機能|通勤の内蔵データ削除・Dataverse参照・認定簿検証・合格後公開（候補v1.18）|
-|現在公開版|v1.17。今回アプリ接続・保存・公開・現行YAML/Fxは未変更|
-|工程① 読取り権限|完了。ユーザー承認に基づきStaffMaster Test ReaderへT_通勤のRead=Globalだけ追加。対象利用者1名・チーム0、他特権差分なし、6行Readを確認|
-|工程② 接続追加|停止。Studioは編集可能。T_通勤追加クリックを自動承認審査が拒否|
-|工程③ Fx整理|35プロパティの修正候補と認定簿69項目対応を準備。内蔵通勤・共通帳票ダミー除去、他履歴保持、選択認定・0件・再読込対応。現行ソースへ未反映|
-|工程④ 検証|候補ローカル5件PASS。6件/同姓同名/0件/再読込E2Eを準備。公式コンパイル・実機・PDFは未実施|
-|工程⑤ 公開|未実施。v1.17を維持|
-|工程⑥ 記録|権限結果・未反映候補・停止点をGitHubへ記録|
-|停止理由|一般的なDataverse Premium注意表示を理由に、自動承認審査が追加料金なしと確定できないと判断。現在の環境詳細はDeveloper、既存職員基本は既にDataverseを利用|
-|承認済み|T_通勤 Readの追加、別Work完了後の編集ロック引継ぎ、GitHub変更送信。ロック引継ぎ承認を再度求めない|
-|次の確認|T_通勤を既存アプリに接続追加する操作の再開承認。ライセンス購入・従量課金は未操作で、引き続き別承認が必要|
-|対象ソース|scripts/automation/prepare_commute_v118.py、src/staff-master/patches/v1.18-candidate、tests/automation/test_commute_app_candidate.py、e2e/commute-v118|
-|関連設計|docs/design/commute-app-migration-plan.md、dataverse-commute.md、hybrid-test-data.md、ledger-v1.17.md|
-|関連証跡|docs/testing/commute-read-grant.json、commute-v118-preparation.md。成功run 35167594382|
-|再開位置|Studioで接続T_通勤追加→現在の保存済みソースとの照合→35変更を既存111コントロールへ適用→コンパイル→6件と0件/帳票/PDF回帰→合格後公開→strict読戻し|
-|60分制御|起算2026-09-17T00:39:24.429Z、上限01:39:24.429Z。権限runは終了済み。接続操作の審査拒否により期限前に停止し、自動再開しない|
+|対象機能|通勤の内蔵データ削除・Dataverse参照・認定簿検証・合格後公開 v1.18|
+|現在公開版|v1.18。T_通勤をStudioで接続し、35プロパティを公式コンパイルして公開済み|
+|工程① 読取り権限|前回完了。承認済みT_通勤 Read=Globalのみ。run 35167594382|
+|工程② 接続追加|完了。今回の再開承認により既存Developer環境へ追加。ライセンス購入・課金設定操作なし|
+|工程③ Fx整理|完了。稼働用内蔵Commute/LedgerTemplateを削除、69帳票項目を選択通勤から取得。給与等は既存fixtureを維持|
+|工程④ 検証|公開前Studio:6件・0件2職員・同姓同名・PDF2ページ合格。専用ユーザー9件はrun 35171721975で合格、再試行0|
+|工程⑤ 公開|完了。最終公開ファイルSHA256 74c16fa86102a7dc52682f9342ef8bb8d71520c35b7cb3a18083fc6165cfa49e|
+|工程⑥ 記録|完了。PR #47で結果と公開基準をmainへ統合|
+|公開読戻し|run 35171416472。35式、全Controls/Connections/References一致。画面360コントロール、ID・親構造・対象外プロパティ不変|
+|承認済み|既存Read追加、編集ロック引継ぎ、T_通勤接続追加、GitHub変更送信、問題なければ公開。再承認不要|
+|今回の権限・料金|今回の再開では変更なし。新しい権限変更や追加料金は引き続き事前確認|
+|対象ソース|powerapps/canvas-v3/Src、powerapps/dataverse-v1.18、src/staff-master/patches/v1.18、scripts/automation/verify_commute_release.py|
+|関連設計|docs/design/hybrid-test-data.md、dataverse-commute.md、ledger-v1.17.md|
+|関連証跡|docs/testing/commute-v1.18-results.md、commute-v1.18-preview.json、commute-v1.18-readback.json|
+|次の作業|今回依頼は完了。未確定の勤務・保険・税控除・給与テーブルは今後の別依頼で追加|
+|60分制御|今回の起算2026-09-17T01:07:06Z、期限02:07:06Z。修復しても起算を延長しない。最終受入は01:49:58Zに完了|
 
-候補作成・ローカル5件PASSはアプリ反映・実機試験・公開完了を意味しない。公開版には内蔵通勤5件と共通帳票ダミーが残っている。今回追加したソースはレビュー・再開用で、現行コード生成・標準配布フローへまだ組み込まない。
+給与・勤務・保険・税控除は業務定義確定後に別途Dataverse化する。認定簿PDFの保存先フローは今回も対象外で未接続。旧v1.14タグを現行へそのまま復元しない。現行のStudio公開基準はv1.18、標準ブリッジはその基準からの明示的プロパティ差分に限定する。
 
 ## 前回完了：通勤テーブル・6件追加（PR #44）
 
