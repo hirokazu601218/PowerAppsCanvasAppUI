@@ -1,0 +1,494 @@
+{
+  "reload": {
+    "cells": [
+      {
+        "name": "lblBasicVal0111",
+        "text": "009900000004"
+      },
+      {
+        "name": "lblBasicVal1111",
+        "text": "試験　退職"
+      },
+      {
+        "name": "lblBasicVal2111",
+        "text": ""
+      },
+      {
+        "name": "lblBasicVal3111",
+        "text": "03会計課"
+      },
+      {
+        "name": "lblBasicVal4111",
+        "text": ""
+      },
+      {
+        "name": "lblBasicVal5111",
+        "text": ""
+      },
+      {
+        "name": "lblBasicVal6111",
+        "text": "2025/04/01"
+      },
+      {
+        "name": "lblBasicVal7111",
+        "text": "2026/03/31"
+      },
+      {
+        "name": "lblBasicVal8111",
+        "text": "退職"
+      },
+      {
+        "name": "lblCCommute1110",
+        "text": "2025/04/01TK-910003"
+      },
+      {
+        "name": "lblCCommute1111",
+        "text": "2026/03/31"
+      },
+      {
+        "name": "lblCCommute1112",
+        "text": "毎月精算"
+      },
+      {
+        "name": "lblCCommute1113",
+        "text": "16,800"
+      },
+      {
+        "name": "lblCCommute1114",
+        "text": "16,800"
+      },
+      {
+        "name": "lblCPayroll1110",
+        "text": "令和08年"
+      },
+      {
+        "name": "lblCPayroll1111",
+        "text": "令和08年03月23日"
+      },
+      {
+        "name": "lblCPayroll1112",
+        "text": "230,000"
+      },
+      {
+        "name": "lblCPayroll1113",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1114",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1115",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1116",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1117",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1118",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1119",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll11110",
+        "text": "230,000"
+      },
+      {
+        "name": "lblCPayroll11111",
+        "text": "10,000"
+      },
+      {
+        "name": "lblCPayroll11112",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll11113",
+        "text": "220,000"
+      },
+      {
+        "name": "lblCPayroll11114",
+        "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+      }
+    ],
+    "controls": [
+      {
+        "name": "lblListTitle111",
+        "text": "職員一覧　7件"
+      },
+      {
+        "name": "lblPage111",
+        "text": "1 / 1"
+      },
+      {
+        "name": "lblPersonSub111",
+        "text": "職員番号：009900000004　／　所属：03会計課"
+      }
+    ],
+    "lists": [
+      {
+        "label": "職員検索結果。氏名、在籍状態、職員番号、所属の順",
+        "text": "試験　退職、退職、職員番号009900000004、03会計課 件。選択済み。\n009900000004 試験　退職 詳細を表示\n試験　退職\n退職\n03会計課\n試験 職員08、採用前、職員番号009900000008、03会計課\n009900000008 試験 職員08 詳細を表示\n1978/04/01\n試験 職員08\n採用前\n03会計課\n未加入\n試験 同姓同名、在籍、職員番号009900000011、03会計課\n009900000011 試験 同姓同名 詳細を表示\n1981/04/01\n試験 同姓同名\n在籍\n03会計課\n加入\n試験 職員14、在籍、職員番号009900000014、03会計課\n009900000014 試験 職員14 詳細を表示\n1984/04/01\n試験 職員14\n在籍\n03会計課\n未加入\n試験 職員17、在籍、職員番号009900000017、03会計課\n009900000017 試験 職員17 詳細を表示\n1987/04/01\n試験 職員17\n在籍\n03会計課\n加入\n試験 職員20、退職、職員番号009900000020、03会計課\n009900000020 試験 職員20 詳細を表示\n1990/04/01\n試験 職員20\n退職\n03会計課\n未加入\n試験 職員23、採用前、職員番号009900000023、03会計課\n009900000023 試験 職員23 詳細を表示\n1993/04/01\n試験 職員23\n採用前\n03会計課\n加入"
+      },
+      {
+        "label": "Work 履歴",
+        "text": ""
+      },
+      {
+        "label": "通勤認定一覧。表示する行を選択してください",
+        "text": "TK-910003 2025/04/01 毎月精算 件。選択済み。\n2025/04/01\nTK-910003\n2026/03/31\n毎月精算\n16,800\n16,800"
+      },
+      {
+        "label": "Social 履歴",
+        "text": ""
+      },
+      {
+        "label": "Tax 履歴",
+        "text": ""
+      },
+      {
+        "label": "Payroll 履歴",
+        "text": "009900000004 令和08年03月23日\n令和08年\n令和08年03月23日\n230,000\n0\n0\n0\n0\n0\n0\n0\n230,000\n10,000\n0\n220,000\n合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+      }
+    ],
+    "query": ""
+  },
+  "notices": [
+    {
+      "kind": "zero",
+      "clientHeight": 16,
+      "clientWidth": 1287,
+      "height": 16,
+      "parentText": "0件見つかりました",
+      "scrollHeight": 16,
+      "scrollWidth": 1287,
+      "text": "0件見つかりました",
+      "viewport": {
+        "height": 936,
+        "width": 1363
+      },
+      "width": 1287,
+      "x": 36,
+      "y": 56,
+      "dismissed": true
+    },
+    {
+      "kind": "positive",
+      "clientHeight": 16,
+      "clientWidth": 1287,
+      "height": 16,
+      "parentText": "1件見つかりました",
+      "scrollHeight": 16,
+      "scrollWidth": 1287,
+      "text": "1件見つかりました",
+      "viewport": {
+        "height": 936,
+        "width": 1363
+      },
+      "width": 1287,
+      "x": 36,
+      "y": 56,
+      "autoDismissed": true
+    }
+  ],
+  "modals": [
+    {
+      "before": {
+        "buttons": [
+          {
+            "disabled": false,
+            "name": "ホーム"
+          },
+          {
+            "disabled": false,
+            "name": "支給明細画面"
+          }
+        ],
+        "hit": [
+          "conLedgerModal111",
+          "conLedgerModal111",
+          "conLedgerModal111",
+          "conLedgerModal111"
+        ],
+        "kind": "ledger",
+        "labels": [
+          {
+            "name": "lblLedgerStaff111",
+            "text": "試験 同姓同名　職員番号：009900000011　認定ID：TK-910004"
+          }
+        ],
+        "visibleSearch": 0
+      },
+      "after": {
+        "buttons": [
+          {
+            "disabled": false,
+            "name": "ホーム"
+          },
+          {
+            "disabled": false,
+            "name": "支給明細画面"
+          }
+        ],
+        "hit": [
+          "conLedgerModal111",
+          "conLedgerModal111",
+          "conLedgerModal111",
+          "conLedgerModal111"
+        ],
+        "kind": "ledger",
+        "labels": [
+          {
+            "name": "lblLedgerStaff111",
+            "text": "試験 同姓同名　職員番号：009900000011　認定ID：TK-910004"
+          }
+        ],
+        "visibleSearch": 0
+      },
+      "settled": {
+        "buttons": [
+          {
+            "disabled": false,
+            "name": "ホーム"
+          },
+          {
+            "disabled": false,
+            "name": "支給明細画面"
+          }
+        ],
+        "hit": [
+          "conLedgerModal111",
+          "conLedgerModal111",
+          "conLedgerModal111",
+          "conLedgerModal111"
+        ],
+        "kind": "ledger",
+        "labels": [
+          {
+            "name": "lblLedgerStaff111",
+            "text": "試験 同姓同名　職員番号：009900000011　認定ID：TK-910004"
+          }
+        ],
+        "visibleSearch": 0
+      },
+      "homeRoleCount": 0,
+      "closeFocusObserved": "btnCertificate111",
+      "selectedAfterCloseObserved": "009900000011"
+    },
+    {
+      "before": {
+        "buttons": [
+          {
+            "disabled": false,
+            "name": "ホーム"
+          },
+          {
+            "disabled": false,
+            "name": "支給明細画面"
+          }
+        ],
+        "hit": [
+          "galPayrollModal111",
+          "galPayrollModal111",
+          "galPayrollModal111",
+          "galPayrollModal111"
+        ],
+        "kind": "payroll",
+        "labels": [
+          {
+            "name": "lblLedgerStaff111",
+            "text": "試験 同姓同名　職員番号：009900000011　認定ID：TK-910004"
+          }
+        ],
+        "visibleSearch": 0
+      },
+      "after": {
+        "buttons": [
+          {
+            "disabled": false,
+            "name": "ホーム"
+          },
+          {
+            "disabled": false,
+            "name": "支給明細画面"
+          }
+        ],
+        "hit": [
+          "galPayrollModal111",
+          "galPayrollModal111",
+          "galPayrollModal111",
+          "galPayrollModal111"
+        ],
+        "kind": "payroll",
+        "labels": [
+          {
+            "name": "lblLedgerStaff111",
+            "text": "試験 同姓同名　職員番号：009900000011　認定ID：TK-910004"
+          }
+        ],
+        "visibleSearch": 0
+      },
+      "homeRoleCount": 0,
+      "closeFocus": {
+        "boxShadow": "none",
+        "control": "btnPayrollOpen111",
+        "h": 44,
+        "label": null,
+        "outline": "rgb(0, 0, 0) none 0px",
+        "tag": "BUTTON",
+        "w": 144,
+        "x": 1190,
+        "y": 196
+      },
+      "selectedAfterClose": "職員番号：009900000011　／　所属：03会計課"
+    },
+    {
+      "before": {
+        "buttons": [
+          {
+            "disabled": false,
+            "name": "ホーム"
+          },
+          {
+            "disabled": false,
+            "name": "支給明細画面"
+          }
+        ],
+        "hit": [
+          "galReport111",
+          "galReport111",
+          "galReport111",
+          "galReport111"
+        ],
+        "kind": "report",
+        "labels": [
+          {
+            "name": "lblReportTitle111",
+            "text": "検索結果（Excel貼り付け用）"
+          },
+          {
+            "name": "lblReportPerson111",
+            "text": "検索件数：1"
+          },
+          {
+            "name": "lblReportDisclaimer111",
+            "text": "簡易帳票・テストデータ／正式な認定簿ではありません。印刷は表示中の1ページのみ。"
+          },
+          {
+            "name": "lblReportKey111",
+            "text": "項目／職員番号"
+          },
+          {
+            "name": "lblReportValue111",
+            "text": "内容"
+          },
+          {
+            "name": "lblReportRowKey111",
+            "text": "009900000011"
+          },
+          {
+            "name": "lblReportRowValue111",
+            "text": "試験 同姓同名 ／ 03会計課 ／ 在籍"
+          },
+          {
+            "name": "lblReportPage111",
+            "text": "ページ 1 / 1"
+          },
+          {
+            "name": "lblLedgerStaff111",
+            "text": "試験 同姓同名　職員番号：009900000011　認定ID：TK-910004"
+          }
+        ],
+        "visibleSearch": 0
+      },
+      "after": {
+        "buttons": [
+          {
+            "disabled": false,
+            "name": "ホーム"
+          },
+          {
+            "disabled": false,
+            "name": "支給明細画面"
+          }
+        ],
+        "hit": [
+          "galReport111",
+          "galReport111",
+          "galReport111",
+          "galReport111"
+        ],
+        "kind": "report",
+        "labels": [
+          {
+            "name": "lblReportTitle111",
+            "text": "検索結果（Excel貼り付け用）"
+          },
+          {
+            "name": "lblReportPerson111",
+            "text": "検索件数：1"
+          },
+          {
+            "name": "lblReportDisclaimer111",
+            "text": "簡易帳票・テストデータ／正式な認定簿ではありません。印刷は表示中の1ページのみ。"
+          },
+          {
+            "name": "lblReportKey111",
+            "text": "項目／職員番号"
+          },
+          {
+            "name": "lblReportValue111",
+            "text": "内容"
+          },
+          {
+            "name": "lblReportRowKey111",
+            "text": "009900000011"
+          },
+          {
+            "name": "lblReportRowValue111",
+            "text": "試験 同姓同名 ／ 03会計課 ／ 在籍"
+          },
+          {
+            "name": "lblReportPage111",
+            "text": "ページ 1 / 1"
+          },
+          {
+            "name": "lblLedgerStaff111",
+            "text": "試験 同姓同名　職員番号：009900000011　認定ID：TK-910004"
+          }
+        ],
+        "visibleSearch": 0
+      },
+      "homeRoleCount": 0,
+      "closeFocus": {
+        "boxShadow": "none",
+        "control": "btnExport111",
+        "h": 44,
+        "label": null,
+        "outline": "rgb(0, 0, 0) none 0px",
+        "tag": "BUTTON",
+        "w": 178,
+        "x": 1152,
+        "y": 70
+      },
+      "selectedAfterClose": "職員番号：009900000011　／　所属：03会計課"
+    }
+  ],
+  "metadata": {
+    "version": "v1.26表示",
+    "fullSourceIdentity": "unconfirmed",
+    "timeLimit": "今回のみユーザーが60分制約解除",
+    "noAppEdits": true,
+    "noDataverseWrites": true,
+    "noPdf": true,
+    "noHtmlPoc": true,
+    "sourceReferenceBlob": "23f659315447cf1303942092ce7740fb6e47fe9b"
+  }
+}
