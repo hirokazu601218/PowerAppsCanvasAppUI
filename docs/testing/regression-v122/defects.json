@@ -1,0 +1,32 @@
+[
+  {
+    "id": "BUG-SELECTION-001",
+    "version": "1.22",
+    "case": "SCR005-ACT-002 / ZERO-02",
+    "observed": "職員011の明細表示後、検索999ZZZで0件、ホーム経由で支給明細へ戻ると011と151800円が残る",
+    "expected": "0件・選択解除後は対象未選択、金額—、再計算無効",
+    "evidence": "2026-09-18 04:39 UTC 公開Playerで再現",
+    "remedy": "UiSelectedとUiTargetKeyを職員検索の選択状態へ統一。メンテナンス初期化もその選択を解除",
+    "status": "RESOLVED",
+    "verifiedBy": "公開後 Actions 35309682325 / 05:21 UTC 新規Playerの初期化確認"
+  },
+  {
+    "id": "BUG-DECIMAL-001",
+    "version": "1.22",
+    "case": "CORE-DETAIL field112/113",
+    "observed": "減額時間の整数0が0.と表示される",
+    "expected": "整数は末尾小数点なし。小数は最大10桁を維持",
+    "evidence": "Actions 35307403100 CORE-DETAIL assertion",
+    "remedy": "整数と小数の表示書式をModで分岐",
+    "status": "RESOLVED",
+    "verifiedBy": "公開後 Actions 35309682325 / 05:21 UTC 新規Playerの初期化確認"
+  },
+  {
+    "id": "TEST-PDF-001",
+    "status": "OPEN",
+    "case": "AUT-LEDGER-117 / PDF-01 / PDF-02",
+    "observed": "削除済みlblLedgerStatus111の待機で停止しPDF実体の検査に未到達",
+    "appFailureProven": false,
+    "next": "現行Viewer表示を待機し、PDFバイト列・A4横2ページを再検証する"
+  }
+]

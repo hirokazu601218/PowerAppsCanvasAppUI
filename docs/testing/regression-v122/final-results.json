@@ -1,0 +1,42 @@
+{
+  "runId": 35309682325,
+  "testGitSha": "f05ea7ef8a812ac86d772bd475cd37721108332b",
+  "version": "1.23",
+  "finalPublishedUtc": "2026-09-18T05:08:43Z",
+  "e2e": {
+    "passed": 24,
+    "failed": 1,
+    "total": 25,
+    "durationMinutes": 9,
+    "failedCase": "AUT-LEDGER-117",
+    "failureClass": "test refers to removed status label; PDF bytes not verified"
+  },
+  "smoke": {
+    "passed": 3,
+    "total": 3
+  },
+  "viewport": {
+    "staffConditions": 8,
+    "staffPassed": 8,
+    "newScreens": 5,
+    "widths": [
+      900,
+      1100,
+      1366,
+      1920
+    ],
+    "screenViews": 20,
+    "passed": 20
+  },
+  "automationUnitTests": {
+    "passed": 50,
+    "total": 50
+  },
+  "specificationAudit": {
+    "NOT_RUN": 49,
+    "PASS": 22,
+    "BLOCKED": 24
+  },
+  "fullRegressionComplete": false,
+  "openIssue": 54
+}

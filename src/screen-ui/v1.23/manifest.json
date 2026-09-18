@@ -1,0 +1,25 @@
+{
+  "version": "1.23",
+  "base": "main dc6970b / published v1.22 / v1.21 Screen1 readback plus v1.22 navigation",
+  "issue": 54,
+  "apply": "Replace only the 7 named properties in patches.json; retain all 6 screens and existing connections. Do not import old canvas-v3 package.",
+  "rollback": "Restore matching properties from v1.22 App.Formulas.fx / studio-readback and v1.21 Screen1 source. Restore on isolated copy before use.",
+  "properties": [
+    "App.Formulas",
+    "btnMaintenanceReset.OnSelect",
+    "lblHomePrototype.Text",
+    "lblMaintenanceVersion.Text",
+    "lblMeta111.Text",
+    "lblCPayrollModal111112.Text",
+    "lblCPayrollModal111113.Text"
+  ],
+  "sha256": {
+    "src/screen-ui/v1.23/patches.json": "b4a112b50bac9fa3e22c64ae8e69f352bb4e156f646f5a18a3393c95d859661f",
+    "src/screen-ui/v1.23/btnMaintenanceReset.OnSelect.fx": "b8d16e37e86f755032bfc08446c3f4e7a5cd1ba9e6d06351fa2945f56d64fc2f",
+    "src/screen-ui/v1.23/App.Formulas.fx": "dd1951714031768021d399df5cc337a42e8d482e6112babe38b3cf2e3d9e5b78",
+    "src/screen-ui/v1.23/studio-readback/scrHome.pa.yaml": "02f7e326dccbf50b4ba741af212d0fd0675c65b8e0faf8784956f54b1d75c67b",
+    "src/screen-ui/v1.23/studio-readback/scrMaintenance.pa.yaml": "fe6cb273f77ab833df1b07fcb11ec1a0c92bc8aaf2f6f330275187b5d3eb7fb5",
+    "src/screen-ui/v1.23/studio-readback/Screen1.pa.yaml": "f0bbcda11e69ac154004e8e35847cf301015673d7541540103ff4efc146f4fc7",
+    "src/screen-ui/v1.23/studio-readback/App.Formulas.fx": "dd1951714031768021d399df5cc337a42e8d482e6112babe38b3cf2e3d9e5b78"
+  }
+}

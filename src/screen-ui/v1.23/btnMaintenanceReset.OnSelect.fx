@@ -1,0 +1,1 @@
+If(UiIsAdmin,Set(varUiAbsenceMinutes,60); Set(varUiRegistrationVersion,UiVersion+1); Set(varUiBonusK,Blank()); Set(varUiBonusD,Blank()); Set(varUiStaffNo,Blank()); Set(varStaff111,Blank()); Set(varStaffChosen111,false); Set(varUiResultKey,Blank()); Notify("仮入力を初期化しました",NotificationType.Success))
