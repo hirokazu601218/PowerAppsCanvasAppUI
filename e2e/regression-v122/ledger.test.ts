@@ -1,5 +1,6 @@
 import {test,expect,type Locator} from '@playwright/test';
-import {writeFileSync} from 'node:fs';
+import {writeFileSync,readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 test.describe.configure({retries:0});
 test.use({video:'off',ignoreHTTPSErrors:false});
@@ -61,7 +62,7 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
   await page.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded',timeout:60000});
   const c=page.frameLocator('iframe[name="fullscreen-app-host"]');
   const ctl=(n:string)=>c.locator(`[data-control-name="${n}"]`);
-  await expect(c.locator('[data-control-name="lblHomePrototype"]')).toContainText(/UI検討用 v1\.(22|23)/,{timeout:60000});
+  await expect(c.locator('[data-control-name="lblHomePrototype"]')).toContainText('UI検討用 v1.23',{timeout:60000});
   await c.locator('[data-control-name="btnHomeStaff"]').getByRole('button').click();
   await c.getByRole('searchbox',{name:'氏名・職員番号・項目を検索',exact:true}).fill('009900000011');
   await c.getByRole('button',{name:'検索',exact:true}).click();
@@ -97,7 +98,10 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
   writeFileSync(`${process.env.OUTPUT_DIRECTORY}/ledger-zoom-measurements.json`,JSON.stringify(records,null,2));
   // Generate at 200%: print size must remain independent of screen zoom.
   await c.getByRole('button',{name:'PDF関数（表示）',exact:true}).click();
-  await expect(ctl('lblLedgerStatus111')).toContainText('PDFを作成しました',{timeout:90000});
+  // v1.21 removed lblLedgerStatus111. Wait for the actual current viewer and
+  // its return action, then independently verify the generated PDF bytes.
+  await expect(ctl('pdfLedger111')).toBeVisible({timeout:90000});
+  await expect(c.getByRole('button',{name:'PDFプレビューから帳票に戻る',exact:true})).toBeVisible();
   let pdf='';
   await expect.poll(async()=>{
     for(const frame of page.frames()){
@@ -110,6 +114,11 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
   writeFileSync(path,Buffer.from(pdf.split(',')[1],'base64'));
   const result=execFileSync('python',['-c',`import json,sys\nfrom pypdf import PdfReader\nr=PdfReader(sys.argv[1]);assert len(r.pages)==2, f'Expected 2 pages, got {len(r.pages)}'\nboxes=[[float(p.mediabox.width),float(p.mediabox.height)] for p in r.pages]\nassert all(abs(w-841.89)<1 and abs(h-595.28)<1 for w,h in boxes),boxes\nprint(json.dumps({'pages':len(r.pages),'points':boxes}))`,path],{encoding:'utf8'});
   writeFileSync(`${process.env.OUTPUT_DIRECTORY}/ledger-pdf-check.json`,result);
+  const hash=createHash('sha256').update(readFileSync(path)).digest('hex');
+  execFileSync('pdftoppm',['-png','-r','96',path,`${process.env.OUTPUT_DIRECTORY}/ledger-rendered`]);
+  const text=execFileSync('pdftotext',['-layout',path,'-'],{encoding:'utf8'});
+  writeFileSync(`${process.env.OUTPUT_DIRECTORY}/ledger-pdf-text.txt`,text);
+  console.log('ACTUAL_PDF_EVIDENCE '+JSON.stringify({...JSON.parse(result),sha256:hash,bytes:readFileSync(path).length,textCharacters:text.length}));
   await page.locator('iframe[name="fullscreen-app-host"]').screenshot({mask:[ctl('lblStaffAccount122')],path:`${process.env.OUTPUT_DIRECTORY}/ledger-pdf-preview.png`});
   await c.getByRole('button',{name:'PDFプレビューから帳票に戻る',exact:true}).click();
   await zoom.click();await c.getByRole('option',{name:'100%',exact:true}).click();

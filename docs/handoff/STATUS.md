@@ -1,3 +1,13 @@
+# 現在の作業と読取り対象：v1.23 回帰残件を再開
+
+- ユーザー「残件を実施して」により2026-09-18 05:26:19 UTC再開。今回の停止期限06:26:19 UTC。修復時も起算を変更しない。
+- 工程：1 PDF試験修正・実PDF検査、2 実行可能な未実施項目、3 公開版全回帰・複数幅、4 GitHub記録。
+- 正本公開版v1.23、基準main `fbe62315b51830dbffca4f21671fc9ebdef596ba`。TEST-PDF-001を現行pdfLedger111と戻る操作で修正する。PDF保存フローは未接続であり、OneDrive/Automateを新規接続しない。
+- 読取り：`e2e/regression-v122/`、`docs/testing/regression-v122/spec-case-audit.md`、`docs/testing/test-specification.md`、`src/screen-ui/v1.23/studio-readback/`。
+- **Issue #51 ABS-RATE-001（実テーブルの欠勤時間単価）は未反映。Dataverse変更は今回の回帰試験範囲に含まない。**
+
+---
+
 # 現在の作業と読取り対象：v1.23 回帰修正版公開・全回帰に残件あり
 
 - Issue #54：全回帰・複数幅検証。開始2026-09-18 04:23:59 UTC、停止期限05:23:59 UTC。
