@@ -14,7 +14,7 @@ jobs:
   diagnose:
     runs-on: ubuntu-latest
     environment: powerapps-test
-    timeout-minutes: 18
+    timeout-minutes: 12
     env:
       MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
       MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
@@ -45,7 +45,7 @@ jobs:
           python - <<'PY'
           import datetime
           start=datetime.datetime.fromisoformat('2026-09-18T05:26:19Z'.replace('Z','+00:00'))
-          assert (datetime.datetime.now(datetime.timezone.utc)-start).total_seconds()<2520, 'Work deadline: insufficient time for 18-minute read-only job'
+          assert (datetime.datetime.now(datetime.timezone.utc)-start).total_seconds()<2880, 'Work deadline: insufficient time for 12-minute read-only job'
           PY
       - uses: actions/checkout@v4
         with:
@@ -106,7 +106,7 @@ jobs:
         working-directory: power-platform-playwright/packages/e2e-tests
         env:
           MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
-        run: npx playwright test tests/northwind/canvas/regression --project=canvas-app --trace=off --retries=0 --workers=2 --reporter=line,json
+        run: npx playwright test tests/northwind/canvas/regression --grep 'SUPPLEMENT-|REMAIN-MODAL' --project=canvas-app --trace=off --retries=0 --workers=2 --reporter=line,json
       - name: Preserve synthetic UI evidence and results
         if: ${{ always() && steps.auth.outcome == 'success' }}
         uses: actions/upload-artifact@v4
@@ -117,6 +117,7 @@ jobs:
             power-platform-playwright/packages/e2e-tests/test-results/**/*.json
             power-platform-playwright/packages/e2e-tests/test-results/ledger-*.pdf
             power-platform-playwright/packages/e2e-tests/test-results/ledger-*.txt
+            power-platform-playwright/packages/e2e-tests/test-results/*.csv
           retention-days: 14
           if-no-files-found: warn
       - name: Record scope

@@ -119,9 +119,10 @@ test('REMAIN-MODAL background is blocked and close returns keyboard focus',async
   await expect(ctl(a,close).getByRole('button')).toBeVisible();
   await ctl(a,close).getByRole('button').click();
   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000011');
-  const focused=await a.locator('body').evaluate(el=>el.ownerDocument.activeElement?.closest('[data-control-name]')?.getAttribute('data-control-name')||'none');
+  const active=()=>a.locator('body').evaluate(el=>el.ownerDocument.activeElement?.closest('[data-control-name]')?.getAttribute('data-control-name')||'none');
+  await expect.soft.poll(active,{timeout:5000,message:`${close} should restore focus to ${open}`}).toBe(open);
+  const focused=await active();
   observations.push({open,close,focused});
-  expect.soft(focused,`${close} should restore focus to ${open}`).toBe(open);
  }
  writeFileSync(path.join(out,'remaining-modal-focus.json'),JSON.stringify(observations,null,2));
 });
