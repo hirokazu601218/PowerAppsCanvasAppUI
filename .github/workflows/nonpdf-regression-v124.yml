@@ -1,8 +1,5 @@
 name: Canvas v1.24 complete UI regression
 on:
-  push:
-    branches: [automation/nonpdf-v124]
-    paths: [.github/workflows/nonpdf-regression-v124.yml, e2e/regression-v122/**, scripts/testing/**]
   workflow_dispatch:
 permissions:
   contents: read

@@ -52,5 +52,17 @@
     "control": "galStaff111",
     "property": "Height",
     "after": "=With({resultCount:If(Coalesce(varResultsReady111,false),CountRows(colResult111),CountRows(StaffBasicView)),pageNumber:Coalesce(varPage111,1)},Max(1,Min(20,Max(0,resultCount-(pageNumber-1)*20)))*If(Coalesce(varLargeText111,false),80,72))"
+  },
+  {
+    "control": "lblBasicVal1111",
+    "property": "Wrap",
+    "before": "=true",
+    "after": "=false"
+  },
+  {
+    "control": "lblBasicVal2111",
+    "property": "Wrap",
+    "before": "=true",
+    "after": "=false"
   }
 ]

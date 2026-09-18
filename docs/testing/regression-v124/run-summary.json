@@ -1,0 +1,15 @@
+{
+  "status": "completed",
+  "run": 35318861503,
+  "conclusion": "failure",
+  "passed": 36,
+  "failed": 3,
+  "total": 39,
+  "failedCases": [
+    "BOUNDARY-0: initial zero count leaves TSV enabled",
+    "REMAIN-MODAL: visible-to-hidden race before disabled assertion; focus assertions not completed",
+    "SUPPLEMENT-PERF: close p95 2111ms exceeds 1000ms"
+  ],
+  "widths": "8 staff conditions and 5 screens x 4 widths passed",
+  "artifact": 10536238440
+}

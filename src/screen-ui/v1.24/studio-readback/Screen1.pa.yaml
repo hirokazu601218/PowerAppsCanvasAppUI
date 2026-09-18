@@ -372,6 +372,7 @@ Screens:
                                             )
                                           Tooltip: =Self.Text
                                           Width: =(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))
+                                          Wrap: =false
                                           X: =8+Mod(1,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))
                                           Y: =lblBasicKey1111.Y+lblBasicKey1111.Height
                                     - lblBasicKey2111:
@@ -416,6 +417,7 @@ Screens:
                                             )
                                           Tooltip: =Self.Text
                                           Width: =(Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0)))
+                                          Wrap: =false
                                           X: =8+Mod(2,Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))*((Parent.Width-16)/Min(6,Max(1,RoundDown((Parent.Width-16)/If(Coalesce(varLargeText111,false),252,220),0))))
                                           Y: =lblBasicKey2111.Y+lblBasicKey2111.Height
                                     - lblBasicKey3111:

@@ -49,14 +49,25 @@
       "control": "galStaff111",
       "property": "Height",
       "match": true
+    },
+    {
+      "control": "lblBasicVal1111",
+      "property": "Wrap",
+      "match": true
+    },
+    {
+      "control": "lblBasicVal2111",
+      "property": "Wrap",
+      "match": true
     }
   ],
   "files": {
     "studio-readback/scrHome.pa.yaml": "8adc66b2d0699602fbface19f861483a27587c26a64b667a75640ccfce0b486d",
     "studio-readback/scrMaintenance.pa.yaml": "816f792e38059f7613dcb3085ec1548ec8fc8f8fd0a1443b1f15f046160552ac",
-    "studio-readback/Screen1.pa.yaml": "4e11581c86bc9c8f573ddd104acf3f558dfda4868454cc6d124bb7acfd936f1c",
+    "studio-readback/Screen1.pa.yaml": "d8a805ff849082dab9e134d590be5f61f2ea2c599a057e65bbd6bcbe034031d7",
     "studio-readback/App.Formulas.fx": "6e9aff140d298811ef0217572cc9c4975ef8d2bd76bb5e6f63c2e19e2680a6ed"
   },
   "unchangedScreens": "scrAttendance/scrBonus/scrPayroll: src/screen-ui/v1.22/studio-readback",
-  "excluded": "PDF generation, save, print; no Dataverse writes"
+  "excluded": "PDF generation, save, print; no Dataverse writes",
+  "revisionNote": "Final two Wrap=false fixes followed the start of run 35318861503; that full run is for the earlier v1.24 candidate. Final affected-label checks are separately recorded."
 }
