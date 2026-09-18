@@ -1,0 +1,35 @@
+- lblUiFixture124:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="画面確認用データ（アプリ内のみ）"
+      Height: =36
+      Width: =Parent.Width-32
+      Size: =12
+      Font: ="Segoe UI"
+      Color: =UiTheme.Text
+      LayoutMinWidth: =0
+      FillPortions: =0
+- ddUiFixture124:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["通常データ","0件","1件","20件","21件","40件","長文・負数"]
+      Default: =UiFixtureMode
+      OnChange: =Set(varUiFixtureMode,Self.Selected.Value); Set(varResultsReady111,false);
+        Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1);
+        Set(varReport111,""); Set(varPayroll111,false); Set(varLedgerOpen111,false);
+        Set(varUiResultKey,Blank()); Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111)
+      AccessibleLabel: ="画面確認用データ"
+      DisplayMode: =If(UiIsAdmin,DisplayMode.Edit,DisplayMode.Disabled)
+      Height: =44
+      Width: =260
+      Size: =12
+      Font: ="Segoe UI"
+      Color: =UiTheme.Text
+      Fill: =Color.White
+      BorderColor: =UiTheme.Border
+      ChevronBackground: =Color.White
+      ChevronFill: =UiTheme.Primary
+      SelectionFill: =UiTheme.Selected
+      SelectionColor: =UiTheme.Text
+      LayoutMinWidth: =0
+      FillPortions: =0
