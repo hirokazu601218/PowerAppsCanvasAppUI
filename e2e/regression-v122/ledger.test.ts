@@ -117,8 +117,18 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
   const hash=createHash('sha256').update(readFileSync(path)).digest('hex');
   execFileSync('pdftoppm',['-png','-r','96',path,`${process.env.OUTPUT_DIRECTORY}/ledger-rendered`]);
   const text=execFileSync('pdftotext',['-layout',path,'-'],{encoding:'utf8'});
+  for(const expected of ['009900000011','試験同姓同名','03会計課'])expect(text.replace(/\s/g,'')).toContain(expected);
+  for(const excluded of ['PDF関数','Download関数','ホーム','職員検索'])expect(text).not.toContain(excluded);
   writeFileSync(`${process.env.OUTPUT_DIRECTORY}/ledger-pdf-text.txt`,text);
   console.log('ACTUAL_PDF_EVIDENCE '+JSON.stringify({...JSON.parse(result),sha256:hash,bytes:readFileSync(path).length,textCharacters:text.length}));
+  // Only these generated synthetic evidence files are mirrored to authenticated
+  // Actions logs so reviewers can retrieve them even without artifact delivery.
+  for(const name of ['ledger-A4-landscape.pdf','ledger-rendered-1.png','ledger-rendered-2.png']){
+    const bytes=readFileSync(`${process.env.OUTPUT_DIRECTORY}/${name}`);
+    const encoded=bytes.toString('base64');
+    console.log('SYNTHETIC_EVIDENCE_META '+JSON.stringify({name,sha256:createHash('sha256').update(bytes).digest('hex'),bytes:bytes.length,chunks:Math.ceil(encoded.length/12000)}));
+    for(let i=0;i<encoded.length;i+=12000)console.log(`SYNTHETIC_EVIDENCE_CHUNK ${name} ${i/12000} ${encoded.slice(i,i+12000)}`);
+  }
   await page.locator('iframe[name="fullscreen-app-host"]').screenshot({mask:[ctl('lblStaffAccount122')],path:`${process.env.OUTPUT_DIRECTORY}/ledger-pdf-preview.png`});
   await ctl('btnLedgerClose111').getByRole('button').click();
   await expect(ctl('pdfLedger111')).toBeHidden();

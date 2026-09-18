@@ -201,6 +201,15 @@ for(const [width,height] of [[1366,768],[1920,1080]])for(const large of [false,t
 test(`VIS-01 staff ${width}x${height} ${large?'large':'standard'} ${closed?'closed':'open'}`,async({page})=>{
  const a=await start(page,width,height);await select(a,'009900000003');
  if(large)await btn(a,'文字サイズを大きくする').click();if(closed)await btn(a,'職員検索を閉じる').click();
+ const sidebarBaseline=await box(ctl(a,'conSearchSidebar111'));
+ const personBaseline=await box(ctl(a,'conPerson111'));
+ for(let cycle=0;cycle<5;cycle++){
+  await btn(a,closed?'職員検索を開く':'職員検索を閉じる').click();
+  await btn(a,closed?'職員検索を閉じる':'職員検索を開く').click();
+  expect(Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
+  expect(Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
+  await expect(ctl(a,'lblPersonSub111')).toContainText('009900000003');
+ }
  await noOverlap([ctl(a,'conStaffNavigation122'),ctl(a,'conHeader111')]);
  const basic=await box(ctl(a,'conBasic111'));const cells=[];
  for(let i=0;i<9;i++){

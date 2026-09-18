@@ -77,9 +77,9 @@ test('REMAIN-SEARCH three simultaneous filters plus number and commute-method fi
  await ctl(a,'ddOrg111').click();await a.getByRole('option',{name:'02総務課',exact:true}).click();
  await button(a,'検索').click();await expect.poll(()=>ids(a)).toEqual([]);
  await button(a,'検索条件をクリア').click();
- for(const keyword of ['11100','半年定期']){
+ for(const keyword of ['11100','支給なし']){
   await search(a,keyword);
-  const expected=fixture.filter((s:any)=>s.orgshort==='03会計課'&&(keyword==='11100'?s.dailyrate===11100:s.commutemethod==='半年定期')).map((s:any)=>s.staffnumber);
+  const expected=fixture.filter((s:any)=>s.orgshort==='03会計課'&&(keyword==='11100'?s.dailyrate===11100:s.commutemethod==='支給なし')).map((s:any)=>s.staffnumber);
   expect(expected.length).toBeGreaterThan(0);await expect.poll(()=>ids(a)).toEqual(expected);
  }
 });
