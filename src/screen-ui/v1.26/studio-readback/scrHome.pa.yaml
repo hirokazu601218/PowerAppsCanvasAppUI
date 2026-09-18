@@ -1,0 +1,267 @@
+Screens:
+  scrHome:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - conscrHomeRoot:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =UiTheme.Background
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+          Children:
+            - conscrHomeHeader:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =UiTheme.Header
+                  FillPortions: =0
+                  Height: =64
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - lblscrHomeTitle:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =Color.White
+                        FillPortions: =1
+                        Font: ="Segoe UI"
+                        FontWeight: =FontWeight.Semibold
+                        Height: =56
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =15
+                        Text: ="非常勤給与 ｜ ホーム"
+                        Width: =500
+                  - btnscrHomeHome:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="ホーム"
+                        Appearance: =ButtonAppearance.Outline
+                        BasePaletteColor: =UiTheme.Primary
+                        BorderColor: =Color.White
+                        Color: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =Navigate(scrHome,ScreenTransition.None)
+                        Size: =14
+                        Text: ="ホーム"
+                        Width: =112
+                  - lblscrHomeId:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =56
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =10
+                        Text: ="SCR-001"
+                        Width: =92
+            - lblHomeAccount:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =UiTheme.Text
+                  Font: ="Segoe UI"
+                  Height: =64
+                  LayoutMinWidth: =0
+                  PaddingBottom: =4
+                  PaddingLeft: =28
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  Size: =12
+                  Text: =UiAccount.Name & "　｜　" & UiAccount.Email & "　｜　" & UiDepartment
+                  Width: =Parent.Width
+            - lblHomePrototype:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =UiTheme.Primary
+                  Fill: =ColorValue("#EAF4FF")
+                  Font: ="Segoe UI"
+                  Height: =48
+                  LayoutMinWidth: =0
+                  PaddingBottom: =4
+                  PaddingLeft: =28
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  Size: =11
+                  Text: ="UI検討用 v1.26 ｜ 追加画面の金額・料率・権限区分は仮例です"
+                  Width: =Parent.Width
+            - conHomeActions:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =368
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  LayoutOverflowY: =LayoutOverflow.Scroll
+                  PaddingLeft: =24
+                  PaddingRight: =24
+                  PaddingTop: =16
+                  Width: =Parent.Width
+                Children:
+                  - btnHomeStaff:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="職員マスタ検索"
+                        BasePaletteColor: =UiTheme.Primary
+                        DisplayMode: =If(UiFixtureCount<0 && (IsBlank(StaffTestCount) || IsEmpty(StaffBasicView)),DisplayMode.Disabled,DisplayMode.Edit)
+                        Font: ="Segoe UI"
+                        Height: =62
+                        LayoutMinWidth: =0
+                        OnSelect: =Navigate(Screen1,ScreenTransition.None)
+                        Size: =14
+                        Text: ="職員マスタ検索"
+                        Width: =Parent.Width-48
+                  - btnHomeAttendance:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="勤務時間報告画面"
+                        BasePaletteColor: =UiTheme.Primary
+                        Font: ="Segoe UI"
+                        Height: =62
+                        LayoutMinWidth: =0
+                        OnSelect: =Navigate(scrAttendance,ScreenTransition.None)
+                        Size: =14
+                        Text: ="勤務時間報告画面"
+                        Width: =Parent.Width-48
+                  - btnHomeBonus:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="期末勤勉支給率登録画面"
+                        BasePaletteColor: =UiTheme.Primary
+                        Font: ="Segoe UI"
+                        Height: =62
+                        LayoutMinWidth: =0
+                        OnSelect: =Navigate(scrBonus,ScreenTransition.None)
+                        Size: =14
+                        Text: ="期末勤勉支給率登録画面"
+                        Width: =Parent.Width-48
+                  - btnHomePayroll:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="支給明細画面"
+                        BasePaletteColor: =UiTheme.Primary
+                        Font: ="Segoe UI"
+                        Height: =62
+                        LayoutMinWidth: =0
+                        OnSelect: =Navigate(scrPayroll,ScreenTransition.None)
+                        Size: =14
+                        Text: ="支給明細画面"
+                        Width: =Parent.Width-48
+                  - btnHomeMaintenance:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="メンテナンス画面"
+                        BasePaletteColor: =UiTheme.Primary
+                        DisplayMode: =If(UiIsAdmin,DisplayMode.Edit,DisplayMode.Disabled)
+                        Font: ="Segoe UI"
+                        Height: =62
+                        LayoutMinWidth: =0
+                        OnSelect: =If(UiIsAdmin,Navigate(scrMaintenance,ScreenTransition.None))
+                        Size: =14
+                        Text: ="メンテナンス画面"
+                        Width: =Parent.Width-48
+            - conHomeDemo:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =108
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  LayoutWrap: =true
+                  PaddingLeft: =28
+                  PaddingTop: =12
+                  Width: =Parent.Width
+                Children:
+                  - lblHomeRole:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: ="確認用の権限区分"
+                        Width: =180
+                  - btnHomeRole:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: =If(UiIsAdmin,"管理者 → 一般に切替","一般 → 管理者に切替")
+                        Appearance: =ButtonAppearance.Outline
+                        BasePaletteColor: =UiTheme.Primary
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =Set(varUiAdmin,!UiIsAdmin)
+                        Size: =14
+                        Text: =If(UiIsAdmin,"管理者 → 一般に切替","一般 → 管理者に切替")
+                        Width: =230
+                  - lblHomeDepartment:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: ="確認用所属"
+                        Width: =100
+                  - ddHomeDepartment:
+                      Control: Classic/DropDown@2.3.1
+                      Properties:
+                        AccessibleLabel: ="確認用所属"
+                        BorderColor: =UiTheme.Border
+                        BorderThickness: =1
+                        ChevronBackground: =Color.White
+                        ChevronFill: =UiTheme.Primary
+                        Color: =UiTheme.Text
+                        Default: =UiDepartment
+                        Fill: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =44
+                        Items: =["01秘書課","02総務課","03会計課"]
+                        Items.Value: =Value
+                        LayoutMinWidth: =0
+                        OnChange: =Set(varUiDepartment,Self.Selected.Value); Set(varUiStaffNo,Blank()); Set(varStaff111,Blank()); Set(varStaffChosen111,false); Set(varResultsReady111,false); Set(varPage111,1); Set(varUiResultKey,Blank()); Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111)
+                        SelectionColor: =UiTheme.Text
+                        SelectionFill: =UiTheme.Selected
+                        Size: =11
+                        Width: =180

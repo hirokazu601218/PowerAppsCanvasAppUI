@@ -7,7 +7,7 @@ const btn=(a:FrameLocator,n:string)=>a.getByRole('button',{name:n,exact:true});
 async function start(page:Page){
  await page.setViewportSize({width:1366,height:768});await page.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded',timeout:60000});
  const a=page.frameLocator('iframe[name="fullscreen-app-host"]');
- await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.25',{timeout:60000});
+ await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.26',{timeout:60000});
  await expect(ctl(a,'btnHomeStaff').getByRole('button')).toBeEnabled({timeout:60000});return a;
 }
 async function staff(a:FrameLocator){await ctl(a,'btnHomeStaff').getByRole('button').click();await expect(ctl(a,'conscrHomeRoot')).toBeHidden();await expect(ctl(a,'lblListTitle111')).toContainText('7件');}

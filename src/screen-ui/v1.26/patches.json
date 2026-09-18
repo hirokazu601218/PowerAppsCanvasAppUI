@@ -1,0 +1,37 @@
+[
+  {
+    "screen": "Screen1",
+    "control": "conMain111",
+    "property": "Visible",
+    "before": "=IsBlank(varReport111)",
+    "after": "=IsBlank(varReport111) && !Coalesce(varLedgerOpen111,false) && !Coalesce(varPayroll111,false)"
+  },
+  {
+    "screen": "Screen1",
+    "control": "lblMeta111",
+    "property": "Text",
+    "before": "=\"v1.25 UI試作 ／ \" & UiDepartment",
+    "after": "=\"v1.26 UI試作 ／ \" & UiDepartment"
+  },
+  {
+    "screen": "Screen1",
+    "control": "conStaffNavigation122",
+    "property": "Visible",
+    "before": null,
+    "after": "=IsBlank(varReport111) && !Coalesce(varLedgerOpen111,false) && !Coalesce(varPayroll111,false)"
+  },
+  {
+    "screen": "scrHome",
+    "control": "lblHomePrototype",
+    "property": "Text",
+    "before": "=\"UI検討用 v1.25 ｜ 追加画面の金額・料率・権限区分は仮例です\"",
+    "after": "=\"UI検討用 v1.26 ｜ 追加画面の金額・料率・権限区分は仮例です\""
+  },
+  {
+    "screen": "scrMaintenance",
+    "control": "lblMaintenanceVersion",
+    "property": "Text",
+    "before": "=\"UI試作 v1.25　／　画面要件定義書 v0.6\"",
+    "after": "=\"UI試作 v1.26　／　画面要件定義書 v0.6\""
+  }
+]
