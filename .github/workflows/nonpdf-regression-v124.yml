@@ -1,0 +1,119 @@
+name: Canvas v1.24 complete UI regression
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 14
+    env:
+      MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
+      MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
+      MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
+      MS_AUTH_LOCAL_FILE_PATH: ../../cert/powerapps-test-user.pfx
+      MS_AUTH_HEADLESS: true
+      MS_AUTH_WAIT_FOR_MSAL_TOKENS: true
+      MS_AUTH_MSAL_TOKEN_TIMEOUT: 60000
+      HEADLESS: true
+      CI: true
+      POWER_APPS_BASE_URL: https://make.powerapps.com
+      POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+      CANVAS_APP_URL: https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
+      EXPECTED_LABEL: v1.24 UI試作 ／ 03会計課
+      WORKERS: 2
+      RETRIES: 0
+      TEST_TIMEOUT: 180000
+      OUTPUT_DIRECTORY: ./test-results
+      FIXTURE_ROOT: ${{ github.workspace }}/project/tests/fixtures
+      CONFIG_ROOT: ${{ github.workspace }}/project/config/dataverse
+      PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/regression-results.json
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: project
+      - name: Enforce originating Work deadline
+        run: |
+          python - <<'PY'
+          import datetime
+          start=datetime.datetime.fromisoformat('2026-09-18T06:35:22Z'.replace('Z','+00:00'))
+          assert (datetime.datetime.now(datetime.timezone.utc)-start).total_seconds()<2760, 'Work deadline: insufficient time for 14-minute read-only job'
+          PY
+      - uses: actions/checkout@v4
+        with:
+          repository: microsoft/power-platform-playwright-samples
+          ref: 43e3db8d131aeb09415b1faef030e783fd2e320f
+          path: power-platform-playwright
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: power-platform-playwright/package-lock.json
+      - name: Install the existing pinned toolkit
+        working-directory: power-platform-playwright
+        run: npm ci
+      - name: Build the existing toolkit
+        working-directory: power-platform-playwright
+        run: npm run build
+      - name: Install Chromium
+        working-directory: power-platform-playwright/packages/e2e-tests
+        # Retry a transient package mirror synchronization failure once; keep all integrity checks.
+        run: npx playwright install chromium --with-deps || npx playwright install chromium --with-deps
+      - name: Prepare existing certificate configuration
+        if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
+        env:
+          TEST_CERT_BASE64: ${{ secrets.POWERAPPS_TEST_CERT_BASE64 }}
+        run: |
+          mkdir -p power-platform-playwright/cert
+          printf '%s' "$TEST_CERT_BASE64" | base64 --decode > power-platform-playwright/cert/powerapps-test-user.pfx
+          chmod 600 power-platform-playwright/cert/powerapps-test-user.pfx
+      - name: Diagnose authentication using the unchanged official flow
+        id: auth
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+          MS_USER_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+          MS_AUTH_CERTIFICATE_PASSWORD: ${{ secrets.POWERAPPS_TEST_CERT_PASSWORD }}
+        run: |
+          test "$MS_AUTH_EMAIL" = "powerapps-test@govaca.onmicrosoft.com"
+          npm run auth
+      - name: Preserve only the library's failed-screen PNG
+        if: ${{ failure() && steps.auth.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: staff-master-auth-diagnostic-${{ github.run_id }}
+          path: power-platform-playwright/packages/e2e-tests/.playwright-ms-auth/screenshots/*-failed-*.png
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: warn
+      - name: Install regression suite
+        run: |
+          mkdir -p power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression
+          cp project/e2e/regression-v122/*.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/
+          rm power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/ledger.test.ts
+          true # PDF generation is explicitly outside this Work
+      - name: Run all functional and viewport regressions
+        id: regression
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+        run: npx playwright test tests/northwind/canvas/regression --project=canvas-app --trace=off --retries=0 --workers=2 --reporter=line,json
+      - name: Preserve synthetic UI evidence and results
+        if: ${{ always() && steps.auth.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: nonpdf-regression-${{ github.run_id }}
+          path: |
+            power-platform-playwright/packages/e2e-tests/test-results/**/*.png
+            power-platform-playwright/packages/e2e-tests/test-results/**/*.json
+            power-platform-playwright/packages/e2e-tests/test-results/*.csv
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Record scope
+        if: always()
+        run: echo 'Read-only regression of published v1.24 UI; department-filtered fixture, three new application sessions, 8 staff-layout conditions and 4 widths for 5 new screens. No app import, role changes or Dataverse writes.' >> "$GITHUB_STEP_SUMMARY"

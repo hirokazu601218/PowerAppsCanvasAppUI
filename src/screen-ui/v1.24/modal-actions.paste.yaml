@@ -1,0 +1,107 @@
+- btnExport111:
+    Control: Classic/Button@2.2.0
+    Properties:
+      BorderColor: =ColorValue("#FFFFFF")
+      BorderThickness: =1
+      Color: =Color.White
+      DisplayMode: =If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false)
+        || !IsBlank(varReport111),DisplayMode.Disabled,If(Coalesce(varResultsReady111,false)
+        && IsEmpty(colResult111),DisplayMode.Disabled,DisplayMode.Edit))
+      Font: ="Segoe UI"
+      FontWeight: =FontWeight.Semibold
+      Height: =44
+      OnSelect: "=With({demoStaff:StaffBasicView},\nWith({demoResults:If(Coalesce(varResultsReady111,false),colResult111,demoStaff)},\n\
+        ClearCollect(colReport111,ForAll(demoResults As s,{Key:s.StaffId,Value:s.Name\
+        \ & \" ／ \" & s.Org & \" ／ \" & s.Status})); Set(varTsv111,\"職員番号\t氏名\t組織・所属（正式名称）\t\
+        組織名略称\t生年月日\t性別\t採用日\t退職日\t在籍状態\t給与条件登録\t日額単価\t勤務時間\t通勤登録\t支給方式\t定期額\tIC片道運賃\t\
+        社保登録\t健保・短期制度\t厚年制度\t住民税登録\t5月まで（前年度）\t6月\t7月以降\t税・控除登録\t税表区分\t雇用保険\" & Char(10)\
+        \ & Concat(demoResults As s,Text(s.StaffId) & Char(9) & Text(s.Name) & Char(9)\
+        \ & Text(s.OrgFull) & Char(9) & Text(s.Org) & Char(9) & Text(s.Birth) & Char(9)\
+        \ & Text(s.Sex) & Char(9) & Text(s.Hire) & Char(9) & Text(s.Leave) & Char(9)\
+        \ & Text(s.Status) & Char(9) & Text(s.WorkReg) & Char(9) & Text(s.Daily) &\
+        \ Char(9) & Text(s.Hours) & Char(9) & Text(s.CommuteReg) & Char(9) & Text(s.Method)\
+        \ & Char(9) & Text(s.Pass) & Char(9) & Text(s.Fare) & Char(9) & Text(s.SocialReg)\
+        \ & Char(9) & Text(s.Health) & Char(9) & Text(s.Pension) & Char(9) & Text(s.ResidentReg)\
+        \ & Char(9) & Text(s.TaxMay) & Char(9) & Text(s.TaxJune) & Char(9) & Text(s.TaxJuly)\
+        \ & Char(9) & Text(s.FixedReg) & Char(9) & Text(s.TaxClass) & Char(9) & Text(s.Employment),Char(10)));\
+        \ Set(varReport111,\"検索結果（Excel貼り付け用）\"); Set(varReportPage111,1); Set(varPayroll111,false)\n\
+        )\n)"
+      RadiusBottomLeft: =4
+      RadiusBottomRight: =4
+      RadiusTopLeft: =4
+      RadiusTopRight: =4
+      Size: =11
+      Text: ="検索結果をTSVで出力"
+      Tooltip: ="検索結果をExcel取得"
+      Width: =178
+      X: =conStaffMaster111.X+conMain111.X+conHeader111.X+conHeader111.Width-194
+      Y: =conStaffMaster111.Y+conMain111.Y+conHeader111.Y+10
+      Visible: =conMain111.Visible && !Coalesce(varLedgerOpen111,false) && !Coalesce(varPayroll111,false)
+      Fill: =ColorValue("#073B78")
+      HoverFill: =ColorValue("#0F6CBD")
+      HoverColor: =Color.White
+- btnCertificate111:
+    Control: Classic/Button@2.2.0
+    Properties:
+      BorderColor: =ColorValue("#0B4A8B")
+      BorderThickness: =1
+      Color: =Color.White
+      DisplayMode: =If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false)
+        || !IsBlank(varReport111),DisplayMode.Disabled,IfError(If(!IsBlank(galCommute111.Selected.T_通勤)
+        && galCommute111.Selected.職員基本.職員番号 = StaffSelected.StaffId,DisplayMode.Edit,DisplayMode.Disabled),DisplayMode.Disabled))
+      Font: ="Segoe UI"
+      FontWeight: =FontWeight.Semibold
+      Height: =44
+      OnSelect: "=IfError(\n    With({c:galCommute111.Selected,s:StaffSelected},\n\
+        \        If(IsBlank(c.T_通勤) || c.職員基本.職員番号 <> s.StaffId,\n            Notify(\"\
+        通勤の行を選択してください。\",NotificationType.Warning),\n            Set(varLedgerStaff111,s);\n\
+        \            Set(varLedgerCommute111,c);\n            ClearCollect(colLedgerFields111,StaffLedgerFields);\n\
+        \            Set(varLedgerOpen111,true); Set(varLedgerZoom111,1);\n      \
+        \      Set(varLedgerPdfView111,false); Set(varLedgerExport111,false);\n  \
+        \          Set(varLedgerPdfRequested111,false); Set(varLedgerPdf111,Blank());\n\
+        \            Set(varLedgerSavedUrl111,\"\"); Set(varLedgerStatus111,\"\");\n\
+        \            Set(varLedgerFile111,\"\"); Set(varPayroll111,false); Reset(ddLedgerPaper111)\n\
+        \        )\n    ),\n    Clear(colLedgerFields111); Set(varLedgerOpen111,false);\n\
+        \    Notify(\"通勤データを取得できませんでした。再読込してください。\",NotificationType.Error)\n)"
+      RadiusBottomLeft: =4
+      RadiusBottomRight: =4
+      RadiusTopLeft: =4
+      RadiusTopRight: =4
+      Size: =11
+      Text: ="選択職員の認定簿を表示"
+      Tooltip: ="認定簿出力"
+      Width: =144
+      X: =conStaffMaster111.X+conMain111.X+conPerson111.X+conPerson111.Width-312
+      Y: =conStaffMaster111.Y+conMain111.Y+conPerson111.Y+8
+      Visible: =conMain111.Visible && !Coalesce(varLedgerOpen111,false) && !Coalesce(varPayroll111,false)
+        && conPerson111.Visible
+      Fill: =ColorValue("#073B78")
+      HoverFill: =ColorValue("#0F6CBD")
+      HoverColor: =Color.White
+- btnPayrollOpen111:
+    Control: Classic/Button@2.2.0
+    Properties:
+      BorderColor: =ColorValue("#0B4A8B")
+      BorderThickness: =1
+      Color: =Color.White
+      DisplayMode: =If(Coalesce(varLedgerOpen111,false) || Coalesce(varPayroll111,false)
+        || !IsBlank(varReport111),DisplayMode.Disabled,If(varLedgerOpen111,DisplayMode.Disabled,DisplayMode.Edit))
+      Font: ="Segoe UI"
+      FontWeight: =FontWeight.Semibold
+      Height: =44
+      OnSelect: =Set(varPayroll111,true)
+      RadiusBottomLeft: =4
+      RadiusBottomRight: =4
+      RadiusTopLeft: =4
+      RadiusTopRight: =4
+      Size: =11
+      Text: ="詳細表示"
+      Tooltip: ="詳細表示"
+      Width: =144
+      X: =conStaffMaster111.X+conMain111.X+conPerson111.X+conPerson111.Width-156
+      Y: =conStaffMaster111.Y+conMain111.Y+conPerson111.Y+8
+      Visible: =conMain111.Visible && !Coalesce(varLedgerOpen111,false) && !Coalesce(varPayroll111,false)
+        && conPerson111.Visible
+      Fill: =ColorValue("#073B78")
+      HoverFill: =ColorValue("#0F6CBD")
+      HoverColor: =Color.White

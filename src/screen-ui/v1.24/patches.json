@@ -1,0 +1,68 @@
+[
+  {
+    "control": "btnLedgerClose111",
+    "property": "OnSelect",
+    "before": "=Set(varLedgerOpen111,false);\nSet(varLedgerPdfRequested111,false);\nSet(varLedgerPdfView111,false)",
+    "after": "=Set(varLedgerOpen111,false);\nSet(varLedgerPdfRequested111,false);\nSet(varLedgerPdfView111,false); SetFocus(btnCertificate111)"
+  },
+  {
+    "control": "btnPayClose111",
+    "property": "OnSelect",
+    "before": "=Set(varPayroll111,false)",
+    "after": "=Set(varPayroll111,false); SetFocus(btnPayrollOpen111)"
+  },
+  {
+    "control": "btnReportClose111",
+    "property": "OnSelect",
+    "before": "=Set(varReport111,\"\")",
+    "after": "=Set(varReport111,\"\"); SetFocus(btnExport111)"
+  },
+  {
+    "control": "lblName111",
+    "property": "Width",
+    "before": "=Min(Parent.Width-120,Len(Substitute(Self.Text,\" \",\"\"))*Self.Size*4/3+(Len(Self.Text)-Len(Substitute(Self.Text,\" \",\"\")))*Self.Size*2/3+Self.PaddingLeft+Self.PaddingRight)",
+    "after": "=Max(80,Min(Parent.Width-432,Len(Substitute(Self.Text,\" \",\"\"))*Self.Size*4/3+(Len(Self.Text)-Len(Substitute(Self.Text,\" \",\"\")))*Self.Size*2/3+Self.PaddingLeft+Self.PaddingRight))"
+  },
+  {
+    "control": "App",
+    "property": "Formulas",
+    "file": "App.Formulas.fx"
+  },
+  {
+    "control": "btnHomeStaff",
+    "property": "DisplayMode",
+    "after": "=If(UiFixtureCount<0 && (IsBlank(StaffTestCount) || IsEmpty(StaffBasicView)),DisplayMode.Disabled,DisplayMode.Edit)"
+  },
+  {
+    "control": "lblHomePrototype",
+    "property": "Text",
+    "after": "=\"UI検討用 v1.24 ｜ 追加画面の金額・料率・権限区分は仮例です\""
+  },
+  {
+    "control": "lblMaintenanceVersion",
+    "property": "Text",
+    "after": "=\"UI試作 v1.24　／　画面要件定義書 v0.6\""
+  },
+  {
+    "control": "lblMeta111",
+    "property": "Text",
+    "after": "=\"v1.24 UI試作 ／ \" & UiDepartment"
+  },
+  {
+    "control": "galStaff111",
+    "property": "Height",
+    "after": "=With({resultCount:If(Coalesce(varResultsReady111,false),CountRows(colResult111),CountRows(StaffBasicView)),pageNumber:Coalesce(varPage111,1)},Max(1,Min(20,Max(0,resultCount-(pageNumber-1)*20)))*If(Coalesce(varLargeText111,false),80,72))"
+  },
+  {
+    "control": "lblBasicVal1111",
+    "property": "Wrap",
+    "before": "=true",
+    "after": "=false"
+  },
+  {
+    "control": "lblBasicVal2111",
+    "property": "Wrap",
+    "before": "=true",
+    "after": "=false"
+  }
+]

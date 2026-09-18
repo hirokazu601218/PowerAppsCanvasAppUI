@@ -18,11 +18,11 @@ async function start(p:Page,w=1366,h=768) {
   await p.setViewportSize({width:w,height:h});
   await p.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded',timeout:60000});
   const a=c(p);
-  await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.23',{timeout:60000});
+  await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.24',{timeout:60000});
   return a;
 }
 async function home(a:FrameLocator) {await btn(a,'ホーム').first().click(); await expect(ctl(a,'btnHomeStaff')).toBeVisible();await expect(ctl(a,'conStaffNavigation122')).toBeHidden();await expect(ctl(a,'conscrPayrollRoot')).toBeHidden();}
-async function staff(a:FrameLocator) {await ctl(a,'btnHomeStaff').getByRole('button').click();await expect(ctl(a,'lblMeta111')).toContainText('v1.23');await expect(ctl(a,'conscrHomeRoot')).toBeHidden();}
+async function staff(a:FrameLocator) {await ctl(a,'btnHomeStaff').getByRole('button').click();await expect(ctl(a,'lblMeta111')).toContainText('v1.24');await expect(ctl(a,'conscrHomeRoot')).toBeHidden();}
 async function department(a:FrameLocator,dept:string) {
   if(!await ctl(a,'btnHomeStaff').isVisible()) await home(a);
   await ctl(a,'ddHomeDepartment').click(); await a.getByRole('option',{name:dept,exact:true}).click();
