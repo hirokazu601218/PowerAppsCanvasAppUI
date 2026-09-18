@@ -1,9 +1,12 @@
-# 現在の作業と読取り対象：v1.22 全回帰・複数幅検証中
+# 現在の作業と読取り対象：v1.23 回帰修正版公開・最終試験中
 
-- Issue #54。ユーザーの追加依頼により前回未実施の全回帰・複数幅検証を開始。
-- 起算2026-09-18 04:23:59 UTC、60分停止期限05:23:59 UTC。
-- 対象：公開v1.22。読取り対象：`docs/testing/regression-v122/plan.md`、テスト方針・テスト仕様書、`e2e/regression-v122/`、`src/screen-ui/v1.22/`、既存v1.21 studio-readback、現行fixtures。
-- Dataverse変更なし。**Issue #51 ABS-RATE-001（実テーブルの欠勤時間単価）は未反映のまま引継ぎ。**
+- Issue #54：全回帰・複数幅検証。開始2026-09-18 04:23:59 UTC、停止期限05:23:59 UTC。
+- 05:08:43 UTCにv1.23最終候補を公開。検索0件後の旧職員/明細残留、管理者初期化、給与詳細の整数末尾小数点を修正。Studio公式数式エラー0、全7プロパティ読戻し一致。
+- 基盤単体50/50 PASS。第2回実機は19/25 PASS、6 FAIL。既存8表示条件・追加5画面×4幅=20表示の幾何学検査はPASS。
+- 最終run 35309682325：結果確認中。全95仕様ケースの監査は `docs/testing/regression-v122/spec-case-audit.md`。未充足があり、全回帰完了・CORE/REPORT全面合格は宣言しない。
+- 正本：`src/screen-ui/v1.23/patches.json`、`manifest.json`、`studio-readback/`。未変更の追加3画面はv1.22読戻し。旧canvas-v3を配布しない。
+- 次回読取り：`docs/testing/regression-v122/results.md`、95項目監査、`e2e/regression-v122/`。未接続PDF保存、専用fixture、200%拡大/読み上げ、復元・故障注入等を追跡。
+- **Issue #51 ABS-RATE-001（実テーブルの欠勤時間単価）は未反映。Dataverse変更なし。**
 
 ---
 

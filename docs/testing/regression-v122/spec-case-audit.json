@@ -1,0 +1,592 @@
+[
+  {
+    "id": "SRC-01",
+    "priority_mode": "P0／S",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "SRC-02",
+    "priority_mode": "P0／S",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "SRC-03",
+    "priority_mode": "P0／S",
+    "status": "PASS",
+    "note": "Studioの公式数式チェックでエラー0。7プロパティの読戻し一致。",
+    "evidence": "readback-results.json / manifest.json / Studio 2026-09-18"
+  },
+  {
+    "id": "SRC-04",
+    "priority_mode": "P1／S",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "SRC-05",
+    "priority_mode": "P0／S",
+    "status": "PASS",
+    "note": "変更した7プロパティに実データ・認証情報なし。アカウントはUser()の実行時表示のみ。",
+    "evidence": "readback-results.json / manifest.json / Studio 2026-09-18"
+  },
+  {
+    "id": "DEP-01",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "DEP-02",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "DEP-03",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "INIT-01",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "ホーム初期表示と03会計課7名は確認済み。旧D0一括25名の仕様は現在の所属選択へ移行。3スモークの最終結果待ち。"
+  },
+  {
+    "id": "INIT-02",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "INIT-03",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "INIT-04",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "DATA-01",
+    "priority_mode": "P0／S＋E",
+    "status": "PASS",
+    "note": "現行25件fixtureのうち確認用3所属に割当済み23名を所属ごとに順序・完全番号集合で照合。未割当2名は現行UI対象外。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "DATA-02",
+    "priority_mode": "P1／S",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "DATA-03",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "通勤6件・003勤務3件・保険/税1件・給与一部を確認。全5セクションの全セル網羅は未実施。"
+  },
+  {
+    "id": "DATA-04",
+    "priority_mode": "P2／E",
+    "status": "BLOCKED",
+    "note": "D2の負数・長文fixture未準備"
+  },
+  {
+    "id": "DATA-05",
+    "priority_mode": "P1／S＋E",
+    "status": "NOT_RUN",
+    "note": "163列は独立マップで照合中。他全セクションの全項目照合は未実施。"
+  },
+  {
+    "id": "SRCH-01",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "空欄検索で03会計課7名の番号集合一致。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "SRCH-02",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "同姓同名検索で03会計課の011のみ。画面入力から検索。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "SRCH-03",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "12桁009900000004検索・本人詳細一致。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "SRCH-04",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "前後空白を除いた同姓同名検索が一致。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "SRCH-05",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "空白のみと空文字で所属全員へ復帰。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "SRCH-06",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "01/02/03所属の現行fixture8/8/7名を完全照合。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "SRCH-07",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "試験日2026-09-18日本時間の在籍・退職集合を照合。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "SRCH-08",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "在籍＋キーワードのANDは確認。3条件同時の独立ケースは未実施。"
+  },
+  {
+    "id": "SRCH-09",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "別所属指定0件は確認。3条件同時の独立ケースは未実施。"
+  },
+  {
+    "id": "SRCH-10",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "正式所属名検索を確認。数値・支給方式の全項目検索は未実施。"
+  },
+  {
+    "id": "SRCH-11",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "未確定入力で旧結果維持、検索後に新結果へ変更。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "SRCH-12",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "二重クリック後の番号集合と重複なし。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "PAGE-01",
+    "priority_mode": "P0／E",
+    "status": "BLOCKED",
+    "note": "所属別件数が最大8名で2ページにならない"
+  },
+  {
+    "id": "PAGE-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "所属内1ページの前へ／次へ無効。複数ページ境界は別BLOCKED。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "PAGE-03",
+    "priority_mode": "P1／E",
+    "status": "BLOCKED",
+    "note": "同上。ページ2からの検索を実施できない"
+  },
+  {
+    "id": "PAGE-04",
+    "priority_mode": "P1／E",
+    "status": "BLOCKED",
+    "note": "同上。ページ2からのクリアを実施できない"
+  },
+  {
+    "id": "PAGE-05",
+    "priority_mode": "P2／E",
+    "status": "BLOCKED",
+    "note": "D1の0/1/20/21/40名fixture未準備"
+  },
+  {
+    "id": "SEL-01",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "SEL-02",
+    "priority_mode": "P1／E",
+    "status": "BLOCKED",
+    "note": "ページ2に到達するfixture未準備"
+  },
+  {
+    "id": "SEL-03",
+    "priority_mode": "P2／E",
+    "status": "PASS",
+    "note": "別所属の同姓同名011/012の通勤が番号で分離。給与163項目の全照合はCORE-DETAIL最終runで別判定。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "SEL-04",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "ZERO-01",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "ZERO-02",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "ZERO-03",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "SIDE-01",
+    "priority_mode": "P0／E＋V",
+    "status": "NOT_RUN",
+    "note": "検索欄の開閉・入力保持を確認。論理幅360/48の数値照合は未実施。"
+  },
+  {
+    "id": "SIDE-02",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "キーワードと確定結果の保持を確認。選択/ページの全条件は未実施。"
+  },
+  {
+    "id": "SIDE-03",
+    "priority_mode": "P1／E",
+    "status": "BLOCKED",
+    "note": "ページ2の未確定入力保持fixture未準備"
+  },
+  {
+    "id": "SIDE-04",
+    "priority_mode": "P1／E＋V",
+    "status": "NOT_RUN",
+    "note": "8表示条件と20周反復は確認。各8条件で5回ずつの測定は未実施。"
+  },
+  {
+    "id": "SIDE-05",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "DETAIL-01",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "9セルの位置と一部識別値を確認。全9値の独立照合は未実施。"
+  },
+  {
+    "id": "DETAIL-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "下端へスクロール後も氏名サマリーが画面内に固定。現行v1.22には勤務・通勤・保険・税・給与の5セクション。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "DETAIL-03",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "勤務003の3期間と現行/過去/予定を確認。現行仕様は日本時間の当日基準。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "DETAIL-04",
+    "priority_mode": "P1／E＋V",
+    "status": "NOT_RUN",
+    "note": "給与163項目最右列は8条件で到達。全履歴セルの位置/値は未網羅。"
+  },
+  {
+    "id": "DETAIL-05",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "DETAIL-06",
+    "priority_mode": "P1／E＋V",
+    "status": "NOT_RUN",
+    "note": "標準/大の8条件で配置を確認。標準→大→標準の数値校正は未実施。"
+  },
+  {
+    "id": "LED-01",
+    "priority_mode": "P0／E＋V",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "LED-02",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "6通勤レコードの識別値/日付/金額/空経路は照合。69フィールド全件は未網羅。"
+  },
+  {
+    "id": "LED-03",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "子通勤0件の012/002で認定簿無効。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "LED-04",
+    "priority_mode": "P1／E＋V",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "LED-05",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "LED-06",
+    "priority_mode": "P1／E＋P",
+    "status": "NOT_RUN",
+    "note": "UIの6認定選択は合格。認定ごとのPDF生成までは未実施。"
+  },
+  {
+    "id": "PDF-01",
+    "priority_mode": "P0／E＋P",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "PDF-02",
+    "priority_mode": "P1／P＋V",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "PDF-03",
+    "priority_mode": "P0／P",
+    "status": "BLOCKED",
+    "note": "保存先フロー未接続"
+  },
+  {
+    "id": "PDF-04",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "PDF-05",
+    "priority_mode": "P1／P",
+    "status": "BLOCKED",
+    "note": "専用の保存失敗注入環境未接続"
+  },
+  {
+    "id": "PDF-06",
+    "priority_mode": "P1／P",
+    "status": "BLOCKED",
+    "note": "保存要求件数を照合するフローログなし"
+  },
+  {
+    "id": "PDF-07",
+    "priority_mode": "P1／E＋P",
+    "status": "BLOCKED",
+    "note": "遅延注入fixture未準備"
+  },
+  {
+    "id": "OUT-01",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "所属全7件TSVと番号集合を確認。複数検索ページからの全件出力はfixture不足。"
+  },
+  {
+    "id": "OUT-02",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "検索1件TSVと氏名/番号を確認。Excel貼付後の先頭0確認は未実施。"
+  },
+  {
+    "id": "OUT-03",
+    "priority_mode": "P1／E",
+    "status": "BLOCKED",
+    "note": "クリップボード権限拒否fixture未準備"
+  },
+  {
+    "id": "OUT-04",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "OUT-05",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "出力2ページ往復と端ボタン確認。閉じた後のフォーカス復帰は未実施。"
+  },
+  {
+    "id": "OUT-06",
+    "priority_mode": "P1／E＋H",
+    "status": "BLOCKED",
+    "note": "OS印刷ダイアログと印刷物を取得できない"
+  },
+  {
+    "id": "VIS-01",
+    "priority_mode": "P0／V",
+    "status": "NOT_RUN",
+    "note": "既存8条件と追加5画面×4幅の幾何学検査は合格。全モーダルを含む画像の全基準照合は未実施。"
+  },
+  {
+    "id": "VIS-02",
+    "priority_mode": "P1／V",
+    "status": "BLOCKED",
+    "note": "D2の長文fixture未準備"
+  },
+  {
+    "id": "VIS-03",
+    "priority_mode": "P1／V",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "VIS-04",
+    "priority_mode": "P1／V",
+    "status": "NOT_RUN",
+    "note": "基本9項目・給与最右項目・固定氏名・閉じる到達は8条件PASS。全履歴の二方向スクロールは未網羅。"
+  },
+  {
+    "id": "VIS-05",
+    "priority_mode": "P1／V",
+    "status": "BLOCKED",
+    "note": "現行v1.22の承認済み画像ベースライン未確立"
+  },
+  {
+    "id": "VIS-06",
+    "priority_mode": "P1／V＋H",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "ACC-01",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "検索と行選択をキーボードで確認。全Tab順と可視フォーカスの校正は未実施。"
+  },
+  {
+    "id": "ACC-02",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "閉じた検索へTabが入らないことを一回確認。全巡回と再展開は未実施。"
+  },
+  {
+    "id": "ACC-03",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "ACC-04",
+    "priority_mode": "P1／V",
+    "status": "BLOCKED",
+    "note": "Cloud Browserで200%ズーム操作が反映されず。viewport縮小を代用PASSにしない"
+  },
+  {
+    "id": "ACC-05",
+    "priority_mode": "P1／S＋V",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "ACC-06",
+    "priority_mode": "P1／H",
+    "status": "BLOCKED",
+    "note": "実支援技術を使う人による読上げ評価が未実施"
+  },
+  {
+    "id": "PATCH-01",
+    "priority_mode": "P0／S",
+    "status": "PASS",
+    "note": "manifestに基準版・7プロパティ・適用/復元先・SHA256を記録。旧651コントロールを保持。",
+    "evidence": "readback-results.json / manifest.json / Studio 2026-09-18"
+  },
+  {
+    "id": "PATCH-02",
+    "priority_mode": "P0／S＋E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "PATCH-03",
+    "priority_mode": "P1／S＋E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "PATCH-04",
+    "priority_mode": "P1／S＋E",
+    "status": "BLOCKED",
+    "note": "復元試験専用複製が未作成"
+  },
+  {
+    "id": "PERF-01",
+    "priority_mode": "P2／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "PERF-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "検索・選択・開閉・0件・クリア20周を実施。番号集合の不一致なし。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "OPS-01",
+    "priority_mode": "P0／S",
+    "status": "PASS",
+    "note": "全95仕様ケースを列挙し、全期待値未確認のケースはNOT_RUN/BLOCKED。部分実施を合格にしない。",
+    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+  },
+  {
+    "id": "OPS-02",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+  },
+  {
+    "id": "HAR-01",
+    "priority_mode": "P1／S＋E",
+    "status": "BLOCKED",
+    "note": "使い捨て試験複製の未準備"
+  },
+  {
+    "id": "HAR-02",
+    "priority_mode": "P1／S＋E",
+    "status": "BLOCKED",
+    "note": "同上"
+  },
+  {
+    "id": "HAR-03",
+    "priority_mode": "P1／S＋V",
+    "status": "BLOCKED",
+    "note": "同上"
+  },
+  {
+    "id": "HAR-04",
+    "priority_mode": "P1／E＋P",
+    "status": "BLOCKED",
+    "note": "保存フローと使い捨て複製の未準備"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "checked": "2026-09-18T05:11Z",
+  "strictYaml": true,
+  "readbackCounts": {
+    "scrHome.pa.yaml": 18,
+    "scrMaintenance.pa.yaml": 12,
+    "Screen1.pa.yaml": 657
+  },
+  "v121ControlsPreserved": 651,
+  "patchReadbackProperties": 7,
+  "allPropertiesMatched": true,
+  "screen1GitBlob": "91192461e452876c710997c7b2371dc248c91e20"
+}

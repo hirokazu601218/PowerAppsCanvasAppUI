@@ -6,7 +6,8 @@
     "observed": "職員011の明細表示後、検索999ZZZで0件、ホーム経由で支給明細へ戻ると011と151800円が残る",
     "expected": "0件・選択解除後は対象未選択、金額—、再計算無効",
     "evidence": "2026-09-18 04:39 UTC 公開Playerで再現",
-    "remedy": "UiSelectedとUiTargetKeyを職員検索の選択状態へ統一。メンテナンス初期化もその選択を解除"
+    "remedy": "UiSelectedとUiTargetKeyを職員検索の選択状態へ統一。メンテナンス初期化もその選択を解除",
+    "status": "修正候補の読戻し照合済み・最終公開後の再検証待ち"
   },
   {
     "id": "BUG-DECIMAL-001",
@@ -15,6 +16,7 @@
     "observed": "減額時間の整数0が0.と表示される",
     "expected": "整数は末尾小数点なし。小数は最大10桁を維持",
     "evidence": "Actions 35307403100 CORE-DETAIL assertion",
-    "remedy": "整数と小数の表示書式をModで分岐"
+    "remedy": "整数と小数の表示書式をModで分岐",
+    "status": "修正候補の読戻し照合済み・最終公開後の再検証待ち"
   }
 ]
