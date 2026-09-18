@@ -1,0 +1,808 @@
+{
+  "date": "2026-09-18",
+  "observedAppLabel": "v1.26",
+  "publishedSourceByteIdentityVerified": false,
+  "referenceSha": "1dd489a6da91c3753798d466d3caa65a4577b80c",
+  "mainBaseline": "77a7ff37ab4fcc098c5c3c7a40120c1fb6e69d84",
+  "newPassIds": [
+    "OUT-02",
+    "LED-01",
+    "LED-04",
+    "DETAIL-06",
+    "SEL-01",
+    "ZERO-03"
+  ],
+  "countsCumulativeMixedVersions": {
+    "PASS": 53,
+    "NOT_RUN": 25,
+    "EXCLUDED": 9,
+    "FAIL": 1,
+    "BLOCKED": 7
+  },
+  "payrollComparison": {
+    "case": "OUT-04",
+    "staff": "009900000004",
+    "fieldCount": 163,
+    "headerMatches": 163,
+    "differences": [
+      {
+        "index": 112,
+        "field": "減額・時間・当給与期間分",
+        "expected": "0",
+        "actual": "0.",
+        "header": "減額・時間・当給与期間分"
+      },
+      {
+        "index": 113,
+        "field": "減額・時間・返納・追給分",
+        "expected": "0",
+        "actual": "0.",
+        "header": "減額・時間・返納・追給分"
+      }
+    ],
+    "valueMatches": 161,
+    "note": "文字列はfixture原文と比較。氏名の全角空白保持は一致。"
+  },
+  "searchTsv": {
+    "rows": 2,
+    "columns": 26,
+    "allValuesMatch": true,
+    "clipboardExact": true,
+    "leadingZero": true
+  },
+  "selectionComparisons": [
+    {
+      "id": "009900000011",
+      "expectedCount": 52,
+      "observedCount": 52,
+      "differences": []
+    },
+    {
+      "id": "009900000004",
+      "expectedCount": 24,
+      "observedCount": 24,
+      "differences": []
+    }
+  ],
+  "staff011Cells": [
+    {
+      "name": "lblBasicVal0111",
+      "text": "009900000011"
+    },
+    {
+      "name": "lblBasicVal1111",
+      "text": "試験 同姓同名"
+    },
+    {
+      "name": "lblBasicVal2111",
+      "text": "管理部 会計課"
+    },
+    {
+      "name": "lblBasicVal3111",
+      "text": "03会計課"
+    },
+    {
+      "name": "lblBasicVal4111",
+      "text": "1981/04/01"
+    },
+    {
+      "name": "lblBasicVal5111",
+      "text": "男"
+    },
+    {
+      "name": "lblBasicVal6111",
+      "text": "2026/04/01"
+    },
+    {
+      "name": "lblBasicVal7111",
+      "text": ""
+    },
+    {
+      "name": "lblBasicVal8111",
+      "text": "在籍"
+    },
+    {
+      "name": "lblCWorkState111",
+      "text": "現行"
+    },
+    {
+      "name": "lblCWork1110",
+      "text": "2026/04/01"
+    },
+    {
+      "name": "lblCWork1111",
+      "text": ""
+    },
+    {
+      "name": "lblCWork1112",
+      "text": "11,100"
+    },
+    {
+      "name": "lblCWork1113",
+      "text": "8:00"
+    },
+    {
+      "name": "lblCWork1114",
+      "text": "8:00"
+    },
+    {
+      "name": "lblCWork1115",
+      "text": "0"
+    },
+    {
+      "name": "lblCWork1116",
+      "text": "合成テスト"
+    },
+    {
+      "name": "lblCWork1117",
+      "text": "職員11の勤務条件"
+    },
+    {
+      "name": "lblCWork1118",
+      "text": "17:00"
+    },
+    {
+      "name": "lblCWork1119",
+      "text": "8.00"
+    },
+    {
+      "name": "lblCSocial1110",
+      "text": "合成テスト"
+    },
+    {
+      "name": "lblCSocial1111",
+      "text": "1981/04/01"
+    },
+    {
+      "name": "lblCSocial1112",
+      "text": "45"
+    },
+    {
+      "name": "lblCSocial1113",
+      "text": "46"
+    },
+    {
+      "name": "lblCSocial1114",
+      "text": "テスト・判定対象外"
+    },
+    {
+      "name": "lblCSocial1115",
+      "text": "テスト・判定対象外"
+    },
+    {
+      "name": "lblCSocial1116",
+      "text": "テスト・判定対象外"
+    },
+    {
+      "name": "lblCSocial1117",
+      "text": "0"
+    },
+    {
+      "name": "lblCSocial1118",
+      "text": "211,000"
+    },
+    {
+      "name": "lblCTax1110",
+      "text": "2026/04/01"
+    },
+    {
+      "name": "lblCTax1111",
+      "text": ""
+    },
+    {
+      "name": "lblCTax1112",
+      "text": "甲"
+    },
+    {
+      "name": "lblCTax1113",
+      "text": "加入"
+    },
+    {
+      "name": "lblCTax1114",
+      "text": "0"
+    },
+    {
+      "name": "lblCTax1115",
+      "text": "0"
+    },
+    {
+      "name": "lblCTax1116",
+      "text": "0"
+    },
+    {
+      "name": "lblCTax1117",
+      "text": "職員11専用の合成データ・計算検証対象外"
+    },
+    {
+      "name": "lblCPayroll1110",
+      "text": "令和08年"
+    },
+    {
+      "name": "lblCPayroll1111",
+      "text": "令和08年04月23日"
+    },
+    {
+      "name": "lblCPayroll1112",
+      "text": "240,000"
+    },
+    {
+      "name": "lblCPayroll1113",
+      "text": "0"
+    },
+    {
+      "name": "lblCPayroll1114",
+      "text": "0"
+    },
+    {
+      "name": "lblCPayroll1115",
+      "text": "0"
+    },
+    {
+      "name": "lblCPayroll1116",
+      "text": "0"
+    },
+    {
+      "name": "lblCPayroll1117",
+      "text": "0"
+    },
+    {
+      "name": "lblCPayroll1118",
+      "text": "0"
+    },
+    {
+      "name": "lblCPayroll1119",
+      "text": "0"
+    },
+    {
+      "name": "lblCPayroll11110",
+      "text": "240,000"
+    },
+    {
+      "name": "lblCPayroll11111",
+      "text": "10,000"
+    },
+    {
+      "name": "lblCPayroll11112",
+      "text": "0"
+    },
+    {
+      "name": "lblCPayroll11113",
+      "text": "230,000"
+    },
+    {
+      "name": "lblCPayroll11114",
+      "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+    }
+  ],
+  "zeroRestore": {
+    "cells": [
+      {
+        "name": "lblBasicVal0111",
+        "text": "009900000004"
+      },
+      {
+        "name": "lblBasicVal1111",
+        "text": "試験　退職"
+      },
+      {
+        "name": "lblBasicVal2111",
+        "text": ""
+      },
+      {
+        "name": "lblBasicVal3111",
+        "text": "03会計課"
+      },
+      {
+        "name": "lblBasicVal4111",
+        "text": ""
+      },
+      {
+        "name": "lblBasicVal5111",
+        "text": ""
+      },
+      {
+        "name": "lblBasicVal6111",
+        "text": "2025/04/01"
+      },
+      {
+        "name": "lblBasicVal7111",
+        "text": "2026/03/31"
+      },
+      {
+        "name": "lblBasicVal8111",
+        "text": "退職"
+      },
+      {
+        "name": "lblCPayroll1110",
+        "text": "令和08年"
+      },
+      {
+        "name": "lblCPayroll1111",
+        "text": "令和08年03月23日"
+      },
+      {
+        "name": "lblCPayroll1112",
+        "text": "230,000"
+      },
+      {
+        "name": "lblCPayroll1113",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1114",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1115",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1116",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1117",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1118",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll1119",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll11110",
+        "text": "230,000"
+      },
+      {
+        "name": "lblCPayroll11111",
+        "text": "10,000"
+      },
+      {
+        "name": "lblCPayroll11112",
+        "text": "0"
+      },
+      {
+        "name": "lblCPayroll11113",
+        "text": "220,000"
+      },
+      {
+        "name": "lblCPayroll11114",
+        "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+      }
+    ],
+    "lists": [
+      {
+        "label": "職員検索結果。氏名、在籍状態、職員番号、所属の順",
+        "text": "試験　退職、退職、職員番号009900000004、03会計課 件。選択済み。\n009900000004 試験　退職 詳細を表示\n試験　退職\n退職\n03会計課\n試験 職員08、採用前、職員番号009900000008、03会計課\n009900000008 試験 職員08 詳細を表示\n1978/04/01\n試験 職員08\n採用前\n03会計課\n未加入\n試験 同姓同名、在籍、職員番号009900000011、03会計課\n009900000011 試験 同姓同名 詳細を表示\n1981/04/01\n試験 同姓同名\n在籍\n03会計課\n加入\n試験 職員14、在籍、職員番号009900000014、03会計課\n009900000014 試験 職員14 詳細を表示\n1984/04/01\n試験 職員14\n在籍\n03会計課\n未加入\n試験 職員17、在籍、職員番号009900000017、03会計課\n009900000017 試験 職員17 詳細を表示\n1987/04/01\n試験 職員17\n在籍\n03会計課\n加入\n試験 職員20、退職、職員番号009900000020、03会計課\n009900000020 試験 職員20 詳細を表示\n1990/04/01\n試験 職員20\n退職\n03会計課\n未加入\n試験 職員23、採用前、職員番号009900000023、03会計課\n009900000023 試験 職員23 詳細を表示\n1993/04/01\n試験 職員23\n採用前\n03会計課\n加入"
+      },
+      {
+        "label": "Work 履歴",
+        "text": ""
+      },
+      {
+        "label": "通勤認定一覧。表示する行を選択してください",
+        "text": "TK-910003 2025/04/01 毎月精算 件。選択済み。\n2025/04/01\nTK-910003\n2026/03/31\n毎月精算\n16,800\n16,800"
+      },
+      {
+        "label": "Social 履歴",
+        "text": ""
+      },
+      {
+        "label": "Tax 履歴",
+        "text": ""
+      },
+      {
+        "label": "Payroll 履歴",
+        "text": "009900000004 令和08年03月23日\n令和08年\n令和08年03月23日\n230,000\n0\n0\n0\n0\n0\n0\n0\n230,000\n10,000\n0\n220,000\n合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+      }
+    ],
+    "query": ""
+  },
+  "measurements": {
+    "ledger100": {
+      "images": 2,
+      "left": 0,
+      "maxLeft": 15,
+      "maxTop": 1270,
+      "page2": {
+        "bottom": 844,
+        "left": 120,
+        "right": 1242,
+        "top": -240,
+        "width": 1122
+      },
+      "top": 1270,
+      "view": {
+        "bottom": 844,
+        "left": 120,
+        "right": 1227,
+        "top": 212
+      }
+    },
+    "ledger150Bottom": {
+      "images": 2,
+      "left": 368,
+      "maxLeft": 368,
+      "maxTop": 2161,
+      "page2": {
+        "bottom": 844,
+        "left": -352,
+        "right": 1331,
+        "top": -782,
+        "width": 1683
+      },
+      "top": 2161,
+      "view": {
+        "bottom": 844,
+        "left": 16,
+        "right": 1331,
+        "top": 164
+      }
+    },
+    "ledger150Top": {
+      "images": 2,
+      "left": 0,
+      "maxLeft": 368,
+      "maxTop": 2161,
+      "page2": {
+        "bottom": 3005,
+        "left": 16,
+        "right": 1699,
+        "top": 1379,
+        "width": 1683
+      },
+      "top": 0,
+      "view": {
+        "bottom": 844,
+        "left": 16,
+        "right": 1331,
+        "top": 164
+      }
+    },
+    "ledgerRestored": {
+      "images": 2,
+      "left": 0,
+      "maxLeft": 15,
+      "maxTop": 1270,
+      "page2": {
+        "bottom": 2114,
+        "left": 120,
+        "right": 1242,
+        "top": 1030,
+        "width": 1122
+      },
+      "top": 0,
+      "view": {
+        "bottom": 844,
+        "left": 120,
+        "right": 1227,
+        "top": 212
+      }
+    },
+    "textMetrics": [
+      {
+        "work": [
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWorkState111",
+            "text": "現行",
+            "width": 100.796875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1110",
+            "text": "2026/04/01",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1111",
+            "text": "",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1112",
+            "text": "",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1113",
+            "text": "7:45",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1114",
+            "text": "7:45",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1115",
+            "text": "0",
+            "width": 148.5
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1116",
+            "text": "表示試験",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1117",
+            "text": "内蔵試験専用",
+            "width": 135
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1118",
+            "text": "17:00",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1119",
+            "text": "7.75",
+            "width": 126
+          }
+        ],
+        "rows": [
+          {
+            "h": 72,
+            "text": null
+          },
+          {
+            "h": 72,
+            "text": null
+          },
+          {
+            "h": 72,
+            "text": null
+          }
+        ],
+        "query": ""
+      },
+      {
+        "work": [
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWorkState111",
+            "text": "現行",
+            "width": 100.796875
+          },
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWork1110",
+            "text": "2026/04/01",
+            "width": 133.1875
+          },
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWork1111",
+            "text": "",
+            "width": 133.1875
+          },
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWork1112",
+            "text": "",
+            "width": 133.1875
+          },
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWork1113",
+            "text": "7:45",
+            "width": 133.1875
+          },
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWork1114",
+            "text": "7:45",
+            "width": 133.1875
+          },
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWork1115",
+            "text": "0",
+            "width": 171.890625
+          },
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWork1116",
+            "text": "表示試験",
+            "width": 133.1875
+          },
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWork1117",
+            "text": "内蔵試験専用",
+            "width": 156.59375
+          },
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWork1118",
+            "text": "17:00",
+            "width": 133.1875
+          },
+          {
+            "font": "14px",
+            "h": 56,
+            "name": "lblCWork1119",
+            "text": "7.75",
+            "width": 145.796875
+          }
+        ],
+        "rows": [
+          {
+            "h": 80,
+            "text": null
+          },
+          {
+            "h": 80,
+            "text": null
+          },
+          {
+            "h": 80,
+            "text": null
+          }
+        ],
+        "query": ""
+      },
+      {
+        "work": [
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWorkState111",
+            "text": "現行",
+            "width": 100.796875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1110",
+            "text": "2026/04/01",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1111",
+            "text": "",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1112",
+            "text": "",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1113",
+            "text": "7:45",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1114",
+            "text": "7:45",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1115",
+            "text": "0",
+            "width": 148.5
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1116",
+            "text": "表示試験",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1117",
+            "text": "内蔵試験専用",
+            "width": 135
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1118",
+            "text": "17:00",
+            "width": 115.1875
+          },
+          {
+            "font": "14px",
+            "h": 48,
+            "name": "lblCWork1119",
+            "text": "7.75",
+            "width": 126
+          }
+        ],
+        "rows": [
+          {
+            "h": 72,
+            "text": null
+          },
+          {
+            "h": 72,
+            "text": null
+          },
+          {
+            "h": 72,
+            "text": null
+          }
+        ],
+        "query": ""
+      }
+    ],
+    "actualFonts": [
+      [
+        {
+          "font": "14px",
+          "lineHeight": "19.6px",
+          "text": "2026/04/01"
+        }
+      ],
+      [
+        {
+          "font": "16px",
+          "lineHeight": "22.4px",
+          "text": "2026/04/01"
+        }
+      ],
+      [
+        {
+          "font": "14px",
+          "lineHeight": "19.6px",
+          "text": "2026/04/01"
+        }
+      ]
+    ],
+    "generalMode": true,
+    "maintenanceDisabled": true
+  },
+  "excluded": [
+    "PDF",
+    "Issue #62 repair/retest",
+    "HTML帳票PoC"
+  ],
+  "noAppChange": true,
+  "noDataverseWrite": true
+}
