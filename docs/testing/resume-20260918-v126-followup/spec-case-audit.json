@@ -1,0 +1,914 @@
+[
+  {
+    "id": "SRC-01",
+    "priority_mode": "P0／S",
+    "status": "PASS",
+    "note": "6画面を重複キー拒否で解析。追加5画面の管理版/paste版が意味一致、v1.23の7パッチが読戻しと一致。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRC-01",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRC-02",
+    "priority_mode": "P0／S",
+    "status": "NOT_RUN",
+    "note": "814コントロール・重複ID0、不正Classic/Button AccessibleLabel0、PDFViewerはScreen直下を確認。全プロパティ/部品版の公式台帳照合は未完。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRC-02",
+    "previous_status": "NOT_RUN",
+    "next_action": "現行部品版と全プロパティの独立台帳を整え照合。"
+  },
+  {
+    "id": "SRC-03",
+    "priority_mode": "P0／S",
+    "status": "PASS",
+    "note": "Studioの公式数式チェックでエラー0。7プロパティの読戻し一致。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRC-03",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRC-04",
+    "priority_mode": "P1／S",
+    "status": "PASS",
+    "note": "現行プロファイルの旧651コントロールを型・親・Variant込みで保持。基本9、給与163、帳票69が存在。住民税削除/5履歴化は従前の現行仕様。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRC-04",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRC-05",
+    "priority_mode": "P0／S",
+    "status": "PASS",
+    "note": "変更した7プロパティに実データ・認証情報なし。アカウントはUser()の実行時表示のみ。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRC-05",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "DEP-01",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DEP-01",
+    "previous_status": "NOT_RUN",
+    "next_action": "専用複製の空画面で貼付導入し公式エラー・警告を記録。"
+  },
+  {
+    "id": "DEP-02",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "数式エラー0、全7プロパティ読戻し一致、最終公開成功と新規Player v1.23を確認。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DEP-02",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "DEP-03",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DEP-03",
+    "previous_status": "NOT_RUN",
+    "next_action": "専用複製で旧版と候補画面の非破壊共存を確認。"
+  },
+  {
+    "id": "INIT-01",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "表示v1.26の新規Playerタブでホーム→職員。03会計課7件、初期選択004の基本9項目・全5履歴を前回独立fixture照合済み期待値と比較し一致。既存認証を共有する新規タブであり、独立ブラウザーコンテキスト再起動(INIT-02)ではない。",
+    "evidence_basis": "2026-09-18 followup実機、表示v1.26。ソース全体の同一性は未確定。",
+    "baseline_record": "../resume-20260918-v126/spec-case-audit.json#INIT-01",
+    "previous_status": "NOT_RUN"
+  },
+  {
+    "id": "INIT-02",
+    "priority_mode": "P0／E",
+    "status": "NOT_RUN",
+    "note": "検索・選択・認定簿を開いた後、3回の再読込で初期状態を確認。実PDF生成後の新規コンテキスト再起動までは未実施。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#INIT-02",
+    "previous_status": "NOT_RUN",
+    "next_action": "PDFを除き、別の新規アプリセッションで再起動後の全初期条件を照合。既存試験は同じpageでの再navigation。"
+  },
+  {
+    "id": "INIT-03",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#INIT-03",
+    "previous_status": "NOT_RUN",
+    "next_action": "現行のテスト表示復帰操作と初期条件の対応を確定し、全期待値を照合。"
+  },
+  {
+    "id": "INIT-04",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "現行プロファイルで3回再読込。ホームv1.23、管理者false、明細未選択、検索空、03会計課7件、既定004、Viewer非表示。10回再起動試験での別の失敗はPERF-01に残す。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#INIT-04",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "DATA-01",
+    "priority_mode": "P0／S＋E",
+    "status": "PASS",
+    "note": "現行25件fixtureのうち確認用3所属に割当済み23名を所属ごとに順序・完全番号集合で照合。未割当2名は現行UI対象外。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DATA-01",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "DATA-02",
+    "priority_mode": "P1／S",
+    "status": "PASS",
+    "note": "現行プロファイル: Staff25/Commute6/Payroll7/Work7/Social5/Tax5。番号は12桁文字列、参照先欠落0、共通3履歴Tableと独立fixtureが一致。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DATA-02",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "DATA-03",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "基本9項目×5名、勤務・保険・税控除の全値/見出し/順序/位置、通勤6件、給与163項目を確認。全5セクションを統合した全期待条件の網羅は未完。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DATA-03",
+    "previous_status": "NOT_RUN",
+    "next_action": "選択職員別の全5履歴を最終列まで一連で照合。"
+  },
+  {
+    "id": "DATA-04",
+    "priority_mode": "P2／E",
+    "status": "NOT_RUN",
+    "note": "v1.25で氏名とTSVの日額-12345/0/空欄を確認。ただし給与調整額や長文備考を含む仕様全体の実画面確認とは異なる。 2026-09-18 日額-12,345/0/空欄のUI表示を確認。税備考の全文title属性は存在したがホバー後の全文表示を確認できず、全文到達は未完。給与調整額の条件は未検証。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DATA-04",
+    "previous_status": "NOT_RUN",
+    "next_action": "給与調整額・備考を含む負数/0/空欄/長文を画面と全文表示で照合。v1.25は主に日額TSVの確認。"
+  },
+  {
+    "id": "DATA-05",
+    "priority_mode": "P1／S＋E",
+    "status": "NOT_RUN",
+    "note": "給与163・帳票69・基本9・勤務保険税の独立照合を追加。全セクションの列名/型/全順序の統合照合は未完。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DATA-05",
+    "previous_status": "NOT_RUN",
+    "next_action": "全セクションの見出し・値・型・順序を独立台帳と統合照合。"
+  },
+  {
+    "id": "SRCH-01",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "空欄検索で03会計課7名の番号集合一致。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-01",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-02",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "同姓同名検索で03会計課の011のみ。画面入力から検索。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-02",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-03",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "12桁009900000004検索・本人詳細一致。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-03",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-04",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "前後空白を除いた同姓同名検索が一致。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-04",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-05",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "空白のみと空文字で所属全員へ復帰。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-05",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-06",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "01/02/03所属の現行fixture8/8/7名を完全照合。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-06",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-07",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "試験日2026-09-18日本時間の在籍・退職集合を照合。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-07",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-08",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "03会計課 AND 在籍 AND 同姓同名で011のみ。独立fixtureと番号集合一致。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-08",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-09",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "表示対象03会計課で検索条件02総務課 AND 在籍 AND 同姓同名は0件。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-09",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-10",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "正式所属名、日額11100、通勤支給方式 支給なし の検索番号集合を独立fixtureと照合。クリア完了後の入力で正式所属名6名一致。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-10",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-11",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "未確定入力で旧結果維持、検索後に新結果へ変更。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-11",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SRCH-12",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "二重クリック後の番号集合と重複なし。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SRCH-12",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "PAGE-01",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "内蔵21/40件で次へ・前へ、2ページ目先頭21・末尾選択・件数確認。旧25名D0と区別。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PAGE-01",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "PAGE-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "所属内1ページと0/1/20/21/40件fixtureの前後ボタン境界が合格。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PAGE-02",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "PAGE-03",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "40件ページ2から職員01検索でページ1・1件・先頭選択へ復帰。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PAGE-03",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "PAGE-04",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "40件プロファイルでページ2・40番選択・未確定入力からクリアし、入力空、両フィルターすべて、ページ1/2、先頭001選択を確認。BOUNDARY-PRESERVE。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PAGE-04",
+    "previous_status": "NOT_RUN",
+    "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/nonpdf-fixtures.test.ts",
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907"
+  },
+  {
+    "id": "PAGE-05",
+    "priority_mode": "P2／E",
+    "status": "NOT_RUN",
+    "note": "前回PASSを訂正。0/1/20/21/40件は合格だが、仕様D1が求める19件が試験ループに含まれていない。19件を黙って除外せず、この仕様項目全体は部分実施扱い。 2026-09-18 v1.26の公開UI選択肢に19件なし（通常/0/1/20/21/40/長文・負数）。アプリ内部注入や本番データ変更で代用せず未完。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PAGE-05",
+    "previous_status": "PASS",
+    "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/nonpdf-fixtures.test.ts",
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907",
+    "next_action": "19件のfixtureと境界試験を追加。既存0/1/20/21/40件の合格は保持。"
+  },
+  {
+    "id": "SEL-01",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "v1.26。03会計課の同姓同名検索後に011の行をクリック。選択表示・サマリー・開いた検索欄を確認。基本9＋勤務11＋社会9＋税8＋給与概要15＝52セルを独立fixtureと照合し差分0。通勤TK-910004、開始/終了日、支給なし、4月/10月0も一致。現行の5履歴に対する確認。",
+    "evidence_basis": "2026-09-18 再認証後の公開Player（表示v1.26）で追加検証。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SEL-01",
+    "previous_status": "NOT_RUN",
+    "observed_version": "v1.26"
+  },
+  {
+    "id": "SEL-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "40件fixtureの2/2ページで職員040を選択。基本9項目、Work11表示値、Social9、Tax8をfixture定義と照合。通勤/Payrollは各0件、前職員011の残留なし。現行合成fixtureによる検証。",
+    "evidence_basis": "2026-09-18 followup実機、表示v1.26。ソース全体の同一性は未確定。",
+    "baseline_record": "../resume-20260918-v126/spec-case-audit.json#SEL-02",
+    "previous_status": "NOT_RUN"
+  },
+  {
+    "id": "SEL-03",
+    "priority_mode": "P2／E",
+    "status": "PASS",
+    "note": "別所属の同姓同名011/012の通勤が番号で分離。給与163項目の全照合はCORE-DETAIL最終runで別判定。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SEL-03",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SEL-04",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "非PDF部分。通常データ004→011の職員変更前後で認定簿69項目を独立field-mapとfixtureで照合。両方差分0、TK910003→TK910004へ切替。PDF部分は対象外。",
+    "evidence_basis": "2026-09-18 followup実機、表示v1.26。ソース全体の同一性は未確定。",
+    "baseline_record": "../resume-20260918-v126/spec-case-audit.json#SEL-04",
+    "previous_status": "NOT_RUN"
+  },
+  {
+    "id": "ZERO-01",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "SMK-01の検索後0件、REMAIN-SIDEBARのサマリー・基本・全5履歴非表示、BOUNDARY-0の初期0件・TSV無効・前後ページ無効を合わせて確認。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#ZERO-01",
+    "previous_status": "FAIL",
+    "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/remaining.test.ts",
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907"
+  },
+  {
+    "id": "ZERO-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "非PDF部分のみ。認定簿を開閉後に0件検索し、本人・基本・帳票・Viewer・全5履歴の非表示と結果0を確認。PDF生成済み/保存URLありの条件は指示により除外。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#ZERO-02",
+    "previous_status": "NOT_RUN",
+    "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/remaining.test.ts",
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907"
+  },
+  {
+    "id": "ZERO-03",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "v1.26。011選択→999ZZZ検索0件→クリア。再起動なしで7名（004/008/011/014/017/020/023）、検索空、1/1、既定004へ復帰。基本9＋給与概要15の24セル差分0。勤務・社会・税0件、通勤TK-910003の開始/終了日・毎月精算・4月/10月16800を照合。",
+    "evidence_basis": "2026-09-18 再認証後の公開Player（表示v1.26）で追加検証。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#ZERO-03",
+    "previous_status": "NOT_RUN",
+    "observed_version": "v1.26"
+  },
+  {
+    "id": "SIDE-01",
+    "priority_mode": "P0／E＋V",
+    "status": "PASS",
+    "note": "論理幅360→48→360、右詳細328px拡大と復帰、スケール換算を実測。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SIDE-01",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SIDE-02",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "同姓同名入力、011の検索結果・選択、ページ1を標準/大/標準で保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SIDE-02",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SIDE-03",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "40件のページ2・40番選択・未確定入力を開閉後も保持。件数40、2/2、表示20行、末尾040とサマリー040を照合。BOUNDARY-PRESERVE。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SIDE-03",
+    "previous_status": "NOT_RUN",
+    "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/nonpdf-fixtures.test.ts",
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907"
+  },
+  {
+    "id": "SIDE-04",
+    "priority_mode": "P1／E＋V",
+    "status": "PASS",
+    "note": "1366x768/1920x1080×標準/大×開/閉の8条件、各5往復。描画完了後の幅一致、最右給与項目・固定サマリー・スクロール・閉じる到達。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SIDE-04",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "SIDE-05",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "認定簿/給与/出力の各モーダル中に背景トグルが非表示又は無効、対象011保持。フォーカス復帰は別FAIL。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#SIDE-05",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "DETAIL-01",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "003/004/011/012/025の基本9値を独立fixtureから日付・状態込みで照合。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DETAIL-01",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "DETAIL-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "下端へスクロール後も氏名サマリーが画面内に固定。現行v1.22には勤務・通勤・保険・税・給与の5セクション。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DETAIL-02",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "DETAIL-03",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "勤務003の3期間と現行/過去/予定を確認。現行仕様は日本時間の当日基準。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DETAIL-03",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "DETAIL-04",
+    "priority_mode": "P1／E＋V",
+    "status": "NOT_RUN",
+    "note": "勤務/保険/税の全見出しと値、ヘッダー/セルx幅1px以内、右列到達を追加。通勤を含む全組合せは未完。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DETAIL-04",
+    "previous_status": "NOT_RUN",
+    "next_action": "通勤を含む全履歴の左右端、列位置、全セルを照合。"
+  },
+  {
+    "id": "DETAIL-05",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "003/004/011/012の給与全163項目を独立fixtureと照合。閉じる/出力後の遷移、025の0件を確認。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DETAIL-05",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "DETAIL-06",
+    "priority_mode": "P1／E＋V",
+    "status": "PASS",
+    "note": "v1.26長文・負数fixtureの003。標準→大→標準、勤務履歴行48→56→48px、一覧3行各72→80→72px、実テキスト14→16→14px。11勤務セルと検索入力を保持。従前の選択・ページ保持検証を補完する実寸校正。",
+    "evidence_basis": "2026-09-18 再認証後の公開Player（表示v1.26）で追加検証。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#DETAIL-06",
+    "previous_status": "NOT_RUN",
+    "observed_version": "v1.26"
+  },
+  {
+    "id": "LED-01",
+    "priority_mode": "P0／E＋V",
+    "status": "PASS",
+    "note": "v1.26、011/TK-910004。2枚の帳票画像と氏名・番号・所属を確認。100%でscrollTop=1270=maxTop、2枚目bottom=844=view.bottom、最下段の決定・返納欄の下枠を画像で確認。",
+    "evidence_basis": "2026-09-18 再認証後の公開Player（表示v1.26）で追加検証。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#LED-01",
+    "previous_status": "NOT_RUN",
+    "observed_version": "v1.26"
+  },
+  {
+    "id": "LED-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "独立ledger-field-map69項目×通勤6レコード、氏名/番号/経路/年月日/金額/空欄を全件照合、前職員の値残留なし。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#LED-02",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "LED-03",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "子通勤0件の012/002で認定簿無効。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#LED-03",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "LED-04",
+    "priority_mode": "P1／E＋V",
+    "status": "PASS",
+    "note": "v1.26、011/TK-910004。100→150→100%。帳票幅1122→1683→1122（1.5倍）。150%の右下でscrollTop=2161=maxTop、scrollLeft=368=maxLeft、右端1331・下端844が表示領域端に一致。左上へ0/0で復帰。2枚・表示された差込値と認定IDを保持。現行倍率選択は100%へ復帰（幅に合わせる選択肢なし）。PDF操作は除外。",
+    "evidence_basis": "2026-09-18 再認証後の公開Player（表示v1.26）で追加検証。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#LED-04",
+    "previous_status": "NOT_RUN",
+    "observed_version": "v1.26"
+  },
+  {
+    "id": "LED-05",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "v1.25 REMAIN-MODALで3起点へのフォーカス復帰は確認済み。Tab背面移動は#62の既知不具合として対応保留。残りの全期待条件の証跡が揃うまでは部分実施。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#LED-05",
+    "previous_status": "NOT_RUN",
+    "next_action": "閉じた後のフォーカス復帰はv1.25で確認済み。#62に該当するTab背面移動は対応不要。残る背面クリック不可の全条件の証跡整理のみ。",
+    "accepted_exception": {
+      "issue": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/62",
+      "scope": "モーダルから背面へのTab移動",
+      "decision": "ユーザー指示により記録のみ。修正・再検証不要。合格へ変更しない。"
+    },
+    "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/remaining.test.ts",
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907"
+  },
+  {
+    "id": "LED-06",
+    "priority_mode": "P1／E＋P",
+    "status": "PASS",
+    "note": "非PDF部分のみ。6認定を選択し、職員・認定ID・期間・経路・金額を独立マップ69項目と照合。複数認定の003→004→011→013→025を検証。生成部分は指示により除外。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#LED-06",
+    "previous_status": "NOT_RUN",
+    "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/commute.test.ts",
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907"
+  },
+  {
+    "id": "PDF-01",
+    "priority_mode": "P0／E＋P",
+    "status": "EXCLUDED",
+    "note": "ユーザー指示によりPDF保存・生成・印刷は今回対象外。従前の判定はprevious_statusに保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PDF-01",
+    "previous_status": "EXCLUDED"
+  },
+  {
+    "id": "PDF-02",
+    "priority_mode": "P1／P＋V",
+    "status": "EXCLUDED",
+    "note": "ユーザー指示によりPDF保存・生成・印刷は今回対象外。従前の判定はprevious_statusに保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PDF-02",
+    "previous_status": "EXCLUDED"
+  },
+  {
+    "id": "PDF-03",
+    "priority_mode": "P0／P",
+    "status": "EXCLUDED",
+    "note": "ユーザー指示によりPDF保存・生成・印刷は今回対象外。従前の判定はprevious_statusに保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PDF-03",
+    "previous_status": "EXCLUDED"
+  },
+  {
+    "id": "PDF-04",
+    "priority_mode": "P1／E",
+    "status": "EXCLUDED",
+    "note": "ユーザー指示によりPDF保存・生成・印刷は今回対象外。従前の判定はprevious_statusに保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PDF-04",
+    "previous_status": "EXCLUDED"
+  },
+  {
+    "id": "PDF-05",
+    "priority_mode": "P1／P",
+    "status": "EXCLUDED",
+    "note": "ユーザー指示によりPDF保存・生成・印刷は今回対象外。従前の判定はprevious_statusに保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PDF-05",
+    "previous_status": "EXCLUDED"
+  },
+  {
+    "id": "PDF-06",
+    "priority_mode": "P1／P",
+    "status": "EXCLUDED",
+    "note": "ユーザー指示によりPDF保存・生成・印刷は今回対象外。従前の判定はprevious_statusに保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PDF-06",
+    "previous_status": "EXCLUDED"
+  },
+  {
+    "id": "PDF-07",
+    "priority_mode": "P1／E＋P",
+    "status": "EXCLUDED",
+    "note": "ユーザー指示によりPDF保存・生成・印刷は今回対象外。従前の判定はprevious_statusに保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PDF-07",
+    "previous_status": "EXCLUDED"
+  },
+  {
+    "id": "OUT-01",
+    "priority_mode": "P0／E",
+    "status": "PASS",
+    "note": "表示試験40件の2ページ目から全40番号を順序照合、TSV26列。独立期待008800000001〜040と一致。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#OUT-01",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "OUT-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "v1.26公開Player。03会計課で同姓同名を検索し011のみ。TSV見出し26列＋1行を独立fixtureと全値照合、検索外番号なし、12桁の先頭0保持。Excel用にコピー後の実クリップボード全文一致。",
+    "evidence_basis": "2026-09-18 再認証後の公開Player（表示v1.26）で追加検証。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#OUT-02",
+    "previous_status": "NOT_RUN",
+    "observed_version": "v1.26"
+  },
+  {
+    "id": "OUT-03",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "コピー拒否で通知・手動TSV確認後、新しい許可済コンテキストで実クリップボード全文一致。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#OUT-03",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "OUT-04",
+    "priority_mode": "P1／E",
+    "status": "FAIL",
+    "note": "163項目の見出し・順序一致、161値一致。減額時間2項目が0.。Issue #64に記録のみ、修正・再試験不要。職員004の1行で検出したため追加の給与TSV再試験は停止。",
+    "evidence_basis": "2026-09-18 v1.26実TSV取得",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#OUT-04",
+    "previous_status": "NOT_RUN",
+    "next_action": "ユーザー指示により記録のみ。PASSへ変更しない。"
+  },
+  {
+    "id": "OUT-05",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "TSVのページ境界検査と、1/20/21/40件の閉じる後に起動ボタンへフォーカス復帰を確認。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#OUT-05",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "OUT-06",
+    "priority_mode": "P1／E＋H",
+    "status": "EXCLUDED",
+    "note": "ユーザー指示によりPDF保存・生成・印刷は今回対象外。従前の判定はprevious_statusに保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#OUT-06",
+    "previous_status": "EXCLUDED"
+  },
+  {
+    "id": "VIS-01",
+    "priority_mode": "P0／V",
+    "status": "NOT_RUN",
+    "note": "既存8条件×5往復、追加5画面×4幅の幾何学検査はPASS。全画像・全モーダルの全基準照合は未完。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#VIS-01",
+    "previous_status": "NOT_RUN",
+    "next_action": "8条件の全画面画像・全モーダルを基準に照合。"
+  },
+  {
+    "id": "VIS-02",
+    "priority_mode": "P1／V",
+    "status": "NOT_RUN",
+    "note": "v1.25 LONG_EIGHT_CONDITIONS_PASSで氏名・所属の全文titleと寸法を8条件で確認。備考の全文到達は未確認。 2026-09-18 日額-12,345/0/空欄のUI表示を確認。税備考の全文title属性は存在したがホバー後の全文表示を確認できず、全文到達は未完。給与調整額の条件は未検証。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#VIS-02",
+    "previous_status": "NOT_RUN",
+    "next_action": "氏名・所属の8条件は確認済み。長い備考の全文到達が未検証のため項目全体は未完。"
+  },
+  {
+    "id": "VIS-03",
+    "priority_mode": "P1／V",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#VIS-03",
+    "previous_status": "NOT_RUN",
+    "next_action": "検索・0件の通知文末/消去/操作遮蔽を確認。PDF保存エラーの条件は除外。"
+  },
+  {
+    "id": "VIS-04",
+    "priority_mode": "P1／V",
+    "status": "NOT_RUN",
+    "note": "基本9項目・給与最右項目・固定氏名・閉じる到達は8条件PASS。全履歴の二方向スクロールは未網羅。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#VIS-04",
+    "previous_status": "NOT_RUN",
+    "next_action": "8条件ですべての履歴の縦横スクロールと最終セルを確認。"
+  },
+  {
+    "id": "VIS-05",
+    "priority_mode": "P1／V",
+    "status": "BLOCKED",
+    "note": "現行v1.22の承認済み画像ベースライン未確立",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#VIS-05",
+    "previous_status": "BLOCKED"
+  },
+  {
+    "id": "VIS-06",
+    "priority_mode": "P1／V＋H",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#VIS-06",
+    "previous_status": "NOT_RUN",
+    "next_action": "文字の実寸、強弱、余白の校正と人による見やすさ確認。"
+  },
+  {
+    "id": "ACC-01",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "検索と行選択をキーボードで確認。全Tab順と可視フォーカスの校正は未実施。 今回、実Tab/Shift+Tabの遷移19点と検索ボタンのEnter実行を観測。日本語入力後の検索欄が空で40件のままのため、入力成立を立証できず完了扱いしない。原因未確定。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#ACC-01",
+    "previous_status": "NOT_RUN",
+    "next_action": "focus()による直接移動を使わず、Tab順・可視フォーカス・キーボードのみの操作を確認。"
+  },
+  {
+    "id": "ACC-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "閉サイドバーのTab全巡回で検索内部に入らずトグルへ復帰。キーボード再展開で検索入力に到達。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#ACC-02",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "ACC-03",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "v1.25 REMAIN-MODALで3起点へのフォーカス復帰は確認済み。Tab背面移動は#62の既知不具合として対応保留。残りの全期待条件の証跡が揃うまでは部分実施。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#ACC-03",
+    "previous_status": "NOT_RUN",
+    "next_action": "3モーダルの起点復帰は合格。#62のTab背面移動は対応不要として保留。残りの操作順と可視フォーカスの未記録分を整理。全面合格にはしない。",
+    "accepted_exception": {
+      "issue": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/62",
+      "scope": "モーダルから背面へのTab移動",
+      "decision": "ユーザー指示により記録のみ。修正・再検証不要。合格へ変更しない。"
+    },
+    "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/remaining.test.ts",
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907"
+  },
+  {
+    "id": "ACC-04",
+    "priority_mode": "P1／V",
+    "status": "BLOCKED",
+    "note": "Cloud Browserで200%ズーム操作が反映されず。viewport縮小を代用PASSにしない",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#ACC-04",
+    "previous_status": "BLOCKED"
+  },
+  {
+    "id": "ACC-05",
+    "priority_mode": "P1／S＋V",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#ACC-05",
+    "previous_status": "NOT_RUN",
+    "next_action": "実色コントラスト、状態の非色表現、境界・フォーカスを確認。"
+  },
+  {
+    "id": "ACC-06",
+    "priority_mode": "P1／H",
+    "status": "BLOCKED",
+    "note": "実支援技術を使う人による読上げ評価が未実施",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#ACC-06",
+    "previous_status": "BLOCKED"
+  },
+  {
+    "id": "PATCH-01",
+    "priority_mode": "P0／S",
+    "status": "PASS",
+    "note": "manifestに基準版・7プロパティ・適用/復元先・SHA256を記録。旧651コントロールを保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PATCH-01",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "PATCH-02",
+    "priority_mode": "P0／S＋E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PATCH-02",
+    "previous_status": "NOT_RUN",
+    "next_action": "専用複製で差分適用後の2形式比較・スモーク。"
+  },
+  {
+    "id": "PATCH-03",
+    "priority_mode": "P1／S＋E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PATCH-03",
+    "previous_status": "NOT_RUN",
+    "next_action": "専用複製で二重適用時の安全停止/状態維持を確認。"
+  },
+  {
+    "id": "PATCH-04",
+    "priority_mode": "P1／S＋E",
+    "status": "BLOCKED",
+    "note": "復元試験専用複製が未作成",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PATCH-04",
+    "previous_status": "BLOCKED"
+  },
+  {
+    "id": "PERF-01",
+    "priority_mode": "P2／E",
+    "status": "PASS",
+    "note": "10起動・各20操作、p95(ms)=起動7591/検索741/選択563/閉449/開386。各閾値30000/2000/2000/1000/1000以内。v1.25 run単独の観測であり過去の変動や恒久的性能保証とは区別。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PERF-01",
+    "previous_status": "FAIL",
+    "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/supplement.test.ts",
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907"
+  },
+  {
+    "id": "PERF-02",
+    "priority_mode": "P1／E",
+    "status": "PASS",
+    "note": "検索・選択・開閉・0件・クリア20周を実施。番号集合の不一致なし。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#PERF-02",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "OPS-01",
+    "priority_mode": "P0／S",
+    "status": "PASS",
+    "note": "全95仕様ケースを列挙し、全期待値未確認のケースはNOT_RUN/BLOCKED。部分実施を合格にしない。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#OPS-01",
+    "previous_status": "PASS"
+  },
+  {
+    "id": "OPS-02",
+    "priority_mode": "P1／E",
+    "status": "NOT_RUN",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#OPS-02",
+    "previous_status": "NOT_RUN",
+    "next_action": "スマホでサニタイズ済み要約と代表画像の閲覧を確認。"
+  },
+  {
+    "id": "HAR-01",
+    "priority_mode": "P1／S＋E",
+    "status": "BLOCKED",
+    "note": "使い捨て試験複製の未準備",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#HAR-01",
+    "previous_status": "BLOCKED"
+  },
+  {
+    "id": "HAR-02",
+    "priority_mode": "P1／S＋E",
+    "status": "BLOCKED",
+    "note": "同上",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#HAR-02",
+    "previous_status": "BLOCKED"
+  },
+  {
+    "id": "HAR-03",
+    "priority_mode": "P1／S＋V",
+    "status": "BLOCKED",
+    "note": "同上",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#HAR-03",
+    "previous_status": "BLOCKED"
+  },
+  {
+    "id": "HAR-04",
+    "priority_mode": "P1／E＋P",
+    "status": "EXCLUDED",
+    "note": "ユーザー指示によりPDF保存・生成・印刷は今回対象外。従前の判定はprevious_statusに保持。",
+    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "baseline_record": "../regression-v125-review/spec-case-audit.json#HAR-04",
+    "previous_status": "EXCLUDED"
+  }
+]
