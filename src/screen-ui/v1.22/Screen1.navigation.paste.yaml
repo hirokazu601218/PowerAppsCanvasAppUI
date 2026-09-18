@@ -1,0 +1,103 @@
+- conStaffNavigation122:
+    Control: GroupContainer@1.5.0
+    Variant: AutoLayout
+    Properties:
+      Height: =60
+      Width: =Parent.Width
+      LayoutDirection: =LayoutDirection.Horizontal
+      LayoutAlignItems: =LayoutAlignItems.Stretch
+      LayoutGap: =8
+      FillPortions: =0
+      LayoutMinHeight: =0
+      LayoutMinWidth: =0
+      PaddingTop: =8
+      PaddingBottom: =0
+      PaddingLeft: =16
+      PaddingRight: =16
+      DropShadow: =DropShadow.None
+      X: =0
+      Y: =0
+      Fill: =UiTheme.Band
+      LayoutWrap: =true
+    Children:
+    - btnStaffHome122:
+        Control: ModernButton@1.0.0
+        Properties:
+          Text: ="ホーム"
+          AccessibleLabel: ="ホーム"
+          OnSelect: =Navigate(scrHome,ScreenTransition.None)
+          Height: =44
+          Width: =110
+          Font: ="Segoe UI"
+          Size: =14
+          BasePaletteColor: =UiTheme.Primary
+          Appearance: =ButtonAppearance.Primary
+          FillPortions: =0
+          LayoutMinWidth: =0
+    - lblStaffAccount122:
+        Control: Label@2.5.1
+        Properties:
+          Text: =UiAccount.Name & "　｜　" & UiDepartment
+          Height: =44
+          Width: =340
+          Font: ="Segoe UI"
+          Size: =11
+          Color: =UiTheme.Text
+          PaddingLeft: =12
+          PaddingRight: =12
+          PaddingTop: =4
+          PaddingBottom: =4
+          FillPortions: =1
+          LayoutMinWidth: =0
+    - ddStaffMonth122:
+        Control: Classic/DropDown@2.3.1
+        Properties:
+          Items: =["2026/09","2026/10","2026/11"]
+          Default: =Text(UiMonth,"yyyy/mm")
+          OnChange: =Set(varUiMonth,DateValue(Self.Selected.Value & "/01","ja-JP")); Set(varUiResultKey,Blank())
+          Height: =44
+          Width: =145
+          AccessibleLabel: ="支給対象月"
+          Font: ="Segoe UI"
+          Size: =11
+          BorderColor: =UiTheme.Border
+          BorderThickness: =1
+          Color: =UiTheme.Text
+          Fill: =Color.White
+          ChevronBackground: =Color.White
+          ChevronFill: =UiTheme.Primary
+          SelectionFill: =UiTheme.Selected
+          SelectionColor: =UiTheme.Text
+          FillPortions: =0
+          LayoutMinWidth: =0
+    - btnStaffPayroll122:
+        Control: ModernButton@1.0.0
+        Properties:
+          Text: ="支給明細画面"
+          AccessibleLabel: ="支給明細画面"
+          OnSelect: =Set(varUiStaffNo,StaffSelected.StaffId); Set(varUiResultKey,Blank()); Navigate(scrPayroll,ScreenTransition.None)
+          Height: =44
+          Width: =180
+          Font: ="Segoe UI"
+          Size: =14
+          BasePaletteColor: =UiTheme.Primary
+          Appearance: =ButtonAppearance.Primary
+          FillPortions: =0
+          LayoutMinWidth: =0
+          DisplayMode: =If(Coalesce(varStaffChosen111,false) && StaffSelected.Org=UiDepartment,DisplayMode.Edit,DisplayMode.Disabled)
+    - lblStaffId122:
+        Control: Label@2.5.1
+        Properties:
+          Text: ="SCR-002"
+          Height: =44
+          Width: =92
+          Font: ="Segoe UI"
+          Size: =11
+          Color: =UiTheme.Text
+          PaddingLeft: =12
+          PaddingRight: =12
+          PaddingTop: =4
+          PaddingBottom: =4
+          FillPortions: =0
+          LayoutMinWidth: =0
+          Align: =Align.Right

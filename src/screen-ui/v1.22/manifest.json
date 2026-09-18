@@ -1,0 +1,21 @@
+{
+  "version": "1.22",
+  "requirements": "screen-requirements.md v0.6",
+  "issue": 52,
+  "baseline": "src/staff-master/patches/v1.21/studio-readback",
+  "new_screens": [
+    "scrHome",
+    "scrAttendance",
+    "scrBonus",
+    "scrPayroll",
+    "scrMaintenance"
+  ],
+  "existing_screen": "Screen1",
+  "existing_changes": {
+    "conStaffMaster111.Y": "=60",
+    "conStaffMaster111.Height": "=Parent.Height-60",
+    "lblMeta111.Text": "=\"v1.22 UI試作 ／ \" & UiDepartment"
+  },
+  "studio_required": true,
+  "calculation_scope": "UI-only dummy model; new payroll, access profile, attendance, bonus rates are synthetic. No Dataverse write."
+}
