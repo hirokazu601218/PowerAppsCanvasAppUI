@@ -1,9 +1,12 @@
-# 現在の作業と読取り対象：勤務報告・給与計算プロトタイプ
+# 現在の作業と読取り対象：SCR-005 支給明細のUI要件・画像
 
-- 今回の対象：`docs/prototypes/attendance-payroll-prototype.md` v0.31。欠勤時間単価を内蔵職員基本情報から参照し、欠勤・超過勤務とも「単価×時間＝金額」で表示。
-- 旧STATUSは公開アプリの別作業を示していたため、最新依頼を優先。以下の既存公開記録は保持する。
-- 確認：YAML構文、単価参照、計算例の独立計算を確認。Power Apps実機検証・既存公開アプリへの統合は未実施。
-- 読取り対象：本プロトタイプ、[Issue #51](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/51)、運用方針「1. 方針」の次回テーブル編集時の確認ルール。
+- 2026/09/18：画面要件定義書 v0.6 の8章に、最新デザインの配置・計算・データ対応・操作・YAML受入条件を追記。
+- 画像：`docs/design/images/scr-005-payroll-detail-v1.png`。控除見出し直下の加算式を削除。支給見出し直下の式と上部サマリーは維持。
+- 読取り対象：`docs/requirements/screen-requirements.md` 8章、上記画像、`docs/design/design-system.md`、`docs/prototypes/attendance-payroll-prototype.md` 冒頭の優先関係。
+- 必要時の対応表：`docs/design/dataverse-commute.md`、`config/dataverse/payrollledger-columns.json`。
+- 旧STATUSは2画面試作v0.31を示していたが、最新依頼を優先。旧試作v0.32のYAMLは新しい通勤・控除内訳に未対応で、次回実装の土台として無修正流用しない。
+- 今回は文書・画像の保存。YAML作成、Studio検証、Dataverse変更、アプリ公開は未実施。
+- 次回：8章からSCR-005の内蔵データ・貼付用YAML／Power Fxを作成し、受入ケースを検証する。
 
 ## 次回の職員基本テーブル編集で必須：ABS-RATE-001（未反映）
 
