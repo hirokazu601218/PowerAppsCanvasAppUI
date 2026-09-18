@@ -308,14 +308,14 @@
   {
     "id": "PAGE-05",
     "priority_mode": "P2／E",
-    "status": "NOT_RUN",
-    "note": "前回PASSを訂正。0/1/20/21/40件は合格だが、仕様D1が求める19件が試験ループに含まれていない。19件を黙って除外せず、この仕様項目全体は部分実施扱い。 2026-09-18 v1.26の公開UI選択肢に19件なし（通常/0/1/20/21/40/長文・負数）。アプリ内部注入や本番データ変更で代用せず未完。 今回コピーのApp.Formulasで19件を準備し、プレビュー19件・1/1・前後無効・末尾019選択を確認。元19443文字へ完全復元。公開E検証は未完。 最終再読込みでもApp.Formulas 19443文字が元定義と完全一致し、復元保存を確定。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "PASS",
+    "note": "前回PASSを訂正。0/1/20/21/40件は合格だが、仕様D1が求める19件が試験ループに含まれていない。19件を黙って除外せず、この仕様項目全体は部分実施扱い。 2026-09-18 v1.26の公開UI選択肢に19件なし（通常/0/1/20/21/40/長文・負数）。アプリ内部注入や本番データ変更で代用せず未完。 今回コピーのApp.Formulasで19件を準備し、プレビュー19件・1/1・前後無効・末尾019選択を確認。元19443文字へ完全復元。公開E検証は未完。 最終再読込みでもApp.Formulas 19443文字が元定義と完全一致し、復元保存を確定。 追加公開E試験：検証専用コピーの既定件数のみ19へ変更保存・公開。Playerの旧版通知から更新後、19名008800000001～019の全番号順序一致、1/1、前後無効、末尾019選択と右サマリー019を確認。元19443文字に復元・保存・公開し、新規Player更新/再読込後7件004選択・011検索1件を確認。既存0/1/20/21/40件の証跡と合わせ累積PASS。",
+    "evidence_basis": "2026-09-18 UTC 公開コピー19件試験＋既存他境界証跡。現行全条件の一括再試験ではない。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#PAGE-05",
-    "previous_status": "PASS",
+    "previous_status": "NOT_RUN",
     "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/nonpdf-fixtures.test.ts",
     "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907",
-    "next_action": "19件のfixtureと境界試験を追加。既存0/1/20/21/40件の合格は保持。"
+    "next_action": "完了。"
   },
   {
     "id": "SEL-01",
