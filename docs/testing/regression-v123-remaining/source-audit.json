@@ -1,0 +1,94 @@
+{
+  "version": "1.23",
+  "status": "PASS",
+  "sources": {
+    "Screen1": "src/screen-ui/v1.23/studio-readback/Screen1.pa.yaml",
+    "scrHome": "src/screen-ui/v1.23/studio-readback/scrHome.pa.yaml",
+    "scrAttendance": "src/screen-ui/v1.22/studio-readback/scrAttendance.pa.yaml",
+    "scrBonus": "src/screen-ui/v1.22/studio-readback/scrBonus.pa.yaml",
+    "scrPayroll": "src/screen-ui/v1.22/studio-readback/scrPayroll.pa.yaml",
+    "scrMaintenance": "src/screen-ui/v1.23/studio-readback/scrMaintenance.pa.yaml"
+  },
+  "screen_controls": {
+    "Screen1": 657,
+    "scrHome": 18,
+    "scrAttendance": 22,
+    "scrBonus": 19,
+    "scrPayroll": 86,
+    "scrMaintenance": 12
+  },
+  "controls": 814,
+  "duplicate_ids": 0,
+  "base_controls_preserved": 651,
+  "base_property_changes": [
+    "conStaffMaster111.Height",
+    "conStaffMaster111.Y",
+    "lblCPayrollModal111112.Text",
+    "lblCPayrollModal111113.Text",
+    "lblMeta111.Text"
+  ],
+  "distributed_base_pairs_equal": [
+    "scrHome",
+    "scrAttendance",
+    "scrBonus",
+    "scrPayroll",
+    "scrMaintenance"
+  ],
+  "patch_properties_equal": [
+    "App.Formulas",
+    "btnMaintenanceReset.OnSelect",
+    "lblCPayrollModal111112.Text",
+    "lblCPayrollModal111113.Text",
+    "lblHomePrototype.Text",
+    "lblMaintenanceVersion.Text",
+    "lblMeta111.Text"
+  ],
+  "pdf_parent": "Screen1",
+  "basic_fields": 9,
+  "payroll_fields": 163,
+  "ledger_fields": 69,
+  "fixture_counts": {
+    "Staff": 25,
+    "commute-6": 6,
+    "payrollledger-7": 7,
+    "Work": 7,
+    "Social": 5,
+    "Tax": 5
+  },
+  "control_versions": {
+    "GroupContainer@1.5.0": 88,
+    "Label@2.5.1": 656,
+    "ModernButton@1.0.0": 42,
+    "Gallery@2.15.0": 10,
+    "ModernTextInput@1.1.1": 1,
+    "Classic/DropDown@2.3.1": 9,
+    "Classic/Button@2.2.0": 1,
+    "Classic/TextInput@2.3.2": 3,
+    "Image@2.2.3": 2,
+    "Timer@2.1.0": 1,
+    "PDFViewer@2.5.0": 1
+  },
+  "sha256": {
+    "src/screen-ui/v1.23/studio-readback/Screen1.pa.yaml": "f0bbcda11e69ac154004e8e35847cf301015673d7541540103ff4efc146f4fc7",
+    "src/screen-ui/v1.23/studio-readback/scrHome.pa.yaml": "02f7e326dccbf50b4ba741af212d0fd0675c65b8e0faf8784956f54b1d75c67b",
+    "src/screen-ui/v1.22/studio-readback/scrAttendance.pa.yaml": "15303ad18b4c73eca65827d2e3f5880c262957c19a215b2c76dd85439488682b",
+    "src/screen-ui/v1.22/studio-readback/scrBonus.pa.yaml": "07e0f9b1c4de0e099e5ce987267fac875214162cd1d80e6b72b66370a882b0e1",
+    "src/screen-ui/v1.22/studio-readback/scrPayroll.pa.yaml": "24632b89d93a80836a2aa2cfce9e81285c40a1b0723188db35905372ba8f5856",
+    "src/screen-ui/v1.23/studio-readback/scrMaintenance.pa.yaml": "fe6cb273f77ab833df1b07fcb11ec1a0c92bc8aaf2f6f330275187b5d3eb7fb5",
+    "src/screen-ui/v1.22/scrHome.pa.yaml": "4da87ad7b4ce494f1932e7fb1e57830a1867eb90b2b2b7331227af4a9c057ed7",
+    "src/screen-ui/v1.22/scrHome.paste.yaml": "52d8856d476d521d925235044886d30054577bdbc37bead2d5c880504d68b9d4",
+    "src/screen-ui/v1.22/scrAttendance.pa.yaml": "68ed8fbfabb3609ea820b86c49ad6b014502577f2017b94337c8d076a1d2479b",
+    "src/screen-ui/v1.22/scrAttendance.paste.yaml": "c5307f3e70fe7f4932c5569faa77dc62b983af003498fb1b73d985cdacb9e3e5",
+    "src/screen-ui/v1.22/scrBonus.pa.yaml": "6b8f11360a2535ed2088535f2b635cb2d00c135ce8a4e1ef04601f133541c9a6",
+    "src/screen-ui/v1.22/scrBonus.paste.yaml": "965190851037d11f6544e9b8218a35d64a2cb980496549acfd0b90a590f492eb",
+    "src/screen-ui/v1.22/scrPayroll.pa.yaml": "8dd55cad09041c8fbf066a66ab284881b9f9482fa41a3f5df57baa72ad2abfdf",
+    "src/screen-ui/v1.22/scrPayroll.paste.yaml": "8809df9ef541b309c34b8ed5bbd63e59d046472c12a0711044fbf97dc1d4bf70",
+    "src/screen-ui/v1.22/scrMaintenance.pa.yaml": "68f91e6daca7d53587fcb6482048c46c1d22c5fa8551e1436a2177516e0e0121",
+    "src/screen-ui/v1.22/scrMaintenance.paste.yaml": "63e68b161808fa98062c5af094977e73b5005d08c1392e0b486cf39de72733b7",
+    "src/staff-master/patches/v1.21/studio-readback/Screen1.pa.yaml": "c895a0549bea134209ec31371fd2ae2e16a74b4020c983546f5f81d9875002b7"
+  },
+  "limitations": [
+    "Not a Microsoft compiler or complete property schema.",
+    "Does not execute Power Fx or replace live E2E."
+  ]
+}

@@ -1,0 +1,246 @@
+Running 29 tests using 2 workers
+2026-09-18T05:48:52.6233306Z [1/29] [canvas-app] › tests/northwind/canvas/regression/commute.test.ts:8:5 › COM-APP-001 six Dataverse records, chosen recognition, dates, money and blank routes
+2026-09-18T05:48:52.6338689Z [2/29] [canvas-app] › tests/northwind/canvas/regression/ledger.test.ts:21:5 › AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PDF
+2026-09-18T05:49:11.0056160Z [canvas-app] › tests/northwind/canvas/regression/ledger.test.ts:21:5 › AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PDF
+2026-09-18T05:49:11.0092689Z Syntax Error: Restoring state when no valid states to pop
+2026-09-18T05:49:11.0505980Z Syntax Error: Restoring state when no valid states to pop
+2026-09-18T05:49:11.0563786Z ACTUAL_PDF_EVIDENCE {"pages":2,"points":[[841.89,595.28],[841.89,595.28]],"sha256":"13a789bcfd8591852326325f87229fc4d74b0f317232bbdbb12e40a0f7a0ccec","bytes":421567,"textCharacters":182}
+2026-09-18T05:49:12.2110477Z [3/29] [canvas-app] › tests/northwind/canvas/regression/remaining.test.ts:40:5 › REMAIN-DETAIL independent nine basic values and all Work Social Tax cells
+2026-09-18T05:49:51.0573625Z [4/29] [canvas-app] › tests/northwind/canvas/regression/remaining.test.ts:72:5 › REMAIN-SEARCH three simultaneous filters plus number and commute-method fields
+2026-09-18T05:49:52.1184030Z [canvas-app] › tests/northwind/canvas/regression/commute.test.ts:8:5 › COM-APP-001 six Dataverse records, chosen recognition, dates, money and blank routes
+2026-09-18T05:49:52.1184898Z COMMUTE_SIX_RECORDS_AND_ZERO_CASES_PASSED
+2026-09-18T05:49:52.2824585Z [5/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:62:33 › SMK-01-1 fresh session, search, selection, sidebar, zero, clear, ledger
+2026-09-18T05:50:00.3133225Z [6/29] [canvas-app] › tests/northwind/canvas/regression/remaining.test.ts:87:5 › REMAIN-SIDEBAR typography roundtrip, dimensions, selection and zero cleanup
+2026-09-18T05:50:03.3779779Z [7/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:62:33 › SMK-01-2 fresh session, search, selection, sidebar, zero, clear, ledger
+2026-09-18T05:50:12.7188941Z [8/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:62:33 › SMK-01-3 fresh session, search, selection, sidebar, zero, clear, ledger
+2026-09-18T05:50:19.7068153Z [9/29] [canvas-app] › tests/northwind/canvas/regression/remaining.test.ts:112:5 › REMAIN-MODAL background is blocked and close returns keyboard focus
+2026-09-18T05:50:22.7939461Z [10/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:88:5 › SRCH-04..12 / DATA-01 / PAGE-02 filters, all authorized records, repeated search
+2026-09-18T05:50:28.4831914Z   1) [canvas-app] › tests/northwind/canvas/regression/remaining.test.ts:112:5 › REMAIN-MODAL background is blocked and close returns keyboard focus 
+2026-09-18T05:50:28.4832711Z     Error: btnLedgerClose111 should restore focus to btnCertificate111
+2026-09-18T05:50:28.4833171Z     expect(received).toBe(expected) // Object.is equality
+2026-09-18T05:50:28.4833516Z     Expected: "btnCertificate111"
+2026-09-18T05:50:28.4833769Z     Received: "none"
+2026-09-18T05:50:28.4834852Z       122 |   const focused=await a.locator('body').evaluate(el=>el.ownerDocument.activeElement?.closest('[data-control-name]')?.getAttribute('data-control-name')||'none');
+2026-09-18T05:50:28.4835567Z       123 |   observations.push({open,close,focused});
+2026-09-18T05:50:28.4836032Z     > 124 |   expect.soft(focused,`${close} should restore focus to ${open}`).toBe(open);
+2026-09-18T05:50:28.4836466Z           |                                                                   ^
+2026-09-18T05:50:28.4836754Z       125 |  }
+2026-09-18T05:50:28.4837204Z       126 |  writeFileSync(path.join(out,'remaining-modal-focus.json'),JSON.stringify(observations,null,2));
+2026-09-18T05:50:28.4837659Z       127 | });
+2026-09-18T05:50:28.4838350Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/remaining.test.ts:124:67
+2026-09-18T05:50:28.4839485Z     Error: btnPayClose111 should restore focus to btnPayrollOpen111
+2026-09-18T05:50:28.4839908Z     expect(received).toBe(expected) // Object.is equality
+2026-09-18T05:50:28.4840254Z     Expected: "btnPayrollOpen111"
+2026-09-18T05:50:28.4840502Z     Received: "none"
+2026-09-18T05:50:28.4841156Z       122 |   const focused=await a.locator('body').evaluate(el=>el.ownerDocument.activeElement?.closest('[data-control-name]')?.getAttribute('data-control-name')||'none');
+2026-09-18T05:50:28.4841987Z       123 |   observations.push({open,close,focused});
+2026-09-18T05:50:28.4842413Z     > 124 |   expect.soft(focused,`${close} should restore focus to ${open}`).toBe(open);
+2026-09-18T05:50:28.4842846Z           |                                                                   ^
+2026-09-18T05:50:28.4843148Z       125 |  }
+2026-09-18T05:50:28.4843501Z       126 |  writeFileSync(path.join(out,'remaining-modal-focus.json'),JSON.stringify(observations,null,2));
+2026-09-18T05:50:28.4843901Z       127 | });
+2026-09-18T05:50:28.4844551Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/remaining.test.ts:124:67
+2026-09-18T05:50:28.4845103Z     Error: btnReportClose111 should restore focus to btnExport111
+2026-09-18T05:50:28.4845539Z     expect(received).toBe(expected) // Object.is equality
+2026-09-18T05:50:28.4845763Z     Expected: "btnExport111"
+2026-09-18T05:50:28.4845939Z     Received: "none"
+2026-09-18T05:50:28.4846577Z       122 |   const focused=await a.locator('body').evaluate(el=>el.ownerDocument.activeElement?.closest('[data-control-name]')?.getAttribute('data-control-name')||'none');
+2026-09-18T05:50:28.4847261Z       123 |   observations.push({open,close,focused});
+2026-09-18T05:50:28.4847693Z     > 124 |   expect.soft(focused,`${close} should restore focus to ${open}`).toBe(open);
+2026-09-18T05:50:28.4848127Z           |                                                                   ^
+2026-09-18T05:50:28.4848397Z       125 |  }
+2026-09-18T05:50:28.4848828Z       126 |  writeFileSync(path.join(out,'remaining-modal-focus.json'),JSON.stringify(observations,null,2));
+2026-09-18T05:50:28.4849251Z       127 | });
+2026-09-18T05:50:28.4849922Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/remaining.test.ts:124:67
+2026-09-18T05:50:28.4850748Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T05:50:28.4851983Z     test-results/artifacts/regression-remaining-REMAI-21021-lose-returns-keyboard-focus-canvas-app/test-failed-1.png
+2026-09-18T05:50:28.4852801Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T05:50:28.4853818Z     Error Context: test-results/artifacts/regression-remaining-REMAI-21021-lose-returns-keyboard-focus-canvas-app/error-context.md
+2026-09-18T05:51:15.7631520Z   2) [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:88:5 › SRCH-04..12 / DATA-01 / PAGE-02 filters, all authorized records, repeated search 
+2026-09-18T05:51:15.7632080Z     Error: expect(received).toEqual(expected) // deep equality
+2026-09-18T05:51:15.7632307Z     - Expected  - 0
+2026-09-18T05:51:15.7632464Z     + Received  + 1
+2026-09-18T05:51:15.7632596Z     @@ -1,6 +1,7 @@
+2026-09-18T05:51:15.7632724Z       Array [
+2026-09-18T05:51:15.7632847Z     +   "009900000004",
+2026-09-18T05:51:15.7632981Z         "009900000008",
+2026-09-18T05:51:15.7633109Z         "009900000011",
+2026-09-18T05:51:15.7633232Z         "009900000014",
+2026-09-18T05:51:15.7633396Z         "009900000017",
+2026-09-18T05:51:15.7633530Z         "009900000020",
+2026-09-18T05:51:15.7633660Z     Call Log:
+2026-09-18T05:51:15.7633844Z     - Timeout 30000ms exceeded while waiting on the predicate
+2026-09-18T05:51:15.7634041Z       100 |  }
+2026-09-18T05:51:15.7634359Z       101 |  await search(a,'同姓同名');await expect.poll(()=>ids(a)).toEqual(['009900000011']);
+2026-09-18T05:51:15.7634954Z     > 102 |  await btn(a,'検索条件をクリア').click();await search(a,'管理部 会計課');await expect.poll(()=>ids(a)).toEqual(expectedIds('03会計課').filter((s:string)=>s!=='009900000004'));
+2026-09-18T05:51:15.7635372Z           |                                                                                          ^
+2026-09-18T05:51:15.7635612Z       103 |  await snapshot(page,a,'search-filters');
+2026-09-18T05:51:15.7635787Z       104 | });
+2026-09-18T05:51:15.7635905Z       105 |
+2026-09-18T05:51:15.7636617Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/ui-regression.test.ts:102:90
+2026-09-18T05:51:15.7637228Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T05:51:15.7637680Z     test-results/artifacts/regression-ui-regression-S-73ac1-zed-records-repeated-search-canvas-app/test-failed-1.png
+2026-09-18T05:51:15.7638157Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T05:51:15.7638625Z     Error Context: test-results/artifacts/regression-ui-regression-S-73ac1-zed-records-repeated-search-canvas-app/error-context.md
+2026-09-18T05:51:16.1361074Z [11/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:106:5 › CORE-DETAIL / SEL-03 / OUT-04 163 payroll fields and cross-department same-name isolation
+2026-09-18T05:51:51.4713262Z [12/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:129:5 › OUT-01/02/05 search TSV contains authorized employees and output pagination
+2026-09-18T05:51:59.5664426Z [13/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:140:5 › DETAIL-01/02/03 histories, blank and zero fields, refresh
+2026-09-18T05:52:19.5256244Z [14/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:150:5 › SCR-001..006 navigation, dummy registration, recalculation, zero and missing month
+2026-09-18T05:52:52.4832149Z [15/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:170:5 › PERF-02 twenty search/selection/sidebar/zero/clear cycles retain correct state
+2026-09-18T05:53:54.7699143Z [16/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:180:5 › BUG-SELECTION-001 zero search clears payroll across home navigation and selection changes
+2026-09-18T05:54:24.0350182Z [17/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:191:5 › ACC-01/02 keyboard search and row selection
+2026-09-18T05:54:32.5315605Z [18/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 standard open
+2026-09-18T05:54:41.4819705Z   3) [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 standard open 
+2026-09-18T05:54:41.4820127Z     Error: expect(received).toBeLessThan(expected)
+2026-09-18T05:54:41.4820325Z     Expected: < 1
+2026-09-18T05:54:41.4820464Z     Received:   312
+2026-09-18T05:54:41.4820737Z       207 |   await btn(a,closed?'職員検索を開く':'職員検索を閉じる').click();
+2026-09-18T05:54:41.4821015Z       208 |   await btn(a,closed?'職員検索を閉じる':'職員検索を開く').click();
+2026-09-18T05:54:41.4825567Z     > 209 |   expect(Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
+2026-09-18T05:54:41.4826023Z           |                                                                                           ^
+2026-09-18T05:54:41.4826383Z       210 |   expect(Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
+2026-09-18T05:54:41.4826736Z       211 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000003');
+2026-09-18T05:54:41.4826961Z       212 |  }
+2026-09-18T05:54:41.4827416Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/ui-regression.test.ts:209:91
+2026-09-18T05:54:41.4828045Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T05:54:41.4828499Z     test-results/artifacts/regression-ui-regression-VIS-01-staff-1366x768-standard-open-canvas-app/test-failed-1.png
+2026-09-18T05:54:41.4828973Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T05:54:41.4829719Z     Error Context: test-results/artifacts/regression-ui-regression-VIS-01-staff-1366x768-standard-open-canvas-app/error-context.md
+2026-09-18T05:54:41.8651256Z [19/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 standard closed
+2026-09-18T05:54:50.7684250Z   4) [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 standard closed 
+2026-09-18T05:54:50.7684911Z     Error: expect(received).toBeLessThan(expected)
+2026-09-18T05:54:50.7685228Z     Expected: < 1
+2026-09-18T05:54:50.7685414Z     Received:   312
+2026-09-18T05:54:50.7685726Z       207 |   await btn(a,closed?'職員検索を開く':'職員検索を閉じる').click();
+2026-09-18T05:54:50.7686020Z       208 |   await btn(a,closed?'職員検索を閉じる':'職員検索を開く').click();
+2026-09-18T05:54:50.7686793Z     > 209 |   expect(Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
+2026-09-18T05:54:50.7687164Z           |                                                                                           ^
+2026-09-18T05:54:50.7687519Z       210 |   expect(Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
+2026-09-18T05:54:50.7687886Z       211 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000003');
+2026-09-18T05:54:50.7688116Z       212 |  }
+2026-09-18T05:54:50.7688701Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/ui-regression.test.ts:209:91
+2026-09-18T05:54:50.7689442Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T05:54:50.7689925Z     test-results/artifacts/regression-ui-regression-V-4f7d8-ff-1366x768-standard-closed-canvas-app/test-failed-1.png
+2026-09-18T05:54:50.7690395Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T05:54:50.7690869Z     Error Context: test-results/artifacts/regression-ui-regression-V-4f7d8-ff-1366x768-standard-closed-canvas-app/error-context.md
+2026-09-18T05:54:51.1691039Z [20/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 large open
+2026-09-18T05:54:58.3326087Z   5) [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 large open 
+2026-09-18T05:54:58.3326500Z     Error: expect(received).toBeLessThan(expected)
+2026-09-18T05:54:58.3326698Z     Expected: < 1
+2026-09-18T05:54:58.3326835Z     Received:   312
+2026-09-18T05:54:58.3327423Z       207 |   await btn(a,closed?'職員検索を開く':'職員検索を閉じる').click();
+2026-09-18T05:54:58.3327696Z       208 |   await btn(a,closed?'職員検索を閉じる':'職員検索を開く').click();
+2026-09-18T05:54:58.3328050Z     > 209 |   expect(Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
+2026-09-18T05:54:58.3328399Z           |                                                                                           ^
+2026-09-18T05:54:58.3328738Z       210 |   expect(Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
+2026-09-18T05:54:58.3329085Z       211 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000003');
+2026-09-18T05:54:58.3329313Z       212 |  }
+2026-09-18T05:54:58.3329766Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/ui-regression.test.ts:209:91
+2026-09-18T05:54:58.3330530Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T05:54:58.3330970Z     test-results/artifacts/regression-ui-regression-VIS-01-staff-1366x768-large-open-canvas-app/test-failed-1.png
+2026-09-18T05:54:58.3331610Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T05:54:58.3332328Z     Error Context: test-results/artifacts/regression-ui-regression-VIS-01-staff-1366x768-large-open-canvas-app/error-context.md
+2026-09-18T05:54:58.7114969Z [21/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 large closed
+2026-09-18T05:55:06.4447251Z   6) [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 large closed 
+2026-09-18T05:55:06.4447969Z     Error: expect(received).toBeLessThan(expected)
+2026-09-18T05:55:06.4448298Z     Expected: < 1
+2026-09-18T05:55:06.4448512Z     Received:   312
+2026-09-18T05:55:06.4448929Z       207 |   await btn(a,closed?'職員検索を開く':'職員検索を閉じる').click();
+2026-09-18T05:55:06.4449361Z       208 |   await btn(a,closed?'職員検索を閉じる':'職員検索を開く').click();
+2026-09-18T05:55:06.4449916Z     > 209 |   expect(Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
+2026-09-18T05:55:06.4450499Z           |                                                                                           ^
+2026-09-18T05:55:06.4451053Z       210 |   expect(Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
+2026-09-18T05:55:06.4456305Z       211 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000003');
+2026-09-18T05:55:06.4456683Z       212 |  }
+2026-09-18T05:55:06.4457461Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/ui-regression.test.ts:209:91
+2026-09-18T05:55:06.4458546Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T05:55:06.4459302Z     test-results/artifacts/regression-ui-regression-VIS-01-staff-1366x768-large-closed-canvas-app/test-failed-1.png
+2026-09-18T05:55:06.4460141Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T05:55:06.4460859Z     Error Context: test-results/artifacts/regression-ui-regression-VIS-01-staff-1366x768-large-closed-canvas-app/error-context.md
+2026-09-18T05:55:06.8048824Z [22/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 standard open
+2026-09-18T05:55:14.1007617Z   7) [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 standard open 
+2026-09-18T05:55:14.1008295Z     Error: expect(received).toBeLessThan(expected)
+2026-09-18T05:55:14.1008595Z     Expected: < 1
+2026-09-18T05:55:14.1008805Z     Received:   312
+2026-09-18T05:55:14.1009223Z       207 |   await btn(a,closed?'職員検索を開く':'職員検索を閉じる').click();
+2026-09-18T05:55:14.1009664Z       208 |   await btn(a,closed?'職員検索を閉じる':'職員検索を開く').click();
+2026-09-18T05:55:14.1010215Z     > 209 |   expect(Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
+2026-09-18T05:55:14.1010773Z           |                                                                                           ^
+2026-09-18T05:55:14.1011318Z       210 |   expect(Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
+2026-09-18T05:55:14.1012122Z       211 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000003');
+2026-09-18T05:55:14.1012687Z       212 |  }
+2026-09-18T05:55:14.1013416Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/ui-regression.test.ts:209:91
+2026-09-18T05:55:14.1014414Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T05:55:14.1015121Z     test-results/artifacts/regression-ui-regression-V-f984f-aff-1920x1080-standard-open-canvas-app/test-failed-1.png
+2026-09-18T05:55:14.1015883Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T05:55:14.1016611Z     Error Context: test-results/artifacts/regression-ui-regression-V-f984f-aff-1920x1080-standard-open-canvas-app/error-context.md
+2026-09-18T05:55:14.4738336Z [23/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 standard closed
+2026-09-18T05:55:22.2408096Z   8) [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 standard closed 
+2026-09-18T05:55:22.2408538Z     Error: expect(received).toBeLessThan(expected)
+2026-09-18T05:55:22.2408730Z     Expected: < 1
+2026-09-18T05:55:22.2408864Z     Received:   312
+2026-09-18T05:55:22.2409140Z       207 |   await btn(a,closed?'職員検索を開く':'職員検索を閉じる').click();
+2026-09-18T05:55:22.2409501Z       208 |   await btn(a,closed?'職員検索を閉じる':'職員検索を開く').click();
+2026-09-18T05:55:22.2409942Z     > 209 |   expect(Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
+2026-09-18T05:55:22.2410298Z           |                                                                                           ^
+2026-09-18T05:55:22.2410962Z       210 |   expect(Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
+2026-09-18T05:55:22.2411323Z       211 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000003');
+2026-09-18T05:55:22.2411803Z       212 |  }
+2026-09-18T05:55:22.2412492Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/ui-regression.test.ts:209:91
+2026-09-18T05:55:22.2413128Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T05:55:22.2413584Z     test-results/artifacts/regression-ui-regression-V-cecc4-f-1920x1080-standard-closed-canvas-app/test-failed-1.png
+2026-09-18T05:55:22.2414074Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T05:55:22.2414559Z     Error Context: test-results/artifacts/regression-ui-regression-V-cecc4-f-1920x1080-standard-closed-canvas-app/error-context.md
+2026-09-18T05:55:22.6152926Z [24/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 large open
+2026-09-18T05:55:30.0632118Z   9) [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 large open 
+2026-09-18T05:55:30.0632586Z     Error: expect(received).toBeLessThan(expected)
+2026-09-18T05:55:30.0632782Z     Expected: < 1
+2026-09-18T05:55:30.0632921Z     Received:   312
+2026-09-18T05:55:30.0633248Z       207 |   await btn(a,closed?'職員検索を開く':'職員検索を閉じる').click();
+2026-09-18T05:55:30.0633520Z       208 |   await btn(a,closed?'職員検索を閉じる':'職員検索を開く').click();
+2026-09-18T05:55:30.0633869Z     > 209 |   expect(Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
+2026-09-18T05:55:30.0634276Z           |                                                                                           ^
+2026-09-18T05:55:30.0634607Z       210 |   expect(Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
+2026-09-18T05:55:30.0634957Z       211 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000003');
+2026-09-18T05:55:30.0635177Z       212 |  }
+2026-09-18T05:55:30.0635627Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/ui-regression.test.ts:209:91
+2026-09-18T05:55:30.0636233Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T05:55:30.0636672Z     test-results/artifacts/regression-ui-regression-VIS-01-staff-1920x1080-large-open-canvas-app/test-failed-1.png
+2026-09-18T05:55:30.0637427Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T05:55:30.0637884Z     Error Context: test-results/artifacts/regression-ui-regression-VIS-01-staff-1920x1080-large-open-canvas-app/error-context.md
+2026-09-18T05:55:30.4433360Z [25/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 large closed
+2026-09-18T05:55:38.4658956Z   10) [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 large closed 
+2026-09-18T05:55:38.4659448Z     Error: expect(received).toBeLessThan(expected)
+2026-09-18T05:55:38.4659645Z     Expected: < 1
+2026-09-18T05:55:38.4659781Z     Received:   312
+2026-09-18T05:55:38.4660048Z       207 |   await btn(a,closed?'職員検索を開く':'職員検索を閉じる').click();
+2026-09-18T05:55:38.4660689Z       208 |   await btn(a,closed?'職員検索を閉じる':'職員検索を開く').click();
+2026-09-18T05:55:38.4661053Z     > 209 |   expect(Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
+2026-09-18T05:55:38.4661598Z           |                                                                                           ^
+2026-09-18T05:55:38.4662006Z       210 |   expect(Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
+2026-09-18T05:55:38.4662351Z       211 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000003');
+2026-09-18T05:55:38.4662574Z       212 |  }
+2026-09-18T05:55:38.4663019Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/ui-regression.test.ts:209:91
+2026-09-18T05:55:38.4663715Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T05:55:38.4664274Z     test-results/artifacts/regression-ui-regression-VIS-01-staff-1920x1080-large-closed-canvas-app/test-failed-1.png
+2026-09-18T05:55:38.4664756Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T05:55:38.4665220Z     Error Context: test-results/artifacts/regression-ui-regression-VIS-01-staff-1920x1080-large-closed-canvas-app/error-context.md
+2026-09-18T05:55:38.8970096Z [26/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:229:5 › VIS-SCREENS all five new screens 900x600
+2026-09-18T05:56:00.1166463Z [27/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:229:5 › VIS-SCREENS all five new screens 1100x800
+2026-09-18T05:56:21.0049748Z [28/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:229:5 › VIS-SCREENS all five new screens 1366x768
+2026-09-18T05:56:41.6763586Z [29/29] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:229:5 › VIS-SCREENS all five new screens 1920x1080
+2026-09-18T05:57:03.1997691Z ===============================================
+2026-09-18T05:57:03.1998488Z ✅ Teardown Playwright Test Environment
+2026-09-18T05:57:03.1998968Z ===============================================
+2026-09-18T05:57:03.2055183Z   10 failed
+2026-09-18T05:57:03.2056085Z     [canvas-app] › tests/northwind/canvas/regression/remaining.test.ts:112:5 › REMAIN-MODAL background is blocked and close returns keyboard focus 
+2026-09-18T05:57:03.2057114Z     [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:88:5 › SRCH-04..12 / DATA-01 / PAGE-02 filters, all authorized records, repeated search 
+2026-09-18T05:57:03.2058021Z     [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 standard open 
+2026-09-18T05:57:03.2058810Z     [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 standard closed 
+2026-09-18T05:57:03.2059939Z     [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 large open 
+2026-09-18T05:57:03.2060437Z     [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1366x768 large closed 
+2026-09-18T05:57:03.2060935Z     [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 standard open 
+2026-09-18T05:57:03.2061624Z     [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 standard closed 
+2026-09-18T05:57:03.2062117Z     [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 large open 
+2026-09-18T05:57:03.2062610Z     [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:201:5 › VIS-01 staff 1920x1080 large closed 
+2026-09-18T05:57:03.2062904Z   19 passed (8.2m)

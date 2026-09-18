@@ -1,0 +1,11 @@
+{
+  "utc": "2026-09-18T05:52:16.845160+00:00",
+  "semantic_equal_to_published_v123_readback": true,
+  "sha256": "f0bbcda11e69ac154004e8e35847cf301015673d7541540103ff4efc146f4fc7",
+  "baseline_sha256": "f0bbcda11e69ac154004e8e35847cf301015673d7541540103ff4efc146f4fc7",
+  "attempted": "SetFocus(btnCertificate111)",
+  "studio_error": "指定されたコントロールにフォーカスを設定できません。このコントロールは別のスクリーン上、またはギャラリーやコンポーネントのコントロール内にある可能性があります。その他の制限については、SetFocus のドキュメントを参照してください。",
+  "restored": true,
+  "formula_errors_after_restore": 0,
+  "republished": false
+}

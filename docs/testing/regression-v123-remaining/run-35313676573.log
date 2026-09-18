@@ -1,0 +1,9 @@
+2026-09-18T06:10:27.9127668Z [1/1] [canvas-app] › tests/northwind/canvas/regression/supplement.test.ts:29:5 › SUPPLEMENT-CLIPBOARD denied write keeps manual TSV fallback
+2026-09-18T06:10:37.2436312Z [canvas-app] › tests/northwind/canvas/regression/supplement.test.ts:29:5 › SUPPLEMENT-CLIPBOARD denied write keeps manual TSV fallback
+2026-09-18T06:10:37.2444147Z CLIPBOARD_DIAGNOSTIC {"injection":"browser Clipboard.writeText NotAllowedError; no app variable or auth changes","denials":1,"manualRows":8}
+2026-09-18T06:10:37.2444934Z 
+2026-09-18T06:10:37.3656114Z ===============================================
+2026-09-18T06:10:37.3656884Z ✅ Teardown Playwright Test Environment
+2026-09-18T06:10:37.3657220Z ===============================================
+2026-09-18T06:10:37.3670753Z   1 passed (10.0s)
+2026-09-18T06:10:37.3950812Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
