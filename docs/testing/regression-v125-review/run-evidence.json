@@ -1,0 +1,25 @@
+{
+  "run": 35326181907,
+  "version": "1.25",
+  "tested_sha": "e6b107dece981b21e41cad94c3700f909b6c739d",
+  "run_status": "completed",
+  "conclusion": "success",
+  "passed": 41,
+  "failed": 0,
+  "total": 41,
+  "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907",
+  "source": "GitHub run metadata + retained run log final summary",
+  "new_execution_this_turn": false,
+  "review_counts": {
+    "PASS": 47,
+    "NOT_RUN": 32,
+    "EXCLUDED": 9,
+    "BLOCKED": 7
+  },
+  "browser_check": {
+    "initial_tab_version": "1.22",
+    "after_reload": "Microsoft authentication origin; access denied by automatic security review",
+    "current_published_version": "not confirmed",
+    "action": "stop; request permission; no alternate access"
+  }
+}
