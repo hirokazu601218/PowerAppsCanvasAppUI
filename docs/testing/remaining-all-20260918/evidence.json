@@ -1,0 +1,231 @@
+{
+  "keyboard": [
+    {
+      "boxShadow": "rgba(0, 0, 0, 0.12) 0px 0px 2px 0px, rgba(0, 0, 0, 0.14) 0px 1px 2px 0px, rgb(0, 0, 0) 0px 0px 0px 1px inset, rgb(255, 255, 255) 0px 0px 0px 2px inset",
+      "control": "btnStaffHome122",
+      "h": 52,
+      "label": "ホーム",
+      "outline": "rgba(0, 0, 0, 0) solid 2px",
+      "tag": "BUTTON",
+      "w": 110,
+      "x": 16,
+      "y": 8
+    },
+    {
+      "boxShadow": "none",
+      "control": "ddStaffMonth122",
+      "h": 40,
+      "label": "支給対象月. 2026/09",
+      "outline": "rgb(36, 36, 36) none 0px",
+      "tag": "DIV",
+      "w": 111,
+      "x": 913,
+      "y": 14
+    },
+    {
+      "boxShadow": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+      "control": "btnTextSize111",
+      "h": 44,
+      "label": "文字サイズを大きくする",
+      "outline": "rgba(0, 0, 0, 0) solid 2px",
+      "tag": "BUTTON",
+      "w": 138,
+      "x": 844,
+      "y": 70
+    },
+    {
+      "boxShadow": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+      "control": "btnLoad111",
+      "h": 44,
+      "label": "Dataverseの最新データを読み込む",
+      "outline": "rgba(0, 0, 0, 0) solid 2px",
+      "tag": "BUTTON",
+      "w": 150,
+      "x": 992,
+      "y": 70
+    },
+    {
+      "boxShadow": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+      "control": "btnSidebarToggle111",
+      "h": 44,
+      "label": "職員検索を閉じる",
+      "outline": "rgba(0, 0, 0, 0) solid 2px",
+      "tag": "BUTTON",
+      "w": 44,
+      "x": 328,
+      "y": 192
+    },
+    {
+      "boxShadow": "none",
+      "control": "txtKeyword111",
+      "h": 42,
+      "label": "氏名・職員番号・項目を検索",
+      "outline": "rgb(16, 16, 16) none 1px",
+      "tag": "INPUT",
+      "w": 308,
+      "x": 38,
+      "y": 273
+    },
+    {
+      "boxShadow": "none",
+      "control": "ddOrg111",
+      "h": 40,
+      "label": "組織. すべて",
+      "outline": "rgb(31, 41, 55) none 0px",
+      "tag": "DIV",
+      "w": 119,
+      "x": 29,
+      "y": 358
+    },
+    {
+      "boxShadow": "none",
+      "control": "ddStatus111",
+      "h": 40,
+      "label": "在籍状態. すべて",
+      "outline": "rgb(31, 41, 55) none 0px",
+      "tag": "DIV",
+      "w": 119,
+      "x": 194,
+      "y": 358
+    },
+    {
+      "boxShadow": "rgba(0, 0, 0, 0.12) 0px 0px 2px 0px, rgba(0, 0, 0, 0.14) 0px 1px 2px 0px, rgb(0, 0, 0) 0px 0px 0px 1px inset, rgb(255, 255, 255) 0px 0px 0px 2px inset",
+      "control": "btnSearch111",
+      "h": 44,
+      "label": "検索",
+      "outline": "rgba(0, 0, 0, 0) solid 2px",
+      "tag": "BUTTON",
+      "w": 112,
+      "x": 29,
+      "y": 412
+    },
+    {
+      "boxShadow": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+      "control": "btnClear111",
+      "h": 44,
+      "label": "検索条件をクリア",
+      "outline": "rgba(0, 0, 0, 0) solid 2px",
+      "tag": "BUTTON",
+      "w": 194,
+      "x": 153,
+      "y": 412
+    },
+    {
+      "boxShadow": "none",
+      "control": "btnRow111",
+      "h": 72,
+      "label": null,
+      "outline": "rgb(0, 0, 0) none 0px",
+      "tag": "BUTTON",
+      "w": 318,
+      "x": 29,
+      "y": 576
+    },
+    {
+      "boxShadow": "none",
+      "control": "conHScrollWork111",
+      "h": 128,
+      "label": null,
+      "outline": "rgb(16, 16, 16) auto 1px",
+      "tag": "DIV",
+      "w": 930,
+      "x": 393,
+      "y": 612
+    },
+    {
+      "boxShadow": "none",
+      "control": "galCommute111",
+      "h": 48,
+      "label": "通勤認定一覧。表示する行を選択してください",
+      "outline": "rgb(36, 36, 36) none 0px",
+      "tag": "DIV",
+      "w": 735,
+      "x": 393,
+      "y": 823
+    },
+    {
+      "boxShadow": "none",
+      "control": "conHScrollSocial111",
+      "h": 128,
+      "label": null,
+      "outline": "rgb(16, 16, 16) auto 1px",
+      "tag": "DIV",
+      "w": 930,
+      "x": 393,
+      "y": 519
+    },
+    {
+      "boxShadow": "none",
+      "control": "conHScrollTax111",
+      "h": 128,
+      "label": null,
+      "outline": "rgb(16, 16, 16) auto 1px",
+      "tag": "DIV",
+      "w": 930,
+      "x": 393,
+      "y": 519
+    },
+    {
+      "boxShadow": "none",
+      "control": "conHScrollPayroll111",
+      "h": 136,
+      "label": null,
+      "outline": "rgb(16, 16, 16) auto 1px",
+      "tag": "DIV",
+      "w": 930,
+      "x": 393,
+      "y": 721
+    },
+    {
+      "boxShadow": "none",
+      "control": "btnExport111",
+      "h": 44,
+      "label": null,
+      "outline": "rgb(0, 0, 0) none 0px",
+      "tag": "BUTTON",
+      "w": 178,
+      "x": 1152,
+      "y": 70
+    },
+    {
+      "boxShadow": "none",
+      "control": "btnCertificate111",
+      "h": 44,
+      "label": null,
+      "outline": "rgb(0, 0, 0) none 0px",
+      "tag": "BUTTON",
+      "w": 144,
+      "x": 1034,
+      "y": 196
+    },
+    {
+      "boxShadow": "none",
+      "control": "btnPayrollOpen111",
+      "h": 44,
+      "label": null,
+      "outline": "rgb(0, 0, 0) none 0px",
+      "tag": "BUTTON",
+      "w": 144,
+      "x": 1190,
+      "y": 196
+    }
+  ],
+  "cloneName": "検証専用_職員マスタ_20260918_残件",
+  "originalSearchLength": 1536,
+  "committedLength": 1540,
+  "fault": {
+    "query": "009900000011",
+    "count": "",
+    "selected": "職員番号：009900000004　／　所属：03会計課",
+    "rows": ""
+  },
+  "restoredAttempt": {
+    "query": "009900000011",
+    "count": "職員一覧　7件",
+    "selected": "職員番号：009900000004　／　所属：03会計課",
+    "rows": "試験　退職、退職、職員番号009900000004、03会計課 件。選択済み。\n試験　退職\n退職\n03会計課\n009900000004 試験　退職 詳細を表示\n試験 職員08、採用前、職員番号009900000008、03会計課\n1978/04/01\n試験 職員08\n採用前\n03会計課\n未加入\n009900000008 試験 職員08 詳細を表示\n試験 同姓同名、在籍、職員番号009900000011、03会計課\n1981/04/01\n試験 同姓同名\n在籍\n03会計課\n加入\n009900000011 試験 同姓同名 詳細を表示\n試験 職員14、在籍、職員番号009900000014、03会計課\n1984/04/01\n試験 職員14\n在籍\n03会計課\n未加入\n009900000014 試験 職員14 詳細を表示\n試験 職員17、在籍、職員番号009900000017、03会計課\n1987/04/01\n試験 職員17\n在籍\n03会計課\n加入\n009900000017 試験 職員17 詳細を表示\n試験 職員20、退職、職員番号009900000020、03会計課\n1990/04/01\n試験 職員20\n退職\n03会計課\n未加入\n009900000020 試験 職員20 詳細を表示\n試験 職員23、採用前、職員番号009900000023、03会計課\n1993/04/01\n試験 職員23\n採用前\n03会計課\n加入\n009900000023 試験 職員23 詳細を表示"
+  },
+  "lock": "別の場所で既に編集中のコントロールがあるため読み取り専用",
+  "restoration": "unverified; Screen1.Fill had 61 formula diagnostics before reload; no override",
+  "published": false
+}
