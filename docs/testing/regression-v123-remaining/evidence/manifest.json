@@ -1,0 +1,25 @@
+{
+  "run": 35312153742,
+  "job": 105496226217,
+  "source": "Generated synthetic PDF and rendered pages transferred through official Actions logs",
+  "files": [
+    {
+      "name": "ledger-A4-landscape.pdf",
+      "sha256": "13a789bcfd8591852326325f87229fc4d74b0f317232bbdbb12e40a0f7a0ccec",
+      "bytes": 421567,
+      "chunks": 47
+    },
+    {
+      "name": "ledger-rendered-1.png",
+      "sha256": "972bbf5d4d9459aaeb28601c02e127b8f16ee8053a680b1766106e6ed80d181c",
+      "bytes": 114961,
+      "chunks": 13
+    },
+    {
+      "name": "ledger-rendered-2.png",
+      "sha256": "8a91f8023e8b7e3dadaa909b7d83e0f2f8793c058708919bf19072ba0fa0ac1d",
+      "bytes": 160113,
+      "chunks": 18
+    }
+  ]
+}

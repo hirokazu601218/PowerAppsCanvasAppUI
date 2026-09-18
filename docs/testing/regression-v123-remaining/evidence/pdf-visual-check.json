@@ -1,0 +1,370 @@
+{
+  "method": "96dpi Fit template, ink bounds and grayscale integrated horizontal-rule centroids in +/-3px windows",
+  "tolerance_px": 3.7795275590551185,
+  "limitations": [
+    "Frame geometry only. Does not certify all 69 overlaid field positions or a formally approved paper choice.",
+    "Initial binary row threshold missed an antialiased rule on page 2; grayscale integration retains split-row ink instead."
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "template_sha256": "d67a558b5ddfaa4030ce80044d073245395491828eccc420de8f6c5352a51007",
+      "expected_ink_bounds": [
+        27,
+        73,
+        1091,
+        739
+      ],
+      "actual_ink_bounds": [
+        27,
+        73,
+        1091,
+        739
+      ],
+      "bounds_difference_px": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "rule_matches": [
+        {
+          "reference_y": 107.5,
+          "expected_centroid": 107.75121255304174,
+          "actual_centroid": 107.76170656756484,
+          "difference_px": 0.010494014523104056,
+          "ink_mass_ratio": 0.9729560557750568
+        },
+        {
+          "reference_y": 130.0,
+          "expected_centroid": 130.44079584548928,
+          "actual_centroid": 130.4202222109482,
+          "difference_px": 0.020573634541079855,
+          "ink_mass_ratio": 0.8783920284731341
+        },
+        {
+          "reference_y": 175.5,
+          "expected_centroid": 175.85332595423142,
+          "actual_centroid": 175.8558045845291,
+          "difference_px": 0.0024786302976735897,
+          "ink_mass_ratio": 0.9909995217446242
+        },
+        {
+          "reference_y": 251.0,
+          "expected_centroid": 251.3579503604669,
+          "actual_centroid": 251.30243269913478,
+          "difference_px": 0.055517661332117996,
+          "ink_mass_ratio": 0.9273597750150658
+        },
+        {
+          "reference_y": 292.0,
+          "expected_centroid": 291.5988300198454,
+          "actual_centroid": 291.6303625061752,
+          "difference_px": 0.03153248632975192,
+          "ink_mass_ratio": 0.9006963647630151
+        },
+        {
+          "reference_y": 332.0,
+          "expected_centroid": 331.88313795790197,
+          "actual_centroid": 331.8862262216793,
+          "difference_px": 0.003088263777328848,
+          "ink_mass_ratio": 0.9543870132456922
+        },
+        {
+          "reference_y": 372.0,
+          "expected_centroid": 372.26327926365377,
+          "actual_centroid": 372.2242100689794,
+          "difference_px": 0.039069194674368646,
+          "ink_mass_ratio": 0.9461734040246762
+        },
+        {
+          "reference_y": 412.5,
+          "expected_centroid": 412.4649357833992,
+          "actual_centroid": 412.47088233849786,
+          "difference_px": 0.005946555098660156,
+          "ink_mass_ratio": 0.8835640213476808
+        },
+        {
+          "reference_y": 453.0,
+          "expected_centroid": 452.7801575195343,
+          "actual_centroid": 452.8178026443582,
+          "difference_px": 0.03764512482388227,
+          "ink_mass_ratio": 0.9499225986478114
+        },
+        {
+          "reference_y": 493.0,
+          "expected_centroid": 493.1643048237672,
+          "actual_centroid": 493.14853952654704,
+          "difference_px": 0.015765297220184493,
+          "ink_mass_ratio": 0.9516075329742865
+        },
+        {
+          "reference_y": 533.5,
+          "expected_centroid": 533.4409982785533,
+          "actual_centroid": 533.414057256033,
+          "difference_px": 0.026941022520304614,
+          "ink_mass_ratio": 0.8894418817582854
+        },
+        {
+          "reference_y": 574.0,
+          "expected_centroid": 573.7112978260385,
+          "actual_centroid": 573.7654789311866,
+          "difference_px": 0.05418110514813179,
+          "ink_mass_ratio": 0.9344119867652609
+        },
+        {
+          "reference_y": 604.0,
+          "expected_centroid": 603.8283100756059,
+          "actual_centroid": 603.829104406761,
+          "difference_px": 0.0007943311550207,
+          "ink_mass_ratio": 0.95946132576392
+        },
+        {
+          "reference_y": 610.0,
+          "expected_centroid": 610.417105744024,
+          "actual_centroid": 610.3835095741641,
+          "difference_px": 0.033596169859833935,
+          "ink_mass_ratio": 0.9061923576080044
+        },
+        {
+          "reference_y": 691.0,
+          "expected_centroid": 690.8891318808488,
+          "actual_centroid": 690.8911805912148,
+          "difference_px": 0.002048710366011619,
+          "ink_mass_ratio": 0.9582570186708946
+        },
+        {
+          "reference_y": 697.0,
+          "expected_centroid": 697.4491809766093,
+          "actual_centroid": 697.4202682238952,
+          "difference_px": 0.02891275271417726,
+          "ink_mass_ratio": 0.9090438838244645
+        },
+        {
+          "reference_y": 738.5,
+          "expected_centroid": 738.1852929280823,
+          "actual_centroid": 738.1921398755848,
+          "difference_px": 0.006846947502481271,
+          "ink_mass_ratio": 0.9983642164866603
+        }
+      ],
+      "maximum_rule_centroid_difference_px": 0.055517661332117996,
+      "frame_within_1mm": true
+    },
+    {
+      "page": 2,
+      "template_sha256": "53c209304cc8aa86ac98e1bd83dff822a4daf56d75c8399a64dde157e74b1ad0",
+      "expected_ink_bounds": [
+        167,
+        14,
+        954,
+        776
+      ],
+      "actual_ink_bounds": [
+        167,
+        13,
+        954,
+        775
+      ],
+      "bounds_difference_px": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "rule_matches": [
+        {
+          "reference_y": 14.0,
+          "expected_centroid": 14.209036803109433,
+          "actual_centroid": 13.422166374720723,
+          "difference_px": 0.7868704283887098,
+          "ink_mass_ratio": 1.076706884219334
+        },
+        {
+          "reference_y": 35.5,
+          "expected_centroid": 35.303503032752,
+          "actual_centroid": 34.49275248130476,
+          "difference_px": 0.8107505514472351,
+          "ink_mass_ratio": 0.9275084147583897
+        },
+        {
+          "reference_y": 89.0,
+          "expected_centroid": 89.32367704287938,
+          "actual_centroid": 88.57067196976901,
+          "difference_px": 0.7530050731103728,
+          "ink_mass_ratio": 0.9673795230115146
+        },
+        {
+          "reference_y": 124.0,
+          "expected_centroid": 124.20032505542667,
+          "actual_centroid": 123.36707075585603,
+          "difference_px": 0.8332542995706405,
+          "ink_mass_ratio": 0.8878987611014149
+        },
+        {
+          "reference_y": 159.0,
+          "expected_centroid": 158.9536047876187,
+          "actual_centroid": 158.28750225004316,
+          "difference_px": 0.66610253757554,
+          "ink_mass_ratio": 1.178790883778131
+        },
+        {
+          "reference_y": 194.0,
+          "expected_centroid": 193.74255704095026,
+          "actual_centroid": 193.14988932730242,
+          "difference_px": 0.5926677136478418,
+          "ink_mass_ratio": 0.8604064801666002
+        },
+        {
+          "reference_y": 229.0,
+          "expected_centroid": 228.670893398079,
+          "actual_centroid": 227.9783486356517,
+          "difference_px": 0.6925447624272749,
+          "ink_mass_ratio": 0.8285624039090925
+        },
+        {
+          "reference_y": 250.0,
+          "expected_centroid": 250.10873565049016,
+          "actual_centroid": 249.29942420326665,
+          "difference_px": 0.8093114472235072,
+          "ink_mass_ratio": 0.8465362095919059
+        },
+        {
+          "reference_y": 255.0,
+          "expected_centroid": 255.19237668833668,
+          "actual_centroid": 254.22090374782982,
+          "difference_px": 0.9714729405068567,
+          "ink_mass_ratio": 0.9411661827975794
+        },
+        {
+          "reference_y": 276.0,
+          "expected_centroid": 275.9324442161404,
+          "actual_centroid": 275.26665382662446,
+          "difference_px": 0.665790389515962,
+          "ink_mass_ratio": 0.905494833036855
+        },
+        {
+          "reference_y": 312.0,
+          "expected_centroid": 312.21933000479004,
+          "actual_centroid": 311.4921934463005,
+          "difference_px": 0.7271365584895193,
+          "ink_mass_ratio": 0.8617848990001427
+        },
+        {
+          "reference_y": 341.0,
+          "expected_centroid": 341.1116399183353,
+          "actual_centroid": 340.35140640078464,
+          "difference_px": 0.7602335175506596,
+          "ink_mass_ratio": 1.1395375039998556
+        },
+        {
+          "reference_y": 370.0,
+          "expected_centroid": 369.940371120596,
+          "actual_centroid": 369.100931716015,
+          "difference_px": 0.8394394045810145,
+          "ink_mass_ratio": 0.9001980394993853
+        },
+        {
+          "reference_y": 399.0,
+          "expected_centroid": 398.9247929334634,
+          "actual_centroid": 398.3115268795519,
+          "difference_px": 0.6132660539115022,
+          "ink_mass_ratio": 0.9099125023980518
+        },
+        {
+          "reference_y": 427.0,
+          "expected_centroid": 427.64280778729744,
+          "actual_centroid": 426.9021636486277,
+          "difference_px": 0.7406441386697225,
+          "ink_mass_ratio": 0.8790241477369904
+        },
+        {
+          "reference_y": 429.0,
+          "expected_centroid": 427.83338670825265,
+          "actual_centroid": 427.21079234055316,
+          "difference_px": 0.6225943676994916,
+          "ink_mass_ratio": 0.898513392463461
+        },
+        {
+          "reference_y": 456.0,
+          "expected_centroid": 456.08232639030797,
+          "actual_centroid": 455.28484985033316,
+          "difference_px": 0.7974765399748094,
+          "ink_mass_ratio": 1.1286480399235312
+        },
+        {
+          "reference_y": 461.0,
+          "expected_centroid": 461.4721324044135,
+          "actual_centroid": 460.74825919807313,
+          "difference_px": 0.7238732063403859,
+          "ink_mass_ratio": 0.8096394879829327
+        },
+        {
+          "reference_y": 522.0,
+          "expected_centroid": 521.9483985192338,
+          "actual_centroid": 521.009963820588,
+          "difference_px": 0.9384346986457786,
+          "ink_mass_ratio": 0.8732243452668369
+        },
+        {
+          "reference_y": 527.0,
+          "expected_centroid": 527.4740831821705,
+          "actual_centroid": 526.8139739796899,
+          "difference_px": 0.6601092024806121,
+          "ink_mass_ratio": 0.8243913920372689
+        },
+        {
+          "reference_y": 549.0,
+          "expected_centroid": 549.1517068642537,
+          "actual_centroid": 548.4329855173353,
+          "difference_px": 0.7187213469184144,
+          "ink_mass_ratio": 1.105221783635512
+        },
+        {
+          "reference_y": 581.0,
+          "expected_centroid": 580.8969502902447,
+          "actual_centroid": 580.1072789342364,
+          "difference_px": 0.7896713560082844,
+          "ink_mass_ratio": 0.9505214130378946
+        },
+        {
+          "reference_y": 587.0,
+          "expected_centroid": 586.7274224875605,
+          "actual_centroid": 586.1873543568296,
+          "difference_px": 0.5400681307309014,
+          "ink_mass_ratio": 0.8280717424552034
+        },
+        {
+          "reference_y": 652.0,
+          "expected_centroid": 652.0254185045754,
+          "actual_centroid": 651.2392232933615,
+          "difference_px": 0.7861952112139079,
+          "ink_mass_ratio": 0.9163589353794223
+        },
+        {
+          "reference_y": 680.5,
+          "expected_centroid": 680.2938963821396,
+          "actual_centroid": 679.7423793230818,
+          "difference_px": 0.5515170590578009,
+          "ink_mass_ratio": 0.834899612082258
+        },
+        {
+          "reference_y": 709.0,
+          "expected_centroid": 708.8296648765479,
+          "actual_centroid": 708.293327720223,
+          "difference_px": 0.536337156324862,
+          "ink_mass_ratio": 0.903708523096942
+        },
+        {
+          "reference_y": 775.5,
+          "expected_centroid": 775.3077289281377,
+          "actual_centroid": 774.4920669369155,
+          "difference_px": 0.8156619912222141,
+          "ink_mass_ratio": 1.0236763387366796
+        }
+      ],
+      "maximum_rule_centroid_difference_px": 0.9714729405068567,
+      "frame_within_1mm": true
+    }
+  ]
+}

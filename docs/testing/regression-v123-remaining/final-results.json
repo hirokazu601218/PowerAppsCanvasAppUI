@@ -1,0 +1,272 @@
+{
+  "public_app_version": "1.23",
+  "app_changed": false,
+  "method": "Latest observation per automated test across unchanged public v1.23. Not a single 33-test all-pass run.",
+  "test_counts": {
+    "PASS": 31,
+    "FAIL": 2
+  },
+  "specification_counts": {
+    "PASS": 38,
+    "NOT_RUN": 32,
+    "BLOCKED": 21,
+    "FAIL": 4
+  },
+  "runs": [
+    {
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f",
+      "pass": 19,
+      "fail": 10
+    },
+    {
+      "run": 35312872559,
+      "test_sha": "02a26023cefe29cdcf1dc084f69d87001595ea4f",
+      "pass": 2,
+      "fail": 3
+    },
+    {
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd",
+      "pass": 11,
+      "fail": 3
+    },
+    {
+      "run": 35313676573,
+      "test_sha": "44eab9c070d9a70801c7f80c23a73d1388af9467",
+      "pass": 1,
+      "fail": 0
+    }
+  ],
+  "tests": [
+    {
+      "name": "COM-APP-001 six Dataverse records, chosen recognition, dates, money and blank routes",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PDF",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "REMAIN-DETAIL independent nine basic values and all Work Social Tax cells",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "REMAIN-SEARCH three simultaneous filters plus number and commute-method fields",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "SMK-01-1 fresh session, search, selection, sidebar, zero, clear, ledger",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "REMAIN-SIDEBAR typography roundtrip, dimensions, selection and zero cleanup",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "SMK-01-2 fresh session, search, selection, sidebar, zero, clear, ledger",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "SMK-01-3 fresh session, search, selection, sidebar, zero, clear, ledger",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "REMAIN-MODAL background is blocked and close returns keyboard focus",
+      "status": "FAIL",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "SRCH-04..12 / DATA-01 / PAGE-02 filters, all authorized records, repeated search",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "CORE-DETAIL / SEL-03 / OUT-04 163 payroll fields and cross-department same-name isolation",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "OUT-01/02/05 search TSV contains authorized employees and output pagination",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "DETAIL-01/02/03 histories, blank and zero fields, refresh",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "SCR-001..006 navigation, dummy registration, recalculation, zero and missing month",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "PERF-02 twenty search/selection/sidebar/zero/clear cycles retain correct state",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "BUG-SELECTION-001 zero search clears payroll across home navigation and selection changes",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "ACC-01/02 keyboard search and row selection",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "VIS-01 staff 1366x768 standard open",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "VIS-01 staff 1366x768 standard closed",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "VIS-01 staff 1366x768 large open",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "VIS-01 staff 1366x768 large closed",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "VIS-01 staff 1920x1080 standard open",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "VIS-01 staff 1920x1080 standard closed",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "VIS-01 staff 1920x1080 large open",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "VIS-01 staff 1920x1080 large closed",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "VIS-SCREENS all five new screens 900x600",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "VIS-SCREENS all five new screens 1100x800",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "VIS-SCREENS all five new screens 1366x768",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "VIS-SCREENS all five new screens 1920x1080",
+      "status": "PASS",
+      "run": 35312153742,
+      "test_sha": "4d4d643547723f7d9aafa57a5cc8bfb1cfcaae6f"
+    },
+    {
+      "name": "SUPPLEMENT-INIT three reloads clear prior search, selection and PDF",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "SUPPLEMENT-CLIPBOARD denied write keeps manual TSV fallback",
+      "status": "PASS",
+      "run": 35313676573,
+      "test_sha": "44eab9c070d9a70801c7f80c23a73d1388af9467"
+    },
+    {
+      "name": "SUPPLEMENT-KEYBOARD full closed-sidebar Tab circuit and reopening",
+      "status": "PASS",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    },
+    {
+      "name": "SUPPLEMENT-PERF ten starts and twenty measured searches selections and toggles",
+      "status": "FAIL",
+      "run": 35312985549,
+      "test_sha": "f9a1584cb56031267a4be0679abea88781e342dd"
+    }
+  ],
+  "unit_tests": {
+    "pass": 50,
+    "fail": 0,
+    "command": "python -m unittest discover -s tests/automation -v"
+  },
+  "performance_ms": {
+    "run": 35312872559,
+    "samples": {
+      "startup": 10,
+      "search": 20,
+      "selection": 20,
+      "close": 20,
+      "open": 20
+    },
+    "p95": {
+      "startup": 4400,
+      "search": 462,
+      "selection": 442,
+      "close": 1026,
+      "open": 305
+    },
+    "limits": {
+      "startup": 30000,
+      "search": 2000,
+      "selection": 2000,
+      "close": 1000,
+      "open": 1000
+    },
+    "subsequent_run": 35312985549,
+    "subsequent_result": "FAIL: list 7 records was not rendered within 30s after ten restarts; timing loop not completed"
+  }
+}

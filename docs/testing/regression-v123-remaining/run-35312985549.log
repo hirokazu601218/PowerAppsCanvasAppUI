@@ -1,0 +1,184 @@
+2026-09-18T06:04:23.9515063Z Running 14 tests using 2 workers
+2026-09-18T06:04:23.9529230Z 
+2026-09-18T06:04:24.5915556Z [1/14] [canvas-app] › tests/northwind/canvas/regression/remaining.test.ts:112:5 › REMAIN-MODAL background is blocked and close returns keyboard focus
+2026-09-18T06:04:24.6021224Z [2/14] [canvas-app] › tests/northwind/canvas/regression/supplement.test.ts:16:5 › SUPPLEMENT-INIT three reloads clear prior search, selection and PDF
+2026-09-18T06:04:50.6573805Z   1) [canvas-app] › tests/northwind/canvas/regression/remaining.test.ts:112:5 › REMAIN-MODAL background is blocked and close returns keyboard focus 
+2026-09-18T06:04:50.6574896Z 
+2026-09-18T06:04:50.6576181Z     Error: btnLedgerClose111 should restore focus to btnCertificate111
+2026-09-18T06:04:50.6576959Z 
+2026-09-18T06:04:50.6577424Z     btnLedgerClose111 should restore focus to btnCertificate111
+2026-09-18T06:04:50.6577883Z 
+2026-09-18T06:04:50.6578297Z     expect(received).toBe(expected) // Object.is equality
+2026-09-18T06:04:50.6578929Z 
+2026-09-18T06:04:50.6579273Z     Expected: "btnCertificate111"
+2026-09-18T06:04:50.6579827Z     Received: "none"
+2026-09-18T06:04:50.6580180Z 
+2026-09-18T06:04:50.6580466Z     Call Log:
+2026-09-18T06:04:50.6580956Z     - Timeout 5000ms exceeded while waiting on the predicate
+2026-09-18T06:04:50.6581332Z 
+2026-09-18T06:04:50.6581803Z       121 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000011');
+2026-09-18T06:04:50.6586165Z       122 |   const active=()=>a.locator('body').evaluate(el=>el.ownerDocument.activeElement?.closest('[data-control-name]')?.getAttribute('data-control-name')||'none');
+2026-09-18T06:04:50.6588181Z     > 123 |   await expect.configure({soft:true}).poll(active,{timeout:5000,message:`${close} should restore focus to ${open}`}).toBe(open);
+2026-09-18T06:04:50.6589512Z           |                                                                                                                      ^
+2026-09-18T06:04:50.6610397Z       124 |   const focused=await active();
+2026-09-18T06:04:50.6611365Z       125 |   observations.push({open,close,focused});
+2026-09-18T06:04:50.6611992Z       126 |  }
+2026-09-18T06:04:50.6615820Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/remaining.test.ts:123:118
+2026-09-18T06:04:50.6617286Z 
+2026-09-18T06:04:50.6617824Z     Error: btnPayClose111 should restore focus to btnPayrollOpen111
+2026-09-18T06:04:50.6618379Z 
+2026-09-18T06:04:50.6618864Z     btnPayClose111 should restore focus to btnPayrollOpen111
+2026-09-18T06:04:50.6619395Z 
+2026-09-18T06:04:50.6619839Z     expect(received).toBe(expected) // Object.is equality
+2026-09-18T06:04:50.6620334Z 
+2026-09-18T06:04:50.6620663Z     Expected: "btnPayrollOpen111"
+2026-09-18T06:04:50.6621271Z     Received: "none"
+2026-09-18T06:04:50.6621652Z 
+2026-09-18T06:04:50.6621925Z     Call Log:
+2026-09-18T06:04:50.6622725Z     - Timeout 5000ms exceeded while waiting on the predicate
+2026-09-18T06:04:50.6623277Z 
+2026-09-18T06:04:50.6623786Z       121 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000011');
+2026-09-18T06:04:50.6625222Z       122 |   const active=()=>a.locator('body').evaluate(el=>el.ownerDocument.activeElement?.closest('[data-control-name]')?.getAttribute('data-control-name')||'none');
+2026-09-18T06:04:50.6626918Z     > 123 |   await expect.configure({soft:true}).poll(active,{timeout:5000,message:`${close} should restore focus to ${open}`}).toBe(open);
+2026-09-18T06:04:50.6628578Z           |                                                                                                                      ^
+2026-09-18T06:04:50.6629354Z       124 |   const focused=await active();
+2026-09-18T06:04:50.6630032Z       125 |   observations.push({open,close,focused});
+2026-09-18T06:04:50.6630601Z       126 |  }
+2026-09-18T06:04:50.6632037Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/remaining.test.ts:123:118
+2026-09-18T06:04:50.6633366Z 
+2026-09-18T06:04:50.6633843Z     Error: btnReportClose111 should restore focus to btnExport111
+2026-09-18T06:04:50.6634375Z 
+2026-09-18T06:04:50.6634801Z     btnReportClose111 should restore focus to btnExport111
+2026-09-18T06:04:50.6635316Z 
+2026-09-18T06:04:50.6635716Z     expect(received).toBe(expected) // Object.is equality
+2026-09-18T06:04:50.6636196Z 
+2026-09-18T06:04:50.6636487Z     Expected: "btnExport111"
+2026-09-18T06:04:50.6637018Z     Received: "none"
+2026-09-18T06:04:50.6637366Z 
+2026-09-18T06:04:50.6637641Z     Call Log:
+2026-09-18T06:04:50.6638195Z     - Timeout 5000ms exceeded while waiting on the predicate
+2026-09-18T06:04:50.6638674Z 
+2026-09-18T06:04:50.6639190Z       121 |   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000011');
+2026-09-18T06:04:50.6640552Z       122 |   const active=()=>a.locator('body').evaluate(el=>el.ownerDocument.activeElement?.closest('[data-control-name]')?.getAttribute('data-control-name')||'none');
+2026-09-18T06:04:50.6642486Z     > 123 |   await expect.configure({soft:true}).poll(active,{timeout:5000,message:`${close} should restore focus to ${open}`}).toBe(open);
+2026-09-18T06:04:50.6643668Z           |                                                                                                                      ^
+2026-09-18T06:04:50.6644463Z       124 |   const focused=await active();
+2026-09-18T06:04:50.6645135Z       125 |   observations.push({open,close,focused});
+2026-09-18T06:04:50.6645748Z       126 |  }
+2026-09-18T06:04:50.6647365Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/remaining.test.ts:123:118
+2026-09-18T06:04:50.6648691Z 
+2026-09-18T06:04:50.6649767Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T06:04:50.6651209Z     test-results/artifacts/regression-remaining-REMAI-21021-lose-returns-keyboard-focus-canvas-app/test-failed-1.png
+2026-09-18T06:04:50.6653379Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T06:04:50.6653908Z 
+2026-09-18T06:04:50.6654764Z     Error Context: test-results/artifacts/regression-remaining-REMAI-21021-lose-returns-keyboard-focus-canvas-app/error-context.md
+2026-09-18T06:04:50.6655659Z 
+2026-09-18T06:04:50.6655792Z 
+2026-09-18T06:04:51.3875228Z [3/14] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:88:5 › SRCH-04..12 / DATA-01 / PAGE-02 filters, all authorized records, repeated search
+2026-09-18T06:04:54.3784169Z [4/14] [canvas-app] › tests/northwind/canvas/regression/supplement.test.ts:29:5 › SUPPLEMENT-CLIPBOARD denied write keeps manual TSV fallback
+2026-09-18T06:05:23.3047025Z [5/14] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:203:5 › VIS-01 staff 1366x768 standard open
+2026-09-18T06:05:34.7619168Z   2) [canvas-app] › tests/northwind/canvas/regression/supplement.test.ts:29:5 › SUPPLEMENT-CLIPBOARD denied write keeps manual TSV fallback 
+2026-09-18T06:05:34.7619973Z 
+2026-09-18T06:05:34.7620219Z     Error: expect(locator).toBeVisible() failed
+2026-09-18T06:05:34.7620525Z 
+2026-09-18T06:05:34.7621402Z     Locator: locator('iframe[name="fullscreen-app-host"]').contentFrame().getByText('コピーできません。下のテキスト欄から手動コピーしてください', { exact: true })
+2026-09-18T06:05:34.7622438Z     Expected: visible
+2026-09-18T06:05:34.7622769Z     Timeout: 30000ms
+2026-09-18T06:05:34.7623140Z     Error: element(s) not found
+2026-09-18T06:05:34.7623423Z 
+2026-09-18T06:05:34.7623542Z     Call log:
+2026-09-18T06:05:34.7623942Z       - Expect "toBeVisible" with timeout 30000ms
+2026-09-18T06:05:34.7625113Z       - waiting for locator('iframe[name="fullscreen-app-host"]').contentFrame().getByText('コピーできません。下のテキスト欄から手動コピーしてください', { exact: true })
+2026-09-18T06:05:34.7625762Z 
+2026-09-18T06:05:34.7625771Z 
+2026-09-18T06:05:34.7626323Z       37 |  const a=await start(page);await staff(a);await btn(a,'検索結果をTSVで出力').click();
+2026-09-18T06:05:34.7627065Z       38 |  await ctl(a,'btnCopy111').getByRole('button').click();
+2026-09-18T06:05:34.7627923Z     > 39 |  await expect(a.getByText('コピーできません。下のテキスト欄から手動コピーしてください',{exact:true})).toBeVisible();
+2026-09-18T06:05:34.7628586Z          |                                                                          ^
+2026-09-18T06:05:34.7629610Z       40 |  const tsv=await a.getByRole('textbox',{name:'コピー用テキスト。全選択してExcelへ貼り付けできます。',exact:true}).inputValue();
+2026-09-18T06:05:34.7630631Z       41 |  expect(tsv.trim().split('\n')).toHaveLength(8);expect(tsv).toContain('009900000011');
+2026-09-18T06:05:34.7631813Z       42 |  let count=0;for(const frame of page.frames())count+=await frame.evaluate(()=>(window as any).__testClipboardDenials||0).catch(()=>0);
+2026-09-18T06:05:34.7633746Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/supplement.test.ts:39:74
+2026-09-18T06:05:34.7634717Z 
+2026-09-18T06:05:34.7635319Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T06:05:34.7636517Z     test-results/artifacts/regression-supplement-SUPP-15ec9-e-keeps-manual-TSV-fallback-canvas-app/test-failed-1.png
+2026-09-18T06:05:34.7637783Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T06:05:34.7638181Z 
+2026-09-18T06:05:34.7638893Z     Error Context: test-results/artifacts/regression-supplement-SUPP-15ec9-e-keeps-manual-TSV-fallback-canvas-app/error-context.md
+2026-09-18T06:05:34.7640147Z 
+2026-09-18T06:05:34.7640158Z 
+2026-09-18T06:05:35.5843705Z [6/14] [canvas-app] › tests/northwind/canvas/regression/supplement.test.ts:47:5 › SUPPLEMENT-KEYBOARD full closed-sidebar Tab circuit and reopening
+2026-09-18T06:05:36.9384719Z [7/14] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:203:5 › VIS-01 staff 1366x768 standard closed
+2026-09-18T06:05:51.6066209Z [8/14] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:203:5 › VIS-01 staff 1366x768 large open
+2026-09-18T06:05:51.9155699Z [9/14] [canvas-app] › tests/northwind/canvas/regression/supplement.test.ts:64:5 › SUPPLEMENT-PERF ten starts and twenty measured searches selections and toggles
+2026-09-18T06:06:08.8221728Z [10/14] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:203:5 › VIS-01 staff 1366x768 large closed
+2026-09-18T06:06:40.4167387Z   3) [canvas-app] › tests/northwind/canvas/regression/supplement.test.ts:64:5 › SUPPLEMENT-PERF ten starts and twenty measured searches selections and toggles 
+2026-09-18T06:06:40.4168621Z 
+2026-09-18T06:06:40.4168898Z     Error: expect(locator).toContainText(expected) failed
+2026-09-18T06:06:40.4169156Z 
+2026-09-18T06:06:40.4169591Z     Locator: locator('iframe[name="fullscreen-app-host"]').contentFrame().locator('[data-control-name="lblListTitle111"]')
+2026-09-18T06:06:40.4170123Z     Timeout: 30000ms
+2026-09-18T06:06:40.4170404Z     - Expected substring  -  1
+2026-09-18T06:06:40.4170699Z     + Received string     + 11
+2026-09-18T06:06:40.4170906Z 
+2026-09-18T06:06:40.4171149Z     - 7件
+2026-09-18T06:06:40.4171351Z     +
+2026-09-18T06:06:40.4171548Z     +   
+2026-09-18T06:06:40.4171737Z     +     
+2026-09-18T06:06:40.4171930Z     +         
+2026-09-18T06:06:40.4172348Z     +     
+2026-09-18T06:06:40.4172624Z     +     
+2026-09-18T06:06:40.4172879Z     +     
+2026-09-18T06:06:40.4173148Z     +     
+2026-09-18T06:06:40.4173402Z     +     
+2026-09-18T06:06:40.4173688Z     +   
+2026-09-18T06:06:40.4173963Z     +   
+2026-09-18T06:06:40.4174158Z 
+2026-09-18T06:06:40.4174294Z     Call log:
+2026-09-18T06:06:40.4174744Z       - Expect "toContainText" with timeout 30000ms
+2026-09-18T06:06:40.4175737Z       - waiting for locator('iframe[name="fullscreen-app-host"]').contentFrame().locator('[data-control-name="lblListTitle111"]')
+2026-09-18T06:06:40.4177106Z         63 × locator resolved to <div data-control-id="38" data-control-name="lblListTitle111" class="appmagic-content-control-name appmagic-control-view canvasContentDiv _vst_">…</div>
+2026-09-18T06:06:40.4177995Z            - unexpected value "
+2026-09-18T06:06:40.4178242Z       
+2026-09-18T06:06:40.4178431Z         
+2026-09-18T06:06:40.4178617Z             
+2026-09-18T06:06:40.4178803Z         
+2026-09-18T06:06:40.4178983Z         
+2026-09-18T06:06:40.4179153Z         
+2026-09-18T06:06:40.4179327Z         
+2026-09-18T06:06:40.4179498Z         
+2026-09-18T06:06:40.4179670Z       
+2026-09-18T06:06:40.4179877Z       "
+2026-09-18T06:06:40.4179980Z 
+2026-09-18T06:06:40.4179992Z 
+2026-09-18T06:06:40.4180496Z       10 |  await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.23',{timeout:60000});return a;
+2026-09-18T06:06:40.4180946Z       11 | }
+2026-09-18T06:06:40.4181897Z     > 12 | async function staff(a:FrameLocator){await ctl(a,'btnHomeStaff').getByRole('button').click();await expect(ctl(a,'conscrHomeRoot')).toBeHidden();await expect(ctl(a,'lblListTitle111')).toContainText('7件');}
+2026-09-18T06:06:40.4183124Z          |                                                                                                                                                                                        ^
+2026-09-18T06:06:40.4184156Z       13 | async function search(a:FrameLocator,q:string){await a.getByRole('searchbox').fill(q);await btn(a,'検索').click();await expect(ctl(a,'lblListTitle111')).toContainText('1件');}
+2026-09-18T06:06:40.4184844Z       14 | const out=process.env.OUTPUT_DIRECTORY!;
+2026-09-18T06:06:40.4185147Z       15 |
+2026-09-18T06:06:40.4186154Z         at staff (/home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/supplement.test.ts:12:184)
+2026-09-18T06:06:40.4187421Z         at /home/runner/work/PowerAppsCanvasAppUI/PowerAppsCanvasAppUI/power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/regression/supplement.test.ts:67:2
+2026-09-18T06:06:40.4188013Z 
+2026-09-18T06:06:40.4188455Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-18T06:06:40.4189209Z     test-results/artifacts/regression-supplement-SUPP-b6519-ches-selections-and-toggles-canvas-app/test-failed-1.png
+2026-09-18T06:06:40.4190007Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-18T06:06:40.4190280Z 
+2026-09-18T06:06:40.4190752Z     Error Context: test-results/artifacts/regression-supplement-SUPP-b6519-ches-selections-and-toggles-canvas-app/error-context.md
+2026-09-18T06:06:40.4191411Z 
+2026-09-18T06:06:40.4191427Z 
+2026-09-18T06:06:49.4005220Z [11/14] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:203:5 › VIS-01 staff 1920x1080 standard open
+2026-09-18T06:07:03.2531149Z [12/14] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:203:5 › VIS-01 staff 1920x1080 standard closed
+2026-09-18T06:07:18.6618711Z [13/14] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:203:5 › VIS-01 staff 1920x1080 large open
+2026-09-18T06:07:32.4715833Z [14/14] [canvas-app] › tests/northwind/canvas/regression/ui-regression.test.ts:203:5 › VIS-01 staff 1920x1080 large closed
+2026-09-18T06:07:46.3726410Z ===============================================
+2026-09-18T06:07:46.3727525Z ✅ Teardown Playwright Test Environment
+2026-09-18T06:07:46.3728116Z ===============================================
+2026-09-18T06:07:46.3758787Z   3 failed
+2026-09-18T06:07:46.3760129Z     [canvas-app] › tests/northwind/canvas/regression/remaining.test.ts:112:5 › REMAIN-MODAL background is blocked and close returns keyboard focus 
+2026-09-18T06:07:46.3764172Z     [canvas-app] › tests/northwind/canvas/regression/supplement.test.ts:29:5 › SUPPLEMENT-CLIPBOARD denied write keeps manual TSV fallback 
+2026-09-18T06:07:46.3765574Z     [canvas-app] › tests/northwind/canvas/regression/supplement.test.ts:64:5 › SUPPLEMENT-PERF ten starts and twenty measured searches selections and toggles 
+2026-09-18T06:07:46.3766170Z   11 passed (3.4m)
+2026-09-18T06:07:46.4059143Z ##[error]Process completed with exit code 1.
+2026-09-18T06:07:46.4139576Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

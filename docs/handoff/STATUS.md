@@ -1,10 +1,14 @@
-# 現在の作業と読取り対象：v1.23 回帰残件を再開
+# 現在の作業と読取り対象：v1.23 回帰残件を追加検証・不合格2件
 
-- ユーザー「残件を実施して」により2026-09-18 05:26:19 UTC再開。今回の停止期限06:26:19 UTC。修復時も起算を変更しない。
-- 工程：1 PDF試験修正・実PDF検査、2 実行可能な未実施項目、3 公開版全回帰・複数幅、4 GitHub記録。
-- 正本公開版v1.23、基準main `fbe62315b51830dbffca4f21671fc9ebdef596ba`。TEST-PDF-001を現行pdfLedger111と戻る操作で修正する。PDF保存フローは未接続であり、OneDrive/Automateを新規接続しない。
-- 読取り：`e2e/regression-v122/`、`docs/testing/regression-v122/spec-case-audit.md`、`docs/testing/test-specification.md`、`src/screen-ui/v1.23/studio-readback/`。
-- **Issue #51 ABS-RATE-001（実テーブルの欠勤時間単価）は未反映。Dataverse変更は今回の回帰試験範囲に含まない。**
+- ユーザー「残件を実施して」により2026-09-18 05:26:19 UTC再開。今回の停止期限06:26:19 UTC。起算変更なし。
+- TEST-PDF-001解消：実PDF421567 bytes、A4横2ページを取得・描画・文字照合。基本9項目×5名、帳票69項目×6、コピー拒否通知等も追加検証。
+- 全29件実行と追加/対象再試験を統合した33自動ケースの最新観測は31 PASS / 2 FAIL。同一runで33件全合格ではない。職員8表示条件×5往復と追加5画面×4幅の20表示はPASS。基盤単体50/50 PASS。
+- 95仕様ケースは38 PASS / 4 FAIL / 21 BLOCKED / 32 NOT_RUN。全残件完了・CORE/REPORT全面合格は宣言しない。
+- 公開版はv1.23のまま。SetFocus試行は公式Studio検証で非対応と判明して完全復元。Screen1全文読戻しのバイト一致、公式数式エラー0を確認。新しいアプリ版の公開なし。
+- 読取り：[今回の結果](../testing/regression-v123-remaining/results.md)、[95項目監査](../testing/regression-v123-remaining/spec-case-audit.md)、`e2e/regression-v122/`。基準ソースはv1.23 readbackと未変更3画面のv1.22 readback。
+- 次回：[Issue #56 フォーカス復帰](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/56)を対応可能な部品階層で修正、[Issue #57 性能・連続再起動](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/57)を切り分ける。実機runはすべて終了済み。期限ガード付きworkflowの自動push起動を外して記録用に整理。
+- PDF保存フロー、専用fixture、200%拡大/読上げ、復元/故障注入等は引続き未完。OneDrive/Automateを接続しない。
+- **[Issue #51 ABS-RATE-001](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/51)（実テーブルの欠勤時間単価）は未反映。Dataverse変更は今回の回帰試験範囲に含まない。**
 
 ---
 
