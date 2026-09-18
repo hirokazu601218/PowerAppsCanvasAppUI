@@ -1,4 +1,4 @@
-name: Canvas v1.22 complete UI regression
+name: Canvas v1.23 complete UI regression
 on:
   push:
     branches: [automation/screens-regression-v122]
@@ -28,7 +28,7 @@ jobs:
       POWER_APPS_BASE_URL: https://make.powerapps.com
       POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
       CANVAS_APP_URL: https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
-      EXPECTED_LABEL: v1.22 UI試作 ／ 03会計課
+      EXPECTED_LABEL: v1.23 UI試作 ／ 03会計課
       WORKERS: 2
       RETRIES: 0
       TEST_TIMEOUT: 180000
@@ -118,4 +118,4 @@ jobs:
           if-no-files-found: warn
       - name: Record scope
         if: always()
-        run: echo 'Read-only regression of published v1.22 UI; department-filtered fixture, three new application sessions, 8 staff-layout conditions and 4 widths for 5 new screens. No app import, role changes or Dataverse writes.' >> "$GITHUB_STEP_SUMMARY"
+        run: echo 'Read-only regression of published v1.23 UI; department-filtered fixture, three new application sessions, 8 staff-layout conditions and 4 widths for 5 new screens. No app import, role changes or Dataverse writes.' >> "$GITHUB_STEP_SUMMARY"

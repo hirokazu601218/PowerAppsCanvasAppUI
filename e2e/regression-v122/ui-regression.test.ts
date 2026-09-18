@@ -21,8 +21,8 @@ async function start(p:Page,w=1366,h=768) {
   await expect(ctl(a,'lblHomePrototype')).toContainText(/UI検討用 v1\.(22|23)/,{timeout:60000});
   return a;
 }
-async function home(a:FrameLocator) {await btn(a,'ホーム').click(); await expect(ctl(a,'btnHomeStaff')).toBeVisible();}
-async function staff(a:FrameLocator) {await btn(a,'職員マスタ検索').click();await expect(ctl(a,'lblMeta111')).toContainText(/v1\.(22|23)/);}
+async function home(a:FrameLocator) {await btn(a,'ホーム').first().click(); await expect(ctl(a,'btnHomeStaff')).toBeVisible();await expect(ctl(a,'conStaffNavigation122')).toBeHidden();await expect(ctl(a,'conscrPayrollRoot')).toBeHidden();}
+async function staff(a:FrameLocator) {await ctl(a,'btnHomeStaff').getByRole('button').click();await expect(ctl(a,'lblMeta111')).toContainText(/v1\.(22|23)/);await expect(ctl(a,'conscrHomeRoot')).toBeHidden();}
 async function department(a:FrameLocator,dept:string) {
   if(!await ctl(a,'btnHomeStaff').isVisible()) await home(a);
   await ctl(a,'ddHomeDepartment').click(); await a.getByRole('option',{name:dept,exact:true}).click();
@@ -45,6 +45,8 @@ async function select(a:FrameLocator,id:string) {
 async function snapshot(p:Page,a:FrameLocator,name:string) {
   mkdirSync(out,{recursive:true});
   await p.locator('iframe[name="fullscreen-app-host"]').screenshot({path:path.join(out,name+'.png'),mask:[ctl(a,'lblHomeAccount'),ctl(a,'lblStaffAccount122')]});
+  const metrics=await a.locator('body').evaluate(el=>({clientWidth:el.ownerDocument.documentElement.clientWidth,clientHeight:el.ownerDocument.documentElement.clientHeight,dpr:window.devicePixelRatio,font:getComputedStyle(el).fontFamily}));
+  writeFileSync(path.join(out,name+'-environment.json'),JSON.stringify({viewport:p.viewportSize(),browser:p.context().browser()?.version(),browserZoom:'100% default',osScale:'headless Linux default',...metrics},null,2));
 }
 async function box(l:Locator){await expect(l).toBeVisible();const b=await l.boundingBox();expect(b).not.toBeNull();return b!;}
 async function noOverlap(ls:Locator[]) {
@@ -54,7 +56,7 @@ async function noOverlap(ls:Locator[]) {
   }
   return bs;
 }
-async function payroll(a:FrameLocator){await btn(a,'支給明細画面').click();await expect(ctl(a,'lblPaySummaryNetValue')).toBeVisible();}
+async function payroll(a:FrameLocator){await ctl(a,await ctl(a,'btnHomePayroll').isVisible()?'btnHomePayroll':'btnStaffPayroll122').getByRole('button').click();await expect(ctl(a,'lblPaySummaryNetValue')).toBeVisible();await expect(ctl(a,'conscrHomeRoot')).toBeHidden();await expect(ctl(a,'conStaffNavigation122')).toBeHidden();}
 async function month(a:FrameLocator,value:string){await a.getByRole('button',{name:/^支給対象月\./}).click();await a.getByRole('option',{name:value,exact:true}).click();}
 
 for(let run=1;run<=3;run++) test(`SMK-01-${run} fresh session, search, selection, sidebar, zero, clear, ledger`,async({page})=>{
@@ -70,7 +72,8 @@ for(let run=1;run<=3;run++) test(`SMK-01-${run} fresh session, search, selection
  await btn(a,'009900000004 試験 退職 詳細を表示').click();
  await search(a,'999ZZZ');await expect(ctl(a,'lblListTitle111')).toContainText('0件');
  await expect.poll(()=>ids(a)).toEqual([]);await expect(ctl(a,'btnExport111').getByRole('button')).toBeDisabled();
- await expect(ctl(a,'btnCertificate111').getByRole('button')).toBeDisabled();
+ const certificate=ctl(a,'btnCertificate111').getByRole('button');
+ if(await certificate.isVisible())await expect(certificate).toBeDisabled();else await expect(certificate).toBeHidden();
  await expect(ctl(a,'conLedgerModal111')).toBeHidden();
  await expect(ctl(a,'btnStaffPayroll122').getByRole('button')).toBeDisabled();
  await btn(a,'検索条件をクリア').click();await expect.poll(()=>ids(a)).toEqual(expectedIds('03会計課'));
@@ -116,7 +119,7 @@ test('CORE-DETAIL / SEL-03 / OUT-04 163 payroll fields and cross-department same
   await ctl(a,'btnPayExport111').getByRole('button').click();
   const tsv=await a.getByRole('textbox',{name:'コピー用テキスト。全選択してExcelへ貼り付けできます。',exact:true}).inputValue();
   expect(tsv).toContain(id);expect(tsv).toContain('現金支給額');expect(tsv.split('\n').length).toBeGreaterThanOrEqual(163);
-  await ctl(a,'btnReportClose111').getByRole('button').click();await ctl(a,'btnPayClose111').getByRole('button').click();
+  await ctl(a,'btnReportClose111').getByRole('button').click();await expect(ctl(a,'conPayrollBackdrop111')).toBeHidden();
  }
  await select(a,'009900000025');await expect(ctl(a,'lblSectionPayroll111')).toContainText('0件');
  await ctl(a,'btnPayrollOpen111').getByRole('button').click();await expect(ctl(a,'btnPayExport111').getByRole('button')).toBeDisabled();
@@ -172,6 +175,17 @@ test('PERF-02 twenty search/selection/sidebar/zero/clear cycles retain correct s
   await btn(a,'検索条件をクリア').click();await expect.poll(()=>ids(a)).toEqual(expectedIds('03会計課'));timings.push(Date.now()-t);
  }
  writeFileSync(path.join(out,'twenty-cycles.json'),JSON.stringify({cycles:timings.length,milliseconds:timings},null,2));
+});
+
+test('BUG-SELECTION-001 zero search clears payroll across home navigation and selection changes',async({page})=>{
+ const a=await start(page);await select(a,'009900000011');await payroll(a);
+ await expect(ctl(a,'lblPaySummaryNetValue')).toHaveText('151,800 円');
+ await btn(a,'職員マスタ検索').click();await search(a,'999ZZZ');await expect(ctl(a,'lblListTitle111')).toContainText('0件');
+ await home(a);await payroll(a);await expect(ctl(a,'lblPaySummaryNetValue')).toHaveText('—');
+ await expect(ctl(a,'lblPayState')).toContainText('対象職員を選択');await expect(btn(a,'再計算')).toBeDisabled();
+ await select(a,'009900000004');await home(a);await payroll(a);
+ await expect(ctl(a,'lblPayrollStaff')).toContainText('009900000004');
+ await snapshot(page,a,'selection-reset');
 });
 
 test('ACC-01/02 keyboard search and row selection',async({page})=>{

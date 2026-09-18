@@ -62,7 +62,7 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
   const c=page.frameLocator('iframe[name="fullscreen-app-host"]');
   const ctl=(n:string)=>c.locator(`[data-control-name="${n}"]`);
   await expect(c.locator('[data-control-name="lblHomePrototype"]')).toContainText(/UI検討用 v1\.(22|23)/,{timeout:60000});
-  await c.getByRole('button',{name:'職員マスタ検索',exact:true}).click();
+  await c.locator('[data-control-name="btnHomeStaff"]').getByRole('button').click();
   await c.getByRole('searchbox',{name:'氏名・職員番号・項目を検索',exact:true}).fill('009900000011');
   await c.getByRole('button',{name:'検索',exact:true}).click();
   await c.getByRole('button',{name:'009900000011 試験 同姓同名 詳細を表示',exact:true}).click();
@@ -78,11 +78,13 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
     await expect.poll(async()=>(await rectangle(ctl('conLedgerSheet1111'))).width).toBeCloseTo(1122*percent/100,0);
     const sheet=await rectangle(ctl('conLedgerSheet1111'));
     const header=await rectangle(ctl('conLedgerHeader111'));
-    for(const name of ['lblLedgerTitle111','lblLedgerStaff111','btnLedgerClose111','btnLedgerFit111','btnLedgerZoom111','lblLedgerPaper111','ddLedgerPaper111','btnLedgerPdf111','lblLedgerStatus111']){
+    // v1.21 makes the toolbar full width independently of the paper zoom.
+    // Fit/100% buttons were replaced with the six-choice dropdown.
+    for(const name of ['lblLedgerTitle111','lblLedgerStaff111','btnLedgerClose111','lblLedgerPaper111','ddLedgerPaper111','btnLedgerPdf111','btnLedgerDownload121']){
       const box=await rectangle(ctl(name));
-      expect(box.x).toBeGreaterThanOrEqual(sheet.x-1);
-      expect(box.x+box.width).toBeLessThanOrEqual(sheet.x+sheet.width+1);
+      expect(box.x).toBeGreaterThanOrEqual(header.x-1);
       expect(box.x+box.width).toBeLessThanOrEqual(header.x+header.width+1);
+      expect(box.y+box.height).toBeLessThanOrEqual(header.y+header.height+1);
     }
     await expect(ctl('lblLedger_employee_name111')).toHaveText('試験 同姓同名');
     records.push({percent,sheet,header});
@@ -108,7 +110,7 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
   writeFileSync(`${process.env.OUTPUT_DIRECTORY}/ledger-pdf-check.json`,result);
   await page.locator('iframe[name="fullscreen-app-host"]').screenshot({mask:[ctl('lblStaffAccount122')],path:`${process.env.OUTPUT_DIRECTORY}/ledger-pdf-preview.png`});
   await c.getByRole('button',{name:'PDFプレビューから帳票に戻る',exact:true}).click();
-  await c.getByRole('button',{name:'表示倍率を100%に戻す',exact:true}).click();
+  await zoom.click();await c.getByRole('option',{name:'100%',exact:true}).click();
   await expect.poll(async()=>(await rectangle(ctl('conLedgerSheet1111'))).width).toBeCloseTo(1122,0);
   await ctl('btnLedgerClose111').getByRole('button').click();
   await expect(ctl('conLedgerModal111')).toBeHidden();

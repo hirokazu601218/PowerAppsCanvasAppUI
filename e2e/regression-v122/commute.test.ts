@@ -10,13 +10,13 @@ test('COM-APP-001 six Dataverse records, chosen recognition, dates, money and bl
   const app = page.frameLocator('iframe[name="fullscreen-app-host"]');
   const ctl = (name: string) => app.locator(`[data-control-name="${name}"]`);
   await expect(app.locator('[data-control-name="lblHomePrototype"]')).toContainText(/UI検討用 v1\.(22|23)/,{timeout:60000});
-  await app.getByRole('button',{name:'職員マスタ検索',exact:true}).click();
+  await app.locator('[data-control-name="btnHomeStaff"]').getByRole('button').click();
   const selectStaff = async (id: string) => {
-    await app.getByRole('button',{name:'ホーム',exact:true}).click();
+    await app.getByRole('button',{name:'ホーム',exact:true}).first().click();
     await app.locator('[data-control-name="ddHomeDepartment"]').click();
     const dept=id.endsWith('004')||id.endsWith('011')?'03会計課':id.endsWith('012')||id.endsWith('002')?'01秘書課':'02総務課';
     await app.getByRole('option',{name:dept,exact:true}).click();
-    await app.getByRole('button',{name:'職員マスタ検索',exact:true}).click();
+    await app.locator('[data-control-name="btnHomeStaff"]').getByRole('button').click();
     await app.getByRole('searchbox', {name: '氏名・職員番号・項目を検索', exact: true}).fill(id);
     await app.getByRole('button', {name: '検索', exact: true}).click();
     await app.getByRole('button', {name: new RegExp('^' + id + ' .* 詳細を表示$')}).click();
