@@ -99,7 +99,9 @@ test('SRCH-04..12 / DATA-01 / PAGE-02 filters, all authorized records, repeated 
   await ctl(a,'ddStatus111').click();await a.getByRole('option',{name:status,exact:true}).click();await btn(a,'検索').click();await expect.poll(()=>ids(a)).toEqual(values);
  }
  await search(a,'同姓同名');await expect.poll(()=>ids(a)).toEqual(['009900000011']);
- await btn(a,'検索条件をクリア').click();await search(a,'管理部 会計課');await expect.poll(()=>ids(a)).toEqual(expectedIds('03会計課').filter((s:string)=>s!=='009900000004'));
+ await btn(a,'検索条件をクリア').click();
+ await expect(a.getByRole('searchbox')).toHaveValue('');await expect.poll(()=>ids(a)).toEqual(expectedIds('03会計課'));
+ await search(a,'管理部 会計課');await expect.poll(()=>ids(a)).toEqual(expectedIds('03会計課').filter((s:string)=>s!=='009900000004'));
  await snapshot(page,a,'search-filters');
 });
 
@@ -201,13 +203,15 @@ for(const [width,height] of [[1366,768],[1920,1080]])for(const large of [false,t
 test(`VIS-01 staff ${width}x${height} ${large?'large':'standard'} ${closed?'closed':'open'}`,async({page})=>{
  const a=await start(page,width,height);await select(a,'009900000003');
  if(large)await btn(a,'文字サイズを大きくする').click();if(closed)await btn(a,'職員検索を閉じる').click();
+ await expect.poll(async()=>(await box(ctl(a,'conSearchSidebar111'))).width).toBeCloseTo(closed?48:360,0);
  const sidebarBaseline=await box(ctl(a,'conSearchSidebar111'));
  const personBaseline=await box(ctl(a,'conPerson111'));
  for(let cycle=0;cycle<5;cycle++){
   await btn(a,closed?'職員検索を開く':'職員検索を閉じる').click();
+  await expect.poll(async()=>(await box(ctl(a,'conSearchSidebar111'))).width).toBeCloseTo(closed?360:48,0);
   await btn(a,closed?'職員検索を閉じる':'職員検索を開く').click();
-  expect(Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
-  expect(Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
+  await expect.poll(async()=>Math.abs((await box(ctl(a,'conSearchSidebar111'))).width-sidebarBaseline.width)).toBeLessThan(1);
+  await expect.poll(async()=>Math.abs((await box(ctl(a,'conPerson111'))).width-personBaseline.width)).toBeLessThan(1);
   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000003');
  }
  await noOverlap([ctl(a,'conStaffNavigation122'),ctl(a,'conHeader111')]);
