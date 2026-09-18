@@ -1,0 +1,13 @@
+{
+  "version": "1.26",
+  "baseVersion": "1.25",
+  "changes": 5,
+  "controlIdsPreserved": true,
+  "formulaErrors": 0,
+  "scope": "hide background during modal; full browser focus trap separately assessed",
+  "sha256": {
+    "studio-readback/scrHome.pa.yaml": "8ac88d47b1b822b4b0b3c3b70d4248ef237260f87abc44ceb376c45861c443fd",
+    "studio-readback/scrMaintenance.pa.yaml": "1bcb32243f34c9cd14708f9f565e3b9bfbc5ee5f0f99db5ce9b800c5d84eca7b",
+    "studio-readback/Screen1.pa.yaml": "df49f8477abf76ce6a8fe6f178462691a5554ceb3b52d9d0de3afdd09ffd774c"
+  }
+}

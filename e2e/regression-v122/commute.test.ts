@@ -11,7 +11,7 @@ test('COM-APP-001 six Dataverse records, chosen recognition, dates, money and bl
   await page.goto(process.env.CANVAS_APP_URL!, {waitUntil: 'domcontentloaded'});
   const app = page.frameLocator('iframe[name="fullscreen-app-host"]');
   const ctl = (name: string) => app.locator(`[data-control-name="${name}"]`);
-  await expect(app.locator('[data-control-name="lblHomePrototype"]')).toContainText('UI検討用 v1.25',{timeout:60000});
+  await expect(app.locator('[data-control-name="lblHomePrototype"]')).toContainText('UI検討用 v1.26',{timeout:60000});
   await app.locator('[data-control-name="btnHomeStaff"]').getByRole('button').click();
   const selectStaff = async (id: string) => {
     await app.getByRole('button',{name:'ホーム',exact:true}).first().click();
@@ -83,6 +83,19 @@ test('COM-APP-001 six Dataverse records, chosen recognition, dates, money and bl
       values.push({field:field.field,value:await label.innerText()});
     }
     observed.push({staff:item.staff,recognition:item.id,values});
+    if(item.id==='TK-910001'){
+      const first=await ctl('conLedgerSheet1111').boundingBox();
+      await ctl('ddLedgerPaper111').click();await app.getByRole('option',{name:'150%',exact:true}).click();
+      await expect.poll(async()=>(await ctl('conLedgerSheet1111').boundingBox())!.width).toBeGreaterThan(first!.width*1.49);
+      await expect(ctl('lblLedger_employee_number111')).toHaveText(item.staff);
+      const scroll=ctl('conLedgerScroll111');await scroll.hover();await page.mouse.wheel(3000,3000);
+      await expect.poll(()=>scroll.evaluate(el=>[el,...el.querySelectorAll('*')].some(n=>n.scrollTop>0))).toBe(true);
+      await expect(ctl('btnLedgerClose111').getByRole('button')).toBeInViewport();
+      await ctl('ddLedgerPaper111').click();await app.getByRole('option',{name:'100%',exact:true}).click();
+      await expect.poll(async()=>(await ctl('conLedgerSheet1111').boundingBox())!.width).toBeCloseTo(first!.width,0);
+      console.log('LEDGER_150_PERCENT_SCROLL_AND_RESTORE_PASS');
+    }
+
     await page.locator('iframe[name="fullscreen-app-host"]').screenshot({path: `test-results/commute-${item.id}.png`,mask:[ctl('lblStaffAccount122')]});
     await ctl('btnLedgerClose111').getByRole('button').click();
   }

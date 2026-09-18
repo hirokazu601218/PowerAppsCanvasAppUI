@@ -18,11 +18,11 @@ async function start(p:Page,w=1366,h=768) {
   await p.setViewportSize({width:w,height:h});
   await p.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded',timeout:60000});
   const a=c(p);
-  await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.25',{timeout:60000});
+  await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.26',{timeout:60000});
   return a;
 }
 async function home(a:FrameLocator) {await btn(a,'ホーム').first().click(); await expect(ctl(a,'btnHomeStaff')).toBeVisible();await expect(ctl(a,'conStaffNavigation122')).toBeHidden();await expect(ctl(a,'conscrPayrollRoot')).toBeHidden();}
-async function staff(a:FrameLocator) {await ctl(a,'btnHomeStaff').getByRole('button').click();await expect(ctl(a,'lblMeta111')).toContainText('v1.25');await expect(ctl(a,'conscrHomeRoot')).toBeHidden();}
+async function staff(a:FrameLocator) {await ctl(a,'btnHomeStaff').getByRole('button').click();await expect(ctl(a,'lblMeta111')).toContainText('v1.26');await expect(ctl(a,'conscrHomeRoot')).toBeHidden();}
 async function department(a:FrameLocator,dept:string) {
   if(!await ctl(a,'btnHomeStaff').isVisible()) await home(a);
   await ctl(a,'ddHomeDepartment').click(); await a.getByRole('option',{name:dept,exact:true}).click();
@@ -120,7 +120,15 @@ test('CORE-DETAIL / SEL-03 / OUT-04 163 payroll fields and cross-department same
   await snapshot(page,a,`payroll-163-${suffix}`);
   await ctl(a,'btnPayExport111').getByRole('button').click();
   const tsv=await a.getByRole('textbox',{name:'コピー用テキスト。全選択してExcelへ貼り付けできます。',exact:true}).inputValue();
-  expect(tsv).toContain(id);expect(tsv).toContain('現金支給額');expect(tsv.split('\n').length).toBeGreaterThanOrEqual(163);
+  const exported=tsv.split('\n').map(line=>line.split('\t'));
+  expect(exported).toHaveLength(fields.length);
+  const first=rows[0];
+  for(let i=0;i<fields.length;i++){
+   const value=first[fields[i].logical_name];
+   const expected=value==null?'':typeof value==='number'?value.toLocaleString('en-US',{maximumFractionDigits:10}):String(value);
+   expect(exported[i],`TSV field ${fields[i].logical_name}`).toEqual([fields[i].display_name,expected]);
+  }
+  console.log('PAYROLL_TSV_ALL_FIELDS '+JSON.stringify({id,fields:exported.length,exactValues:true}));
   await ctl(a,'btnReportClose111').getByRole('button').click();await expect(ctl(a,'conPayrollBackdrop111')).toBeHidden();
  }
  await select(a,'009900000025');await expect(ctl(a,'lblSectionPayroll111')).toContainText('0件');

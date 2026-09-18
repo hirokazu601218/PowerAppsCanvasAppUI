@@ -13,7 +13,7 @@ async function start(p:Page){
  await p.setViewportSize({width:1366,height:1000});
  await p.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded',timeout:60000});
  const a=p.frameLocator('iframe[name="fullscreen-app-host"]');
- await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.25',{timeout:60000});
+ await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.26',{timeout:60000});
  return a;
 }
 async function search(a:FrameLocator,q:string){await a.getByRole('searchbox',{name:'氏名・職員番号・項目を検索',exact:true}).fill(q);await button(a,'検索').click();}
@@ -117,6 +117,16 @@ test('REMAIN-MODAL background is blocked and close returns keyboard focus',async
   await expect(ctl(a,modal)).toBeVisible();
   await expect.poll(async()=>!await toggle.isVisible() || !await toggle.isEnabled(),{message:'Background toggle hidden or disabled after modal opens'}).toBe(true);
   await expect(ctl(a,close).getByRole('button')).toBeVisible();
+  await expect(ctl(a,'conMain111')).toBeHidden();
+  await expect(ctl(a,'conStaffNavigation122')).toBeHidden();
+  const circuit=[];
+  await ctl(a,close).getByRole('button').focus();
+  for(const key of ['Tab','Shift+Tab'])for(let i=0;i<20;i++){
+   await page.keyboard.press(key);
+   const focus=await a.locator('body').evaluate(el=>{const n=el.ownerDocument.activeElement;return {control:n?.closest('[data-control-name]')?.getAttribute('data-control-name')||'outside-app',background:!!n?.closest('[data-control-name="conMain111"],[data-control-name="conStaffNavigation122"]')}});
+   expect(focus.background,`${modal} ${key} must not enter app background`).toBe(false);circuit.push({key,...focus});
+  }
+  console.log('MODAL_BACKGROUND_CIRCUIT '+JSON.stringify({modal,circuit}));
   await ctl(a,close).getByRole('button').click();
   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000011');
   const active=()=>a.locator('body').evaluate(el=>el.ownerDocument.activeElement?.closest('[data-control-name]')?.getAttribute('data-control-name')||'none');
