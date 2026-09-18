@@ -80,7 +80,7 @@ for(let run=1;run<=3;run++) test(`SMK-01-${run} fresh session, search, selection
  await expect(btn(a,'前へ')).toBeDisabled();await expect(btn(a,'次へ')).toBeDisabled();
  await btn(a,'009900000004 試験 退職 詳細を表示').click();await btn(a,'選択職員の認定簿を表示').click();
  await expect(ctl(a,'lblLedger_employee_number111')).toHaveText('009900000004');
- await ctl(a,'conLedgerSheet1112').scrollIntoViewIfNeeded();await expect(ctl(a,'conLedgerSheet1112')).toBeInViewport({ratio:0.2});
+ await ctl(a,'conLedgerSheet2111').scrollIntoViewIfNeeded();await expect(ctl(a,'conLedgerSheet2111')).toBeInViewport({ratio:0.2});
  await ctl(a,'btnLedgerClose111').getByRole('button').click();
  await snapshot(page,a,`smoke-${run}`);
 });

@@ -80,7 +80,9 @@ test('AUT-LEDGER-117 six zoom levels, aligned controls and actual two-page A4 PD
     const header=await rectangle(ctl('conLedgerHeader111'));
     // v1.21 makes the toolbar full width independently of the paper zoom.
     // Fit/100% buttons were replaced with the six-choice dropdown.
-    for(const name of ['lblLedgerTitle111','lblLedgerStaff111','btnLedgerClose111','lblLedgerPaper111','ddLedgerPaper111','btnLedgerPdf111','btnLedgerDownload121']){
+    // The decorative zoom caption is deliberately hidden below 720 logical px;
+    // the dropdown itself remains present and accessible at all six zooms.
+    for(const name of ['lblLedgerTitle111','lblLedgerStaff111','btnLedgerClose111','ddLedgerPaper111','btnLedgerPdf111','btnLedgerDownload121']){
       const box=await rectangle(ctl(name));
       expect(box.x).toBeGreaterThanOrEqual(header.x-1);
       expect(box.x+box.width).toBeLessThanOrEqual(header.x+header.width+1);
