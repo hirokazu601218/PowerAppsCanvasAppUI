@@ -106,7 +106,7 @@ jobs:
         working-directory: power-platform-playwright/packages/e2e-tests
         env:
           MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
-        run: npx playwright test tests/northwind/canvas/regression --grep AUT-LEDGER-117 --project=canvas-app --trace=off --retries=0 --workers=2 --reporter=line,json
+        run: npx playwright test tests/northwind/canvas/regression --grep 'AUT-LEDGER-117|REMAIN-' --project=canvas-app --trace=off --retries=0 --workers=2 --reporter=line,json
       - name: Preserve synthetic UI evidence and results
         if: ${{ always() && steps.auth.outcome == 'success' }}
         uses: actions/upload-artifact@v4
