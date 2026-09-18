@@ -36,12 +36,16 @@ test('SUPPLEMENT-CLIPBOARD denied write keeps manual TSV fallback',async({page})
  });
  const a=await start(page);await staff(a);await btn(a,'検索結果をTSVで出力').click();
  await ctl(a,'btnCopy111').getByRole('button').click();
- await expect(a.getByText('コピーできません。下のテキスト欄から手動コピーしてください',{exact:true})).toBeVisible();
  const tsv=await a.getByRole('textbox',{name:'コピー用テキスト。全選択してExcelへ貼り付けできます。',exact:true}).inputValue();
  expect(tsv.trim().split('\n')).toHaveLength(8);expect(tsv).toContain('009900000011');
  let count=0;for(const frame of page.frames())count+=await frame.evaluate(()=>(window as any).__testClipboardDenials||0).catch(()=>0);
- expect(count).toBeGreaterThan(0);
- writeFileSync(`${out}/clipboard-denied.json`,JSON.stringify({injection:'browser Clipboard.writeText NotAllowedError; no app variable or auth changes',denials:count,manualRows:tsv.trim().split('\n').length}));
+ const diagnostic={injection:'browser Clipboard.writeText NotAllowedError; no app variable or auth changes',denials:count,manualRows:tsv.trim().split('\n').length};
+ writeFileSync(`${out}/clipboard-denied.json`,JSON.stringify(diagnostic));console.log('CLIPBOARD_DIAGNOSTIC '+JSON.stringify(diagnostic));
+ expect(count,'Injected denial must be observed before claiming the app error path was exercised').toBeGreaterThan(0);
+ await expect.poll(async()=>{
+  for(const frame of page.frames())if(await frame.getByText('コピーできません。下のテキスト欄から手動コピーしてください',{exact:true}).isVisible().catch(()=>false))return true;
+  return false;
+ },{timeout:5000,message:'Clipboard denial notification in the player or app frame'}).toBe(true);
 });
 
 test('SUPPLEMENT-KEYBOARD full closed-sidebar Tab circuit and reopening',async({page})=>{
