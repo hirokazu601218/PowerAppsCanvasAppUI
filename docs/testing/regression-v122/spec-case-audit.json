@@ -40,8 +40,8 @@
   {
     "id": "DEP-02",
     "priority_mode": "P0／E",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+    "status": "PASS",
+    "note": "数式エラー0、全7プロパティ読戻し一致、最終公開成功と新規Player v1.23を確認。"
   },
   {
     "id": "DEP-03",
@@ -78,7 +78,7 @@
     "priority_mode": "P0／S＋E",
     "status": "PASS",
     "note": "現行25件fixtureのうち確認用3所属に割当済み23名を所属ごとに順序・完全番号集合で照合。未割当2名は現行UI対象外。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "DATA-02",
@@ -109,49 +109,49 @@
     "priority_mode": "P0／E",
     "status": "PASS",
     "note": "空欄検索で03会計課7名の番号集合一致。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "SRCH-02",
     "priority_mode": "P0／E",
     "status": "PASS",
     "note": "同姓同名検索で03会計課の011のみ。画面入力から検索。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "SRCH-03",
     "priority_mode": "P0／E",
     "status": "PASS",
     "note": "12桁009900000004検索・本人詳細一致。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "SRCH-04",
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "前後空白を除いた同姓同名検索が一致。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "SRCH-05",
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "空白のみと空文字で所属全員へ復帰。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "SRCH-06",
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "01/02/03所属の現行fixture8/8/7名を完全照合。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "SRCH-07",
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "試験日2026-09-18日本時間の在籍・退職集合を照合。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "SRCH-08",
@@ -176,14 +176,14 @@
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "未確定入力で旧結果維持、検索後に新結果へ変更。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "SRCH-12",
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "二重クリック後の番号集合と重複なし。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "PAGE-01",
@@ -196,7 +196,7 @@
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "所属内1ページの前へ／次へ無効。複数ページ境界は別BLOCKED。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "PAGE-03",
@@ -233,7 +233,7 @@
     "priority_mode": "P2／E",
     "status": "PASS",
     "note": "別所属の同姓同名011/012の通勤が番号で分離。給与163項目の全照合はCORE-DETAIL最終runで別判定。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "SEL-04",
@@ -300,14 +300,14 @@
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "下端へスクロール後も氏名サマリーが画面内に固定。現行v1.22には勤務・通勤・保険・税・給与の5セクション。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "DETAIL-03",
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "勤務003の3期間と現行/過去/予定を確認。現行仕様は日本時間の当日基準。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "DETAIL-04",
@@ -318,8 +318,8 @@
   {
     "id": "DETAIL-05",
     "priority_mode": "P1／E",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+    "status": "PASS",
+    "note": "003/004/011/012の給与全163項目を独立fixtureと照合。閉じる/出力後の遷移、025の0件を確認。"
   },
   {
     "id": "DETAIL-06",
@@ -344,7 +344,7 @@
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "子通勤0件の012/002で認定簿無効。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "LED-04",
@@ -367,14 +367,14 @@
   {
     "id": "PDF-01",
     "priority_mode": "P0／E＋P",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+    "status": "BLOCKED",
+    "note": "TEST-PDF-001：試験が削除済み状態ラベルを待機して停止。PDFバイト・ページ検査は未到達。"
   },
   {
     "id": "PDF-02",
     "priority_mode": "P1／P＋V",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。"
+    "status": "BLOCKED",
+    "note": "TEST-PDF-001：試験が削除済み状態ラベルを待機して停止。PDFバイト・ページ検査は未到達。"
   },
   {
     "id": "PDF-03",
@@ -550,14 +550,14 @@
     "priority_mode": "P1／E",
     "status": "PASS",
     "note": "検索・選択・開閉・0件・クリア20周を実施。番号集合の不一致なし。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "OPS-01",
     "priority_mode": "P0／S",
     "status": "PASS",
     "note": "全95仕様ケースを列挙し、全期待値未確認のケースはNOT_RUN/BLOCKED。部分実施を合格にしない。",
-    "evidence": "Actions 35308661584 (v1.23 candidate1), final rerun pending"
+    "evidence": "Actions 35309682325 (v1.23 final)"
   },
   {
     "id": "OPS-02",

@@ -7,7 +7,8 @@
     "expected": "0件・選択解除後は対象未選択、金額—、再計算無効",
     "evidence": "2026-09-18 04:39 UTC 公開Playerで再現",
     "remedy": "UiSelectedとUiTargetKeyを職員検索の選択状態へ統一。メンテナンス初期化もその選択を解除",
-    "status": "修正候補の読戻し照合済み・最終公開後の再検証待ち"
+    "status": "RESOLVED",
+    "verifiedBy": "公開後 Actions 35309682325 / 05:21 UTC 新規Playerの初期化確認"
   },
   {
     "id": "BUG-DECIMAL-001",
@@ -17,6 +18,15 @@
     "expected": "整数は末尾小数点なし。小数は最大10桁を維持",
     "evidence": "Actions 35307403100 CORE-DETAIL assertion",
     "remedy": "整数と小数の表示書式をModで分岐",
-    "status": "修正候補の読戻し照合済み・最終公開後の再検証待ち"
+    "status": "RESOLVED",
+    "verifiedBy": "公開後 Actions 35309682325 / 05:21 UTC 新規Playerの初期化確認"
+  },
+  {
+    "id": "TEST-PDF-001",
+    "status": "OPEN",
+    "case": "AUT-LEDGER-117 / PDF-01 / PDF-02",
+    "observed": "削除済みlblLedgerStatus111の待機で停止しPDF実体の検査に未到達",
+    "appFailureProven": false,
+    "next": "現行Viewer表示を待機し、PDFバイト列・A4横2ページを再検証する"
   }
 ]
