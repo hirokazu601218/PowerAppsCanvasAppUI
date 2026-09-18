@@ -1,0 +1,20 @@
+import {test,expect,type Page,type FrameLocator} from '@playwright/test';
+import {writeFileSync} from 'node:fs';
+test.describe.configure({retries:0});
+test.use({video:'off',ignoreHTTPSErrors:false});
+const ctl=(a:FrameLocator,n:string)=>a.locator(`[data-control-name="${n}"]`);
+const btn=(a:FrameLocator,n:string)=>a.getByRole('button',{name:n,exact:true});
+async function start(page:Page){await page.setViewportSize({width:1366,height:768});await page.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded'});const a=page.frameLocator('iframe[name="fullscreen-app-host"]');await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.24',{timeout:60000});return a;}
+async function fixture(a:FrameLocator,value:string){await btn(a,'一般 → 管理者に切替').click();await btn(a,'メンテナンス画面').click();await ctl(a,'ddUiFixture124').click();await a.getByRole('option',{name:value,exact:true}).click();await ctl(a,'btnscrMaintenanceHome').getByRole('button').click();await ctl(a,'btnHomeStaff').getByRole('button').click();}
+const rows=(a:FrameLocator)=>a.getByRole('button',{name:/^008800000\d{3} .* 詳細を表示$/});
+for(const count of [0,1,20,21,40])test(`BOUNDARY-${count} initial count, pages and complete TSV`,async({page})=>{
+ const a=await start(page);await fixture(a,`${count}件`);await expect(ctl(a,'lblListTitle111')).toContainText(`${count}件`);await expect(rows(a)).toHaveCount(Math.min(count,20));await expect(btn(a,'前へ')).toBeDisabled();
+ if(count===0){await expect(btn(a,'次へ')).toBeDisabled();await expect(ctl(a,'btnExport111').getByRole('button')).toBeDisabled();await expect(ctl(a,'conPerson111')).toBeHidden();return;}
+ await expect(ctl(a,'lblPersonSub111')).toContainText('008800000001');
+ if(count>20){await btn(a,'次へ').click();await expect(rows(a)).toHaveCount(count-20);await expect(rows(a).first()).toContainText('008800000021');await expect(btn(a,'次へ')).toBeDisabled();await rows(a).last().click();await expect(ctl(a,'lblPersonSub111')).toContainText('008800000'+String(count).padStart(3,'0'));await btn(a,'前へ').click();await expect(rows(a)).toHaveCount(20);await expect(ctl(a,'lblPersonSub111')).toContainText('008800000'+String(count).padStart(3,'0'));}
+ else await expect(btn(a,'次へ')).toBeDisabled();
+ await ctl(a,'btnExport111').getByRole('button').click();const tsv=await a.getByRole('textbox',{name:'コピー用テキスト。全選択してExcelへ貼り付けできます。',exact:true}).inputValue();const lines=tsv.trim().split('\n');expect(lines).toHaveLength(count+1);expect(lines.every(l=>l.split('\t').length===26)).toBe(true);expect(lines.slice(1).map(l=>l.split('\t')[0])).toEqual(Array.from({length:count},(_,i)=>'008800000'+String(i+1).padStart(3,'0')));await ctl(a,'btnReportClose111').getByRole('button').click();await expect(ctl(a,'btnExport111').getByRole('button')).toBeFocused();
+ console.log('BOUNDARY_PASS '+JSON.stringify({count,columns:26,completeRows:count,focusRestored:true}));
+});
+test('BOUNDARY-SEARCH page reset and selected staff invalidation',async({page})=>{const a=await start(page);await fixture(a,'40件');await btn(a,'次へ').click();await rows(a).last().click();await a.getByRole('searchbox').fill('職員01');await btn(a,'検索').click();await expect(rows(a)).toHaveCount(1);await expect(btn(a,'前へ')).toBeDisabled();await expect(ctl(a,'lblPersonSub111')).toContainText('008800000001');await btn(a,'検索条件をクリア').click();await expect(rows(a)).toHaveCount(20);await expect(btn(a,'前へ')).toBeDisabled();});
+test('BOUNDARY-LONG negative zero blank display and untruncated TSV',async({page})=>{const a=await start(page);await fixture(a,'長文・負数');await expect(rows(a)).toHaveCount(3);await expect(ctl(a,'lblName111')).toContainText('非常に長い氏名');await ctl(a,'btnExport111').getByRole('button').click();const tsv=await a.getByRole('textbox',{name:'コピー用テキスト。全選択してExcelへ貼り付けできます。',exact:true}).inputValue();const r=tsv.trim().split('\n').slice(1).map(l=>l.split('\t'));expect(r[0][1]).toBe('表示試験 非常に長い氏名の折返しと全文確認のための職員');expect(r.map(x=>x[10])).toEqual(['-12345','0','']);writeFileSync(`${process.env.OUTPUT_DIRECTORY}/long-fixture.json`,JSON.stringify({name:r[0][1],daily:r.map(x=>x[10])}));});

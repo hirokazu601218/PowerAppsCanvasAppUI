@@ -13,7 +13,7 @@ async function start(p:Page){
  await p.setViewportSize({width:1366,height:1000});
  await p.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded',timeout:60000});
  const a=p.frameLocator('iframe[name="fullscreen-app-host"]');
- await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.23',{timeout:60000});
+ await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.24',{timeout:60000});
  return a;
 }
 async function search(a:FrameLocator,q:string){await a.getByRole('searchbox',{name:'氏名・職員番号・項目を検索',exact:true}).fill(q);await button(a,'検索').click();}

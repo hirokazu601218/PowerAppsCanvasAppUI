@@ -7,13 +7,14 @@ const btn=(a:FrameLocator,n:string)=>a.getByRole('button',{name:n,exact:true});
 async function start(page:Page){
  await page.setViewportSize({width:1366,height:768});await page.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded',timeout:60000});
  const a=page.frameLocator('iframe[name="fullscreen-app-host"]');
- await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.23',{timeout:60000});return a;
+ await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.24',{timeout:60000});
+ await expect(ctl(a,'btnHomeStaff').getByRole('button')).toBeEnabled({timeout:60000});return a;
 }
 async function staff(a:FrameLocator){await ctl(a,'btnHomeStaff').getByRole('button').click();await expect(ctl(a,'conscrHomeRoot')).toBeHidden();await expect(ctl(a,'lblListTitle111')).toContainText('7件');}
 async function search(a:FrameLocator,q:string){await a.getByRole('searchbox').fill(q);await btn(a,'検索').click();await expect(ctl(a,'lblListTitle111')).toContainText('1件');}
 const out=process.env.OUTPUT_DIRECTORY!;
 
-test('SUPPLEMENT-INIT three reloads clear prior search, selection and PDF',async({page})=>{
+test('SUPPLEMENT-INIT three reloads clear prior search, selection and ledger modal',async({page})=>{
  test.setTimeout(180000);let a=await start(page);await staff(a);
  for(let i=0;i<3;i++){
   await search(a,'同姓同名');await btn(a,'009900000011 試験 同姓同名 詳細を表示').click();
@@ -46,6 +47,14 @@ test('SUPPLEMENT-CLIPBOARD denied write keeps manual TSV fallback',async({page})
   for(const frame of page.frames())if(await frame.getByText('コピーできません。下のテキスト欄から手動コピーしてください',{exact:true}).isVisible().catch(()=>false))return true;
   return false;
  },{timeout:5000,message:'Clipboard denial notification in the player or app frame'}).toBe(true);
+ // Restore the real API in a fresh, authorized browser context; verify real bytes.
+ const restored=await page.context().browser()!.newContext({storageState:await page.context().storageState(),permissions:['clipboard-read','clipboard-write']});
+ try {
+  const next=await restored.newPage();const b=await start(next);await staff(b);await btn(b,'検索結果をTSVで出力').click();
+  const expected=await b.getByRole('textbox',{name:'コピー用テキスト。全選択してExcelへ貼り付けできます。',exact:true}).inputValue();
+  await ctl(b,'btnCopy111').getByRole('button').click();await expect.poll(()=>next.evaluate(()=>navigator.clipboard.readText())).toBe(expected);
+  console.log('CLIPBOARD_RESTORED_REAL_BYTES_PASSED '+JSON.stringify({rows:expected.trim().split('\n').length,leadingZero:expected.includes('009900000011')}));
+ } finally {await restored.close();}
 });
 
 test('SUPPLEMENT-KEYBOARD full closed-sidebar Tab circuit and reopening',async({page})=>{
@@ -67,19 +76,19 @@ test('SUPPLEMENT-KEYBOARD full closed-sidebar Tab circuit and reopening',async({
 
 test('SUPPLEMENT-PERF ten starts and twenty measured searches selections and toggles',async({page})=>{
  test.setTimeout(360000);let a:FrameLocator;const raw:any={startup:[],search:[],selection:[],close:[],open:[]};
- for(let i=0;i<10;i++){const t=Date.now();a=await start(page);raw.startup.push(Date.now()-t);}
- await staff(a!);
+ for(let i=0;i<10;i++){const t=Date.now();a=await start(page);await staff(a);raw.startup.push(Date.now()-t);}
  for(let i=0;i<20;i++){
   let t=Date.now();await search(a!,'同姓同名');raw.search.push(Date.now()-t);
   t=Date.now();await btn(a!,'009900000011 試験 同姓同名 詳細を表示').click();await expect(ctl(a!,'lblPersonSub111')).toContainText('009900000011');raw.selection.push(Date.now()-t);
   t=Date.now();await btn(a!,'職員検索を閉じる').click();await expect(a!.getByRole('searchbox')).toBeHidden();raw.close.push(Date.now()-t);
   t=Date.now();await btn(a!,'職員検索を開く').click();await expect(a!.getByRole('searchbox')).toBeVisible();raw.open.push(Date.now()-t);
-  await btn(a!,'検索条件をクリア').click();await expect(ctl(a!,'lblListTitle111')).toContainText('7件');
+  await btn(a!,'検索条件をクリア').click();await expect(ctl(a!,'lblListTitle111')).toContainText('7件');await expect(a!.getByRole('searchbox')).toHaveValue('');
  }
  const limits:any={startup:30000,search:2000,selection:2000,close:1000,open:1000};const p95:any={};
  for(const key of Object.keys(raw)){const sorted=[...raw[key]].sort((a:number,b:number)=>a-b);p95[key]=sorted[Math.ceil(sorted.length*.95)-1];}
  writeFileSync(`${out}/performance-remaining.json`,JSON.stringify({method:'nearest-rank p95; starts include navigation; authenticated context; no sleeps',raw,p95,limits},null,2));
  writeFileSync(`${out}/performance-remaining.csv`,'operation,iteration,milliseconds\n'+Object.entries(raw).flatMap(([k,values]:any)=>values.map((v:number,i:number)=>`${k},${i+1},${v}`)).join('\n'));
  console.log('PERFORMANCE_P95 '+JSON.stringify(p95));
+ console.log('PERFORMANCE_RAW '+JSON.stringify({method:'nearest-rank p95; driver-inclusive wall time; each startup waits for seven staff records',raw,p95,limits}));
  for(const key of Object.keys(limits))expect.soft(p95[key],`${key} p95 milliseconds`).toBeLessThanOrEqual(limits[key]);
 });
