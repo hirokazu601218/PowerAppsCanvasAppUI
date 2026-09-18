@@ -1,0 +1,13 @@
+{
+  "version": "1.25",
+  "baseVersion": "1.24",
+  "changes": 4,
+  "controlIdsPreserved": true,
+  "formulaErrors": 0,
+  "scope": "initial zero-result TSV guard and version labels; PDF untouched",
+  "sha256": {
+    "studio-readback/scrHome.pa.yaml": "94ea2922e0fbac9bc3f15753a0e5ccf946e4f92018b53256df9d48dded462282",
+    "studio-readback/scrMaintenance.pa.yaml": "2c04aff6ecf1b09e7caf9facfbb644999944247e9abd9d5af8d6aec0ffcb9480",
+    "studio-readback/Screen1.pa.yaml": "dc9ad766f228d80ec414c8b8035510b3777cb20b2e2094030fb9a8e676e4567a"
+  }
+}
