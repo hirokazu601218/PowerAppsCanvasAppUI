@@ -1,0 +1,199 @@
+- conscrMaintenanceRoot:
+    Control: GroupContainer@1.5.0
+    Variant: AutoLayout
+    Properties:
+      Height: =Parent.Height
+      Width: =Parent.Width
+      LayoutDirection: =LayoutDirection.Vertical
+      LayoutAlignItems: =LayoutAlignItems.Stretch
+      LayoutGap: =0
+      FillPortions: =0
+      LayoutMinHeight: =0
+      LayoutMinWidth: =0
+      PaddingTop: =0
+      PaddingBottom: =0
+      PaddingLeft: =0
+      PaddingRight: =0
+      DropShadow: =DropShadow.None
+      Fill: =UiTheme.Background
+    Children:
+    - conscrMaintenanceHeader:
+        Control: GroupContainer@1.5.0
+        Variant: AutoLayout
+        Properties:
+          Height: =64
+          Width: =Parent.Width
+          LayoutDirection: =LayoutDirection.Horizontal
+          LayoutAlignItems: =LayoutAlignItems.Center
+          LayoutGap: =8
+          FillPortions: =0
+          LayoutMinHeight: =0
+          LayoutMinWidth: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          PaddingLeft: =16
+          PaddingRight: =16
+          DropShadow: =DropShadow.None
+          Fill: =UiTheme.Header
+        Children:
+        - lblscrMaintenanceTitle:
+            Control: Label@2.5.1
+            Properties:
+              Text: ="非常勤給与 ｜ メンテナンス画面"
+              Height: =56
+              Width: =500
+              Font: ="Segoe UI"
+              Size: =15
+              Color: =Color.White
+              PaddingLeft: =12
+              PaddingRight: =12
+              PaddingTop: =4
+              PaddingBottom: =4
+              FillPortions: =1
+              LayoutMinWidth: =0
+              FontWeight: =FontWeight.Semibold
+        - btnscrMaintenanceHome:
+            Control: ModernButton@1.0.0
+            Properties:
+              Text: ="ホーム"
+              AccessibleLabel: ="ホーム"
+              OnSelect: =Navigate(scrHome,ScreenTransition.None)
+              Height: =44
+              Width: =112
+              Font: ="Segoe UI"
+              Size: =14
+              BasePaletteColor: =UiTheme.Primary
+              Appearance: =ButtonAppearance.Outline
+              FillPortions: =0
+              LayoutMinWidth: =0
+              Color: =Color.White
+              BorderColor: =Color.White
+        - lblscrMaintenanceId:
+            Control: Label@2.5.1
+            Properties:
+              Text: ="SCR-006"
+              Height: =56
+              Width: =92
+              Font: ="Segoe UI"
+              Size: =10
+              Color: =Color.White
+              PaddingLeft: =12
+              PaddingRight: =12
+              PaddingTop: =4
+              PaddingBottom: =4
+              FillPortions: =0
+              LayoutMinWidth: =0
+              Align: =Align.Right
+    - lblMaintenanceNote:
+        Control: Label@2.5.1
+        Properties:
+          Text: ="管理者用 ｜ UI検討用のメンテナンス画面"
+          Height: =56
+          Width: =Parent.Width
+          Font: ="Segoe UI"
+          Size: =11
+          Color: =UiTheme.Primary
+          PaddingLeft: =24
+          PaddingRight: =12
+          PaddingTop: =4
+          PaddingBottom: =4
+          FillPortions: =0
+          LayoutMinWidth: =0
+    - conMaintenanceBody:
+        Control: GroupContainer@1.5.0
+        Variant: AutoLayout
+        Properties:
+          Height: =Parent.Height-120
+          Width: =Parent.Width
+          LayoutDirection: =LayoutDirection.Vertical
+          LayoutAlignItems: =LayoutAlignItems.Start
+          LayoutGap: =8
+          FillPortions: =0
+          LayoutMinHeight: =0
+          LayoutMinWidth: =0
+          PaddingTop: =16
+          PaddingBottom: =0
+          PaddingLeft: =24
+          PaddingRight: =24
+          DropShadow: =DropShadow.None
+          Visible: =UiIsAdmin
+        Children:
+        - lblMaintenanceAccess:
+            Control: Label@2.5.1
+            Properties:
+              Text: =If(UiIsAdmin,"確認用所属：" & UiDepartment & " ／ 管理者","この画面は管理者のみ利用できます")
+              Height: =52
+              Width: =Parent.Width
+              Font: ="Segoe UI"
+              Size: =11
+              Color: =UiTheme.Text
+              PaddingLeft: =12
+              PaddingRight: =12
+              PaddingTop: =4
+              PaddingBottom: =4
+              FillPortions: =0
+              LayoutMinWidth: =0
+              Fill: =UiTheme.Band
+              FontWeight: =FontWeight.Semibold
+        - lblMaintenanceData:
+            Control: Label@2.5.1
+            Properties:
+              Text: ="内蔵テストデータ"
+              Height: =40
+              Width: =Parent.Width
+              Font: ="Segoe UI"
+              Size: =13
+              Color: =UiTheme.Text
+              PaddingLeft: =12
+              PaddingRight: =12
+              PaddingTop: =4
+              PaddingBottom: =4
+              FillPortions: =0
+              LayoutMinWidth: =0
+              FontWeight: =FontWeight.Semibold
+        - lblMaintenanceHelp:
+            Control: Label@2.5.1
+            Properties:
+              Text: ="登録した仮の勤務時間・支給率と選択状態を初期状態に戻します。"
+              Height: =56
+              Width: =Parent.Width
+              Font: ="Segoe UI"
+              Size: =11
+              Color: =UiTheme.Text
+              PaddingLeft: =12
+              PaddingRight: =12
+              PaddingTop: =4
+              PaddingBottom: =4
+              FillPortions: =0
+              LayoutMinWidth: =0
+        - btnMaintenanceReset:
+            Control: ModernButton@1.0.0
+            Properties:
+              Text: ="仮入力を初期化"
+              AccessibleLabel: ="仮入力を初期化"
+              OnSelect: =If(UiIsAdmin,Set(varUiAbsenceMinutes,60); Set(varUiRegistrationVersion,UiVersion+1); Set(varUiBonusK,Blank());
+                Set(varUiBonusD,Blank()); Set(varUiStaffNo,Blank()); Set(varUiResultKey,Blank()); Notify("仮入力を初期化しました",NotificationType.Success))
+              Height: =44
+              Width: =220
+              Font: ="Segoe UI"
+              Size: =14
+              BasePaletteColor: =UiTheme.Primary
+              Appearance: =ButtonAppearance.Primary
+              FillPortions: =0
+              LayoutMinWidth: =0
+              DisplayMode: =If(UiIsAdmin,DisplayMode.Edit,DisplayMode.Disabled)
+        - lblMaintenanceVersion:
+            Control: Label@2.5.1
+            Properties:
+              Text: ="UI試作 v1.22　／　画面要件定義書 v0.6"
+              Height: =52
+              Width: =Parent.Width
+              Font: ="Segoe UI"
+              Size: =11
+              Color: =UiTheme.Text
+              PaddingLeft: =12
+              PaddingRight: =12
+              PaddingTop: =4
+              PaddingBottom: =4
+              FillPortions: =0
+              LayoutMinWidth: =0

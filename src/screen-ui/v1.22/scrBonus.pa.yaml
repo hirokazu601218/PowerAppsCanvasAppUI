@@ -1,0 +1,318 @@
+Screens:
+  scrBonus:
+    Properties:
+      Fill: =UiTheme.Background
+    Children:
+    - conscrBonusRoot:
+        Control: GroupContainer@1.5.0
+        Variant: AutoLayout
+        Properties:
+          Height: =Parent.Height
+          Width: =Parent.Width
+          LayoutDirection: =LayoutDirection.Vertical
+          LayoutAlignItems: =LayoutAlignItems.Stretch
+          LayoutGap: =0
+          FillPortions: =0
+          LayoutMinHeight: =0
+          LayoutMinWidth: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          PaddingLeft: =0
+          PaddingRight: =0
+          DropShadow: =DropShadow.None
+          Fill: =UiTheme.Background
+        Children:
+        - conscrBonusHeader:
+            Control: GroupContainer@1.5.0
+            Variant: AutoLayout
+            Properties:
+              Height: =64
+              Width: =Parent.Width
+              LayoutDirection: =LayoutDirection.Horizontal
+              LayoutAlignItems: =LayoutAlignItems.Center
+              LayoutGap: =8
+              FillPortions: =0
+              LayoutMinHeight: =0
+              LayoutMinWidth: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              PaddingLeft: =16
+              PaddingRight: =16
+              DropShadow: =DropShadow.None
+              Fill: =UiTheme.Header
+            Children:
+            - lblscrBonusTitle:
+                Control: Label@2.5.1
+                Properties:
+                  Text: ="非常勤給与 ｜ 期末勤勉支給率登録画面"
+                  Height: =56
+                  Width: =500
+                  Font: ="Segoe UI"
+                  Size: =15
+                  Color: =Color.White
+                  PaddingLeft: =12
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  PaddingBottom: =4
+                  FillPortions: =1
+                  LayoutMinWidth: =0
+                  FontWeight: =FontWeight.Semibold
+            - btnscrBonusHome:
+                Control: ModernButton@1.0.0
+                Properties:
+                  Text: ="ホーム"
+                  AccessibleLabel: ="ホーム"
+                  OnSelect: =Navigate(scrHome,ScreenTransition.None)
+                  Height: =44
+                  Width: =112
+                  Font: ="Segoe UI"
+                  Size: =14
+                  BasePaletteColor: =UiTheme.Primary
+                  Appearance: =ButtonAppearance.Outline
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+                  Color: =Color.White
+                  BorderColor: =Color.White
+            - lblscrBonusId:
+                Control: Label@2.5.1
+                Properties:
+                  Text: ="SCR-004"
+                  Height: =56
+                  Width: =92
+                  Font: ="Segoe UI"
+                  Size: =10
+                  Color: =Color.White
+                  PaddingLeft: =12
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  PaddingBottom: =4
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+                  Align: =Align.Right
+        - conBonusTargets:
+            Control: GroupContainer@1.5.0
+            Variant: AutoLayout
+            Properties:
+              Height: =If(Parent.Width<900,108,60)
+              Width: =Parent.Width
+              LayoutDirection: =LayoutDirection.Horizontal
+              LayoutAlignItems: =LayoutAlignItems.Stretch
+              LayoutGap: =8
+              FillPortions: =0
+              LayoutMinHeight: =0
+              LayoutMinWidth: =0
+              PaddingTop: =8
+              PaddingBottom: =8
+              PaddingLeft: =16
+              PaddingRight: =16
+              DropShadow: =DropShadow.None
+              LayoutWrap: =true
+              Fill: =Color.White
+            Children:
+            - lblBonusMonth:
+                Control: Label@2.5.1
+                Properties:
+                  Text: ="支給対象月"
+                  Height: =44
+                  Width: =116
+                  Font: ="Segoe UI"
+                  Size: =11
+                  Color: =UiTheme.Text
+                  PaddingLeft: =12
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  PaddingBottom: =4
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+            - ddBonusMonth:
+                Control: Classic/DropDown@2.3.1
+                Properties:
+                  Items: =["2026/09","2026/10","2026/11"]
+                  Default: =Text(UiMonth,"yyyy/mm")
+                  OnChange: =Set(varUiMonth,DateValue(Self.Selected.Value & "/01","ja-JP")); Set(varUiResultKey,Blank())
+                  Height: =44
+                  Width: =150
+                  AccessibleLabel: ="支給対象月"
+                  Font: ="Segoe UI"
+                  Size: =11
+                  BorderColor: =UiTheme.Border
+                  BorderThickness: =1
+                  Color: =UiTheme.Text
+                  Fill: =Color.White
+                  ChevronBackground: =Color.White
+                  ChevronFill: =UiTheme.Primary
+                  SelectionFill: =UiTheme.Selected
+                  SelectionColor: =UiTheme.Text
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+            - lblBonusStaff:
+                Control: Label@2.5.1
+                Properties:
+                  Text: =If(IsBlank(UiSelected.StaffNo),"対象職員：未選択",UiSelected.StaffNo & "　" & UiSelected.Name & "　｜　" & UiSelected.Org)
+                  Height: =44
+                  Width: =Max(260,Parent.Width-650)
+                  Font: ="Segoe UI"
+                  Size: =11
+                  Color: =UiTheme.Text
+                  PaddingLeft: =12
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  PaddingBottom: =4
+                  FillPortions: =1
+                  LayoutMinWidth: =0
+            - btnBonusSearch:
+                Control: ModernButton@1.0.0
+                Properties:
+                  Text: ="職員マスタ検索"
+                  AccessibleLabel: ="職員マスタ検索"
+                  OnSelect: =Navigate(Screen1,ScreenTransition.None)
+                  Height: =44
+                  Width: =168
+                  Font: ="Segoe UI"
+                  Size: =14
+                  BasePaletteColor: =UiTheme.Primary
+                  Appearance: =ButtonAppearance.Primary
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+        - lblBonusNote:
+            Control: Label@2.5.1
+            Properties:
+              Text: ="UI検討用の仮入力 ｜ 支給率の業務ルールは未確定です"
+              Height: =48
+              Width: =Parent.Width
+              Font: ="Segoe UI"
+              Size: =11
+              Color: =UiTheme.Primary
+              PaddingLeft: =24
+              PaddingRight: =12
+              PaddingTop: =4
+              PaddingBottom: =4
+              FillPortions: =0
+              LayoutMinWidth: =0
+        - conBonusContent:
+            Control: GroupContainer@1.5.0
+            Variant: AutoLayout
+            Properties:
+              Height: =Parent.Height-172
+              Width: =Parent.Width
+              LayoutDirection: =LayoutDirection.Vertical
+              LayoutAlignItems: =LayoutAlignItems.Start
+              LayoutGap: =8
+              FillPortions: =0
+              LayoutMinHeight: =0
+              LayoutMinWidth: =0
+              PaddingTop: =16
+              PaddingBottom: =0
+              PaddingLeft: =24
+              PaddingRight: =24
+              DropShadow: =DropShadow.None
+              LayoutOverflowY: =LayoutOverflow.Scroll
+            Children:
+            - lblBonusPeriod:
+                Control: Label@2.5.1
+                Properties:
+                  Text: ="対象期　2026年12月期"
+                  Height: =48
+                  Width: =Parent.Width
+                  Font: ="Segoe UI"
+                  Size: =11
+                  Color: =UiTheme.Text
+                  PaddingLeft: =12
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  PaddingBottom: =4
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+                  FontWeight: =FontWeight.Semibold
+                  Fill: =UiTheme.Band
+            - lblBonusK:
+                Control: Label@2.5.1
+                Properties:
+                  Text: ="期末手当 支給率（%）"
+                  Height: =36
+                  Width: =Parent.Width
+                  Font: ="Segoe UI"
+                  Size: =11
+                  Color: =UiTheme.Text
+                  PaddingLeft: =12
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  PaddingBottom: =4
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+            - txtBonusK:
+                Control: Classic/TextInput@2.3.2
+                Properties:
+                  Default: =Coalesce(varUiBonusK,"100")
+                  Height: =44
+                  Width: =160
+                  AccessibleLabel: ="期末手当支給率（パーセント）"
+                  Font: ="Segoe UI"
+                  Size: =11
+                  BorderColor: =UiTheme.Border
+                  BorderThickness: =1
+                  Fill: =Color.White
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+                  Format: =TextFormat.Number
+            - lblBonusD:
+                Control: Label@2.5.1
+                Properties:
+                  Text: ="勤勉手当 支給率（%）"
+                  Height: =36
+                  Width: =Parent.Width
+                  Font: ="Segoe UI"
+                  Size: =11
+                  Color: =UiTheme.Text
+                  PaddingLeft: =12
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  PaddingBottom: =4
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+            - txtBonusD:
+                Control: Classic/TextInput@2.3.2
+                Properties:
+                  Default: =Coalesce(varUiBonusD,"100")
+                  Height: =44
+                  Width: =160
+                  AccessibleLabel: ="勤勉手当支給率（パーセント）"
+                  Font: ="Segoe UI"
+                  Size: =11
+                  BorderColor: =UiTheme.Border
+                  BorderThickness: =1
+                  Fill: =Color.White
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+                  Format: =TextFormat.Number
+            - btnBonusSave:
+                Control: ModernButton@1.0.0
+                Properties:
+                  Text: ="登録（仮）"
+                  AccessibleLabel: ="登録（仮）"
+                  OnSelect: =If(!IsBlank(UiSelected.StaffNo),Set(varUiBonusK,txtBonusK.Text); Set(varUiBonusD,txtBonusD.Text);
+                    Notify("画面確認用の値を登録しました",NotificationType.Success))
+                  Height: =44
+                  Width: =180
+                  Font: ="Segoe UI"
+                  Size: =14
+                  BasePaletteColor: =UiTheme.Primary
+                  Appearance: =ButtonAppearance.Primary
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+                  DisplayMode: =If(IsBlank(UiSelected.StaffNo),DisplayMode.Disabled,DisplayMode.Edit)
+            - lblBonusSaved:
+                Control: Label@2.5.1
+                Properties:
+                  Text: ="登録値：期末 " & Coalesce(varUiBonusK,"—") & "% ／ 勤勉 " & Coalesce(varUiBonusD,"—") & "%"
+                  Height: =48
+                  Width: =Parent.Width
+                  Font: ="Segoe UI"
+                  Size: =11
+                  Color: =UiTheme.Text
+                  PaddingLeft: =12
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  PaddingBottom: =4
+                  FillPortions: =0
+                  LayoutMinWidth: =0

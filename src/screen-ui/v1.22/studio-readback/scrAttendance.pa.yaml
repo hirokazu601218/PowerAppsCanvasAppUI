@@ -1,0 +1,340 @@
+Screens:
+  scrAttendance:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - conscrAttendanceRoot:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =UiTheme.Background
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+          Children:
+            - conscrAttendanceHeader:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =UiTheme.Header
+                  FillPortions: =0
+                  Height: =64
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - lblscrAttendanceTitle:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =Color.White
+                        FillPortions: =1
+                        Font: ="Segoe UI"
+                        FontWeight: =FontWeight.Semibold
+                        Height: =56
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =15
+                        Text: ="非常勤給与 ｜ 勤務時間報告画面"
+                        Width: =500
+                  - btnscrAttendanceHome:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="ホーム"
+                        Appearance: =ButtonAppearance.Outline
+                        BasePaletteColor: =UiTheme.Primary
+                        BorderColor: =Color.White
+                        Color: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =Navigate(scrHome,ScreenTransition.None)
+                        Size: =14
+                        Text: ="ホーム"
+                        Width: =112
+                  - lblscrAttendanceId:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =56
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =10
+                        Text: ="SCR-003"
+                        Width: =92
+            - conAttendanceTargets:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =Color.White
+                  FillPortions: =0
+                  Height: =If(Parent.Width<900,108,60)
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  LayoutWrap: =true
+                  PaddingBottom: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - lblAttendanceMonth:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: ="支給対象月"
+                        Width: =116
+                  - ddAttendanceMonth:
+                      Control: Classic/DropDown@2.3.1
+                      Properties:
+                        AccessibleLabel: ="支給対象月"
+                        BorderColor: =UiTheme.Border
+                        BorderThickness: =1
+                        ChevronBackground: =Color.White
+                        ChevronFill: =UiTheme.Primary
+                        Color: =UiTheme.Text
+                        Default: =Text(UiMonth,"yyyy/mm")
+                        Fill: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =44
+                        Items: =["2026/09","2026/10","2026/11"]
+                        Items.Value: =Value
+                        LayoutMinWidth: =0
+                        OnChange: =Set(varUiMonth,DateValue(Self.Selected.Value & "/01","ja-JP")); Set(varUiResultKey,Blank())
+                        SelectionColor: =UiTheme.Text
+                        SelectionFill: =UiTheme.Selected
+                        Size: =11
+                        Width: =150
+                  - lblAttendanceStaff:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        FillPortions: =1
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: =If(IsBlank(UiSelected.StaffNo),"対象職員：未選択",UiSelected.StaffNo & "　" & UiSelected.Name & "　｜　" & UiSelected.Org)
+                        Width: =Max(260,Parent.Width-650)
+                  - btnAttendanceSearch:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="職員マスタ検索"
+                        BasePaletteColor: =UiTheme.Primary
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =Navigate(Screen1,ScreenTransition.None)
+                        Size: =14
+                        Text: ="職員マスタ検索"
+                        Width: =168
+            - lblAttendanceNote:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =UiTheme.Primary
+                  Font: ="Segoe UI"
+                  Height: =44
+                  LayoutMinWidth: =0
+                  PaddingBottom: =4
+                  PaddingLeft: =24
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  Size: =11
+                  Text: ="画面確認用の仮例 ｜ 日別データと登録操作はアプリ内だけに保持します"
+                  Width: =Parent.Width
+            - conAttendanceScroll:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =Parent.Height-168
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  LayoutOverflowY: =LayoutOverflow.Scroll
+                  PaddingBottom: =16
+                  PaddingLeft: =24
+                  PaddingRight: =24
+                  Width: =Parent.Width
+                Children:
+                  - lblAttendanceSummary:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Fill: =UiTheme.Band
+                        Font: ="Segoe UI"
+                        FontWeight: =FontWeight.Semibold
+                        Height: =52
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Text: ="勤務日数 " & Text(UiDays) & "日　｜　控除対象の欠勤 " & Text(UiAbsence/60,If(Mod(UiAbsence,60)=0,"0","0.######")) & "時間　｜　" & If(UiRegistered,"登録済み","未登録")
+                        Width: =Parent.Width
+                  - lblAttendanceColumns:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Fill: =UiTheme.Band
+                        Font: ="Segoe UI"
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: ="勤務日　　　　　　　　日区分　　　　　通常勤務　　　　欠勤記録"
+                        Width: =Parent.Width
+                  - galAttendanceDays:
+                      Control: Gallery@2.15.0
+                      Variant: Vertical
+                      Properties:
+                        AccessibleLabel: ="勤務時間報告の日別一覧"
+                        Height: =380
+                        Items: =If(!IsBlank(UiSelected.StaffNo) && UiRegistered && Month(UiMonth)<>11,UiDailyRows)
+                        LayoutMinHeight: =200
+                        Selectable: =false
+                        TemplatePadding: =0
+                        TemplateSize: =44
+                        Width: =Parent.Width
+                      Children:
+                        - lblAttendanceDay:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =UiTheme.Text
+                              Fill: =If(Mod(Day(ThisItem.WorkDate),2)=0,UiTheme.Background,Color.White)
+                              Font: ="Segoe UI"
+                              Height: =44
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =11
+                              Text: =Text(ThisItem.WorkDate,"yyyy/mm/dd") & "　　　" & ThisItem.DayType & "　　　" & Text(ThisItem.RegularMinutes) & " 分　　　" & Text(ThisItem.AbsenceMinutes) & " 分"
+                              Width: =Parent.TemplateWidth
+                  - lblAttendanceEmpty:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: =If(IsBlank(UiSelected.StaffNo),"職員マスタ検索から対象職員を選択してください",!UiRegistered,"この月の勤務は未登録です",Month(UiMonth)=11,"登録済みの勤務0日です","")
+                        Width: =Parent.Width
+                  - conAttendanceEdit:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: =100
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =8
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =0
+                        LayoutWrap: =true
+                        Width: =Parent.Width
+                      Children:
+                        - lblAttendanceAbsence:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =UiTheme.Text
+                              Font: ="Segoe UI"
+                              Height: =44
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =11
+                              Text: ="勤務日の欠勤（確認用）"
+                              Width: =215
+                        - ddAttendanceAbsence:
+                            Control: Classic/DropDown@2.3.1
+                            Properties:
+                              AccessibleLabel: ="欠勤時間（分）"
+                              BorderColor: =UiTheme.Border
+                              BorderThickness: =1
+                              ChevronBackground: =Color.White
+                              ChevronFill: =UiTheme.Primary
+                              Color: =UiTheme.Text
+                              Default: =Text(UiAbsence)
+                              Fill: =Color.White
+                              Font: ="Segoe UI"
+                              Height: =44
+                              Items: =["0","30","60","1"]
+                              Items.Value: =Value
+                              LayoutMinWidth: =0
+                              SelectionColor: =UiTheme.Text
+                              SelectionFill: =UiTheme.Selected
+                              Size: =11
+                              Width: =100
+                        - lblAttendanceMinutes:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =UiTheme.Text
+                              Font: ="Segoe UI"
+                              Height: =44
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =11
+                              Text: ="分"
+                              Width: =40
+                        - btnAttendanceRegister:
+                            Control: ModernButton@1.0.0
+                            Properties:
+                              AccessibleLabel: ="月分を登録（仮）"
+                              BasePaletteColor: =UiTheme.Primary
+                              DisplayMode: =If(!IsBlank(UiSelected.StaffNo) && UiRegistered && Month(UiMonth)<>11,DisplayMode.Edit,DisplayMode.Disabled)
+                              Font: ="Segoe UI"
+                              Height: =44
+                              LayoutMinWidth: =0
+                              OnSelect: =If(!IsBlank(UiSelected.StaffNo) && UiRegistered,Set(varUiAbsenceMinutes,Value(ddAttendanceAbsence.Selected.Value)); Set(varUiRegistrationVersion,UiVersion+1); Set(varUiResultKey,Blank()); Notify("アプリ内に登録しました",NotificationType.Success))
+                              Size: =14
+                              Text: ="月分を登録（仮）"
+                              Width: =195

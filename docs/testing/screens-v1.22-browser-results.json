@@ -1,0 +1,58 @@
+{
+  "version": "1.22",
+  "publishedAt": "2026-09-18T04:04:36.092Z",
+  "tests": [
+    {
+      "case": "UI-005-BASE",
+      "pass": true
+    },
+    {
+      "case": "UI-005-FOLD",
+      "pass": true
+    },
+    {
+      "case": "UI-005-UNREGISTERED",
+      "pass": true
+    },
+    {
+      "case": "UI-005-ZERO",
+      "pass": true
+    },
+    {
+      "case": "UI-005-STALE",
+      "pass": true
+    },
+    {
+      "case": "UI-003-REGISTER",
+      "pass": true
+    },
+    {
+      "case": "UI-005-PARTIAL-ABSENCE",
+      "pass": true
+    },
+    {
+      "case": "UI-006-DISABLED",
+      "pass": true
+    },
+    {
+      "case": "UI-006-ENABLED",
+      "pass": true
+    },
+    {
+      "case": "UI-004-REGISTER",
+      "pass": true
+    },
+    {
+      "case": "UI-002-ADMIN-DEPARTMENT",
+      "pass": true
+    },
+    {
+      "case": "PUB-001-STARTSCREEN",
+      "pass": true
+    },
+    {
+      "case": "PUB-002-PAYROLL",
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "baseline_controls": 651,
+  "current_controls": 657,
+  "added": [
+    "btnStaffHome122",
+    "btnStaffPayroll122",
+    "conStaffNavigation122",
+    "ddStaffMonth122",
+    "lblStaffAccount122",
+    "lblStaffId122"
+  ],
+  "changes": [
+    {
+      "control": "conStaffMaster111",
+      "property": "Height",
+      "old": "=Parent.Height",
+      "new": "=Parent.Height-60"
+    },
+    {
+      "control": "conStaffMaster111",
+      "property": "Y",
+      "old": null,
+      "new": "=60"
+    },
+    {
+      "control": "lblMeta111",
+      "property": "Text",
+      "old": "=\"v1.20候補 ／ Dataverse・\" & Text(StaffTestCount) & \"名\"\n",
+      "new": "=\"v1.22 UI試作 ／ \" & UiDepartment"
+    }
+  ],
+  "readback_sha256": "f2328bed52a6e9f6a84057b9a7e348c46ebc1bd0a4abc0db04326b60ebdc529f"
+}

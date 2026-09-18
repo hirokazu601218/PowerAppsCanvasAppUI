@@ -1,0 +1,37 @@
+[
+  {
+    "screen": "scrHome",
+    "controls": 18,
+    "actual_controls": 18,
+    "differences": [],
+    "studio_omitted_defaults": 32
+  },
+  {
+    "screen": "scrBonus",
+    "controls": 19,
+    "actual_controls": 19,
+    "differences": [],
+    "studio_omitted_defaults": 27
+  },
+  {
+    "screen": "scrMaintenance",
+    "controls": 12,
+    "actual_controls": 12,
+    "differences": [],
+    "studio_omitted_defaults": 23
+  },
+  {
+    "screen": "scrAttendance",
+    "controls": 22,
+    "actual_controls": 22,
+    "differences": [],
+    "studio_omitted_defaults": 36
+  },
+  {
+    "screen": "scrPayroll",
+    "controls": 86,
+    "actual_controls": 86,
+    "differences": [],
+    "studio_omitted_defaults": 142
+  }
+]
