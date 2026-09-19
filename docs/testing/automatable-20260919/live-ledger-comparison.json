@@ -1,0 +1,489 @@
+{
+  "count": 69,
+  "checks": [
+    {
+      "control": "lblLedger_employee_name111",
+      "expected": "試験 同姓同名",
+      "actual": "試験 同姓同名",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_employee_number111",
+      "expected": "009900000011",
+      "actual": "009900000011",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_organization111",
+      "expected": "03会計課",
+      "actual": "03会計課",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_event_date_year111",
+      "expected": "8",
+      "actual": "8",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_event_date_month111",
+      "expected": "4",
+      "actual": "4",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_event_date_day111",
+      "expected": "1",
+      "actual": "1",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_submitted_date_year111",
+      "expected": "8",
+      "actual": "8",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_submitted_date_month111",
+      "expected": "4",
+      "actual": "4",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_submitted_date_day111",
+      "expected": "1",
+      "actual": "1",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_accepted_date_year111",
+      "expected": "8",
+      "actual": "8",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_accepted_date_month111",
+      "expected": "4",
+      "actual": "4",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_accepted_date_day111",
+      "expected": "1",
+      "actual": "1",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_transport111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_section_from111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_section_to111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_ticket_type111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_other_basis111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_season_basis111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_other_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_season_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_season_months111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_monthly_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_period_start_year111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_period_start_month111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_payment_months111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_1_remarks111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_transport111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_section_from111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_section_to111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_ticket_type111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_other_basis111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_season_basis111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_other_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_season_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_season_months111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_monthly_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_period_start_year111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_period_start_month111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_payment_months111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_2_remarks111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_transport111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_section_from111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_section_to111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_ticket_type111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_other_basis111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_season_basis111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_other_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_season_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_season_months111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_monthly_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_period_start_year111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_period_start_month111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_payment_months111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_3_remarks111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_transport111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_section_from111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_section_to111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_ticket_type111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_other_basis111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_season_basis111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_other_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_season_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_season_months111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_monthly_amount111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_period_start_year111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_period_start_month111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_payment_months111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_route_4_remarks111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "bindingMatch": true
+    },
+    {
+      "control": "lblLedger_monthly_amount_total111",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "bindingMatch": true
+    }
+  ],
+  "mismatches": []
+}

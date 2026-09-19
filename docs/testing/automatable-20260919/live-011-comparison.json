@@ -1,0 +1,405 @@
+{
+  "count": 57,
+  "checks": [
+    {
+      "control": "lblCWork1110",
+      "expected": "2026/04/01",
+      "actual": "2026/04/01",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCWork1111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCWork1112",
+      "expected": "11,100",
+      "actual": "11,100",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCWork1113",
+      "expected": "8:00",
+      "actual": "8:00",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCWork1114",
+      "expected": "8:00",
+      "actual": "8:00",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCWork1115",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCWork1116",
+      "expected": "合成テスト",
+      "actual": "合成テスト",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCWork1117",
+      "expected": "職員11の勤務条件",
+      "actual": "職員11の勤務条件",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCWork1118",
+      "expected": "17:00",
+      "actual": "17:00",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCWork1119",
+      "expected": "8.00",
+      "actual": "8.00",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCSocial1110",
+      "expected": "合成テスト",
+      "actual": "合成テスト",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCSocial1111",
+      "expected": "1981/04/01",
+      "actual": "1981/04/01",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCSocial1112",
+      "expected": "45",
+      "actual": "45",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCSocial1113",
+      "expected": "46",
+      "actual": "46",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCSocial1114",
+      "expected": "テスト・判定対象外",
+      "actual": "テスト・判定対象外",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCSocial1115",
+      "expected": "テスト・判定対象外",
+      "actual": "テスト・判定対象外",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCSocial1116",
+      "expected": "テスト・判定対象外",
+      "actual": "テスト・判定対象外",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCSocial1117",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCSocial1118",
+      "expected": "211,000",
+      "actual": "211,000",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCTax1110",
+      "expected": "2026/04/01",
+      "actual": "2026/04/01",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCTax1111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCTax1112",
+      "expected": "甲",
+      "actual": "甲",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCTax1113",
+      "expected": "加入",
+      "actual": "加入",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCTax1114",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCTax1115",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCTax1116",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCTax1117",
+      "expected": "職員11専用の合成データ・計算検証対象外",
+      "actual": "職員11専用の合成データ・計算検証対象外",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCWorkState111",
+      "expected": "現行",
+      "actual": "現行",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblBasicVal0111",
+      "expected": "009900000011",
+      "actual": "009900000011",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblBasicVal1111",
+      "expected": "試験 同姓同名",
+      "actual": "試験 同姓同名",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblBasicVal2111",
+      "expected": "管理部 会計課",
+      "actual": "管理部 会計課",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblBasicVal3111",
+      "expected": "03会計課",
+      "actual": "03会計課",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblBasicVal4111",
+      "expected": "1981/04/01",
+      "actual": "1981/04/01",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblBasicVal5111",
+      "expected": "男",
+      "actual": "男",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblBasicVal6111",
+      "expected": "2026/04/01",
+      "actual": "2026/04/01",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblBasicVal7111",
+      "expected": "",
+      "actual": "",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblBasicVal8111",
+      "expected": "在籍",
+      "actual": "在籍",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCCommute1110",
+      "expected": "2026/04/01TK-910004",
+      "actual": "2026/04/01TK-910004",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCCommute1111",
+      "expected": "2027/03/31",
+      "actual": "2027/03/31",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCCommute1112",
+      "expected": "支給なし",
+      "actual": "支給なし",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCCommute1113",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCCommute1114",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll1110",
+      "expected": "令和08年",
+      "actual": "令和08年",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll1111",
+      "expected": "令和08年04月23日",
+      "actual": "令和08年04月23日",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll1112",
+      "expected": "240,000",
+      "actual": "240,000",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll1113",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll1114",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll1115",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll1116",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll1117",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll1118",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll1119",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll11110",
+      "expected": "240,000",
+      "actual": "240,000",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll11111",
+      "expected": "10,000",
+      "actual": "10,000",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll11112",
+      "expected": "0",
+      "actual": "0",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll11113",
+      "expected": "230,000",
+      "actual": "230,000",
+      "match": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayroll11114",
+      "expected": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。",
+      "actual": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。",
+      "match": true,
+      "headerMatch": true
+    }
+  ],
+  "mismatches": []
+}

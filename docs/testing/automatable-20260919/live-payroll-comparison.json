@@ -1,0 +1,1147 @@
+{
+  "count": 163,
+  "checks": [
+    {
+      "control": "lblCPayrollModal1110",
+      "expected": "令和08年",
+      "actual": "令和08年",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal1111",
+      "expected": "04月01日",
+      "actual": "04月01日",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal1112",
+      "expected": "04月30日",
+      "actual": "04月30日",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal1113",
+      "expected": "令和08年04月23日",
+      "actual": "令和08年04月23日",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal1114",
+      "expected": "管理部 会計課",
+      "actual": "管理部 会計課",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal1115",
+      "expected": "5",
+      "actual": "5",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal1116",
+      "expected": "009900000011",
+      "actual": "009900000011",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal1117",
+      "expected": "試験 同姓同名",
+      "actual": "試験 同姓同名",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal1118",
+      "expected": "",
+      "actual": "",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal1119",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11110",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11111",
+      "expected": "240,000",
+      "actual": "240,000",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11112",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11113",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11114",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11115",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11116",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11117",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11118",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11119",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11120",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11121",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11122",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11123",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11124",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11125",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11126",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11127",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11128",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11129",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11130",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11131",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11132",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11133",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11134",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11135",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11136",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11137",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11138",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11139",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11140",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11141",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11142",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11143",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11144",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11145",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11146",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11147",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11148",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11149",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11150",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11151",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11152",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11153",
+      "expected": "240,000",
+      "actual": "240,000",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11154",
+      "expected": "240,000",
+      "actual": "240,000",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11155",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11156",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11157",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11158",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11159",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11160",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11161",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11162",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11163",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11164",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11165",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11166",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11167",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11168",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11169",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11170",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11171",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11172",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11173",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11174",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11175",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11176",
+      "expected": "10,000",
+      "actual": "10,000",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11177",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11178",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11179",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11180",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11181",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11182",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11183",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11184",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11185",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11186",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11187",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11188",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11189",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11190",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11191",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11192",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11193",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11194",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11195",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11196",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11197",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11198",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal11199",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111100",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111101",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111102",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111103",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111104",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111105",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111106",
+      "expected": "10,000",
+      "actual": "10,000",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111107",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111108",
+      "expected": "230,000",
+      "actual": "230,000",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111109",
+      "expected": "230,000",
+      "actual": "230,000",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111110",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111111",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111112",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111113",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111114",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111115",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111116",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111117",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111118",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111119",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111120",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111121",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111122",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111123",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111124",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111125",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111126",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111127",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111128",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111129",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111130",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111131",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111132",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111133",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111134",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111135",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111136",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111137",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111138",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111139",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111140",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111141",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111142",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111143",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111144",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111145",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111146",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111147",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111148",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111149",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111150",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111151",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111152",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111153",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111154",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111155",
+      "expected": "0",
+      "actual": "0",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111156",
+      "expected": "240,000",
+      "actual": "240,000",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111157",
+      "expected": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。",
+      "actual": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111158",
+      "expected": "令和08年04月01日",
+      "actual": "令和08年04月01日",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111159",
+      "expected": "月次給与",
+      "actual": "月次給与",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111160",
+      "expected": "本務",
+      "actual": "本務",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111161",
+      "expected": "",
+      "actual": "",
+      "valueMatch": true,
+      "headerMatch": true
+    },
+    {
+      "control": "lblCPayrollModal111162",
+      "expected": "一般",
+      "actual": "一般",
+      "valueMatch": true,
+      "headerMatch": true
+    }
+  ],
+  "mismatches": []
+}

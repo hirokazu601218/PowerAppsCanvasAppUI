@@ -1,0 +1,13 @@
+{
+  "screen": "Screen1 only; other five screens not regenerated",
+  "controlCount": 657,
+  "typeCount": 11,
+  "managementPasteEqual": true,
+  "changedWidthDetected": true,
+  "duplicateControlNames": 0,
+  "invalidClassicAccessibleLabel": 0,
+  "pdfViewerAtScreenRoot": true,
+  "managementSha256": "df49f8477abf76ce6a8fe6f178462691a5554ceb3b52d9d0de3afdd09ffd774c",
+  "pasteSha256": "9232ff37ca0df30e9d30d21aae368a5a1fa24fa152074b4d51c7069ba320c150",
+  "studioPasteImportPerformed": false
+}

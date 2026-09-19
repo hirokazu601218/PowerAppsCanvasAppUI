@@ -1,0 +1,44 @@
+{
+  "screens": [
+    {
+      "screen": "Screen1",
+      "equal": true,
+      "managementSha256": "df49f8477abf76ce6a8fe6f178462691a5554ceb3b52d9d0de3afdd09ffd774c",
+      "pasteSha256": "9232ff37ca0df30e9d30d21aae368a5a1fa24fa152074b4d51c7069ba320c150"
+    },
+    {
+      "screen": "scrAttendance",
+      "equal": true,
+      "managementSha256": "15303ad18b4c73eca65827d2e3f5880c262957c19a215b2c76dd85439488682b",
+      "pasteSha256": "f21f378d8c0c49b6b9b88cec735cfc3356bd00846fd282d1e7f17dee7a9501a2"
+    },
+    {
+      "screen": "scrBonus",
+      "equal": true,
+      "managementSha256": "07e0f9b1c4de0e099e5ce987267fac875214162cd1d80e6b72b66370a882b0e1",
+      "pasteSha256": "2d0a915281dee2f8c42faf309ea068d97aa05ff515fe83de32704c529c6b9a8d"
+    },
+    {
+      "screen": "scrHome",
+      "equal": true,
+      "managementSha256": "8ac88d47b1b822b4b0b3c3b70d4248ef237260f87abc44ceb376c45861c443fd",
+      "pasteSha256": "50ed902e789e5fdda19d9a1612a0c90f680b0e00eb5c45d821158a09f871135d"
+    },
+    {
+      "screen": "scrMaintenance",
+      "equal": true,
+      "managementSha256": "1bcb32243f34c9cd14708f9f565e3b9bfbc5ee5f0f99db5ce9b800c5d84eca7b",
+      "pasteSha256": "4fc8f971fcfd56c91cb214ea85f2e4420770792cd1e8632b33cff0cb9fa9d767"
+    },
+    {
+      "screen": "scrPayroll",
+      "equal": true,
+      "managementSha256": "24632b89d93a80836a2aa2cfce9e81285c40a1b0723188db35905372ba8f5856",
+      "pasteSha256": "be42626ce930a7b4a72331f78d77a0157939c631672691d4955f2eefd81ce198"
+    }
+  ],
+  "controlCount": 816,
+  "duplicateNames": 0,
+  "managementPasteEqual": true,
+  "pasteImported": false
+}

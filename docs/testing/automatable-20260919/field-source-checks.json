@@ -1,0 +1,1326 @@
+{
+  "count": 220,
+  "checks": [
+    {
+      "control": "lblCWork1110",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(ThisItem.Start=Date(2099,3,31),\"\",Text(ThisItem.Start,\"yyyy/mm/dd\"))"
+    },
+    {
+      "control": "lblCWork1111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(ThisItem.End=Date(2099,3,31),\"\",Text(ThisItem.End,\"yyyy/mm/dd\"))"
+    },
+    {
+      "control": "lblCWork1112",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Daily,\"#,##0\")"
+    },
+    {
+      "control": "lblCWork1113",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Scheduled)"
+    },
+    {
+      "control": "lblCWork1114",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Hours)"
+    },
+    {
+      "control": "lblCWork1115",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Overtime,\"#,##0\")"
+    },
+    {
+      "control": "lblCWork1116",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Change)"
+    },
+    {
+      "control": "lblCWork1117",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Reason)"
+    },
+    {
+      "control": "lblCWork1118",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Finish)"
+    },
+    {
+      "control": "lblCWork1119",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.DailyHours,\"0.00\")"
+    },
+    {
+      "control": "lblCSocial1110",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Category)"
+    },
+    {
+      "control": "lblCSocial1111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Birth)"
+    },
+    {
+      "control": "lblCSocial1112",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.AgeApril)"
+    },
+    {
+      "control": "lblCSocial1113",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.AgeMarch)"
+    },
+    {
+      "control": "lblCSocial1114",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Care)"
+    },
+    {
+      "control": "lblCSocial1115",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.PensionExempt)"
+    },
+    {
+      "control": "lblCSocial1116",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Elderly)"
+    },
+    {
+      "control": "lblCSocial1117",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Grade)"
+    },
+    {
+      "control": "lblCSocial1118",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Monthly,\"#,##0\")"
+    },
+    {
+      "control": "lblCTax1110",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(ThisItem.Start=Date(2099,3,31),\"\",Text(ThisItem.Start,\"yyyy/mm/dd\"))"
+    },
+    {
+      "control": "lblCTax1111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(ThisItem.End=Date(2099,3,31),\"\",Text(ThisItem.End,\"yyyy/mm/dd\"))"
+    },
+    {
+      "control": "lblCTax1112",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.TaxClass)"
+    },
+    {
+      "control": "lblCTax1113",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Employment)"
+    },
+    {
+      "control": "lblCTax1114",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Saving,\"#,##0\")"
+    },
+    {
+      "control": "lblCTax1115",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Loan,\"#,##0\")"
+    },
+    {
+      "control": "lblCTax1116",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Dependents)"
+    },
+    {
+      "control": "lblCTax1117",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.Note)"
+    },
+    {
+      "control": "lblCWorkState111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(ThisItem.End<Date(2026,9,11),\"過去\",If(ThisItem.Start>Date(2026,9,11),\"予定\",\"現行\"))"
+    },
+    {
+      "control": "lblBasicVal0111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\ndemoSelected.StaffId\n)\n)"
+    },
+    {
+      "control": "lblBasicVal1111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\ndemoSelected.Name\n)\n)"
+    },
+    {
+      "control": "lblBasicVal2111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\ndemoSelected.OrgFull\n)\n)"
+    },
+    {
+      "control": "lblBasicVal3111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\ndemoSelected.Org\n)\n)"
+    },
+    {
+      "control": "lblBasicVal4111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\ndemoSelected.Birth\n)\n)"
+    },
+    {
+      "control": "lblBasicVal5111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\ndemoSelected.Sex\n)\n)"
+    },
+    {
+      "control": "lblBasicVal6111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\ndemoSelected.Hire\n)\n)"
+    },
+    {
+      "control": "lblBasicVal7111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\ndemoSelected.Leave\n)\n)"
+    },
+    {
+      "control": "lblBasicVal8111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=With({demoStaff:StaffBasicView},\nWith({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},\ndemoSelected.Status\n)\n)"
+    },
+    {
+      "control": "lblCCommute1110",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.適用開始日,\"yyyy/mm/dd\") & Char(10) & ThisItem.通勤認定ID"
+    },
+    {
+      "control": "lblCCommute1111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=Text(ThisItem.適用終了日,\"yyyy/mm/dd\")"
+    },
+    {
+      "control": "lblCCommute1112",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.支給方式"
+    },
+    {
+      "control": "lblCCommute1113",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.通勤4月),Blank(),Text(ThisItem.通勤4月,\"#,##0\"))"
+    },
+    {
+      "control": "lblCCommute1114",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.通勤10月),Blank(),Text(ThisItem.通勤10月,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal1110",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_period_year"
+    },
+    {
+      "control": "lblCPayrollModal1111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_period_start"
+    },
+    {
+      "control": "lblCPayrollModal1112",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_period_end"
+    },
+    {
+      "control": "lblCPayrollModal1113",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_payment_date"
+    },
+    {
+      "control": "lblCPayrollModal1114",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_organization"
+    },
+    {
+      "control": "lblCPayrollModal1115",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_sequence),Blank(),Text(ThisItem.crb3c_sequence,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal1116",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_staffnumber"
+    },
+    {
+      "control": "lblCPayrollModal1117",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_fullname"
+    },
+    {
+      "control": "lblCPayrollModal1118",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_salary_table"
+    },
+    {
+      "control": "lblCPayrollModal1119",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_grade),Blank(),Text(ThisItem.crb3c_grade,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11110",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_step),Blank(),Text(ThisItem.crb3c_step,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_basepay_current),Blank(),Text(ThisItem.crb3c_basepay_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11112",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_basepay_adjustment),Blank(),Text(ThisItem.crb3c_basepay_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11113",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_special_adjustment_current),Blank(),Text(ThisItem.crb3c_special_adjustment_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11114",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_special_adjustment_adjustment),Blank(),Text(ThisItem.crb3c_special_adjustment_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11115",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_ministry_allowance_current),Blank(),Text(ThisItem.crb3c_ministry_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11116",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_ministry_allowance_adjustment),Blank(),Text(ThisItem.crb3c_ministry_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11117",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_initial_allowance_current),Blank(),Text(ThisItem.crb3c_initial_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11118",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_initial_allowance_adjustment),Blank(),Text(ThisItem.crb3c_initial_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11119",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_dependent_allowance_current),Blank(),Text(ThisItem.crb3c_dependent_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11120",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_dependent_allowance_adjustment),Blank(),Text(ThisItem.crb3c_dependent_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11121",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_regional_allowance_current),Blank(),Text(ThisItem.crb3c_regional_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11122",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_regional_allowance_adjustment),Blank(),Text(ThisItem.crb3c_regional_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11123",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_relocation_allowance_current),Blank(),Text(ThisItem.crb3c_relocation_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11124",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_relocation_allowance_adjustment),Blank(),Text(ThisItem.crb3c_relocation_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11125",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_housing_allowance_current),Blank(),Text(ThisItem.crb3c_housing_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11126",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_housing_allowance_adjustment),Blank(),Text(ThisItem.crb3c_housing_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11127",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_commuting_allowance_current),Blank(),Text(ThisItem.crb3c_commuting_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11128",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_commuting_allowance_adjustment),Blank(),Text(ThisItem.crb3c_commuting_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11129",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_separation_allowance_current),Blank(),Text(ThisItem.crb3c_separation_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11130",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_separation_allowance_adjustment),Blank(),Text(ThisItem.crb3c_separation_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11131",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_telework_allowance_current),Blank(),Text(ThisItem.crb3c_telework_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11132",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_telework_allowance_adjustment),Blank(),Text(ThisItem.crb3c_telework_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11133",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_special_duty_current),Blank(),Text(ThisItem.crb3c_special_duty_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11134",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_special_duty_adjustment),Blank(),Text(ThisItem.crb3c_special_duty_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11135",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_remote_allowance_current),Blank(),Text(ThisItem.crb3c_remote_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11136",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_remote_allowance_adjustment),Blank(),Text(ThisItem.crb3c_remote_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11137",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_remote_equivalent_current),Blank(),Text(ThisItem.crb3c_remote_equivalent_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11138",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_remote_equivalent_adjustment),Blank(),Text(ThisItem.crb3c_remote_equivalent_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11139",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_allowance_current),Blank(),Text(ThisItem.crb3c_overtime_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11140",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_allowance_adjustment),Blank(),Text(ThisItem.crb3c_overtime_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11141",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_night_duty_current),Blank(),Text(ThisItem.crb3c_night_duty_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11142",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_night_duty_adjustment),Blank(),Text(ThisItem.crb3c_night_duty_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11143",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_manager_duty_current),Blank(),Text(ThisItem.crb3c_manager_duty_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11144",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_manager_duty_adjustment),Blank(),Text(ThisItem.crb3c_manager_duty_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11145",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_term_bonus_current),Blank(),Text(ThisItem.crb3c_term_bonus_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11146",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_term_bonus_adjustment),Blank(),Text(ThisItem.crb3c_term_bonus_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11147",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_performance_bonus_current),Blank(),Text(ThisItem.crb3c_performance_bonus_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11148",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_performance_bonus_adjustment),Blank(),Text(ThisItem.crb3c_performance_bonus_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11149",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_cold_allowance_current),Blank(),Text(ThisItem.crb3c_cold_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11150",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_cold_allowance_adjustment),Blank(),Text(ThisItem.crb3c_cold_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11151",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_other_pay_current),Blank(),Text(ThisItem.crb3c_other_pay_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11152",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_other_pay_adjustment),Blank(),Text(ThisItem.crb3c_other_pay_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11153",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_gross),Blank(),Text(ThisItem.crb3c_gross,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11154",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_taxable_total),Blank(),Text(ThisItem.crb3c_taxable_total,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11155",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_nontaxable_total),Blank(),Text(ThisItem.crb3c_nontaxable_total,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11156",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_mutual_short_current),Blank(),Text(ThisItem.crb3c_mutual_short_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11157",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_mutual_short_adjustment),Blank(),Text(ThisItem.crb3c_mutual_short_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11158",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_mutual_care_current),Blank(),Text(ThisItem.crb3c_mutual_care_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11159",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_mutual_care_adjustment),Blank(),Text(ThisItem.crb3c_mutual_care_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11160",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_mutual_childcare_current),Blank(),Text(ThisItem.crb3c_mutual_childcare_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11161",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_mutual_childcare_adjustment),Blank(),Text(ThisItem.crb3c_mutual_childcare_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11162",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_retirement_contribution_current),Blank(),Text(ThisItem.crb3c_retirement_contribution_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11163",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_retirement_contribution_adjustment),Blank(),Text(ThisItem.crb3c_retirement_contribution_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11164",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_pension_insurance_current),Blank(),Text(ThisItem.crb3c_pension_insurance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11165",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_pension_insurance_adjustment),Blank(),Text(ThisItem.crb3c_pension_insurance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11166",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_health_insurance_current),Blank(),Text(ThisItem.crb3c_health_insurance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11167",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_health_insurance_adjustment),Blank(),Text(ThisItem.crb3c_health_insurance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11168",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_care_insurance_current),Blank(),Text(ThisItem.crb3c_care_insurance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11169",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_care_insurance_adjustment),Blank(),Text(ThisItem.crb3c_care_insurance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11170",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_childcare_insurance_current),Blank(),Text(ThisItem.crb3c_childcare_insurance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11171",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_childcare_insurance_adjustment),Blank(),Text(ThisItem.crb3c_childcare_insurance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11172",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_employment_insurance_current),Blank(),Text(ThisItem.crb3c_employment_insurance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11173",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_employment_insurance_adjustment),Blank(),Text(ThisItem.crb3c_employment_insurance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11174",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_social_total_current),Blank(),Text(ThisItem.crb3c_social_total_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11175",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_social_total_adjustment),Blank(),Text(ThisItem.crb3c_social_total_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11176",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_income_tax_current),Blank(),Text(ThisItem.crb3c_income_tax_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11177",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_income_tax_adjustment),Blank(),Text(ThisItem.crb3c_income_tax_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11178",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_resident_tax_current),Blank(),Text(ThisItem.crb3c_resident_tax_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11179",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_resident_tax_adjustment),Blank(),Text(ThisItem.crb3c_resident_tax_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11180",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_dormitory_current),Blank(),Text(ThisItem.crb3c_dormitory_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11181",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_dormitory_adjustment),Blank(),Text(ThisItem.crb3c_dormitory_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11182",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_parking_current),Blank(),Text(ThisItem.crb3c_parking_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11183",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_parking_adjustment),Blank(),Text(ThisItem.crb3c_parking_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11184",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_medical_copayment_current),Blank(),Text(ThisItem.crb3c_medical_copayment_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11185",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_medical_copayment_adjustment),Blank(),Text(ThisItem.crb3c_medical_copayment_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11186",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_savings_current),Blank(),Text(ThisItem.crb3c_savings_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11187",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_savings_adjustment),Blank(),Text(ThisItem.crb3c_savings_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11188",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_insurance_savings_current),Blank(),Text(ThisItem.crb3c_insurance_savings_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11189",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_insurance_savings_adjustment),Blank(),Text(ThisItem.crb3c_insurance_savings_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11190",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_loan_repayment_current),Blank(),Text(ThisItem.crb3c_loan_repayment_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11191",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_loan_repayment_adjustment),Blank(),Text(ThisItem.crb3c_loan_repayment_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11192",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_housing_loan_current),Blank(),Text(ThisItem.crb3c_housing_loan_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11193",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_housing_loan_adjustment),Blank(),Text(ThisItem.crb3c_housing_loan_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11194",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_asset_savings_current),Blank(),Text(ThisItem.crb3c_asset_savings_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11195",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_asset_savings_adjustment),Blank(),Text(ThisItem.crb3c_asset_savings_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11196",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction1_current),Blank(),Text(ThisItem.crb3c_deduction1_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11197",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction1_adjustment),Blank(),Text(ThisItem.crb3c_deduction1_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11198",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction2_current),Blank(),Text(ThisItem.crb3c_deduction2_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal11199",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction2_adjustment),Blank(),Text(ThisItem.crb3c_deduction2_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111100",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction3_current),Blank(),Text(ThisItem.crb3c_deduction3_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111101",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction3_adjustment),Blank(),Text(ThisItem.crb3c_deduction3_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111102",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction4_current),Blank(),Text(ThisItem.crb3c_deduction4_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111103",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction4_adjustment),Blank(),Text(ThisItem.crb3c_deduction4_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111104",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_ideco_current),Blank(),Text(ThisItem.crb3c_ideco_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111105",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_ideco_adjustment),Blank(),Text(ThisItem.crb3c_ideco_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111106",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction_total_current),Blank(),Text(ThisItem.crb3c_deduction_total_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111107",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction_total_adjustment),Blank(),Text(ThisItem.crb3c_deduction_total_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111108",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_net),Blank(),Text(ThisItem.crb3c_net,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111109",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_transfer1),Blank(),Text(ThisItem.crb3c_transfer1,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111110",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_transfer2),Blank(),Text(ThisItem.crb3c_transfer2,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_cash),Blank(),Text(ThisItem.crb3c_cash,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111112",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_reduction_hours_current),Blank(),Text(ThisItem.crb3c_reduction_hours_current,If(Mod(ThisItem.crb3c_reduction_hours_current,1)=0,\"#,##0\",\"#,##0.##########\")))"
+    },
+    {
+      "control": "lblCPayrollModal111113",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_reduction_hours_adjustment),Blank(),Text(ThisItem.crb3c_reduction_hours_adjustment,If(Mod(ThisItem.crb3c_reduction_hours_adjustment,1)=0,\"#,##0\",\"#,##0.##########\")))"
+    },
+    {
+      "control": "lblCPayrollModal111114",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_reduction_amount_current),Blank(),Text(ThisItem.crb3c_reduction_amount_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111115",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_reduction_amount_adjustment),Blank(),Text(ThisItem.crb3c_reduction_amount_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111116",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_pay_cut_current),Blank(),Text(ThisItem.crb3c_pay_cut_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111117",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_pay_cut_adjustment),Blank(),Text(ThisItem.crb3c_pay_cut_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111118",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_night25_current),Blank(),Text(ThisItem.crb3c_overtime_night25_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111119",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_night25_adjustment),Blank(),Text(ThisItem.crb3c_overtime_night25_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111120",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_holiday135_current),Blank(),Text(ThisItem.crb3c_overtime_holiday135_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111121",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_holiday135_adjustment),Blank(),Text(ThisItem.crb3c_overtime_holiday135_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111122",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime100_current),Blank(),Text(ThisItem.crb3c_overtime100_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111123",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime100_adjustment),Blank(),Text(ThisItem.crb3c_overtime100_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111124",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime125_current),Blank(),Text(ThisItem.crb3c_overtime125_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111125",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime125_adjustment),Blank(),Text(ThisItem.crb3c_overtime125_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111126",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime135_current),Blank(),Text(ThisItem.crb3c_overtime135_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111127",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime135_adjustment),Blank(),Text(ThisItem.crb3c_overtime135_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111128",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime150_current),Blank(),Text(ThisItem.crb3c_overtime150_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111129",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime150_adjustment),Blank(),Text(ThisItem.crb3c_overtime150_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111130",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime160_current),Blank(),Text(ThisItem.crb3c_overtime160_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111131",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime160_adjustment),Blank(),Text(ThisItem.crb3c_overtime160_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111132",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime175_current),Blank(),Text(ThisItem.crb3c_overtime175_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111133",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime175_adjustment),Blank(),Text(ThisItem.crb3c_overtime175_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111134",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_detail_total_current),Blank(),Text(ThisItem.crb3c_overtime_detail_total_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111135",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_detail_total_adjustment),Blank(),Text(ThisItem.crb3c_overtime_detail_total_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111136",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_leave50_current),Blank(),Text(ThisItem.crb3c_comp_leave50_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111137",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_leave50_adjustment),Blank(),Text(ThisItem.crb3c_comp_leave50_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111138",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_leave25_current),Blank(),Text(ThisItem.crb3c_comp_leave25_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111139",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_leave25_adjustment),Blank(),Text(ThisItem.crb3c_comp_leave25_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111140",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_leave15_current),Blank(),Text(ThisItem.crb3c_comp_leave15_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111141",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_leave15_adjustment),Blank(),Text(ThisItem.crb3c_comp_leave15_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111142",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_work50_current),Blank(),Text(ThisItem.crb3c_comp_work50_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111143",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_work50_adjustment),Blank(),Text(ThisItem.crb3c_comp_work50_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111144",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_work25_current),Blank(),Text(ThisItem.crb3c_comp_work25_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111145",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_work25_adjustment),Blank(),Text(ThisItem.crb3c_comp_work25_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111146",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_work15_current),Blank(),Text(ThisItem.crb3c_comp_work15_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111147",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_comp_work15_adjustment),Blank(),Text(ThisItem.crb3c_comp_work15_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111148",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_change_current),Blank(),Text(ThisItem.crb3c_overtime_change_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111149",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_change_adjustment),Blank(),Text(ThisItem.crb3c_overtime_change_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111150",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_short_grade),Blank(),Text(ThisItem.crb3c_short_grade,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111151",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_short_monthly),Blank(),Text(ThisItem.crb3c_short_monthly,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111152",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_pension_grade),Blank(),Text(ThisItem.crb3c_pension_grade,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111153",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_pension_monthly),Blank(),Text(ThisItem.crb3c_pension_monthly,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111154",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_retirement_grade),Blank(),Text(ThisItem.crb3c_retirement_grade,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111155",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_retirement_monthly),Blank(),Text(ThisItem.crb3c_retirement_monthly,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111156",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_taxable_income),Blank(),Text(ThisItem.crb3c_taxable_income,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayrollModal111157",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_remarks"
+    },
+    {
+      "control": "lblCPayrollModal111158",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_target_date"
+    },
+    {
+      "control": "lblCPayrollModal111159",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_business_type"
+    },
+    {
+      "control": "lblCPayrollModal111160",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_assignment_type"
+    },
+    {
+      "control": "lblCPayrollModal111161",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_expenditure"
+    },
+    {
+      "control": "lblCPayrollModal111162",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_classification"
+    },
+    {
+      "control": "lblCPayroll1110",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_period_year"
+    },
+    {
+      "control": "lblCPayroll1111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_payment_date"
+    },
+    {
+      "control": "lblCPayroll1112",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_basepay_current),Blank(),Text(ThisItem.crb3c_basepay_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll1113",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_basepay_adjustment),Blank(),Text(ThisItem.crb3c_basepay_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll1114",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_commuting_allowance_current),Blank(),Text(ThisItem.crb3c_commuting_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll1115",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_commuting_allowance_adjustment),Blank(),Text(ThisItem.crb3c_commuting_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll1116",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_telework_allowance_current),Blank(),Text(ThisItem.crb3c_telework_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll1117",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_telework_allowance_adjustment),Blank(),Text(ThisItem.crb3c_telework_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll1118",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_allowance_current),Blank(),Text(ThisItem.crb3c_overtime_allowance_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll1119",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_overtime_allowance_adjustment),Blank(),Text(ThisItem.crb3c_overtime_allowance_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll11110",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_gross),Blank(),Text(ThisItem.crb3c_gross,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll11111",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction_total_current),Blank(),Text(ThisItem.crb3c_deduction_total_current,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll11112",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_deduction_total_adjustment),Blank(),Text(ThisItem.crb3c_deduction_total_adjustment,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll11113",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=If(IsBlank(ThisItem.crb3c_net),Blank(),Text(ThisItem.crb3c_net,\"#,##0\"))"
+    },
+    {
+      "control": "lblCPayroll11114",
+      "headerMatch": true,
+      "bindingMatch": true,
+      "formula": "=ThisItem.crb3c_remarks"
+    }
+  ],
+  "mismatches": []
+}

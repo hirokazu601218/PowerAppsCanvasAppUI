@@ -1,0 +1,24 @@
+{
+  "staff": "009900000011",
+  "comparedValues": 289,
+  "mismatches": 0,
+  "zero": {
+    "query": "999ZZZ",
+    "count": 0,
+    "oldSelectionVisible": false,
+    "outputDisabled": true
+  },
+  "clear": {
+    "query": "",
+    "count": 7,
+    "staff": "009900000004"
+  },
+  "final": {
+    "home": true,
+    "standardText": true,
+    "department": "03会計課"
+  },
+  "definitionEdited": false,
+  "published": false,
+  "dataverseWritten": false
+}

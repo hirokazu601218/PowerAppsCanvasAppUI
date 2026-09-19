@@ -12,12 +12,13 @@
     "id": "SRC-02",
     "priority_mode": "P0／S",
     "status": "BLOCKED",
-    "note": "Screen1の657部品・基準SHA一致を確認。公式code-view文書は取得したが、対象版の全プロパティを網羅する独立部品台帳は取得できず。Studioの数式エラー0を台帳照合の代用にしない。",
+    "note": "Screen1の657部品・基準SHA一致を確認。公式code-view文書は取得したが、対象版の全プロパティを網羅する独立部品台帳は取得できず。Studioの数式エラー0を台帳照合の代用にしない。 今回全6画面の現在定義816部品/11型の使用プロパティ台帳を作成、重複名0、不正Classic AccessibleLabel0、PDFViewer画面直下。公式版別全対応台帳との照合は未充足。",
     "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#SRC-02",
     "previous_status": "NOT_RUN",
-    "next_action": "対象部品版/全プロパティの独立台帳",
-    "current_run": "2026-09-19 remaining14"
+    "next_action": "使用台帳作成は完了。公式版別対応一覧との照合が残る。",
+    "current_run": "2026-09-19 remaining14",
+    "latest_evidence": "../automatable-20260919/README.md"
   },
   {
     "id": "SRC-03",
@@ -158,12 +159,13 @@
     "id": "DATA-05",
     "priority_mode": "P1／S＋E",
     "status": "BLOCKED",
-    "note": "011の全5履歴48値は既存独立fixture期待値に一致、48見出しとのX/幅一致。給与163は前回独立定義と照合済み。詳細設計はfield-inventoryを実装抽出・非本番辞書と明記。全セクションの型/順序を独立に裏付ける統合台帳が未整備。",
+    "note": "011の全5履歴48値は既存独立fixture期待値に一致、48見出しとのX/幅一致。給与163は前回独立定義と照合済み。詳細設計はfield-inventoryを実装抽出・非本番辞書と明記。全セクションの型/順序を独立に裏付ける統合台帳が未整備。 今回220項目の見出し/式参照先・認定簿69項目の参照先、元定義に基づく1645値の型、公開011の289表示値を統合照合し不一致0。合成履歴見出し/順序の独立業務辞書確認は未充足。",
     "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#DATA-05",
     "previous_status": "NOT_RUN",
-    "next_action": "全表示セクションの独立した見出し/型/順序マップ",
-    "current_run": "2026-09-19 remaining14"
+    "next_action": "統合マップと表示値照合は完了。合成履歴の見出し/順序の独立根拠を確定する。",
+    "current_run": "2026-09-19 remaining14",
+    "latest_evidence": "../automatable-20260919/README.md"
   },
   {
     "id": "SRCH-01",
@@ -817,12 +819,13 @@
     "id": "PATCH-02",
     "priority_mode": "P0／S＋E",
     "status": "BLOCKED",
-    "note": "コピーに単一プロパティ差分を再適用、完全式一致と657部品の基準SHA不変を確認。管理/paste二形式の独立比較とSMK-01の独立コンテキスト条件が未充足。単一式の一致を二形式・全スモーク合格へ読み替えない。",
+    "note": "コピーに単一プロパティ差分を再適用、完全式一致と657部品の基準SHA不変を確認。管理/paste二形式の独立比較とSMK-01の独立コンテキスト条件が未充足。単一式の一致を二形式・全スモーク合格へ読み替えない。 今回全6画面の現行読戻しから管理/貼付二形式を機械生成し構造一致、816部品重複名0、意図的幅変更の検出を確認。公開コピー0件→クリア7件004を確認。独立コンテキストの全SMK-01は未実施。現行プロパティ更新方式の判定であり、旧方式の新規YAML貼付合格とはしない。",
     "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#PATCH-02",
     "previous_status": "NOT_RUN",
-    "next_action": "現行版二形式配布物と独立コンテキストのSMK-01実行環境",
-    "current_run": "2026-09-19 remaining14"
+    "next_action": "二形式不足は解消。現行プロパティ更新方式で指定独立環境の全SMK-01を実行。",
+    "current_run": "2026-09-19 remaining14",
+    "latest_evidence": "../automatable-20260919/README.md"
   },
   {
     "id": "PATCH-03",
