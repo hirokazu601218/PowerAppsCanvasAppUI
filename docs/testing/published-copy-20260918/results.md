@@ -25,3 +25,11 @@
 
 ## 実測
 evidence.jsonにページ境界、故障対照、復元ヘッダー座標、229セル、20組合せの最右到達、キーボード遷移を収録。
+
+## 基準差の追加調査
+
+Screen1 SHA-256: df49f8477abf76ce6a8fe6f178462691a5554ceb3b52d9d0de3afdd09ffd774c。保存v1.24との差はconMain111.Visible/lblMeta111.Text/conStaffNavigation122.Visible/btnExport111.DisplayModeの4プロパティ。逆適用後のGit blob SHA-1は23f659315447cf1303942092ce7740fb6e47fe9bで完全一致。全6画面の同一性は未確認。
+
+職員003の102セル（Work状態3セルを除く）は全列X/幅一致、セル内スクロールバー0。全8条件の代替にはしない。
+
+[残件の基準差と具体案](remaining-profile-proposal.md)。判定総数は変更なし。コピーは通常データ・一般表示・03会計課のホームへ復帰。新たな試験変更・Dataverse書込みなし。

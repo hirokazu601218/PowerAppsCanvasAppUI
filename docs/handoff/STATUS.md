@@ -5,6 +5,8 @@
 - ACC-05のフォーカス枠コントラスト1.48:1を[Issue #66](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/66)へ記録のみ。#62/#64も修正しない。
 - [今回結果](../testing/published-copy-20260918/results.md)、[実測](../testing/published-copy-20260918/evidence.json)、[95項目](../testing/override-20260918/spec-case-audit.json)。
 - 検証コピーの全試験変異を復元・保存・公開済み。元アプリ定義・Dataverse変更なし。次は現行v1.26と配布ソースの対応確定、導入・差分・表示条件等の残件。
+- 現行Screen1は保存v1.24から4プロパティ差分のみと逆適用Git blobハッシュで確認。全6画面の同一性は未確定。
+- 残件には旧v1.11仕様と現行v1.26の基準差がある。[具体的な差・現行プロファイル案・残21項目](../testing/published-copy-20260918/remaining-profile-proposal.md)を記録。基準変更案は未承認で、合否基準へ未反映。
 - HAR-03の見出し重なり検出と復元は完了。標準Notify過大幅の注入条件は未確立。
 - PDF・HTML帳票PoC除外、時間制約解除、検証コピー保存・公開・復元公開の許可を継続。
 - **Issue #51：欠勤時間単価の実テーブル反映は未実施、次回実テーブル編集時に対応。**
