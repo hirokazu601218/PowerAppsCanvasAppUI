@@ -1,0 +1,23 @@
+{
+  "profile": "v1.26-D2-property-patch",
+  "target": "検証専用_職員マスタ_20260918_残件",
+  "operation": "replace App.Formulas only",
+  "baseSha256": "6e9aff140d298811ef0217572cc9c4975ef8d2bd76bb5e6f63c2e19e2680a6ed",
+  "targetSha256": "9a449e8573c397625c12d99dbb071b2de0b9f4feb0f9c4a3c68e8f9a98a991bb",
+  "screen1Sha256": "df49f8477abf76ce6a8fe6f178462691a5554ceb3b52d9d0de3afdd09ffd774c",
+  "screens": [
+    "Screen1",
+    "scrHome",
+    "scrAttendance",
+    "scrBonus",
+    "scrPayroll",
+    "scrMaintenance"
+  ],
+  "guard": [
+    "current==target: ALREADY_APPLIED; do not paste/save/publish",
+    "current==base and Screen1 hash matches: APPLY",
+    "otherwise: BASELINE_MISMATCH; do not mutate"
+  ],
+  "restore": "baseline-App.Formulas.fx; verify entire text, save, preserve baseline publication",
+  "limitations": "This validates a one-property fixture patch; it does not prove arbitrary YAML control replacement or v1.11 paste deployment."
+}

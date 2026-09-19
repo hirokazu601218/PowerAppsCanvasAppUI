@@ -123,7 +123,7 @@ StaffLedgerFields = With({c:varLedgerCommute111,s:varLedgerStaff111},Table(
 StaffPayrollHistory = If(StaffSelected.StaffId="009900000003",ForAll(FirstN(SortByColumns(
     Filter('T_基準給与簿', '職員基本'.職員番号 = StaffSelected.StaffId),
     "crb3c_payment_date",SortOrder.Descending,"crb3c_sequence",SortOrder.Descending
-),1) As r, Patch(r,{crb3c_basepay_adjustment:-12345,crb3c_telework_allowance_current:0,crb3c_gross:242655,crb3c_taxable_total:242655,crb3c_net:232655,crb3c_remarks:Concat(Sequence(50),"長文確認用。")})), SortByColumns(
+),1) As r, Patch(r,{crb3c_basepay_adjustment:-12345,crb3c_telework_allowance_current:0,crb3c_gross:242655,crb3c_taxable_total:242655,crb3c_net:232655,crb3c_transfer1:232655,crb3c_taxable_income:242655,crb3c_remarks:Concat(Sequence(50),"長文確認用。")})), SortByColumns(
     Filter('T_基準給与簿', '職員基本'.職員番号 = StaffSelected.StaffId),
     "crb3c_payment_date",SortOrder.Descending,"crb3c_sequence",SortOrder.Descending
 ));
