@@ -820,21 +820,24 @@
   {
     "id": "PATCH-03",
     "priority_mode": "P1／S＋E",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "PASS",
+    "note": "現行v1.26-D2のApp.Formulas単一プロパティ差分で実施。Studio読戻しの基準SHA一致を確認して1回適用。二度目の適用要求で読戻しSHAがtargetと一致しALREADY_APPLIED/write=falseで停止。画面全文は変更前と完全一致（657部品）、サフィックス付き部品増加なし。式を基準へ戻し完全一致・保存を確認。この試験サイクルは公開せず、先行D2試験から復元済みの公開版を保持。任意のYAML部品置換の合格ではない。",
+    "evidence_basis": "2026-09-19 current-v126-20260919/profile.md と d2-patch-manifest.json",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#PATCH-03",
     "previous_status": "NOT_RUN",
-    "next_action": "専用複製で二重適用時の安全停止/状態維持を確認。"
+    "next_action": "完了（現行D2プロパティ差分プロファイル）。",
+    "status_before_current_profile": "NOT_RUN"
   },
   {
     "id": "PATCH-04",
     "priority_mode": "P1／S＋E",
-    "status": "BLOCKED",
-    "note": "検証専用コピー作成・復旧済み。対応する適用/故障注入/復元の全条件は未実施。以前の「複製未作成」は解消。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "PASS",
+    "note": "現行v1.26-D2単一プロパティ差分の復元試験。App.Formulas19443文字が基準と完全一致、Screen1全1444226文字が基準と完全一致（SHA-256 df49f8477abf76ce6a8fe6f178462691a5554ceb3b52d9d0de3afdd09ffd774c）。保存・復元公開後の新バージョンで通常03会計課・7件004選択、011検索1件/右サマリー011を確認。6画面を削除せず元アプリ・Dataverse不変。後続二重適用試験は非公開で、再度元式へ完全復元保存。任意の画面YAML置換からの復元を証明するものではない。",
+    "evidence_basis": "2026-09-19 current-v126-20260919/profile.md と d2-patch-manifest.json",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#PATCH-04",
-    "previous_status": "BLOCKED"
+    "previous_status": "BLOCKED",
+    "status_before_current_profile": "BLOCKED",
+    "next_action": "完了（現行D2プロパティ差分プロファイル）。"
   },
   {
     "id": "PERF-01",

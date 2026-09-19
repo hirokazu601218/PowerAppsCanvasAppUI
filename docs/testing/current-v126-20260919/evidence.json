@@ -1,0 +1,3383 @@
+{
+  "counts": {
+    "PASS": 66,
+    "NOT_RUN": 14,
+    "EXCLUDED": 9,
+    "FAIL": 2,
+    "BLOCKED": 4
+  },
+  "initialD2": {
+    "payrollSnapshot": "generic: 基準給与簿履歴 1件（Dataverse）\n    - generic: 給与期間対象年\n    - generic: 支給年月日\n    - generic: 俸給支給額・当給与期間分\n    - generic: 俸給支給額・返納・追給分\n    - generic: 通勤手当・当給与期間分\n    - generic: 通勤手当・返納・追給分\n    - generic: 在宅勤務等手当・当給与期間分\n    - generic: 在宅勤務等手当・返納・追給分\n    - generic: 超過勤務手当等・当給与期間分\n    - generic: 超過勤務手当等・返納・追給分\n    - generic: 給与支給総額\n    - generic: 控除額計・当給与期間分\n    - generic: 控除額計・返納・追給分\n    - generic: 現金支給額\n    - generic: 備考\n    - list \"Payroll 履歴\":\n      - listitem \"009900000003 令和08年06月23日\":\n        - generic: 009900000003 令和08年06月23日\n        - generic: 令和08年\n        - generic: 令和08年06月23日\n        - generic: 255,000\n        - generic: \"-12,345\"\n        - generic: \"0\"\n        - generic: \"0\"\n        - generic: \"0\"\n        - generic: \"0\"\n        - generic: \"0\"\n        - generic: \"0\"\n        - generic: 242,655\n        - generic: 10,000\n        - generic: \"0\"\n        - generic: 232,655\n        - generic: 長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。\n    - generic: 在籍状態の判定基準日：2026/09/19（日本時間）。採用日未入力は採用前です。\n    - button \"検索結果をTSVで出力\":\n      - generic: 検索結果をTSVで出力\n    - button \"選択職員の認定簿を表示\":\n      - generic: 選択職員の認定簿を表示\n    - button \"詳細表示\":\n      - generic: 詳細表示",
+    "noteGeometry": {
+      "descendants": [
+        {
+          "clientHeight": 47,
+          "overflow": "hidden",
+          "scrollHeight": 48,
+          "tag": "DIV",
+          "textOverflow": "clip"
+        },
+        {
+          "clientHeight": 48,
+          "overflow": "visible",
+          "scrollHeight": 48,
+          "tag": "DIV",
+          "textOverflow": "clip"
+        },
+        {
+          "clientHeight": 48,
+          "overflow": "visible",
+          "scrollHeight": 48,
+          "tag": "DIV",
+          "textOverflow": "clip"
+        },
+        {
+          "clientHeight": 48,
+          "overflow": "hidden",
+          "scrollHeight": 302,
+          "tag": "DIV",
+          "textOverflow": "clip"
+        },
+        {
+          "clientHeight": 549,
+          "overflow": "visible",
+          "scrollHeight": 549,
+          "tag": "DIV",
+          "textOverflow": "clip"
+        }
+      ],
+      "rect": {
+        "bottom": 769,
+        "height": 48,
+        "left": 1143,
+        "right": 1323,
+        "top": 721,
+        "width": 180,
+        "x": 1143,
+        "y": 721
+      },
+      "text": "長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。",
+      "title": [
+        "長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。"
+      ]
+    },
+    "fullText": {
+      "clientHeight": 108,
+      "rect": {
+        "bottom": 871,
+        "height": 108,
+        "left": 16,
+        "right": 1346,
+        "top": 763,
+        "width": 1330,
+        "x": 16,
+        "y": 763
+      },
+      "scrollHeight": 2798,
+      "scrollTop": 2606,
+      "value": "給与期間対象年\t令和08年\n給与期間開始月日\t06月01日\n給与期間終了月日\t06月30日\n支給年月日\t令和08年06月23日\n組織・所属\t02総務課\n番号\t3\n職員番号\t009900000003\n氏名\t試験　在籍\n俸給表\t\n級\t0\n号俸\t0\n俸給支給額・当給与期間分\t255,000\n俸給支給額・返納・追給分\t-12,345\n俸給の特別調整額・当給与期間分\t0\n俸給の特別調整額・返納・追給分\t0\n本府省業務調整手当・当給与期間分\t0\n本府省業務調整手当・返納・追給分\t0\n初任給調整手当・当給与期間分\t0\n初任給調整手当・返納・追給分\t0\n扶養手当・当給与期間分\t0\n扶養手当・返納・追給分\t0\n地域手当等・当給与期間分\t0\n地域手当等・返納・追給分\t0\n広域異動手当・当給与期間分\t0\n広域異動手当・返納・追給分\t0\n住居手当・当給与期間分\t0\n住居手当・返納・追給分\t0\n通勤手当・当給与期間分\t0\n通勤手当・返納・追給分\t0\n単身赴任手当・当給与期間分\t0\n単身赴任手当・返納・追給分\t0\n在宅勤務等手当・当給与期間分\t0\n在宅勤務等手当・返納・追給分\t0\n特殊勤務手当・当給与期間分\t0\n特殊勤務手当・返納・追給分\t0\n特地勤務手当・当給与期間分\t0\n特地勤務手当・返納・追給分\t0\n特地勤務手当に準ずる手当・当給与期間分\t0\n特地勤務手当に準ずる手当・返納・追給分\t0\n超過勤務手当等・当給与期間分\t0\n超過勤務手当等・返納・追給分\t0\n宿日直手当・当給与期間分\t0\n宿日直手当・返納・追給分\t0\n管理職員特別勤務手当・当給与期間分\t0\n管理職員特別勤務手当・返納・追給分\t0\n期末手当・当給与期間分\t0\n期末手当・返納・追給分\t0\n勤勉手当・当給与期間分\t0\n勤勉手当・返納・追給分\t0\n寒冷地手当・当給与期間分\t0\n寒冷地手当・返納・追給分\t0\nその他・当給与期間分\t0\nその他・返納・追給分\t0\n給与支給総額\t242,655\n課税額計\t242,655\n非課税額計\t0\n共済短期掛金・当給与期間分\t0\n共済短期掛金・返納・追給分\t0\n介護掛金・当給与期間分\t0\n介護掛金・返納・追給分\t0\n子ども・子育て支援掛金・当給与期間分\t0\n子ども・子育て支援掛金・返納・追給分\t0\n退職等年金掛金・当給与期間分\t0\n退職等年金掛金・返納・追給分\t0\n厚生年金保険料・当給与期間分\t0\n厚生年金保険料・返納・追給分\t0\n健康保険料・当給与期間分\t0\n健康保険料・返納・追給分\t0\n介護保険料・当給与期間分\t0\n介護保険料・返納・追給分\t0\n子ども・子育て支援金・当給与期間分\t0\n子ども・子育て支援金・返納・追給分\t0\n雇用保険料・当給与期間分\t0\n雇用保険料・返納・追給分\t0\n社会保険料計・当給与期間分\t0\n社会保険料計・返納・追給分\t0\n所得税・当給与期間分\t10,000\n所得税・返納・追給分\t0\n住民税・当給与期間分\t0\n住民税・返納・追給分\t0\n宿舎・当給与期間分\t0\n宿舎・返納・追給分\t0\n駐車場・当給与期間分\t0\n駐車場・返納・追給分\t0\n診療報酬一部負担金・当給与期間分\t0\n診療報酬一部負担金・返納・追給分\t0\n貯金預入・当給与期間分\t0\n貯金預入・返納・追給分\t0\n保険貯金保険料・当給与期間分\t0\n保険貯金保険料・返納・追給分\t0\n貸付金返済・当給与期間分\t0\n貸付金返済・返納・追給分\t0\n財形住宅貸付金償還・当給与期間分\t0\n財形住宅貸付金償還・返納・追給分\t0\n財形貯蓄・当給与期間分\t0\n財形貯蓄・返納・追給分\t0\n控除額１・当給与期間分\t0\n控除額１・返納・追給分\t0\n控除額２・当給与期間分\t0\n控除額２・返納・追給分\t0\n控除額３・当給与期間分\t0\n控除額３・返納・追給分\t0\n控除額４・当給与期間分\t0\n控除額４・返納・追給分\t0\n個人型確定拠出年金掛金・当給与期間分\t0\n個人型確定拠出年金掛金・返納・追給分\t0\n控除額計・当給与期間分\t10,000\n控除額計・返納・追給分\t0\n現金支給額\t232,655\n振込額１\t243,000\n振込額２\t0\n手渡額\t0\n減額・時間・当給与期間分\t0.\n減額・時間・返納・追給分\t0.\n減額・額・当給与期間分\t0\n減額・額・返納・追給分\t0\n減給・当給与期間分\t0\n減給・返納・追給分\t0\n超過勤務(夜勤２５)・当給与期間分\t0\n超過勤務(夜勤２５)・返納・追給分\t0\n超過勤務(休日１３５)・当給与期間分\t0\n超過勤務(休日１３５)・返納・追給分\t0\n超過勤務(超勤１００)・当給与期間分\t0\n超過勤務(超勤１００)・返納・追給分\t0\n超過勤務(超勤１２５)・当給与期間分\t0\n超過勤務(超勤１２５)・返納・追給分\t0\n超過勤務(超勤１３５)・当給与期間分\t0\n超過勤務(超勤１３５)・返納・追給分\t0\n超過勤務(超勤１５０)・当給与期間分\t0\n超過勤務(超勤１５０)・返納・追給分\t0\n超過勤務(超勤１６０)・当給与期間分\t0\n超過勤務(超勤１６０)・返納・追給分\t0\n超過勤務(超勤１７５)・当給与期間分\t0\n超過勤務(超勤１７５)・返納・追給分\t0\n超過勤務手当等金額・当給与期間分\t0\n超過勤務手当等金額・返納・追給分\t0\n超過勤務(代休５０)・当給与期間分\t0\n超過勤務(代休５０)・返納・追給分\t0\n超過勤務(代休２５)・当給与期間分\t0\n超過勤務(代休２５)・返納・追給分\t0\n超過勤務(代休１５)・当給与期間分\t0\n超過勤務(代休１５)・返納・追給分\t0\n超過勤務(代休勤務５０)・当給与期間分\t0\n超過勤務(代休勤務５０)・返納・追給分\t0\n超過勤務(代休勤務２５)・当給与期間分\t0\n超過勤務(代休勤務２５)・返納・追給分\t0\n超過勤務(代休勤務１５)・当給与期間分\t0\n超過勤務(代休勤務１５)・返納・追給分\t0\n超過勤務手当等加減額・当給与期間分\t0\n超過勤務手当等加減額・返納・追給分\t0\n短期・等級\t0\n短期・月額\t0\n厚生年金・等級\t0\n厚生年金・月額\t0\n退職等年金給付・等級\t0\n退職等年金給付・月額\t0\n被課税金額\t253,000\n備考\t長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。\n対象年月日\t令和08年06月01日\n業務区分\t月次給与\n併任区分\t本務\n支出科目\t\n判別区分\t一般"
+    },
+    "noteViaReport": true
+  },
+  "correctedD2Payroll163": [
+    {
+      "index": 0,
+      "field": "crb3c_period_year",
+      "kind": "text",
+      "header": "給与期間対象年",
+      "actual": "令和08年",
+      "expected": "令和08年",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 1,
+      "field": "crb3c_period_start",
+      "kind": "text",
+      "header": "給与期間開始月日",
+      "actual": "06月01日",
+      "expected": "06月01日",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 2,
+      "field": "crb3c_period_end",
+      "kind": "text",
+      "header": "給与期間終了月日",
+      "actual": "06月30日",
+      "expected": "06月30日",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 3,
+      "field": "crb3c_payment_date",
+      "kind": "text",
+      "header": "支給年月日",
+      "actual": "令和08年06月23日",
+      "expected": "令和08年06月23日",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 4,
+      "field": "crb3c_organization",
+      "kind": "text",
+      "header": "組織・所属",
+      "actual": "02総務課",
+      "expected": "02総務課",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 5,
+      "field": "crb3c_sequence",
+      "kind": "integer",
+      "header": "番号",
+      "actual": "3",
+      "expected": "3",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 6,
+      "field": "crb3c_staffnumber",
+      "kind": "text",
+      "header": "職員番号",
+      "actual": "009900000003",
+      "expected": "009900000003",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 7,
+      "field": "crb3c_fullname",
+      "kind": "text",
+      "header": "氏名",
+      "actual": "試験　在籍",
+      "expected": "試験　在籍",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 8,
+      "field": "crb3c_salary_table",
+      "kind": "text",
+      "header": "俸給表",
+      "actual": "",
+      "expected": "",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 9,
+      "field": "crb3c_grade",
+      "kind": "integer",
+      "header": "級",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 10,
+      "field": "crb3c_step",
+      "kind": "integer",
+      "header": "号俸",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 11,
+      "field": "crb3c_basepay_current",
+      "kind": "integer",
+      "header": "俸給支給額・当給与期間分",
+      "actual": "255,000",
+      "expected": "255,000",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 12,
+      "field": "crb3c_basepay_adjustment",
+      "kind": "integer",
+      "header": "俸給支給額・返納・追給分",
+      "actual": "-12,345",
+      "expected": "-12,345",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 13,
+      "field": "crb3c_special_adjustment_current",
+      "kind": "integer",
+      "header": "俸給の特別調整額・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 14,
+      "field": "crb3c_special_adjustment_adjustment",
+      "kind": "integer",
+      "header": "俸給の特別調整額・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 15,
+      "field": "crb3c_ministry_allowance_current",
+      "kind": "integer",
+      "header": "本府省業務調整手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 16,
+      "field": "crb3c_ministry_allowance_adjustment",
+      "kind": "integer",
+      "header": "本府省業務調整手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 17,
+      "field": "crb3c_initial_allowance_current",
+      "kind": "integer",
+      "header": "初任給調整手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 18,
+      "field": "crb3c_initial_allowance_adjustment",
+      "kind": "integer",
+      "header": "初任給調整手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 19,
+      "field": "crb3c_dependent_allowance_current",
+      "kind": "integer",
+      "header": "扶養手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 20,
+      "field": "crb3c_dependent_allowance_adjustment",
+      "kind": "integer",
+      "header": "扶養手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 21,
+      "field": "crb3c_regional_allowance_current",
+      "kind": "integer",
+      "header": "地域手当等・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 22,
+      "field": "crb3c_regional_allowance_adjustment",
+      "kind": "integer",
+      "header": "地域手当等・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 23,
+      "field": "crb3c_relocation_allowance_current",
+      "kind": "integer",
+      "header": "広域異動手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 24,
+      "field": "crb3c_relocation_allowance_adjustment",
+      "kind": "integer",
+      "header": "広域異動手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 25,
+      "field": "crb3c_housing_allowance_current",
+      "kind": "integer",
+      "header": "住居手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 26,
+      "field": "crb3c_housing_allowance_adjustment",
+      "kind": "integer",
+      "header": "住居手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 27,
+      "field": "crb3c_commuting_allowance_current",
+      "kind": "integer",
+      "header": "通勤手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 28,
+      "field": "crb3c_commuting_allowance_adjustment",
+      "kind": "integer",
+      "header": "通勤手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 29,
+      "field": "crb3c_separation_allowance_current",
+      "kind": "integer",
+      "header": "単身赴任手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 30,
+      "field": "crb3c_separation_allowance_adjustment",
+      "kind": "integer",
+      "header": "単身赴任手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 31,
+      "field": "crb3c_telework_allowance_current",
+      "kind": "integer",
+      "header": "在宅勤務等手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 32,
+      "field": "crb3c_telework_allowance_adjustment",
+      "kind": "integer",
+      "header": "在宅勤務等手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 33,
+      "field": "crb3c_special_duty_current",
+      "kind": "integer",
+      "header": "特殊勤務手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 34,
+      "field": "crb3c_special_duty_adjustment",
+      "kind": "integer",
+      "header": "特殊勤務手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 35,
+      "field": "crb3c_remote_allowance_current",
+      "kind": "integer",
+      "header": "特地勤務手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 36,
+      "field": "crb3c_remote_allowance_adjustment",
+      "kind": "integer",
+      "header": "特地勤務手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 37,
+      "field": "crb3c_remote_equivalent_current",
+      "kind": "integer",
+      "header": "特地勤務手当に準ずる手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 38,
+      "field": "crb3c_remote_equivalent_adjustment",
+      "kind": "integer",
+      "header": "特地勤務手当に準ずる手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 39,
+      "field": "crb3c_overtime_allowance_current",
+      "kind": "integer",
+      "header": "超過勤務手当等・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 40,
+      "field": "crb3c_overtime_allowance_adjustment",
+      "kind": "integer",
+      "header": "超過勤務手当等・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 41,
+      "field": "crb3c_night_duty_current",
+      "kind": "integer",
+      "header": "宿日直手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 42,
+      "field": "crb3c_night_duty_adjustment",
+      "kind": "integer",
+      "header": "宿日直手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 43,
+      "field": "crb3c_manager_duty_current",
+      "kind": "integer",
+      "header": "管理職員特別勤務手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 44,
+      "field": "crb3c_manager_duty_adjustment",
+      "kind": "integer",
+      "header": "管理職員特別勤務手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 45,
+      "field": "crb3c_term_bonus_current",
+      "kind": "integer",
+      "header": "期末手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 46,
+      "field": "crb3c_term_bonus_adjustment",
+      "kind": "integer",
+      "header": "期末手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 47,
+      "field": "crb3c_performance_bonus_current",
+      "kind": "integer",
+      "header": "勤勉手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 48,
+      "field": "crb3c_performance_bonus_adjustment",
+      "kind": "integer",
+      "header": "勤勉手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 49,
+      "field": "crb3c_cold_allowance_current",
+      "kind": "integer",
+      "header": "寒冷地手当・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 50,
+      "field": "crb3c_cold_allowance_adjustment",
+      "kind": "integer",
+      "header": "寒冷地手当・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 51,
+      "field": "crb3c_other_pay_current",
+      "kind": "integer",
+      "header": "その他・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 52,
+      "field": "crb3c_other_pay_adjustment",
+      "kind": "integer",
+      "header": "その他・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 53,
+      "field": "crb3c_gross",
+      "kind": "integer",
+      "header": "給与支給総額",
+      "actual": "242,655",
+      "expected": "242,655",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 54,
+      "field": "crb3c_taxable_total",
+      "kind": "integer",
+      "header": "課税額計",
+      "actual": "242,655",
+      "expected": "242,655",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 55,
+      "field": "crb3c_nontaxable_total",
+      "kind": "integer",
+      "header": "非課税額計",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 56,
+      "field": "crb3c_mutual_short_current",
+      "kind": "integer",
+      "header": "共済短期掛金・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 57,
+      "field": "crb3c_mutual_short_adjustment",
+      "kind": "integer",
+      "header": "共済短期掛金・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 58,
+      "field": "crb3c_mutual_care_current",
+      "kind": "integer",
+      "header": "介護掛金・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 59,
+      "field": "crb3c_mutual_care_adjustment",
+      "kind": "integer",
+      "header": "介護掛金・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 60,
+      "field": "crb3c_mutual_childcare_current",
+      "kind": "integer",
+      "header": "子ども・子育て支援掛金・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 61,
+      "field": "crb3c_mutual_childcare_adjustment",
+      "kind": "integer",
+      "header": "子ども・子育て支援掛金・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 62,
+      "field": "crb3c_retirement_contribution_current",
+      "kind": "integer",
+      "header": "退職等年金掛金・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 63,
+      "field": "crb3c_retirement_contribution_adjustment",
+      "kind": "integer",
+      "header": "退職等年金掛金・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 64,
+      "field": "crb3c_pension_insurance_current",
+      "kind": "integer",
+      "header": "厚生年金保険料・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 65,
+      "field": "crb3c_pension_insurance_adjustment",
+      "kind": "integer",
+      "header": "厚生年金保険料・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 66,
+      "field": "crb3c_health_insurance_current",
+      "kind": "integer",
+      "header": "健康保険料・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 67,
+      "field": "crb3c_health_insurance_adjustment",
+      "kind": "integer",
+      "header": "健康保険料・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 68,
+      "field": "crb3c_care_insurance_current",
+      "kind": "integer",
+      "header": "介護保険料・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 69,
+      "field": "crb3c_care_insurance_adjustment",
+      "kind": "integer",
+      "header": "介護保険料・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 70,
+      "field": "crb3c_childcare_insurance_current",
+      "kind": "integer",
+      "header": "子ども・子育て支援金・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 71,
+      "field": "crb3c_childcare_insurance_adjustment",
+      "kind": "integer",
+      "header": "子ども・子育て支援金・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 72,
+      "field": "crb3c_employment_insurance_current",
+      "kind": "integer",
+      "header": "雇用保険料・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 73,
+      "field": "crb3c_employment_insurance_adjustment",
+      "kind": "integer",
+      "header": "雇用保険料・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 74,
+      "field": "crb3c_social_total_current",
+      "kind": "integer",
+      "header": "社会保険料計・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 75,
+      "field": "crb3c_social_total_adjustment",
+      "kind": "integer",
+      "header": "社会保険料計・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 76,
+      "field": "crb3c_income_tax_current",
+      "kind": "integer",
+      "header": "所得税・当給与期間分",
+      "actual": "10,000",
+      "expected": "10,000",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 77,
+      "field": "crb3c_income_tax_adjustment",
+      "kind": "integer",
+      "header": "所得税・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 78,
+      "field": "crb3c_resident_tax_current",
+      "kind": "integer",
+      "header": "住民税・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 79,
+      "field": "crb3c_resident_tax_adjustment",
+      "kind": "integer",
+      "header": "住民税・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 80,
+      "field": "crb3c_dormitory_current",
+      "kind": "integer",
+      "header": "宿舎・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 81,
+      "field": "crb3c_dormitory_adjustment",
+      "kind": "integer",
+      "header": "宿舎・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 82,
+      "field": "crb3c_parking_current",
+      "kind": "integer",
+      "header": "駐車場・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 83,
+      "field": "crb3c_parking_adjustment",
+      "kind": "integer",
+      "header": "駐車場・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 84,
+      "field": "crb3c_medical_copayment_current",
+      "kind": "integer",
+      "header": "診療報酬一部負担金・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 85,
+      "field": "crb3c_medical_copayment_adjustment",
+      "kind": "integer",
+      "header": "診療報酬一部負担金・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 86,
+      "field": "crb3c_savings_current",
+      "kind": "integer",
+      "header": "貯金預入・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 87,
+      "field": "crb3c_savings_adjustment",
+      "kind": "integer",
+      "header": "貯金預入・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 88,
+      "field": "crb3c_insurance_savings_current",
+      "kind": "integer",
+      "header": "保険貯金保険料・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 89,
+      "field": "crb3c_insurance_savings_adjustment",
+      "kind": "integer",
+      "header": "保険貯金保険料・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 90,
+      "field": "crb3c_loan_repayment_current",
+      "kind": "integer",
+      "header": "貸付金返済・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 91,
+      "field": "crb3c_loan_repayment_adjustment",
+      "kind": "integer",
+      "header": "貸付金返済・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 92,
+      "field": "crb3c_housing_loan_current",
+      "kind": "integer",
+      "header": "財形住宅貸付金償還・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 93,
+      "field": "crb3c_housing_loan_adjustment",
+      "kind": "integer",
+      "header": "財形住宅貸付金償還・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 94,
+      "field": "crb3c_asset_savings_current",
+      "kind": "integer",
+      "header": "財形貯蓄・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 95,
+      "field": "crb3c_asset_savings_adjustment",
+      "kind": "integer",
+      "header": "財形貯蓄・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 96,
+      "field": "crb3c_deduction1_current",
+      "kind": "integer",
+      "header": "控除額１・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 97,
+      "field": "crb3c_deduction1_adjustment",
+      "kind": "integer",
+      "header": "控除額１・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 98,
+      "field": "crb3c_deduction2_current",
+      "kind": "integer",
+      "header": "控除額２・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 99,
+      "field": "crb3c_deduction2_adjustment",
+      "kind": "integer",
+      "header": "控除額２・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 100,
+      "field": "crb3c_deduction3_current",
+      "kind": "integer",
+      "header": "控除額３・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 101,
+      "field": "crb3c_deduction3_adjustment",
+      "kind": "integer",
+      "header": "控除額３・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 102,
+      "field": "crb3c_deduction4_current",
+      "kind": "integer",
+      "header": "控除額４・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 103,
+      "field": "crb3c_deduction4_adjustment",
+      "kind": "integer",
+      "header": "控除額４・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 104,
+      "field": "crb3c_ideco_current",
+      "kind": "integer",
+      "header": "個人型確定拠出年金掛金・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 105,
+      "field": "crb3c_ideco_adjustment",
+      "kind": "integer",
+      "header": "個人型確定拠出年金掛金・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 106,
+      "field": "crb3c_deduction_total_current",
+      "kind": "integer",
+      "header": "控除額計・当給与期間分",
+      "actual": "10,000",
+      "expected": "10,000",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 107,
+      "field": "crb3c_deduction_total_adjustment",
+      "kind": "integer",
+      "header": "控除額計・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 108,
+      "field": "crb3c_net",
+      "kind": "integer",
+      "header": "現金支給額",
+      "actual": "232,655",
+      "expected": "232,655",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 109,
+      "field": "crb3c_transfer1",
+      "kind": "integer",
+      "header": "振込額１",
+      "actual": "232,655",
+      "expected": "232,655",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 110,
+      "field": "crb3c_transfer2",
+      "kind": "integer",
+      "header": "振込額２",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 111,
+      "field": "crb3c_cash",
+      "kind": "integer",
+      "header": "手渡額",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 112,
+      "field": "crb3c_reduction_hours_current",
+      "kind": "decimal",
+      "header": "減額・時間・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 113,
+      "field": "crb3c_reduction_hours_adjustment",
+      "kind": "decimal",
+      "header": "減額・時間・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 114,
+      "field": "crb3c_reduction_amount_current",
+      "kind": "integer",
+      "header": "減額・額・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 115,
+      "field": "crb3c_reduction_amount_adjustment",
+      "kind": "integer",
+      "header": "減額・額・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 116,
+      "field": "crb3c_pay_cut_current",
+      "kind": "integer",
+      "header": "減給・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 117,
+      "field": "crb3c_pay_cut_adjustment",
+      "kind": "integer",
+      "header": "減給・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 118,
+      "field": "crb3c_overtime_night25_current",
+      "kind": "integer",
+      "header": "超過勤務(夜勤２５)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 119,
+      "field": "crb3c_overtime_night25_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(夜勤２５)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 120,
+      "field": "crb3c_overtime_holiday135_current",
+      "kind": "integer",
+      "header": "超過勤務(休日１３５)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 121,
+      "field": "crb3c_overtime_holiday135_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(休日１３５)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 122,
+      "field": "crb3c_overtime100_current",
+      "kind": "integer",
+      "header": "超過勤務(超勤１００)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 123,
+      "field": "crb3c_overtime100_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(超勤１００)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 124,
+      "field": "crb3c_overtime125_current",
+      "kind": "integer",
+      "header": "超過勤務(超勤１２５)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 125,
+      "field": "crb3c_overtime125_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(超勤１２５)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 126,
+      "field": "crb3c_overtime135_current",
+      "kind": "integer",
+      "header": "超過勤務(超勤１３５)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 127,
+      "field": "crb3c_overtime135_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(超勤１３５)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 128,
+      "field": "crb3c_overtime150_current",
+      "kind": "integer",
+      "header": "超過勤務(超勤１５０)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 129,
+      "field": "crb3c_overtime150_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(超勤１５０)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 130,
+      "field": "crb3c_overtime160_current",
+      "kind": "integer",
+      "header": "超過勤務(超勤１６０)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 131,
+      "field": "crb3c_overtime160_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(超勤１６０)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 132,
+      "field": "crb3c_overtime175_current",
+      "kind": "integer",
+      "header": "超過勤務(超勤１７５)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 133,
+      "field": "crb3c_overtime175_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(超勤１７５)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 134,
+      "field": "crb3c_overtime_detail_total_current",
+      "kind": "integer",
+      "header": "超過勤務手当等金額・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 135,
+      "field": "crb3c_overtime_detail_total_adjustment",
+      "kind": "integer",
+      "header": "超過勤務手当等金額・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 136,
+      "field": "crb3c_comp_leave50_current",
+      "kind": "integer",
+      "header": "超過勤務(代休５０)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 137,
+      "field": "crb3c_comp_leave50_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(代休５０)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 138,
+      "field": "crb3c_comp_leave25_current",
+      "kind": "integer",
+      "header": "超過勤務(代休２５)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 139,
+      "field": "crb3c_comp_leave25_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(代休２５)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 140,
+      "field": "crb3c_comp_leave15_current",
+      "kind": "integer",
+      "header": "超過勤務(代休１５)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 141,
+      "field": "crb3c_comp_leave15_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(代休１５)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 142,
+      "field": "crb3c_comp_work50_current",
+      "kind": "integer",
+      "header": "超過勤務(代休勤務５０)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 143,
+      "field": "crb3c_comp_work50_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(代休勤務５０)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 144,
+      "field": "crb3c_comp_work25_current",
+      "kind": "integer",
+      "header": "超過勤務(代休勤務２５)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 145,
+      "field": "crb3c_comp_work25_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(代休勤務２５)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 146,
+      "field": "crb3c_comp_work15_current",
+      "kind": "integer",
+      "header": "超過勤務(代休勤務１５)・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 147,
+      "field": "crb3c_comp_work15_adjustment",
+      "kind": "integer",
+      "header": "超過勤務(代休勤務１５)・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 148,
+      "field": "crb3c_overtime_change_current",
+      "kind": "integer",
+      "header": "超過勤務手当等加減額・当給与期間分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 149,
+      "field": "crb3c_overtime_change_adjustment",
+      "kind": "integer",
+      "header": "超過勤務手当等加減額・返納・追給分",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 150,
+      "field": "crb3c_short_grade",
+      "kind": "integer",
+      "header": "短期・等級",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 151,
+      "field": "crb3c_short_monthly",
+      "kind": "integer",
+      "header": "短期・月額",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 152,
+      "field": "crb3c_pension_grade",
+      "kind": "integer",
+      "header": "厚生年金・等級",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 153,
+      "field": "crb3c_pension_monthly",
+      "kind": "integer",
+      "header": "厚生年金・月額",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 154,
+      "field": "crb3c_retirement_grade",
+      "kind": "integer",
+      "header": "退職等年金給付・等級",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 155,
+      "field": "crb3c_retirement_monthly",
+      "kind": "integer",
+      "header": "退職等年金給付・月額",
+      "actual": "0",
+      "expected": "0",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 156,
+      "field": "crb3c_taxable_income",
+      "kind": "integer",
+      "header": "被課税金額",
+      "actual": "242,655",
+      "expected": "242,655",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 157,
+      "field": "crb3c_remarks",
+      "kind": "text",
+      "header": "備考",
+      "actual": "長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。",
+      "expected": "長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。長文確認用。",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 158,
+      "field": "crb3c_target_date",
+      "kind": "text",
+      "header": "対象年月日",
+      "actual": "令和08年06月01日",
+      "expected": "令和08年06月01日",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 159,
+      "field": "crb3c_business_type",
+      "kind": "text",
+      "header": "業務区分",
+      "actual": "月次給与",
+      "expected": "月次給与",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 160,
+      "field": "crb3c_assignment_type",
+      "kind": "text",
+      "header": "併任区分",
+      "actual": "本務",
+      "expected": "本務",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 161,
+      "field": "crb3c_expenditure",
+      "kind": "text",
+      "header": "支出科目",
+      "actual": "",
+      "expected": "",
+      "match": true,
+      "aligned": true
+    },
+    {
+      "index": 162,
+      "field": "crb3c_classification",
+      "kind": "text",
+      "header": "判別区分",
+      "actual": "一般",
+      "expected": "一般",
+      "match": true,
+      "aligned": true
+    }
+  ],
+  "staticSource": {
+    "baselineSha256": "6e9aff140d298811ef0217572cc9c4975ef8d2bd76bb5e6f63c2e19e2680a6ed",
+    "d2Sha256": "9a449e8573c397625c12d99dbb071b2de0b9f4feb0f9c4a3c68e8f9a98a991bb",
+    "rollbackScreenMatch": true,
+    "rollbackFormulaMatch": true,
+    "payrollSourceChecks": [
+      {
+        "index": 0,
+        "name": "crb3c_period_year",
+        "label": "給与期間対象年",
+        "kind": "text",
+        "headerText": "\"給与期間対象年\"",
+        "valueFormula": "ThisItem.crb3c_period_year",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 1,
+        "name": "crb3c_period_start",
+        "label": "給与期間開始月日",
+        "kind": "text",
+        "headerText": "\"給与期間開始月日\"",
+        "valueFormula": "ThisItem.crb3c_period_start",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 2,
+        "name": "crb3c_period_end",
+        "label": "給与期間終了月日",
+        "kind": "text",
+        "headerText": "\"給与期間終了月日\"",
+        "valueFormula": "ThisItem.crb3c_period_end",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 3,
+        "name": "crb3c_payment_date",
+        "label": "支給年月日",
+        "kind": "text",
+        "headerText": "\"支給年月日\"",
+        "valueFormula": "ThisItem.crb3c_payment_date",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 4,
+        "name": "crb3c_organization",
+        "label": "組織・所属",
+        "kind": "text",
+        "headerText": "\"組織・所属\"",
+        "valueFormula": "ThisItem.crb3c_organization",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 5,
+        "name": "crb3c_sequence",
+        "label": "番号",
+        "kind": "integer",
+        "headerText": "\"番号\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_sequence),Blank(),Text(ThisItem.crb3c_sequence,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 6,
+        "name": "crb3c_staffnumber",
+        "label": "職員番号",
+        "kind": "text",
+        "headerText": "\"職員番号\"",
+        "valueFormula": "ThisItem.crb3c_staffnumber",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 7,
+        "name": "crb3c_fullname",
+        "label": "氏名",
+        "kind": "text",
+        "headerText": "\"氏名\"",
+        "valueFormula": "ThisItem.crb3c_fullname",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 8,
+        "name": "crb3c_salary_table",
+        "label": "俸給表",
+        "kind": "text",
+        "headerText": "\"俸給表\"",
+        "valueFormula": "ThisItem.crb3c_salary_table",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 9,
+        "name": "crb3c_grade",
+        "label": "級",
+        "kind": "integer",
+        "headerText": "\"級\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_grade),Blank(),Text(ThisItem.crb3c_grade,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 10,
+        "name": "crb3c_step",
+        "label": "号俸",
+        "kind": "integer",
+        "headerText": "\"号俸\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_step),Blank(),Text(ThisItem.crb3c_step,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 11,
+        "name": "crb3c_basepay_current",
+        "label": "俸給支給額・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"俸給支給額・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_basepay_current),Blank(),Text(ThisItem.crb3c_basepay_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 12,
+        "name": "crb3c_basepay_adjustment",
+        "label": "俸給支給額・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"俸給支給額・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_basepay_adjustment),Blank(),Text(ThisItem.crb3c_basepay_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 13,
+        "name": "crb3c_special_adjustment_current",
+        "label": "俸給の特別調整額・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"俸給の特別調整額・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_special_adjustment_current),Blank(),Text(ThisItem.crb3c_special_adjustment_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 14,
+        "name": "crb3c_special_adjustment_adjustment",
+        "label": "俸給の特別調整額・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"俸給の特別調整額・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_special_adjustment_adjustment),Blank(),Text(ThisItem.crb3c_special_adjustment_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 15,
+        "name": "crb3c_ministry_allowance_current",
+        "label": "本府省業務調整手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"本府省業務調整手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_ministry_allowance_current),Blank(),Text(ThisItem.crb3c_ministry_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 16,
+        "name": "crb3c_ministry_allowance_adjustment",
+        "label": "本府省業務調整手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"本府省業務調整手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_ministry_allowance_adjustment),Blank(),Text(ThisItem.crb3c_ministry_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 17,
+        "name": "crb3c_initial_allowance_current",
+        "label": "初任給調整手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"初任給調整手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_initial_allowance_current),Blank(),Text(ThisItem.crb3c_initial_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 18,
+        "name": "crb3c_initial_allowance_adjustment",
+        "label": "初任給調整手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"初任給調整手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_initial_allowance_adjustment),Blank(),Text(ThisItem.crb3c_initial_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 19,
+        "name": "crb3c_dependent_allowance_current",
+        "label": "扶養手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"扶養手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_dependent_allowance_current),Blank(),Text(ThisItem.crb3c_dependent_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 20,
+        "name": "crb3c_dependent_allowance_adjustment",
+        "label": "扶養手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"扶養手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_dependent_allowance_adjustment),Blank(),Text(ThisItem.crb3c_dependent_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 21,
+        "name": "crb3c_regional_allowance_current",
+        "label": "地域手当等・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"地域手当等・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_regional_allowance_current),Blank(),Text(ThisItem.crb3c_regional_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 22,
+        "name": "crb3c_regional_allowance_adjustment",
+        "label": "地域手当等・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"地域手当等・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_regional_allowance_adjustment),Blank(),Text(ThisItem.crb3c_regional_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 23,
+        "name": "crb3c_relocation_allowance_current",
+        "label": "広域異動手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"広域異動手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_relocation_allowance_current),Blank(),Text(ThisItem.crb3c_relocation_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 24,
+        "name": "crb3c_relocation_allowance_adjustment",
+        "label": "広域異動手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"広域異動手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_relocation_allowance_adjustment),Blank(),Text(ThisItem.crb3c_relocation_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 25,
+        "name": "crb3c_housing_allowance_current",
+        "label": "住居手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"住居手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_housing_allowance_current),Blank(),Text(ThisItem.crb3c_housing_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 26,
+        "name": "crb3c_housing_allowance_adjustment",
+        "label": "住居手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"住居手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_housing_allowance_adjustment),Blank(),Text(ThisItem.crb3c_housing_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 27,
+        "name": "crb3c_commuting_allowance_current",
+        "label": "通勤手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"通勤手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_commuting_allowance_current),Blank(),Text(ThisItem.crb3c_commuting_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 28,
+        "name": "crb3c_commuting_allowance_adjustment",
+        "label": "通勤手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"通勤手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_commuting_allowance_adjustment),Blank(),Text(ThisItem.crb3c_commuting_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 29,
+        "name": "crb3c_separation_allowance_current",
+        "label": "単身赴任手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"単身赴任手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_separation_allowance_current),Blank(),Text(ThisItem.crb3c_separation_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 30,
+        "name": "crb3c_separation_allowance_adjustment",
+        "label": "単身赴任手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"単身赴任手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_separation_allowance_adjustment),Blank(),Text(ThisItem.crb3c_separation_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 31,
+        "name": "crb3c_telework_allowance_current",
+        "label": "在宅勤務等手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"在宅勤務等手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_telework_allowance_current),Blank(),Text(ThisItem.crb3c_telework_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 32,
+        "name": "crb3c_telework_allowance_adjustment",
+        "label": "在宅勤務等手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"在宅勤務等手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_telework_allowance_adjustment),Blank(),Text(ThisItem.crb3c_telework_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 33,
+        "name": "crb3c_special_duty_current",
+        "label": "特殊勤務手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"特殊勤務手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_special_duty_current),Blank(),Text(ThisItem.crb3c_special_duty_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 34,
+        "name": "crb3c_special_duty_adjustment",
+        "label": "特殊勤務手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"特殊勤務手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_special_duty_adjustment),Blank(),Text(ThisItem.crb3c_special_duty_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 35,
+        "name": "crb3c_remote_allowance_current",
+        "label": "特地勤務手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"特地勤務手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_remote_allowance_current),Blank(),Text(ThisItem.crb3c_remote_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 36,
+        "name": "crb3c_remote_allowance_adjustment",
+        "label": "特地勤務手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"特地勤務手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_remote_allowance_adjustment),Blank(),Text(ThisItem.crb3c_remote_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 37,
+        "name": "crb3c_remote_equivalent_current",
+        "label": "特地勤務手当に準ずる手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"特地勤務手当に準ずる手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_remote_equivalent_current),Blank(),Text(ThisItem.crb3c_remote_equivalent_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 38,
+        "name": "crb3c_remote_equivalent_adjustment",
+        "label": "特地勤務手当に準ずる手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"特地勤務手当に準ずる手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_remote_equivalent_adjustment),Blank(),Text(ThisItem.crb3c_remote_equivalent_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 39,
+        "name": "crb3c_overtime_allowance_current",
+        "label": "超過勤務手当等・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務手当等・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime_allowance_current),Blank(),Text(ThisItem.crb3c_overtime_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 40,
+        "name": "crb3c_overtime_allowance_adjustment",
+        "label": "超過勤務手当等・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務手当等・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime_allowance_adjustment),Blank(),Text(ThisItem.crb3c_overtime_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 41,
+        "name": "crb3c_night_duty_current",
+        "label": "宿日直手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"宿日直手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_night_duty_current),Blank(),Text(ThisItem.crb3c_night_duty_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 42,
+        "name": "crb3c_night_duty_adjustment",
+        "label": "宿日直手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"宿日直手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_night_duty_adjustment),Blank(),Text(ThisItem.crb3c_night_duty_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 43,
+        "name": "crb3c_manager_duty_current",
+        "label": "管理職員特別勤務手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"管理職員特別勤務手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_manager_duty_current),Blank(),Text(ThisItem.crb3c_manager_duty_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 44,
+        "name": "crb3c_manager_duty_adjustment",
+        "label": "管理職員特別勤務手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"管理職員特別勤務手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_manager_duty_adjustment),Blank(),Text(ThisItem.crb3c_manager_duty_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 45,
+        "name": "crb3c_term_bonus_current",
+        "label": "期末手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"期末手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_term_bonus_current),Blank(),Text(ThisItem.crb3c_term_bonus_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 46,
+        "name": "crb3c_term_bonus_adjustment",
+        "label": "期末手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"期末手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_term_bonus_adjustment),Blank(),Text(ThisItem.crb3c_term_bonus_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 47,
+        "name": "crb3c_performance_bonus_current",
+        "label": "勤勉手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"勤勉手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_performance_bonus_current),Blank(),Text(ThisItem.crb3c_performance_bonus_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 48,
+        "name": "crb3c_performance_bonus_adjustment",
+        "label": "勤勉手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"勤勉手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_performance_bonus_adjustment),Blank(),Text(ThisItem.crb3c_performance_bonus_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 49,
+        "name": "crb3c_cold_allowance_current",
+        "label": "寒冷地手当・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"寒冷地手当・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_cold_allowance_current),Blank(),Text(ThisItem.crb3c_cold_allowance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 50,
+        "name": "crb3c_cold_allowance_adjustment",
+        "label": "寒冷地手当・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"寒冷地手当・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_cold_allowance_adjustment),Blank(),Text(ThisItem.crb3c_cold_allowance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 51,
+        "name": "crb3c_other_pay_current",
+        "label": "その他・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"その他・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_other_pay_current),Blank(),Text(ThisItem.crb3c_other_pay_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 52,
+        "name": "crb3c_other_pay_adjustment",
+        "label": "その他・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"その他・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_other_pay_adjustment),Blank(),Text(ThisItem.crb3c_other_pay_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 53,
+        "name": "crb3c_gross",
+        "label": "給与支給総額",
+        "kind": "integer",
+        "headerText": "\"給与支給総額\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_gross),Blank(),Text(ThisItem.crb3c_gross,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 54,
+        "name": "crb3c_taxable_total",
+        "label": "課税額計",
+        "kind": "integer",
+        "headerText": "\"課税額計\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_taxable_total),Blank(),Text(ThisItem.crb3c_taxable_total,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 55,
+        "name": "crb3c_nontaxable_total",
+        "label": "非課税額計",
+        "kind": "integer",
+        "headerText": "\"非課税額計\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_nontaxable_total),Blank(),Text(ThisItem.crb3c_nontaxable_total,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 56,
+        "name": "crb3c_mutual_short_current",
+        "label": "共済短期掛金・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"共済短期掛金・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_mutual_short_current),Blank(),Text(ThisItem.crb3c_mutual_short_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 57,
+        "name": "crb3c_mutual_short_adjustment",
+        "label": "共済短期掛金・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"共済短期掛金・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_mutual_short_adjustment),Blank(),Text(ThisItem.crb3c_mutual_short_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 58,
+        "name": "crb3c_mutual_care_current",
+        "label": "介護掛金・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"介護掛金・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_mutual_care_current),Blank(),Text(ThisItem.crb3c_mutual_care_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 59,
+        "name": "crb3c_mutual_care_adjustment",
+        "label": "介護掛金・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"介護掛金・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_mutual_care_adjustment),Blank(),Text(ThisItem.crb3c_mutual_care_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 60,
+        "name": "crb3c_mutual_childcare_current",
+        "label": "子ども・子育て支援掛金・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"子ども・子育て支援掛金・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_mutual_childcare_current),Blank(),Text(ThisItem.crb3c_mutual_childcare_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 61,
+        "name": "crb3c_mutual_childcare_adjustment",
+        "label": "子ども・子育て支援掛金・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"子ども・子育て支援掛金・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_mutual_childcare_adjustment),Blank(),Text(ThisItem.crb3c_mutual_childcare_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 62,
+        "name": "crb3c_retirement_contribution_current",
+        "label": "退職等年金掛金・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"退職等年金掛金・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_retirement_contribution_current),Blank(),Text(ThisItem.crb3c_retirement_contribution_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 63,
+        "name": "crb3c_retirement_contribution_adjustment",
+        "label": "退職等年金掛金・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"退職等年金掛金・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_retirement_contribution_adjustment),Blank(),Text(ThisItem.crb3c_retirement_contribution_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 64,
+        "name": "crb3c_pension_insurance_current",
+        "label": "厚生年金保険料・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"厚生年金保険料・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_pension_insurance_current),Blank(),Text(ThisItem.crb3c_pension_insurance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 65,
+        "name": "crb3c_pension_insurance_adjustment",
+        "label": "厚生年金保険料・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"厚生年金保険料・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_pension_insurance_adjustment),Blank(),Text(ThisItem.crb3c_pension_insurance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 66,
+        "name": "crb3c_health_insurance_current",
+        "label": "健康保険料・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"健康保険料・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_health_insurance_current),Blank(),Text(ThisItem.crb3c_health_insurance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 67,
+        "name": "crb3c_health_insurance_adjustment",
+        "label": "健康保険料・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"健康保険料・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_health_insurance_adjustment),Blank(),Text(ThisItem.crb3c_health_insurance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 68,
+        "name": "crb3c_care_insurance_current",
+        "label": "介護保険料・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"介護保険料・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_care_insurance_current),Blank(),Text(ThisItem.crb3c_care_insurance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 69,
+        "name": "crb3c_care_insurance_adjustment",
+        "label": "介護保険料・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"介護保険料・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_care_insurance_adjustment),Blank(),Text(ThisItem.crb3c_care_insurance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 70,
+        "name": "crb3c_childcare_insurance_current",
+        "label": "子ども・子育て支援金・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"子ども・子育て支援金・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_childcare_insurance_current),Blank(),Text(ThisItem.crb3c_childcare_insurance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 71,
+        "name": "crb3c_childcare_insurance_adjustment",
+        "label": "子ども・子育て支援金・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"子ども・子育て支援金・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_childcare_insurance_adjustment),Blank(),Text(ThisItem.crb3c_childcare_insurance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 72,
+        "name": "crb3c_employment_insurance_current",
+        "label": "雇用保険料・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"雇用保険料・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_employment_insurance_current),Blank(),Text(ThisItem.crb3c_employment_insurance_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 73,
+        "name": "crb3c_employment_insurance_adjustment",
+        "label": "雇用保険料・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"雇用保険料・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_employment_insurance_adjustment),Blank(),Text(ThisItem.crb3c_employment_insurance_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 74,
+        "name": "crb3c_social_total_current",
+        "label": "社会保険料計・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"社会保険料計・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_social_total_current),Blank(),Text(ThisItem.crb3c_social_total_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 75,
+        "name": "crb3c_social_total_adjustment",
+        "label": "社会保険料計・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"社会保険料計・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_social_total_adjustment),Blank(),Text(ThisItem.crb3c_social_total_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 76,
+        "name": "crb3c_income_tax_current",
+        "label": "所得税・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"所得税・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_income_tax_current),Blank(),Text(ThisItem.crb3c_income_tax_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 77,
+        "name": "crb3c_income_tax_adjustment",
+        "label": "所得税・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"所得税・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_income_tax_adjustment),Blank(),Text(ThisItem.crb3c_income_tax_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 78,
+        "name": "crb3c_resident_tax_current",
+        "label": "住民税・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"住民税・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_resident_tax_current),Blank(),Text(ThisItem.crb3c_resident_tax_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 79,
+        "name": "crb3c_resident_tax_adjustment",
+        "label": "住民税・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"住民税・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_resident_tax_adjustment),Blank(),Text(ThisItem.crb3c_resident_tax_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 80,
+        "name": "crb3c_dormitory_current",
+        "label": "宿舎・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"宿舎・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_dormitory_current),Blank(),Text(ThisItem.crb3c_dormitory_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 81,
+        "name": "crb3c_dormitory_adjustment",
+        "label": "宿舎・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"宿舎・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_dormitory_adjustment),Blank(),Text(ThisItem.crb3c_dormitory_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 82,
+        "name": "crb3c_parking_current",
+        "label": "駐車場・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"駐車場・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_parking_current),Blank(),Text(ThisItem.crb3c_parking_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 83,
+        "name": "crb3c_parking_adjustment",
+        "label": "駐車場・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"駐車場・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_parking_adjustment),Blank(),Text(ThisItem.crb3c_parking_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 84,
+        "name": "crb3c_medical_copayment_current",
+        "label": "診療報酬一部負担金・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"診療報酬一部負担金・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_medical_copayment_current),Blank(),Text(ThisItem.crb3c_medical_copayment_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 85,
+        "name": "crb3c_medical_copayment_adjustment",
+        "label": "診療報酬一部負担金・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"診療報酬一部負担金・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_medical_copayment_adjustment),Blank(),Text(ThisItem.crb3c_medical_copayment_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 86,
+        "name": "crb3c_savings_current",
+        "label": "貯金預入・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"貯金預入・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_savings_current),Blank(),Text(ThisItem.crb3c_savings_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 87,
+        "name": "crb3c_savings_adjustment",
+        "label": "貯金預入・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"貯金預入・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_savings_adjustment),Blank(),Text(ThisItem.crb3c_savings_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 88,
+        "name": "crb3c_insurance_savings_current",
+        "label": "保険貯金保険料・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"保険貯金保険料・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_insurance_savings_current),Blank(),Text(ThisItem.crb3c_insurance_savings_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 89,
+        "name": "crb3c_insurance_savings_adjustment",
+        "label": "保険貯金保険料・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"保険貯金保険料・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_insurance_savings_adjustment),Blank(),Text(ThisItem.crb3c_insurance_savings_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 90,
+        "name": "crb3c_loan_repayment_current",
+        "label": "貸付金返済・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"貸付金返済・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_loan_repayment_current),Blank(),Text(ThisItem.crb3c_loan_repayment_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 91,
+        "name": "crb3c_loan_repayment_adjustment",
+        "label": "貸付金返済・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"貸付金返済・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_loan_repayment_adjustment),Blank(),Text(ThisItem.crb3c_loan_repayment_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 92,
+        "name": "crb3c_housing_loan_current",
+        "label": "財形住宅貸付金償還・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"財形住宅貸付金償還・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_housing_loan_current),Blank(),Text(ThisItem.crb3c_housing_loan_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 93,
+        "name": "crb3c_housing_loan_adjustment",
+        "label": "財形住宅貸付金償還・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"財形住宅貸付金償還・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_housing_loan_adjustment),Blank(),Text(ThisItem.crb3c_housing_loan_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 94,
+        "name": "crb3c_asset_savings_current",
+        "label": "財形貯蓄・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"財形貯蓄・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_asset_savings_current),Blank(),Text(ThisItem.crb3c_asset_savings_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 95,
+        "name": "crb3c_asset_savings_adjustment",
+        "label": "財形貯蓄・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"財形貯蓄・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_asset_savings_adjustment),Blank(),Text(ThisItem.crb3c_asset_savings_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 96,
+        "name": "crb3c_deduction1_current",
+        "label": "控除額１・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"控除額１・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_deduction1_current),Blank(),Text(ThisItem.crb3c_deduction1_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 97,
+        "name": "crb3c_deduction1_adjustment",
+        "label": "控除額１・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"控除額１・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_deduction1_adjustment),Blank(),Text(ThisItem.crb3c_deduction1_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 98,
+        "name": "crb3c_deduction2_current",
+        "label": "控除額２・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"控除額２・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_deduction2_current),Blank(),Text(ThisItem.crb3c_deduction2_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 99,
+        "name": "crb3c_deduction2_adjustment",
+        "label": "控除額２・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"控除額２・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_deduction2_adjustment),Blank(),Text(ThisItem.crb3c_deduction2_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 100,
+        "name": "crb3c_deduction3_current",
+        "label": "控除額３・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"控除額３・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_deduction3_current),Blank(),Text(ThisItem.crb3c_deduction3_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 101,
+        "name": "crb3c_deduction3_adjustment",
+        "label": "控除額３・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"控除額３・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_deduction3_adjustment),Blank(),Text(ThisItem.crb3c_deduction3_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 102,
+        "name": "crb3c_deduction4_current",
+        "label": "控除額４・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"控除額４・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_deduction4_current),Blank(),Text(ThisItem.crb3c_deduction4_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 103,
+        "name": "crb3c_deduction4_adjustment",
+        "label": "控除額４・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"控除額４・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_deduction4_adjustment),Blank(),Text(ThisItem.crb3c_deduction4_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 104,
+        "name": "crb3c_ideco_current",
+        "label": "個人型確定拠出年金掛金・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"個人型確定拠出年金掛金・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_ideco_current),Blank(),Text(ThisItem.crb3c_ideco_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 105,
+        "name": "crb3c_ideco_adjustment",
+        "label": "個人型確定拠出年金掛金・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"個人型確定拠出年金掛金・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_ideco_adjustment),Blank(),Text(ThisItem.crb3c_ideco_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 106,
+        "name": "crb3c_deduction_total_current",
+        "label": "控除額計・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"控除額計・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_deduction_total_current),Blank(),Text(ThisItem.crb3c_deduction_total_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 107,
+        "name": "crb3c_deduction_total_adjustment",
+        "label": "控除額計・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"控除額計・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_deduction_total_adjustment),Blank(),Text(ThisItem.crb3c_deduction_total_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 108,
+        "name": "crb3c_net",
+        "label": "現金支給額",
+        "kind": "integer",
+        "headerText": "\"現金支給額\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_net),Blank(),Text(ThisItem.crb3c_net,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 109,
+        "name": "crb3c_transfer1",
+        "label": "振込額１",
+        "kind": "integer",
+        "headerText": "\"振込額１\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_transfer1),Blank(),Text(ThisItem.crb3c_transfer1,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 110,
+        "name": "crb3c_transfer2",
+        "label": "振込額２",
+        "kind": "integer",
+        "headerText": "\"振込額２\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_transfer2),Blank(),Text(ThisItem.crb3c_transfer2,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 111,
+        "name": "crb3c_cash",
+        "label": "手渡額",
+        "kind": "integer",
+        "headerText": "\"手渡額\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_cash),Blank(),Text(ThisItem.crb3c_cash,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 112,
+        "name": "crb3c_reduction_hours_current",
+        "label": "減額・時間・当給与期間分",
+        "kind": "decimal",
+        "headerText": "\"減額・時間・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_reduction_hours_current),Blank(),Text(ThisItem.crb3c_reduction_hours_current,If(Mod(ThisItem.crb3c_reduction_hours_current,1)=0,\"#,##0\",\"#,##0.##########\")))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 113,
+        "name": "crb3c_reduction_hours_adjustment",
+        "label": "減額・時間・返納・追給分",
+        "kind": "decimal",
+        "headerText": "\"減額・時間・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_reduction_hours_adjustment),Blank(),Text(ThisItem.crb3c_reduction_hours_adjustment,If(Mod(ThisItem.crb3c_reduction_hours_adjustment,1)=0,\"#,##0\",\"#,##0.##########\")))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 114,
+        "name": "crb3c_reduction_amount_current",
+        "label": "減額・額・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"減額・額・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_reduction_amount_current),Blank(),Text(ThisItem.crb3c_reduction_amount_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 115,
+        "name": "crb3c_reduction_amount_adjustment",
+        "label": "減額・額・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"減額・額・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_reduction_amount_adjustment),Blank(),Text(ThisItem.crb3c_reduction_amount_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 116,
+        "name": "crb3c_pay_cut_current",
+        "label": "減給・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"減給・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_pay_cut_current),Blank(),Text(ThisItem.crb3c_pay_cut_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 117,
+        "name": "crb3c_pay_cut_adjustment",
+        "label": "減給・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"減給・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_pay_cut_adjustment),Blank(),Text(ThisItem.crb3c_pay_cut_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 118,
+        "name": "crb3c_overtime_night25_current",
+        "label": "超過勤務(夜勤２５)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(夜勤２５)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime_night25_current),Blank(),Text(ThisItem.crb3c_overtime_night25_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 119,
+        "name": "crb3c_overtime_night25_adjustment",
+        "label": "超過勤務(夜勤２５)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(夜勤２５)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime_night25_adjustment),Blank(),Text(ThisItem.crb3c_overtime_night25_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 120,
+        "name": "crb3c_overtime_holiday135_current",
+        "label": "超過勤務(休日１３５)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(休日１３５)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime_holiday135_current),Blank(),Text(ThisItem.crb3c_overtime_holiday135_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 121,
+        "name": "crb3c_overtime_holiday135_adjustment",
+        "label": "超過勤務(休日１３５)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(休日１３５)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime_holiday135_adjustment),Blank(),Text(ThisItem.crb3c_overtime_holiday135_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 122,
+        "name": "crb3c_overtime100_current",
+        "label": "超過勤務(超勤１００)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１００)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime100_current),Blank(),Text(ThisItem.crb3c_overtime100_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 123,
+        "name": "crb3c_overtime100_adjustment",
+        "label": "超過勤務(超勤１００)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１００)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime100_adjustment),Blank(),Text(ThisItem.crb3c_overtime100_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 124,
+        "name": "crb3c_overtime125_current",
+        "label": "超過勤務(超勤１２５)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１２５)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime125_current),Blank(),Text(ThisItem.crb3c_overtime125_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 125,
+        "name": "crb3c_overtime125_adjustment",
+        "label": "超過勤務(超勤１２５)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１２５)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime125_adjustment),Blank(),Text(ThisItem.crb3c_overtime125_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 126,
+        "name": "crb3c_overtime135_current",
+        "label": "超過勤務(超勤１３５)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１３５)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime135_current),Blank(),Text(ThisItem.crb3c_overtime135_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 127,
+        "name": "crb3c_overtime135_adjustment",
+        "label": "超過勤務(超勤１３５)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１３５)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime135_adjustment),Blank(),Text(ThisItem.crb3c_overtime135_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 128,
+        "name": "crb3c_overtime150_current",
+        "label": "超過勤務(超勤１５０)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１５０)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime150_current),Blank(),Text(ThisItem.crb3c_overtime150_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 129,
+        "name": "crb3c_overtime150_adjustment",
+        "label": "超過勤務(超勤１５０)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１５０)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime150_adjustment),Blank(),Text(ThisItem.crb3c_overtime150_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 130,
+        "name": "crb3c_overtime160_current",
+        "label": "超過勤務(超勤１６０)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１６０)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime160_current),Blank(),Text(ThisItem.crb3c_overtime160_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 131,
+        "name": "crb3c_overtime160_adjustment",
+        "label": "超過勤務(超勤１６０)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１６０)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime160_adjustment),Blank(),Text(ThisItem.crb3c_overtime160_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 132,
+        "name": "crb3c_overtime175_current",
+        "label": "超過勤務(超勤１７５)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１７５)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime175_current),Blank(),Text(ThisItem.crb3c_overtime175_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 133,
+        "name": "crb3c_overtime175_adjustment",
+        "label": "超過勤務(超勤１７５)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(超勤１７５)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime175_adjustment),Blank(),Text(ThisItem.crb3c_overtime175_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 134,
+        "name": "crb3c_overtime_detail_total_current",
+        "label": "超過勤務手当等金額・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務手当等金額・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime_detail_total_current),Blank(),Text(ThisItem.crb3c_overtime_detail_total_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 135,
+        "name": "crb3c_overtime_detail_total_adjustment",
+        "label": "超過勤務手当等金額・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務手当等金額・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime_detail_total_adjustment),Blank(),Text(ThisItem.crb3c_overtime_detail_total_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 136,
+        "name": "crb3c_comp_leave50_current",
+        "label": "超過勤務(代休５０)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休５０)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_leave50_current),Blank(),Text(ThisItem.crb3c_comp_leave50_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 137,
+        "name": "crb3c_comp_leave50_adjustment",
+        "label": "超過勤務(代休５０)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休５０)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_leave50_adjustment),Blank(),Text(ThisItem.crb3c_comp_leave50_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 138,
+        "name": "crb3c_comp_leave25_current",
+        "label": "超過勤務(代休２５)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休２５)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_leave25_current),Blank(),Text(ThisItem.crb3c_comp_leave25_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 139,
+        "name": "crb3c_comp_leave25_adjustment",
+        "label": "超過勤務(代休２５)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休２５)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_leave25_adjustment),Blank(),Text(ThisItem.crb3c_comp_leave25_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 140,
+        "name": "crb3c_comp_leave15_current",
+        "label": "超過勤務(代休１５)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休１５)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_leave15_current),Blank(),Text(ThisItem.crb3c_comp_leave15_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 141,
+        "name": "crb3c_comp_leave15_adjustment",
+        "label": "超過勤務(代休１５)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休１５)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_leave15_adjustment),Blank(),Text(ThisItem.crb3c_comp_leave15_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 142,
+        "name": "crb3c_comp_work50_current",
+        "label": "超過勤務(代休勤務５０)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休勤務５０)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_work50_current),Blank(),Text(ThisItem.crb3c_comp_work50_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 143,
+        "name": "crb3c_comp_work50_adjustment",
+        "label": "超過勤務(代休勤務５０)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休勤務５０)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_work50_adjustment),Blank(),Text(ThisItem.crb3c_comp_work50_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 144,
+        "name": "crb3c_comp_work25_current",
+        "label": "超過勤務(代休勤務２５)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休勤務２５)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_work25_current),Blank(),Text(ThisItem.crb3c_comp_work25_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 145,
+        "name": "crb3c_comp_work25_adjustment",
+        "label": "超過勤務(代休勤務２５)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休勤務２５)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_work25_adjustment),Blank(),Text(ThisItem.crb3c_comp_work25_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 146,
+        "name": "crb3c_comp_work15_current",
+        "label": "超過勤務(代休勤務１５)・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休勤務１５)・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_work15_current),Blank(),Text(ThisItem.crb3c_comp_work15_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 147,
+        "name": "crb3c_comp_work15_adjustment",
+        "label": "超過勤務(代休勤務１５)・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務(代休勤務１５)・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_comp_work15_adjustment),Blank(),Text(ThisItem.crb3c_comp_work15_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 148,
+        "name": "crb3c_overtime_change_current",
+        "label": "超過勤務手当等加減額・当給与期間分",
+        "kind": "integer",
+        "headerText": "\"超過勤務手当等加減額・当給与期間分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime_change_current),Blank(),Text(ThisItem.crb3c_overtime_change_current,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 149,
+        "name": "crb3c_overtime_change_adjustment",
+        "label": "超過勤務手当等加減額・返納・追給分",
+        "kind": "integer",
+        "headerText": "\"超過勤務手当等加減額・返納・追給分\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_overtime_change_adjustment),Blank(),Text(ThisItem.crb3c_overtime_change_adjustment,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 150,
+        "name": "crb3c_short_grade",
+        "label": "短期・等級",
+        "kind": "integer",
+        "headerText": "\"短期・等級\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_short_grade),Blank(),Text(ThisItem.crb3c_short_grade,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 151,
+        "name": "crb3c_short_monthly",
+        "label": "短期・月額",
+        "kind": "integer",
+        "headerText": "\"短期・月額\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_short_monthly),Blank(),Text(ThisItem.crb3c_short_monthly,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 152,
+        "name": "crb3c_pension_grade",
+        "label": "厚生年金・等級",
+        "kind": "integer",
+        "headerText": "\"厚生年金・等級\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_pension_grade),Blank(),Text(ThisItem.crb3c_pension_grade,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 153,
+        "name": "crb3c_pension_monthly",
+        "label": "厚生年金・月額",
+        "kind": "integer",
+        "headerText": "\"厚生年金・月額\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_pension_monthly),Blank(),Text(ThisItem.crb3c_pension_monthly,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 154,
+        "name": "crb3c_retirement_grade",
+        "label": "退職等年金給付・等級",
+        "kind": "integer",
+        "headerText": "\"退職等年金給付・等級\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_retirement_grade),Blank(),Text(ThisItem.crb3c_retirement_grade,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 155,
+        "name": "crb3c_retirement_monthly",
+        "label": "退職等年金給付・月額",
+        "kind": "integer",
+        "headerText": "\"退職等年金給付・月額\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_retirement_monthly),Blank(),Text(ThisItem.crb3c_retirement_monthly,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 156,
+        "name": "crb3c_taxable_income",
+        "label": "被課税金額",
+        "kind": "integer",
+        "headerText": "\"被課税金額\"",
+        "valueFormula": "If(IsBlank(ThisItem.crb3c_taxable_income),Blank(),Text(ThisItem.crb3c_taxable_income,\"#,##0\"))",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 157,
+        "name": "crb3c_remarks",
+        "label": "備考",
+        "kind": "text",
+        "headerText": "\"備考\"",
+        "valueFormula": "ThisItem.crb3c_remarks",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 158,
+        "name": "crb3c_target_date",
+        "label": "対象年月日",
+        "kind": "text",
+        "headerText": "\"対象年月日\"",
+        "valueFormula": "ThisItem.crb3c_target_date",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 159,
+        "name": "crb3c_business_type",
+        "label": "業務区分",
+        "kind": "text",
+        "headerText": "\"業務区分\"",
+        "valueFormula": "ThisItem.crb3c_business_type",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 160,
+        "name": "crb3c_assignment_type",
+        "label": "併任区分",
+        "kind": "text",
+        "headerText": "\"併任区分\"",
+        "valueFormula": "ThisItem.crb3c_assignment_type",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 161,
+        "name": "crb3c_expenditure",
+        "label": "支出科目",
+        "kind": "text",
+        "headerText": "\"支出科目\"",
+        "valueFormula": "ThisItem.crb3c_expenditure",
+        "headerMatches": true,
+        "fieldMatches": true
+      },
+      {
+        "index": 162,
+        "name": "crb3c_classification",
+        "label": "判別区分",
+        "kind": "text",
+        "headerText": "\"判別区分\"",
+        "valueFormula": "ThisItem.crb3c_classification",
+        "headerMatches": true,
+        "fieldMatches": true
+      }
+    ]
+  },
+  "repeatGuard": {
+    "guardStart": {
+      "state": "APPLY",
+      "write": true,
+      "hash": "6e9aff140d298811ef0217572cc9c4975ef8d2bd76bb5e6f63c2e19e2680a6ed"
+    },
+    "repeatDecision": {
+      "state": "ALREADY_APPLIED",
+      "write": false,
+      "hash": "9a449e8573c397625c12d99dbb071b2de0b9f4feb0f9c4a3c68e8f9a98a991bb"
+    },
+    "repeatScreenSame": true,
+    "finalGuardRestore": true,
+    "sourceHash": "df49f8477abf76ce6a8fe6f178462691a5554ceb3b52d9d0de3afdd09ffd774c",
+    "savedState": "n (Ctrl+=)\":\n        - region \"Zoom value\": 40%\n        - button \"Fit to window (Ctrl+0)\":\n      - button \"Back\":\n      - heading \"Formulas\" [level=1]\n      - button \"Close\":\n      - generic: \n      - paragraph: No errors found\n      - generic: View activity in your app to understand performance and identify bugs.\n      - button \"Open monitor\":\n        - generic: \n        - generic: Open monitor\n      - status\n      - status:\n        - generic: Screen1 of type Screen is selected\n      - status\n      - status\n      - alert\n      - alert\n      - generic: \n      - generic: All changes are saved.\n      - generic: \"Saved: 9/19/2026, 7:46:55 AM\""
+  },
+  "restore": {
+    "rollbackFormulaMatch": true,
+    "rollbackScreenMatch": true,
+    "finalGuardRestore": true,
+    "normalSeven": true,
+    "normal004": true,
+    "searchOne": true,
+    "search011": true,
+    "currentHome": true
+  },
+  "limitations": [
+    "初回D2の関連金額は未補正。correctedD2Payroll163が補正後の正式照合。",
+    "備考全文の画面確認は本Work表示画像、ファイル保存画像は復元後検索のみ。",
+    "指定8条件・独立コンテキスト・人による支援技術評価は未実施。"
+  ]
+}
