@@ -11,12 +11,13 @@
   {
     "id": "SRC-02",
     "priority_mode": "P0／S",
-    "status": "NOT_RUN",
-    "note": "814コントロール・重複ID0、不正Classic/Button AccessibleLabel0、PDFViewerはScreen直下を確認。全プロパティ/部品版の公式台帳照合は未完。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "BLOCKED",
+    "note": "Screen1の657部品・基準SHA一致を確認。公式code-view文書は取得したが、対象版の全プロパティを網羅する独立部品台帳は取得できず。Studioの数式エラー0を台帳照合の代用にしない。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#SRC-02",
     "previous_status": "NOT_RUN",
-    "next_action": "現行部品版と全プロパティの独立台帳を整え照合。"
+    "next_action": "対象部品版/全プロパティの独立台帳",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "SRC-03",
@@ -48,12 +49,13 @@
   {
     "id": "DEP-01",
     "priority_mode": "P0／E",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。 現行Screen1読戻しはv1.24 Git blobから4プロパティ差分のみ（逆適用ハッシュ完全一致）。仕様指定v1.11の新規画面貼付と現行v1.26プロパティ更新配布は別手順のため、現行版導入の合格基準は未確定。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "FAIL",
+    "note": "現行プロファイルのApp.Formulasプロパティ更新を実施。19443文字の基準一致→20031文字の試験式適用/読戻し一致→保存→Formulasエラー0。App checkerはAccessibility Errors1305/Tips1、Performance Warnings15。導入前後で件数は同じ。全診断エラー0/警告受入済みという条件は満たさず#67へ記録。旧空画面YAML貼付は未実施。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#DEP-01",
     "previous_status": "NOT_RUN",
-    "next_action": "専用複製の空画面で貼付導入し公式エラー・警告を記録。"
+    "next_action": "記録のみ。診断を自動的に受入済みとしない",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "DEP-02",
@@ -67,12 +69,13 @@
   {
     "id": "DEP-03",
     "priority_mode": "P1／E",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "PASS",
+    "note": "現行プロファイルの別コピー非破壊共存。元アプリv1.26は通常7件004、名前で識別できるコピーv1.26は検索1件011を同時に保持。試験式導入はコピーのみ、Screen1 SHA不変・657部品不変。元アプリへの編集なし。旧新別画面YAML導入ではない。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#DEP-03",
     "previous_status": "NOT_RUN",
-    "next_action": "専用複製で旧版と候補画面の非破壊共存を確認。"
+    "next_action": "現行別コピー方式の検証完了",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "INIT-01",
@@ -86,12 +89,13 @@
   {
     "id": "INIT-02",
     "priority_mode": "P0／E",
-    "status": "NOT_RUN",
-    "note": "検索・選択・認定簿を開いた後、3回の再読込で初期状態を確認。実PDF生成後の新規コンテキスト再起動までは未実施。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "BLOCKED",
+    "note": "browser capabilities=[]。独立context生成APIなし。新規タブ/同一page reloadを独立コンテキストへ読み替えない。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#INIT-02",
     "previous_status": "NOT_RUN",
-    "next_action": "PDFを除き、別の新規アプリセッションで再起動後の全初期条件を照合。既存試験は同じpageでの再navigation。"
+    "next_action": "独立ブラウザーコンテキストを実行できる試験環境",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "INIT-03",
@@ -153,12 +157,13 @@
   {
     "id": "DATA-05",
     "priority_mode": "P1／S＋E",
-    "status": "NOT_RUN",
-    "note": "給与163・帳票69・基本9・勤務保険税の独立照合を追加。全セクションの列名/型/全順序の統合照合は未完。 今回公開v1.26の003/012/025/011、5履歴計229セルを独立fixtureと照合し一致。003の全5履歴末尾、012の保険/税/給与末尾への実スクロールと矩形を取得。全期待条件の網羅は未完。 現行D2コピーで給与詳細163項目の見出し・値・列位置を独立定義config/dataverse/payrollledger-columns.jsonとfixtureで全一致。全セクション統合照合は引き続き未完。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "BLOCKED",
+    "note": "011の全5履歴48値は既存独立fixture期待値に一致、48見出しとのX/幅一致。給与163は前回独立定義と照合済み。詳細設計はfield-inventoryを実装抽出・非本番辞書と明記。全セクションの型/順序を独立に裏付ける統合台帳が未整備。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#DATA-05",
     "previous_status": "NOT_RUN",
-    "next_action": "全セクションの見出し・値・型・順序を独立台帳と統合照合。"
+    "next_action": "全表示セクションの独立した見出し/型/順序マップ",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "SRCH-01",
@@ -464,12 +469,13 @@
   {
     "id": "DETAIL-04",
     "priority_mode": "P1／E＋V",
-    "status": "NOT_RUN",
-    "note": "勤務/保険/税の全見出しと値、ヘッダー/セルx幅1px以内、右列到達を追加。通勤を含む全組合せは未完。 今回公開v1.26の003/012/025/011、5履歴計229セルを独立fixtureと照合し一致。003の全5履歴末尾、012の保険/税/給与末尾への実スクロールと矩形を取得。全期待条件の網羅は未完。 003の5履歴105セルで見出しとX/幅差1.1px未満、セル固有スクロール領域なし。全表示条件は未完。 2026-09-19現行公開コピー職員003の5履歴102セル（Work状態3セルを除く）で全見出しとのX/幅差1px未満、セル内auto/scrollバー0。4名229セル値一致・最右到達はDATA-03で完了。指定8条件のEV-Vは未充足。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "BLOCKED",
+    "note": "011の48セルと48見出しでX/幅差0、セル内縦スクローラー0。前回4名20履歴の最右到達を継承。指定V条件での全セル/左右端検証は利用可能viewportでは完了不可。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#DETAIL-04",
     "previous_status": "NOT_RUN",
-    "next_action": "通勤を含む全履歴の左右端、列位置、全セルを照合。"
+    "next_action": "1366x768と1920x1080での実行環境",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "DETAIL-05",
@@ -531,19 +537,17 @@
   {
     "id": "LED-05",
     "priority_mode": "P1／E",
-    "status": "NOT_RUN",
-    "note": "v1.25 REMAIN-MODALで3起点へのフォーカス復帰は確認済み。Tab背面移動は#62の既知不具合として対応保留。残りの全期待条件の証跡が揃うまでは部分実施。 今回3モーダルの背面座標クリック後に職員011を維持、検索欄非表示、認定簿・給与詳細・検索TSVの閉鎖起点復帰を確認。#62の保留が残るため全体はPASSにしない。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "FAIL",
+    "note": "今回認定簿の背面クリック後も011/TK-910004保持、閉じた後の認定簿起点復帰を確認。#62のTab背面移動はv1.25既知失敗を継承して判定を整理。指示により修正・再試験なし。今回v1.26でTab失敗を新規再現した主張ではない。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#LED-05",
     "previous_status": "NOT_RUN",
-    "next_action": "閉じた後のフォーカス復帰はv1.25で確認済み。#62に該当するTab背面移動は対応不要。残る背面クリック不可の全条件の証跡整理のみ。",
-    "accepted_exception": {
-      "issue": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/62",
-      "scope": "モーダルから背面へのTab移動",
-      "decision": "ユーザー指示により記録のみ。修正・再検証不要。合格へ変更しない。"
-    },
+    "next_action": "既知不具合#62は記録のみ",
+    "accepted_exception": "記録のみ・修正再試験対象外（PASSではない）",
     "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/remaining.test.ts",
-    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907"
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907",
+    "current_run": "2026-09-19 remaining14",
+    "observed_version": "既知失敗v1.25を継承。v1.26のTab再試験なし"
   },
   {
     "id": "LED-06",
@@ -678,22 +682,24 @@
   {
     "id": "VIS-01",
     "priority_mode": "P0／V",
-    "status": "NOT_RUN",
-    "note": "既存8条件×5往復、追加5画面×4幅の幾何学検査はPASS。全画像・全モーダルの全基準照合は未完。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "BLOCKED",
+    "note": "利用可能なPlayer iframeは1363x888。viewport変更APIなし。1366x768/1920x1080の8条件・全モーダル画像照合は未実施。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#VIS-01",
     "previous_status": "NOT_RUN",
-    "next_action": "8条件の全画面画像・全モーダルを基準に照合。"
+    "next_action": "指定2画面サイズの試験環境",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "VIS-02",
     "priority_mode": "P1／V",
-    "status": "NOT_RUN",
-    "note": "v1.25 LONG_EIGHT_CONDITIONS_PASSで氏名・所属の全文titleと寸法を8条件で確認。備考の全文到達は未確認。 2026-09-18 日額-12,345/0/空欄のUI表示を確認。税備考の全文title属性は存在したがホバー後の全文表示を確認できず、全文到達は未完。給与調整額の条件は未検証。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "BLOCKED",
+    "note": "前回D2の長名/所属/備考300文字全文到達は単一viewport。8条件の完了へ読み替えず、現行版で指定サイズを設定できない。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#VIS-02",
     "previous_status": "NOT_RUN",
-    "next_action": "氏名・所属の8条件は確認済み。長い備考の全文到達が未検証のため項目全体は未完。"
+    "next_action": "D2の指定8条件を実行できる環境",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "VIS-03",
@@ -707,12 +713,13 @@
   {
     "id": "VIS-04",
     "priority_mode": "P1／V",
-    "status": "NOT_RUN",
-    "note": "基本9項目・給与最右項目・固定氏名・閉じる到達は8条件PASS。全履歴の二方向スクロールは未網羅。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "BLOCKED",
+    "note": "過去の4名20履歴の末尾到達は保持。指定8条件の縦横スクロール全網羅は未実施。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#VIS-04",
     "previous_status": "NOT_RUN",
-    "next_action": "8条件ですべての履歴の縦横スクロールと最終セルを確認。"
+    "next_action": "指定8条件を実行できる環境",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "VIS-05",
@@ -726,12 +733,13 @@
   {
     "id": "VIS-06",
     "priority_mode": "P1／V＋H",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "BLOCKED",
+    "note": "現viewportで標準/大文字×検索開閉の4状態を実測。タイトル20/24px・600、表見出し14/16px・600、本文14/16px・400、補足16/18px・400。人の読みやすさ評価はAI実測で代用しない。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#VIS-06",
     "previous_status": "NOT_RUN",
-    "next_action": "文字の実寸、強弱、余白の校正と人による見やすさ確認。"
+    "next_action": "人による読みやすさ評価",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "ACC-01",
@@ -755,19 +763,17 @@
   {
     "id": "ACC-03",
     "priority_mode": "P1／E",
-    "status": "NOT_RUN",
-    "note": "v1.25 REMAIN-MODALで3起点へのフォーカス復帰は確認済み。Tab背面移動は#62の既知不具合として対応保留。残りの全期待条件の証跡が揃うまでは部分実施。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "FAIL",
+    "note": "認定簿の今回クリック/起点復帰を追加。全モーダルのTab/Shift+Tab巡回は#62の既知不具合を継承。未実施扱いから既知失敗へ整理しただけで、今回の新規失敗再現ではない。修正・再試験は行わない。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#ACC-03",
     "previous_status": "NOT_RUN",
-    "next_action": "3モーダルの起点復帰は合格。#62のTab背面移動は対応不要として保留。残りの操作順と可視フォーカスの未記録分を整理。全面合格にはしない。",
-    "accepted_exception": {
-      "issue": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/62",
-      "scope": "モーダルから背面へのTab移動",
-      "decision": "ユーザー指示により記録のみ。修正・再検証不要。合格へ変更しない。"
-    },
+    "next_action": "既知不具合#62は記録のみ",
+    "accepted_exception": "記録のみ・修正再試験対象外（PASSではない）",
     "test_source": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/e6b107dece981b21e41cad94c3700f909b6c739d/e2e/regression-v122/remaining.test.ts",
-    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907"
+    "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35326181907",
+    "current_run": "2026-09-19 remaining14",
+    "observed_version": "既知失敗v1.25を継承。v1.26のTab再試験なし"
   },
   {
     "id": "ACC-04",
@@ -810,12 +816,13 @@
   {
     "id": "PATCH-02",
     "priority_mode": "P0／S＋E",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "BLOCKED",
+    "note": "コピーに単一プロパティ差分を再適用、完全式一致と657部品の基準SHA不変を確認。管理/paste二形式の独立比較とSMK-01の独立コンテキスト条件が未充足。単一式の一致を二形式・全スモーク合格へ読み替えない。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#PATCH-02",
     "previous_status": "NOT_RUN",
-    "next_action": "専用複製で差分適用後の2形式比較・スモーク。"
+    "next_action": "現行版二形式配布物と独立コンテキストのSMK-01実行環境",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "PATCH-03",
@@ -871,12 +878,13 @@
   {
     "id": "OPS-02",
     "priority_mode": "P1／E",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "BLOCKED",
+    "note": "既存のサニタイズ済み結果/代表画像は参照可能。実スマートフォンでの人による閲覧はこのPCブラウザーで代行不可。",
+    "evidence_basis": "remaining14-20260919/results.md。今回実測と過去既知失敗の継承を区別。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#OPS-02",
     "previous_status": "NOT_RUN",
-    "next_action": "スマホでサニタイズ済み要約と代表画像の閲覧を確認。"
+    "next_action": "人によるスマートフォン閲覧確認",
+    "current_run": "2026-09-19 remaining14"
   },
   {
     "id": "HAR-01",

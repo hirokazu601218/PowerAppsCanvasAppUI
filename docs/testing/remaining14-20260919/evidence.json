@@ -1,0 +1,1539 @@
+{
+  "typography": [
+    {
+      "condition": "standard-open",
+      "values": [
+        {
+          "fontSize": "20px",
+          "fontWeight": "600",
+          "name": "lblApp111",
+          "parentFont": "20px",
+          "parentWeight": "600",
+          "rect": {
+            "h": 28,
+            "w": 334,
+            "x": 40,
+            "y": 78
+          }
+        },
+        {
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "name": "lblTestNote111",
+          "parentFont": "16px",
+          "parentWeight": "400",
+          "rect": {
+            "h": 22.390625,
+            "w": 1306,
+            "x": 28,
+            "y": 144.796875
+          }
+        },
+        {
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "name": "lblHWork1110",
+          "parentFont": "14px",
+          "parentWeight": "600",
+          "rect": {
+            "h": 19.59375,
+            "w": 91.1875,
+            "x": 505.796875,
+            "y": 630.203125
+          }
+        },
+        {
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "name": "lblCWork1110",
+          "parentFont": "14px",
+          "parentWeight": "400",
+          "rect": {
+            "h": 19.59375,
+            "w": 91.1875,
+            "x": 505.796875,
+            "y": 682.203125
+          }
+        }
+      ]
+    },
+    {
+      "condition": "large-open",
+      "values": [
+        {
+          "fontSize": "24px",
+          "fontWeight": "600",
+          "name": "lblApp111",
+          "parentFont": "24px",
+          "parentWeight": "600",
+          "rect": {
+            "h": 33.59375,
+            "w": 334,
+            "x": 40,
+            "y": 75.203125
+          }
+        },
+        {
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "name": "lblTestNote111",
+          "parentFont": "18px",
+          "parentWeight": "400",
+          "rect": {
+            "h": 25.1875,
+            "w": 1306,
+            "x": 28,
+            "y": 143.40625
+          }
+        },
+        {
+          "fontSize": "16px",
+          "fontWeight": "600",
+          "name": "lblHWork1110",
+          "parentFont": "16px",
+          "parentWeight": "600",
+          "rect": {
+            "h": 22.390625,
+            "w": 109.1875,
+            "x": 505.796875,
+            "y": 664.796875
+          }
+        },
+        {
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "name": "lblCWork1110",
+          "parentFont": "16px",
+          "parentWeight": "400",
+          "rect": {
+            "h": 22.390625,
+            "w": 109.1875,
+            "x": 505.796875,
+            "y": 724.796875
+          }
+        }
+      ]
+    },
+    {
+      "condition": "large-closed",
+      "values": [
+        {
+          "fontSize": "24px",
+          "fontWeight": "600",
+          "name": "lblApp111",
+          "parentFont": "24px",
+          "parentWeight": "600",
+          "rect": {
+            "h": 33.59375,
+            "w": 334,
+            "x": 40,
+            "y": 75.203125
+          }
+        },
+        {
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "name": "lblTestNote111",
+          "parentFont": "18px",
+          "parentWeight": "400",
+          "rect": {
+            "h": 25.1875,
+            "w": 1306,
+            "x": 28,
+            "y": 143.40625
+          }
+        },
+        {
+          "fontSize": "16px",
+          "fontWeight": "600",
+          "name": "lblHWork1110",
+          "parentFont": "16px",
+          "parentWeight": "600",
+          "rect": {
+            "h": 22.390625,
+            "w": 109.1875,
+            "x": 177.796875,
+            "y": 664.796875
+          }
+        },
+        {
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "name": "lblCWork1110",
+          "parentFont": "16px",
+          "parentWeight": "400",
+          "rect": {
+            "h": 22.390625,
+            "w": 109.1875,
+            "x": 177.796875,
+            "y": 724.796875
+          }
+        }
+      ]
+    },
+    {
+      "condition": "standard-closed",
+      "values": [
+        {
+          "fontSize": "20px",
+          "fontWeight": "600",
+          "name": "lblApp111",
+          "parentFont": "20px",
+          "parentWeight": "600",
+          "rect": {
+            "h": 28,
+            "w": 334,
+            "x": 40,
+            "y": 78
+          }
+        },
+        {
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "name": "lblTestNote111",
+          "parentFont": "16px",
+          "parentWeight": "400",
+          "rect": {
+            "h": 22.390625,
+            "w": 1306,
+            "x": 28,
+            "y": 144.796875
+          }
+        },
+        {
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "name": "lblHWork1110",
+          "parentFont": "14px",
+          "parentWeight": "600",
+          "rect": {
+            "h": 19.59375,
+            "w": 91.1875,
+            "x": 177.796875,
+            "y": 566.203125
+          }
+        },
+        {
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "name": "lblCWork1110",
+          "parentFont": "14px",
+          "parentWeight": "400",
+          "rect": {
+            "h": 19.59375,
+            "w": 91.1875,
+            "x": 177.796875,
+            "y": 618.203125
+          }
+        }
+      ]
+    }
+  ],
+  "screen": {
+    "length": 1444226,
+    "sha256": "df49f8477abf76ce6a8fe6f178462691a5554ceb3b52d9d0de3afdd09ffd774c",
+    "controlCount": 657
+  },
+  "patch": {
+    "baselineMatch": true,
+    "targetMatch": true,
+    "baselineLength": 19443,
+    "targetLength": 20031
+  },
+  "publicHome": true,
+  "counts": {
+    "PASS": 67,
+    "BLOCKED": 14,
+    "FAIL": 5,
+    "EXCLUDED": 9
+  },
+  "observedAt": "2026-09-19",
+  "viewport": {
+    "playerIframe": {
+      "width": 1363,
+      "height": 888
+    },
+    "browserCapabilities": [],
+    "tabCapabilities": [
+      "botDetection",
+      "browserAuth",
+      "webmcp"
+    ]
+  },
+  "caseDispositions": [
+    {
+      "id": "SRC-02",
+      "status": "BLOCKED",
+      "note": "Screen1の657部品・基準SHA一致を確認。公式code-view文書は取得したが、対象版の全プロパティを網羅する独立部品台帳は取得できず。Studioの数式エラー0を台帳照合の代用にしない。",
+      "prerequisite": "対象部品版/全プロパティの独立台帳"
+    },
+    {
+      "id": "DEP-01",
+      "status": "FAIL",
+      "note": "現行プロファイルのApp.Formulasプロパティ更新を実施。19443文字の基準一致→20031文字の試験式適用/読戻し一致→保存→Formulasエラー0。App checkerはAccessibility Errors1305/Tips1、Performance Warnings15。導入前後で件数は同じ。全診断エラー0/警告受入済みという条件は満たさず#67へ記録。旧空画面YAML貼付は未実施。",
+      "prerequisite": "記録のみ。診断を自動的に受入済みとしない"
+    },
+    {
+      "id": "DEP-03",
+      "status": "PASS",
+      "note": "現行プロファイルの別コピー非破壊共存。元アプリv1.26は通常7件004、名前で識別できるコピーv1.26は検索1件011を同時に保持。試験式導入はコピーのみ、Screen1 SHA不変・657部品不変。元アプリへの編集なし。旧新別画面YAML導入ではない。",
+      "prerequisite": "現行別コピー方式の検証完了"
+    },
+    {
+      "id": "INIT-02",
+      "status": "BLOCKED",
+      "note": "browser capabilities=[]。独立context生成APIなし。新規タブ/同一page reloadを独立コンテキストへ読み替えない。",
+      "prerequisite": "独立ブラウザーコンテキストを実行できる試験環境"
+    },
+    {
+      "id": "DATA-05",
+      "status": "BLOCKED",
+      "note": "011の全5履歴48値は既存独立fixture期待値に一致、48見出しとのX/幅一致。給与163は前回独立定義と照合済み。詳細設計はfield-inventoryを実装抽出・非本番辞書と明記。全セクションの型/順序を独立に裏付ける統合台帳が未整備。",
+      "prerequisite": "全表示セクションの独立した見出し/型/順序マップ"
+    },
+    {
+      "id": "DETAIL-04",
+      "status": "BLOCKED",
+      "note": "011の48セルと48見出しでX/幅差0、セル内縦スクローラー0。前回4名20履歴の最右到達を継承。指定V条件での全セル/左右端検証は利用可能viewportでは完了不可。",
+      "prerequisite": "1366x768と1920x1080での実行環境"
+    },
+    {
+      "id": "LED-05",
+      "status": "FAIL",
+      "note": "今回認定簿の背面クリック後も011/TK-910004保持、閉じた後の認定簿起点復帰を確認。#62のTab背面移動はv1.25既知失敗を継承して判定を整理。指示により修正・再試験なし。今回v1.26でTab失敗を新規再現した主張ではない。",
+      "prerequisite": "既知不具合#62は記録のみ"
+    },
+    {
+      "id": "VIS-01",
+      "status": "BLOCKED",
+      "note": "利用可能なPlayer iframeは1363x888。viewport変更APIなし。1366x768/1920x1080の8条件・全モーダル画像照合は未実施。",
+      "prerequisite": "指定2画面サイズの試験環境"
+    },
+    {
+      "id": "VIS-02",
+      "status": "BLOCKED",
+      "note": "前回D2の長名/所属/備考300文字全文到達は単一viewport。8条件の完了へ読み替えず、現行版で指定サイズを設定できない。",
+      "prerequisite": "D2の指定8条件を実行できる環境"
+    },
+    {
+      "id": "VIS-04",
+      "status": "BLOCKED",
+      "note": "過去の4名20履歴の末尾到達は保持。指定8条件の縦横スクロール全網羅は未実施。",
+      "prerequisite": "指定8条件を実行できる環境"
+    },
+    {
+      "id": "VIS-06",
+      "status": "BLOCKED",
+      "note": "現viewportで標準/大文字×検索開閉の4状態を実測。タイトル20/24px・600、表見出し14/16px・600、本文14/16px・400、補足16/18px・400。人の読みやすさ評価はAI実測で代用しない。",
+      "prerequisite": "人による読みやすさ評価"
+    },
+    {
+      "id": "ACC-03",
+      "status": "FAIL",
+      "note": "認定簿の今回クリック/起点復帰を追加。全モーダルのTab/Shift+Tab巡回は#62の既知不具合を継承。未実施扱いから既知失敗へ整理しただけで、今回の新規失敗再現ではない。修正・再試験は行わない。",
+      "prerequisite": "既知不具合#62は記録のみ"
+    },
+    {
+      "id": "PATCH-02",
+      "status": "BLOCKED",
+      "note": "コピーに単一プロパティ差分を再適用、完全式一致と657部品の基準SHA不変を確認。管理/paste二形式の独立比較とSMK-01の独立コンテキスト条件が未充足。単一式の一致を二形式・全スモーク合格へ読み替えない。",
+      "prerequisite": "現行版二形式配布物と独立コンテキストのSMK-01実行環境"
+    },
+    {
+      "id": "OPS-02",
+      "status": "BLOCKED",
+      "note": "既存のサニタイズ済み結果/代表画像は参照可能。実スマートフォンでの人による閲覧はこのPCブラウザーで代行不可。",
+      "prerequisite": "人によるスマートフォン閲覧確認"
+    }
+  ],
+  "history011": {
+    "expectedCells": 48,
+    "actualCells": 48,
+    "valueMismatches": [],
+    "measurements": [
+      {
+        "h": 56,
+        "name": "lblHWorkState111",
+        "scrollers": 0,
+        "text": "適用状態",
+        "w": 100.796875,
+        "x": 393,
+        "y": 612
+      },
+      {
+        "h": 56,
+        "name": "lblHWork1110",
+        "scrollers": 0,
+        "text": "適用開始日",
+        "w": 115.1875,
+        "x": 493.796875,
+        "y": 612
+      },
+      {
+        "h": 56,
+        "name": "lblHWork1111",
+        "scrollers": 0,
+        "text": "適用終了日",
+        "w": 115.1875,
+        "x": 609,
+        "y": 612
+      },
+      {
+        "h": 56,
+        "name": "lblHWork1112",
+        "scrollers": 0,
+        "text": "日額単価",
+        "w": 115.1875,
+        "x": 724.1875,
+        "y": 612
+      },
+      {
+        "h": 56,
+        "name": "lblHWork1113",
+        "scrollers": 0,
+        "text": "所定勤務時間",
+        "w": 115.1875,
+        "x": 839.390625,
+        "y": 612
+      },
+      {
+        "h": 56,
+        "name": "lblHWork1114",
+        "scrollers": 0,
+        "text": "勤務時間",
+        "w": 115.1875,
+        "x": 954.59375,
+        "y": 612
+      },
+      {
+        "h": 56,
+        "name": "lblHWork1115",
+        "scrollers": 0,
+        "text": "超勤基礎単価（参考）",
+        "w": 148.5,
+        "x": 1069.796875,
+        "y": 612
+      },
+      {
+        "h": 56,
+        "name": "lblHWork1116",
+        "scrollers": 0,
+        "text": "異動区分",
+        "w": 115.1875,
+        "x": 1218.296875,
+        "y": 612
+      },
+      {
+        "h": 56,
+        "name": "lblHWork1117",
+        "scrollers": 0,
+        "text": "発令事由区分",
+        "w": 135,
+        "x": 1333.5,
+        "y": 612
+      },
+      {
+        "h": 56,
+        "name": "lblHWork1118",
+        "scrollers": 0,
+        "text": "勤務時間終了",
+        "w": 115.1875,
+        "x": 1468.5,
+        "y": 612
+      },
+      {
+        "h": 56,
+        "name": "lblHWork1119",
+        "scrollers": 0,
+        "text": "1日あたり勤務時間",
+        "w": 126,
+        "x": 1583.6875,
+        "y": 612
+      },
+      {
+        "h": 48,
+        "name": "lblCWorkState111",
+        "scrollers": 0,
+        "text": "現行",
+        "w": 100.796875,
+        "x": 393,
+        "y": 668
+      },
+      {
+        "h": 48,
+        "name": "lblCWork1110",
+        "scrollers": 0,
+        "text": "2026/04/01",
+        "w": 115.1875,
+        "x": 493.796875,
+        "y": 668
+      },
+      {
+        "h": 48,
+        "name": "lblCWork1111",
+        "scrollers": 0,
+        "text": "",
+        "w": 115.1875,
+        "x": 609,
+        "y": 668
+      },
+      {
+        "h": 48,
+        "name": "lblCWork1112",
+        "scrollers": 0,
+        "text": "11,100",
+        "w": 115.1875,
+        "x": 724.1875,
+        "y": 668
+      },
+      {
+        "h": 48,
+        "name": "lblCWork1113",
+        "scrollers": 0,
+        "text": "8:00",
+        "w": 115.1875,
+        "x": 839.390625,
+        "y": 668
+      },
+      {
+        "h": 48,
+        "name": "lblCWork1114",
+        "scrollers": 0,
+        "text": "8:00",
+        "w": 115.1875,
+        "x": 954.59375,
+        "y": 668
+      },
+      {
+        "h": 48,
+        "name": "lblCWork1115",
+        "scrollers": 0,
+        "text": "0",
+        "w": 148.5,
+        "x": 1069.796875,
+        "y": 668
+      },
+      {
+        "h": 48,
+        "name": "lblCWork1116",
+        "scrollers": 0,
+        "text": "合成テスト",
+        "w": 115.1875,
+        "x": 1218.296875,
+        "y": 668
+      },
+      {
+        "h": 48,
+        "name": "lblCWork1117",
+        "scrollers": 0,
+        "text": "職員11の勤務条件",
+        "w": 135,
+        "x": 1333.5,
+        "y": 668
+      },
+      {
+        "h": 48,
+        "name": "lblCWork1118",
+        "scrollers": 0,
+        "text": "17:00",
+        "w": 115.1875,
+        "x": 1468.5,
+        "y": 668
+      },
+      {
+        "h": 48,
+        "name": "lblCWork1119",
+        "scrollers": 0,
+        "text": "8.00",
+        "w": 126,
+        "x": 1583.6875,
+        "y": 668
+      },
+      {
+        "h": 56,
+        "name": "lblHCommute1110",
+        "scrollers": 0,
+        "text": "適用開始日 / 認定ID",
+        "w": 135,
+        "x": 393,
+        "y": 814
+      },
+      {
+        "h": 56,
+        "name": "lblHCommute1111",
+        "scrollers": 0,
+        "text": "適用終了日",
+        "w": 135,
+        "x": 528,
+        "y": 814
+      },
+      {
+        "h": 56,
+        "name": "lblHCommute1112",
+        "scrollers": 0,
+        "text": "支給方式",
+        "w": 145,
+        "x": 663,
+        "y": 814
+      },
+      {
+        "h": 56,
+        "name": "lblHCommute1113",
+        "scrollers": 0,
+        "text": "通勤4月",
+        "w": 160,
+        "x": 808,
+        "y": 814
+      },
+      {
+        "h": 56,
+        "name": "lblHCommute1114",
+        "scrollers": 0,
+        "text": "通勤10月",
+        "w": 160,
+        "x": 968,
+        "y": 814
+      },
+      {
+        "h": 48,
+        "name": "lblCCommute1110",
+        "scrollers": 0,
+        "text": "2026/04/01TK-910004",
+        "w": 135,
+        "x": 393,
+        "y": 870
+      },
+      {
+        "h": 48,
+        "name": "lblCCommute1111",
+        "scrollers": 0,
+        "text": "2027/03/31",
+        "w": 135,
+        "x": 528,
+        "y": 870
+      },
+      {
+        "h": 48,
+        "name": "lblCCommute1112",
+        "scrollers": 0,
+        "text": "支給なし",
+        "w": 145,
+        "x": 663,
+        "y": 870
+      },
+      {
+        "h": 48,
+        "name": "lblCCommute1113",
+        "scrollers": 0,
+        "text": "0",
+        "w": 160,
+        "x": 808,
+        "y": 870
+      },
+      {
+        "h": 48,
+        "name": "lblCCommute1114",
+        "scrollers": 0,
+        "text": "0",
+        "w": 160,
+        "x": 968,
+        "y": 870
+      },
+      {
+        "h": 56,
+        "name": "lblHSocial1110",
+        "scrollers": 0,
+        "text": "職員雇用区分",
+        "w": 115.1875,
+        "x": 393,
+        "y": 1016
+      },
+      {
+        "h": 56,
+        "name": "lblHSocial1111",
+        "scrollers": 0,
+        "text": "生年月日",
+        "w": 115.1875,
+        "x": 508.1875,
+        "y": 1016
+      },
+      {
+        "h": 56,
+        "name": "lblHSocial1112",
+        "scrollers": 0,
+        "text": "4/1時点年齢",
+        "w": 115.1875,
+        "x": 623.390625,
+        "y": 1016
+      },
+      {
+        "h": 56,
+        "name": "lblHSocial1113",
+        "scrollers": 0,
+        "text": "3/1時点年齢",
+        "w": 115.1875,
+        "x": 738.59375,
+        "y": 1016
+      },
+      {
+        "h": 56,
+        "name": "lblHSocial1114",
+        "scrollers": 0,
+        "text": "介護徴収該当",
+        "w": 126,
+        "x": 853.796875,
+        "y": 1016
+      },
+      {
+        "h": 56,
+        "name": "lblHSocial1115",
+        "scrollers": 0,
+        "text": "厚生年金免除該当",
+        "w": 135,
+        "x": 979.796875,
+        "y": 1016
+      },
+      {
+        "h": 56,
+        "name": "lblHSocial1116",
+        "scrollers": 0,
+        "text": "後期高齢者徴収該当",
+        "w": 153,
+        "x": 1114.796875,
+        "y": 1016
+      },
+      {
+        "h": 56,
+        "name": "lblHSocial1117",
+        "scrollers": 0,
+        "text": "厚生、級",
+        "w": 115.1875,
+        "x": 1267.796875,
+        "y": 1016
+      },
+      {
+        "h": 56,
+        "name": "lblHSocial1118",
+        "scrollers": 0,
+        "text": "厚生月額",
+        "w": 115.1875,
+        "x": 1383,
+        "y": 1016
+      },
+      {
+        "h": 48,
+        "name": "lblCSocial1110",
+        "scrollers": 0,
+        "text": "合成テスト",
+        "w": 115.1875,
+        "x": 393,
+        "y": 1072
+      },
+      {
+        "h": 48,
+        "name": "lblCSocial1111",
+        "scrollers": 0,
+        "text": "1981/04/01",
+        "w": 115.1875,
+        "x": 508.1875,
+        "y": 1072
+      },
+      {
+        "h": 48,
+        "name": "lblCSocial1112",
+        "scrollers": 0,
+        "text": "45",
+        "w": 115.1875,
+        "x": 623.390625,
+        "y": 1072
+      },
+      {
+        "h": 48,
+        "name": "lblCSocial1113",
+        "scrollers": 0,
+        "text": "46",
+        "w": 115.1875,
+        "x": 738.59375,
+        "y": 1072
+      },
+      {
+        "h": 48,
+        "name": "lblCSocial1114",
+        "scrollers": 0,
+        "text": "テスト・判定対象外",
+        "w": 126,
+        "x": 853.796875,
+        "y": 1072
+      },
+      {
+        "h": 48,
+        "name": "lblCSocial1115",
+        "scrollers": 0,
+        "text": "テスト・判定対象外",
+        "w": 135,
+        "x": 979.796875,
+        "y": 1072
+      },
+      {
+        "h": 48,
+        "name": "lblCSocial1116",
+        "scrollers": 0,
+        "text": "テスト・判定対象外",
+        "w": 153,
+        "x": 1114.796875,
+        "y": 1072
+      },
+      {
+        "h": 48,
+        "name": "lblCSocial1117",
+        "scrollers": 0,
+        "text": "0",
+        "w": 115.1875,
+        "x": 1267.796875,
+        "y": 1072
+      },
+      {
+        "h": 48,
+        "name": "lblCSocial1118",
+        "scrollers": 0,
+        "text": "211,000",
+        "w": 115.1875,
+        "x": 1383,
+        "y": 1072
+      },
+      {
+        "h": 56,
+        "name": "lblHTax1110",
+        "scrollers": 0,
+        "text": "適用開始日",
+        "w": 115.1875,
+        "x": 393,
+        "y": 1420
+      },
+      {
+        "h": 56,
+        "name": "lblHTax1111",
+        "scrollers": 0,
+        "text": "適用終了日",
+        "w": 115.1875,
+        "x": 508.1875,
+        "y": 1420
+      },
+      {
+        "h": 56,
+        "name": "lblHTax1112",
+        "scrollers": 0,
+        "text": "税表区分",
+        "w": 115.1875,
+        "x": 623.390625,
+        "y": 1420
+      },
+      {
+        "h": 56,
+        "name": "lblHTax1113",
+        "scrollers": 0,
+        "text": "雇用保険加入区分",
+        "w": 130.5,
+        "x": 738.59375,
+        "y": 1420
+      },
+      {
+        "h": 56,
+        "name": "lblHTax1114",
+        "scrollers": 0,
+        "text": "共済貯金月額",
+        "w": 115.1875,
+        "x": 869.09375,
+        "y": 1420
+      },
+      {
+        "h": 56,
+        "name": "lblHTax1115",
+        "scrollers": 0,
+        "text": "共済貸付月額",
+        "w": 115.1875,
+        "x": 984.296875,
+        "y": 1420
+      },
+      {
+        "h": 56,
+        "name": "lblHTax1116",
+        "scrollers": 0,
+        "text": "扶養控除人数",
+        "w": 115.1875,
+        "x": 1099.5,
+        "y": 1420
+      },
+      {
+        "h": 56,
+        "name": "lblHTax1117",
+        "scrollers": 0,
+        "text": "備考",
+        "w": 180,
+        "x": 1214.6875,
+        "y": 1420
+      },
+      {
+        "h": 48,
+        "name": "lblCTax1110",
+        "scrollers": 0,
+        "text": "2026/04/01",
+        "w": 115.1875,
+        "x": 393,
+        "y": 1476
+      },
+      {
+        "h": 48,
+        "name": "lblCTax1111",
+        "scrollers": 0,
+        "text": "",
+        "w": 115.1875,
+        "x": 508.1875,
+        "y": 1476
+      },
+      {
+        "h": 48,
+        "name": "lblCTax1112",
+        "scrollers": 0,
+        "text": "甲",
+        "w": 115.1875,
+        "x": 623.390625,
+        "y": 1476
+      },
+      {
+        "h": 48,
+        "name": "lblCTax1113",
+        "scrollers": 0,
+        "text": "加入",
+        "w": 130.5,
+        "x": 738.59375,
+        "y": 1476
+      },
+      {
+        "h": 48,
+        "name": "lblCTax1114",
+        "scrollers": 0,
+        "text": "0",
+        "w": 115.1875,
+        "x": 869.09375,
+        "y": 1476
+      },
+      {
+        "h": 48,
+        "name": "lblCTax1115",
+        "scrollers": 0,
+        "text": "0",
+        "w": 115.1875,
+        "x": 984.296875,
+        "y": 1476
+      },
+      {
+        "h": 48,
+        "name": "lblCTax1116",
+        "scrollers": 0,
+        "text": "0",
+        "w": 115.1875,
+        "x": 1099.5,
+        "y": 1476
+      },
+      {
+        "h": 48,
+        "name": "lblCTax1117",
+        "scrollers": 0,
+        "text": "職員11専用の合成データ・計算検証対象外",
+        "w": 180,
+        "x": 1214.6875,
+        "y": 1476
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll1110",
+        "scrollers": 0,
+        "text": "給与期間対象年",
+        "w": 115.1875,
+        "x": 393,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll1111",
+        "scrollers": 0,
+        "text": "支給年月日",
+        "w": 115.1875,
+        "x": 508.1875,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll1112",
+        "scrollers": 0,
+        "text": "俸給支給額・当給与期間分",
+        "w": 172.796875,
+        "x": 623.390625,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll1113",
+        "scrollers": 0,
+        "text": "俸給支給額・返納・追給分",
+        "w": 172.796875,
+        "x": 796.1875,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll1114",
+        "scrollers": 0,
+        "text": "通勤手当・当給与期間分",
+        "w": 172.796875,
+        "x": 969,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll1115",
+        "scrollers": 0,
+        "text": "通勤手当・返納・追給分",
+        "w": 172.796875,
+        "x": 1141.796875,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll1116",
+        "scrollers": 0,
+        "text": "在宅勤務等手当・当給与期間分",
+        "w": 172.796875,
+        "x": 1314.59375,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll1117",
+        "scrollers": 0,
+        "text": "在宅勤務等手当・返納・追給分",
+        "w": 172.796875,
+        "x": 1487.390625,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll1118",
+        "scrollers": 0,
+        "text": "超過勤務手当等・当給与期間分",
+        "w": 172.796875,
+        "x": 1660.1875,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll1119",
+        "scrollers": 0,
+        "text": "超過勤務手当等・返納・追給分",
+        "w": 172.796875,
+        "x": 1833,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll11110",
+        "scrollers": 0,
+        "text": "給与支給総額",
+        "w": 172.796875,
+        "x": 2005.796875,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll11111",
+        "scrollers": 0,
+        "text": "控除額計・当給与期間分",
+        "w": 172.796875,
+        "x": 2178.59375,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll11112",
+        "scrollers": 0,
+        "text": "控除額計・返納・追給分",
+        "w": 172.796875,
+        "x": 2351.390625,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll11113",
+        "scrollers": 0,
+        "text": "現金支給額",
+        "w": 172.796875,
+        "x": 2524.1875,
+        "y": 1622
+      },
+      {
+        "h": 64,
+        "name": "lblHPayroll11114",
+        "scrollers": 0,
+        "text": "備考",
+        "w": 180,
+        "x": 2697,
+        "y": 1622
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll1110",
+        "scrollers": 0,
+        "text": "令和08年",
+        "w": 115.1875,
+        "x": 393,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll1111",
+        "scrollers": 0,
+        "text": "令和08年04月23日",
+        "w": 115.1875,
+        "x": 508.1875,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll1112",
+        "scrollers": 0,
+        "text": "240,000",
+        "w": 172.796875,
+        "x": 623.390625,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll1113",
+        "scrollers": 0,
+        "text": "0",
+        "w": 172.796875,
+        "x": 796.1875,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll1114",
+        "scrollers": 0,
+        "text": "0",
+        "w": 172.796875,
+        "x": 969,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll1115",
+        "scrollers": 0,
+        "text": "0",
+        "w": 172.796875,
+        "x": 1141.796875,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll1116",
+        "scrollers": 0,
+        "text": "0",
+        "w": 172.796875,
+        "x": 1314.59375,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll1117",
+        "scrollers": 0,
+        "text": "0",
+        "w": 172.796875,
+        "x": 1487.390625,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll1118",
+        "scrollers": 0,
+        "text": "0",
+        "w": 172.796875,
+        "x": 1660.1875,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll1119",
+        "scrollers": 0,
+        "text": "0",
+        "w": 172.796875,
+        "x": 1833,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll11110",
+        "scrollers": 0,
+        "text": "240,000",
+        "w": 172.796875,
+        "x": 2005.796875,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll11111",
+        "scrollers": 0,
+        "text": "10,000",
+        "w": 172.796875,
+        "x": 2178.59375,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll11112",
+        "scrollers": 0,
+        "text": "0",
+        "w": 172.796875,
+        "x": 2351.390625,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll11113",
+        "scrollers": 0,
+        "text": "230,000",
+        "w": 172.796875,
+        "x": 2524.1875,
+        "y": 1686
+      },
+      {
+        "h": 48,
+        "name": "lblCPayroll11114",
+        "scrollers": 0,
+        "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。",
+        "w": 180,
+        "x": 2697,
+        "y": 1686
+      }
+    ],
+    "alignment": [
+      {
+        "name": "lblCWorkState111",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCWork1110",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCWork1111",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCWork1112",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCWork1113",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCWork1114",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCWork1115",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCWork1116",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCWork1117",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCWork1118",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCWork1119",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCCommute1110",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCCommute1111",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCCommute1112",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCCommute1113",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCCommute1114",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCSocial1110",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCSocial1111",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCSocial1112",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCSocial1113",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCSocial1114",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCSocial1115",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCSocial1116",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCSocial1117",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCSocial1118",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCTax1110",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCTax1111",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCTax1112",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCTax1113",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCTax1114",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCTax1115",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCTax1116",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCTax1117",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll1110",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll1111",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll1112",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll1113",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll1114",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll1115",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll1116",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll1117",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll1118",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll1119",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll11110",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll11111",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll11112",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll11113",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      },
+      {
+        "name": "lblCPayroll11114",
+        "dx": 0,
+        "dw": 0,
+        "scrolls": 0
+      }
+    ]
+  },
+  "appChecker": {
+    "formulasErrors": 0,
+    "accessibility": {
+      "errors": 1305,
+      "focusNotShowing": 647,
+      "missingTabStop": 658,
+      "tips": 1
+    },
+    "performance": {
+      "warnings": 15,
+      "unusedVariable": 5,
+      "collectionNeverUpdated": 1,
+      "tooManyControls": 1,
+      "allItemsCount": 6,
+      "crossScreenEvent": 2
+    },
+    "introducedByPatch": false,
+    "issue": 67
+  },
+  "restoration": {
+    "appFormulaExact": true,
+    "saved": true,
+    "savedLabel": "9/19/2026, 8:28:58 AM",
+    "publishedThisRun": false,
+    "publicBaselineUnchanged": true,
+    "originalAppEdited": false,
+    "dataverseWritten": false
+  },
+  "caveat": "NOT_RUN=0は全実機実施を意味しない。今回14中10件は前提不足、既知失敗2件は過去判定継承。"
+}
