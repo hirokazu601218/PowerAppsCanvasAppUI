@@ -132,12 +132,12 @@
   {
     "id": "DATA-03",
     "priority_mode": "P1／E",
-    "status": "NOT_RUN",
-    "note": "基本9項目×5名、勤務・保険・税控除の全値/見出し/順序/位置、通勤6件、給与163項目を確認。全5セクションを統合した全期待条件の網羅は未完。 今回公開v1.26の003/012/025/011、5履歴計229セルを独立fixtureと照合し一致。003の全5履歴末尾、012の保険/税/給与末尾への実スクロールと矩形を取得。全期待条件の網羅は未完。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "PASS",
+    "note": "基本9項目×5名、勤務・保険・税控除の全値/見出し/順序/位置、通勤6件、給与163項目を確認。全5セクションを統合した全期待条件の網羅は未完。 今回公開v1.26の003/012/025/011、5履歴計229セルを独立fixtureと照合し一致。003の全5履歴末尾、012の保険/税/給与末尾への実スクロールと矩形を取得。全期待条件の網羅は未完。 現行5履歴プロファイルの代表003/012/025/011を公開コピーで順に確認。4名20履歴で最終列へ実スクロールし、全非空最終セルを右ペイン内に収容、全横スクロール位置が最大に到達。012通勤0、025給与0、003勤務3/通勤2/給与3も確認。独立fixtureに基づく既存期待マップとの再照合は105/43/33/48セル計229セルすべて一致。旧D0の6履歴や旧番号ではなく現行プロファイルへの対応であり、本番全データを網羅した主張ではない。",
+    "evidence_basis": "2026-09-18 UTC 公開検証コピー・表示v1.26。全試験変異復元後の確認を含む。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#DATA-03",
     "previous_status": "NOT_RUN",
-    "next_action": "選択職員別の全5履歴を最終列まで一連で照合。"
+    "next_action": "完了。"
   },
   {
     "id": "DATA-04",
@@ -735,12 +735,12 @@
   {
     "id": "ACC-01",
     "priority_mode": "P1／E",
-    "status": "NOT_RUN",
-    "note": "検索と行選択をキーボードで確認。全Tab順と可視フォーカスの校正は未実施。 今回、実Tab/Shift+Tabの遷移19点と検索ボタンのEnter実行を観測。日本語入力後の検索欄が空で40件のままのため、入力成立を立証できず完了扱いしない。原因未確定。 今回、実Tabで検索欄へ到達→pressSequentiallyで009900000011入力→Tab3回とEnterで1件/011→Tab2回とEnterで行選択→実Tabで詳細表示ボタンへ到達しEnterで給与詳細を開いた。検索から詳細までの操作は成立。全対象の可視フォーカス校正は未完のため全体PASSにしない。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "PASS",
+    "note": "検索と行選択をキーボードで確認。全Tab順と可視フォーカスの校正は未実施。 今回、実Tab/Shift+Tabの遷移19点と検索ボタンのEnter実行を観測。日本語入力後の検索欄が空で40件のままのため、入力成立を立証できず完了扱いしない。原因未確定。 今回、実Tabで検索欄へ到達→pressSequentiallyで009900000011入力→Tab3回とEnterで1件/011→Tab2回とEnterで行選択→実Tabで詳細表示ボタンへ到達しEnterで給与詳細を開いた。検索から詳細までの操作は成立。全対象の可視フォーカス校正は未完のため全体PASSにしない。 基準復元後の公開コピーで実Tab/Shift+TabとpressSequentiallyにより検索欄へ011入力、Tab3回→Enterで1件011、Tab2回→Enterで行選択、履歴/出力/認定簿経由のTab→Enterで給与詳細011を表示。検索欄2px青下線、検索ボタン内枠、職員行2px、詳細/出力/認定簿4px、履歴auto outline、通勤4px、組織/在籍状態4pxの可視フォーカスを確認。コントラスト不足は別項目ACC-05/Issue66。最初のCUA入力未成立は成功扱いせず、確定入力値と結果が一致した実行で判定。",
+    "evidence_basis": "2026-09-18 UTC 公開検証コピー・表示v1.26。全試験変異復元後の確認を含む。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#ACC-01",
     "previous_status": "NOT_RUN",
-    "next_action": "focus()による直接移動を使わず、Tab順・可視フォーカス・キーボードのみの操作を確認。"
+    "next_action": "完了。"
   },
   {
     "id": "ACC-02",
@@ -780,12 +780,13 @@
   {
     "id": "ACC-05",
     "priority_mode": "P1／S＋V",
-    "status": "NOT_RUN",
-    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "FAIL",
+    "note": "全期待結果の証跡が未充足。部分実施をPASSにしない。 復元基準版v1.26公開コピーで実Tab/Shift+Tab時の組織ddOrg111・在籍状態ddStatus111のフォーカス枠4px #CBD5E1、隣接内外背景#FFFFFFを実測。比1.48470221380943:1でWCAG1.4.11の3:1未満。Issue66へ記録のみ。通常/選択/エラー/大文字の全条件合格は主張しない。",
+    "evidence_basis": "2026-09-18 UTC 公開検証コピー・表示v1.26。全試験変異復元後の確認を含む。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#ACC-05",
     "previous_status": "NOT_RUN",
-    "next_action": "実色コントラスト、状態の非色表現、境界・フォーカスを確認。"
+    "next_action": "ユーザー指示により記録のみ。修正・再検証不要。",
+    "issue": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/66"
   },
   {
     "id": "ACC-06",
@@ -876,30 +877,32 @@
   {
     "id": "HAR-01",
     "priority_mode": "P1／S＋E",
-    "status": "BLOCKED",
-    "note": "Issue #65復旧済み。オーバーライド・保存後読戻しでFill正常、検索式1536文字完全一致、数式エラー0。Studioプレビューでfalse変異時011検索が004のまま、復元後1件011。公開PlayerのE証跡は未完。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "PASS",
+    "note": "Issue #65復旧済み。オーバーライド・保存後読戻しでFill正常、検索式1536文字完全一致、数式エラー0。Studioプレビューでfalse変異時011検索が004のまま、復元後1件011。公開PlayerのE証跡は未完。 公開検証コピーで正常011検索→1件011を確認。btnSearch111.OnSelect=falseを保存・公開し、更新後011検索で結果行0・右サマリー004を検出。元1536文字へ完全復元・保存・公開し1件011へ正常復帰。初期データの存在だけで合格にしない検出器を確認。",
+    "evidence_basis": "2026-09-18 UTC 公開検証コピー・表示v1.26。全試験変異復元後の確認を含む。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#HAR-01",
     "previous_status": "BLOCKED",
-    "next_action": "専用コピーに限る試験版公開・復元公開の明示許可後、公開Playerで故障検出・正常復帰を確認。自動承認レビューが公開を拒否したため実行していない。"
+    "next_action": "完了。"
   },
   {
     "id": "HAR-02",
     "priority_mode": "P1／S＋E",
-    "status": "BLOCKED",
-    "note": "検証専用コピー作成・復旧済み。対応する適用/故障注入/復元の全条件は未実施。以前の「複製未作成」は解消。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "status": "PASS",
+    "note": "検証専用コピー作成・復旧済み。対応する適用/故障注入/復元の全条件は未実施。以前の「複製未作成」は解消。 コピーのgalStaff111.Items=Filter(StaffBasicView,false)を公開して見出し7件・実行0件の不一致を検出。Items208文字復元後、OnSelectのThisItemをFirst(StaffBasicView)へ置換公開し、選択行011/右サマリー004を検出。元OnSelect465文字を復元・保存・公開後、7行と選択011/右サマリー011一致。",
+    "evidence_basis": "2026-09-18 UTC 公開検証コピー・表示v1.26。全試験変異復元後の確認を含む。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#HAR-02",
-    "previous_status": "BLOCKED"
+    "previous_status": "BLOCKED",
+    "next_action": "完了。"
   },
   {
     "id": "HAR-03",
     "priority_mode": "P1／S＋V",
     "status": "BLOCKED",
-    "note": "検証専用コピー作成・復旧済み。対応する適用/故障注入/復元の全条件は未実施。以前の「複製未作成」は解消。",
-    "evidence_basis": "過去のv1.25再監査から継承。v1.26全項目の再合格を示さない。",
+    "note": "検証専用コピー作成・復旧済み。対応する適用/故障注入/復元の全条件は未実施。以前の「複製未作成」は解消。 表見出しlblHWork1110.XをlblHWorkState111.Xへ変更公開し、両X=393、幅100.796875pxの重なりを検出。元式へ復元保存・公開後、X=393/493.796875の正常隣接へ復帰。通知は標準Notifyでアプリ内幅プロパティの変異対象を確立できず、通知過大幅の検出条件は未完。",
+    "evidence_basis": "2026-09-18 UTC 公開検証コピー・表示v1.26。全試験変異復元後の確認を含む。",
     "baseline_record": "../regression-v125-review/spec-case-audit.json#HAR-03",
-    "previous_status": "BLOCKED"
+    "previous_status": "BLOCKED",
+    "next_action": "通知幅故障注入の適合した方法を確立する。"
   },
   {
     "id": "HAR-04",

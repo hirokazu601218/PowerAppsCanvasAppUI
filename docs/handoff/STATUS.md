@@ -1,3 +1,16 @@
+# 現在の作業と読取り対象：公開コピー追加検証・基準復元済み
+
+- 累積 **PASS63 / NOT_RUN16 / BLOCKED5 / FAIL2 / EXCLUDED9**。全件完了ではなく旧版証跡を含む。
+- PAGE-05/HAR-01/HAR-02/ACC-01/DATA-03を追加合格。公開コピーで故障注入・検出・復元公開、4名5履歴229セル一致と20組合せの最右到達を確認。
+- ACC-05のフォーカス枠コントラスト1.48:1を[Issue #66](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/66)へ記録のみ。#62/#64も修正しない。
+- [今回結果](../testing/published-copy-20260918/results.md)、[実測](../testing/published-copy-20260918/evidence.json)、[95項目](../testing/override-20260918/spec-case-audit.json)。
+- 検証コピーの全試験変異を復元・保存・公開済み。元アプリ定義・Dataverse変更なし。次は現行v1.26と配布ソースの対応確定、導入・差分・表示条件等の残件。
+- HAR-03の見出し重なり検出と復元は完了。標準Notify過大幅の注入条件は未確立。
+- PDF・HTML帳票PoC除外、時間制約解除、検証コピー保存・公開・復元公開の許可を継続。
+- **Issue #51：欠勤時間単価の実テーブル反映は未実施、次回実テーブル編集時に対応。**
+
+---
+
 # 現在の作業と読取り対象：公開Player復旧・19件境界合格
 
 - Microsoft認証後、Makerと公開検証コピーの起動・検索を確認。前回HTTP 0取得障害は今回は再現せず。元アプリのホームv1.26も目視確認。

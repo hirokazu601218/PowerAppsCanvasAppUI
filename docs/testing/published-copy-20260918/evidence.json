@@ -1,0 +1,2868 @@
+{
+  "counts": {
+    "PASS": 63,
+    "NOT_RUN": 16,
+    "EXCLUDED": 9,
+    "FAIL": 2,
+    "BLOCKED": 5
+  },
+  "newEvidence": {
+    "page19": {
+      "count": 19,
+      "ids": [
+        "008800000001",
+        "008800000002",
+        "008800000003",
+        "008800000004",
+        "008800000005",
+        "008800000006",
+        "008800000007",
+        "008800000008",
+        "008800000009",
+        "008800000010",
+        "008800000011",
+        "008800000012",
+        "008800000013",
+        "008800000014",
+        "008800000015",
+        "008800000016",
+        "008800000017",
+        "008800000018",
+        "008800000019"
+      ],
+      "previousEnabled": false,
+      "nextEnabled": false,
+      "page": "1 / 1",
+      "sequenceMatches": true
+    },
+    "headerBaseline": [
+      {
+        "name": "lblHWorkState111",
+        "rect": {
+          "bottom": 668,
+          "height": 56,
+          "left": 393,
+          "right": 493.796875,
+          "top": 612,
+          "width": 100.796875,
+          "x": 393,
+          "y": 612
+        },
+        "text": "適用状態"
+      },
+      {
+        "name": "lblHWork1110",
+        "rect": {
+          "bottom": 668,
+          "height": 56,
+          "left": 493.796875,
+          "right": 608.984375,
+          "top": 612,
+          "width": 115.1875,
+          "x": 493.796875,
+          "y": 612
+        },
+        "text": "適用開始日"
+      }
+    ],
+    "headerFault": [
+      {
+        "name": "lblHWork1110",
+        "rect": {
+          "bottom": 668,
+          "height": 56,
+          "left": 393,
+          "right": 508.1875,
+          "top": 612,
+          "width": 115.1875,
+          "x": 393,
+          "y": 612
+        },
+        "text": "適用開始日"
+      },
+      {
+        "name": "lblHWorkState111",
+        "rect": {
+          "bottom": 668,
+          "height": 56,
+          "left": 393,
+          "right": 493.796875,
+          "top": 612,
+          "width": 100.796875,
+          "x": 393,
+          "y": 612
+        },
+        "text": "適用状態"
+      }
+    ],
+    "faultEvidence": "    - searchbox \"氏名・職員番号・項目を検索\": \"009900000011\"\n    - generic: 職員番号：009900000004 ／ 所属：03会計課"
+  },
+  "detail": {
+    "historyValues": {
+      "009900000011": [
+        {
+          "name": "lblCWorkState111",
+          "text": "現行"
+        },
+        {
+          "name": "lblCWork1110",
+          "text": "2026/04/01"
+        },
+        {
+          "name": "lblCWork1111",
+          "text": ""
+        },
+        {
+          "name": "lblCWork1112",
+          "text": "11,100"
+        },
+        {
+          "name": "lblCWork1113",
+          "text": "8:00"
+        },
+        {
+          "name": "lblCWork1114",
+          "text": "8:00"
+        },
+        {
+          "name": "lblCWork1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCWork1116",
+          "text": "合成テスト"
+        },
+        {
+          "name": "lblCWork1117",
+          "text": "職員11の勤務条件"
+        },
+        {
+          "name": "lblCWork1118",
+          "text": "17:00"
+        },
+        {
+          "name": "lblCWork1119",
+          "text": "8.00"
+        },
+        {
+          "name": "lblCCommute1110",
+          "text": "2026/04/01TK-910004"
+        },
+        {
+          "name": "lblCCommute1111",
+          "text": "2027/03/31"
+        },
+        {
+          "name": "lblCCommute1112",
+          "text": "支給なし"
+        },
+        {
+          "name": "lblCCommute1113",
+          "text": "0"
+        },
+        {
+          "name": "lblCCommute1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCSocial1110",
+          "text": "合成テスト"
+        },
+        {
+          "name": "lblCSocial1111",
+          "text": "1981/04/01"
+        },
+        {
+          "name": "lblCSocial1112",
+          "text": "45"
+        },
+        {
+          "name": "lblCSocial1113",
+          "text": "46"
+        },
+        {
+          "name": "lblCSocial1114",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1115",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1116",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1117",
+          "text": "0"
+        },
+        {
+          "name": "lblCSocial1118",
+          "text": "211,000"
+        },
+        {
+          "name": "lblCTax1110",
+          "text": "2026/04/01"
+        },
+        {
+          "name": "lblCTax1111",
+          "text": ""
+        },
+        {
+          "name": "lblCTax1112",
+          "text": "甲"
+        },
+        {
+          "name": "lblCTax1113",
+          "text": "加入"
+        },
+        {
+          "name": "lblCTax1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1116",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1117",
+          "text": "職員11専用の合成データ・計算検証対象外"
+        },
+        {
+          "name": "lblCPayroll1110",
+          "text": "令和08年"
+        },
+        {
+          "name": "lblCPayroll1111",
+          "text": "令和08年04月23日"
+        },
+        {
+          "name": "lblCPayroll1112",
+          "text": "240,000"
+        },
+        {
+          "name": "lblCPayroll1113",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1116",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1117",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1118",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1119",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll11110",
+          "text": "240,000"
+        },
+        {
+          "name": "lblCPayroll11111",
+          "text": "10,000"
+        },
+        {
+          "name": "lblCPayroll11112",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll11113",
+          "text": "230,000"
+        },
+        {
+          "name": "lblCPayroll11114",
+          "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+        }
+      ],
+      "009900000025": [
+        {
+          "name": "lblCWorkState111",
+          "text": "現行"
+        },
+        {
+          "name": "lblCWork1110",
+          "text": "2026/04/01"
+        },
+        {
+          "name": "lblCWork1111",
+          "text": ""
+        },
+        {
+          "name": "lblCWork1112",
+          "text": "12,500"
+        },
+        {
+          "name": "lblCWork1113",
+          "text": "6:00"
+        },
+        {
+          "name": "lblCWork1114",
+          "text": "6:00"
+        },
+        {
+          "name": "lblCWork1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCWork1116",
+          "text": "合成テスト"
+        },
+        {
+          "name": "lblCWork1117",
+          "text": "職員25の勤務条件"
+        },
+        {
+          "name": "lblCWork1118",
+          "text": "17:00"
+        },
+        {
+          "name": "lblCWork1119",
+          "text": "6.00"
+        },
+        {
+          "name": "lblCCommute1110",
+          "text": "2099/04/01TK-910006"
+        },
+        {
+          "name": "lblCCommute1111",
+          "text": "2100/03/31"
+        },
+        {
+          "name": "lblCCommute1112",
+          "text": "支給なし"
+        },
+        {
+          "name": "lblCCommute1113",
+          "text": "0"
+        },
+        {
+          "name": "lblCCommute1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCSocial1110",
+          "text": "合成テスト"
+        },
+        {
+          "name": "lblCSocial1111",
+          "text": "1995/04/01"
+        },
+        {
+          "name": "lblCSocial1112",
+          "text": "31"
+        },
+        {
+          "name": "lblCSocial1113",
+          "text": "32"
+        },
+        {
+          "name": "lblCSocial1114",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1115",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1116",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1117",
+          "text": "0"
+        },
+        {
+          "name": "lblCSocial1118",
+          "text": "225,000"
+        },
+        {
+          "name": "lblCTax1110",
+          "text": "2026/04/01"
+        },
+        {
+          "name": "lblCTax1111",
+          "text": ""
+        },
+        {
+          "name": "lblCTax1112",
+          "text": "甲"
+        },
+        {
+          "name": "lblCTax1113",
+          "text": "加入"
+        },
+        {
+          "name": "lblCTax1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1116",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1117",
+          "text": "職員25専用の合成データ・計算検証対象外"
+        }
+      ],
+      "009900000012": [
+        {
+          "name": "lblCWorkState111",
+          "text": "現行"
+        },
+        {
+          "name": "lblCWork1110",
+          "text": "2026/04/01"
+        },
+        {
+          "name": "lblCWork1111",
+          "text": ""
+        },
+        {
+          "name": "lblCWork1112",
+          "text": "11,200"
+        },
+        {
+          "name": "lblCWork1113",
+          "text": "0:00"
+        },
+        {
+          "name": "lblCWork1114",
+          "text": "0:00"
+        },
+        {
+          "name": "lblCWork1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCWork1116",
+          "text": "合成テスト"
+        },
+        {
+          "name": "lblCWork1117",
+          "text": "職員12の勤務条件"
+        },
+        {
+          "name": "lblCWork1118",
+          "text": "17:00"
+        },
+        {
+          "name": "lblCWork1119",
+          "text": "0.00"
+        },
+        {
+          "name": "lblCSocial1110",
+          "text": "合成テスト"
+        },
+        {
+          "name": "lblCSocial1111",
+          "text": "1982/04/01"
+        },
+        {
+          "name": "lblCSocial1112",
+          "text": "44"
+        },
+        {
+          "name": "lblCSocial1113",
+          "text": "45"
+        },
+        {
+          "name": "lblCSocial1114",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1115",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1116",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1117",
+          "text": "0"
+        },
+        {
+          "name": "lblCSocial1118",
+          "text": "212,000"
+        },
+        {
+          "name": "lblCTax1110",
+          "text": "2026/04/01"
+        },
+        {
+          "name": "lblCTax1111",
+          "text": ""
+        },
+        {
+          "name": "lblCTax1112",
+          "text": "乙"
+        },
+        {
+          "name": "lblCTax1113",
+          "text": "未加入"
+        },
+        {
+          "name": "lblCTax1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1116",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1117",
+          "text": "職員12専用の合成データ・計算検証対象外"
+        },
+        {
+          "name": "lblCPayroll1110",
+          "text": "令和08年"
+        },
+        {
+          "name": "lblCPayroll1111",
+          "text": "令和08年04月23日"
+        },
+        {
+          "name": "lblCPayroll1112",
+          "text": "260,000"
+        },
+        {
+          "name": "lblCPayroll1113",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1116",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1117",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1118",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1119",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll11110",
+          "text": "260,000"
+        },
+        {
+          "name": "lblCPayroll11111",
+          "text": "10,000"
+        },
+        {
+          "name": "lblCPayroll11112",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll11113",
+          "text": "250,000"
+        },
+        {
+          "name": "lblCPayroll11114",
+          "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+        }
+      ],
+      "009900000003": [
+        {
+          "name": "lblCWorkState111",
+          "text": "現行"
+        },
+        {
+          "name": "lblCWork1110",
+          "text": "2026/04/01"
+        },
+        {
+          "name": "lblCWork1111",
+          "text": "2027/03/31"
+        },
+        {
+          "name": "lblCWork1112",
+          "text": "15,000"
+        },
+        {
+          "name": "lblCWork1113",
+          "text": "7:45"
+        },
+        {
+          "name": "lblCWork1114",
+          "text": "7:45"
+        },
+        {
+          "name": "lblCWork1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCWork1116",
+          "text": "合成テスト"
+        },
+        {
+          "name": "lblCWork1117",
+          "text": "職員03の勤務条件"
+        },
+        {
+          "name": "lblCWork1118",
+          "text": "17:00"
+        },
+        {
+          "name": "lblCWork1119",
+          "text": "7.75"
+        },
+        {
+          "name": "lblCWorkState111",
+          "text": "過去"
+        },
+        {
+          "name": "lblCWork1110",
+          "text": "2025/04/01"
+        },
+        {
+          "name": "lblCWork1111",
+          "text": "2026/03/31"
+        },
+        {
+          "name": "lblCWork1112",
+          "text": "14,000"
+        },
+        {
+          "name": "lblCWork1113",
+          "text": "7:45"
+        },
+        {
+          "name": "lblCWork1114",
+          "text": "7:45"
+        },
+        {
+          "name": "lblCWork1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCWork1116",
+          "text": "合成テスト"
+        },
+        {
+          "name": "lblCWork1117",
+          "text": "過去の合成テスト"
+        },
+        {
+          "name": "lblCWork1118",
+          "text": "17:00"
+        },
+        {
+          "name": "lblCWork1119",
+          "text": "7.75"
+        },
+        {
+          "name": "lblCWorkState111",
+          "text": "予定"
+        },
+        {
+          "name": "lblCWork1110",
+          "text": "2027/04/01"
+        },
+        {
+          "name": "lblCWork1111",
+          "text": ""
+        },
+        {
+          "name": "lblCWork1112",
+          "text": "16,000"
+        },
+        {
+          "name": "lblCWork1113",
+          "text": "7:45"
+        },
+        {
+          "name": "lblCWork1114",
+          "text": "7:45"
+        },
+        {
+          "name": "lblCWork1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCWork1116",
+          "text": "合成テスト"
+        },
+        {
+          "name": "lblCWork1117",
+          "text": "将来の合成テスト"
+        },
+        {
+          "name": "lblCWork1118",
+          "text": "17:00"
+        },
+        {
+          "name": "lblCWork1119",
+          "text": "7.75"
+        },
+        {
+          "name": "lblCCommute1110",
+          "text": "2026/04/01TK-910001"
+        },
+        {
+          "name": "lblCCommute1111",
+          "text": "2026/09/30"
+        },
+        {
+          "name": "lblCCommute1112",
+          "text": "半年定期"
+        },
+        {
+          "name": "lblCCommute1113",
+          "text": "7,800"
+        },
+        {
+          "name": "lblCCommute1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCCommute1110",
+          "text": "2026/10/01TK-910002"
+        },
+        {
+          "name": "lblCCommute1111",
+          "text": "2027/03/31"
+        },
+        {
+          "name": "lblCCommute1112",
+          "text": "半年定期"
+        },
+        {
+          "name": "lblCCommute1113",
+          "text": "0"
+        },
+        {
+          "name": "lblCCommute1114",
+          "text": "8,400"
+        },
+        {
+          "name": "lblCSocial1110",
+          "text": "合成テスト"
+        },
+        {
+          "name": "lblCSocial1111",
+          "text": "2000/04/01"
+        },
+        {
+          "name": "lblCSocial1112",
+          "text": "26"
+        },
+        {
+          "name": "lblCSocial1113",
+          "text": "27"
+        },
+        {
+          "name": "lblCSocial1114",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1115",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1116",
+          "text": "テスト・判定対象外"
+        },
+        {
+          "name": "lblCSocial1117",
+          "text": "0"
+        },
+        {
+          "name": "lblCSocial1118",
+          "text": "203,000"
+        },
+        {
+          "name": "lblCTax1110",
+          "text": "2026/04/01"
+        },
+        {
+          "name": "lblCTax1111",
+          "text": ""
+        },
+        {
+          "name": "lblCTax1112",
+          "text": "甲"
+        },
+        {
+          "name": "lblCTax1113",
+          "text": "加入"
+        },
+        {
+          "name": "lblCTax1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1116",
+          "text": "0"
+        },
+        {
+          "name": "lblCTax1117",
+          "text": "職員03専用の合成データ・計算検証対象外"
+        },
+        {
+          "name": "lblCPayroll1110",
+          "text": "令和08年"
+        },
+        {
+          "name": "lblCPayroll1111",
+          "text": "令和08年06月23日"
+        },
+        {
+          "name": "lblCPayroll1112",
+          "text": "255,000"
+        },
+        {
+          "name": "lblCPayroll1113",
+          "text": "-2,000"
+        },
+        {
+          "name": "lblCPayroll1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1116",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1117",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1118",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1119",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll11110",
+          "text": "253,000"
+        },
+        {
+          "name": "lblCPayroll11111",
+          "text": "10,000"
+        },
+        {
+          "name": "lblCPayroll11112",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll11113",
+          "text": "243,000"
+        },
+        {
+          "name": "lblCPayroll11114",
+          "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+        },
+        {
+          "name": "lblCPayroll1110",
+          "text": "令和08年"
+        },
+        {
+          "name": "lblCPayroll1111",
+          "text": "令和08年05月23日"
+        },
+        {
+          "name": "lblCPayroll1112",
+          "text": "255,000"
+        },
+        {
+          "name": "lblCPayroll1113",
+          "text": "5,000"
+        },
+        {
+          "name": "lblCPayroll1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1116",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1117",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1118",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1119",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll11110",
+          "text": "260,000"
+        },
+        {
+          "name": "lblCPayroll11111",
+          "text": "10,000"
+        },
+        {
+          "name": "lblCPayroll11112",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll11113",
+          "text": "250,000"
+        },
+        {
+          "name": "lblCPayroll11114",
+          "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+        },
+        {
+          "name": "lblCPayroll1110",
+          "text": "令和08年"
+        },
+        {
+          "name": "lblCPayroll1111",
+          "text": "令和08年04月23日"
+        },
+        {
+          "name": "lblCPayroll1112",
+          "text": "250,000"
+        },
+        {
+          "name": "lblCPayroll1113",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1114",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1115",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1116",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1117",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1118",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll1119",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll11110",
+          "text": "250,000"
+        },
+        {
+          "name": "lblCPayroll11111",
+          "text": "10,000"
+        },
+        {
+          "name": "lblCPayroll11112",
+          "text": "0"
+        },
+        {
+          "name": "lblCPayroll11113",
+          "text": "240,000"
+        },
+        {
+          "name": "lblCPayroll11114",
+          "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+        }
+      ]
+    },
+    "historyReach": [
+      {
+        "container": {
+          "bottom": 655,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 527,
+          "width": 930,
+          "x": 393,
+          "y": 527
+        },
+        "kind": "Work",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 631,
+              "height": 48,
+              "left": 1196.6875,
+              "right": 1322.6875,
+              "top": 583,
+              "width": 126,
+              "x": 1196.6875,
+              "y": 583
+            },
+            "text": "8.00"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "1日あたり勤務時間",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 387,
+            "max": 387
+          }
+        ],
+        "staff": "009900000011"
+      },
+      {
+        "container": {
+          "bottom": 459,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 331,
+          "width": 930,
+          "x": 393,
+          "y": 331
+        },
+        "kind": "Commute",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 435,
+              "height": 48,
+              "left": 968,
+              "right": 1128,
+              "top": 387,
+              "width": 160,
+              "x": 968,
+              "y": 387
+            },
+            "text": "0"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "通勤10月",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [],
+        "staff": "009900000011"
+      },
+      {
+        "container": {
+          "bottom": 661,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 533,
+          "width": 930,
+          "x": 393,
+          "y": 533
+        },
+        "kind": "Social",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 637,
+              "height": 48,
+              "left": 1208,
+              "right": 1323.1875,
+              "top": 589,
+              "width": 115.1875,
+              "x": 1208,
+              "y": 589
+            },
+            "text": "211,000"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "厚生月額",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 175,
+            "max": 175
+          }
+        ],
+        "staff": "009900000011"
+      },
+      {
+        "container": {
+          "bottom": 583,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 455,
+          "width": 930,
+          "x": 393,
+          "y": 455
+        },
+        "kind": "Tax",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 559,
+              "height": 48,
+              "left": 1142.6875,
+              "right": 1322.6875,
+              "top": 511,
+              "width": 180,
+              "x": 1142.6875,
+              "y": 511
+            },
+            "text": "職員11専用の合成データ・計算検証対象外"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "備考",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 72,
+            "max": 72
+          }
+        ],
+        "staff": "009900000011"
+      },
+      {
+        "container": {
+          "bottom": 793,
+          "height": 136,
+          "left": 393,
+          "right": 1323,
+          "top": 657,
+          "width": 930,
+          "x": 393,
+          "y": 657
+        },
+        "kind": "Payroll",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 769,
+              "height": 48,
+              "left": 1143,
+              "right": 1323,
+              "top": 721,
+              "width": 180,
+              "x": 1143,
+              "y": 721
+            },
+            "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "備考",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 1554,
+            "max": 1554
+          }
+        ],
+        "staff": "009900000011"
+      },
+      {
+        "container": {
+          "bottom": 740,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 612,
+          "width": 930,
+          "x": 393,
+          "y": 612
+        },
+        "kind": "Work",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 716,
+              "height": 48,
+              "left": 1196.6875,
+              "right": 1322.6875,
+              "top": 668,
+              "width": 126,
+              "x": 1196.6875,
+              "y": 668
+            },
+            "text": "6.00"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "1日あたり勤務時間",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 387,
+            "max": 387
+          }
+        ],
+        "staff": "009900000025"
+      },
+      {
+        "container": {
+          "bottom": 459,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 331,
+          "width": 930,
+          "x": 393,
+          "y": 331
+        },
+        "kind": "Commute",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 435,
+              "height": 48,
+              "left": 968,
+              "right": 1128,
+              "top": 387,
+              "width": 160,
+              "x": 968,
+              "y": 387
+            },
+            "text": "0"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "通勤10月",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [],
+        "staff": "009900000025"
+      },
+      {
+        "container": {
+          "bottom": 661,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 533,
+          "width": 930,
+          "x": 393,
+          "y": 533
+        },
+        "kind": "Social",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 637,
+              "height": 48,
+              "left": 1208,
+              "right": 1323.1875,
+              "top": 589,
+              "width": 115.1875,
+              "x": 1208,
+              "y": 589
+            },
+            "text": "225,000"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "厚生月額",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 175,
+            "max": 175
+          }
+        ],
+        "staff": "009900000025"
+      },
+      {
+        "container": {
+          "bottom": 583,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 455,
+          "width": 930,
+          "x": 393,
+          "y": 455
+        },
+        "kind": "Tax",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 559,
+              "height": 48,
+              "left": 1142.6875,
+              "right": 1322.6875,
+              "top": 511,
+              "width": 180,
+              "x": 1142.6875,
+              "y": 511
+            },
+            "text": "職員25専用の合成データ・計算検証対象外"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "備考",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 72,
+            "max": 72
+          }
+        ],
+        "staff": "009900000025"
+      },
+      {
+        "container": {
+          "bottom": 793,
+          "height": 136,
+          "left": 393,
+          "right": 1323,
+          "top": 657,
+          "width": 930,
+          "x": 393,
+          "y": 657
+        },
+        "kind": "Payroll",
+        "lastCells": [],
+        "lastCellsVisible": true,
+        "lastHeader": "備考",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 1554,
+            "max": 1554
+          }
+        ],
+        "staff": "009900000025"
+      },
+      {
+        "container": {
+          "bottom": 740,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 612,
+          "width": 930,
+          "x": 393,
+          "y": 612
+        },
+        "kind": "Work",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 716,
+              "height": 48,
+              "left": 1196.6875,
+              "right": 1322.6875,
+              "top": 668,
+              "width": 126,
+              "x": 1196.6875,
+              "y": 668
+            },
+            "text": "0.00"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "1日あたり勤務時間",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 387,
+            "max": 387
+          }
+        ],
+        "staff": "009900000012"
+      },
+      {
+        "container": {
+          "bottom": 459,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 331,
+          "width": 930,
+          "x": 393,
+          "y": 331
+        },
+        "kind": "Commute",
+        "lastCells": [],
+        "lastCellsVisible": true,
+        "lastHeader": "通勤10月",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [],
+        "staff": "009900000012"
+      },
+      {
+        "container": {
+          "bottom": 661,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 533,
+          "width": 930,
+          "x": 393,
+          "y": 533
+        },
+        "kind": "Social",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 637,
+              "height": 48,
+              "left": 1208,
+              "right": 1323.1875,
+              "top": 589,
+              "width": 115.1875,
+              "x": 1208,
+              "y": 589
+            },
+            "text": "212,000"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "厚生月額",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 175,
+            "max": 175
+          }
+        ],
+        "staff": "009900000012"
+      },
+      {
+        "container": {
+          "bottom": 583,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 455,
+          "width": 930,
+          "x": 393,
+          "y": 455
+        },
+        "kind": "Tax",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 559,
+              "height": 48,
+              "left": 1142.6875,
+              "right": 1322.6875,
+              "top": 511,
+              "width": 180,
+              "x": 1142.6875,
+              "y": 511
+            },
+            "text": "職員12専用の合成データ・計算検証対象外"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "備考",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 72,
+            "max": 72
+          }
+        ],
+        "staff": "009900000012"
+      },
+      {
+        "container": {
+          "bottom": 793,
+          "height": 136,
+          "left": 393,
+          "right": 1323,
+          "top": 657,
+          "width": 930,
+          "x": 393,
+          "y": 657
+        },
+        "kind": "Payroll",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 769,
+              "height": 48,
+              "left": 1143,
+              "right": 1323,
+              "top": 721,
+              "width": 180,
+              "x": 1143,
+              "y": 721
+            },
+            "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "備考",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 1554,
+            "max": 1554
+          }
+        ],
+        "staff": "009900000012"
+      },
+      {
+        "container": {
+          "bottom": 836,
+          "height": 224,
+          "left": 393,
+          "right": 1323,
+          "top": 612,
+          "width": 930,
+          "x": 393,
+          "y": 612
+        },
+        "kind": "Work",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 716,
+              "height": 48,
+              "left": 1196.6875,
+              "right": 1322.6875,
+              "top": 668,
+              "width": 126,
+              "x": 1196.6875,
+              "y": 668
+            },
+            "text": "7.75"
+          },
+          {
+            "rect": {
+              "bottom": 764,
+              "height": 48,
+              "left": 1196.6875,
+              "right": 1322.6875,
+              "top": 716,
+              "width": 126,
+              "x": 1196.6875,
+              "y": 716
+            },
+            "text": "7.75"
+          },
+          {
+            "rect": {
+              "bottom": 812,
+              "height": 48,
+              "left": 1196.6875,
+              "right": 1322.6875,
+              "top": 764,
+              "width": 126,
+              "x": 1196.6875,
+              "y": 764
+            },
+            "text": "7.75"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "1日あたり勤務時間",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 387,
+            "max": 387
+          }
+        ],
+        "staff": "009900000003"
+      },
+      {
+        "container": {
+          "bottom": 507,
+          "height": 176,
+          "left": 393,
+          "right": 1323,
+          "top": 331,
+          "width": 930,
+          "x": 393,
+          "y": 331
+        },
+        "kind": "Commute",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 435,
+              "height": 48,
+              "left": 968,
+              "right": 1128,
+              "top": 387,
+              "width": 160,
+              "x": 968,
+              "y": 387
+            },
+            "text": "0"
+          },
+          {
+            "rect": {
+              "bottom": 483,
+              "height": 48,
+              "left": 968,
+              "right": 1128,
+              "top": 435,
+              "width": 160,
+              "x": 968,
+              "y": 435
+            },
+            "text": "8,400"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "通勤10月",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [],
+        "staff": "009900000003"
+      },
+      {
+        "container": {
+          "bottom": 709,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 581,
+          "width": 930,
+          "x": 393,
+          "y": 581
+        },
+        "kind": "Social",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 685,
+              "height": 48,
+              "left": 1208,
+              "right": 1323.1875,
+              "top": 637,
+              "width": 115.1875,
+              "x": 1208,
+              "y": 637
+            },
+            "text": "203,000"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "厚生月額",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 175,
+            "max": 175
+          }
+        ],
+        "staff": "009900000003"
+      },
+      {
+        "container": {
+          "bottom": 487,
+          "height": 128,
+          "left": 393,
+          "right": 1323,
+          "top": 359,
+          "width": 930,
+          "x": 393,
+          "y": 359
+        },
+        "kind": "Tax",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 463,
+              "height": 48,
+              "left": 1142.6875,
+              "right": 1322.6875,
+              "top": 415,
+              "width": 180,
+              "x": 1142.6875,
+              "y": 415
+            },
+            "text": "職員03専用の合成データ・計算検証対象外"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "備考",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 72,
+            "max": 72
+          }
+        ],
+        "staff": "009900000003"
+      },
+      {
+        "container": {
+          "bottom": 793,
+          "height": 232,
+          "left": 393,
+          "right": 1323,
+          "top": 561,
+          "width": 930,
+          "x": 393,
+          "y": 561
+        },
+        "kind": "Payroll",
+        "lastCells": [
+          {
+            "rect": {
+              "bottom": 673,
+              "height": 48,
+              "left": 1143,
+              "right": 1323,
+              "top": 625,
+              "width": 180,
+              "x": 1143,
+              "y": 625
+            },
+            "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+          },
+          {
+            "rect": {
+              "bottom": 721,
+              "height": 48,
+              "left": 1143,
+              "right": 1323,
+              "top": 673,
+              "width": 180,
+              "x": 1143,
+              "y": 673
+            },
+            "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+          },
+          {
+            "rect": {
+              "bottom": 769,
+              "height": 48,
+              "left": 1143,
+              "right": 1323,
+              "top": 721,
+              "width": 180,
+              "x": 1143,
+              "y": 721
+            },
+            "text": "合成テスト専用。金額は動作検証用の任意値。法定給与・税・保険計算を表さない。"
+          }
+        ],
+        "lastCellsVisible": true,
+        "lastHeader": "備考",
+        "root": {
+          "bottom": 871,
+          "height": 575,
+          "left": 392,
+          "right": 1346,
+          "top": 296,
+          "width": 954,
+          "x": 392,
+          "y": 296
+        },
+        "scrolls": [
+          {
+            "left": 1554,
+            "max": 1554
+          }
+        ],
+        "staff": "009900000003"
+      }
+    ],
+    "headerRestored": [
+      {
+        "name": "lblHWorkState111",
+        "rect": {
+          "bottom": 668,
+          "height": 56,
+          "left": 393,
+          "right": 493.796875,
+          "top": 612,
+          "width": 100.796875,
+          "x": 393,
+          "y": 612
+        }
+      },
+      {
+        "name": "lblHWork1110",
+        "rect": {
+          "bottom": 668,
+          "height": 56,
+          "left": 493.796875,
+          "right": 608.984375,
+          "top": 612,
+          "width": 115.1875,
+          "x": 493.796875,
+          "y": 612
+        }
+      }
+    ],
+    "focusPath": [
+      {
+        "border": "0px none rgb(36, 36, 36)",
+        "boxShadow": "none",
+        "label": "支給対象月. 2026/09",
+        "outline": "rgb(36, 36, 36) none 0px",
+        "rect": {
+          "bottom": 54,
+          "height": 40,
+          "left": 913,
+          "right": 1024,
+          "top": 14,
+          "width": 111,
+          "x": 913,
+          "y": 14
+        },
+        "role": "button",
+        "tag": "DIV",
+        "text": "2026/09",
+        "type": null
+      },
+      {
+        "border": "1px solid rgb(255, 255, 255)",
+        "boxShadow": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+        "label": "文字サイズを大きくする",
+        "outline": "rgba(0, 0, 0, 0) solid 2px",
+        "rect": {
+          "bottom": 114,
+          "height": 44,
+          "left": 844,
+          "right": 982,
+          "top": 70,
+          "width": 138,
+          "x": 844,
+          "y": 70
+        },
+        "role": null,
+        "tag": "BUTTON",
+        "text": "文字：標準",
+        "type": "button"
+      },
+      {
+        "border": "1px solid rgb(255, 255, 255)",
+        "boxShadow": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+        "label": "Dataverseの最新データを読み込む",
+        "outline": "rgba(0, 0, 0, 0) solid 2px",
+        "rect": {
+          "bottom": 114,
+          "height": 44,
+          "left": 992,
+          "right": 1142,
+          "top": 70,
+          "width": 150,
+          "x": 992,
+          "y": 70
+        },
+        "role": null,
+        "tag": "BUTTON",
+        "text": "最新データを読込",
+        "type": "button"
+      },
+      {
+        "border": "1px solid rgb(209, 209, 209)",
+        "boxShadow": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+        "label": "職員検索を閉じる",
+        "outline": "rgba(0, 0, 0, 0) solid 2px",
+        "rect": {
+          "bottom": 236,
+          "height": 44,
+          "left": 328,
+          "right": 372,
+          "top": 192,
+          "width": 44,
+          "x": 328,
+          "y": 192
+        },
+        "role": null,
+        "tag": "BUTTON",
+        "text": "☰",
+        "type": "button"
+      },
+      {
+        "border": "0px none rgb(118, 118, 118)",
+        "boxShadow": "none",
+        "label": "氏名・職員番号・項目を検索",
+        "outline": "rgb(16, 16, 16) none 1px",
+        "rect": {
+          "bottom": 315,
+          "height": 42,
+          "left": 38,
+          "right": 331,
+          "top": 273,
+          "width": 293,
+          "x": 38,
+          "y": 273
+        },
+        "role": null,
+        "tag": "INPUT",
+        "text": "",
+        "type": "search"
+      }
+    ],
+    "searchFocusPath": [
+      {
+        "after": "0px none rgb(31, 41, 55)",
+        "border": "0px none rgb(31, 41, 55)",
+        "label": "組織. すべて",
+        "shadow": "none",
+        "text": "すべて"
+      },
+      {
+        "after": "0px none rgb(31, 41, 55)",
+        "border": "0px none rgb(31, 41, 55)",
+        "label": "在籍状態. すべて",
+        "shadow": "none",
+        "text": "すべて"
+      },
+      {
+        "after": "0px none rgb(36, 36, 36)",
+        "border": "1px solid rgb(11, 74, 139)",
+        "label": "検索",
+        "shadow": "rgba(0, 0, 0, 0.12) 0px 0px 2px 0px, rgba(0, 0, 0, 0.14) 0px 1px 2px 0px, rgb(0, 0, 0) 0px 0px 0px 1px inset, rgb(255, 255, 255) 0px 0px 0px 2px inset",
+        "text": "検索"
+      }
+    ],
+    "detailFocusPath": [
+      {
+        "border": "0px none rgb(36, 36, 36)",
+        "label": null,
+        "shadow": "none",
+        "text": "適用状態\n適用開始日\n適用終了日\n日額単価\n所定勤務時間\n勤務時間\n超勤基礎単価（参考）\n異動区分\n発令事由区分\n勤務時間終了\n1日あたり勤務時間\nテストデータ"
+      },
+      {
+        "border": "0px none rgb(36, 36, 36)",
+        "label": "通勤認定一覧。表示する行を選択してください",
+        "shadow": "none",
+        "text": "TK-910004 2026/04/01 支給なし. Selected.\n2026/04/01\nTK-910004\n2027/03/31\n支給なし\n0\n0"
+      },
+      {
+        "border": "0px none rgb(36, 36, 36)",
+        "label": null,
+        "shadow": "none",
+        "text": "職員雇用区分\n生年月日\n4/1時点年齢\n3/1時点年齢\n介護徴収該当\n厚生年金免除該当\n後期高齢者徴収該当\n厚生、級\n厚生月額\nテストデータ行\n合成テスト\n19"
+      },
+      {
+        "border": "0px none rgb(36, 36, 36)",
+        "label": null,
+        "shadow": "none",
+        "text": "適用開始日\n適用終了日\n税表区分\n雇用保険加入区分\n共済貯金月額\n共済貸付月額\n扶養控除人数\n備考\nテストデータ行\n2026/04/01\n甲\n加入\n0\n0\n0\n"
+      },
+      {
+        "border": "0px none rgb(36, 36, 36)",
+        "label": null,
+        "shadow": "none",
+        "text": "給与期間対象年\n支給年月日\n俸給支給額・当給与期間分\n俸給支給額・返納・追給分\n通勤手当・当給与期間分\n通勤手当・返納・追給分\n在宅勤務等手当・当給与期間分\n在"
+      },
+      {
+        "border": "0px none rgb(0, 0, 0)",
+        "label": null,
+        "shadow": "none",
+        "text": "検索結果をTSVで出力"
+      },
+      {
+        "border": "0px none rgb(0, 0, 0)",
+        "label": null,
+        "shadow": "none",
+        "text": "選択職員の認定簿を表示"
+      },
+      {
+        "border": "0px none rgb(0, 0, 0)",
+        "label": null,
+        "shadow": "none",
+        "text": "詳細表示"
+      }
+    ],
+    "reverseFocus": [
+      {
+        "label": null,
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(0, 0, 0)",
+            "afterContent": "none",
+            "border": "0px none rgb(0, 0, 0)",
+            "outline": "rgb(0, 0, 0) none 0px",
+            "shadow": "none",
+            "tag": "BUTTON"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "4px solid rgb(11, 74, 139)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "選択職員の認定簿を表示"
+      },
+      {
+        "label": null,
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(0, 0, 0)",
+            "afterContent": "none",
+            "border": "0px none rgb(0, 0, 0)",
+            "outline": "rgb(0, 0, 0) none 0px",
+            "shadow": "none",
+            "tag": "BUTTON"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "4px solid rgb(17, 94, 163)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "検索結果をTSVで出力"
+      },
+      {
+        "label": null,
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(16, 16, 16) auto 1px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px solid rgb(0, 0, 0)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "給与期間対象年\n支給年月日\n俸給支給額・当給与期間分\n俸給支給額・返納・追給分\n通勤手当・当給与期間"
+      },
+      {
+        "label": null,
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(16, 16, 16) auto 1px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px solid rgb(0, 0, 0)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "適用開始日\n適用終了日\n税表区分\n雇用保険加入区分\n共済貯金月額\n共済貸付月額\n扶養控除人数\n備考\n"
+      },
+      {
+        "label": null,
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(16, 16, 16) auto 1px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px solid rgb(0, 0, 0)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "職員雇用区分\n生年月日\n4/1時点年齢\n3/1時点年齢\n介護徴収該当\n厚生年金免除該当\n後期高齢者徴"
+      },
+      {
+        "label": "通勤認定一覧。表示する行を選択してください",
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 0px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "4px solid rgb(12, 59, 94)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "TK-910004 2026/04/01 支給なし. Selected.\n2026/04/01\nTK"
+      },
+      {
+        "label": null,
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(16, 16, 16) auto 1px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px solid rgb(0, 0, 0)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "適用状態\n適用開始日\n適用終了日\n日額単価\n所定勤務時間\n勤務時間\n超勤基礎単価（参考）\n異動区分\n"
+      },
+      {
+        "label": null,
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(0, 0, 0)",
+            "afterContent": "none",
+            "border": "0px none rgb(0, 0, 0)",
+            "outline": "rgb(0, 0, 0) none 0px",
+            "shadow": "none",
+            "tag": "BUTTON"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "2px solid rgb(7, 59, 120)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "009900000011 試験 同姓同名 詳細を表示"
+      },
+      {
+        "label": "検索条件をクリア",
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(15, 108, 189)",
+            "afterContent": "none",
+            "border": "1px solid rgb(11, 74, 139)",
+            "outline": "rgba(0, 0, 0, 0) solid 2px",
+            "shadow": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+            "tag": "BUTTON"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "検索条件をクリア"
+      },
+      {
+        "label": "検索",
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(255, 255, 255)",
+            "afterContent": "none",
+            "border": "1px solid rgb(11, 74, 139)",
+            "outline": "rgba(0, 0, 0, 0) solid 2px",
+            "shadow": "rgba(0, 0, 0, 0.12) 0px 0px 2px 0px, rgba(0, 0, 0, 0.14) 0px 1px 2px 0px, rgb(0, 0, 0) 0px 0px 0px 1px inset, rgb(255, 255, 255) 0px 0px 0px 2px inset",
+            "tag": "BUTTON"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "検索"
+      },
+      {
+        "label": "在籍状態. すべて",
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(31, 41, 55)",
+            "afterContent": "none",
+            "border": "0px none rgb(31, 41, 55)",
+            "outline": "rgb(31, 41, 55) none 0px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(31, 41, 55)",
+            "afterContent": "none",
+            "border": "0px none rgb(31, 41, 55)",
+            "outline": "rgb(31, 41, 55) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "すべて"
+      },
+      {
+        "label": "組織. すべて",
+        "styles": [
+          {
+            "afterBorder": "0px none rgb(31, 41, 55)",
+            "afterContent": "none",
+            "border": "0px none rgb(31, 41, 55)",
+            "outline": "rgb(31, 41, 55) none 0px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(31, 41, 55)",
+            "afterContent": "none",
+            "border": "0px none rgb(31, 41, 55)",
+            "outline": "rgb(31, 41, 55) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          },
+          {
+            "afterBorder": "0px none rgb(36, 36, 36)",
+            "afterContent": "none",
+            "border": "0px none rgb(36, 36, 36)",
+            "outline": "rgb(36, 36, 36) none 3px",
+            "shadow": "none",
+            "tag": "DIV"
+          }
+        ],
+        "text": "すべて"
+      }
+    ],
+    "focusContrastEvidence": {
+      "ancestors": [
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(31, 41, 55)",
+          "boxShadow": "none",
+          "name": null,
+          "outline": "rgb(31, 41, 55) none 0px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgb(255, 255, 255)",
+          "border": "0px none rgb(31, 41, 55)",
+          "boxShadow": "none",
+          "name": null,
+          "outline": "rgb(31, 41, 55) none 3px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(36, 36, 36)",
+          "boxShadow": "none",
+          "name": null,
+          "outline": "rgb(36, 36, 36) none 3px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(36, 36, 36)",
+          "boxShadow": "none",
+          "name": null,
+          "outline": "rgb(36, 36, 36) none 3px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(36, 36, 36)",
+          "boxShadow": "none",
+          "name": null,
+          "outline": "rgb(36, 36, 36) none 3px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "4px solid rgb(203, 213, 225)",
+          "boxShadow": "none",
+          "name": null,
+          "outline": "rgb(36, 36, 36) none 3px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(36, 36, 36)",
+          "boxShadow": "none",
+          "name": "ddStatus111",
+          "outline": "rgb(36, 36, 36) none 3px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(36, 36, 36)",
+          "boxShadow": "none",
+          "name": null,
+          "outline": "rgb(36, 36, 36) none 3px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(36, 36, 36)",
+          "boxShadow": "none",
+          "name": null,
+          "outline": "rgb(36, 36, 36) none 3px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgb(255, 255, 255)",
+          "border": "0px solid rgb(0, 0, 0)",
+          "boxShadow": "none",
+          "name": null,
+          "outline": "rgb(36, 36, 36) none 3px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(36, 36, 36)",
+          "boxShadow": "none",
+          "name": null,
+          "outline": "rgb(36, 36, 36) none 3px",
+          "tag": "DIV"
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(36, 36, 36)",
+          "boxShadow": "none",
+          "name": "conLeftSurface111",
+          "outline": "rgb(36, 36, 36) none 3px",
+          "tag": "DIV"
+        }
+      ],
+      "label": "在籍状態. すべて"
+    }
+  },
+  "historyComparisons": [
+    {
+      "staff": "009900000011",
+      "cells": 48,
+      "match": true
+    },
+    {
+      "staff": "009900000025",
+      "cells": 33,
+      "match": true
+    },
+    {
+      "staff": "009900000012",
+      "cells": 43,
+      "match": true
+    },
+    {
+      "staff": "009900000003",
+      "cells": 105,
+      "match": true
+    }
+  ],
+  "focusRatio": 1.48470221380943
+}
