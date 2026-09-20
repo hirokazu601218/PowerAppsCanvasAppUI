@@ -1,3 +1,16 @@
+# 通勤手当認定簿HTML版：2026-09-20 中断引継ぎ
+
+## 現在の作業と読取り対象（今回ユーザー依頼）
+
+- A4横2ページ、JavaScript＋Dataverse Web API読取り、公開は承認済み。項目対応の後日精査はIssue #68。
+- **未完成**。新規 `crb3c_reports/commute-ledger.html` に固定架空データ版のみ保存・公開（Maker成功通知確認）。動的版と新ボタンは未配置、アプリは変更・保存・公開していない。既存PoCは保持。
+- 候補ソース／設計／試験／再開位置: [中断記録](../../src/staff-master/candidates/commute-html-v1.00/docs/implementation-status.md)。単体6試験グループPASS、実接続・実権限・A4横2ページPDF・既存機能スモークは未完了。
+- 読取り対象: 上記中断記録、`docs/poc/html-report-launch-poc.md`、`config/dataverse/commute-columns.json`、`tests/fixtures/commute-6.json`、`assets/commute-ledger/ledger-page{1,2}-template.png`、対象候補ソース、最新の検証専用アプリとWebリソース。
+- 作業開始14:23 UTC頃、17:43 UTCの確認で60分停止期限超過を認識。新規実装を止めて状態保存。再開指示後に固定版の描画・印刷確認から再開する。期限内に停止できなかったことも記録する。
+- 下記は他Workの引継ぎを保存したもの。今回作業で上書き・完了扱いにしない。Issue #51のテーブル編集時確認ルールも引き継ぐ。
+
+---
+
 # 現在の作業と読取り対象：台帳・全6画面二形式・289表示値照合を実施
 
 - [今回結果と再現手順](../testing/automatable-20260919/README.md)を読む。準備不足だった台帳/二形式比較/統合表示値照合を実施。
