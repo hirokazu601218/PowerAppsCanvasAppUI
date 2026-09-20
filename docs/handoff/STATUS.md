@@ -1,3 +1,17 @@
+# 現在の作業と読取り対象：通勤手当認定簿HTML版1.01
+
+- ユーザーの再開指示で**今回の60分制限を解除**。A4横2ページ・JavaScript＋Dataverse読取り・指定対象の公開は承認済み。
+- 指定検証アプリは**バージョン26がライブ**。MakerのPublish successful（2026-09-21 06:23:37 JST）とバージョン一覧を確認。追加は`conLedgerHeader111/btnLedgerHtmlReport`、同ヘッダー高+52のみ。旧PoC・既存子コントロールは保持。
+- 新規Webリソース`crb3c_reports/commute-ledger.html`は**動的HTML版1.01を公開済み**。保存後のコード読戻しがソースと完全一致。以前の固定架空版ではない。
+- **実環境での帳票表示・Web API接続/実権限・Windows/Edgeの2ページ1PDF保存は未確認**。クラウドブラウザのURL安全ポリシー拒否を回避していない。ユーザーの架空データ受入を待つ。公開成功を正式業務受入完了と扱わない。
+- 試験: Node10試験群PASS（HTTP/DOMはモック）。ローカル組版は架空6件＋4明細でA4横2ページ。最大長の経路・備考はあふれ検出・出力停止。Studioは0件、復帰、職員切替、認定なし、既存帳票表示、新ボタン表示を確認。
+- 読取り対象: [最新版README](../../src/staff-master/candidates/commute-html-v1.01/README.md)、[設計・項目対応・試験・受入/復旧手順](../../src/staff-master/candidates/commute-html-v1.01/docs/release-1.01.md)、同ディレクトリのソースと要件、`config/dataverse/commute-columns.json`、`tests/fixtures/commute-6.json`。PoCの経緯は`docs/poc/html-report-launch-poc.md`。
+- 業務精査は[Issue #68](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/68)を継続。現在氏名・所属、期間単位、未定義欄、長文時の運用など。実データ・認証情報・環境固有URLをGitHubへ追加しない。
+- 再開時: まずユーザーのWindows/Edgeで架空004/TK-910003のHTML版と2ページPDFを確認。必要な修正は最新の実アプリ／リソースを読んでから行う。版1.00候補は旧中断記録として保持。
+- 下記は過去経緯・他Workの引継ぎ。最新状態は本節を優先し、他Workの残件を完了扱いにしない。職員基本テーブル編集時はIssue #51を引き続き確認する。
+
+---
+
 # 通勤手当認定簿HTML版：2026-09-20 中断引継ぎ
 
 ## 現在の作業と読取り対象（今回ユーザー依頼）

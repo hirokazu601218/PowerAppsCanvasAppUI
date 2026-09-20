@@ -1,0 +1,6 @@
+qa/fonts/
+qa/*.pdf
+qa/*.png
+qa/TK-*.html
+qa/four-routes.html
+qa/overflow-expected.html
