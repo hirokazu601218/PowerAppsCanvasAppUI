@@ -1,6 +1,10 @@
 # Power Apps HTML帳票 Launch PoC 検証結果
 
-## 現在の状態（2026-09-20追記）
+## HTTPS方式の最新状態（2026-09-20）
+**部分成功・継続中：DataverseのHTML登録・公開・直接表示に成功。ボタン切替中に作業環境が切断され、Launch経由・印刷・PDFは未検証。**
+追加権限の付与・変更なし。Webリソースは保持。ボタン入替操作の応答が失われたため、現在のボタン残存状態は再接続後に確認してHTTPS版1個を確実に残す必要がある。完了扱いにしない。
+
+## HTTPS方式への変更前の状態（2026-09-20追記）
 **PoC継続中。ユーザーの削除指示があるまでボタン・機能を保持する。**
 2026-09-20の追加指示により、当初の「検証後に完全削除」を上書きした。検証専用アプリのscrHomeにHTML帳票PoCボタンを再追加し、下記の元の2ページHTML式を保存済み。公開は行っていないため、Studioの保存済み編集版で利用する。
 最新の対照試験：通常HTTPSのLaunchTarget.Newは別タブ成功、17文字のdata URLは別タブ不成立。方式の判定は引き続き今回環境で失敗だが、PoC自体は終了扱いにしない。
@@ -148,3 +152,52 @@ Notify("data開始",NotificationType.Information); Launch("data:text/html,PoC",{
 - 保存後スモーク：ホーム→職員検索7件→009900000011で1件・選択011→条件クリア7件→ホーム。HTML帳票PoCボタンの残存を確認してプレビュー終了。
 - 全回帰試験は未実施。元アプリやデータ定義は編集していない。本番帳票フェーズへは進んでいない。
 - 上記の撤去・復元証跡は2026-09-19時点の履歴として保持する。現在は削除済みではなく、検証専用アプリの保存済み編集版にPoCを残している。
+
+## Dataverse HTML Webリソース方式の実施（2026-09-20）
+
+ユーザーの「それでやってみて。権限追加必要なら許可します」に基づき、事前登録した固定HTMLをHTTPSで開く案を実施。元のdata URL方式とは区別する。
+
+### 登録済みリソース
+- 環境：StaffMaster-Automation-Test（68e00049-b7e5-eda6-9888-9a3cc493c5be）。
+- ソリューション：職員マスタ自動化 / StaffMasterAutomation（25438a80-0a18-4ac8-bdce-5e328ef23297）。
+- 表示名：HTML帳票PoC（2ページ・固定値）。
+- 名前：crb3c_poc/html-report-launch.html。
+- 種類：Web ページ (HTML)。
+- リソースID：48e1393d-8cb4-f111-aaad-e4fb1eff79c7（管理画面から開いた編集URLで確認）。
+- URL：https://orge762dd9e.crm7.dynamics.com/WebResources/crb3c_poc/html-report-launch.html
+- 新規保存後、当該リソース行の「公開」を実行。「公開 に成功しました。」を確認。「すべてのカスタマイズの公開」は使用していない。
+- 追加のロール付与や権限変更なし。元のCanvasアプリ・既存テーブルの定義変更なし。
+
+### 実際に登録したHTML/CSS
+```html
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HTML帳票PoC</title><style>@page{size:A4 portrait;margin:10mm}*{box-sizing:border-box}body{margin:0;color:#000;background:#fff;font-family:"Meiryo","Noto Sans CJK JP",sans-serif}.page{display:flow-root;width:190mm;min-height:276mm;break-inside:avoid;page-break-inside:avoid}.page-break{break-before:page;page-break-before:always}h1{margin:0 0 8mm;font-size:22pt}h2{margin:0 0 6mm;font-size:16pt}table{width:100%;border-collapse:collapse}th,td{border:1px solid #000;padding:6px;text-align:left}th{width:35%}@media screen{body{padding:10mm}.page{margin:0 0 10mm;outline:1px solid #bbb}}</style></head><body><div class="page"><h1>通勤手当認定簿 PoC</h1><h2>1ページ目</h2><table><tr><th>職員番号</th><td>000123</td></tr><tr><th>氏名</th><td>テスト 太郎</td></tr></table></div><div class="page page-break"><h1>通勤手当認定簿 PoC</h1><h2>2ページ目</h2><table><tr><th>通勤方法</th><td>電車</td></tr><tr><th>備考</th><td>Power Apps HTML帳票出力検証</td></tr></table></div></body></html>
+```
+元の固定データを維持。見出しの既定余白によるはみ出しを避けるため余白を明示し、pageをflow-root、最小高さ276mmとした。A4の印刷可能高さ277mmに1mmの余裕を設けた。画面用の枠・余白は@media screenだけに指定。これらは印刷成功の実測を意味しない。
+
+### ボタンに設定する予定式（未反映・未検証）
+```powerfx
+Launch("https://orge762dd9e.crm7.dynamics.com/WebResources/crb3c_poc/html-report-launch.html", {}, LaunchTarget.New)
+```
+
+### 実測結果
+| 項目 | 結果 | 証跡・限界 |
+|---|---|---|
+| HTML登録 | PASS | 新規登録行を確認 |
+| 対象Webリソース公開 | PASS | 公開成功通知 |
+| HTTPS URLを直接開く | PASS | 新規タブで帳票DOMを確認。Launch経由とは区別 |
+| 日本語・固定データ | 部分確認 | 見出し、職員番号000123、テスト 太郎、電車、備考をDOM上で確認。スクリーンショットによる字形確認は未実施 |
+| 1・2ページ目の内容 | PASS（文書構造） | 同一HTMLに両見出し・2表を確認。印刷ページ数とは区別 |
+| 表罫線・見た目 | 未確認 | CSS定義のみ。画像での目視未実施 |
+| ボタンのHTTPS切替・Launch | 未完了 | 入替途中のツール通信切断 |
+| 印刷画面・2ページ認識・PDF保存 | 未実施 | 作業環境オフライン |
+| Edge・ズーム100% | 未実施 | 同上 |
+
+### 切断と次回の再開点
+1. 既存btnHtmlReportPocを選択した後、HTTPS版に入れ替えるため「その他のオプション→削除」の操作を送った時点で通信切断。これは撤去して終了する操作ではなく、同名ボタンを再作成する編集手順の途中。
+2. 応答：exec-server transport disconnected、続いて409 Conflict / environment_offline / Environment is not connected。再試行でも回復せず。
+3. このため削除が実行されたかは不明。削除されたとも、ボタンが残っているとも断定しない。HTTPS式の貼付・保存は未実施。
+4. 再接続時はStudioの現在状態を確認し、同名ボタンがあればOnSelectを切替、なければ同名・同位置のボタンを1個再追加。保存・コード読戻し後にLaunchで開く。
+5. 続いて表示の目視、ブラウザ印刷、A4縦2ページ・1PDF保存を検証し、必要な印刷CSSだけ調整する。
+6. ユーザーの削除指示までHTML WebリソースとPoCボタンを保持する。本番帳票・実データ連携には進まない。
+
+現時点は方式変更PoCの部分成功であり、成功条件6項目を満たしたとは判定しない。次フェーズ移行は未承認・未実施。
