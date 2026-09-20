@@ -1,0 +1,22 @@
+{
+  "README.md": "9948e9be500b560892bdcd0f01fe28486a04bacb06a3ddd885fecfdecd2fcab2",
+  ".gitignore": "6e6f4ae09a4a8c455b677be28c6f2c5cfaca44ae5ff7749c1ea15bf65afda290",
+  "docs/release-1.01.md": "5530d09ee8bb750320249594a2a5aa485c7c1001fbcc71babeee94a13c990fcb",
+  "docs/deployment.json": "625e992070a705c9591358e0ad14a1bfdf1db332aa198da3463d541c7e1652bd",
+  "docs/requirements.md": "b5d82dff9791e6807e64d9fed277e5e77e646a263c69dfa613d80f3018f43cf9",
+  "src/build.py": "52d1e6c28b28a1bf5eebab55021780eae5631646e09d56210d1f7973d01a5637",
+  "src/report.js": "2a8c72c1772377b3dbb6e78428110b5db3642e41b94d9add6ae99485ba885c9b",
+  "src/commute-ledger.html": "70923fd131ed25b1f3f66925f7f58c410ddf222e80471746bcd2950387f21a70",
+  "src/layout.html": "dbece0b8b196aca157141b2241e85ce463fb3d40184a41dd24def04a034e7984",
+  "src/btnLedgerHtmlReport.paste.yaml": "0e5e83df09fcf1f1045dc9f9a0a973fa67451052ea6b0a5c46fc2c3327375639",
+  "tests/report.test.js": "7bab8df89d35dcd51edb13fc2881f54f3b49ad9945ecb5242233762ba07be304",
+  "tests/dom-state.test.js": "547b7a196c7763f1672ccbeac23bf1a01e5cb3f5acccd91893ffe4f08e56d063",
+  "tests/build-fixture.js": "72d6bbf87b6c69d58bf00a8c3147ba8a85f9836cb7d2d15057658706d2bca9c8",
+  "tests/layout-cases.js": "73e147825f8e0831a98a7fb7f34f9dbc2544b8deeec976553ee1ffe3ca662915",
+  "tests/commute-6.json": "a21065614a2b807830b9994573f98ebc2cb7122f3409d3417282bc41ca574df0",
+  "tests/commute-columns.json": "9297fee8311c5e34c1559a3e952c6c617a3281b1ac60705e87a9c06c3d1b2f78",
+  "qa/layout-fixture.html": "cae59ace564b8ba44d7e1471958445d97e02daab69f4e5caac5cd3efd62a380a",
+  "qa/header-readback.yaml": "d8f1e27652606271799e57d544f71057757957a015f10a16a62c28c199804f38",
+  "qa/check-layout-cases.py": "840c089afe11e5e0453d55abbb9fc0a0f075ac3b12205aba3819a6065a74c69e",
+  "qa/layout-results.json": "225fd69185598b1f6982c5845c20f6fd5b670892fd62d61ce1368e6987b99fc4"
+}

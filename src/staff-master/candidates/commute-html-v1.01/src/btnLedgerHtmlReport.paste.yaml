@@ -1,0 +1,25 @@
+- btnLedgerHtmlReport:
+    Control: ModernButton@1.0.0
+    Properties:
+      AccessibleLabel: ="選択中の認定簿をHTML版で別タブに表示"
+      Appearance: =ButtonAppearance.Primary
+      BasePaletteColor: =ColorValue("#0F6CBD")
+      Font: ="Segoe UI"
+      FontWeight: =FontWeight.Semibold
+      Height: =40
+      Width: =Min(260,Parent.Width-40)
+      X: =20
+      Y: =Parent.Height-48
+      Text: ="HTML版（別タブ・2ページ）"
+      Tooltip: ="選択中の通勤認定を読取り、A4横2ページの帳票を別タブに表示します。"
+      DisplayMode: =IfError(If(varLedgerExport111 || IsBlank(varLedgerCommute111.T_通勤) || varLedgerCommute111.職員基本.職員番号 <> varLedgerStaff111.StaffId || varLedgerStaff111.StaffId <> StaffSelected.StaffId || varLedgerCommute111.T_通勤 <> galCommute111.Selected.T_通勤,DisplayMode.Disabled,DisplayMode.Edit),DisplayMode.Disabled)
+      OnSelect: |-
+        =IfError(
+            With({c:varLedgerCommute111,s:varLedgerStaff111},
+                If(IsBlank(c.T_通勤) || IsBlank(s.StaffId) || c.職員基本.職員番号 <> s.StaffId || s.StaffId <> StaffSelected.StaffId || c.T_通勤 <> galCommute111.Selected.T_通勤,
+                    Notify("通勤の行を選び直して、認定簿を開いてください。",NotificationType.Warning),
+                    Launch("{DATAVERSE_ORIGIN}/WebResources/crb3c_reports/commute-ledger.html",{id:Lower(Text(c.T_通勤))},LaunchTarget.New)
+                )
+            ),
+            Notify("認定簿を開けませんでした。選択と接続状態を確認してください。",NotificationType.Error)
+        )

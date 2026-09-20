@@ -1,0 +1,185 @@
+- conLedgerHeader111:
+    Control: GroupContainer@1.5.0
+    Variant: ManualLayout
+    Properties:
+      DropShadow: =DropShadow.None
+      Fill: =Color.White
+      Height: =If(Parent.Width<1200,180,132)
+      RadiusBottomLeft: =0
+      RadiusBottomRight: =0
+      RadiusTopLeft: =0
+      RadiusTopRight: =0
+      Width: =Parent.Width
+    Children:
+      - lblLedgerTitle111:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#073B78")
+            Fill: =RGBA(0,0,0,0)
+            Font: ="Segoe UI"
+            Height: =34
+            LineHeight: =1.4
+            PaddingBottom: =4
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =4
+            Size: =If(Coalesce(varLargeText111,false),18,15)
+            Text: ="通勤手当認定簿"
+            Width: =If(Parent.Width<1200,Parent.Width-40,lblLedgerPaper111.X-32)
+            Wrap: =false
+            X: =20
+            Y: =6
+      - lblLedgerStaff111:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#073B78")
+            Fill: =RGBA(0,0,0,0)
+            Font: ="Segoe UI"
+            Height: =24
+            LineHeight: =1.4
+            PaddingBottom: =4
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =4
+            Size: =If(Coalesce(varLargeText111,false),12,10.5)
+            Text: =varLedgerStaff111.Name & "　職員番号：" & varLedgerStaff111.StaffId & "　認定ID：" & varLedgerCommute111.通勤認定ID
+            Width: =Parent.Width-40
+            Wrap: =false
+            X: =20
+            Y: =44
+      - btnLedgerClose111:
+          Control: ModernButton@1.0.0
+          Properties:
+            AccessibleLabel: ="閉じる"
+            Appearance: =ButtonAppearance.Outline
+            BasePaletteColor: =ColorValue("#0F6CBD")
+            BorderColor: =ColorValue("#0B4A8B")
+            BorderThickness: =1
+            Color: =ColorValue("#0F6CBD")
+            DisplayMode: =If(varLedgerExport111,DisplayMode.Disabled,DisplayMode.Edit)
+            Font: ="Segoe UI"
+            FontWeight: =FontWeight.Semibold
+            Height: =44
+            OnSelect: =Set(varLedgerOpen111,false); Set(varLedgerPdfRequested111,false); Set(varLedgerPdfView111,false); SetFocus(btnCertificate111)
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Size: =If(Coalesce(varLargeText111,false),12,10.5)
+            Text: ="閉じる"
+            Tooltip: ="閉じる"
+            X: =Parent.Width-112
+            Y: =If(Parent.Width<1200,72,12)
+      - lblLedgerPaper111:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#242424")
+            Fill: =RGBA(0,0,0,0)
+            Font: ="Segoe UI"
+            Height: =44
+            LineHeight: =1.4
+            PaddingBottom: =4
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =4
+            Size: =If(Coalesce(varLargeText111,false),12,10.5)
+            Text: ="表示倍率"
+            Visible: =Parent.Width>=720
+            Width: =64
+            Wrap: =false
+            X: =ddLedgerPaper111.X-Self.Width-4
+            Y: =If(Parent.Width<1200,72,12)
+      - ddLedgerPaper111:
+          Control: Classic/DropDown@2.3.1
+          Properties:
+            AccessibleLabel: ="認定簿の表示倍率"
+            BorderColor: =ColorValue("#CBD5E1")
+            BorderThickness: =1
+            ChevronBackground: =ColorValue("#FFFFFF")
+            ChevronFill: =ColorValue("#1F2937")
+            Color: =ColorValue("#1F2937")
+            Default: ="100%"
+            DisplayMode: =If(varLedgerExport111,DisplayMode.Disabled,DisplayMode.Edit)
+            Fill: =ColorValue("#FFFFFF")
+            Font: ="Segoe UI"
+            Height: =44
+            Items: =["50%","75%","100%","125%","150%","200%"]
+            Items.Value: =Value
+            SelectionColor: =ColorValue("#073B78")
+            SelectionFill: =ColorValue("#DCEAFF")
+            Size: =If(Coalesce(varLargeText111,false),12,10.5)
+            Width: =88
+            X: =btnLedgerPdf111.X-Self.Width-8
+            Y: =If(Parent.Width<1200,72,12)
+      - btnLedgerPdf111:
+          Control: ModernButton@1.0.0
+          Properties:
+            AccessibleLabel: =Self.Text
+            Appearance: =ButtonAppearance.Outline
+            BasePaletteColor: =ColorValue("#0F6CBD")
+            BorderColor: =ColorValue("#0B4A8B")
+            BorderThickness: =1
+            Color: =ColorValue("#0F6CBD")
+            DisplayMode: =If(varLedgerExport111,DisplayMode.Disabled,DisplayMode.Edit)
+            Font: ="Segoe UI"
+            FontWeight: =FontWeight.Semibold
+            Height: =44
+            OnSelect: =Set(varLedgerPdfView111,false); Set(varLedgerPdf111,Blank()); Set(varLedgerSavedUrl111,""); Set(varLedgerFile111,"通勤手当認定簿_" & varLedgerStaff111.StaffId & "_" & Text(Now(),"yyyymmdd_hhmmss") & ".pdf"); Set(varLedgerStatus111,"PDFを作成しています…"); Set(varLedgerExport111,true); Reset(tmrLedgerPdf111); Set(varLedgerPdfRequested111,true)
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Size: =If(Coalesce(varLargeText111,false),12,10.5)
+            Text: ="PDF関数（表示）"
+            Tooltip: ="選択職員の認定簿をPDF関数で生成し、アプリ内に表示します。"
+            Width: =If(Parent.Width<720,130,180)
+            X: =btnLedgerDownload121.X-Self.Width-8
+            Y: =If(Parent.Width<1200,72,12)
+      - btnLedgerDownload121:
+          Control: ModernButton@1.0.0
+          Properties:
+            AccessibleLabel: =Self.Text
+            Appearance: =ButtonAppearance.Outline
+            BasePaletteColor: =ColorValue("#0F6CBD")
+            BorderColor: =ColorValue("#0B4A8B")
+            BorderThickness: =1
+            Color: =ColorValue("#0F6CBD")
+            DisplayMode: =If(varLedgerExport111,DisplayMode.Disabled,DisplayMode.Edit)
+            Font: ="Segoe UI"
+            FontWeight: =FontWeight.Semibold
+            Height: =44
+            OnSelect: =IfError(Download("https://www.jinji.go.jp/content/000015000.pdf"),Notify("PDFを開けませんでした：" & FirstError.Message,NotificationType.Error))
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Size: =If(Coalesce(varLargeText111,false),12,10.5)
+            Text: ="Download関数（空欄様式）"
+            Tooltip: ="人事院の空欄様式PDFを別タブで開きます。職員情報は入りません。ブラウザの保存ボタンから保存してください。"
+            Width: =If(Parent.Width<720,170,210)
+            X: =btnLedgerClose111.X-Self.Width-8
+            Y: =If(Parent.Width<1200,72,12)
+      - btnLedgerHtmlReport:
+          Control: ModernButton@1.0.0
+          Properties:
+            AccessibleLabel: ="選択中の認定簿をHTML版で別タブに表示"
+            BasePaletteColor: =ColorValue("#0F6CBD")
+            DisplayMode: =IfError(If(varLedgerExport111 || IsBlank(varLedgerCommute111.T_通勤) || varLedgerCommute111.職員基本.職員番号 <> varLedgerStaff111.StaffId || varLedgerStaff111.StaffId <> StaffSelected.StaffId || varLedgerCommute111.T_通勤 <> galCommute111.Selected.T_通勤,DisplayMode.Disabled,DisplayMode.Edit),DisplayMode.Disabled)
+            Font: ="Segoe UI"
+            FontWeight: =FontWeight.Semibold
+            Height: =40
+            OnSelect: |-
+              =IfError(
+                  With({c:varLedgerCommute111,s:varLedgerStaff111},
+                      If(IsBlank(c.T_通勤) || IsBlank(s.StaffId) || c.職員基本.職員番号 <> s.StaffId || s.StaffId <> StaffSelected.StaffId || c.T_通勤 <> galCommute111.Selected.T_通勤,
+                          Notify("通勤の行を選び直して、認定簿を開いてください。",NotificationType.Warning),
+                          Launch("{DATAVERSE_ORIGIN}/WebResources/crb3c_reports/commute-ledger.html",{id:Lower(Text(c.T_通勤))},LaunchTarget.New)
+                      )
+                  ),
+                  Notify("認定簿を開けませんでした。選択と接続状態を確認してください。",NotificationType.Error)
+              )
+            Text: ="HTML版（別タブ・2ページ）"
+            Tooltip: ="選択中の通勤認定を読取り、A4横2ページの帳票を別タブに表示します。"
+            Width: =Min(260,Parent.Width-40)
+            X: =20
+            Y: =Parent.Height-48
