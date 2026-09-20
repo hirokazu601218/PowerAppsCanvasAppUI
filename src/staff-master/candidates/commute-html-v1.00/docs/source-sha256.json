@@ -1,0 +1,11 @@
+{
+  "docs/implementation-status.md": "78c385be545625b42ef0325497f0653a47d82c8b58eb0a3d533652065fcb93d8",
+  "qa/layout-fixture.html": "b42b057dc7a00bf2fffa036c1258da03a6a213ccd2f12d107816022c02364d94",
+  "src/build.py": "283a15653b6ab75c32f14dbcd1c46e69e25f6c5235703533a59b05b23998860f",
+  "src/commute-ledger.html": "c333e4efff50032ae4bf5b1ebafde3012d6fecf06b5c68446d2e9e8a026ae279",
+  "src/layout.html": "5058b08ee8790d1d12e1af6c7c688ed4e05548a3ee6a8180f97f531db62acdb7",
+  "src/report.js": "e5d0b831e9d88e3efc932a715401aa352a2e85e3be2290f792e044525a2bf64c",
+  "tests/commute-6.json": "a21065614a2b807830b9994573f98ebc2cb7122f3409d3417282bc41ca574df0",
+  "tests/commute-columns.json": "9297fee8311c5e34c1559a3e952c6c617a3281b1ac60705e87a9c06c3d1b2f78",
+  "tests/report.test.js": "7bab8df89d35dcd51edb13fc2881f54f3b49ad9945ecb5242233762ba07be304"
+}
