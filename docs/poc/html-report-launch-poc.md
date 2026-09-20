@@ -1,6 +1,11 @@
 # Power Apps HTML帳票 Launch PoC 検証結果
 
-## 結論
+## 現在の状態（2026-09-20追記）
+**PoC継続中。ユーザーの削除指示があるまでボタン・機能を保持する。**
+2026-09-20の追加指示により、当初の「検証後に完全削除」を上書きした。検証専用アプリのscrHomeにHTML帳票PoCボタンを再追加し、下記の元の2ページHTML式を保存済み。公開は行っていないため、Studioの保存済み編集版で利用する。
+最新の対照試験：通常HTTPSのLaunchTarget.Newは別タブ成功、17文字のdata URLは別タブ不成立。方式の判定は引き続き今回環境で失敗だが、PoC自体は終了扱いにしない。
+
+## 初回検証の結論（2026-09-19時点）
 **判定：失敗（今回のクラウドChrome／Power Apps Studioプレビュー環境）。**
 Power Apps内に一時ボタンを実装して押下したが、data:text/htmlの別タブ・HTML表示に到達しなかった。印刷・2ページPDF保存は未実施。公開PlayerやEdgeでの実現不可まで断定する結果ではない。
 PoC機能は完全削除し、変更対象scrHomeの開始前後の定義11529文字が完全一致。復元保存と通常検索の確認を完了。本番帳票フェーズには進まない。
@@ -98,3 +103,48 @@ Notify("PoC開始",NotificationType.Information); Launch("data:text/html,PoC",{}
 ## 次フェーズ
 **本番2ページレイアウト・実データ埋込フェーズには進めない。**
 今回の条件で技術成立性を確認できなかった。公開Player・Edgeなどの追加試験をする場合は今回の未検証範囲を引き継ぐ。方式変更・本番帳票実装は別途ユーザー指示を受けてから行う。
+
+## 追加原因調査（2026-09-20）
+
+### 「簡易画面」の実体
+別タブに表示しようとしたものは、ボタンのOnSelect内に文字列として定義した独立したHTML文書である。Power AppsのScreenコントロールを追加したものではない。HTMLファイルの生成、HTTPSでの帳票公開、帳票用Screenの作成はいずれも行っていない。2つのdiv.pageは印刷用のページ区切りであり、Canvasアプリの2つのScreenではない。
+
+### 同一環境での対照試験
+対象：同じ検証専用アプリv1.26、クラウドChrome、Studioプレビュー。scrHomeに同じ位置・サイズ・名称のボタン1個を用い、式を順に入れ替えた。試験前のscrHome定義を取得（11529文字）。
+
+HTTPS対照式：
+```powerfx
+Notify("HTTPS開始",NotificationType.Information); Launch("https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-param",{},LaunchTarget.New); Notify("HTTPS終了",NotificationType.Information)
+```
+
+最小data URL式：
+```powerfx
+Notify("data開始",NotificationType.Information); Launch("data:text/html,PoC",{},LaunchTarget.New); Notify("data終了",NotificationType.Information)
+```
+
+| 試験 | 結果 | 実測 |
+|---|---|---|
+| HTTPS対照 | 成功 | タブ数2→3。新規タブにMicrosoft LearnのLaunch and Paramページ。HTTPS終了通知あり |
+| 17文字data URL | 失敗 | タブ数3のまま。data終了通知あり。新規HTML表示なし |
+| 診断式の確認 | 合格 | 両式ともStudioのコード表示で指定したOnSelectを確認 |
+
+### 原因の絞り込みと限界
+- 同じ操作・LaunchTarget.NewでHTTPSが成功したため、別タブ機能全体の故障や全ポップアップ一律遮断を原因とする説明は当てはまらない。
+- 17文字、ASCIIのみ、EncodeUrlなしでも失敗したため、日本語・CSS・2ページ構造・長いHTML・EncodeUrlは失敗の必須条件ではない。
+- 問題はdata URLをLaunchから遷移させる経路に絞られた。MDNが説明するdata URLへのトップレベル遷移のセキュリティ制約と整合する。
+- **ブラウザ側のdata URL制限が有力。ただし、Power Appsが事前に拒否したのか、ブラウザが拒否したのかという直接の拒否箇所は未確定。** 今回、それを特定する直接的なエラーログは得ていない。
+- 後続Notifyの表示は式の後続到達を示すだけで、Launch成功の証明ではない。
+- 簡易な帳票へ縮小するだけでは、この遷移制約の解消にはならない。独立したCanvas Screenへの変更は別方式であり、このdata URL方式の成立を証明しない。
+- 公開Player、Edge、印刷、PDF保存は追加検証していない。HTML表示以前の不成立のため、印刷CSSの良否は判断しない。
+
+根拠資料：[Microsoft Learn — Launch and Param](https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-param)、[MDN — data URLのSecurity issues](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes/data#security_issues)。仕様と実測、原因推定を区別して記録した。
+
+### 最新の保持・保存状態
+- ユーザー追加指示：「成功/失敗どちらでもボタンや機能は残す。削除してというまでPoCは続いている」。この指示を当初の削除条件より優先。
+- HTTPS対照式・最小data式から、上記「OnSelect」に記録した元の2ページHTML式へ戻した。
+- btnHtmlReportPocを1個保持。ボタン定義974文字の読戻しに元のOnSelect全文が含まれることを確認（完全一致true）。専用変数、追加Screenなし。
+- 明示保存後、「すべての変更が保存されます。」「保存済み: 2026/9/20 9:17:51」を確認（UI表示時刻、タイムゾーン表記なし）。
+- 公開操作は行っていない。画面に残っていた2026/9/19のPublish successful通知は今回の公開証拠ではない。
+- 保存後スモーク：ホーム→職員検索7件→009900000011で1件・選択011→条件クリア7件→ホーム。HTML帳票PoCボタンの残存を確認してプレビュー終了。
+- 全回帰試験は未実施。元アプリやデータ定義は編集していない。本番帳票フェーズへは進んでいない。
+- 上記の撤去・復元証跡は2026-09-19時点の履歴として保持する。現在は削除済みではなく、検証専用アプリの保存済み編集版にPoCを残している。
