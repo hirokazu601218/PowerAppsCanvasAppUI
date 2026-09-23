@@ -58,7 +58,11 @@ def grant(api, cfg, metas, base_url):
                 api("RetrieveRolePrivilegesRole(RoleId=" + rid + ")")["RolePrivileges"]}
     before = role_privileges()
     if set(before) - set(desired):
-        raise RuntimeError("Studio role has unapproved privileges")
+        extra_names = []
+        for pid in sorted(set(before) - set(desired)):
+            found = api("privileges(" + pid + ")?$select=name")
+            extra_names.append(found["name"])
+        raise RuntimeError("Studio role has baseline privileges: " + ",".join(extra_names))
     missing = [{"PrivilegeId": pid, "Depth": "Global"} for pid, depth in desired.items()
                if before.get(pid) != depth]
     if missing:
