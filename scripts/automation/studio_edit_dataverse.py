@@ -1,6 +1,7 @@
 """Create and verify three Studio-only Dataverse tables; never write original data.
 
-Modes: preflight (read-only), provision (create missing metadata), verify (read-only).
+Modes: preflight (read-only), provision (create missing metadata), verify (read-only),
+seed (insert synthetic records only into the isolated Studio tables).
 Provision can be retried after checking the readback; no records or roles are
 created here. Requires the existing GitHub OIDC service principal.
 """
@@ -24,7 +25,7 @@ def main():
     cfg = json.loads((ROOT / "config/apps/staff-master.json").read_text())
     request = json.loads((ROOT / "automation/studio-edit-run.json").read_text())
     mode = request["mode"]
-    if mode not in ("preflight", "provision", "verify") or request.get("approved") is not True:
+    if mode not in ("preflight", "provision", "verify", "seed") or request.get("approved") is not True:
         raise RuntimeError("Unsupported or unapproved operation")
     started = datetime.fromisoformat(request["started_at"]).timestamp()
     if time.time() - started >= 3480:
@@ -37,12 +38,13 @@ def main():
          "--query", "accessToken", "--output", "tsv"], text=True, timeout=45
     ).strip()
 
-    def api(path, method="GET", body=None):
+    def api(path, method="GET", body=None, extra_headers=None):
         if time.time() - started >= 3480:
             raise RuntimeError("PAUSED_TIME_LIMIT")
         headers = {"Authorization": "Bearer " + token, "Accept": "application/json",
                    "Content-Type": "application/json", "OData-Version": "4.0",
                    "OData-MaxVersion": "4.0", "MSCRM.SolutionUniqueName": cfg["solution_name"]}
+        headers.update(extra_headers or {})
         req = urllib.request.Request(
             url + "/api/data/v9.2/" + path, method=method,
             data=json.dumps(body).encode() if body is not None else None, headers=headers
@@ -152,6 +154,9 @@ def main():
         names = "".join("<entity>" + logical + "</entity>" for logical, _, _, _ in TABLES)
         api("PublishXml", "POST", {"ParameterXml": "<importexportxml><entities>" +
             names + "</entities></importexportxml>"})
+    if mode == "seed":
+        from studio_edit_fixtures import seed
+        state["fixture_counts"] = seed(api, metas)
     after = {}
     for original in snapshot:
         meta = api("EntityDefinitions(LogicalName='" + original + "')?$select=EntitySetName,PrimaryIdAttribute")
