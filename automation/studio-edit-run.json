@@ -1,0 +1,6 @@
+{
+  "mode": "preflight",
+  "approved": true,
+  "started_at": "2026-09-23T11:14:40+00:00",
+  "reason": "編集用アプリのCRUDを隔離する3テーブル。2026-09-23再開承認後の起算。"
+}
