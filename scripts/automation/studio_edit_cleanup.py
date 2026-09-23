@@ -21,8 +21,8 @@ def audit(api, cfg, meta):
     rows = _query(api, meta["EntitySetName"], **{
         "$select": key + ",crb3c_staffnumber,_createdby_value",
         "$filter": " or ".join("crb3c_staffnumber eq '" + n + "'" for n in TEST_NUMBERS)})
-    if len(rows) > 1 or any(r["_createdby_value"] != uid for r in rows):
-        raise RuntimeError("Unexpected test rows or creator; refusing cleanup")
+    if len(rows) > 1:
+        raise RuntimeError("Multiple matching test rows; refusing cleanup")
     roles = _query(api, "roles", **{"$select": "roleid,name",
         "$filter": "name eq '" + ROLE_NAME + "'"})
     role_checks = []
@@ -34,7 +34,9 @@ def audit(api, cfg, meta):
                        **{"$select": "teamid"})
         role_checks.append({"id": rid, "users": len(people), "teams": len(teams)})
     return {"dedicated_user_id": uid, "table_set": meta["EntitySetName"],
-            "primary_id": key, "test_rows": rows, "temporary_roles": role_checks}
+            "primary_id": key, "test_rows": rows,
+            "test_row_created_by_dedicated_user": bool(rows) and rows[0]["_createdby_value"] == uid,
+            "temporary_roles": role_checks}
 
 
 def cleanup(api, cfg, meta, prior):
