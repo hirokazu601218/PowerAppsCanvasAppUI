@@ -2,5 +2,5 @@
   "mode": "access",
   "approved": true,
   "started_at": "2026-09-23T11:14:40+00:00",
-  "reason": "編集用ロールの自動初期権限を読み取り、許可範囲を確定してからCRUD付与。"
+  "reason": "Dataverse新規ロールの既定権限9件を除き、編集用3テーブルへの許可済みCRUDだけを付与。"
 }
