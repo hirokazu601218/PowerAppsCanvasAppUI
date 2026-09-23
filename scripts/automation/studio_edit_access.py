@@ -57,17 +57,26 @@ def grant(api, cfg, metas, base_url):
         return {p["PrivilegeId"]: p["Depth"] for p in
                 api("RetrieveRolePrivilegesRole(RoleId=" + rid + ")")["RolePrivileges"]}
     before = role_privileges()
+    extra_names = []
     if set(before) - set(desired):
         extra_names = []
         for pid in sorted(set(before) - set(desired)):
             found = api("privileges(" + pid + ")?$select=name")
             extra_names.append(found["name"])
-        raise RuntimeError("Studio role has baseline privileges: " + ",".join(extra_names))
-    missing = [{"PrivilegeId": pid, "Depth": "Global"} for pid, depth in desired.items()
-               if before.get(pid) != depth]
-    if missing:
-        api("roles(" + rid + ")/Microsoft.Dynamics.CRM.AddPrivilegesRole", "POST",
-            {"Privileges": missing})
+    automatic = {"prvReadSdkMessageProcessingStepImage", "prvCreateSharePointData",
+                 "prvReadPluginType", "prvReadSdkMessage", "prvWriteSharePointData",
+                 "prvReadSharePointDocument", "prvReadSdkMessageProcessingStep",
+                 "prvReadPluginAssembly", "prvReadSharePointData"}
+    if set(extra_names) not in (set(), automatic):
+        raise RuntimeError("Unexpected baseline role privileges: " + ",".join(extra_names))
+    prior_users = api("roles(" + rid + ")/systemuserroles_association?$select=systemuserid")["value"]
+    prior_teams = api("roles(" + rid + ")/teamroles_association?$select=teamid")["value"]
+    if prior_teams or any(u["systemuserid"] != uid for u in prior_users):
+        raise RuntimeError("Studio role is already assigned beyond the dedicated user")
+    if before != desired:
+        api("roles(" + rid + ")/Microsoft.Dynamics.CRM.ReplacePrivilegesRole", "POST",
+            {"Privileges": [{"PrivilegeId": pid, "Depth": depth}
+                            for pid, depth in desired.items()]})
     if role_privileges() != desired:
         raise RuntimeError("Studio role privileges mismatch")
 
