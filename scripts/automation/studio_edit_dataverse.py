@@ -3,7 +3,8 @@
 Modes: preflight (read-only), provision (create missing metadata), verify (read-only),
 seed (insert synthetic records only into the isolated Studio tables),
 access (give the dedicated user CRUD on those Studio tables),
-audit (read-only leftover record and role check), cleanup (remove both).
+audit (read-only leftover record and role check), verify_crud (impersonated
+dedicated user test), cleanup (remove disposable records and unused role).
 Provision can be retried after checking the readback; no records or roles are
 created here. Requires the existing GitHub OIDC service principal.
 """
@@ -27,7 +28,7 @@ def main():
     cfg = json.loads((ROOT / "config/apps/staff-master.json").read_text())
     request = json.loads((ROOT / "automation/studio-edit-run.json").read_text())
     mode = request["mode"]
-    if mode not in ("preflight", "provision", "verify", "seed", "access", "audit", "cleanup") or request.get("approved") is not True:
+    if mode not in ("preflight", "provision", "verify", "seed", "access", "audit", "verify_crud", "cleanup") or request.get("approved") is not True:
         raise RuntimeError("Unsupported or unapproved operation")
     started = datetime.fromisoformat(request["started_at"]).timestamp()
     if time.time() - started >= 3480:
@@ -162,10 +163,12 @@ def main():
     if mode == "access":
         from studio_edit_access import grant
         state["access"] = grant(api, cfg, metas, url)
-    if mode in ("audit", "cleanup"):
-        from studio_edit_cleanup import audit, cleanup
+    if mode in ("audit", "verify_crud", "cleanup"):
+        from studio_edit_cleanup import audit, cleanup, verify_crud
         state["cleanup"] = audit(api, cfg, metas[0])
-        if mode == "cleanup":
+        if mode == "verify_crud":
+            state["crud"] = verify_crud(api, metas[0], state["cleanup"])
+        elif mode == "cleanup":
             state["cleanup"] = cleanup(api, cfg, metas[0], state["cleanup"])
     after = {}
     for original in snapshot:
@@ -178,6 +181,7 @@ def main():
     state["result"] = {"seed": "STUDIO_FIXTURES_VERIFIED",
                        "access": "STUDIO_ACCESS_VERIFIED",
                        "audit": "STUDIO_CLEANUP_AUDITED",
+                       "verify_crud": "STUDIO_DEDICATED_CRUD_VERIFIED",
                        "cleanup": "STUDIO_CLEANUP_VERIFIED"}.get(mode, "STUDIO_SCHEMA_VERIFIED")
     (out / "result.json").write_text(json.dumps(state, ensure_ascii=False, indent=2))
     print(json.dumps(state, ensure_ascii=False), flush=True)
