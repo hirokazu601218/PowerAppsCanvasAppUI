@@ -120,7 +120,7 @@ def main():
                 api(entity + "/Keys", "POST", {"SchemaName": key_name,
                     "KeyAttributes": ["crb3c_staffnumber"],
                     "DisplayName": module.label("Studio職員番号一意キー", lcid)})
-            for _ in range(30):
+            for _ in range(90):
                 keys = api(entity + "/Keys")["value"]
                 key = next(k for k in keys if k["SchemaName"] == key_name)
                 if key["EntityKeyIndexStatus"] == "Active":
