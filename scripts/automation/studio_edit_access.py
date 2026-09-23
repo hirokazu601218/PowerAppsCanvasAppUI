@@ -77,8 +77,16 @@ def grant(api, cfg, metas, base_url):
         api("roles(" + rid + ")/Microsoft.Dynamics.CRM.ReplacePrivilegesRole", "POST",
             {"Privileges": [{"PrivilegeId": pid, "Depth": depth}
                             for pid, depth in desired.items()]})
-    if role_privileges() != desired:
-        raise RuntimeError("Studio role privileges mismatch")
+    after = role_privileges()
+    if after != desired:
+        extra = [api("privileges(" + pid + ")?$select=name")["name"]
+                 for pid in sorted(set(after) - set(desired))]
+        missing_ids = set(desired) - set(after)
+        wrong_depth = {pid: after[pid] for pid in desired.keys() & after.keys()
+                       if after[pid] != desired[pid]}
+        raise RuntimeError("Studio role readback mismatch: extra=" + ",".join(extra) +
+                           "; missing_count=" + str(len(missing_ids)) +
+                           "; wrong_depth=" + str(wrong_depth))
 
     if not any(r["roleid"] == rid for r in existing_roles):
         api("systemusers(" + uid + ")/systemuserroles_association/$ref", "POST",
