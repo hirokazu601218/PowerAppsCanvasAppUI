@@ -1,4 +1,16 @@
-# 現在の作業と読取り対象：通勤手当認定簿HTML版1.01
+# 現在の作業と読取り対象：Studio安全編集モードの隔離CRUD
+
+- 編集コピー `自動開発_職員マスタ検索_STUDIO_EDIT`（App ID `204a48dc-7f23-43dd-b934-4654a3cfa306`）は開発環境 `StaffMaster-Automation-Test` で保存・公開済み。画面の3データ接続は `crb3c_studiostaffbasic` / `crb3c_studiocommute` / `crb3c_studiopayrollledger` に切替済み。Studio App checkerの数式問題0件、プレビューで職員・通勤・給与を確認。
+- 編集用3テーブルの合成fixtureは25／6／7件。専用ユーザー `powerapps-test@govaca.onmicrosoft.com` には既存の `StaffMaster Test Reader` ロールで編集用3テーブルのCRUD/Append/AppendToを付与。元3テーブルの作成・更新・削除権限なし。[権限検証run](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35858002859)。
+- [代理実行CRUD検証run](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35930141288) で、専用ユーザーの実効権限として隔離テーブルへ合成行を作成・更新・削除し読戻し済み。これはDataverse APIの `MSCRMCallerID` による検証であり、専用アカウントのブラウザでのアプリ操作試験とは区別する。既存の `009900009999` 行の作成者は専用ユーザーと一致しなかったため、前回の画面操作を作成成功の根拠にしない。
+- 元の安定版アプリと元3テーブルは無変更。元件数25／6／7件をCRUD検証runで確認。編集コピーの安定版への反映は実施していない。
+- [後片付けrun](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35930232601) で作業中の合成行 `009900009999` と未割当て試作ロール `StaffMaster Studio CRUD` を削除し、不在を読戻し確認。編集用のfixture25／6／7件を維持。
+- `pac canvas download` によるサービスプリンシパルの保存パッケージ取得は[run 35854544372](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35854544372)で「No canvas apps in the selected environment」となり未成立。失敗するワークフローは削除し、保存版の読戻し合格を主張しない。再構築時はアプリへのサービスプリンシパルアクセスとライセンス要件を別途判断する。
+- 読取り対象：`scripts/automation/studio_edit_{schema,fixtures,access,cleanup,dataverse}.py`、`.github/workflows/studio-edit-dataverse.yml`、`automation/studio-edit-run.json`、関連Actionsログ。今回の作業期限は2026-09-23 23:33 UTC。職員基本**元テーブル**を編集する次回はIssue #51を確認。
+
+---
+
+# 通勤手当認定簿HTML版1.01（別Workの引継ぎ）
 
 - ユーザーの再開指示で**今回の60分制限を解除**。A4横2ページ・JavaScript＋Dataverse読取り・指定対象の公開は承認済み。
 - 指定検証アプリは**バージョン26がライブ**。MakerのPublish successful（2026-09-21 06:23:37 JST）とバージョン一覧を確認。追加は`conLedgerHeader111/btnLedgerHtmlReport`、同ヘッダー高+52のみ。旧PoC・既存子コントロールは保持。
