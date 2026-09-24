@@ -41,6 +41,7 @@ sp('lblOrg111',X=0,Y=80,Width='Parent.Width');sp('ddOrg111',X=0,Y=108,Width='Par
 sp('lblStatus111',X=0,Y=160,Width='Parent.Width');sp('ddStatus111',X=0,Y=188,Width='Parent.Width')
 sp('btnSearch111',X=0,Y=240,Width='(Parent.Width-8)/2')
 sp('btnClear111',X='(Parent.Width+8)/2',Y=240,Width='(Parent.Width-8)/2',Text='"クリア"')
+sp('lblNoMatch111',Y='galStaff111.Y')
 sp('lblListTitle111',Y=292);sp('btnPrev111',Y=332);sp('btnNext111',Y=332);sp('lblPage111',Y=332)
 sp('galStaff111',Y=384,TemplateSize='If(Coalesce(varLargeText111,false),92,84)',OnSelect='Set(varStaff111,ThisItem); Set(varStaffChosen111,true); Select(btnLoadDetails111)')
 sp('btnPrev111',DisplayMode='If(Coalesce(varPage111,1)<=1,DisplayMode.Disabled,DisplayMode.Edit)')
