@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "app_id": "362ac991-eead-4f07-8373-afdb3ebfdba1",
+  "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+  "candidate_version": "1.27",
+  "provenance": "Studio saved draft, 2026-09-24; not a release approval",
+  "source_hashes": {
+    "Src/scrStaffMasterSearch.pa.yaml": "849c870369b0b9211b93669908c60b7695cdb524e1388e150dd226d1e5b96acc",
+    "Src/scrHome.pa.yaml": "50220dec25f97f93908bff9fa320f74b7c49cd9d08d2fc0f33a299dcc3f23b09",
+    "Src/scrAttendance.pa.yaml": "56e6c9734ed17a9b4e7df4c322c906d1c69062457f53bdf17878e65093a01762",
+    "Src/scrBonus.pa.yaml": "735420f7db56698508ee9f25df2f8ebf81a3a4e206e053ce6b2d8ab605c21c7f",
+    "Src/scrPayroll.pa.yaml": "c1a5a6535e77c3e3acf2d0cf4913bac7b2566f50058c617332fe73ea617f42ec",
+    "Src/scrMaintenance.pa.yaml": "68f00d6cdf09c3635c73fb90d4a0a3ee5b8b5d1c12c1c2d1fe86620647cd4365",
+    "Src/App.pa.yaml": "5917decd0d89b325cfd862d096d6b340a4500e039b8f60f3dc8d28b4d455e455"
+  }
+}
