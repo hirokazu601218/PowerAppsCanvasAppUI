@@ -7,7 +7,7 @@
 - 元の安定版アプリと元3テーブルは無変更。元件数25／6／7件をCRUD検証runで確認。編集コピーの安定版への反映は実施していない。
 - [後片付けrun](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35930232601) で作業中の合成行 `009900009999` と未割当て試作ロール `StaffMaster Studio CRUD` を削除し、不在を読戻し確認。編集用のfixture25／6／7件を維持。
 - `pac canvas download` によるサービスプリンシパルの保存パッケージ取得は[run 35854544372](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35854544372)で「No canvas apps in the selected environment」となり未成立。失敗するワークフローは削除し、保存版の読戻し合格を主張しない。再構築時はアプリへのサービスプリンシパルアクセスとライセンス要件を別途判断する。
-- 読取り対象：`scripts/automation/studio_edit_{schema,fixtures,access,cleanup,dataverse}.py`、`.github/workflows/studio-edit-dataverse.yml`、`automation/studio-edit-run.json`、関連Actionsログ。このWorkの次回再開時は60分制限を新たに起算する。職員基本**元テーブル**を編集する次回はIssue #51を確認。
+- 読取り対象：`scripts/automation/studio_edit_{schema,fixtures,access,cleanup,dataverse}.py`、`.github/workflows/studio-edit-dataverse.yml`、`automation/studio-edit-run.json`、関連Actionsログ。60分制限の起算時刻はWorkの既存記録に従い、再開指示でリセットしない。職員基本**元テーブル**を編集する次回はIssue #51を確認。
 
 ---
 
