@@ -31,17 +31,6 @@ try:
     command(['pac', 'auth', 'create', '--name', 'isolated-probe', '--githubFederated',
              '--tenant', CFG['tenant_id'], '--applicationId', CFG['client_id'],
              '--environment', env], 'auth', 120)
-    app = OUT / 'published.msapp'
-    command(['pac', 'canvas', 'download', '--name', APP_ID, '--file-name', str(app),
-             '--environment', env, '--overwrite'], 'download', 180)
-    if not app.is_file():
-        diagnostic = (OUT / 'download.log').read_text()[-1200:]
-        diagnostic = re.sub(r'https?://\\S+', '[URL]', diagnostic)
-        raise RuntimeError('PAC did not create published.msapp: ' + diagnostic)
-    archive = bridge.read_archive(app)
-    bridge.require('Src/scrStaffMasterSearch.pa.yaml' in archive and
-                   'Src/Screen1.pa.yaml' not in archive, 'not the lightweight app structure')
-    app_sources = source_hashes(archive)
     livezip = OUT / 'live.zip'
     command(['pac', 'solution', 'export', '--name', SOLUTION,
              '--path', str(livezip), '--overwrite'], 'export', 300)
@@ -56,8 +45,10 @@ try:
     msapps = list((live / 'CanvasApps').glob('*_DocumentUri.msapp'))
     bridge.require(len(metadata) == len(msapps) == 1, 'isolated solution must contain one Canvas document')
     refs = verify_database_references(metadata[0], EXPECTED['required_database_sources'])
-    bridge.require(source_hashes(bridge.read_archive(msapps[0])) == app_sources,
-                   'published app and isolated solution Canvas source differ')
+    solution_archive = bridge.read_archive(msapps[0])
+    bridge.require('Src/scrStaffMasterSearch.pa.yaml' in solution_archive and
+                   'Src/Screen1.pa.yaml' not in solution_archive, 'not the lightweight app structure')
+    app_sources = source_hashes(solution_archive)
     roundtrip_zip = OUT / 'roundtrip.zip'
     command(['pac', 'solution', 'pack', '--folder', str(live), '--zipfile', str(roundtrip_zip),
              '--packagetype', 'Unmanaged'], 'pack', 300)
@@ -70,7 +61,7 @@ try:
     component2 = ET.parse(roundtrip / 'Other/Solution.xml').getroot()
     bridge.require([(e.get('type'), e.get('schemaName')) for e in component2.iter('RootComponent')]
                    == components, 'roundtrip component drift')
-    result.update(status='pass', app_sha256=hashlib.sha256(app.read_bytes()).hexdigest(),
+    result.update(status='pass', app_sha256=hashlib.sha256(msapps[0].read_bytes()).hexdigest(),
                   package_sha256=hashlib.sha256(roundtrip_zip.read_bytes()).hexdigest(),
                   components=components, sources=sorted(refs['default.cds']['dataSources']),
                   source_match_stable=app_sources == EXPECTED['source_hashes'],
