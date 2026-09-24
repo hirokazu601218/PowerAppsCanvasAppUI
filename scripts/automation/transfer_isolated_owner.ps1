@@ -1,5 +1,8 @@
 #Requires -Version 5.1
 $ErrorActionPreference = 'Stop'
+if ($PSVersionTable.PSEdition -ne 'Desktop') {
+    throw 'Run this script in Windows PowerShell 5.1, not PowerShell 7.'
+}
 
 # Run in Windows PowerShell 5.1 as an administrator of the target Power Platform environment.
 # Install the official module to CurrentUser before running:
