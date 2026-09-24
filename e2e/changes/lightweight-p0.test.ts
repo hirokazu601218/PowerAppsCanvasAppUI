@@ -1,0 +1,34 @@
+import {test,expect} from '@playwright/test';
+
+test('P0 lightweight: independent launch, staff selection, sidebar preservation and zero-result safety',async({page})=>{
+ test.setTimeout(120000);
+ await page.setViewportSize({width:1366,height:768});
+ if(!process.env.CANVAS_APP_URL)throw new Error('CANVAS_APP_URL required');
+ await page.goto(process.env.CANVAS_APP_URL,{waitUntil:'domcontentloaded',timeout:60000});
+ const app=page.frameLocator('iframe[name="fullscreen-app-host"]');
+ await expect(app.getByText(/UI検討用 v1\.27/)).toBeVisible({timeout:90000});
+ await app.getByRole('button',{name:'職員マスタ検索',exact:true}).click();
+ await expect(app.getByText(/職員一覧\s*7件/)).toBeVisible({timeout:30000});
+ await expect(app.getByRole('button',{name:'前へ',exact:true})).toBeDisabled();
+ await expect(app.getByRole('button',{name:'次へ',exact:true})).toBeDisabled();
+ const input=app.getByRole('searchbox',{name:'氏名・職員番号・項目を検索',exact:true});
+ await input.fill('009900000011');
+ await app.getByRole('button',{name:'検索',exact:true}).click();
+ await expect(app.getByText(/職員一覧\s*1件/)).toBeVisible();
+ await app.getByRole('button',{name:'試験 同姓同名 009900000011 詳細を表示',exact:true}).click();
+ await expect(app.getByText('職員番号：009900000011 ／ 所属：03会計課',{exact:true})).toBeVisible();
+ await app.getByRole('button',{name:'職員検索を閉じる',exact:true}).click();
+ await expect(input).toBeHidden();
+ await expect(app.getByText('職員番号：009900000011 ／ 所属：03会計課',{exact:true})).toBeVisible();
+ await app.getByRole('button',{name:'職員検索を開く',exact:true}).click();
+ await expect(input).toHaveValue('009900000011');
+ await input.fill('不存在LT');
+ await app.getByRole('button',{name:'検索',exact:true}).click();
+ await expect(app.getByText(/職員一覧\s*0件/)).toBeVisible();
+ await expect(app.getByText('職員を選択してください',{exact:true})).toBeVisible();
+ await expect(app.getByRole('button',{name:'支給明細画面',exact:true})).toBeDisabled();
+ await app.getByRole('button',{name:'検索条件をクリア',exact:true}).click();
+ await expect(app.getByText(/職員一覧\s*7件/)).toBeVisible();
+ await expect(app.getByText('職員番号：009900000004 ／ 所属：03会計課',{exact:true})).toBeVisible();
+ await page.screenshot({path:'test-results/lightweight-p0.png'});
+});

@@ -1,0 +1,37 @@
+name: Lightweight Studio isolated integration
+on:
+  push:
+    branches: [feat/lightweight-v127-20260924]
+    paths: [automation/lightweight-mode.txt, .github/workflows/lightweight-studio.yml]
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate operation
+        run: |
+          python -m py_compile scripts/automation/lightweight_studio.py
+          test "$(cat automation/lightweight-mode.txt)" = prepare || test "$(cat automation/lightweight-mode.txt)" = cleanup
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Isolated HTML and disposable fixtures
+        run: python -u scripts/automation/lightweight_studio.py "$(cat automation/lightweight-mode.txt)"
+      - name: Preserve evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lightweight-studio-${{ github.run_id }}
+          path: artifacts/lightweight
+          retention-days: 14

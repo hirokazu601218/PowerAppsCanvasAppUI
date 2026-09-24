@@ -1,0 +1,139 @@
+name: Lightweight published UI verification
+'on':
+  push:
+    branches:
+    - feat/lightweight-v127-20260924
+    paths:
+    - automation/lightweight-ui-request.txt
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  transaction:
+    name: Verify published lightweight editing app
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 20
+    env:
+      POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      POWER_PLATFORM_TARGET_APP_ID: 204a48dc-7f23-43dd-b934-4654a3cfa306
+      OFFICIAL_SAMPLES_REF: 43e3db8d131aeb09415b1faef030e783fd2e320f
+      POWER_APPS_BASE_URL: https://make.powerapps.com
+      POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+      CANVAS_APP_URL: https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/204a48dc-7f23-43dd-b934-4654a3cfa306?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
+      MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
+      MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
+      MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
+      MS_AUTH_LOCAL_FILE_PATH: ../../cert/powerapps-test-user.pfx
+      MS_AUTH_HEADLESS: true
+      MS_AUTH_WAIT_FOR_MSAL_TOKENS: true
+      MS_AUTH_MSAL_TOKEN_TIMEOUT: 60000
+      HEADLESS: true
+      WORKERS: 1
+      RETRIES: 0
+      TEST_TIMEOUT: 120000
+      OUTPUT_DIRECTORY: ./test-results
+      CI: true
+      POWER_PLATFORM_TEST_ENVIRONMENT_URL: https://orge762dd9e.crm7.dynamics.com/
+    steps:
+    - name: Check out the exact requested commit
+      uses: actions/checkout@v5
+      with:
+        path: project
+        fetch-depth: 0
+        ref: ${{ github.sha }}
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Install pinned bridge dependency and verify safety policy
+      working-directory: project
+      run: |-
+        python -m pip install PyYAML==6.0.3
+        python -m unittest discover -s tests/automation -v
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+    - name: Install the verified PAC version
+      run: |-
+        dotnet tool install --global Microsoft.PowerApps.CLI.Tool --version 2.12.2
+        dotnet tool list --global
+    - name: Check out Microsoft Power Platform Playwright samples
+      uses: actions/checkout@v4
+      with:
+        repository: microsoft/power-platform-playwright-samples
+        ref: ${{ env.OFFICIAL_SAMPLES_REF }}
+        path: power-platform-playwright
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: npm
+        cache-dependency-path: power-platform-playwright/package-lock.json
+    - name: Install official toolkit dependencies
+      working-directory: power-platform-playwright
+      run: npm ci
+    - name: Build official toolkit
+      working-directory: power-platform-playwright
+      run: npm run build
+    - name: Install Chromium
+      working-directory: power-platform-playwright/packages/e2e-tests
+      run: npx playwright install chromium --with-deps
+    - name: Prepare certificate authentication
+      if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
+      shell: bash
+      env:
+        TEST_CERT_BASE64: ${{ secrets.POWERAPPS_TEST_CERT_BASE64 }}
+      run: |
+        mkdir -p power-platform-playwright/cert
+        printf '%s' "$TEST_CERT_BASE64" | base64 --decode > power-platform-playwright/cert/powerapps-test-user.pfx
+        chmod 600 power-platform-playwright/cert/powerapps-test-user.pfx
+    - name: Authenticate to Power Apps
+      id: auth
+      working-directory: power-platform-playwright/packages/e2e-tests
+      env:
+        MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+        MS_USER_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+        MS_AUTH_CERTIFICATE_PASSWORD: ${{ secrets.POWERAPPS_TEST_CERT_PASSWORD }}
+      shell: bash
+      run: |
+        test -n "$MS_AUTH_EMAIL"
+        if [[ "$MS_AUTH_EMAIL" != "powerapps-test@govaca.onmicrosoft.com" ]]; then
+          echo "::error::Configure the dedicated test user before running this workflow"
+          exit 1
+        fi
+        if [[ "$MS_AUTH_CREDENTIAL_TYPE" == "password" ]]; then
+          test -n "$MS_USER_PASSWORD"
+        fi
+        npm run auth
+    - name: Preserve only the library's failed authentication screen
+      if: ${{ failure() && steps.auth.outcome == 'failure' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: staff-master-auth-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
+        path: power-platform-playwright/packages/e2e-tests/.playwright-ms-auth/screenshots/*-failed-*.png
+        include-hidden-files: true
+        retention-days: 1
+        if-no-files-found: warn
+    - name: Install current independent lightweight UI tests
+      run: cp project/e2e/changes/lightweight*.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/
+    - name: Verify published lightweight UI
+      env:
+        MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+      working-directory: power-platform-playwright/packages/e2e-tests
+      run: npx playwright test 'tests/northwind/canvas/lightweight.*test.ts' --project=canvas-app --retries=0 --reporter=line,json
+    - name: Preserve actual test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: lightweight-ui-${{ github.run_id }}
+        path: |
+          power-platform-playwright/packages/e2e-tests/test-results
+          power-platform-playwright/packages/e2e-tests/playwright-report
+        retention-days: 14

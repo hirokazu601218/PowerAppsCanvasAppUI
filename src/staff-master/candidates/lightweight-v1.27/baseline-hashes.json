@@ -1,0 +1,15 @@
+{
+  "baseline": {
+    "scrHome.pa.yaml": "301879554a5f41a7a31dd21bdd6654ad4bbdb974d08a5a3f6d922636199791eb",
+    "App.pa.yaml": "5dccca751882496dcc95087395c2e2b80cee535569edb16ad55addfe9e60ecff",
+    "scrAttendance.pa.yaml": "f301dc40c8e48bee1572179ce98afa77341b0aa9d0a07b98914180b165a683cd",
+    "scrMaintenance.pa.yaml": "68f00d6cdf09c3635c73fb90d4a0a3ee5b8b5d1c12c1c2d1fe86620647cd4365",
+    "scrPayroll.pa.yaml": "bb1a348136705558dfb09a902428cb09bb00e61e431218a2a9ad0fd85b838120",
+    "Screen1.pa.yaml": "e92e19d9dea67b7dbf2125b3a4da30ca336c74c6f62d1092351f8b6da75d2310",
+    "App.Formulas.fx": "5e193177cbefc8cbfba76fd3a53931bb653e9980044f8ce4b5ed49dfe4b4df53",
+    "scrBonus.pa.yaml": "79023aa38a0f4f7b7fc139197edd69700c06082034528c2ec240b156a5e84198"
+  },
+  "candidateControls": 14,
+  "fields": 163,
+  "status": "Studio component smoke in progress; not released"
+}

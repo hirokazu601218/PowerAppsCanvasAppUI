@@ -13,5 +13,6 @@
   "solution_name": "StaffMasterAutomation",
   "tenant_id": "a00c92fa-e1db-4aa6-ab28-356c3203353d",
   "client_id": "1c94f011-c447-4af1-968f-ec564f489395",
-  "test_user": "powerapps-test@govaca.onmicrosoft.com"
+  "test_user": "powerapps-test@govaca.onmicrosoft.com",
+  "deployment_profile": "lightweight-v1.27"
 }

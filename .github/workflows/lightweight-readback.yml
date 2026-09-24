@@ -1,0 +1,37 @@
+name: Lightweight baseline readback
+on:
+  push:
+    branches: [feat/lightweight-v127-20260924]
+    paths: [automation/lightweight-readback-request.txt]
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  readback:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Install verified PAC
+        run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool --version 2.12.2
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Read current app metadata and download without mutation
+        run: python -u scripts/automation/lightweight_readback.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lightweight-readback-${{ github.run_id }}
+          path: artifacts/lightweight-readback
+          retention-days: 14
