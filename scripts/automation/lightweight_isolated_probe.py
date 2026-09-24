@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bridge
-from lightweight_transaction import verify_database_references, source_hashes
+from lightweight_transaction import verify_database_references, source_hashes, runtime_hashes
 
 ROOT = Path(__file__).resolve().parents[2]
 CFG = json.loads((ROOT / 'config/apps/staff-master.json').read_text())
@@ -65,6 +65,9 @@ try:
                   package_sha256=hashlib.sha256(roundtrip_zip.read_bytes()).hexdigest(),
                   components=components, sources=sorted(refs['default.cds']['dataSources']),
                   source_match_stable=app_sources == EXPECTED['source_hashes'],
+                  runtime_match_stable=runtime_hashes(solution_archive) == EXPECTED['runtime_hashes'],
+                  runtime_control_count=len(runtime_hashes(solution_archive)),
+                  metadata_sha256=hashlib.sha256(metadata[0].read_bytes()).hexdigest(),
                   client_version=ET.parse(metadata[0]).getroot().findtext('CreatedByClientVersion'))
 except Exception as error:
     result.update(status='fail', error_type=type(error).__name__, error=str(error))
