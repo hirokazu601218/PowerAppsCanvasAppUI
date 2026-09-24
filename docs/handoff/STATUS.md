@@ -1,12 +1,16 @@
-# 軽量版 v1.27 実装中（2026-09-24 継続）
+# 現在の作業と読取り対象：軽量版 v1.27 最終検証中（2026-09-24）
 
-- 今回はユーザー指示により60分中断ルールを適用しない。作業継続中。
-- 編集用STUDIO_EDITにSCR-002軽量版68部品を実装（旧657）。6タブ、共通2列詳細、履歴選択、動的給与列を実機で確認。App checker数式問題0、下書き保存済み。安定版と公開版は未変更。
-- [PR #73](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/73)に統合候補ソース・生成コードを保全。まだ受入未完、main昇格不可。
-- 職員004→011の切替、同月3レコードを別GUID列で表示、解釈不能支給日の例外表示を確認。
-- [隔離連携run](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35966774153)成功。正式HTML1.01を隔離テーブル専用リソースへ適応・公開・内容読戻し。一時給与fixture3件を追加し、元3テーブルの全行ハッシュ不変。UI確認後にautomation/lightweight-mode.txt=cleanupで削除すること。
-- SCR-001の上部操作・狭幅折返し調整中。全幅条件、全163値、長文、保存版読戻し、改訂自動化の受入、安定版移送・公開確認は未完。
-- 以下の「復元済み」「60分停止」は前回時点の履歴。現在の下書きは軽量版候補。
+- 今回は最新ユーザー指示により60分中断ルールを適用しない。
+- 編集用STUDIO_EDITへSCR-002軽量版69部品（旧657）、6タブ・2列詳細・履歴・動的給与列を実装し公開済み。最終公開成功表示は2026-09-24 08:21:42 UTC。数式エラー0。
+- 同月3レコードをGUID別列で表示し、全163項目・489セルを独立した定義/fixtureと照合、不一致0。0/負数/空欄/229文字全文/日付例外/空範囲/職員切替を確認。
+- 一時給与fixture3件は[cleanup run 35970056691](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35970056691)で削除・残存0。元3テーブルの全行ハッシュ不変。
+- 安定版にも移植し下書き保存済み、数式エラー0。**安定版はまだ未公開、ライブv54を維持**。最終保存コピーSHA256 a4da3c8bc2f7af8c01f8cf8e66ee6d2c804e973ebbf08179449899a0d4b1e67e。対象外4画面は改名参照以外同一。
+- 編集版最終保存コピーSHA256 1f949ab36826064138031ba44b82a33a14be75ad43b3db829cd7f8a4810b2559。両版69部品・氏名自動高・詳細値Y式・不正月Resetを保存ソース/実行ルールで確認。
+- [専用ユーザーUI run 35974756981](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35974756981)：初回はメール入力空欄の認証画面で停止。2回目は認証成功しUI試験中。未完了を合格扱いしない。
+- [readback run 35973025970](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35973025970)はOIDC/PACで安定版公開パッケージ取得成功。ただし取得物は旧公開Screen1であり、軽量版下書きの検証成功ではない。
+- [PR #73](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/73)に最新修正・自動化候補を保存。改訂配布経路・安定版公開後読戻し・受入の残件があり、main昇格/成功タグは未実施。
+- 読取り対象：PR #73の候補とREADME、lightweight-studio/readback/uiワークフロー、下記確定仕様、staff-master-unattended-runbook.md。旧transactionを実行すると旧構造を配布するため実行しない。
+- Issue #51の欠勤時間単価は元テーブル未反映の別残件。以下は過去時点の履歴。
 
 ---
 
