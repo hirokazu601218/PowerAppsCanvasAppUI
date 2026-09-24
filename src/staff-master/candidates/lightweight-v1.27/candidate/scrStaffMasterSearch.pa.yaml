@@ -1,0 +1,1248 @@
+Screens:
+  scrStaffMasterSearch:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+      OnVisible: |-
+        =Set(varCommuteReportBase111,"");Set(varStaffDetailTab111,Coalesce(varStaffDetailTab111,"Basic"));
+        Set(varPayrollStart111,Coalesce(varPayrollStart111,Date(Year(Today()),1,1)));Set(varPayrollEnd111,Coalesce(varPayrollEnd111,Date(Year(Today()),12,1)));
+        Set(varFetched111,Blank());Set(varFetchError111,Blank());Set(varStaffChosen111,true);
+        IfError(Refresh('M_職員基本_STUDIO');Refresh('T_通勤_STUDIO');Refresh('T_基準給与簿_STUDIO');ClearCollect(colStaffSource111,Filter('M_職員基本_STUDIO',crb3c_orgshort=UiDepartment));
+        Set(varStaff111,Coalesce(LookUp(StaffBasicView,StaffId=varStaff111.StaffId),First(StaffBasicView)));Set(varResultsReady111,false);Select(btnLoadDetails111),
+        Clear(colStaffSource111);Set(varStaff111,Blank());Select(btnLoadDetails111);Set(varFetchError111,"職員データを取得できませんでした");Set(varFetched111,Blank()));
+    Children:
+    - conStaffMaster111:
+        Control: GroupContainer@1.5.0
+        Properties:
+          DropShadow: =DropShadow.None
+          Fill: =ColorValue("#FFFFFF")
+          X: =Parent.Width*4/64
+          Y: =Parent.Height*2/30
+          Width: =Parent.Width*56/64
+          Height: =Parent.Height*26/30
+        Variant: ManualLayout
+        Children:
+        - conHeader111:
+            Control: GroupContainer@1.5.0
+            Properties:
+              DropShadow: =DropShadow.None
+              Fill: =ColorValue("#FFFFFF")
+              Width: =Parent.Width
+              Height: =64
+            Variant: ManualLayout
+            Children:
+            - lblApp111:
+                Control: Label@2.5.1
+                Properties:
+                  Text: ="非常勤職員マスタ検索  |  SCR-002"
+                  X: =0
+                  Y: =0
+                  Width: =Parent.Width
+                  Height: =32
+                  Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                  Color: =ColorValue("#FFFFFF")
+                  Fill: =ColorValue("#073B78")
+                  BorderColor: =ColorValue("#CBD5E1")
+                  BorderThickness: =1
+                  PaddingLeft: =8
+                  Tooltip: =Self.Text
+                  Wrap: =true
+            - lblMeta111:
+                Control: Label@2.5.1
+                Properties:
+                  Text: =If(IsBlank(varFetched111),Coalesce(varFetchError111,"データ取得中"),"取得日時：" & Text(varFetched111,"yyyy/mm/dd hh:mm:ss"))
+                  X: =0
+                  Y: =32
+                  Width: =Parent.Width
+                  Height: =32
+                  Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                  Color: =ColorValue("#FFFFFF")
+                  Fill: =ColorValue("#073B78")
+                  BorderColor: =ColorValue("#CBD5E1")
+                  BorderThickness: =1
+                  PaddingLeft: =8
+                  Tooltip: =Self.Text
+                  Wrap: =true
+        - conSearchSidebar111:
+            Control: GroupContainer@1.5.0
+            Variant: ManualLayout
+            Properties:
+              BorderColor: =ColorValue("#CBD5E1")
+              BorderThickness: =1
+              DropShadow: =DropShadow.None
+              Fill: =ColorValue("#FFFFFF")
+              Height: =Parent.Height-Self.Y
+              Width: =If(Coalesce(varSearchSidebarExpanded111,true),Min(320,Parent.Width*0.38),48)
+              X: =0
+              Y: =72
+            Children:
+            - conLeftScroll111:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =ColorValue("#FFFFFF")
+                  Height: =Parent.Height-57
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutOverflowY: =LayoutOverflow.Scroll
+                  PaddingBottom: =12
+                  PaddingLeft: =12
+                  PaddingRight: =28
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Visible: =Coalesce(varSearchSidebarExpanded111,true)
+                  Width: =Parent.Width-2
+                  X: =1
+                  Y: =56
+                Children:
+                - conLeftSurface111:
+                    Control: GroupContainer@1.5.0
+                    Variant: ManualLayout
+                    Properties:
+                      DropShadow: =DropShadow.None
+                      Fill: =ColorValue("#FFFFFF")
+                      FillPortions: =0
+                      Height: =galStaff111.Y+galStaff111.Height+12
+                      LayoutMinHeight: =Self.Height
+                      LayoutMinWidth: =Self.Width
+                      RadiusBottomLeft: =0
+                      RadiusBottomRight: =0
+                      RadiusTopLeft: =0
+                      RadiusTopRight: =0
+                      Width: =Parent.Width-24
+                    Children:
+                    - lblSearchTitle111:
+                        Control: Label@2.5.1
+                        Properties:
+                          BorderColor: =ColorValue("#CBD5E1")
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =24
+                          LineHeight: =1.4
+                          PaddingBottom: =0
+                          PaddingLeft: =8
+                          PaddingRight: =8
+                          PaddingTop: =0
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: ="氏名・職員番号・項目"
+                          Tooltip: =Self.Text
+                          Width: =Parent.Width
+                    - lblKeyword111:
+                        Control: Label@2.5.1
+                        Properties:
+                          BorderColor: =ColorValue("#CBD5E1")
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =24
+                          LineHeight: =1.4
+                          PaddingBottom: =4
+                          PaddingLeft: =8
+                          PaddingRight: =8
+                          PaddingTop: =4
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: ="検索"
+                          Tooltip: =Self.Text
+                          Visible: =false
+                          Width: =Parent.Width
+                          Y: =36
+                    - txtKeyword111:
+                        Control: ModernTextInput@1.1.2
+                        Properties:
+                          AccessibleLabel: ="氏名・職員番号・項目を検索"
+                          Appearance: =Appearance.Outline
+                          BasePaletteColor: =ColorValue("#0F6CBD")
+                          BorderColor: =ColorValue("#CBD5E1")
+                          BorderThickness: =1
+                          Color: =ColorValue("#242424")
+                          DisplayMode: =DisplayMode.Edit
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =44
+                          PaddingLeft: =8
+                          Placeholder: ="職員を検索"
+                          Size: =If(Coalesce(varLargeText111,false),18,16)
+                          Type: =TextInputType.Search
+                          Width: =Parent.Width
+                          Y: =28
+                    - lblOrg111:
+                        Control: Label@2.5.1
+                        Properties:
+                          BorderColor: =ColorValue("#CBD5E1")
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =24
+                          LineHeight: =1.4
+                          PaddingBottom: =0
+                          PaddingLeft: =8
+                          PaddingRight: =8
+                          PaddingTop: =0
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: ="組織"
+                          Tooltip: =Self.Text
+                          Width: =Parent.Width
+                          Y: =80
+                          X: =0
+                    - ddOrg111:
+                        Control: Classic/DropDown@2.3.1
+                        Properties:
+                          AccessibleLabel: ="組織"
+                          BorderColor: =ColorValue("#CBD5E1")
+                          BorderThickness: =1
+                          ChevronBackground: =ColorValue("#FFFFFF")
+                          ChevronFill: =ColorValue("#1F2937")
+                          Color: =ColorValue("#1F2937")
+                          Default: ="すべて"
+                          DisplayMode: =DisplayMode.Edit
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =44
+                          Items: =["すべて","01秘書課","02総務課","03会計課"]
+                          Items.Value: =Value
+                          SelectionColor: =ColorValue("#073B78")
+                          SelectionFill: =ColorValue("#DCEAFF")
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          TabIndex: =0
+                          Width: =Parent.Width
+                          Y: =108
+                          X: =0
+                    - lblStatus111:
+                        Control: Label@2.5.1
+                        Properties:
+                          BorderColor: =ColorValue("#CBD5E1")
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =24
+                          LineHeight: =1.4
+                          PaddingBottom: =0
+                          PaddingLeft: =8
+                          PaddingRight: =8
+                          PaddingTop: =0
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: ="在籍状態"
+                          Tooltip: =Self.Text
+                          Width: =Parent.Width
+                          X: =0
+                          Y: =160
+                    - ddStatus111:
+                        Control: Classic/DropDown@2.3.1
+                        Properties:
+                          AccessibleLabel: ="在籍状態"
+                          BorderColor: =ColorValue("#CBD5E1")
+                          BorderThickness: =1
+                          ChevronBackground: =ColorValue("#FFFFFF")
+                          ChevronFill: =ColorValue("#1F2937")
+                          Color: =ColorValue("#1F2937")
+                          Default: ="すべて"
+                          DisplayMode: =DisplayMode.Edit
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =44
+                          Items: =["すべて","採用前","在籍","退職"]
+                          Items.Value: =Value
+                          SelectionColor: =ColorValue("#073B78")
+                          SelectionFill: =ColorValue("#DCEAFF")
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          TabIndex: =0
+                          Width: =Parent.Width
+                          X: =0
+                          Y: =188
+                    - btnSearch111:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          AccessibleLabel: ="検索"
+                          BasePaletteColor: =ColorValue("#0F6CBD")
+                          BorderColor: =ColorValue("#0B4A8B")
+                          BorderThickness: =1
+                          Color: =ColorValue("#FFFFFF")
+                          DisplayMode: =DisplayMode.Edit
+                          Font: ="Segoe UI"
+                          FontWeight: =FontWeight.Semibold
+                          Height: =44
+                          OnSelect: |-
+                            =With({demoStaff:StaffBasicView},
+                            ClearCollect(colResult111,Filter(demoStaff As s,(IsBlank(Trim(txtKeyword111.Text)) || Lower(Trim(txtKeyword111.Text)) in Lower(Text(s.StaffId) & "|" & Text(s.Name) & "|" & Text(s.OrgFull) & "|" & Text(s.Org) & "|" & Text(s.Birth) & "|" & Text(s.Sex) & "|" & Text(s.Hire) & "|" & Text(s.Leave) & "|" & Text(s.Status) & "|" & Text(s.WorkReg) & "|" & Text(s.Daily) & "|" & Text(s.Hours) & "|" & Text(s.CommuteReg) & "|" & Text(s.Method) & "|" & Text(s.Pass) & "|" & Text(s.Fare) & "|" & Text(s.SocialReg) & "|" & Text(s.Health) & "|" & Text(s.Pension) & "|" & Text(s.ResidentReg) & "|" & Text(s.TaxMay) & "|" & Text(s.TaxJune) & "|" & Text(s.TaxJuly) & "|" & Text(s.FixedReg) & "|" & Text(s.TaxClass) & "|" & Text(s.Employment))) && (ddOrg111.Selected.Value="すべて" || s.Org=ddOrg111.Selected.Value) && (ddStatus111.Selected.Value="すべて" || s.Status=ddStatus111.Selected.Value))); Set(varResultsReady111,true); Set(varStaffChosen111,true); Set(varPage111,1); Set(varStaff111,First(colResult111)); Reset(galStaff111); Notify(Text(CountRows(colResult111)) & "件見つかりました",NotificationType.Information)
+                            ); Select(btnLoadDetails111)
+                          RadiusBottomLeft: =4
+                          RadiusBottomRight: =4
+                          RadiusTopLeft: =4
+                          RadiusTopRight: =4
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: ="検索"
+                          Tooltip: ="検索"
+                          Width: =(Parent.Width-8)/2
+                          Y: =240
+                          X: =0
+                    - btnClear111:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          AccessibleLabel: ="検索条件をクリア"
+                          Appearance: =ButtonAppearance.Outline
+                          BasePaletteColor: =ColorValue("#0F6CBD")
+                          BorderColor: =ColorValue("#0B4A8B")
+                          BorderThickness: =1
+                          Color: =ColorValue("#0F6CBD")
+                          DisplayMode: =DisplayMode.Edit
+                          Font: ="Segoe UI"
+                          FontWeight: =FontWeight.Semibold
+                          Height: =44
+                          OnSelect: =Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111); Set(varResultsReady111,false); Set(varStaffChosen111,true); Set(varStaff111,First(StaffBasicView)); Set(varPage111,1); Reset(galStaff111); Select(btnLoadDetails111)
+                          RadiusBottomLeft: =4
+                          RadiusBottomRight: =4
+                          RadiusTopLeft: =4
+                          RadiusTopRight: =4
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: ="クリア"
+                          Tooltip: ="検索条件をクリア"
+                          Width: =(Parent.Width-8)/2
+                          X: =(Parent.Width+8)/2
+                          Y: =240
+                    - lblListTitle111:
+                        Control: Label@2.5.1
+                        Properties:
+                          BorderColor: =ColorValue("#CBD5E1")
+                          BorderThickness: =1
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#EDF2F7")
+                          Font: ="Segoe UI"
+                          FontWeight: =FontWeight.Semibold
+                          LineHeight: =1.4
+                          Live: =Live.Polite
+                          PaddingBottom: =4
+                          PaddingLeft: =8
+                          PaddingRight: =8
+                          PaddingTop: =4
+                          Size: =If(Coalesce(varLargeText111,false),13.5,12)
+                          Text: |-
+                            =With({demoStaff:StaffBasicView},
+                            With({demoResults:If(Coalesce(varResultsReady111,false),colResult111,demoStaff)},
+                            "職員一覧　" & Text(CountRows(demoResults)) & "件"
+                            )
+                            )
+                          Tooltip: =Self.Text
+                          Width: =Parent.Width
+                          Y: =292
+                    - btnPrev111:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          AccessibleLabel: ="前へ"
+                          Appearance: =ButtonAppearance.Outline
+                          BasePaletteColor: =ColorValue("#0F6CBD")
+                          BorderColor: =ColorValue("#0B4A8B")
+                          BorderThickness: =1
+                          Color: =ColorValue("#0F6CBD")
+                          DisplayMode: =If(Coalesce(varPage111,1)<=1,DisplayMode.Disabled,DisplayMode.Edit)
+                          Font: ="Segoe UI"
+                          FontWeight: =FontWeight.Semibold
+                          Height: =44
+                          OnSelect: =Set(varPage111,Max(1,Coalesce(varPage111,1)-1)); Reset(galStaff111)
+                          RadiusBottomLeft: =4
+                          RadiusBottomRight: =4
+                          RadiusTopLeft: =4
+                          RadiusTopRight: =4
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: ="前へ"
+                          Tooltip: ="前へ"
+                          Width: =72
+                          Y: =332
+                    - lblPage111:
+                        Control: Label@2.5.1
+                        Properties:
+                          Align: =Align.Center
+                          BorderColor: =ColorValue("#CBD5E1")
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =44
+                          LineHeight: =1.4
+                          PaddingBottom: =4
+                          PaddingLeft: =8
+                          PaddingRight: =8
+                          PaddingTop: =4
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: |-
+                            =With({demoStaff:StaffBasicView},
+                            With({demoResults:If(Coalesce(varResultsReady111,false),colResult111,demoStaff)},
+                            Text(Coalesce(varPage111,1)) & " / " & Text(Max(1,RoundUp(CountRows(demoResults)/20,0)))
+                            )
+                            )
+                          Tooltip: =Self.Text
+                          Width: =Parent.Width-160
+                          X: =80
+                          Y: =332
+                    - btnNext111:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          AccessibleLabel: ="次へ"
+                          Appearance: =ButtonAppearance.Outline
+                          BasePaletteColor: =ColorValue("#0F6CBD")
+                          BorderColor: =ColorValue("#0B4A8B")
+                          BorderThickness: =1
+                          Color: =ColorValue("#0F6CBD")
+                          DisplayMode: =If(Coalesce(varPage111,1)*20>=If(Coalesce(varResultsReady111,false),CountRows(colResult111),CountRows(StaffBasicView)),DisplayMode.Disabled,DisplayMode.Edit)
+                          Font: ="Segoe UI"
+                          FontWeight: =FontWeight.Semibold
+                          Height: =44
+                          OnSelect: =Set(varPage111,Coalesce(varPage111,1)+1); Reset(galStaff111)
+                          RadiusBottomLeft: =4
+                          RadiusBottomRight: =4
+                          RadiusTopLeft: =4
+                          RadiusTopRight: =4
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: ="次へ"
+                          Tooltip: ="次へ"
+                          Width: =72
+                          X: =Parent.Width-72
+                          Y: =332
+                    - galStaff111:
+                        Control: Gallery@2.15.0
+                        Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+                        Properties:
+                          AccessibleLabel: ="職員検索結果。氏名、在籍状態、職員番号、所属の順"
+                          Default: |-
+                            =With({demoStaff:StaffBasicView},
+                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
+                            demoSelected
+                            )
+                            )
+                          DisplayMode: =DisplayMode.Edit
+                          Fill: =ColorValue("#FFFFFF")
+                          Height: =Max(1,CountRows(Self.AllItems))*Self.TemplateHeight
+                          ItemAccessibleLabel: =ThisItem.Name & "、" & ThisItem.Status & "、職員番号" & ThisItem.StaffId & "、" & ThisItem.Org
+                          Items: |-
+                            =With({demoStaff:StaffBasicView},
+                            With({demoResults:If(Coalesce(varResultsReady111,false),colResult111,demoStaff)},
+                            FirstN(LastN(demoResults,Max(CountRows(demoResults)-(Coalesce(varPage111,1)-1)*20,0)),20)
+                            )
+                            )
+                          OnSelect: =Set(varStaff111,ThisItem); Set(varStaffChosen111,true); Select(btnLoadDetails111)
+                          ShowScrollbar: =false
+                          TemplateSize: =If(Coalesce(varLargeText111,false),92,84)
+                          Width: =Parent.Width
+                          Y: =384
+                        Children:
+                        - lblListC0111:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =ColorValue("#CBD5E1")
+                              Color: =ColorValue("#242424")
+                              Fill: =ColorValue("#E2E8F0")
+                              Font: ="Segoe UI"
+                              Height: =28
+                              LineHeight: =1.4
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =2
+                              PaddingLeft: =8
+                              PaddingRight: =4
+                              PaddingTop: =2
+                              Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                              Text: =ThisItem.StaffId
+                              Tooltip: =Self.Text
+                              Width: =Parent.TemplateWidth-104
+                              Y: =44
+                              X: =10
+                              Visible: =true
+                        - lblListC1111:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =ColorValue("#CBD5E1")
+                              Color: =ColorValue("#242424")
+                              Fill: =If(ThisItem.StaffId=galStaff111.Selected.StaffId,ColorValue("#DCEAFF"),Color.White)
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Semibold
+                              Height: =34
+                              LineHeight: =1.4
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =2
+                              PaddingLeft: =8
+                              PaddingRight: =4
+                              PaddingTop: =2
+                              Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                              Text: =ThisItem.Name
+                              Tooltip: =Self.Text
+                              Width: =Parent.TemplateWidth-104
+                              X: =10
+                              Y: =8
+                              Wrap: =true
+                        - lblListC2111:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =ColorValue("#CBD5E1")
+                              Color: =ColorValue("#242424")
+                              Fill: =If(ThisItem.StaffId=galStaff111.Selected.StaffId,ColorValue("#DCEAFF"),Color.White)
+                              Font: ="Segoe UI"
+                              Height: =28
+                              LineHeight: =1.4
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =2
+                              PaddingLeft: =8
+                              PaddingRight: =4
+                              PaddingTop: =2
+                              Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                              Text: =ThisItem.Org
+                              Tooltip: =Self.Text
+                              Width: =90
+                              X: =Parent.TemplateWidth-94
+                              Y: =44
+                        - lblListC3111:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Right
+                              BorderColor: =ColorValue("#CBD5E1")
+                              Color: =ColorValue("#242424")
+                              Fill: =If(ThisItem.StaffId=galStaff111.Selected.StaffId,ColorValue("#DCEAFF"),Color.White)
+                              Font: ="Segoe UI"
+                              Height: =30
+                              LineHeight: =1.4
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =2
+                              PaddingLeft: =8
+                              PaddingRight: =4
+                              PaddingTop: =2
+                              Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                              Text: =ThisItem.Status
+                              Tooltip: =Self.Text
+                              Width: =90
+                              X: =Parent.TemplateWidth-94
+                              Y: =8
+                        - btnRow111:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorValue("#0B4A8B")
+                              BorderThickness: =0
+                              Color: =RGBA(0,0,0,0)
+                              DisabledBorderColor: =ColorValue("#CBD5E1")
+                              DisabledColor: =RGBA(0,0,0,0)
+                              DisabledFill: =ColorValue("#EDF2F7")
+                              DisplayMode: =DisplayMode.Edit
+                              Fill: =RGBA(0,0,0,0)
+                              FocusedBorderColor: =ColorValue("#073B78")
+                              FocusedBorderThickness: =2
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.TemplateHeight
+                              HoverColor: =RGBA(0,0,0,0)
+                              HoverFill: =RGBA(7,59,120,0.04)
+                              OnSelect: =Select(Parent)
+                              PressedColor: =RGBA(0,0,0,0)
+                              PressedFill: =RGBA(7,59,120,0.1)
+                              RadiusBottomLeft: =2
+                              RadiusBottomRight: =2
+                              RadiusTopLeft: =2
+                              RadiusTopRight: =2
+                              Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                              TabIndex: =0
+                              Text: =ThisItem.Name & " " & ThisItem.StaffId & " 詳細を表示"
+                              Tooltip: =ThisItem.StaffId & " " & ThisItem.Name & " 詳細を表示"
+                              Width: =Parent.TemplateWidth
+                              X: =0
+                              Y: =0
+                        - lblSelectedMarker111:
+                            Control: Label@2.5.1
+                            Properties:
+                              Fill: =If(ThisItem.StaffId=galStaff111.Selected.StaffId,ColorValue("#0F6CBD"),Color.Transparent)
+                              Height: =Parent.TemplateHeight
+                              OnSelect: =Select(Parent)
+                              Text: =ThisItem.Birth
+                              Width: =1
+                              Visible: =false
+                    - lblNoMatch111:
+                        Control: Label@2.5.1
+                        Properties:
+                          BorderColor: =ColorValue("#CBD5E1")
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =88
+                          LineHeight: =1.4
+                          PaddingBottom: =4
+                          PaddingLeft: =8
+                          PaddingRight: =8
+                          PaddingTop: =4
+                          Size: =If(Coalesce(varLargeText111,false),13.5,12)
+                          Text: ="該当する職員がいません。条件を変更してください。"
+                          Tooltip: =Self.Text
+                          Visible: |-
+                            =With({demoStaff:StaffBasicView},
+                            With({demoResults:If(Coalesce(varResultsReady111,false),colResult111,demoStaff)},
+                            IsEmpty(demoResults)
+                            )
+                            )
+                          Width: =Parent.Width
+                          Y: =256
+            - lblSidebarTitle111:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =ColorValue("#242424")
+                  Font: ="Segoe UI"
+                  FontWeight: =FontWeight.Semibold
+                  Height: =44
+                  PaddingBottom: =4
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =4
+                  Size: =If(Coalesce(varLargeText111,false),13.5,12)
+                  Text: ="職員検索"
+                  Visible: =Coalesce(varSearchSidebarExpanded111,true)
+                  Width: =Parent.Width-52
+                  X: =12
+                  Y: =4
+            - btnSidebarToggle111:
+                Control: ModernButton@1.0.0
+                Properties:
+                  AccessibleLabel: =If(Coalesce(varSearchSidebarExpanded111,true),"職員検索を閉じる","職員検索を開く")
+                  Appearance: =ButtonAppearance.Outline
+                  BasePaletteColor: =ColorValue("#0F6CBD")
+                  Color: =ColorValue("#0F6CBD")
+                  DisplayMode: =DisplayMode.Edit
+                  Font: ="Segoe UI"
+                  FontWeight: =FontWeight.Semibold
+                  Height: =44
+                  OnSelect: =Set(varSearchSidebarExpanded111,!Coalesce(varSearchSidebarExpanded111,true))
+                  Size: =18
+                  Text: ="☰"
+                  Tooltip: =Self.AccessibleLabel
+                  Width: =44
+                  X: =If(Coalesce(varSearchSidebarExpanded111,true),Parent.Width-48,2)
+                  Y: =4
+        - conRightScroll111:
+            Control: GroupContainer@1.5.0
+            Properties:
+              DropShadow: =DropShadow.None
+              Fill: =ColorValue("#FFFFFF")
+              X: =conSearchSidebar111.Width+12
+              Y: =72
+              Width: =Parent.Width-Self.X
+              Height: =Parent.Height-Self.Y
+              LayoutDirection: =LayoutDirection.Vertical
+              LayoutOverflowY: =LayoutOverflow.Scroll
+              PaddingRight: =16
+            Variant: AutoLayout
+            Children:
+            - conRightSurface111:
+                Control: GroupContainer@1.5.0
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =ColorValue("#FFFFFF")
+                  Width: =Parent.Width-16
+                  Height: =Max(conStaffActions111.Height+100,If(varStaffDetailTab111="Payroll",conPayrollLight111.Y+conPayrollLight111.Height,galDetailFields111.Y+galDetailFields111.Height))+24
+                  LayoutMinHeight: =Self.Height
+                  FillPortions: =0
+                  AlignInContainer: =AlignInContainer.Start
+                Variant: ManualLayout
+                Children:
+                - conStaffActions111:
+                    Control: GroupContainer@1.5.0
+                    Properties:
+                      DropShadow: =DropShadow.None
+                      Fill: =ColorValue("#FFFFFF")
+                      Width: =Parent.Width
+                      Height: =RoundUp(7/Max(1,RoundDown(Self.Width/148,0)),0)*52
+                      LayoutDirection: =LayoutDirection.Horizontal
+                      LayoutWrap: =true
+                      LayoutGap: =8
+                      LayoutAlignItems: =LayoutAlignItems.Start
+                    Variant: AutoLayout
+                    Children:
+                    - btnStaffHome122:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          AccessibleLabel: ="ホーム"
+                          BasePaletteColor: =UiTheme.Primary
+                          Font: ="Segoe UI"
+                          Height: =44
+                          LayoutMinWidth: =0
+                          OnSelect: =Navigate(scrHome,ScreenTransition.None)
+                          Size: =14
+                          Text: ="ホーム"
+                          Width: =140
+                    - ddStaffMonth122:
+                        Control: Classic/DropDown@2.3.1
+                        Properties:
+                          AccessibleLabel: ="支給対象月"
+                          BorderColor: =UiTheme.Border
+                          BorderThickness: =1
+                          ChevronBackground: =Color.White
+                          ChevronFill: =UiTheme.Primary
+                          Color: =UiTheme.Text
+                          Default: =Text(UiMonth,"yyyy/mm")
+                          Fill: =Color.White
+                          Font: ="Segoe UI"
+                          Height: =44
+                          Items: =ForAll(Sequence(61),Text(DateAdd(Date(Year(Today()),Month(Today()),1),Value-31,TimeUnit.Months),"yyyy/mm"))
+                          Items.Value: =Value
+                          LayoutMinWidth: =0
+                          OnChange: =Set(varUiMonth,DateValue(Self.Selected.Value & "/01","ja-JP")); Set(varUiResultKey,Blank())
+                          SelectionColor: =UiTheme.Text
+                          SelectionFill: =UiTheme.Selected
+                          Size: =11
+                          Width: =140
+                    - btnStaffPayroll122:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          AccessibleLabel: ="支給明細画面"
+                          BasePaletteColor: =UiTheme.Primary
+                          DisplayMode: =If(Coalesce(varStaffChosen111,false) && StaffSelected.Org=UiDepartment,DisplayMode.Edit,DisplayMode.Disabled)
+                          Font: ="Segoe UI"
+                          Height: =44
+                          LayoutMinWidth: =0
+                          OnSelect: =Set(varUiStaffNo,StaffSelected.StaffId); Set(varUiResultKey,Blank()); Navigate(scrPayroll,ScreenTransition.None)
+                          Size: =14
+                          Text: ="支給明細画面"
+                          Width: =140
+                    - btnTextSize111:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          AccessibleLabel: =If(Coalesce(varLargeText111,false),"文字サイズを標準に戻す","文字サイズを大きくする")
+                          Appearance: =ButtonAppearance.Outline
+                          BasePaletteColor: =ColorValue("#0F6CBD")
+                          BorderColor: =ColorValue("#0F6CBD")
+                          Color: =ColorValue("#0F6CBD")
+                          DisplayMode: =DisplayMode.Edit
+                          Font: ="Segoe UI"
+                          FontWeight: =FontWeight.Semibold
+                          Height: =44
+                          OnSelect: =Set(varLargeText111,!Coalesce(varLargeText111,false))
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: =If(Coalesce(varLargeText111,false),"文字：大","文字：標準")
+                          Tooltip: =Self.AccessibleLabel
+                          Width: =140
+                    - btnDetailShow111:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          Text: ="詳細表示"
+                          AccessibleLabel: ="詳細表示"
+                          OnSelect: =Set(varStaffDetailTab111,"Basic")
+                          Width: =140
+                          Height: =44
+                          BasePaletteColor: =ColorValue("#0F6CBD")
+                          Font: ="Segoe UI"
+                    - btnDiscard111:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          Text: ="変更を破棄"
+                          AccessibleLabel: ="変更を破棄"
+                          OnSelect: =false
+                          Width: =140
+                          Height: =44
+                          BasePaletteColor: =ColorValue("#0F6CBD")
+                          Font: ="Segoe UI"
+                          DisplayMode: =DisplayMode.Disabled
+                          Tooltip: ="この画面は表示専用です"
+                    - btnSave111:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          Text: ="保存"
+                          AccessibleLabel: ="保存"
+                          OnSelect: =false
+                          Width: =140
+                          Height: =44
+                          BasePaletteColor: =ColorValue("#0F6CBD")
+                          Font: ="Segoe UI"
+                          DisplayMode: =DisplayMode.Disabled
+                          Tooltip: ="この画面は表示専用です"
+                - conPerson111:
+                    Control: GroupContainer@1.5.0
+                    Variant: ManualLayout
+                    Properties:
+                      BorderColor: =ColorValue("#CBD5E1")
+                      BorderThickness: =1
+                      DropShadow: =DropShadow.None
+                      Fill: =ColorValue("#FFFFFF")
+                      Height: =If(Coalesce(varLargeText111,false),104,96)
+                      RadiusBottomLeft: =0
+                      RadiusBottomRight: =0
+                      RadiusTopLeft: =0
+                      RadiusTopRight: =0
+                      Visible: =!IsBlank(StaffSelected.StaffId)
+                      Width: =Parent.Width
+                      X: =0
+                      Y: =conStaffActions111.Height+12
+                    Children:
+                    - lblName111:
+                        Control: Label@2.5.1
+                        Properties:
+                          BorderColor: =ColorValue("#CBD5E1")
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          FontWeight: =FontWeight.Semibold
+                          Height: =44
+                          LineHeight: =1.4
+                          PaddingBottom: =4
+                          PaddingLeft: =8
+                          PaddingRight: =0
+                          PaddingTop: =4
+                          Size: =If(Coalesce(varLargeText111,false),18,15)
+                          Text: |-
+                            =With({demoStaff:StaffBasicView},
+                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
+                            demoSelected.Name
+                            )
+                            )
+                          Tooltip: =Self.Text
+                          Width: =Max(80,Min(Parent.Width-432,Len(Substitute(Self.Text," ",""))*Self.Size*4/3+(Len(Self.Text)-Len(Substitute(Self.Text," ","")))*Self.Size*2/3+Self.PaddingLeft+Self.PaddingRight))
+                          X: =16
+                          Y: =8
+                    - lblPersonSub111:
+                        Control: Label@2.5.1
+                        Properties:
+                          BorderColor: =ColorValue("#CBD5E1")
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =36
+                          LineHeight: =1.4
+                          PaddingBottom: =4
+                          PaddingLeft: =8
+                          PaddingRight: =8
+                          PaddingTop: =4
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: |-
+                            =With({demoStaff:StaffBasicView},
+                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
+                            "職員番号：" & demoSelected.StaffId & "　／　所属：" & demoSelected.Org
+                            )
+                            )
+                          Tooltip: =Self.Text
+                          Width: =Parent.Width-32
+                          X: =16
+                          Y: =52
+                    - lblBadge111:
+                        Control: Label@2.5.1
+                        Properties:
+                          Align: =Align.Center
+                          BorderColor: =ColorValue("#16833A")
+                          BorderThickness: =1
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          Font: ="Segoe UI"
+                          Height: =32
+                          LineHeight: =1.4
+                          PaddingBottom: =4
+                          PaddingLeft: =8
+                          PaddingRight: =8
+                          PaddingTop: =4
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Text: |-
+                            =With({demoStaff:StaffBasicView},
+                            With({demoSelected:If(Coalesce(varStaffChosen111,false),varStaff111,First(demoStaff))},
+                            demoSelected.Status
+                            )
+                            )
+                          Tooltip: =Self.Text
+                          Width: =80
+                          X: =lblName111.X+lblName111.Width+8
+                          Y: =lblName111.Y+(lblName111.Height-Self.Height)/2
+                - galDetailTabs111:
+                    Control: Gallery@2.15.0
+                    Properties:
+                      Items: =Table({Key:"Basic",Label:"基本情報"},{Key:"Work",Label:"勤務条件"},{Key:"Commute",Label:"通勤"},{Key:"Social",Label:"社会保険"},{Key:"Tax",Label:"税固定控除"},{Key:"Payroll",Label:"給与"})
+                      Width: =Parent.Width
+                      TemplatePadding: =0
+                      Height: =RoundUp(6/Max(1,RoundDown(Self.Width/130,0)),0)*52
+                      WrapCount: =Max(1,RoundDown(Self.Width/130,0))
+                      TemplateSize: =52
+                      Y: =conPerson111.Y+conPerson111.Height+12
+                      Selectable: =false
+                      ShowScrollbar: =false
+                    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+                    Children:
+                    - btnDetailTab111:
+                        Control: ModernButton@1.0.0
+                        Properties:
+                          Text: =ThisItem.Label
+                          AccessibleLabel: =ThisItem.Label
+                          OnSelect: =Set(varStaffDetailTab111,ThisItem.Key); Set(varHistoryId111,First(Filter(colHistory111,Section=ThisItem.Key)).RecordId)
+                          X: =0
+                          Y: =0
+                          Width: =Parent.TemplateWidth-6
+                          Height: =44
+                          BasePaletteColor: =ColorValue("#0F6CBD")
+                          Font: ="Segoe UI"
+                          Appearance: =If(Coalesce(varStaffDetailTab111,"Basic")=ThisItem.Key,ButtonAppearance.Primary,ButtonAppearance.Outline)
+                - galHistory111:
+                    Control: Gallery@2.15.0
+                    Properties:
+                      Items: =Filter(colHistory111,Section=varStaffDetailTab111)
+                      Width: =Parent.Width
+                      TemplatePadding: =0
+                      Height: =If(Self.Visible,Min(3,CountRows(Self.AllItems))*80,0)
+                      TemplateSize: =80
+                      Y: =galDetailTabs111.Y+galDetailTabs111.Height+52
+                      OnSelect: =Set(varHistoryId111,ThisItem.RecordId)
+                      Visible: =varStaffDetailTab111 in ["Work","Commute","Social","Tax"]
+                      TemplateFill: =If(ThisItem.RecordId=varHistoryId111,ColorValue("#DCEAFF"),ColorValue("#FFFFFF"))
+                    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+                    Children:
+                    - lblHistory111:
+                        Control: Label@2.5.1
+                        Properties:
+                          Text: =ThisItem.Title & Char(10) & ThisItem.Period & "  " & ThisItem.State
+                          X: =8
+                          Y: =0
+                          Width: =Parent.TemplateWidth-16
+                          Height: =72
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          BorderColor: =ColorValue("#CBD5E1")
+                          BorderThickness: =1
+                          PaddingLeft: =8
+                          Tooltip: =Self.Text
+                          Wrap: =true
+                          OnSelect: =Select(Parent)
+                - galDetailFields111:
+                    Control: Gallery@2.15.0
+                    Properties:
+                      Items: =StaffDetailFields111
+                      Width: =Parent.Width
+                      TemplatePadding: =0
+                      Y: =galHistory111.Y+galHistory111.Height+8
+                      Height: =If(Self.Visible,RoundUp(CountRows(StaffDetailFields111)/2,0)*Self.TemplateHeight,0)
+                      WrapCount: =2
+                      TemplateSize: =Max(130,80+Max(StaffDetailFields111,RoundUp(Len(DisplayText)/Max(1,RoundDown((Self.Width/2-32)/If(Coalesce(varLargeText111,false),20,16),0)),0)+Len(DisplayText)-Len(Substitute(DisplayText,Char(10),"")))*If(Coalesce(varLargeText111,false),30,24))
+                      ShowScrollbar: =false
+                      Selectable: =false
+                      Visible: =!IsBlank(StaffSelected.StaffId) && varStaffDetailTab111<>"Payroll" && (varStaffDetailTab111="Basic" || !IsBlank(varHistoryId111))
+                    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+                    Children:
+                    - lblDetailKey111:
+                        Control: Label@2.5.1
+                        Properties:
+                          Text: =ThisItem.Label
+                          X: =12
+                          Y: =8
+                          Width: =Parent.TemplateWidth-24
+                          Height: =44
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#EDF2F7")
+                          BorderColor: =ColorValue("#CBD5E1")
+                          BorderThickness: =1
+                          PaddingLeft: =8
+                          Tooltip: =Self.Text
+                          Wrap: =true
+                    - lblDetailValue111:
+                        Control: Label@2.5.1
+                        Properties:
+                          Text: =If(ThisItem.IsBlankValue,"",ThisItem.DisplayText)
+                          X: =12
+                          Y: =56
+                          Width: =Parent.TemplateWidth-24
+                          Height: =100
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          BorderColor: =ColorValue("#CBD5E1")
+                          BorderThickness: =0
+                          PaddingLeft: =8
+                          Tooltip: =Self.Text
+                          Wrap: =true
+                          AutoHeight: =true
+                - lblHistoryEmpty111:
+                    Control: Label@2.5.1
+                    Properties:
+                      Text: =If(IsBlank(StaffSelected.StaffId),"職員を選択してください", "登録されている履歴はありません")
+                      X: =0
+                      Y: =galDetailTabs111.Y+galDetailTabs111.Height+8
+                      Width: =Parent.Width
+                      Height: =44
+                      Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                      Color: =ColorValue("#242424")
+                      Fill: =ColorValue("#FFFFFF")
+                      BorderColor: =ColorValue("#CBD5E1")
+                      BorderThickness: =1
+                      PaddingLeft: =8
+                      Tooltip: =Self.Text
+                      Wrap: =true
+                      Visible: =IsBlank(StaffSelected.StaffId) || (varStaffDetailTab111 in ["Work","Commute","Social","Tax"] && IsEmpty(Filter(colHistory111,Section=varStaffDetailTab111)))
+                - btnCertificate111:
+                    Control: ModernButton@1.0.0
+                    Properties:
+                      Text: ="認定簿表示"
+                      AccessibleLabel: ="認定簿表示"
+                      OnSelect: =If(varHistoryStaff111=StaffSelected.StaffId && !IsBlank(varHistoryId111) && !IsBlank(LookUp(colCommute111,Text(crb3c_studiocommuteid)=varHistoryId111 && 職員基本.職員番号=StaffSelected.StaffId)),Launch(varCommuteReportBase111 & "?id=" & EncodeUrl(varHistoryId111),{},LaunchTarget.New),Notify("通勤認定レコードを選び直してください。",NotificationType.Error))
+                      X: =Max(0,Parent.Width-150)
+                      Y: =galDetailTabs111.Y+galDetailTabs111.Height+4
+                      Width: =150
+                      Height: =44
+                      BasePaletteColor: =ColorValue("#0F6CBD")
+                      Font: ="Segoe UI"
+                      Visible: =varStaffDetailTab111="Commute"
+                      DisplayMode: =If(IsBlank(varHistoryId111)||IsBlank(varCommuteReportBase111),DisplayMode.Disabled,DisplayMode.Edit)
+                - conPayrollLight111:
+                    Control: GroupContainer@1.5.0
+                    Properties:
+                      DropShadow: =DropShadow.None
+                      Fill: =ColorValue("#FFFFFF")
+                      X: =0
+                      Y: =galDetailTabs111.Y+galDetailTabs111.Height+8
+                      Width: =Parent.Width
+                      Height: =800
+                      Visible: =varStaffDetailTab111="Payroll" && !IsBlank(StaffSelected.StaffId)
+                    Variant: ManualLayout
+                    Children:
+                    - lblPayrollRange111:
+                        Control: Label@2.5.1
+                        Properties:
+                          Text: ="基準給与簿：表示開始月 ～ 表示終了月"
+                          X: =0
+                          Y: =0
+                          Width: =Parent.Width
+                          Height: =40
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          BorderColor: =ColorValue("#CBD5E1")
+                          BorderThickness: =1
+                          PaddingLeft: =8
+                          Tooltip: =Self.Text
+                          Wrap: =true
+                    - dpPayrollStart111:
+                        Control: Classic/DatePicker@2.6.0
+                        Properties:
+                          DefaultDate: =varPayrollStart111
+                          Format: ="yyyy/mm"
+                          Language: ="ja-JP"
+                          StartYear: =1900
+                          EndYear: =Year(Today())+100
+                          X: =0
+                          Y: =44
+                          Width: =200
+                          Height: =44
+                          OnChange: |-
+                            =If(IsBlank(dpPayrollStart111.SelectedDate)||IsBlank(dpPayrollEnd111.SelectedDate),Notify("表示開始月と終了月を選択してください。",NotificationType.Error),
+                            With({startMonth:Date(Year(dpPayrollStart111.SelectedDate),Month(dpPayrollStart111.SelectedDate),1),endMonth:Date(Year(dpPayrollEnd111.SelectedDate),Month(dpPayrollEnd111.SelectedDate),1)},
+                            If(startMonth>endMonth,Notify("表示開始月は終了月以前を選択してください。",NotificationType.Error),
+                            Set(varPayrollStart111,startMonth); Set(varPayrollEnd111,endMonth); Clear(colPayrollSource111); Clear(colPayrollColumns111); Clear(colPayrollExceptions111); Set(varPayrollFetched111,Blank());
+                            If(!IsBlank(StaffSelected.StaffId),IfError(
+                             ClearCollect(colPayrollSource111,Filter('T_基準給与簿_STUDIO',crb3c_staffnumber=StaffSelected.StaffId));
+                             Clear(colPayrollColumns111); Clear(colPayrollExceptions111);
+                            ForAll(colPayrollSource111 As p,With({dt:IfError(With({m:Match(Trim(Coalesce(p.crb3c_payment_date,"")),"(?<Era>令和|平成|昭和|R|H|S)(?<EraYear>元|[0-9]{1,2})[年./-](?<M>[0-9]{1,2})[月./-](?<D>[0-9]{1,2})日?",MatchOptions.Complete)},
+                             If(IsBlank(m.FullMatch),Blank(),With({y:Switch(m.Era,"令和",2018,"R",2018,"平成",1988,"H",1988,"昭和",1925,"S",1925)+If(m.EraYear="元",1,Value(m.EraYear)),mo:Value(m.M),dy:Value(m.D)},
+                             With({dt:Date(y,mo,dy)},If(Year(dt)=y && Month(dt)=mo && Day(dt)=dy && Value(Substitute(m.EraYear,"元","1"))>0 && Switch(m.Era,"令和",dt>=Date(2019,5,1),"R",dt>=Date(2019,5,1),"平成",dt>=Date(1989,1,8)&&dt<Date(2019,5,1),"H",dt>=Date(1989,1,8)&&dt<Date(2019,5,1),"昭和",dt>=Date(1926,12,25)&&dt<Date(1989,1,8),"S",dt>=Date(1926,12,25)&&dt<Date(1989,1,8),false),dt,Blank()))))),Blank())},
+                             If(IsBlank(dt),Collect(colPayrollExceptions111,{RecordId:Text(p.crb3c_studiopayrollledgerid),PaymentText:p.crb3c_payment_date}),
+                             dt>=varPayrollStart111 && dt<DateAdd(varPayrollEnd111,1,TimeUnit.Months),
+                             Collect(colPayrollColumns111,{RecordId:Text(p.crb3c_studiopayrollledgerid),PaymentDate:dt,Sequence:p.crb3c_sequence,Record:p}))));
+                             Set(varPayrollFetched111,Now()),
+                             Clear(colPayrollSource111); Clear(colPayrollColumns111); Clear(colPayrollExceptions111); Notify("給与データを取得できませんでした。",NotificationType.Error)));)));
+                          AccessibleLabel: ="表示開始月"
+                    - dpPayrollEnd111:
+                        Control: Classic/DatePicker@2.6.0
+                        Properties:
+                          DefaultDate: =varPayrollEnd111
+                          Format: ="yyyy/mm"
+                          Language: ="ja-JP"
+                          StartYear: =1900
+                          EndYear: =Year(Today())+100
+                          X: =220
+                          Y: =44
+                          Width: =200
+                          Height: =44
+                          OnChange: |-
+                            =If(IsBlank(dpPayrollStart111.SelectedDate)||IsBlank(dpPayrollEnd111.SelectedDate),Notify("表示開始月と終了月を選択してください。",NotificationType.Error),
+                            With({startMonth:Date(Year(dpPayrollStart111.SelectedDate),Month(dpPayrollStart111.SelectedDate),1),endMonth:Date(Year(dpPayrollEnd111.SelectedDate),Month(dpPayrollEnd111.SelectedDate),1)},
+                            If(startMonth>endMonth,Notify("表示開始月は終了月以前を選択してください。",NotificationType.Error),
+                            Set(varPayrollStart111,startMonth); Set(varPayrollEnd111,endMonth); Clear(colPayrollSource111); Clear(colPayrollColumns111); Clear(colPayrollExceptions111); Set(varPayrollFetched111,Blank());
+                            If(!IsBlank(StaffSelected.StaffId),IfError(
+                             ClearCollect(colPayrollSource111,Filter('T_基準給与簿_STUDIO',crb3c_staffnumber=StaffSelected.StaffId));
+                             Clear(colPayrollColumns111); Clear(colPayrollExceptions111);
+                            ForAll(colPayrollSource111 As p,With({dt:IfError(With({m:Match(Trim(Coalesce(p.crb3c_payment_date,"")),"(?<Era>令和|平成|昭和|R|H|S)(?<EraYear>元|[0-9]{1,2})[年./-](?<M>[0-9]{1,2})[月./-](?<D>[0-9]{1,2})日?",MatchOptions.Complete)},
+                             If(IsBlank(m.FullMatch),Blank(),With({y:Switch(m.Era,"令和",2018,"R",2018,"平成",1988,"H",1988,"昭和",1925,"S",1925)+If(m.EraYear="元",1,Value(m.EraYear)),mo:Value(m.M),dy:Value(m.D)},
+                             With({dt:Date(y,mo,dy)},If(Year(dt)=y && Month(dt)=mo && Day(dt)=dy && Value(Substitute(m.EraYear,"元","1"))>0 && Switch(m.Era,"令和",dt>=Date(2019,5,1),"R",dt>=Date(2019,5,1),"平成",dt>=Date(1989,1,8)&&dt<Date(2019,5,1),"H",dt>=Date(1989,1,8)&&dt<Date(2019,5,1),"昭和",dt>=Date(1926,12,25)&&dt<Date(1989,1,8),"S",dt>=Date(1926,12,25)&&dt<Date(1989,1,8),false),dt,Blank()))))),Blank())},
+                             If(IsBlank(dt),Collect(colPayrollExceptions111,{RecordId:Text(p.crb3c_studiopayrollledgerid),PaymentText:p.crb3c_payment_date}),
+                             dt>=varPayrollStart111 && dt<DateAdd(varPayrollEnd111,1,TimeUnit.Months),
+                             Collect(colPayrollColumns111,{RecordId:Text(p.crb3c_studiopayrollledgerid),PaymentDate:dt,Sequence:p.crb3c_sequence,Record:p}))));
+                             Set(varPayrollFetched111,Now()),
+                             Clear(colPayrollSource111); Clear(colPayrollColumns111); Clear(colPayrollExceptions111); Notify("給与データを取得できませんでした。",NotificationType.Error)));)));
+                          AccessibleLabel: ="表示終了月"
+                    - lblPayrollState111:
+                        Control: Label@2.5.1
+                        Properties:
+                          Text: =If(IsEmpty(colPayrollColumns111),"選択範囲に登録済み給与はありません",Text(CountRows(colPayrollColumns111)) & " レコード") & If(IsEmpty(colPayrollExceptions111),"",Char(10) & "支給日を確認してください：" & Concat(colPayrollExceptions111,RecordId & " [" & Coalesce(PaymentText,"空欄") & "]",Char(10)))
+                          X: =0
+                          Y: =96
+                          Width: =Parent.Width
+                          Height: =Max(48,24*(1+CountRows(colPayrollExceptions111)))
+                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                          Color: =ColorValue("#242424")
+                          Fill: =ColorValue("#FFFFFF")
+                          BorderColor: =ColorValue("#CBD5E1")
+                          BorderThickness: =1
+                          PaddingLeft: =8
+                          Tooltip: =Self.Text
+                          Wrap: =true
+                    - conPayrollScroll111:
+                        Control: GroupContainer@1.5.0
+                        Properties:
+                          DropShadow: =DropShadow.None
+                          Fill: =ColorValue("#FFFFFF")
+                          X: =0
+                          Y: =lblPayrollState111.Y+lblPayrollState111.Height+8
+                          Width: =Parent.Width
+                          Height: =640
+                          LayoutDirection: =LayoutDirection.Horizontal
+                          LayoutOverflowX: =LayoutOverflow.Scroll
+                          PaddingBottom: =24
+                        Variant: AutoLayout
+                        Children:
+                        - conPayrollGrid111:
+                            Control: GroupContainer@1.5.0
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =ColorValue("#FFFFFF")
+                              Width: =260+Max(1,CountRows(colPayrollColumns111))*220
+                              Height: =616
+                              LayoutMinWidth: =Self.Width
+                              LayoutMinHeight: =Self.Height
+                              FillPortions: =0
+                              AlignInContainer: =AlignInContainer.Start
+                            Variant: ManualLayout
+                            Children:
+                            - lblPayrollFieldHead111:
+                                Control: Label@2.5.1
+                                Properties:
+                                  Text: ="項目（163項目）"
+                                  X: =0
+                                  Y: =0
+                                  Width: =260
+                                  Height: =80
+                                  Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                                  Color: =ColorValue("#242424")
+                                  Fill: =ColorValue("#FFFFFF")
+                                  BorderColor: =ColorValue("#CBD5E1")
+                                  BorderThickness: =1
+                                  PaddingLeft: =8
+                                  Tooltip: =Self.Text
+                                  Wrap: =true
+                            - galPayrollHeads111:
+                                Control: Gallery@2.15.0
+                                Properties:
+                                  Items: =SortByColumns(colPayrollColumns111,"PaymentDate",SortOrder.Ascending,"Sequence",SortOrder.Ascending,"RecordId",SortOrder.Ascending)
+                                  X: =260
+                                  Y: =0
+                                  Width: =Max(1,CountRows(colPayrollColumns111))*220
+                                  Height: =80
+                                  TemplateSize: =220
+                                  TemplatePadding: =0
+                                  ShowScrollbar: =false
+                                  Selectable: =false
+                                Variant: BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0
+                                Children:
+                                - lblPayrollHead111:
+                                    Control: Label@2.5.1
+                                    Properties:
+                                      Text: =Text(ThisItem.PaymentDate,"yyyy/mm/dd") & " / " & Text(ThisItem.Sequence) & Char(10) & ThisItem.RecordId
+                                      X: =0
+                                      Y: =0
+                                      Width: =220
+                                      Height: =80
+                                      Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                                      Color: =ColorValue("#242424")
+                                      Fill: =ColorValue("#FFFFFF")
+                                      BorderColor: =ColorValue("#CBD5E1")
+                                      BorderThickness: =1
+                                      PaddingLeft: =8
+                                      Tooltip: =Self.Text
+                                      Wrap: =true
+                            - galPayrollRows111:
+                                Control: Gallery@2.15.0
+                                Properties:
+                                  Items: =Table({Order:1,Key:"crb3c_period_year",Label:"給与期間対象年"},{Order:2,Key:"crb3c_period_start",Label:"給与期間開始月日"},{Order:3,Key:"crb3c_period_end",Label:"給与期間終了月日"},{Order:4,Key:"crb3c_payment_date",Label:"支給年月日"},{Order:5,Key:"crb3c_organization",Label:"組織・所属"},{Order:6,Key:"crb3c_sequence",Label:"番号"},{Order:7,Key:"crb3c_staffnumber",Label:"職員番号"},{Order:8,Key:"crb3c_fullname",Label:"氏名"},{Order:9,Key:"crb3c_salary_table",Label:"俸給表"},{Order:10,Key:"crb3c_grade",Label:"級"},{Order:11,Key:"crb3c_step",Label:"号俸"},{Order:12,Key:"crb3c_basepay_current",Label:"俸給支給額・当給与期間分"},{Order:13,Key:"crb3c_basepay_adjustment",Label:"俸給支給額・返納・追給分"},{Order:14,Key:"crb3c_special_adjustment_current",Label:"俸給の特別調整額・当給与期間分"},{Order:15,Key:"crb3c_special_adjustment_adjustment",Label:"俸給の特別調整額・返納・追給分"},{Order:16,Key:"crb3c_ministry_allowance_current",Label:"本府省業務調整手当・当給与期間分"},{Order:17,Key:"crb3c_ministry_allowance_adjustment",Label:"本府省業務調整手当・返納・追給分"},{Order:18,Key:"crb3c_initial_allowance_current",Label:"初任給調整手当・当給与期間分"},{Order:19,Key:"crb3c_initial_allowance_adjustment",Label:"初任給調整手当・返納・追給分"},{Order:20,Key:"crb3c_dependent_allowance_current",Label:"扶養手当・当給与期間分"},{Order:21,Key:"crb3c_dependent_allowance_adjustment",Label:"扶養手当・返納・追給分"},{Order:22,Key:"crb3c_regional_allowance_current",Label:"地域手当等・当給与期間分"},{Order:23,Key:"crb3c_regional_allowance_adjustment",Label:"地域手当等・返納・追給分"},{Order:24,Key:"crb3c_relocation_allowance_current",Label:"広域異動手当・当給与期間分"},{Order:25,Key:"crb3c_relocation_allowance_adjustment",Label:"広域異動手当・返納・追給分"},{Order:26,Key:"crb3c_housing_allowance_current",Label:"住居手当・当給与期間分"},{Order:27,Key:"crb3c_housing_allowance_adjustment",Label:"住居手当・返納・追給分"},{Order:28,Key:"crb3c_commuting_allowance_current",Label:"通勤手当・当給与期間分"},{Order:29,Key:"crb3c_commuting_allowance_adjustment",Label:"通勤手当・返納・追給分"},{Order:30,Key:"crb3c_separation_allowance_current",Label:"単身赴任手当・当給与期間分"},{Order:31,Key:"crb3c_separation_allowance_adjustment",Label:"単身赴任手当・返納・追給分"},{Order:32,Key:"crb3c_telework_allowance_current",Label:"在宅勤務等手当・当給与期間分"},{Order:33,Key:"crb3c_telework_allowance_adjustment",Label:"在宅勤務等手当・返納・追給分"},{Order:34,Key:"crb3c_special_duty_current",Label:"特殊勤務手当・当給与期間分"},{Order:35,Key:"crb3c_special_duty_adjustment",Label:"特殊勤務手当・返納・追給分"},{Order:36,Key:"crb3c_remote_allowance_current",Label:"特地勤務手当・当給与期間分"},{Order:37,Key:"crb3c_remote_allowance_adjustment",Label:"特地勤務手当・返納・追給分"},{Order:38,Key:"crb3c_remote_equivalent_current",Label:"特地勤務手当に準ずる手当・当給与期間分"},{Order:39,Key:"crb3c_remote_equivalent_adjustment",Label:"特地勤務手当に準ずる手当・返納・追給分"},{Order:40,Key:"crb3c_overtime_allowance_current",Label:"超過勤務手当等・当給与期間分"},{Order:41,Key:"crb3c_overtime_allowance_adjustment",Label:"超過勤務手当等・返納・追給分"},{Order:42,Key:"crb3c_night_duty_current",Label:"宿日直手当・当給与期間分"},{Order:43,Key:"crb3c_night_duty_adjustment",Label:"宿日直手当・返納・追給分"},{Order:44,Key:"crb3c_manager_duty_current",Label:"管理職員特別勤務手当・当給与期間分"},{Order:45,Key:"crb3c_manager_duty_adjustment",Label:"管理職員特別勤務手当・返納・追給分"},{Order:46,Key:"crb3c_term_bonus_current",Label:"期末手当・当給与期間分"},{Order:47,Key:"crb3c_term_bonus_adjustment",Label:"期末手当・返納・追給分"},{Order:48,Key:"crb3c_performance_bonus_current",Label:"勤勉手当・当給与期間分"},{Order:49,Key:"crb3c_performance_bonus_adjustment",Label:"勤勉手当・返納・追給分"},{Order:50,Key:"crb3c_cold_allowance_current",Label:"寒冷地手当・当給与期間分"},{Order:51,Key:"crb3c_cold_allowance_adjustment",Label:"寒冷地手当・返納・追給分"},{Order:52,Key:"crb3c_other_pay_current",Label:"その他・当給与期間分"},{Order:53,Key:"crb3c_other_pay_adjustment",Label:"その他・返納・追給分"},{Order:54,Key:"crb3c_gross",Label:"給与支給総額"},{Order:55,Key:"crb3c_taxable_total",Label:"課税額計"},{Order:56,Key:"crb3c_nontaxable_total",Label:"非課税額計"},{Order:57,Key:"crb3c_mutual_short_current",Label:"共済短期掛金・当給与期間分"},{Order:58,Key:"crb3c_mutual_short_adjustment",Label:"共済短期掛金・返納・追給分"},{Order:59,Key:"crb3c_mutual_care_current",Label:"介護掛金・当給与期間分"},{Order:60,Key:"crb3c_mutual_care_adjustment",Label:"介護掛金・返納・追給分"},{Order:61,Key:"crb3c_mutual_childcare_current",Label:"子ども・子育て支援掛金・当給与期間分"},{Order:62,Key:"crb3c_mutual_childcare_adjustment",Label:"子ども・子育て支援掛金・返納・追給分"},{Order:63,Key:"crb3c_retirement_contribution_current",Label:"退職等年金掛金・当給与期間分"},{Order:64,Key:"crb3c_retirement_contribution_adjustment",Label:"退職等年金掛金・返納・追給分"},{Order:65,Key:"crb3c_pension_insurance_current",Label:"厚生年金保険料・当給与期間分"},{Order:66,Key:"crb3c_pension_insurance_adjustment",Label:"厚生年金保険料・返納・追給分"},{Order:67,Key:"crb3c_health_insurance_current",Label:"健康保険料・当給与期間分"},{Order:68,Key:"crb3c_health_insurance_adjustment",Label:"健康保険料・返納・追給分"},{Order:69,Key:"crb3c_care_insurance_current",Label:"介護保険料・当給与期間分"},{Order:70,Key:"crb3c_care_insurance_adjustment",Label:"介護保険料・返納・追給分"},{Order:71,Key:"crb3c_childcare_insurance_current",Label:"子ども・子育て支援金・当給与期間分"},{Order:72,Key:"crb3c_childcare_insurance_adjustment",Label:"子ども・子育て支援金・返納・追給分"},{Order:73,Key:"crb3c_employment_insurance_current",Label:"雇用保険料・当給与期間分"},{Order:74,Key:"crb3c_employment_insurance_adjustment",Label:"雇用保険料・返納・追給分"},{Order:75,Key:"crb3c_social_total_current",Label:"社会保険料計・当給与期間分"},{Order:76,Key:"crb3c_social_total_adjustment",Label:"社会保険料計・返納・追給分"},{Order:77,Key:"crb3c_income_tax_current",Label:"所得税・当給与期間分"},{Order:78,Key:"crb3c_income_tax_adjustment",Label:"所得税・返納・追給分"},{Order:79,Key:"crb3c_resident_tax_current",Label:"住民税・当給与期間分"},{Order:80,Key:"crb3c_resident_tax_adjustment",Label:"住民税・返納・追給分"},{Order:81,Key:"crb3c_dormitory_current",Label:"宿舎・当給与期間分"},{Order:82,Key:"crb3c_dormitory_adjustment",Label:"宿舎・返納・追給分"},{Order:83,Key:"crb3c_parking_current",Label:"駐車場・当給与期間分"},{Order:84,Key:"crb3c_parking_adjustment",Label:"駐車場・返納・追給分"},{Order:85,Key:"crb3c_medical_copayment_current",Label:"診療報酬一部負担金・当給与期間分"},{Order:86,Key:"crb3c_medical_copayment_adjustment",Label:"診療報酬一部負担金・返納・追給分"},{Order:87,Key:"crb3c_savings_current",Label:"貯金預入・当給与期間分"},{Order:88,Key:"crb3c_savings_adjustment",Label:"貯金預入・返納・追給分"},{Order:89,Key:"crb3c_insurance_savings_current",Label:"保険貯金保険料・当給与期間分"},{Order:90,Key:"crb3c_insurance_savings_adjustment",Label:"保険貯金保険料・返納・追給分"},{Order:91,Key:"crb3c_loan_repayment_current",Label:"貸付金返済・当給与期間分"},{Order:92,Key:"crb3c_loan_repayment_adjustment",Label:"貸付金返済・返納・追給分"},{Order:93,Key:"crb3c_housing_loan_current",Label:"財形住宅貸付金償還・当給与期間分"},{Order:94,Key:"crb3c_housing_loan_adjustment",Label:"財形住宅貸付金償還・返納・追給分"},{Order:95,Key:"crb3c_asset_savings_current",Label:"財形貯蓄・当給与期間分"},{Order:96,Key:"crb3c_asset_savings_adjustment",Label:"財形貯蓄・返納・追給分"},{Order:97,Key:"crb3c_deduction1_current",Label:"控除額１・当給与期間分"},{Order:98,Key:"crb3c_deduction1_adjustment",Label:"控除額１・返納・追給分"},{Order:99,Key:"crb3c_deduction2_current",Label:"控除額２・当給与期間分"},{Order:100,Key:"crb3c_deduction2_adjustment",Label:"控除額２・返納・追給分"},{Order:101,Key:"crb3c_deduction3_current",Label:"控除額３・当給与期間分"},{Order:102,Key:"crb3c_deduction3_adjustment",Label:"控除額３・返納・追給分"},{Order:103,Key:"crb3c_deduction4_current",Label:"控除額４・当給与期間分"},{Order:104,Key:"crb3c_deduction4_adjustment",Label:"控除額４・返納・追給分"},{Order:105,Key:"crb3c_ideco_current",Label:"個人型確定拠出年金掛金・当給与期間分"},{Order:106,Key:"crb3c_ideco_adjustment",Label:"個人型確定拠出年金掛金・返納・追給分"},{Order:107,Key:"crb3c_deduction_total_current",Label:"控除額計・当給与期間分"},{Order:108,Key:"crb3c_deduction_total_adjustment",Label:"控除額計・返納・追給分"},{Order:109,Key:"crb3c_net",Label:"現金支給額"},{Order:110,Key:"crb3c_transfer1",Label:"振込額１"},{Order:111,Key:"crb3c_transfer2",Label:"振込額２"},{Order:112,Key:"crb3c_cash",Label:"手渡額"},{Order:113,Key:"crb3c_reduction_hours_current",Label:"減額・時間・当給与期間分"},{Order:114,Key:"crb3c_reduction_hours_adjustment",Label:"減額・時間・返納・追給分"},{Order:115,Key:"crb3c_reduction_amount_current",Label:"減額・額・当給与期間分"},{Order:116,Key:"crb3c_reduction_amount_adjustment",Label:"減額・額・返納・追給分"},{Order:117,Key:"crb3c_pay_cut_current",Label:"減給・当給与期間分"},{Order:118,Key:"crb3c_pay_cut_adjustment",Label:"減給・返納・追給分"},{Order:119,Key:"crb3c_overtime_night25_current",Label:"超過勤務(夜勤２５)・当給与期間分"},{Order:120,Key:"crb3c_overtime_night25_adjustment",Label:"超過勤務(夜勤２５)・返納・追給分"},{Order:121,Key:"crb3c_overtime_holiday135_current",Label:"超過勤務(休日１３５)・当給与期間分"},{Order:122,Key:"crb3c_overtime_holiday135_adjustment",Label:"超過勤務(休日１３５)・返納・追給分"},{Order:123,Key:"crb3c_overtime100_current",Label:"超過勤務(超勤１００)・当給与期間分"},{Order:124,Key:"crb3c_overtime100_adjustment",Label:"超過勤務(超勤１００)・返納・追給分"},{Order:125,Key:"crb3c_overtime125_current",Label:"超過勤務(超勤１２５)・当給与期間分"},{Order:126,Key:"crb3c_overtime125_adjustment",Label:"超過勤務(超勤１２５)・返納・追給分"},{Order:127,Key:"crb3c_overtime135_current",Label:"超過勤務(超勤１３５)・当給与期間分"},{Order:128,Key:"crb3c_overtime135_adjustment",Label:"超過勤務(超勤１３５)・返納・追給分"},{Order:129,Key:"crb3c_overtime150_current",Label:"超過勤務(超勤１５０)・当給与期間分"},{Order:130,Key:"crb3c_overtime150_adjustment",Label:"超過勤務(超勤１５０)・返納・追給分"},{Order:131,Key:"crb3c_overtime160_current",Label:"超過勤務(超勤１６０)・当給与期間分"},{Order:132,Key:"crb3c_overtime160_adjustment",Label:"超過勤務(超勤１６０)・返納・追給分"},{Order:133,Key:"crb3c_overtime175_current",Label:"超過勤務(超勤１７５)・当給与期間分"},{Order:134,Key:"crb3c_overtime175_adjustment",Label:"超過勤務(超勤１７５)・返納・追給分"},{Order:135,Key:"crb3c_overtime_detail_total_current",Label:"超過勤務手当等金額・当給与期間分"},{Order:136,Key:"crb3c_overtime_detail_total_adjustment",Label:"超過勤務手当等金額・返納・追給分"},{Order:137,Key:"crb3c_comp_leave50_current",Label:"超過勤務(代休５０)・当給与期間分"},{Order:138,Key:"crb3c_comp_leave50_adjustment",Label:"超過勤務(代休５０)・返納・追給分"},{Order:139,Key:"crb3c_comp_leave25_current",Label:"超過勤務(代休２５)・当給与期間分"},{Order:140,Key:"crb3c_comp_leave25_adjustment",Label:"超過勤務(代休２５)・返納・追給分"},{Order:141,Key:"crb3c_comp_leave15_current",Label:"超過勤務(代休１５)・当給与期間分"},{Order:142,Key:"crb3c_comp_leave15_adjustment",Label:"超過勤務(代休１５)・返納・追給分"},{Order:143,Key:"crb3c_comp_work50_current",Label:"超過勤務(代休勤務５０)・当給与期間分"},{Order:144,Key:"crb3c_comp_work50_adjustment",Label:"超過勤務(代休勤務５０)・返納・追給分"},{Order:145,Key:"crb3c_comp_work25_current",Label:"超過勤務(代休勤務２５)・当給与期間分"},{Order:146,Key:"crb3c_comp_work25_adjustment",Label:"超過勤務(代休勤務２５)・返納・追給分"},{Order:147,Key:"crb3c_comp_work15_current",Label:"超過勤務(代休勤務１５)・当給与期間分"},{Order:148,Key:"crb3c_comp_work15_adjustment",Label:"超過勤務(代休勤務１５)・返納・追給分"},{Order:149,Key:"crb3c_overtime_change_current",Label:"超過勤務手当等加減額・当給与期間分"},{Order:150,Key:"crb3c_overtime_change_adjustment",Label:"超過勤務手当等加減額・返納・追給分"},{Order:151,Key:"crb3c_short_grade",Label:"短期・等級"},{Order:152,Key:"crb3c_short_monthly",Label:"短期・月額"},{Order:153,Key:"crb3c_pension_grade",Label:"厚生年金・等級"},{Order:154,Key:"crb3c_pension_monthly",Label:"厚生年金・月額"},{Order:155,Key:"crb3c_retirement_grade",Label:"退職等年金給付・等級"},{Order:156,Key:"crb3c_retirement_monthly",Label:"退職等年金給付・月額"},{Order:157,Key:"crb3c_taxable_income",Label:"被課税金額"},{Order:158,Key:"crb3c_remarks",Label:"備考"},{Order:159,Key:"crb3c_target_date",Label:"対象年月日"},{Order:160,Key:"crb3c_business_type",Label:"業務区分"},{Order:161,Key:"crb3c_assignment_type",Label:"併任区分"},{Order:162,Key:"crb3c_expenditure",Label:"支出科目"},{Order:163,Key:"crb3c_classification",Label:"判別区分"}) As row
+                                  X: =0
+                                  Y: =80
+                                  Width: =Parent.Width
+                                  Height: =536
+                                  TemplateSize: =If(Coalesce(varLargeText111,false),88,72)
+                                  TemplatePadding: =0
+                                  Selectable: =false
+                                  ShowScrollbar: =true
+                                Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+                                Children:
+                                - lblPayrollField111:
+                                    Control: Label@2.5.1
+                                    Properties:
+                                      Text: =row.Label
+                                      X: =0
+                                      Y: =0
+                                      Width: =260
+                                      Height: =Parent.TemplateHeight
+                                      Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                                      Color: =ColorValue("#242424")
+                                      Fill: =ColorValue("#FFFFFF")
+                                      BorderColor: =ColorValue("#CBD5E1")
+                                      BorderThickness: =1
+                                      PaddingLeft: =8
+                                      Tooltip: =Self.Text
+                                      Wrap: =true
+                                - galPayrollCells111:
+                                    Control: Gallery@2.15.0
+                                    Properties:
+                                      Items: =SortByColumns(colPayrollColumns111,"PaymentDate",SortOrder.Ascending,"Sequence",SortOrder.Ascending,"RecordId",SortOrder.Ascending)
+                                      X: =260
+                                      Width: =Max(1,CountRows(colPayrollColumns111))*220
+                                      Height: =Parent.TemplateHeight
+                                      TemplateSize: =220
+                                      TemplatePadding: =0
+                                      ShowScrollbar: =false
+                                      Selectable: =false
+                                    Variant: BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0
+                                    Children:
+                                    - lblPayrollCell111:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          Text: =With({p:ThisItem.Record},Switch(row.Key,"crb3c_period_year",p.crb3c_period_year,"crb3c_period_start",p.crb3c_period_start,"crb3c_period_end",p.crb3c_period_end,"crb3c_payment_date",p.crb3c_payment_date,"crb3c_organization",p.crb3c_organization,"crb3c_sequence",If(IsBlank(p.crb3c_sequence),Blank(),Text(p.crb3c_sequence,"#,##0")),"crb3c_staffnumber",p.crb3c_staffnumber,"crb3c_fullname",p.crb3c_fullname,"crb3c_salary_table",p.crb3c_salary_table,"crb3c_grade",If(IsBlank(p.crb3c_grade),Blank(),Text(p.crb3c_grade,"#,##0")),"crb3c_step",If(IsBlank(p.crb3c_step),Blank(),Text(p.crb3c_step,"#,##0")),"crb3c_basepay_current",If(IsBlank(p.crb3c_basepay_current),Blank(),Text(p.crb3c_basepay_current,"#,##0")),"crb3c_basepay_adjustment",If(IsBlank(p.crb3c_basepay_adjustment),Blank(),Text(p.crb3c_basepay_adjustment,"#,##0")),"crb3c_special_adjustment_current",If(IsBlank(p.crb3c_special_adjustment_current),Blank(),Text(p.crb3c_special_adjustment_current,"#,##0")),"crb3c_special_adjustment_adjustment",If(IsBlank(p.crb3c_special_adjustment_adjustment),Blank(),Text(p.crb3c_special_adjustment_adjustment,"#,##0")),"crb3c_ministry_allowance_current",If(IsBlank(p.crb3c_ministry_allowance_current),Blank(),Text(p.crb3c_ministry_allowance_current,"#,##0")),"crb3c_ministry_allowance_adjustment",If(IsBlank(p.crb3c_ministry_allowance_adjustment),Blank(),Text(p.crb3c_ministry_allowance_adjustment,"#,##0")),"crb3c_initial_allowance_current",If(IsBlank(p.crb3c_initial_allowance_current),Blank(),Text(p.crb3c_initial_allowance_current,"#,##0")),"crb3c_initial_allowance_adjustment",If(IsBlank(p.crb3c_initial_allowance_adjustment),Blank(),Text(p.crb3c_initial_allowance_adjustment,"#,##0")),"crb3c_dependent_allowance_current",If(IsBlank(p.crb3c_dependent_allowance_current),Blank(),Text(p.crb3c_dependent_allowance_current,"#,##0")),"crb3c_dependent_allowance_adjustment",If(IsBlank(p.crb3c_dependent_allowance_adjustment),Blank(),Text(p.crb3c_dependent_allowance_adjustment,"#,##0")),"crb3c_regional_allowance_current",If(IsBlank(p.crb3c_regional_allowance_current),Blank(),Text(p.crb3c_regional_allowance_current,"#,##0")),"crb3c_regional_allowance_adjustment",If(IsBlank(p.crb3c_regional_allowance_adjustment),Blank(),Text(p.crb3c_regional_allowance_adjustment,"#,##0")),"crb3c_relocation_allowance_current",If(IsBlank(p.crb3c_relocation_allowance_current),Blank(),Text(p.crb3c_relocation_allowance_current,"#,##0")),"crb3c_relocation_allowance_adjustment",If(IsBlank(p.crb3c_relocation_allowance_adjustment),Blank(),Text(p.crb3c_relocation_allowance_adjustment,"#,##0")),"crb3c_housing_allowance_current",If(IsBlank(p.crb3c_housing_allowance_current),Blank(),Text(p.crb3c_housing_allowance_current,"#,##0")),"crb3c_housing_allowance_adjustment",If(IsBlank(p.crb3c_housing_allowance_adjustment),Blank(),Text(p.crb3c_housing_allowance_adjustment,"#,##0")),"crb3c_commuting_allowance_current",If(IsBlank(p.crb3c_commuting_allowance_current),Blank(),Text(p.crb3c_commuting_allowance_current,"#,##0")),"crb3c_commuting_allowance_adjustment",If(IsBlank(p.crb3c_commuting_allowance_adjustment),Blank(),Text(p.crb3c_commuting_allowance_adjustment,"#,##0")),"crb3c_separation_allowance_current",If(IsBlank(p.crb3c_separation_allowance_current),Blank(),Text(p.crb3c_separation_allowance_current,"#,##0")),"crb3c_separation_allowance_adjustment",If(IsBlank(p.crb3c_separation_allowance_adjustment),Blank(),Text(p.crb3c_separation_allowance_adjustment,"#,##0")),"crb3c_telework_allowance_current",If(IsBlank(p.crb3c_telework_allowance_current),Blank(),Text(p.crb3c_telework_allowance_current,"#,##0")),"crb3c_telework_allowance_adjustment",If(IsBlank(p.crb3c_telework_allowance_adjustment),Blank(),Text(p.crb3c_telework_allowance_adjustment,"#,##0")),"crb3c_special_duty_current",If(IsBlank(p.crb3c_special_duty_current),Blank(),Text(p.crb3c_special_duty_current,"#,##0")),"crb3c_special_duty_adjustment",If(IsBlank(p.crb3c_special_duty_adjustment),Blank(),Text(p.crb3c_special_duty_adjustment,"#,##0")),"crb3c_remote_allowance_current",If(IsBlank(p.crb3c_remote_allowance_current),Blank(),Text(p.crb3c_remote_allowance_current,"#,##0")),"crb3c_remote_allowance_adjustment",If(IsBlank(p.crb3c_remote_allowance_adjustment),Blank(),Text(p.crb3c_remote_allowance_adjustment,"#,##0")),"crb3c_remote_equivalent_current",If(IsBlank(p.crb3c_remote_equivalent_current),Blank(),Text(p.crb3c_remote_equivalent_current,"#,##0")),"crb3c_remote_equivalent_adjustment",If(IsBlank(p.crb3c_remote_equivalent_adjustment),Blank(),Text(p.crb3c_remote_equivalent_adjustment,"#,##0")),"crb3c_overtime_allowance_current",If(IsBlank(p.crb3c_overtime_allowance_current),Blank(),Text(p.crb3c_overtime_allowance_current,"#,##0")),"crb3c_overtime_allowance_adjustment",If(IsBlank(p.crb3c_overtime_allowance_adjustment),Blank(),Text(p.crb3c_overtime_allowance_adjustment,"#,##0")),"crb3c_night_duty_current",If(IsBlank(p.crb3c_night_duty_current),Blank(),Text(p.crb3c_night_duty_current,"#,##0")),"crb3c_night_duty_adjustment",If(IsBlank(p.crb3c_night_duty_adjustment),Blank(),Text(p.crb3c_night_duty_adjustment,"#,##0")),"crb3c_manager_duty_current",If(IsBlank(p.crb3c_manager_duty_current),Blank(),Text(p.crb3c_manager_duty_current,"#,##0")),"crb3c_manager_duty_adjustment",If(IsBlank(p.crb3c_manager_duty_adjustment),Blank(),Text(p.crb3c_manager_duty_adjustment,"#,##0")),"crb3c_term_bonus_current",If(IsBlank(p.crb3c_term_bonus_current),Blank(),Text(p.crb3c_term_bonus_current,"#,##0")),"crb3c_term_bonus_adjustment",If(IsBlank(p.crb3c_term_bonus_adjustment),Blank(),Text(p.crb3c_term_bonus_adjustment,"#,##0")),"crb3c_performance_bonus_current",If(IsBlank(p.crb3c_performance_bonus_current),Blank(),Text(p.crb3c_performance_bonus_current,"#,##0")),"crb3c_performance_bonus_adjustment",If(IsBlank(p.crb3c_performance_bonus_adjustment),Blank(),Text(p.crb3c_performance_bonus_adjustment,"#,##0")),"crb3c_cold_allowance_current",If(IsBlank(p.crb3c_cold_allowance_current),Blank(),Text(p.crb3c_cold_allowance_current,"#,##0")),"crb3c_cold_allowance_adjustment",If(IsBlank(p.crb3c_cold_allowance_adjustment),Blank(),Text(p.crb3c_cold_allowance_adjustment,"#,##0")),"crb3c_other_pay_current",If(IsBlank(p.crb3c_other_pay_current),Blank(),Text(p.crb3c_other_pay_current,"#,##0")),"crb3c_other_pay_adjustment",If(IsBlank(p.crb3c_other_pay_adjustment),Blank(),Text(p.crb3c_other_pay_adjustment,"#,##0")),"crb3c_gross",If(IsBlank(p.crb3c_gross),Blank(),Text(p.crb3c_gross,"#,##0")),"crb3c_taxable_total",If(IsBlank(p.crb3c_taxable_total),Blank(),Text(p.crb3c_taxable_total,"#,##0")),"crb3c_nontaxable_total",If(IsBlank(p.crb3c_nontaxable_total),Blank(),Text(p.crb3c_nontaxable_total,"#,##0")),"crb3c_mutual_short_current",If(IsBlank(p.crb3c_mutual_short_current),Blank(),Text(p.crb3c_mutual_short_current,"#,##0")),"crb3c_mutual_short_adjustment",If(IsBlank(p.crb3c_mutual_short_adjustment),Blank(),Text(p.crb3c_mutual_short_adjustment,"#,##0")),"crb3c_mutual_care_current",If(IsBlank(p.crb3c_mutual_care_current),Blank(),Text(p.crb3c_mutual_care_current,"#,##0")),"crb3c_mutual_care_adjustment",If(IsBlank(p.crb3c_mutual_care_adjustment),Blank(),Text(p.crb3c_mutual_care_adjustment,"#,##0")),"crb3c_mutual_childcare_current",If(IsBlank(p.crb3c_mutual_childcare_current),Blank(),Text(p.crb3c_mutual_childcare_current,"#,##0")),"crb3c_mutual_childcare_adjustment",If(IsBlank(p.crb3c_mutual_childcare_adjustment),Blank(),Text(p.crb3c_mutual_childcare_adjustment,"#,##0")),"crb3c_retirement_contribution_current",If(IsBlank(p.crb3c_retirement_contribution_current),Blank(),Text(p.crb3c_retirement_contribution_current,"#,##0")),"crb3c_retirement_contribution_adjustment",If(IsBlank(p.crb3c_retirement_contribution_adjustment),Blank(),Text(p.crb3c_retirement_contribution_adjustment,"#,##0")),"crb3c_pension_insurance_current",If(IsBlank(p.crb3c_pension_insurance_current),Blank(),Text(p.crb3c_pension_insurance_current,"#,##0")),"crb3c_pension_insurance_adjustment",If(IsBlank(p.crb3c_pension_insurance_adjustment),Blank(),Text(p.crb3c_pension_insurance_adjustment,"#,##0")),"crb3c_health_insurance_current",If(IsBlank(p.crb3c_health_insurance_current),Blank(),Text(p.crb3c_health_insurance_current,"#,##0")),"crb3c_health_insurance_adjustment",If(IsBlank(p.crb3c_health_insurance_adjustment),Blank(),Text(p.crb3c_health_insurance_adjustment,"#,##0")),"crb3c_care_insurance_current",If(IsBlank(p.crb3c_care_insurance_current),Blank(),Text(p.crb3c_care_insurance_current,"#,##0")),"crb3c_care_insurance_adjustment",If(IsBlank(p.crb3c_care_insurance_adjustment),Blank(),Text(p.crb3c_care_insurance_adjustment,"#,##0")),"crb3c_childcare_insurance_current",If(IsBlank(p.crb3c_childcare_insurance_current),Blank(),Text(p.crb3c_childcare_insurance_current,"#,##0")),"crb3c_childcare_insurance_adjustment",If(IsBlank(p.crb3c_childcare_insurance_adjustment),Blank(),Text(p.crb3c_childcare_insurance_adjustment,"#,##0")),"crb3c_employment_insurance_current",If(IsBlank(p.crb3c_employment_insurance_current),Blank(),Text(p.crb3c_employment_insurance_current,"#,##0")),"crb3c_employment_insurance_adjustment",If(IsBlank(p.crb3c_employment_insurance_adjustment),Blank(),Text(p.crb3c_employment_insurance_adjustment,"#,##0")),"crb3c_social_total_current",If(IsBlank(p.crb3c_social_total_current),Blank(),Text(p.crb3c_social_total_current,"#,##0")),"crb3c_social_total_adjustment",If(IsBlank(p.crb3c_social_total_adjustment),Blank(),Text(p.crb3c_social_total_adjustment,"#,##0")),"crb3c_income_tax_current",If(IsBlank(p.crb3c_income_tax_current),Blank(),Text(p.crb3c_income_tax_current,"#,##0")),"crb3c_income_tax_adjustment",If(IsBlank(p.crb3c_income_tax_adjustment),Blank(),Text(p.crb3c_income_tax_adjustment,"#,##0")),"crb3c_resident_tax_current",If(IsBlank(p.crb3c_resident_tax_current),Blank(),Text(p.crb3c_resident_tax_current,"#,##0")),"crb3c_resident_tax_adjustment",If(IsBlank(p.crb3c_resident_tax_adjustment),Blank(),Text(p.crb3c_resident_tax_adjustment,"#,##0")),"crb3c_dormitory_current",If(IsBlank(p.crb3c_dormitory_current),Blank(),Text(p.crb3c_dormitory_current,"#,##0")),"crb3c_dormitory_adjustment",If(IsBlank(p.crb3c_dormitory_adjustment),Blank(),Text(p.crb3c_dormitory_adjustment,"#,##0")),"crb3c_parking_current",If(IsBlank(p.crb3c_parking_current),Blank(),Text(p.crb3c_parking_current,"#,##0")),"crb3c_parking_adjustment",If(IsBlank(p.crb3c_parking_adjustment),Blank(),Text(p.crb3c_parking_adjustment,"#,##0")),"crb3c_medical_copayment_current",If(IsBlank(p.crb3c_medical_copayment_current),Blank(),Text(p.crb3c_medical_copayment_current,"#,##0")),"crb3c_medical_copayment_adjustment",If(IsBlank(p.crb3c_medical_copayment_adjustment),Blank(),Text(p.crb3c_medical_copayment_adjustment,"#,##0")),"crb3c_savings_current",If(IsBlank(p.crb3c_savings_current),Blank(),Text(p.crb3c_savings_current,"#,##0")),"crb3c_savings_adjustment",If(IsBlank(p.crb3c_savings_adjustment),Blank(),Text(p.crb3c_savings_adjustment,"#,##0")),"crb3c_insurance_savings_current",If(IsBlank(p.crb3c_insurance_savings_current),Blank(),Text(p.crb3c_insurance_savings_current,"#,##0")),"crb3c_insurance_savings_adjustment",If(IsBlank(p.crb3c_insurance_savings_adjustment),Blank(),Text(p.crb3c_insurance_savings_adjustment,"#,##0")),"crb3c_loan_repayment_current",If(IsBlank(p.crb3c_loan_repayment_current),Blank(),Text(p.crb3c_loan_repayment_current,"#,##0")),"crb3c_loan_repayment_adjustment",If(IsBlank(p.crb3c_loan_repayment_adjustment),Blank(),Text(p.crb3c_loan_repayment_adjustment,"#,##0")),"crb3c_housing_loan_current",If(IsBlank(p.crb3c_housing_loan_current),Blank(),Text(p.crb3c_housing_loan_current,"#,##0")),"crb3c_housing_loan_adjustment",If(IsBlank(p.crb3c_housing_loan_adjustment),Blank(),Text(p.crb3c_housing_loan_adjustment,"#,##0")),"crb3c_asset_savings_current",If(IsBlank(p.crb3c_asset_savings_current),Blank(),Text(p.crb3c_asset_savings_current,"#,##0")),"crb3c_asset_savings_adjustment",If(IsBlank(p.crb3c_asset_savings_adjustment),Blank(),Text(p.crb3c_asset_savings_adjustment,"#,##0")),"crb3c_deduction1_current",If(IsBlank(p.crb3c_deduction1_current),Blank(),Text(p.crb3c_deduction1_current,"#,##0")),"crb3c_deduction1_adjustment",If(IsBlank(p.crb3c_deduction1_adjustment),Blank(),Text(p.crb3c_deduction1_adjustment,"#,##0")),"crb3c_deduction2_current",If(IsBlank(p.crb3c_deduction2_current),Blank(),Text(p.crb3c_deduction2_current,"#,##0")),"crb3c_deduction2_adjustment",If(IsBlank(p.crb3c_deduction2_adjustment),Blank(),Text(p.crb3c_deduction2_adjustment,"#,##0")),"crb3c_deduction3_current",If(IsBlank(p.crb3c_deduction3_current),Blank(),Text(p.crb3c_deduction3_current,"#,##0")),"crb3c_deduction3_adjustment",If(IsBlank(p.crb3c_deduction3_adjustment),Blank(),Text(p.crb3c_deduction3_adjustment,"#,##0")),"crb3c_deduction4_current",If(IsBlank(p.crb3c_deduction4_current),Blank(),Text(p.crb3c_deduction4_current,"#,##0")),"crb3c_deduction4_adjustment",If(IsBlank(p.crb3c_deduction4_adjustment),Blank(),Text(p.crb3c_deduction4_adjustment,"#,##0")),"crb3c_ideco_current",If(IsBlank(p.crb3c_ideco_current),Blank(),Text(p.crb3c_ideco_current,"#,##0")),"crb3c_ideco_adjustment",If(IsBlank(p.crb3c_ideco_adjustment),Blank(),Text(p.crb3c_ideco_adjustment,"#,##0")),"crb3c_deduction_total_current",If(IsBlank(p.crb3c_deduction_total_current),Blank(),Text(p.crb3c_deduction_total_current,"#,##0")),"crb3c_deduction_total_adjustment",If(IsBlank(p.crb3c_deduction_total_adjustment),Blank(),Text(p.crb3c_deduction_total_adjustment,"#,##0")),"crb3c_net",If(IsBlank(p.crb3c_net),Blank(),Text(p.crb3c_net,"#,##0")),"crb3c_transfer1",If(IsBlank(p.crb3c_transfer1),Blank(),Text(p.crb3c_transfer1,"#,##0")),"crb3c_transfer2",If(IsBlank(p.crb3c_transfer2),Blank(),Text(p.crb3c_transfer2,"#,##0")),"crb3c_cash",If(IsBlank(p.crb3c_cash),Blank(),Text(p.crb3c_cash,"#,##0")),"crb3c_reduction_hours_current",If(IsBlank(p.crb3c_reduction_hours_current),Blank(),Text(p.crb3c_reduction_hours_current,"#,##0.##########")),"crb3c_reduction_hours_adjustment",If(IsBlank(p.crb3c_reduction_hours_adjustment),Blank(),Text(p.crb3c_reduction_hours_adjustment,"#,##0.##########")),"crb3c_reduction_amount_current",If(IsBlank(p.crb3c_reduction_amount_current),Blank(),Text(p.crb3c_reduction_amount_current,"#,##0")),"crb3c_reduction_amount_adjustment",If(IsBlank(p.crb3c_reduction_amount_adjustment),Blank(),Text(p.crb3c_reduction_amount_adjustment,"#,##0")),"crb3c_pay_cut_current",If(IsBlank(p.crb3c_pay_cut_current),Blank(),Text(p.crb3c_pay_cut_current,"#,##0")),"crb3c_pay_cut_adjustment",If(IsBlank(p.crb3c_pay_cut_adjustment),Blank(),Text(p.crb3c_pay_cut_adjustment,"#,##0")),"crb3c_overtime_night25_current",If(IsBlank(p.crb3c_overtime_night25_current),Blank(),Text(p.crb3c_overtime_night25_current,"#,##0")),"crb3c_overtime_night25_adjustment",If(IsBlank(p.crb3c_overtime_night25_adjustment),Blank(),Text(p.crb3c_overtime_night25_adjustment,"#,##0")),"crb3c_overtime_holiday135_current",If(IsBlank(p.crb3c_overtime_holiday135_current),Blank(),Text(p.crb3c_overtime_holiday135_current,"#,##0")),"crb3c_overtime_holiday135_adjustment",If(IsBlank(p.crb3c_overtime_holiday135_adjustment),Blank(),Text(p.crb3c_overtime_holiday135_adjustment,"#,##0")),"crb3c_overtime100_current",If(IsBlank(p.crb3c_overtime100_current),Blank(),Text(p.crb3c_overtime100_current,"#,##0")),"crb3c_overtime100_adjustment",If(IsBlank(p.crb3c_overtime100_adjustment),Blank(),Text(p.crb3c_overtime100_adjustment,"#,##0")),"crb3c_overtime125_current",If(IsBlank(p.crb3c_overtime125_current),Blank(),Text(p.crb3c_overtime125_current,"#,##0")),"crb3c_overtime125_adjustment",If(IsBlank(p.crb3c_overtime125_adjustment),Blank(),Text(p.crb3c_overtime125_adjustment,"#,##0")),"crb3c_overtime135_current",If(IsBlank(p.crb3c_overtime135_current),Blank(),Text(p.crb3c_overtime135_current,"#,##0")),"crb3c_overtime135_adjustment",If(IsBlank(p.crb3c_overtime135_adjustment),Blank(),Text(p.crb3c_overtime135_adjustment,"#,##0")),"crb3c_overtime150_current",If(IsBlank(p.crb3c_overtime150_current),Blank(),Text(p.crb3c_overtime150_current,"#,##0")),"crb3c_overtime150_adjustment",If(IsBlank(p.crb3c_overtime150_adjustment),Blank(),Text(p.crb3c_overtime150_adjustment,"#,##0")),"crb3c_overtime160_current",If(IsBlank(p.crb3c_overtime160_current),Blank(),Text(p.crb3c_overtime160_current,"#,##0")),"crb3c_overtime160_adjustment",If(IsBlank(p.crb3c_overtime160_adjustment),Blank(),Text(p.crb3c_overtime160_adjustment,"#,##0")),"crb3c_overtime175_current",If(IsBlank(p.crb3c_overtime175_current),Blank(),Text(p.crb3c_overtime175_current,"#,##0")),"crb3c_overtime175_adjustment",If(IsBlank(p.crb3c_overtime175_adjustment),Blank(),Text(p.crb3c_overtime175_adjustment,"#,##0")),"crb3c_overtime_detail_total_current",If(IsBlank(p.crb3c_overtime_detail_total_current),Blank(),Text(p.crb3c_overtime_detail_total_current,"#,##0")),"crb3c_overtime_detail_total_adjustment",If(IsBlank(p.crb3c_overtime_detail_total_adjustment),Blank(),Text(p.crb3c_overtime_detail_total_adjustment,"#,##0")),"crb3c_comp_leave50_current",If(IsBlank(p.crb3c_comp_leave50_current),Blank(),Text(p.crb3c_comp_leave50_current,"#,##0")),"crb3c_comp_leave50_adjustment",If(IsBlank(p.crb3c_comp_leave50_adjustment),Blank(),Text(p.crb3c_comp_leave50_adjustment,"#,##0")),"crb3c_comp_leave25_current",If(IsBlank(p.crb3c_comp_leave25_current),Blank(),Text(p.crb3c_comp_leave25_current,"#,##0")),"crb3c_comp_leave25_adjustment",If(IsBlank(p.crb3c_comp_leave25_adjustment),Blank(),Text(p.crb3c_comp_leave25_adjustment,"#,##0")),"crb3c_comp_leave15_current",If(IsBlank(p.crb3c_comp_leave15_current),Blank(),Text(p.crb3c_comp_leave15_current,"#,##0")),"crb3c_comp_leave15_adjustment",If(IsBlank(p.crb3c_comp_leave15_adjustment),Blank(),Text(p.crb3c_comp_leave15_adjustment,"#,##0")),"crb3c_comp_work50_current",If(IsBlank(p.crb3c_comp_work50_current),Blank(),Text(p.crb3c_comp_work50_current,"#,##0")),"crb3c_comp_work50_adjustment",If(IsBlank(p.crb3c_comp_work50_adjustment),Blank(),Text(p.crb3c_comp_work50_adjustment,"#,##0")),"crb3c_comp_work25_current",If(IsBlank(p.crb3c_comp_work25_current),Blank(),Text(p.crb3c_comp_work25_current,"#,##0")),"crb3c_comp_work25_adjustment",If(IsBlank(p.crb3c_comp_work25_adjustment),Blank(),Text(p.crb3c_comp_work25_adjustment,"#,##0")),"crb3c_comp_work15_current",If(IsBlank(p.crb3c_comp_work15_current),Blank(),Text(p.crb3c_comp_work15_current,"#,##0")),"crb3c_comp_work15_adjustment",If(IsBlank(p.crb3c_comp_work15_adjustment),Blank(),Text(p.crb3c_comp_work15_adjustment,"#,##0")),"crb3c_overtime_change_current",If(IsBlank(p.crb3c_overtime_change_current),Blank(),Text(p.crb3c_overtime_change_current,"#,##0")),"crb3c_overtime_change_adjustment",If(IsBlank(p.crb3c_overtime_change_adjustment),Blank(),Text(p.crb3c_overtime_change_adjustment,"#,##0")),"crb3c_short_grade",If(IsBlank(p.crb3c_short_grade),Blank(),Text(p.crb3c_short_grade,"#,##0")),"crb3c_short_monthly",If(IsBlank(p.crb3c_short_monthly),Blank(),Text(p.crb3c_short_monthly,"#,##0")),"crb3c_pension_grade",If(IsBlank(p.crb3c_pension_grade),Blank(),Text(p.crb3c_pension_grade,"#,##0")),"crb3c_pension_monthly",If(IsBlank(p.crb3c_pension_monthly),Blank(),Text(p.crb3c_pension_monthly,"#,##0")),"crb3c_retirement_grade",If(IsBlank(p.crb3c_retirement_grade),Blank(),Text(p.crb3c_retirement_grade,"#,##0")),"crb3c_retirement_monthly",If(IsBlank(p.crb3c_retirement_monthly),Blank(),Text(p.crb3c_retirement_monthly,"#,##0")),"crb3c_taxable_income",If(IsBlank(p.crb3c_taxable_income),Blank(),Text(p.crb3c_taxable_income,"#,##0")),"crb3c_remarks",p.crb3c_remarks,"crb3c_target_date",p.crb3c_target_date,"crb3c_business_type",p.crb3c_business_type,"crb3c_assignment_type",p.crb3c_assignment_type,"crb3c_expenditure",p.crb3c_expenditure,"crb3c_classification",p.crb3c_classification,Blank()))
+                                          X: =0
+                                          Y: =0
+                                          Width: =220
+                                          Height: =Parent.TemplateHeight
+                                          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+                                          Color: =ColorValue("#242424")
+                                          Fill: =ColorValue("#FFFFFF")
+                                          BorderColor: =ColorValue("#CBD5E1")
+                                          BorderThickness: =1
+                                          PaddingLeft: =8
+                                          Tooltip: =Self.Text
+                                          Wrap: =true
+        - btnLoadDetails111:
+            Control: ModernButton@1.0.0
+            Properties:
+              Text: =""
+              AccessibleLabel: =""
+              OnSelect: |-
+                =Set(varFetched111,Blank()); Set(varFetchError111,Blank()); Set(varHistoryId111,Blank()); Set(varHistoryStaff111,StaffSelected.StaffId);
+                Clear(colCommute111);Clear(colWork111);Clear(colSocial111);Clear(colTax111);Clear(colHistory111);Clear(colPayrollSource111);Clear(colPayrollColumns111);Clear(colPayrollExceptions111);
+                Set(varStaffSource111,LookUp(colStaffSource111,crb3c_staffnumber=StaffSelected.StaffId));
+                If(!IsBlank(StaffSelected.StaffId),IfError(
+                 ClearCollect(colCommute111,Filter('T_通勤_STUDIO',職員基本.職員番号=StaffSelected.StaffId));
+                 ClearCollect(colWork111,Filter(StaffWorkHistory,StaffId=StaffSelected.StaffId));
+                 ClearCollect(colSocial111,Filter(StaffSocialHistory,StaffId=StaffSelected.StaffId));
+                 ClearCollect(colTax111,Filter(StaffTaxHistory,StaffId=StaffSelected.StaffId));
+                 ClearCollect(colPayrollSource111,Filter('T_基準給与簿_STUDIO',crb3c_staffnumber=StaffSelected.StaffId));
+                 ClearCollect(colHistory111,
+                 ForAll(colWork111 As p,{Section:"Work",RecordId:p.RecordId,Title:p.RecordId,Period:Text(p.Start,"yyyy/mm/dd") & " ～ " & If(p.End=Date(2099,3,31),"",Text(p.End,"yyyy/mm/dd")),State:If(p.Start>Today(),"予定",p.End<Today(),"過去","現行")}),
+                 ForAll(colSocial111 As p,{Section:"Social",RecordId:p.RecordId,Title:p.RecordId,Period:p.Category,State:"登録済"}),
+                 ForAll(colTax111 As p,{Section:"Tax",RecordId:p.RecordId,Title:p.RecordId,Period:Text(p.Start,"yyyy/mm/dd") & " ～ " & If(p.End=Date(2099,3,31),"",Text(p.End,"yyyy/mm/dd")),State:If(p.Start>Today(),"予定",p.End<Today(),"過去","現行")}),
+                 ForAll(colCommute111 As p,{Section:"Commute",RecordId:Text(p.crb3c_studiocommuteid),Title:p.crb3c_recognitionid & " / " & p.crb3c_method,Period:Text(p.crb3c_startdate,"yyyy/mm/dd") & " ～ " & Text(p.crb3c_enddate,"yyyy/mm/dd"),State:If(p.crb3c_startdate>Today(),"予定",!IsBlank(p.crb3c_enddate)&&p.crb3c_enddate<Today(),"過去","現行")}));
+                Set(varHistoryId111,First(Filter(colHistory111,Section=varStaffDetailTab111)).RecordId);Clear(colPayrollColumns111); Clear(colPayrollExceptions111);
+                ForAll(colPayrollSource111 As p,With({dt:IfError(With({m:Match(Trim(Coalesce(p.crb3c_payment_date,"")),"(?<Era>令和|平成|昭和|R|H|S)(?<EraYear>元|[0-9]{1,2})[年./-](?<M>[0-9]{1,2})[月./-](?<D>[0-9]{1,2})日?",MatchOptions.Complete)},
+                 If(IsBlank(m.FullMatch),Blank(),With({y:Switch(m.Era,"令和",2018,"R",2018,"平成",1988,"H",1988,"昭和",1925,"S",1925)+If(m.EraYear="元",1,Value(m.EraYear)),mo:Value(m.M),dy:Value(m.D)},
+                 With({dt:Date(y,mo,dy)},If(Year(dt)=y && Month(dt)=mo && Day(dt)=dy && Value(Substitute(m.EraYear,"元","1"))>0 && Switch(m.Era,"令和",dt>=Date(2019,5,1),"R",dt>=Date(2019,5,1),"平成",dt>=Date(1989,1,8)&&dt<Date(2019,5,1),"H",dt>=Date(1989,1,8)&&dt<Date(2019,5,1),"昭和",dt>=Date(1926,12,25)&&dt<Date(1989,1,8),"S",dt>=Date(1926,12,25)&&dt<Date(1989,1,8),false),dt,Blank()))))),Blank())},
+                 If(IsBlank(dt),Collect(colPayrollExceptions111,{RecordId:Text(p.crb3c_studiopayrollledgerid),PaymentText:p.crb3c_payment_date}),
+                 dt>=varPayrollStart111 && dt<DateAdd(varPayrollEnd111,1,TimeUnit.Months),
+                 Collect(colPayrollColumns111,{RecordId:Text(p.crb3c_studiopayrollledgerid),PaymentDate:dt,Sequence:p.crb3c_sequence,Record:p}))));
+                 Set(varFetched111,Now()),
+                 Clear(colCommute111);Clear(colHistory111);Clear(colPayrollSource111);Clear(colPayrollColumns111);Clear(colPayrollExceptions111);Set(varHistoryId111,Blank());Set(varFetchError111,"詳細データを取得できませんでした");Notify(varFetchError111,NotificationType.Error)),Set(varFetched111,Now()));
+              X: =0
+              Y: =0
+              Width: =140
+              Height: =44
+              BasePaletteColor: =ColorValue("#0F6CBD")
+              Font: ="Segoe UI"
+              Visible: =false
