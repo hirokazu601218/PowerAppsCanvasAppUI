@@ -2,6 +2,23 @@
 
 対象は既存の自動テスト専用アプリ。旧版のテスト・成功タグを削除または緩和しない。
 
+## 2026-09-24 隔離した改訂配布の実証
+
+従来の安定版SolutionテンプレートはCanvasの`DatabaseReferences`が空であり、実際のimportで元の3テーブル参照が消えた。Studioの版履歴から安定版を復旧済み。現行の`lightweight-transaction.py`は現行Solutionのexportを元にpackし、3参照を照合するが、`automation/lightweight-expected.json`に`deployment_enabled: true`を設定していないため、安定版へのimportは実行できない。このガードを単に有効化しない。
+
+隔離した検証用アプリ`bd256de5-c7a5-4487-9aef-91ee26d4c946`と、Canvas 1件だけを含む`LightweightDeploymentProbe`で以下を確認した。
+
+|試験|run|結果|
+|---|---|---|
+|現行Solutionのexport、3参照、pack/unpack|[35985782401](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35985782401)|合格|
+|同一版importとソース・実行定義の読戻し|[35986462161](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35986462161)|合格。管理メタデータのハッシュは変更|
+|ラベルTextの実改訂、import、サーバー読戻し、元版復旧|[35992512542](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35992512542)|合格。3参照と全ソース・実行定義を復旧|
+|元の安定版公開物と3参照の読取り専用再確認|[35992833627](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35992833627)|合格。公開msapp SHA256は`4078adc1c7e3c4a7122b2fe8731bb4a3904061f33272ebbb99259bd46e995518`|
+
+PACのサービスプリンシパルでは新規コピーの`canvas download`列挙が`No canvas apps in the selected environment`となるため、検証用SolutionのexportからCanvas文書を読んだ。取込み後の照合は参照・ソース・実行定義で行い、変動する管理メタデータのハッシュは別記する。元の安定版では`canvas download`に成功している。
+
+検証用コピーのPlayer公開結果と専用ユーザーの実画面確認、広い安定版Solutionへの配布・復旧は未実証。自動最終化が要求する全ゲートを隔離試験で代替しない。次に必要なのは公開後のPlayer試験と、安定版への配布経路を同じ構成範囲で検証する安全な方法の確立である。
+
 ## 構造移行
 新規コントロールや画面構造はPower Apps Studioで作成・コンパイルする。保存コピーの全6画面とAppのソース、実行ルール、数式エラー、編集版Playerを確認する。任意YAMLを一般コンパイルする方式ではない。
 
