@@ -1,1 +1,1 @@
-2026-09-24 isolated app publication read-only state 5
+2026-09-24 isolated app publication read-only state 6; verify draft against approved baseline before any publish
