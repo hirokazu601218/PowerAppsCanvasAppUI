@@ -14,18 +14,18 @@ concurrency:
   cancel-in-progress: false
 jobs:
   transaction:
-    name: Verify published lightweight editing app
+    name: Verify restored stable lightweight app
     runs-on: ubuntu-latest
     environment: powerapps-test
     timeout-minutes: 20
     env:
       POWER_PLATFORM_TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
       POWER_PLATFORM_CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
-      POWER_PLATFORM_TARGET_APP_ID: 204a48dc-7f23-43dd-b934-4654a3cfa306
+      POWER_PLATFORM_TARGET_APP_ID: 362ac991-eead-4f07-8373-afdb3ebfdba1
       OFFICIAL_SAMPLES_REF: 43e3db8d131aeb09415b1faef030e783fd2e320f
       POWER_APPS_BASE_URL: https://make.powerapps.com
       POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
-      CANVAS_APP_URL: https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/204a48dc-7f23-43dd-b934-4654a3cfa306?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
+      CANVAS_APP_URL: https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/362ac991-eead-4f07-8373-afdb3ebfdba1?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
       MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
       MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
       MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
@@ -51,11 +51,19 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
-    - name: Install pinned bridge dependency and verify safety policy
+    - name: Check out frozen legacy regression profile
+      uses: actions/checkout@v5
+      with:
+        path: legacy-regression
+        ref: 408a5f11e6bcc02ce88cc690afb4200030b128f7
+    - name: Install pinned bridge dependency
+      run: python -m pip install PyYAML==6.0.3
+    - name: Verify all unchanged legacy regression tests on their original profile
+      working-directory: legacy-regression
+      run: python -m unittest discover -s tests/automation -v
+    - name: Verify current lightweight baseline safety guards
       working-directory: project
-      run: |-
-        python -m pip install PyYAML==6.0.3
-        python -m unittest discover -s tests/automation -v
+      run: python -m unittest discover -s tests/automation -p test_lightweight_guard.py -v
     - name: Set up .NET
       uses: actions/setup-dotnet@v4
       with:
