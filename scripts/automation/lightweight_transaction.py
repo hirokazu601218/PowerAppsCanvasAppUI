@@ -15,6 +15,7 @@ import subprocess
 import sys
 import time
 import urllib.request
+import xml.etree.ElementTree as ET
 
 import yaml
 import bridge
@@ -60,6 +61,19 @@ def verify_baseline(archive, expected, cfg):
     bridge.require(runtime_hashes(archive) == expected['runtime_hashes'], 'published compiled rule drift')
     bridge.require('Src/scrStaffMasterSearch.pa.yaml' in archive and 'Src/Screen1.pa.yaml' not in archive,
                    'legacy structure is not a lightweight baseline')
+
+
+def verify_database_references(metadata, required):
+    """Refuse a legacy solution template that silently drops Canvas data sources."""
+    root = ET.parse(metadata).getroot()
+    nodes = [node for node in root if node.tag == 'DatabaseReferences']
+    bridge.require(len(nodes) == 1, 'solution Canvas database reference element missing')
+    references = json.loads(nodes[0].text or '{}')
+    sources = references.get('default.cds', {}).get('dataSources', {})
+    bridge.require(isinstance(required, dict) and len(required) == 3, 'required data source manifest missing')
+    bridge.require({name: sources.get(name) for name in required} == required,
+                   'solution Canvas metadata lacks required Dataverse sources')
+    return references
 
 
 def published_without_newer_draft(props):
@@ -179,6 +193,8 @@ def main():
         before = api()['properties']
         result['before'] = {k: before.get(k) for k in ('status', 'lastDraftVersion', 'lastPublishTime')}
         bridge.require(published_without_newer_draft(before), 'unpublished draft must not be overwritten')
+        template_meta = root / 'powerapps/solution-src/CanvasApps/crb3c_v111_99a38.meta.xml'
+        verify_database_references(template_meta, expected.get('required_database_sources'))
         stage = 'build'
         work = out / 'bridge-input'
         (work / 'config/apps').mkdir(parents=True)
