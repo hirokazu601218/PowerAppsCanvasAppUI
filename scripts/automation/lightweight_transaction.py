@@ -30,12 +30,33 @@ def source_hashes(archive):
             and not n.endswith('/_EditorState.pa.yaml')}
 
 
+def runtime_hashes(archive):
+    controls = {}
+    def visit(value):
+        if isinstance(value, dict):
+            if 'Name' in value and 'Rules' in value:
+                name = value['Name']
+                bridge.require(name not in controls, 'duplicate compiled control')
+                rules = {r['Property']: r['InvariantScript'] for r in value['Rules']}
+                controls[name] = sha(json.dumps(rules, sort_keys=True, ensure_ascii=False).encode())
+            for child in value.values():
+                visit(child)
+        elif isinstance(value, list):
+            for child in value:
+                visit(child)
+    for name, data in archive.items():
+        if name.startswith('Controls/') and name.endswith('.json'):
+            visit(json.loads(data))
+    return controls
+
+
 def verify_baseline(archive, expected, cfg):
     bridge.require(cfg['target']['app_id'] == '362ac991-eead-4f07-8373-afdb3ebfdba1', 'wrong app')
     bridge.require(cfg['target']['environment_id'] == '68e00049-b7e5-eda6-9888-9a3cc493c5be', 'wrong environment')
     bridge.require(expected['app_id'] == cfg['target']['app_id'], 'manifest app mismatch')
     bridge.require(expected['environment_id'] == cfg['target']['environment_id'], 'manifest environment mismatch')
     bridge.require(source_hashes(archive) == expected['source_hashes'], 'published baseline source drift')
+    bridge.require(runtime_hashes(archive) == expected['runtime_hashes'], 'published compiled rule drift')
     bridge.require('Src/scrStaffMasterSearch.pa.yaml' in archive and 'Src/Screen1.pa.yaml' not in archive,
                    'legacy structure is not a lightweight baseline')
 
