@@ -140,8 +140,14 @@ def main():
                 cwd=test_root, env=env, timeout=300)
 
     try:
-        bridge.require(request.get('approved') is True and request.get('mode') == 'qualify', 'request not approved')
-        bridge.require(request.get('changes') == [], 'qualification must preserve the Studio-verified application')
+        bridge.require(request.get('approved') is True and request.get('mode') in ('qualify', 'release'), 'request not approved')
+        changes = request.get('changes')
+        bridge.require(isinstance(changes, list) and len(changes) <= 100, 'invalid property changes')
+        if request['mode'] == 'qualify':
+            bridge.require(changes == [], 'qualification must preserve the Studio-verified application')
+        else:
+            bridge.require(bool(changes) and isinstance(request.get('issue'), int) and request['issue'] > 0,
+                           'release requires explicit changes and an issue')
         bridge.require(os.environ.get('MS_AUTH_EMAIL') == cfg['test_user'], 'dedicated authenticated user required')
         stage = 'auth'
         command(['pac', 'auth', 'create', '--name', 'lightweight-transaction', '--githubFederated',
@@ -167,9 +173,24 @@ def main():
                 dest = work / 'powerapps/canvas-v3' / name
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 dest.write_bytes(data)
-        manifest = {'approved': True, 'issue': 73, 'target': cfg['target'], 'changes': []}
+        manifest = {'approved': True, 'issue': request.get('issue', 73), 'target': cfg['target'], 'changes': changes}
+        # Existing-property scope is checked again by bridge.build against the
+        # untouched compiled baseline. A request cannot add controls or files.
+        for change in changes:
+            name = change['source']
+            bridge.require(name in archive and name.startswith('Src/') and name.endswith('.pa.yaml'), 'unknown source')
+            dest = work / 'powerapps/canvas-v3' / name
+            document = yaml.safe_load(dest.read_bytes())
+            matches = bridge.nodes(document, change['control'])
+            bridge.require(len(matches) == 1, 'control must be unique')
+            props = matches[0]['Properties']
+            bridge.require(change['property'] in props and props[change['property']] == change['before'],
+                           'existing property and exact before value required')
+            props[change['property']] = change['after']
+            dest.write_text(yaml.safe_dump(document, allow_unicode=True, sort_keys=False))
         built = out / 'candidate.msapp'
         result['build'] = bridge.build(work, built, manifest)
+        built_runtime = runtime_hashes(bridge.read_archive(built))
         baseline_package = pack(original, 'rollback')
         package = pack(built, 'candidate')
         result['package_sha256'] = sha(package.read_bytes())
@@ -181,7 +202,10 @@ def main():
         stage = 'readback'
         readback = download('readback')
         result['readback'] = bridge.verify_download(readback, work, manifest)
-        verify_baseline(bridge.read_archive(readback), expected, cfg)
+        bridge.require(runtime_hashes(bridge.read_archive(readback)) == built_runtime,
+                       'server compiled rules differ from built package')
+        if not changes:
+            verify_baseline(bridge.read_archive(readback), expected, cfg)
         result['gates']['readback'] = 'success'
         for stage in ('change_test', 'p0'):
             test(stage)
