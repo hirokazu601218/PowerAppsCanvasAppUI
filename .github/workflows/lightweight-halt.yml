@@ -1,0 +1,17 @@
+name: Halt pending lightweight qualification
+on:
+  push:
+    branches: [feat/lightweight-v127-20260924]
+    paths: [.github/workflows/lightweight-halt.yml]
+permissions:
+  actions: write
+  contents: read
+jobs:
+  stop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Cancel pre-deployment qualification 35980012473
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35980012473/cancel
