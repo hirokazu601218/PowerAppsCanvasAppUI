@@ -1,6 +1,7 @@
 """Read-only qualification of the isolated Canvas solution and its package."""
 import hashlib
 import json
+import re
 import subprocess
 import sys
 import xml.etree.ElementTree as ET
@@ -33,6 +34,10 @@ try:
     app = OUT / 'published.msapp'
     command(['pac', 'canvas', 'download', '--name', APP_ID, '--file-name', str(app),
              '--environment', env, '--overwrite'], 'download', 180)
+    if not app.is_file():
+        diagnostic = (OUT / 'download.log').read_text()[-1200:]
+        diagnostic = re.sub(r'https?://\\S+', '[URL]', diagnostic)
+        raise RuntimeError('PAC did not create published.msapp: ' + diagnostic)
     archive = bridge.read_archive(app)
     bridge.require('Src/scrStaffMasterSearch.pa.yaml' in archive and
                    'Src/Screen1.pa.yaml' not in archive, 'not the lightweight app structure')
