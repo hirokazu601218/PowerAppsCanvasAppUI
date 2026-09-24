@@ -31,3 +31,5 @@
 - 所有者の新規Playerタブで最新版へのRefreshを実行。v1.27ホームから初期7件、`不存在LT`検索0件、旧詳細消去・支給明細無効、クリアで7件復帰・入力空欄を実操作で確認。以前のクリア遮蔽を再現しない。
 - 専用ユーザーの[UI run 3](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35976269989)は認証段階で失敗。Microsoftログイン画面に留まり、UI試験stepはSKIPPED。前回run 2のクリア遮蔽失敗とは区別する。独立ユーザー試験PASSではない。
 - 安定版公開・main昇格の完了を示すものではない。
+
+認証失敗artifactの画面を追加確認：`AADSTS90100: login parameter is empty or not valid.`。アカウント権限不足やパスワード不正とは断定しない。認証入力・遷移の調査対象。test-policy.md 7.10の認証問題時停止に従い、同条件の自動再試行や安定版公開を行わず、未合格ゲートを保持する。
