@@ -24,6 +24,11 @@ try:
  with zipfile.ZipFile(out/'baseline.msapp') as z:
   names=[n for n in z.namelist() if n.replace('\\','/').startswith('Src/') and n.endswith('.pa.yaml')]
   result['source_hashes']={n.replace('\\','/'):hashlib.sha256(z.read(n)).hexdigest() for n in names}
+ expected=json.loads((root/'automation/lightweight-expected.json').read_text())
+ assert expected['app_id']==cfg['target']['app_id'] and expected['environment_id']==cfg['target']['environment_id']
+ actual={k:v for k,v in result['source_hashes'].items() if not k.endswith('/_EditorState.pa.yaml')}
+ result['source_match']=actual==expected['source_hashes']
+ assert result['source_match'], 'Downloaded published source does not match verified lightweight candidate'
  result['status']='success'
 except Exception as error:
  result['status']='blocked'
