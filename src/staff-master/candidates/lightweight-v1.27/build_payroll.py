@@ -17,7 +17,9 @@ assert len(fields)==163
 metadata=[]
 for i,(label,expr) in enumerate(fields,1):
     keys=set(re.findall(r'p\.(crb3c_\w+)',expr)); assert len(keys)==1
-    metadata.append({'Order':i,'Key':keys.pop(),'Label':label,'Expression':expr})
+    key=keys.pop()
+    expr=re.sub(r'"#,##0\.(#+)"',lambda m:'If(Mod(p.'+key+',1)=0,"#,##0","#,##0.'+m.group(1)+'")',expr)
+    metadata.append({'Order':i,'Key':key,'Label':label,'Expression':expr})
 (OUT/'payroll-fields.json').write_text(json.dumps(metadata,ensure_ascii=False,indent=2)+'\n')
 
 def control(name,kind,props,children=None,variant=None):
@@ -40,12 +42,13 @@ ForAll(colPayrollSource111 As p,With({dt:IfError('''+parse+''',Blank())},
  If(IsBlank(dt),Collect(colPayrollExceptions111,{RecordId:Text(p.crb3c_studiopayrollledgerid),PaymentText:p.crb3c_payment_date}),
  dt>=varPayrollStart111 && dt<DateAdd(varPayrollEnd111,1,TimeUnit.Months),
  Collect(colPayrollColumns111,{RecordId:Text(p.crb3c_studiopayrollledgerid),PaymentDate:dt,Sequence:p.crb3c_sequence,Record:p}))));'''
-fetch='''Clear(colPayrollSource111); Clear(colPayrollColumns111); Clear(colPayrollExceptions111); Set(varPayrollFetched111,Blank());
+fetch='''Clear(colPayrollSource111); Clear(colPayrollColumns111); Clear(colPayrollExceptions111); Set(varPayrollCellTitle111,Blank());Set(varPayrollCellText111,Blank()); Set(varPayrollFetched111,Blank()); Set(varFetched111,Blank()); Set(varFetchError111,Blank());
 If(!IsBlank(StaffSelected.StaffId),IfError(
  ClearCollect(colPayrollSource111,Filter('T_基準給与簿_STUDIO',crb3c_staffnumber=StaffSelected.StaffId));
+ If(CountRows(colPayrollSource111)>=500,Error({Kind:ErrorKind.Validation,Message:"給与の取得上限に達しました"}));
  '''+build+'''
- Set(varPayrollFetched111,Now()),
- Clear(colPayrollSource111); Clear(colPayrollColumns111); Clear(colPayrollExceptions111); Notify("給与データを取得できませんでした。",NotificationType.Error)));'''
+ Set(varPayrollFetched111,Now()); Set(varFetched111,varPayrollFetched111),
+ Clear(colPayrollSource111); Clear(colPayrollColumns111); Clear(colPayrollExceptions111); Set(varFetchError111,"給与データを取得できませんでした。"); Notify(varFetchError111,NotificationType.Error)));'''
 initialize='''Set(varPayrollStart111,Coalesce(varPayrollStart111,Date(Year(Today()),1,1)));
 Set(varPayrollEnd111,Coalesce(varPayrollEnd111,Date(Year(Today()),12,1)));
 '''+fetch
