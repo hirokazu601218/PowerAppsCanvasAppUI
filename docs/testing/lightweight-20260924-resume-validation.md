@@ -57,3 +57,9 @@
 正常保存版58（08:57:16 UTC）を管理画面で61（09:21:56 UTC）として復元し公開、61のLive表示を確認。PlayerをRefreshし、09:24 UTCに7件・004選択、011の給与1列/163項目・2026/04/23/5・所定GUIDを再確認。復元方法をソリューション再取込みからサービスのバージョン履歴へ変更した。
 
 追加の自動配布は停止。`deployment_enabled`が明示trueでなければ配布前停止するガードを追加。隔離コピーでメタデータ込みの配布/復元を検証してから再開する。復元版の独立UIと読戻しは別runで検証する。
+
+### 復元版61の独立検証と配布原因
+
+[読戻し run 35981090795](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35981090795)PASS。09:21:56Z保存、09:23:20.438832Z公開、Ready、パッケージSHA256 `4078adc1c7e3c4a7122b2fe8731bb4a3904061f33272ebbb99259bd46e995518`（取込み前と完全同一）、7ソース一致。サーバーの`databaseReferences`に`default.cds`を確認。[専用ユーザーrun 35981343840](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35981343840)では認証・P0・レスポンシブUIの2件がPASS。復元版で7件を独立ユーザーが取得できた。
+
+古い`powerapps/solution-src/CanvasApps/crb3c_v111_99a38.meta.xml`は`<DatabaseReferences>{}</DatabaseReferences>`で、Studio正常版のソリューションエクスポートは`default.cds`内に職員基本・通勤・給与簿の3データソースの論理名/セット名を含む。古い定義を使った取込みによって参照が欠落し、同一ソース・同一msappハッシュでも一覧0件となったことと整合する。実行版も3.26085.11対3.26092.9。今後は現行のソリューション定義を取得して一致検査し、隔離コピーで配布/復旧を試すまでガード解除しない。
