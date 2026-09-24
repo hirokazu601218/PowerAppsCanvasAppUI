@@ -1,3 +1,17 @@
+# 現在の作業と読取り対象：軽量版 v1.27 安定開発版公開済み・配布経路検証中（2026-09-24）
+
+- 今回の60分中断ルールはユーザー指示で解除。ユーザーはStudioを操作していないと回答済み。
+- 編集用・安定開発アプリともv1.27を公開済み。安定版の公開成功通知は08:58:24 UTC、公開後Playerでv1.27・初期7件・011の給与1列163項目を確認。
+- [専用ユーザーUI run 5](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35977771483)は認証・P0・5幅×通常/大文字の可視性試験PASS。200%・全配置条件・人の可読性受入を代替しない。
+- [公開読戻し](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35978425244)PASS、7ソース一致。公開パッケージSHA256 `4078adc1c7e3c4a7122b2fe8731bb4a3904061f33272ebbb99259bd46e995518`。
+- 安定版から正式HTML版1.01の別タブ起動、011/TK-910004の読取り完了を確認。検索0件で旧詳細消去・帳票/支給明細無効を確認。
+- 改訂配布経路は構成差分とメタデータファイル名の問題を修正し、[run 35979556065](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35979556065)で再検証中。先の停止は配布前touched=false。完了扱いしない。
+- [PR #73](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/73)はdraft。mainへ製品コード昇格・本番利用可判定は未実施。200%・人の受入・性能比較等の残件、既存警告240/10を保持。
+- 読取り対象：PR候補、`docs/testing/lightweight-20260924-resume-validation.md`、lightweight UI/readback/transaction、無人修正手順。公開画像はLibrary資料索引の`PowerApps-v127-stable-payroll.jpg`。旧transactionは実行しない。
+- 同月3行489セル照合・一時fixture清掃と元3テーブルハッシュ不変は前記録を継承。Issue #51の元テーブル反映は別残件。
+
+---
+
 # 現在の作業と読取り対象：軽量版 v1.27 最終検証中（2026-09-24）
 
 - 今回は最新ユーザー指示により60分中断ルールを適用しない。
