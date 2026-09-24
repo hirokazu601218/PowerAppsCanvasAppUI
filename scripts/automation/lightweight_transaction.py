@@ -124,12 +124,13 @@ def main():
 
     def pack(msapp, name):
         folder = out / name
-        shutil.copytree(root / 'powerapps/solution-src', folder)
+        shutil.copytree(out / 'live-solution', folder)
         apps = list((folder / 'CanvasApps').glob('*.msapp'))
         bridge.require(len(apps) == 1, 'expected exactly one solution Canvas app')
         bridge.require(apps[0].name.endswith('_DocumentUri.msapp'), 'unexpected solution Canvas document name')
         metadata = apps[0].with_name(apps[0].name.removesuffix('_DocumentUri.msapp') + '.meta.xml')
         bridge.require(metadata.is_file(), 'solution Canvas metadata is missing')
+        verify_database_references(metadata, expected.get('required_database_sources'))
         app_metadata.normalize_display_name(metadata, cfg['display_name'])
         shutil.copyfile(msapp, apps[0])
         package = out / (name + '.zip')
@@ -193,8 +194,19 @@ def main():
         before = api()['properties']
         result['before'] = {k: before.get(k) for k in ('status', 'lastDraftVersion', 'lastPublishTime')}
         bridge.require(published_without_newer_draft(before), 'unpublished draft must not be overwritten')
-        template_meta = root / 'powerapps/solution-src/CanvasApps/crb3c_v111_99a38.meta.xml'
-        verify_database_references(template_meta, expected.get('required_database_sources'))
+        live_zip = out / 'live-solution.zip'
+        command(['pac', 'solution', 'export', '--name', cfg['solution_name'],
+                 '--path', str(live_zip), '--overwrite'], 'live-solution-export', timeout=300)
+        command(['pac', 'solution', 'unpack', '--zipfile', str(live_zip),
+                 '--folder', str(out / 'live-solution'), '--packagetype', 'Unmanaged'],
+                'live-solution-unpack', timeout=180)
+        live_metadata = list((out / 'live-solution/CanvasApps').glob('*.meta.xml'))
+        bridge.require(len(live_metadata) == 1, 'expected one live Canvas component')
+        live_references = verify_database_references(live_metadata[0], expected.get('required_database_sources'))
+        bridge.require(live_references == before.get('databaseReferences'),
+                       'exported Canvas references differ from current app')
+        bridge.require(len(list((out / 'live-solution/CanvasApps').glob('*_DocumentUri.msapp'))) == 1,
+                       'expected one live Canvas document')
         stage = 'build'
         work = out / 'bridge-input'
         (work / 'config/apps').mkdir(parents=True)
