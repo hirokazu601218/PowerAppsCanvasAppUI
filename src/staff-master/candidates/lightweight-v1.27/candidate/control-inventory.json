@@ -1,6 +1,6 @@
 {
   "before": 657,
-  "after": 68,
+  "after": 69,
   "retained": [
     "btnCertificate111",
     "btnClear111",
@@ -687,6 +687,7 @@
     "lblPayrollCell111",
     "lblPayrollField111",
     "lblPayrollFieldHead111",
+    "lblPayrollFullText111",
     "lblPayrollHead111",
     "lblPayrollRange111",
     "lblPayrollState111"
