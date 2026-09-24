@@ -13,6 +13,9 @@
 - lightweight-readback.yml: 公開安定版を取得し、全7ソースの事前固定ハッシュを照合。Ready/取得成功だけを合格にしない。
 - lightweight-transaction.yml: Studioで公開・読戻し済みの軽量版を基準に、既存bridgeでbuild、Solution pack/import、publish、ソースと全実行ルールreadback、change_test、独立起動P0を実行する。7ゲートが揃わなければ成功版へ昇格しない。
 
+## 回帰試験の構成
+旧Screen1・旧Canvas帳票を前提とする既存の全ユニット試験は、構造移行直前コミット408a5f11e6bcc02ce88cc690afb4200030b128f7を固定チェックアウトして、変更せず全件実行する。現行の軽量版では独立したハッシュ・対象・構造ガード試験を実行し、既存bridgeの実build/import/readbackと独立P0で新構成を検証する。旧試験を軽量版の合格件数に合算せず、各プロファイルの結果を分ける。
+
 ## 要求と停止条件
 automation/lightweight-transaction.jsonのmode=qualifyは変更0件の実配布受入。mode=releaseは承認済みissueと既存プロパティのsource/control/property/before/afterを明示する。100件を超える変更、ファイル追加、部品追加、未対応の省略プロパティ、before不一致、対象ID不一致、公開基準のソース/実行ルール不一致、未公開下書きがある場合は配布前に停止する。
 
