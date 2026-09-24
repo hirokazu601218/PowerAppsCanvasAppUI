@@ -1,1 +1,1 @@
-20260924-live-v61-package-roundtrip-01
+20260924-stable-read-only-after-isolated-revision-02
