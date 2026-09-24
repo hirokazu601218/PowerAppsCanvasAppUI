@@ -8,4 +8,9 @@
 # ************************************************************************************************
 EditorState:
   ScreensOrder:
-    - Screen1
+    - scrStaffMasterSearch
+    - scrHome
+    - scrAttendance
+    - scrBonus
+    - scrPayroll
+    - scrMaintenance
