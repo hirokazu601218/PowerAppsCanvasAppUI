@@ -90,9 +90,13 @@ def main():
         for i,key in enumerate(keys):
             payload={k:v for k,v in base[0].items() if k in editable}
             payload.update({pk:key,'crb3c_name':MARKER+str(i),'crb3c_sequence':900+i,'crb3c_payment_date':['令和08年04月23日','令和08年04月30日','日付未確定'][i], 'crb3c_remarks':('長文確認。'*45+'末尾確認') if i==1 else '軽量版の一時試験レコード'})
+            payload['crb3c_basepay_current'] = 0 if i==0 else None
+            payload['crb3c_basepay_adjustment'] = -1250 if i==0 else 0
             payload[nav+'@odata.bind']='/crb3c_studiostaffbasics('+parent+')'
             existing=rows(entity+'?$filter='+pk+'%20eq%20'+key)
-            if existing: assert existing[0]['crb3c_name']==MARKER+str(i)
+            if existing:
+                assert existing[0]['crb3c_name']==MARKER+str(i)
+                api(entity+'('+key+')','PATCH',payload,{'If-Match':existing[0]['@odata.etag']})
             else: api(entity+'('+key+')','PATCH',payload,{'If-None-Match':'*'})
             read=api(entity+'('+key+')')
             assert read['crb3c_name']==payload['crb3c_name'] and read['crb3c_payment_date']==payload['crb3c_payment_date']
