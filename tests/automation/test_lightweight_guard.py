@@ -35,5 +35,13 @@ class LightweightGuardTests(unittest.TestCase):
         self.archive['Src/Screen1.pa.yaml'] = self.archive.pop('Src/scrStaffMasterSearch.pa.yaml')
         self.expected['source_hashes'] = lt.source_hashes(self.archive)
         with self.assertRaises(bridge.GateError): lt.verify_baseline(self.archive,self.expected,self.cfg)
+    def test_studio_published_after_save_is_valid(self):
+        self.assertTrue(lt.published_without_newer_draft({'status':'Ready', 'lastDraftVersion':'2026-09-24T08:57:16Z', 'lastPublishTime':'2026-09-24T08:58:21.957018Z'}))
+    def test_newer_draft_is_rejected(self):
+        self.assertFalse(lt.published_without_newer_draft({'status':'Ready', 'lastDraftVersion':'2026-09-24T08:59:00Z', 'lastPublishTime':'2026-09-24T08:58:21.957018Z'}))
+    def test_missing_or_non_ready_metadata_is_rejected(self):
+        for props in ({}, {'status':'Ready','lastDraftVersion':None,'lastPublishTime':None}, {'status':'Saving','lastDraftVersion':'2026-09-24T08:57:16Z','lastPublishTime':'2026-09-24T08:58:21Z'}):
+            self.assertFalse(lt.published_without_newer_draft(props))
 if __name__ == '__main__':
     unittest.main()
+
