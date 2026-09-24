@@ -113,7 +113,10 @@ def main():
         shutil.copytree(root / 'powerapps/solution-src', folder)
         apps = list((folder / 'CanvasApps').glob('*.msapp'))
         bridge.require(len(apps) == 1, 'expected exactly one solution Canvas app')
-        app_metadata.normalize_display_name(apps[0].with_suffix('.meta.xml'), cfg['display_name'])
+        bridge.require(apps[0].name.endswith('_DocumentUri.msapp'), 'unexpected solution Canvas document name')
+        metadata = apps[0].with_name(apps[0].name.removesuffix('_DocumentUri.msapp') + '.meta.xml')
+        bridge.require(metadata.is_file(), 'solution Canvas metadata is missing')
+        app_metadata.normalize_display_name(metadata, cfg['display_name'])
         shutil.copyfile(msapp, apps[0])
         package = out / (name + '.zip')
         command(['pac', 'solution', 'pack', '--folder', str(folder), '--zipfile', str(package),
