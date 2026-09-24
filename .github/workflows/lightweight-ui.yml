@@ -124,6 +124,8 @@ jobs:
     - name: Install current independent lightweight UI tests
       run: cp project/e2e/changes/lightweight.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/lightweight.test.ts
     - name: Verify published lightweight UI
+      env:
+        MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
       working-directory: power-platform-playwright/packages/e2e-tests
       run: npx playwright test tests/northwind/canvas/lightweight.test.ts --project=canvas-app --retries=0 --reporter=line,json
     - name: Preserve actual test results
