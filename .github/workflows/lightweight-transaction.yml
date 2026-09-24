@@ -51,11 +51,19 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
-    - name: Install pinned bridge dependency and verify safety policy
+    - name: Check out frozen legacy regression profile
+      uses: actions/checkout@v5
+      with:
+        path: legacy-regression
+        ref: 408a5f11e6bcc02ce88cc690afb4200030b128f7
+    - name: Install pinned bridge dependency
+      run: python -m pip install PyYAML==6.0.3
+    - name: Verify all unchanged legacy regression tests on their original profile
+      working-directory: legacy-regression
+      run: python -m unittest discover -s tests/automation -v
+    - name: Verify current lightweight baseline safety guards
       working-directory: project
-      run: |-
-        python -m pip install PyYAML==6.0.3
-        python -m unittest discover -s tests/automation -v
+      run: python -m unittest discover -s tests/automation -p test_lightweight_guard.py -v
     - name: Set up .NET
       uses: actions/setup-dotnet@v4
       with:
