@@ -15,7 +15,7 @@
 |ラベルTextの実改訂、import、サーバー読戻し、元版復旧|[35992512542](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35992512542)|合格。3参照と全ソース・実行定義を復旧|
 |元の安定版公開物と3参照の読取り専用再確認|[35992833627](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35992833627)|合格。公開msapp SHA256は`4078adc1c7e3c4a7122b2fe8731bb4a3904061f33272ebbb99259bd46e995518`|
 
-PACのサービスプリンシパルでは新規コピーの`canvas download`列挙が`No canvas apps in the selected environment`となるため、検証用SolutionのexportからCanvas文書を読んだ。取込み後の照合は参照・ソース・実行定義で行い、変動する管理メタデータのハッシュは別記する。元の安定版では`canvas download`に成功している。
+PACのサービスプリンシパルでは新規コピーの`canvas download`列挙が`No canvas apps in the selected environment`となり、[公開状態の読取りAPIも403](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35993159879)となるため、検証用SolutionのexportからCanvas文書を読んだ。サービスプリンシパルにこのコピーの公開権限があるとは扱わない。取込み後の照合は参照・ソース・実行定義で行い、変動する管理メタデータのハッシュは別記する。元の安定版では`canvas download`に成功している。
 
 検証用コピーのPlayer公開結果と専用ユーザーの実画面確認、広い安定版Solutionへの配布・復旧は未実証。自動最終化が要求する全ゲートを隔離試験で代替しない。次に必要なのは公開後のPlayer試験と、安定版への配布経路を同じ構成範囲で検証する安全な方法の確立である。
 
