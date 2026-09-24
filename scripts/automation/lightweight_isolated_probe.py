@@ -4,6 +4,8 @@ import json
 import re
 import subprocess
 import sys
+import urllib.request
+import urllib.error
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -61,6 +63,19 @@ try:
     component2 = ET.parse(roundtrip / 'Other/Solution.xml').getroot()
     bridge.require([(e.get('type'), e.get('schemaName')) for e in component2.iter('RootComponent')]
                    == components, 'roundtrip component drift')
+    token = subprocess.check_output(['az', 'account', 'get-access-token', '--resource',
+        'https://service.powerapps.com/', '--query', 'accessToken', '--output', 'tsv'],
+        text=True).strip()
+    api_url = (f"https://api.powerapps.com/providers/Microsoft.PowerApps/apps/{APP_ID}"
+               f"?api-version=2018-10-01&%24filter=environment%20eq%20%27{CFG['target']['environment_id']}%27")
+    try:
+        with urllib.request.urlopen(urllib.request.Request(
+                api_url, headers={'Authorization': 'Bearer ' + token}), timeout=45) as response:
+            props = json.load(response).get('properties', {})
+        result['app_api'] = {k: props.get(k) for k in
+                             ('status', 'lastDraftVersion', 'lastPublishTime')}
+    except urllib.error.HTTPError as error:
+        result['app_api'] = {'http_status': error.code}
     result.update(status='pass', app_sha256=hashlib.sha256(msapps[0].read_bytes()).hexdigest(),
                   package_sha256=hashlib.sha256(roundtrip_zip.read_bytes()).hexdigest(),
                   components=components, sources=sorted(refs['default.cds']['dataSources']),
