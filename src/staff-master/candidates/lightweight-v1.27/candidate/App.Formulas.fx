@@ -11,7 +11,7 @@ UiRegressionStaff = ForAll(Sequence(40) As n,{
 });
 StaffReferenceDate = DateValue(Text(DateAdd(Now(), TimeZoneOffset(Now()) + 540, TimeUnit.Minutes), "yyyy-mm-dd"), "en-US");
 StaffTestCount = CountRows(colStaffSource111);
-StaffBasicView = If(UiFixtureCount>=0,FirstN(UiRegressionStaff,UiFixtureCount),If(StaffTestCount <= 2000, ForAll(
+StaffBasicView = If(UiFixtureCount>=0,FirstN(UiRegressionStaff,UiFixtureCount),If(StaffTestCount < 500, ForAll(
     SortByColumns(colStaffSource111, "crb3c_staffnumber", SortOrder.Ascending) As s,
     {
         StaffId: s.crb3c_staffnumber,
