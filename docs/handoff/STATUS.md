@@ -1,4 +1,18 @@
-# 現在の作業と読取り対象：Studio安全編集モードの隔離CRUD
+# 現在の作業と読取り対象：SCR-002軽量化の要件・設計更新
+
+- 2026-09-24、ユーザーが軽量化方針を確定。左の開閉式検索・右詳細を維持し、右を基本情報／勤務条件／通勤／社会保険／税固定控除／給与の6タブとする。
+- 基本情報を含む詳細は初版2列。長文もまず2列で試験し、不適合項目だけ根拠を残して全幅化する。履歴区分は一覧選択＋選択レコード詳細。
+- 通勤は認定レコード選択後、正式HTML認定簿を別タブ表示。HTML入口だけを残し、旧Canvas認定簿・PDFViewer・PDF生成保存・PoCは軽量化実装時にアプリから削除する。GitHubの検証記録は保持する。
+- ユーザーのWindows/Edgeで正式HTMLの別タブ表示とA4横2ページPDF保存に成功。別ブラウザーの無関係アカウントでは直接URLがブロックされ、先の閲覧は認証キャッシュによるものと確認した。正式HTML機能は残す判断済み。
+- 基準給与簿は163項目を縦、支給月を動的横列で表示。初版では採用前・退職後非表示を行わない。SCR-005支給明細とは別機能。
+- `Screen1`の改名先は`scrStaffMasterSearch`。親領域内の配置は横4:56:4、縦2:26:2。既存部品名末尾111は一括改名しない。
+- 今回は要件・基本設計・詳細設計・給与UI置換要件・追加受入条件のGitHub更新。YAML、Power Fx、アプリ、Dataverse、権限、公開版は未変更。リンク・用語・差分整合のみ確認し、実機試験は対象外。
+- 次回実装時は本節、[画面要件9章](../requirements/screen-requirements.md#9-scr-002-職員マスタ検索詳細軽量化要件)、[詳細設計10章](../design/detailed-design.md#10-scr-002軽量化設計2026-09-24)、[追加受入](../testing/test-specification.md#scr-002軽量化追加受入2026-09-24)を読む。編集用アプリで削除前台帳、段階実装、読戻し、回帰、部品数・性能比較を行う。
+- Issue #51：職員基本テーブルの編集は今回なし。欠勤時間単価の実テーブル反映は未実施のまま引き継ぐ。
+
+---
+
+# Studio安全編集モードの隔離CRUD（前作業）
 
 - 編集コピー `自動開発_職員マスタ検索_STUDIO_EDIT`（App ID `204a48dc-7f23-43dd-b934-4654a3cfa306`）は開発環境 `StaffMaster-Automation-Test` で保存・公開済み。画面の3データ接続は `crb3c_studiostaffbasic` / `crb3c_studiocommute` / `crb3c_studiopayrollledger` に切替済み。Studio App checkerの数式問題0件、プレビューで職員・通勤・給与を確認。
 - 編集用3テーブルの合成fixtureは25／6／7件。専用ユーザー `powerapps-test@govaca.onmicrosoft.com` には既存の `StaffMaster Test Reader` ロールで編集用3テーブルのCRUD/Append/AppendToを付与。元3テーブルの作成・更新・削除権限なし。[権限検証run](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35858002859)。
@@ -11,7 +25,7 @@
 
 ---
 
-# 通勤手当認定簿HTML版1.01（別Workの引継ぎ）
+# 通勤手当認定簿HTML版1.01（2026-09-21時点の前作業スナップショット）
 
 - ユーザーの再開指示で**今回の60分制限を解除**。A4横2ページ・JavaScript＋Dataverse読取り・指定対象の公開は承認済み。
 - 指定検証アプリは**バージョン26がライブ**。MakerのPublish successful（2026-09-21 06:23:37 JST）とバージョン一覧を確認。追加は`conLedgerHeader111/btnLedgerHtmlReport`、同ヘッダー高+52のみ。旧PoC・既存子コントロールは保持。
