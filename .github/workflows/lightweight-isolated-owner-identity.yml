@@ -1,0 +1,40 @@
+name: Isolated owner principal lookup
+'on':
+  push:
+    branches: [feat/lightweight-v127-20260924]
+    paths: [.github/workflows/lightweight-isolated-owner-identity.yml]
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  lookup:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 10
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Read service principal object ID from own token
+        shell: bash
+        run: |
+          python - <<'PY'
+          import base64
+          import json
+          import re
+          import subprocess
+          token = subprocess.check_output(
+              ['az', 'account', 'get-access-token', '--resource',
+               'https://service.powerapps.com/', '--query', 'accessToken',
+               '--output', 'tsv'], text=True).strip()
+          value = token.split('.')[1]
+          claims = json.loads(base64.urlsafe_b64decode(
+              value + '=' * (-len(value) % 4)))
+          assert claims.get('tid') == 'a00c92fa-e1db-4aa6-ab28-356c3203353d'
+          assert claims.get('appid', claims.get('azp')) == '1c94f011-c447-4af1-968f-ec564f489395'
+          assert re.fullmatch(r'[0-9a-fA-F-]{36}', claims.get('oid', ''))
+          print(json.dumps({'principal_object_id': claims['oid'],
+                            'client_id': claims.get('appid', claims.get('azp'))}))
+          PY
