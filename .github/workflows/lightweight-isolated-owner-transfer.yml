@@ -1,8 +1,6 @@
 name: Isolated copy owner transfer
 'on':
-  push:
-    branches: [feat/lightweight-v127-20260924]
-    paths: [.github/workflows/lightweight-isolated-owner-transfer.yml]
+  workflow_dispatch: {}
 permissions:
   contents: read
   id-token: write
