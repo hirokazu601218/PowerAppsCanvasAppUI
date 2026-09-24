@@ -1,0 +1,1341 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  scrPayroll:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+      OnVisible: =Set(varUiResultKey,Blank()); If(!IsBlank(UiSelected.StaffNo) && UiRegistered,Set(varUiResultKey,UiTargetKey))
+    Children:
+      - conscrPayrollRoot:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =UiTheme.Background
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+          Children:
+            - conscrPayrollHeader:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =UiTheme.Header
+                  FillPortions: =0
+                  Height: =64
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - lblscrPayrollTitle:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =Color.White
+                        FillPortions: =1
+                        Font: ="Segoe UI"
+                        FontWeight: =FontWeight.Semibold
+                        Height: =56
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =15
+                        Text: ="非常勤給与 ｜ 支給明細画面"
+                        Width: =500
+                  - btnscrPayrollHome:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="ホーム"
+                        Appearance: =ButtonAppearance.Outline
+                        BasePaletteColor: =UiTheme.Primary
+                        BorderColor: =Color.White
+                        Color: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =Navigate(scrHome,ScreenTransition.None)
+                        Size: =14
+                        Text: ="ホーム"
+                        Width: =112
+                  - lblscrPayrollId:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =56
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =10
+                        Text: ="SCR-005"
+                        Width: =92
+            - conPayrollTargets:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =Color.White
+                  FillPortions: =0
+                  Height: =If(Parent.Width<900,108,60)
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  LayoutWrap: =true
+                  PaddingBottom: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - lblPayrollMonth:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: ="支給対象月"
+                        Width: =116
+                  - ddPayrollMonth:
+                      Control: Classic/DropDown@2.3.1
+                      Properties:
+                        AccessibleLabel: ="支給対象月"
+                        BorderColor: =UiTheme.Border
+                        BorderThickness: =1
+                        ChevronBackground: =Color.White
+                        ChevronFill: =UiTheme.Primary
+                        Color: =UiTheme.Text
+                        Default: =Text(UiMonth,"yyyy/mm")
+                        Fill: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =44
+                        Items: =["2026/09","2026/10","2026/11"]
+                        Items.Value: =Value
+                        LayoutMinWidth: =0
+                        OnChange: =Set(varUiMonth,DateValue(Self.Selected.Value & "/01","ja-JP")); Set(varUiResultKey,Blank())
+                        SelectionColor: =UiTheme.Text
+                        SelectionFill: =UiTheme.Selected
+                        Size: =11
+                        Width: =150
+                  - lblPayrollStaff:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        FillPortions: =1
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: =If(IsBlank(UiSelected.StaffNo),"対象職員：未選択",UiSelected.StaffNo & "　" & UiSelected.Name & "　｜　" & UiSelected.Org)
+                        Width: =Max(260,Parent.Width-650)
+                  - btnPayrollSearch:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="職員マスタ検索"
+                        BasePaletteColor: =UiTheme.Primary
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =Navigate(scrStaffMasterSearch,ScreenTransition.None)
+                        Size: =14
+                        Text: ="職員マスタ検索"
+                        Width: =168
+            - lblPayPrototype:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =UiTheme.Primary
+                  Fill: =ColorValue("#EAF4FF")
+                  Font: ="Segoe UI"
+                  LayoutMinWidth: =0
+                  PaddingBottom: =4
+                  PaddingLeft: =24
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  Size: =11
+                  Text: ="画面確認用の仮例｜金額・料率・適用区分は未確定"
+                  Width: =Parent.Width
+            - conPaySummary:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =104
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - conPaySummaryGross:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =Color.White
+                        Height: =104
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =0
+                        Width: =350
+                      Children:
+                        - lblPaySummaryGrossTitle:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =UiTheme.Text
+                              Font: ="Segoe UI"
+                              Height: =32
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =12
+                              Text: ="給与支給総額"
+                              Width: =Parent.Width
+                        - lblPaySummaryGrossValue:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =UiTheme.Text
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Semibold
+                              Height: =58
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =21
+                              Text: =If(UiReady,If(Mod(UiGross,1)=0,Text(UiGross,"#,##0"),"約 " & Text(UiGross,"#,##0.000000")) & " 円","—")
+                              Width: =Parent.Width
+                  - lblPaySummaryGrossOperator:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        Height: =104
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =21
+                        Text: ="−"
+                        Width: =28
+                  - conPaySummaryDeduct:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =Color.White
+                        Height: =104
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =0
+                        Width: =350
+                      Children:
+                        - lblPaySummaryDeductTitle:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =UiTheme.Text
+                              Font: ="Segoe UI"
+                              Height: =32
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =12
+                              Text: ="控除額計"
+                              Width: =Parent.Width
+                        - lblPaySummaryDeductValue:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =UiTheme.Text
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Semibold
+                              Height: =58
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =21
+                              Text: =If(UiReady,If(Mod(UiDeductions,1)=0,Text(UiDeductions,"#,##0"),"約 " & Text(UiDeductions,"#,##0.000000")) & " 円","—")
+                              Width: =Parent.Width
+                  - lblPaySummaryDeductOperator:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        Height: =104
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =21
+                        Text: ="＝"
+                        Width: =28
+                  - conPaySummaryNet:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =ColorValue("#EAF4FF")
+                        Height: =104
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =0
+                        Width: =350
+                      Children:
+                        - lblPaySummaryNetTitle:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =UiTheme.Text
+                              Font: ="Segoe UI"
+                              Height: =32
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =12
+                              Text: ="現金支給額"
+                              Width: =Parent.Width
+                        - lblPaySummaryNetValue:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =UiTheme.Primary
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Semibold
+                              Height: =58
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =24
+                              Text: =If(UiReady,If(Mod(UiNet,1)=0,Text(UiNet,"#,##0"),"約 " & Text(UiNet,"#,##0.000000")) & " 円","—")
+                              Width: =Parent.Width
+            - conPayActions:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =56
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  LayoutWrap: =true
+                  PaddingLeft: =24
+                  PaddingTop: =6
+                  Width: =Parent.Width
+                Children:
+                  - btnPayEarnings:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: =If(Coalesce(varUiEarningsOpen,true),"▼ 支給の内訳","▶ 支給の内訳")
+                        BasePaletteColor: =UiTheme.Primary
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =Set(varUiEarningsOpen,!Coalesce(varUiEarningsOpen,true))
+                        Size: =14
+                        Text: =If(Coalesce(varUiEarningsOpen,true),"▼ 支給の内訳","▶ 支給の内訳")
+                        Width: =190
+                  - btnPayDeductions:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: =If(Coalesce(varUiDeductionsOpen,true),"▼ 控除の内訳","▶ 控除の内訳")
+                        Appearance: =ButtonAppearance.Outline
+                        BasePaletteColor: =UiTheme.Primary
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =Set(varUiDeductionsOpen,!Coalesce(varUiDeductionsOpen,true))
+                        Size: =14
+                        Text: =If(Coalesce(varUiDeductionsOpen,true),"▼ 控除の内訳","▶ 控除の内訳")
+                        Width: =190
+                  - btnPayRecalculate:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="再計算"
+                        BasePaletteColor: =UiTheme.Primary
+                        DisplayMode: =If(IsBlank(UiSelected.StaffNo),DisplayMode.Disabled,DisplayMode.Edit)
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =Set(varUiResultKey,Blank()); If(!IsBlank(UiSelected.StaffNo) && UiRegistered,Set(varUiResultKey,UiTargetKey))
+                        Size: =14
+                        Text: ="再計算"
+                        Width: =136
+            - lblPayState:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =ColorValue("#9F3A00")
+                  Font: ="Segoe UI"
+                  Height: =If(UiReady,0,40)
+                  LayoutMinWidth: =0
+                  PaddingBottom: =4
+                  PaddingLeft: =24
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  Size: =11
+                  Text: =UiStatus
+                  Visible: =!UiReady
+                  Width: =Parent.Width
+            - conPayBody:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =Parent.Height-64-If(Parent.Width<900,108,60)-40-104-56-If(UiReady,0,40)
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =12
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  LayoutOverflowY: =LayoutOverflow.Scroll
+                  PaddingBottom: =20
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  PaddingTop: =12
+                  Width: =Parent.Width
+                Children:
+                  - conPayGrossHeading:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =UiTheme.Band
+                        FillPortions: =0
+                        Height: =48
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =8
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =0
+                        Width: =Parent.Width
+                      Children:
+                        - conPayGrossHeadingTitle:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =UiTheme.Header
+                              FillPortions: =1
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Semibold
+                              Height: =48
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Text: ="給与支給総額の内訳"
+                              Width: =700
+                        - conPayGrossHeadingAmount:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Right
+                              Color: =UiTheme.Primary
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Semibold
+                              Height: =48
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =14
+                              Text: =If(UiReady,If(Mod(UiGross,1)=0,Text(UiGross,"#,##0"),"約 " & Text(UiGross,"#,##0.000000")) & " 円","—")
+                              Width: =230
+                  - conPayEarnings:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =Color.White
+                        FillPortions: =0
+                        Height: =If(Coalesce(varUiEarningsOpen,true),lblPayGrossEquation.Height+48+lblPaySalaryEquation.Height+lblPayFixed.Height+lblPayAbsence.Height+36+48+lblPayCommuteBasis.Height+56,0)
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =0
+                        LayoutOverflowY: =LayoutOverflow.Scroll
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        Visible: =Coalesce(varUiEarningsOpen,true)
+                        Width: =Parent.Width
+                      Children:
+                        - lblPayGrossEquation:
+                            Control: Label@2.5.1
+                            Properties:
+                              AutoHeight: =true
+                              Color: =UiTheme.Text
+                              Fill: =Color.White
+                              Font: ="Segoe UI"
+                              Height: =64
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =12
+                              Text: =If(UiReady,"俸給支給額 " & Text(UiSalary,If(Mod(UiSalary,1)=0,"#,##0","#,##0.000000")) & "円 ＋ 通勤手当 " & Text(UiCommute,"#,##0") & "円 ＝ " & Text(UiGross,If(Mod(UiGross,1)=0,"#,##0","#,##0.000000")) & "円","—")
+                              Width: =Parent.Width
+                        - conPaySalaryHeading:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =UiTheme.Band
+                              FillPortions: =0
+                              Height: =48
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              Width: =Parent.Width
+                            Children:
+                              - conPaySalaryHeadingTitle:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Header
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =48
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Text: ="俸給支給額"
+                                    Width: =700
+                              - conPaySalaryHeadingAmount:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Primary
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =48
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =14
+                                    Text: =If(UiReady,If(Mod(UiSalary,1)=0,Text(UiSalary,"#,##0"),"約 " & Text(UiSalary,"#,##0.000000")) & " 円","—")
+                                    Width: =230
+                        - lblPaySalaryEquation:
+                            Control: Label@2.5.1
+                            Properties:
+                              AutoHeight: =true
+                              Color: =UiTheme.Text
+                              Font: ="Segoe UI"
+                              Height: =56
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =11
+                              Text: =If(UiReady,"固定額 " & Text(UiFixed,"#,##0") & "円 − 欠勤減額 " & Text(UiReduction,If(Mod(UiReduction,1)=0,"#,##0","#,##0.000000")) & "円 ＝ " & Text(UiSalary,If(Mod(UiSalary,1)=0,"#,##0","#,##0.000000")) & "円","—")
+                              Width: =Parent.Width
+                        - lblPayFixed:
+                            Control: Label@2.5.1
+                            Properties:
+                              AutoHeight: =true
+                              Color: =UiTheme.Text
+                              Fill: =Color.White
+                              Font: ="Segoe UI"
+                              Height: =64
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =11
+                              Text: =If(UiReady,"固定額　　　　日額単価 " & Text(UiSelected.DailyRate,"#,##0") & "円　×　勤務日数 " & Text(UiDays) & "日　＝　" & Text(UiFixed,"#,##0") & "円","固定額　—")
+                              Width: =Parent.Width
+                        - lblPayAbsence:
+                            Control: Label@2.5.1
+                            Properties:
+                              AutoHeight: =true
+                              Color: =UiTheme.Text
+                              Fill: =Color.White
+                              Font: ="Segoe UI"
+                              Height: =64
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =11
+                              Text: =If(UiReady,"欠勤減額　　　欠勤時間単価 " & Text(UiSelected.AbsenceHourlyRate,"#,##0") & "円/時　×　" & If(Mod(UiAbsence,3)<>0,"約 ","") & Text(UiAbsence/60,If(Mod(UiAbsence,60)=0,"0","0.######")) & "時間　＝　" & If(Mod(UiAbsence,3)<>0,"約 ","") & Text(UiReduction,If(Mod(UiReduction,1)=0,"#,##0","#,##0.000000")) & "円","欠勤減額　—")
+                              Width: =Parent.Width
+                        - lblPayAbsenceNote:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =UiTheme.Text
+                              Font: ="Segoe UI"
+                              Height: =36
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =10
+                              Text: ="全日欠勤は勤務日数・欠勤減額に含めません"
+                              Width: =Parent.Width
+                        - conPayCommuteHeading:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =UiTheme.Band
+                              FillPortions: =0
+                              Height: =48
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              Width: =Parent.Width
+                            Children:
+                              - conPayCommuteHeadingTitle:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Header
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =48
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Text: ="通勤手当"
+                                    Width: =700
+                              - conPayCommuteHeadingAmount:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Primary
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =48
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =14
+                                    Text: =If(UiReady,If(Mod(UiCommute,1)=0,Text(UiCommute,"#,##0"),"約 " & Text(UiCommute,"#,##0.000000")) & " 円","—")
+                                    Width: =230
+                        - lblPayCommuteBasis:
+                            Control: Label@2.5.1
+                            Properties:
+                              AutoHeight: =true
+                              Color: =UiTheme.Text
+                              Font: ="Segoe UI"
+                              Height: =104
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =11
+                              Text: =If(UiReady,"支給方式：毎月固定　｜　適用期間：2026/04/01 ～ 2027/03/31" & Char(10) & "通勤毎月 " & Text(UiCommute,"#,##0") & "円 → 通勤" & Text(Month(UiMonth)) & "月 " & Text(UiCommute,"#,##0") & "円" & Char(10) & "認定済みの当月支給額を使用（仮例）。","通勤手当の根拠　—")
+                              Width: =Parent.Width
+                  - conPayDeductionHeading:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =UiTheme.Band
+                        FillPortions: =0
+                        Height: =48
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =8
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =0
+                        Width: =Parent.Width
+                      Children:
+                        - conPayDeductionHeadingTitle:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =UiTheme.Header
+                              FillPortions: =1
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Semibold
+                              Height: =48
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Text: ="控除額計の内訳　｜　当給与期間分"
+                              Width: =700
+                        - conPayDeductionHeadingAmount:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Right
+                              Color: =UiTheme.Primary
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Semibold
+                              Height: =48
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =14
+                              Text: =If(UiReady,If(Mod(UiDeductions,1)=0,Text(UiDeductions,"#,##0"),"約 " & Text(UiDeductions,"#,##0.000000")) & " 円","—")
+                              Width: =230
+                  - conPayDeductions:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =Color.White
+                        FillPortions: =0
+                        Height: =If(Coalesce(varUiDeductionsOpen,true),If(Parent.Width<750,1210,698),0)
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =0
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        Visible: =Coalesce(varUiDeductionsOpen,true)
+                        Width: =Parent.Width
+                      Children:
+                        - lblPaySocialHeading:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =UiTheme.Text
+                              Fill: =UiTheme.Band
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Semibold
+                              Height: =44
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =12
+                              Text: ="社会保険関係"
+                              Width: =Parent.Width
+                        - conPayDeduction0:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =Color.White
+                              FillPortions: =0
+                              Height: =If(Parent.Width<750,128,64)
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              LayoutWrap: =true
+                              Width: =Parent.Width
+                            Children:
+                              - lblPayDeductionName0:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: ="共済短期掛金"
+                                    Width: =If(Parent.Width<750,Parent.Width*0.4,260)
+                              - lblPayDeductionBasis0:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =10
+                                    Text: =If(Month(UiMonth)=11,"登録済み0円（仮例）",Index(UiDeductionRows,1).Basis)
+                                    Width: =Max(180,Parent.Width-410)
+                              - lblPayDeductionAmount0:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: =If(UiReady,If(Mod(If(Month(UiMonth)=11,0,Index(UiDeductionRows,1).Amount),1)=0,Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,1).Amount),"#,##0"),"約 " & Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,1).Amount),"#,##0.000000")) & " 円","—")
+                                    Width: =138
+                        - conPayDeduction1:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =Color.White
+                              FillPortions: =0
+                              Height: =If(Parent.Width<750,128,64)
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              LayoutWrap: =true
+                              Width: =Parent.Width
+                            Children:
+                              - lblPayDeductionName1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: ="子ども・子育て支援掛金"
+                                    Width: =If(Parent.Width<750,Parent.Width*0.4,260)
+                              - lblPayDeductionBasis1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =10
+                                    Text: =If(Month(UiMonth)=11,"登録済み0円（仮例）",Index(UiDeductionRows,2).Basis)
+                                    Width: =Max(180,Parent.Width-410)
+                              - lblPayDeductionAmount1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: =If(UiReady,If(Mod(If(Month(UiMonth)=11,0,Index(UiDeductionRows,2).Amount),1)=0,Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,2).Amount),"#,##0"),"約 " & Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,2).Amount),"#,##0.000000")) & " 円","—")
+                                    Width: =138
+                        - conPayDeduction2:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =Color.White
+                              FillPortions: =0
+                              Height: =If(Parent.Width<750,128,64)
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              LayoutWrap: =true
+                              Width: =Parent.Width
+                            Children:
+                              - lblPayDeductionName2:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: ="退職等年金掛金"
+                                    Width: =If(Parent.Width<750,Parent.Width*0.4,260)
+                              - lblPayDeductionBasis2:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =10
+                                    Text: =If(Month(UiMonth)=11,"登録済み0円（仮例）",Index(UiDeductionRows,3).Basis)
+                                    Width: =Max(180,Parent.Width-410)
+                              - lblPayDeductionAmount2:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: =If(UiReady,If(Mod(If(Month(UiMonth)=11,0,Index(UiDeductionRows,3).Amount),1)=0,Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,3).Amount),"#,##0"),"約 " & Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,3).Amount),"#,##0.000000")) & " 円","—")
+                                    Width: =138
+                        - conPayDeduction3:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =Color.White
+                              FillPortions: =0
+                              Height: =If(Parent.Width<750,128,64)
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              LayoutWrap: =true
+                              Width: =Parent.Width
+                            Children:
+                              - lblPayDeductionName3:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: ="厚生年金保険料"
+                                    Width: =If(Parent.Width<750,Parent.Width*0.4,260)
+                              - lblPayDeductionBasis3:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =10
+                                    Text: =If(Month(UiMonth)=11,"登録済み0円（仮例）",Index(UiDeductionRows,4).Basis)
+                                    Width: =Max(180,Parent.Width-410)
+                              - lblPayDeductionAmount3:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: =If(UiReady,If(Mod(If(Month(UiMonth)=11,0,Index(UiDeductionRows,4).Amount),1)=0,Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,4).Amount),"#,##0"),"約 " & Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,4).Amount),"#,##0.000000")) & " 円","—")
+                                    Width: =138
+                        - conPayDeduction4:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =Color.White
+                              FillPortions: =0
+                              Height: =If(Parent.Width<750,128,64)
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              LayoutWrap: =true
+                              Width: =Parent.Width
+                            Children:
+                              - lblPayDeductionName4:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: ="雇用保険料"
+                                    Width: =If(Parent.Width<750,Parent.Width*0.4,260)
+                              - lblPayDeductionBasis4:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =10
+                                    Text: =If(Month(UiMonth)=11,"登録済み0円（仮例）",Index(UiDeductionRows,5).Basis)
+                                    Width: =Max(180,Parent.Width-410)
+                              - lblPayDeductionAmount4:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: =If(UiReady,If(Mod(If(Month(UiMonth)=11,0,Index(UiDeductionRows,5).Amount),1)=0,Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,5).Amount),"#,##0"),"約 " & Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,5).Amount),"#,##0.000000")) & " 円","—")
+                                    Width: =138
+                        - conPaySocialTotal:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =UiTheme.Band
+                              FillPortions: =0
+                              Height: =48
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              Width: =Parent.Width
+                            Children:
+                              - conPaySocialTotalTitle:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Header
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =48
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Text: ="社会保険料計"
+                                    Width: =700
+                              - conPaySocialTotalAmount:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Primary
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =48
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =14
+                                    Text: =If(UiReady,If(Mod(UiSocial,1)=0,Text(UiSocial,"#,##0"),"約 " & Text(UiSocial,"#,##0.000000")) & " 円","—")
+                                    Width: =230
+                        - lblPayTaxHeading:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =UiTheme.Text
+                              Fill: =UiTheme.Band
+                              Font: ="Segoe UI"
+                              FontWeight: =FontWeight.Semibold
+                              Height: =44
+                              LayoutMinWidth: =0
+                              PaddingBottom: =4
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =4
+                              Size: =12
+                              Text: ="税・その他"
+                              Width: =Parent.Width
+                        - conPayDeduction5:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =Color.White
+                              FillPortions: =0
+                              Height: =If(Parent.Width<750,128,64)
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              LayoutWrap: =true
+                              Width: =Parent.Width
+                            Children:
+                              - lblPayDeductionName5:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: ="所得税"
+                                    Width: =If(Parent.Width<750,Parent.Width*0.4,260)
+                              - lblPayDeductionBasis5:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =10
+                                    Text: =If(Month(UiMonth)=11,"登録済み0円（仮例）",Index(UiDeductionRows,6).Basis)
+                                    Width: =Max(180,Parent.Width-410)
+                              - lblPayDeductionAmount5:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: =If(UiReady,If(Mod(If(Month(UiMonth)=11,0,Index(UiDeductionRows,6).Amount),1)=0,Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,6).Amount),"#,##0"),"約 " & Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,6).Amount),"#,##0.000000")) & " 円","—")
+                                    Width: =138
+                        - conPayDeduction6:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =Color.White
+                              FillPortions: =0
+                              Height: =If(Parent.Width<750,128,64)
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              LayoutWrap: =true
+                              Width: =Parent.Width
+                            Children:
+                              - lblPayDeductionName6:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: ="住民税"
+                                    Width: =If(Parent.Width<750,Parent.Width*0.4,260)
+                              - lblPayDeductionBasis6:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =10
+                                    Text: =If(Month(UiMonth)=11,"登録済み0円（仮例）",Index(UiDeductionRows,7).Basis)
+                                    Width: =Max(180,Parent.Width-410)
+                              - lblPayDeductionAmount6:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: =If(UiReady,If(Mod(If(Month(UiMonth)=11,0,Index(UiDeductionRows,7).Amount),1)=0,Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,7).Amount),"#,##0"),"約 " & Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,7).Amount),"#,##0.000000")) & " 円","—")
+                                    Width: =138
+                        - conPayDeduction7:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =Color.White
+                              FillPortions: =0
+                              Height: =If(Parent.Width<750,128,64)
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =0
+                              LayoutMinWidth: =0
+                              LayoutWrap: =true
+                              Width: =Parent.Width
+                            Children:
+                              - lblPayDeductionName7:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: ="貯金預入"
+                                    Width: =If(Parent.Width<750,Parent.Width*0.4,260)
+                              - lblPayDeductionBasis7:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Color: =UiTheme.Text
+                                    FillPortions: =1
+                                    Font: ="Segoe UI"
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =10
+                                    Text: =If(Month(UiMonth)=11,"登録済み0円（仮例）",Index(UiDeductionRows,8).Basis)
+                                    Width: =Max(180,Parent.Width-410)
+                              - lblPayDeductionAmount7:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Right
+                                    Color: =UiTheme.Text
+                                    Font: ="Segoe UI"
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =64
+                                    LayoutMinWidth: =0
+                                    PaddingBottom: =4
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    PaddingTop: =4
+                                    Size: =11
+                                    Text: =If(UiReady,If(Mod(If(Month(UiMonth)=11,0,Index(UiDeductionRows,8).Amount),1)=0,Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,8).Amount),"#,##0"),"約 " & Text(If(Month(UiMonth)=11,0,Index(UiDeductionRows,8).Amount),"#,##0.000000")) & " 円","—")
+                                    Width: =138
