@@ -277,6 +277,8 @@ def acceptance():
 
 
 try:
+    bridge.require(CFG.get('deployment_profile','legacy') == 'legacy',
+                   'Legacy baseline retired: use the lightweight transaction and its pinned published baseline')
     bridge.require(REQUEST.get('approved') is True,'request not approved')
     bridge.require(MANIFEST['target']==CFG['target'],'manifest target mismatch')
     bridge.require(os.environ.get('POWER_PLATFORM_TEST_ENVIRONMENT_URL')==CFG['target']['dataverse_url'],
