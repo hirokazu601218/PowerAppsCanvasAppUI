@@ -1,0 +1,221 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  scrMaintenance:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+      OnVisible: =If(!UiIsAdmin,Notify("この画面は管理者のみ利用できます",NotificationType.Warning))
+    Children:
+      - conscrMaintenanceRoot:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =UiTheme.Background
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+          Children:
+            - conscrMaintenanceHeader:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =UiTheme.Header
+                  FillPortions: =0
+                  Height: =64
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - lblscrMaintenanceTitle:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =Color.White
+                        FillPortions: =1
+                        Font: ="Segoe UI"
+                        FontWeight: =FontWeight.Semibold
+                        Height: =56
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =15
+                        Text: ="非常勤給与 ｜ メンテナンス画面"
+                        Width: =500
+                  - btnscrMaintenanceHome:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="ホーム"
+                        Appearance: =ButtonAppearance.Outline
+                        BasePaletteColor: =UiTheme.Primary
+                        BorderColor: =Color.White
+                        Color: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =Navigate(scrHome,ScreenTransition.None)
+                        Size: =14
+                        Text: ="ホーム"
+                        Width: =112
+                  - lblscrMaintenanceId:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =56
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =10
+                        Text: ="SCR-006"
+                        Width: =92
+            - lblMaintenanceNote:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =UiTheme.Primary
+                  Font: ="Segoe UI"
+                  Height: =56
+                  LayoutMinWidth: =0
+                  PaddingBottom: =4
+                  PaddingLeft: =24
+                  PaddingRight: =12
+                  PaddingTop: =4
+                  Size: =11
+                  Text: ="管理者用 ｜ UI検討用のメンテナンス画面"
+                  Width: =Parent.Width
+            - conMaintenanceBody:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =Parent.Height-120
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =8
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  PaddingLeft: =24
+                  PaddingRight: =24
+                  PaddingTop: =16
+                  Visible: =UiIsAdmin
+                  Width: =Parent.Width
+                Children:
+                  - lblMaintenanceAccess:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Fill: =UiTheme.Band
+                        Font: ="Segoe UI"
+                        FontWeight: =FontWeight.Semibold
+                        Height: =52
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: =If(UiIsAdmin,"確認用所属：" & UiDepartment & " ／ 管理者","この画面は管理者のみ利用できます")
+                        Width: =Parent.Width
+                  - lblMaintenanceData:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        FontWeight: =FontWeight.Semibold
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Text: ="内蔵テストデータ"
+                        Width: =Parent.Width
+                  - lblMaintenanceHelp:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        Height: =56
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: ="登録した仮の勤務時間・支給率と選択状態を初期状態に戻します。"
+                        Width: =Parent.Width
+                  - btnMaintenanceReset:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AccessibleLabel: ="仮入力を初期化"
+                        BasePaletteColor: =UiTheme.Primary
+                        DisplayMode: =If(UiIsAdmin,DisplayMode.Edit,DisplayMode.Disabled)
+                        Font: ="Segoe UI"
+                        Height: =44
+                        LayoutMinWidth: =0
+                        OnSelect: =If(UiIsAdmin,Set(varUiAbsenceMinutes,60); Set(varUiRegistrationVersion,UiVersion+1); Set(varUiBonusK,Blank()); Set(varUiBonusD,Blank()); Set(varUiStaffNo,Blank()); Set(varStaff111,Blank()); Set(varStaffChosen111,false); Set(varUiResultKey,Blank()); Notify("仮入力を初期化しました",NotificationType.Success))
+                        Size: =14
+                        Text: ="仮入力を初期化"
+                        Width: =220
+                  - lblMaintenanceVersion:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        Height: =52
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =4
+                        Size: =11
+                        Text: ="UI試作 v1.26　／　画面要件定義書 v0.6"
+                        Width: =Parent.Width
+                  - lblUiFixture124:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =UiTheme.Text
+                        Font: ="Segoe UI"
+                        Height: =36
+                        LayoutMinWidth: =0
+                        Size: =12
+                        Text: ="画面確認用データ（アプリ内のみ）"
+                        Width: =Parent.Width-32
+                  - ddUiFixture124:
+                      Control: Classic/DropDown@2.3.1
+                      Properties:
+                        AccessibleLabel: ="画面確認用データ"
+                        BorderColor: =UiTheme.Border
+                        ChevronBackground: =Color.White
+                        ChevronFill: =UiTheme.Primary
+                        Color: =UiTheme.Text
+                        Default: =UiFixtureMode
+                        DisplayMode: =If(UiIsAdmin,DisplayMode.Edit,DisplayMode.Disabled)
+                        Fill: =Color.White
+                        Font: ="Segoe UI"
+                        Height: =44
+                        Items: =["通常データ","0件","1件","20件","21件","40件","長文・負数"]
+                        Items.Value: =Value
+                        LayoutMinWidth: =0
+                        OnChange: =Set(varUiFixtureMode,Self.Selected.Value); Set(varResultsReady111,false); Set(varStaffChosen111,false); Set(varStaff111,Blank()); Set(varPage111,1); Set(varReport111,""); Set(varPayroll111,false); Set(varLedgerOpen111,false); Set(varUiResultKey,Blank()); Reset(txtKeyword111); Reset(ddOrg111); Reset(ddStatus111)
+                        SelectionColor: =UiTheme.Text
+                        SelectionFill: =UiTheme.Selected
+                        Size: =12
+                        Width: =260
