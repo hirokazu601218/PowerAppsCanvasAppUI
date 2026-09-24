@@ -1,6 +1,7 @@
 """Import an unchanged package into the isolated copy and verify export readback."""
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -59,9 +60,13 @@ def export(name):
 try:
     bridge.require(APP_ID != CFG['target']['app_id'], 'stable app cannot be an isolated target')
     env = CFG['target']['dataverse_url']
-    command(['pac', 'auth', 'create', '--name', 'isolated-import', '--githubFederated',
-             '--tenant', CFG['tenant_id'], '--applicationId', CFG['client_id'],
-             '--environment', env], 'auth', 120)
+    try:
+        command(['pac', 'auth', 'create', '--name', 'isolated-import', '--githubFederated',
+                 '--tenant', CFG['tenant_id'], '--applicationId', CFG['client_id'],
+                 '--environment', env], 'auth', 120)
+    except subprocess.CalledProcessError:
+        diagnostic = re.sub(r'https?://\\S+', '[URL]', (OUT / 'auth.log').read_text()[-1200:])
+        raise RuntimeError('PAC auth failed: ' + diagnostic)
     backup, before = export('before')
     candidate = OUT / 'unchanged.zip'
     command(['pac', 'solution', 'pack', '--folder', str(OUT / 'before'),
