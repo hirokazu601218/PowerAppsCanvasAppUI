@@ -19,6 +19,8 @@ test('lightweight published UI: initial fetch, search, selection, tabs and respo
  await expect(app.getByText(/職員一覧\s*7件/)).toBeVisible();
  await app.getByRole('button',{name:'試験 同姓同名 009900000011 詳細を表示',exact:true}).click();
  await expect(app.getByText(/職員番号：009900000011/)).toBeVisible();
+ await app.getByRole('button',{name:'勤務条件',exact:true}).click();
+ await expect(app.getByText('W-11-CURRENT',{exact:true}).first()).toBeVisible();
  const initialTime=await app.getByText(/取得日時：/).innerText();
  for(const [tab,value] of [['勤務条件','W-11-CURRENT'],['社会保険','S-11-2026'],['税固定控除','T-11-2026'],['通勤','TK-910004']]){
   await app.getByRole('button',{name:tab,exact:true}).click();
