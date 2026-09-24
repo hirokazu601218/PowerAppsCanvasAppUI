@@ -755,7 +755,7 @@ Screens:
                       BorderThickness: =1
                       DropShadow: =DropShadow.None
                       Fill: =ColorValue("#FFFFFF")
-                      Height: =If(Coalesce(varLargeText111,false),104,96)
+                      Height: =Max(96,lblPersonSub111.Y+lblPersonSub111.Height+8)
                       RadiusBottomLeft: =0
                       RadiusBottomRight: =0
                       RadiusTopLeft: =0
@@ -787,9 +787,10 @@ Screens:
                             )
                             )
                           Tooltip: =Self.Text
-                          Width: =Max(80,Min(Parent.Width-432,Len(Substitute(Self.Text," ",""))*Self.Size*4/3+(Len(Self.Text)-Len(Substitute(Self.Text," ","")))*Self.Size*2/3+Self.PaddingLeft+Self.PaddingRight))
+                          Width: =Max(80,Parent.Width-128)
                           X: =16
                           Y: =8
+                          AutoHeight: =true
                     - lblPersonSub111:
                         Control: Label@2.5.1
                         Properties:
@@ -813,7 +814,8 @@ Screens:
                           Tooltip: =Self.Text
                           Width: =Parent.Width-32
                           X: =16
-                          Y: =52
+                          Y: =Max(lblName111.Y+lblName111.Height,lblBadge111.Y+lblBadge111.Height)+4
+                          AutoHeight: =true
                     - lblBadge111:
                         Control: Label@2.5.1
                         Properties:
@@ -838,7 +840,7 @@ Screens:
                             )
                           Tooltip: =Self.Text
                           Width: =80
-                          X: =lblName111.X+lblName111.Width+8
+                          X: =Parent.Width-96
                           Y: =lblName111.Y+(lblName111.Height-Self.Height)/2
                 - galDetailTabs111:
                     Control: Gallery@2.15.0
@@ -934,7 +936,7 @@ Screens:
                         Properties:
                           Text: =If(ThisItem.IsBlankValue,"",ThisItem.DisplayText)
                           X: =12
-                          Y: =56
+                          Y: =lblDetailKey111.Y+lblDetailKey111.Height+4
                           Width: =Parent.TemplateWidth-24
                           Height: =100
                           Size: =If(Coalesce(varLargeText111,false),12,10.5)
@@ -1018,9 +1020,9 @@ Screens:
                           Width: =200
                           Height: =44
                           OnChange: |-
-                            =If(IsBlank(dpPayrollStart111.SelectedDate)||IsBlank(dpPayrollEnd111.SelectedDate),Notify("表示開始月と終了月を選択してください。",NotificationType.Error),
+                            =If(IsBlank(dpPayrollStart111.SelectedDate)||IsBlank(dpPayrollEnd111.SelectedDate),Notify("表示開始月と終了月を選択してください。",NotificationType.Error);Reset(dpPayrollStart111);Reset(dpPayrollEnd111),
                             With({startMonth:Date(Year(dpPayrollStart111.SelectedDate),Month(dpPayrollStart111.SelectedDate),1),endMonth:Date(Year(dpPayrollEnd111.SelectedDate),Month(dpPayrollEnd111.SelectedDate),1)},
-                            If(startMonth>endMonth,Notify("表示開始月は終了月以前を選択してください。",NotificationType.Error),
+                            If(startMonth>endMonth,Notify("表示開始月は終了月以前を選択してください。",NotificationType.Error);Reset(dpPayrollStart111);Reset(dpPayrollEnd111),
                             Set(varPayrollStart111,startMonth); Set(varPayrollEnd111,endMonth); Clear(colPayrollSource111); Clear(colPayrollColumns111); Clear(colPayrollExceptions111); Set(varPayrollCellTitle111,Blank());Set(varPayrollCellText111,Blank()); Set(varPayrollFetched111,Blank()); Set(varFetched111,Blank()); Set(varFetchError111,Blank());
                             If(!IsBlank(StaffSelected.StaffId),IfError(
                              ClearCollect(colPayrollSource111,Filter('T_基準給与簿_STUDIO',crb3c_staffnumber=StaffSelected.StaffId));
@@ -1048,9 +1050,9 @@ Screens:
                           Width: =200
                           Height: =44
                           OnChange: |-
-                            =If(IsBlank(dpPayrollStart111.SelectedDate)||IsBlank(dpPayrollEnd111.SelectedDate),Notify("表示開始月と終了月を選択してください。",NotificationType.Error),
+                            =If(IsBlank(dpPayrollStart111.SelectedDate)||IsBlank(dpPayrollEnd111.SelectedDate),Notify("表示開始月と終了月を選択してください。",NotificationType.Error);Reset(dpPayrollStart111);Reset(dpPayrollEnd111),
                             With({startMonth:Date(Year(dpPayrollStart111.SelectedDate),Month(dpPayrollStart111.SelectedDate),1),endMonth:Date(Year(dpPayrollEnd111.SelectedDate),Month(dpPayrollEnd111.SelectedDate),1)},
-                            If(startMonth>endMonth,Notify("表示開始月は終了月以前を選択してください。",NotificationType.Error),
+                            If(startMonth>endMonth,Notify("表示開始月は終了月以前を選択してください。",NotificationType.Error);Reset(dpPayrollStart111);Reset(dpPayrollEnd111),
                             Set(varPayrollStart111,startMonth); Set(varPayrollEnd111,endMonth); Clear(colPayrollSource111); Clear(colPayrollColumns111); Clear(colPayrollExceptions111); Set(varPayrollCellTitle111,Blank());Set(varPayrollCellText111,Blank()); Set(varPayrollFetched111,Blank()); Set(varFetched111,Blank()); Set(varFetchError111,Blank());
                             If(!IsBlank(StaffSelected.StaffId),IfError(
                              ClearCollect(colPayrollSource111,Filter('T_基準給与簿_STUDIO',crb3c_staffnumber=StaffSelected.StaffId));
