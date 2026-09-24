@@ -1,0 +1,1 @@
+2026-09-24 isolated solution read-only export and pack qualification
