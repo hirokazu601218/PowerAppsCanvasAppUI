@@ -160,9 +160,8 @@ def main():
             bridge.require(bool(changes) and isinstance(request.get('issue'), int) and request['issue'] > 0,
                            'release requires explicit changes and an issue')
         bridge.require(os.environ.get('MS_AUTH_EMAIL') == cfg['test_user'], 'dedicated authenticated user required')
-        delta = subprocess.check_output(['git', 'diff', cfg['bootstrap_good_commit'], 'HEAD',
-                                         '--', 'powerapps/solution-src'], cwd=root, text=True)
-        bridge.require(not delta, 'unapproved solution component or connection change')
+        solution_tree = subprocess.check_output(['git', 'rev-parse', 'HEAD:powerapps/solution-src'], cwd=root, text=True).strip()
+        bridge.require(solution_tree == expected['solution_tree_sha'], 'unapproved solution component or connection change')
         stage = 'auth'
         command(['pac', 'auth', 'create', '--name', 'lightweight-transaction', '--githubFederated',
                  '--tenant', cfg['tenant_id'], '--applicationId', cfg['client_id'],
