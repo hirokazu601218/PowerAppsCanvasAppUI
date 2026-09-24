@@ -154,6 +154,8 @@ def main():
                 cwd=test_root, env=env, timeout=300)
 
     try:
+        bridge.require(expected.get('deployment_enabled') is True,
+                       'deployment suspended: solution runtime metadata must be qualified on an isolated copy first')
         bridge.require(request.get('approved') is True and request.get('mode') in ('qualify', 'release'), 'request not approved')
         changes = request.get('changes')
         bridge.require(isinstance(changes, list) and len(changes) <= 100, 'invalid property changes')
