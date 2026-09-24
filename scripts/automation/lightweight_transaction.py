@@ -5,6 +5,7 @@ published baseline, preserves a package for rollback, and supports only explicit
 existing-property changes. It never treats YAML as a general compiler input.
 """
 import copy
+from datetime import datetime
 import hashlib
 import json
 import os
@@ -59,6 +60,16 @@ def verify_baseline(archive, expected, cfg):
     bridge.require(runtime_hashes(archive) == expected['runtime_hashes'], 'published compiled rule drift')
     bridge.require('Src/scrStaffMasterSearch.pa.yaml' in archive and 'Src/Screen1.pa.yaml' not in archive,
                    'legacy structure is not a lightweight baseline')
+
+
+def published_without_newer_draft(props):
+    """Studio save and publish are different timestamps; reject a later draft."""
+    try:
+        draft = datetime.fromisoformat(props['lastDraftVersion'].replace('Z', '+00:00'))
+        published = datetime.fromisoformat(props['lastPublishTime'].replace('Z', '+00:00'))
+        return props.get('status') == 'Ready' and draft.tzinfo is not None and published.tzinfo is not None and published >= draft
+    except (KeyError, TypeError, ValueError, AttributeError):
+        return False
 
 
 def main():
@@ -121,7 +132,7 @@ def main():
         api(True)
         for _ in range(18):
             props = api()['properties']
-            if props.get('status') == 'Ready' and props.get('lastDraftVersion') == props.get('lastPublishTime'):
+            if published_without_newer_draft(props):
                 return {k: props.get(k) for k in ('status', 'lastDraftVersion', 'lastPublishTime')}
             time.sleep(5)
         raise RuntimeError('publish did not reach matching Ready state')
@@ -163,7 +174,7 @@ def main():
         result['baseline_sha256'] = sha(original.read_bytes())
         before = api()['properties']
         result['before'] = {k: before.get(k) for k in ('status', 'lastDraftVersion', 'lastPublishTime')}
-        bridge.require(before.get('lastDraftVersion') == before.get('lastPublishTime'), 'unpublished draft must not be overwritten')
+        bridge.require(published_without_newer_draft(before), 'unpublished draft must not be overwritten')
         stage = 'build'
         work = out / 'bridge-input'
         (work / 'config/apps').mkdir(parents=True)
