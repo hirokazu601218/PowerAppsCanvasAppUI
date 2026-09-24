@@ -1,11 +1,43 @@
-# 現在の作業と読取り対象：軽量版の編集用実装から安定版公開（所有者接続待ち）
+# 現在の作業と読取り対象：軽量版 v1.27 公開・自動配布受入（2026-09-24）
 
-- ユーザーは工程3～6の一気通貫実行を指示。実装・公開は未実施。
-- [今回の事前確認・停止理由・再開位置](../implementation/lightweight-20260924-preflight.md)を読む。自動承認審査がテスト用アカウントのサインアウトを拒否。所有者へ切り替える操作の明示承認待ち。既存セッションを迂回しない。
-- 次は所有者接続、現行版読戻し・復元元確認、削除前台帳確定から再開。過去816/657部品の台帳を最新編集用アプリの状態と同一視しない。
-- 追加依存：正式HTMLは元テーブル参照、編集用は隔離GUID。接続先を揃えた編集用帳票の検証と安定版移送時の参照先照合が必要。
-- 読取り対象は下記確定仕様、上記事前確認、現行Studioの対象ソース、`docs/operations/control-diff-policy.md`、`docs/operations/staff-master-unattended-runbook.md`、正式HTML版1.01のreport.js、隔離fixture生成処理。
-- Issue #51：欠勤時間単価の実テーブル反映は未実施。職員基本元テーブル編集時に確認する。
+- 今回の60分中断ルールはユーザーが解除済み。編集版と安定版へ軽量版を実装し、Studioで保存・公開。
+- 編集版の独立P0・追加E2Eは[35977771483](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35977771483)合格。安定版は08:58:24 UTCに公開、[35978425244](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35978425244)で全7ソース一致。全244部品の実行式も保存版と一致。
+- SCR-002は657→69部品、全6画面816→228。給与163項目・同月3レコード489セル不一致0。動的な年月範囲、未登録月の列なし、同月正常行はGUID別列。期間逆転・年跨ぎ・空範囲・0件検索・履歴0件を確認。
+- 一時fixture削除済み、元3テーブルのハッシュ不変。元安定版v54と軽量版の復旧コピーを保全。所在はLibrary資料索引。
+- 改訂自動化の最終受領記録はREADMEの軽量版基準欄とlightweight-v1.27注釈タグ。全7ゲートと現在公開の照合後だけmainへ昇格・タグ作成する。旧標準フローv1.14と区別し、旧transactionによる旧構造の再配布はconfigガードで拒否。
+- 自動化修復履歴：最初の2runは初期版とのSolution比較で配布前停止。run 35979100217はmetadataのファイル名推定でpack前停止。どちらもtouched=false。現行mainテンプレートのtree固定と実在する唯一のmeta.xml選択へ修正し、最終候補で再検証する。
+- 未実施：200%ブラウザー拡大、実端末、業務受入。既存警告240/10、保存UI無効、Issue #51の欠勤時間単価の元テーブル反映、HTML版業務精査を完了扱いにしない。
+- 読取り対象：[軽量版記録](../../src/staff-master/candidates/lightweight-v1.27/README.md)、[改訂自動化](../operations/lightweight-automation.md)、PR #73、lightweight-transaction/finalize、現行powerapps/canvas-v3/Src、下記確定仕様。以下は過去時点の履歴。
+
+---
+
+# 現在の作業と読取り対象：軽量版 v1.27 最終検証中（2026-09-24）
+
+- 今回は最新ユーザー指示により60分中断ルールを適用しない。
+- 編集用STUDIO_EDITへSCR-002軽量版69部品（旧657）、6タブ・2列詳細・履歴・動的給与列を実装し公開済み。最終公開成功表示は2026-09-24 08:21:42 UTC。数式エラー0。
+- 同月3レコードをGUID別列で表示し、全163項目・489セルを独立した定義/fixtureと照合、不一致0。0/負数/空欄/229文字全文/日付例外/空範囲/職員切替を確認。
+- 一時給与fixture3件は[cleanup run 35970056691](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35970056691)で削除・残存0。元3テーブルの全行ハッシュ不変。
+- 安定版にも移植し下書き保存済み、数式エラー0。**安定版はまだ未公開、ライブv54を維持**。最終保存コピーSHA256 a4da3c8bc2f7af8c01f8cf8e66ee6d2c804e973ebbf08179449899a0d4b1e67e。対象外4画面は改名参照以外同一。
+- 編集版最終保存コピーSHA256 1f949ab36826064138031ba44b82a33a14be75ad43b3db829cd7f8a4810b2559。両版69部品・氏名自動高・詳細値Y式・不正月Resetを保存ソース/実行ルールで確認。
+- [専用ユーザーUI run 35974756981](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35974756981)：初回はメール入力空欄の認証画面で停止。2回目は認証成功しUI試験中。未完了を合格扱いしない。
+- [readback run 35973025970](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35973025970)はOIDC/PACで安定版公開パッケージ取得成功。ただし取得物は旧公開Screen1であり、軽量版下書きの検証成功ではない。
+- [PR #73](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/73)に最新修正・自動化候補を保存。改訂配布経路・安定版公開後読戻し・受入の残件があり、main昇格/成功タグは未実施。
+- 読取り対象：PR #73の候補とREADME、lightweight-studio/readback/uiワークフロー、下記確定仕様、staff-master-unattended-runbook.md。旧transactionを実行すると旧構造を配布するため実行しない。
+- Issue #51の欠勤時間単価は元テーブル未反映の別残件。以下は過去時点の履歴。
+
+---
+
+# 現在の作業と読取り対象：軽量版の実装候補（未完成・編集用は復元済み）
+
+- 所有者接続は最新ユーザー承認後に解消。接続承認待ちではない。
+- [作業候補PR #73](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/73)に動的給与表14部品、163項目定義、取得式、試験と残件を保存。draft、main昇格不可。
+- Studioで和暦支給日の1列表示と金額/0/空欄、開始月変更による範囲外列の非表示を確認。同月複数行・全163値・例外日付・横移動・全画面回帰は未試験。
+- Monacoへのfill()が既存式との連結を起こす問題、貼付後の位置/高さの数値化を確認。次回はMeta+a→クリップボード貼付→読戻し完全一致で適用。候補コードをそのまま完成版としない。
+- 追加部品とOnVisibleを取り除き、Screen1全文読戻しがバックアップの全Properties/Childrenと構造完全一致。復元保存済み、App checker数式問題0。通常ホームへ復帰。安定版・公開版・Dataverse変更なし、背景実行なし。
+- 現行.msappと全6画面はローカル保全。環境接続情報を含むパッケージは公開GitHubへ送らない。
+- 最新ユーザー指示により今回の60分中断ルールは適用しない。工程1成功、工程2から再開中。6タブ/共通詳細/給与部品統合・HTML隔離参照・自動化改訂、結合/回帰、安定版反映・公開後確認まで継続する。公開済みとは扱わない。
+- 読取り対象：PR #73のREADMEと候補、下記確定仕様、control-diff-policy.md、staff-master-unattended-runbook.md、正式HTML版1.01、最新Studioソース。
+- Issue #51：欠勤時間単価の元テーブル反映は未実施。元テーブル編集時に確認する。
 
 ---
 

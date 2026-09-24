@@ -1,10 +1,22 @@
 # PowerAppsCanvasAppUI
 
-## 最新のUI試作公開（2026-09-18）
+## 軽量版 v1.27（2026-09-24）
+
+編集用・安定版アプリへ反映し公開しました。検索画面は657→69部品、全画面は816→228部品です。6タブ・共通2列詳細・履歴選択を維持し、給与163項目は選択した開始月～終了月にある登録レコードだけを表示します。未登録月の空列は作らず、同月の複数レコードはGUID別の列で表示します。
+
+[現行ソース](powerapps/canvas-v3/Src/)／[実装・試験記録](src/staff-master/candidates/lightweight-v1.27/README.md)／[改訂自動化](docs/operations/lightweight-automation.md)。旧Canvas/PDF/PoCの入口を削除し、正式HTML認定簿を利用します。
+
+<!-- lightweight-release:start -->
+安定版のStudio公開と全ソース・実行式の読戻しは確認済み。改訂配布経路の検証済み基準は、全7ゲートを通過した候補だけを以下の最終化処理で確定します。
+<!-- lightweight-release:end -->
+
+以下のv1.22以前の説明と旧標準フローのv1.14タグは履歴です。
+
+## 過去のUI試作公開（2026-09-18）
 
 **v1.22：ホーム・勤務時間報告・期末勤勉支給率・支給明細・メンテナンスの5画面を追加**し、既存職員検索と連携しました。[公開記録・利用範囲](docs/releases/2026-09-18-screens-v1.22.md)、[ソース](src/screen-ui/v1.22/README.md)、[検証結果](docs/testing/screens-v1.22-results.md)。下記の同じアプリURLで確認できます。UI検討用の仮計算・仮権限であり、標準自動受入完了版への昇格ではありません。以下のv1.21以前の説明は履歴です。
 
-## 最新の公開記録（2026-09-17）
+## 過去の公開記録（2026-09-17）
 
 修正1～5とPDF／Download比較ボタンを公開済みです。[変更内容・検証結果・最新YAML](docs/releases/2026-09-17-ui-pdf-comparison.md)を参照してください。職員情報入りPDFの直接保存は未解決です。以下のv1.19記述と旧配布パッケージは過去の基準です。
 
@@ -13,7 +25,7 @@
 
 非常勤職員マスタ検索・通勤手当認定簿のキャンバスアプリ。GitHubのmainをChatGPT SolのWorkで扱う共有正本とする。
 
-現在のテスト公開版は **v1.19（基準給与簿のDataverse切替）** です。職員基本25名・通勤6件・給与7件をDataverseから参照します。給与の内蔵データを削除し、一覧・詳細・主要15項目の出力を統一しました。勤務・保険・税控除は従来の内蔵テストを継続します。公開後照合で「最新データを読込」の給与Refresh追加1式が未反映と判明し、ブラウザー自動承認レビューの拒否により補正待ちです。専用テストユーザーの自動受入10件とローカル検査50件は合格。[確認結果・残件](docs/testing/payroll-v1.19-results.md)。
+過去のテスト公開版 **v1.19（基準給与簿のDataverse切替）** です。職員基本25名・通勤6件・給与7件をDataverseから参照します。給与の内蔵データを削除し、一覧・詳細・主要15項目の出力を統一しました。勤務・保険・税控除は従来の内蔵テストを継続します。公開後照合で「最新データを読込」の給与Refresh追加1式が未反映と判明し、ブラウザー自動承認レビューの拒否により補正待ちです。専用テストユーザーの自動受入10件とローカル検査50件は合格。[確認結果・残件](docs/testing/payroll-v1.19-results.md)。
 
 <!-- staff-master-release:start -->
 標準自動受入の最終完了版：**[v1.14](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/tree/v1.14)**（隔離テストアプリ）。追加テスト・既存P0・公開後の読戻し照合が合格しています。
@@ -52,8 +64,9 @@
 
 ## 自動テストアプリの現行ソース
 
-- [公開由来のCanvasソース](powerapps/canvas-v3/Src/Screen1.pa.yaml)
-- [累積変更マニフェスト](automation/change.json)、[対象環境・App ID](config/apps/staff-master.json)
+- [公開由来のCanvasソース](powerapps/canvas-v3/Src/scrStaffMasterSearch.pa.yaml)
+- [軽量版固定ハッシュ](automation/lightweight-expected.json)、[軽量版配布要求](automation/lightweight-transaction.json)、[対象環境・App ID](config/apps/staff-master.json)
+- [旧構造の累積マニフェスト（再配布禁止）](automation/change.json)
 - [無人修正・テスト公開の運用手順](docs/operations/staff-master-unattended-runbook.md)
 - [デザイン基準](docs/design/design-system.md)、[テスト仕様書](docs/testing/test-specification.md)
 - [現行Dataverse・履歴・配置・P0回帰](e2e/hybrid/)、[旧版回復用P0](e2e/staff-master-p0.test.ts)
@@ -98,4 +111,4 @@ v1.12以降は変更した部品・プロパティだけを配布する。部品
 
 同じ画面の旧版は新版確認後にGit履歴へ集約し、ZIPや一時ファイルは格納しない。資料版は本文で管理、コード版は0.01刻みとする。
 
-自動化基盤の単体検査：`python -m unittest discover -s tests/automation -v`。旧v1.11の静的検査：`python tests/validate_v111.py`。公開アプリの合否はActionsの読戻し・追加E2E・P0で判断し、ローカル検査だけで実機合格とはしません。
+軽量版の検査：`python -m unittest discover -s tests/automation -p test_lightweight_guard.py -v`。旧構成の全58試験は改訂ワークフロー内の固定旧コミットで維持する。旧v1.11の静的検査：`python tests/validate_v111.py`。公開アプリの合否はActionsの読戻し・追加E2E・P0で判断し、ローカル検査だけで実機合格とはしません。

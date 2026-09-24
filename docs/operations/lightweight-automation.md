@@ -27,3 +27,11 @@ automation/lightweight-transaction.jsonのmode=qualifyは変更0件の実配布�
 Actionsのresult.jsonに対象、候補commit、公開時刻、各ゲート、パッケージSHA、復元結果を記録する。パッケージ・画面・ログは14日保持。認証失敗画面のみ1日保持し、認証状態や資格情報はartifactへ追加しない。
 
 資格認定の実行前はこの文書の処理を実証済みとは扱わない。今回はStudioによる構造移行と、自動配布経路の実証を別々に記録する。200%表示、実端末、業務受入や旧版の未解決事項を、自動P0合格へ読み替えない。
+
+## 軽量版基準の最終化
+
+旧フローのv1.14成功タグと復元方式を上書きしない。構造移行後は別名前空間lightweight-v1.27を使用する。lightweight-finalizeはmainへのPR mergeの第2親とtree一致を検査し、その候補の最新qualification run・固定対象・全7ゲート・実パッケージSHA・全ソース/実行式・現在の公開時刻を照合する。変更のないqualificationだけを対象にする。
+
+READMEだけを更新した専用コミットを作り、差分がREADMEのみであることを再検査する。注釈タグに候補/main/READMEコミット、run、公開時刻、全ゲート、パッケージSHA、全固定ハッシュを永続記録する。Workが生成済みREADMEブランチを文書PRでmainへ統合して完了する。旧schema 2やv1.14の成功に読み替えない。最終化はアプリを再配布しない。
+
+Solutionテンプレートはmainと同一のtree a81f1a891b8668112e76a9f38d6e69a60c8e088aへ固定。未公開下書き判定はUTCの保存時刻が公開時刻より新しいかで検査し、時刻欠落・不正値・Ready以外は拒否する。
