@@ -259,5 +259,19 @@
     "App": "ebf3f672efb26d51d266ca5a04ff9735c9ce8981e3995aa15dd43240899929f0",
     "Host": "5c28f7151bc1a751864610f7b487a46d2333e46ac8ae95feca7baf65f7062b29"
   },
-  "solution_tree_sha": "a81f1a891b8668112e76a9f38d6e69a60c8e088a"
+  "solution_tree_sha": "a81f1a891b8668112e76a9f38d6e69a60c8e088a",
+  "required_database_sources": {
+    "M_職員基本": {
+      "logicalName": "crb3c_staffbasic",
+      "entitySetName": "crb3c_staffbasics"
+    },
+    "T_通勤": {
+      "logicalName": "crb3c_commute",
+      "entitySetName": "crb3c_commutes"
+    },
+    "T_基準給与簿": {
+      "logicalName": "crb3c_payrollledger",
+      "entitySetName": "crb3c_payrollledgers"
+    }
+  }
 }
