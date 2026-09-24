@@ -36,7 +36,7 @@ props(sidebar,X=0,Y=72,Width='If(Coalesce(varSearchSidebarExpanded111,true),Min(
 sp('conLeftSurface111',Width='Parent.Width-24')
 sp('lblSidebarTitle111',Visible='Coalesce(varSearchSidebarExpanded111,true)',Width='Parent.Width-52')
 sp('btnSidebarToggle111',OnSelect='Set(varSearchSidebarExpanded111,!Coalesce(varSearchSidebarExpanded111,true))')
-sp('txtKeyword111',Placeholder='"職員を検索"',Y=28,Width='Parent.Width',Type='TextInputType.Search')
+sp('txtKeyword111',Placeholder='"🔍 職員を検索"',Y=28,Width='Parent.Width',Type='TextInputType.Search')
 sp('lblOrg111',X=0,Y=80,Width='Parent.Width');sp('ddOrg111',X=0,Y=108,Width='Parent.Width')
 sp('lblStatus111',X=0,Y=160,Width='Parent.Width');sp('ddStatus111',X=0,Y=188,Width='Parent.Width')
 sp('btnSearch111',X=0,Y=240,Width='(Parent.Width-8)/2')
@@ -45,11 +45,11 @@ sp('lblListTitle111',Y=292);sp('btnPrev111',Y=332);sp('btnNext111',Y=332);sp('lb
 sp('galStaff111',Y=384,TemplateSize='If(Coalesce(varLargeText111,false),92,84)',OnSelect='Set(varStaff111,ThisItem); Set(varStaffChosen111,true); Select(btnLoadDetails111)')
 sp('btnPrev111',DisplayMode='If(Coalesce(varPage111,1)<=1,DisplayMode.Disabled,DisplayMode.Edit)')
 sp('btnNext111',DisplayMode='If(Coalesce(varPage111,1)*20>=If(Coalesce(varResultsReady111,false),CountRows(colResult111),CountRows(StaffBasicView)),DisplayMode.Disabled,DisplayMode.Edit)')
-sp('galStaff111',Height='Max(1,CountRows(Self.AllItems))*Self.TemplateHeight')
+sp('galStaff111',Height='With({c:If(Coalesce(varResultsReady111,false),CountRows(colResult111),CountRows(StaffBasicView)),p:Coalesce(varPage111,1)},Max(1,Min(20,Max(0,c-(p-1)*20)))*Self.TemplateHeight)')
 # Name above staff number; employment state above department abbreviation.
 sp('lblListC1111',X=10,Y=8,Width='Parent.TemplateWidth-104',Height=34,Wrap='true')
 sp('lblListC0111',Text='ThisItem.StaffId',X=10,Y=44,Width='Parent.TemplateWidth-104',Height=28,Visible='true')
-sp('lblListC3111',X='Parent.TemplateWidth-94',Y=8,Width=90,Height=30)
+sp('lblListC3111',Color='Switch(ThisItem.Status,"在籍",ColorValue("#107C41"),"退職",ColorValue("#A4262C"),"採用前",ColorValue("#725600"),ColorValue("#242424"))',X='Parent.TemplateWidth-94',Y=8,Width=90,Height=30)
 sp('lblListC2111',X='Parent.TemplateWidth-94',Y=44,Width=90,Height=28)
 sp('lblSelectedMarker111',Visible='false')
 sp('btnRow111',Text='ThisItem.Name & " " & ThisItem.StaffId & " 詳細を表示"',X=0,Y=0,Width='Parent.TemplateWidth',Height='Parent.TemplateHeight')
@@ -89,7 +89,7 @@ fx=re.sub(r'StaffLedgerFields = .*?\nStaffPayrollHistory =', 'StaffPayrollHistor
 # Named formulas operate on cached records. The only Dataverse reads are behavior properties.
 fx=fx.replace("CountIf('M_職員基本_STUDIO', true)", 'CountRows(colStaffSource111)')
 fx=fx.replace("Filter('M_職員基本_STUDIO',crb3c_orgshort=UiDepartment)", 'colStaffSource111')
-fx=fx.replace('StaffTestCount <= 100','StaffTestCount <= 2000')
+fx=fx.replace('StaffTestCount <= 100','StaffTestCount < 500')
 fx=re.sub(r'StaffCommuteHistory = .*?;\n','StaffCommuteHistory = colCommute111;\n',fx,flags=re.S)
 fx=re.sub(r'StaffPayrollHistory = .*?;\n','StaffPayrollHistory = colPayrollSource111;\n',fx,flags=re.S)
 fx=fx.replace('UiMonth = Coalesce(varUiMonth,Date(2026,9,1));','UiMonth = Coalesce(varUiMonth,Date(Year(Today()),Month(Today()),1));')
@@ -129,7 +129,7 @@ for c in nav:
 actions=pay.group('conStaffActions111',{'Width':'Parent.Width','Height':'RoundUp(7/Max(1,RoundDown(Self.Width/148,0)),0)*52','LayoutDirection':'LayoutDirection.Horizontal','LayoutWrap':'true','LayoutGap':8,'LayoutAlignItems':'LayoutAlignItems.Start'},nav,True)
 
 payroot=copy.deepcopy(pay.root)
-props(payroot,Y='galDetailTabs111.Y+galDetailTabs111.Height+8',Width='Parent.Width',Height=800,Visible='varStaffDetailTab111="Payroll" && !IsBlank(StaffSelected.StaffId)')
+props(payroot,Y='galDetailTabs111.Y+galDetailTabs111.Height+8',Width='Parent.Width',Height='Max(800,lblPayrollFullText111.Y+lblPayrollFullText111.Height+16)',Visible='varStaffDetailTab111="Payroll" && !IsBlank(StaffSelected.StaffId)')
 # Explicit stable relative dimensions, then verify all formulas after paste.
 pnode=payroot['conPayrollLight111']
 for c in pnode['Children']:
@@ -140,6 +140,14 @@ for c in pnode['Children']:
   grid=v['Children'][0]['conPayrollGrid111'];grid['Properties']['Height']='=616'
   for k in grid['Children']:
    if 'galPayrollRows111' in k:k['galPayrollRows111']['Properties']['Height']='=536'
+fulltext=props(label('lblPayrollFullText111','If(IsBlank(varPayrollCellTitle111),"セルを選択すると、ここに全文を表示します。",varPayrollCellTitle111 & Char(10) & Coalesce(varPayrollCellText111,"（空欄）"))',0,'conPayrollScroll111.Y+conPayrollScroll111.Height+8','Parent.Width',60),AutoHeight='true')
+pnode['Children'].append(fulltext)
+def cellprops(xs):
+ for c in xs:
+  for n,v in c.items():
+   if n=='lblPayrollCell111':v['Properties'].update({'OnSelect':'=Set(varPayrollCellTitle111,row.Label & " / " & Text(ThisItem.PaymentDate,"yyyy/mm/dd") & " / " & ThisItem.RecordId);Set(varPayrollCellText111,Self.Text)','TabIndex':'=0','Tooltip':'="選択すると表の下に全文を表示します"'})
+   cellprops(v.get('Children',[]))
+cellprops([payroot])
 nohistory=props(label('lblHistoryEmpty111','If(IsBlank(StaffSelected.StaffId),"職員を選択してください", "登録されている履歴はありません")',0,'galDetailTabs111.Y+galDetailTabs111.Height+8'),Visible='IsBlank(StaffSelected.StaffId) || (varStaffDetailTab111 in ["Work","Commute","Social","Tax"] && IsEmpty(Filter(colHistory111,Section=varStaffDetailTab111)))')
 htmlbtn=props(button('btnCertificate111','認定簿表示','If(varHistoryStaff111=StaffSelected.StaffId && !IsBlank(varHistoryId111) && !IsBlank(LookUp(colCommute111,Text(crb3c_studiocommuteid)=varHistoryId111 && 職員基本.職員番号=StaffSelected.StaffId)),Launch(varCommuteReportBase111 & "?id=" & EncodeUrl(varHistoryId111),{},LaunchTarget.New),Notify("通勤認定レコードを選び直してください。",NotificationType.Error))',x='Max(0,Parent.Width-150)',y='galDetailTabs111.Y+galDetailTabs111.Height+4',w=150),Visible='varStaffDetailTab111="Commute"',DisplayMode='If(IsBlank(varHistoryId111)||IsBlank(varCommuteReportBase111),DisplayMode.Disabled,DisplayMode.Edit)')
 body=pay.group('conRightSurface111',{'Width':'Parent.Width-16','Height':'Max(conStaffActions111.Height+100,If(varStaffDetailTab111="Payroll",conPayrollLight111.Y+conPayrollLight111.Height,galDetailFields111.Y+galDetailFields111.Height))+24','LayoutMinHeight':'Self.Height','FillPortions':0,'AlignInContainer':'AlignInContainer.Start'},[actions,summary,tabs,history,detailgal,nohistory,htmlbtn,payroot])
@@ -151,7 +159,7 @@ historybuild='''ClearCollect(colHistory111,
  ForAll(colTax111 As p,{Section:"Tax",RecordId:p.RecordId,Title:p.RecordId,Period:Text(p.Start,"yyyy/mm/dd") & " ～ " & If(p.End=Date(2099,3,31),"",Text(p.End,"yyyy/mm/dd")),State:If(p.Start>Today(),"予定",p.End<Today(),"過去","現行")}),
  ForAll(colCommute111 As p,{Section:"Commute",RecordId:Text(p.crb3c_studiocommuteid),Title:p.crb3c_recognitionid & " / " & p.crb3c_method,Period:Text(p.crb3c_startdate,"yyyy/mm/dd") & " ～ " & Text(p.crb3c_enddate,"yyyy/mm/dd"),State:If(p.crb3c_startdate>Today(),"予定",!IsBlank(p.crb3c_enddate)&&p.crb3c_enddate<Today(),"過去","現行")}));
 Set(varHistoryId111,First(Filter(colHistory111,Section=varStaffDetailTab111)).RecordId);'''
-fetch='''Set(varFetched111,Blank()); Set(varFetchError111,Blank()); Set(varHistoryId111,Blank()); Set(varHistoryStaff111,StaffSelected.StaffId);
+fetch='''Set(varFetched111,Blank()); Set(varFetchError111,Blank()); Set(varHistoryId111,Blank()); Set(varPayrollCellTitle111,Blank());Set(varPayrollCellText111,Blank()); Set(varHistoryStaff111,StaffSelected.StaffId);
 Clear(colCommute111);Clear(colWork111);Clear(colSocial111);Clear(colTax111);Clear(colHistory111);Clear(colPayrollSource111);Clear(colPayrollColumns111);Clear(colPayrollExceptions111);
 Set(varStaffSource111,LookUp(colStaffSource111,crb3c_staffnumber=StaffSelected.StaffId));
 If(!IsBlank(StaffSelected.StaffId),IfError(
@@ -160,17 +168,19 @@ If(!IsBlank(StaffSelected.StaffId),IfError(
  ClearCollect(colSocial111,Filter(StaffSocialHistory,StaffId=StaffSelected.StaffId));
  ClearCollect(colTax111,Filter(StaffTaxHistory,StaffId=StaffSelected.StaffId));
  ClearCollect(colPayrollSource111,Filter('T_基準給与簿_STUDIO',crb3c_staffnumber=StaffSelected.StaffId));
+ If(CountRows(colCommute111)>=500 || CountRows(colPayrollSource111)>=500,Error({Kind:ErrorKind.Validation,Message:"詳細の取得上限に達しました"}));
  '''+historybuild+pay.build+'''
  Set(varFetched111,Now()),
- Clear(colCommute111);Clear(colHistory111);Clear(colPayrollSource111);Clear(colPayrollColumns111);Clear(colPayrollExceptions111);Set(varHistoryId111,Blank());Set(varFetchError111,"詳細データを取得できませんでした");Notify(varFetchError111,NotificationType.Error)),Set(varFetched111,Now()));'''
+ Clear(colCommute111);Clear(colWork111);Clear(colSocial111);Clear(colTax111);Clear(colHistory111);Clear(colPayrollSource111);Clear(colPayrollColumns111);Clear(colPayrollExceptions111);Set(varHistoryId111,Blank());Set(varFetchError111,"詳細データを取得できませんでした：" & FirstError.Message);Notify(varFetchError111,NotificationType.Error)),Set(varFetched111,Now()));'''
 fetchbtn=props(button('btnLoadDetails111','',fetch),Visible='false')
 root=pay.group('conStaffMaster111',{'X':'Parent.Width*4/64','Y':'Parent.Height*2/30','Width':'Parent.Width*56/64','Height':'Parent.Height*26/30'},[header,sidebar,right,fetchbtn])
 onvisible='''Set(varCommuteReportBase111,"");Set(varStaffDetailTab111,Coalesce(varStaffDetailTab111,"Basic"));
 Set(varPayrollStart111,Coalesce(varPayrollStart111,Date(Year(Today()),1,1)));Set(varPayrollEnd111,Coalesce(varPayrollEnd111,Date(Year(Today()),12,1)));
 Set(varFetched111,Blank());Set(varFetchError111,Blank());Set(varStaffChosen111,true);
 IfError(Refresh('M_職員基本_STUDIO');Refresh('T_通勤_STUDIO');Refresh('T_基準給与簿_STUDIO');ClearCollect(colStaffSource111,Filter('M_職員基本_STUDIO',crb3c_orgshort=UiDepartment));
+If(CountRows(colStaffSource111)>=500,Error({Kind:ErrorKind.Validation,Message:"職員の取得上限に達しました"}));
 Set(varStaff111,Coalesce(LookUp(StaffBasicView,StaffId=varStaff111.StaffId),First(StaffBasicView)));Set(varResultsReady111,false);Select(btnLoadDetails111),
-Clear(colStaffSource111);Set(varStaff111,Blank());Select(btnLoadDetails111);Set(varFetchError111,"職員データを取得できませんでした");Set(varFetched111,Blank()));'''
+Clear(colStaffSource111);Set(varStaff111,Blank());Select(btnLoadDetails111);Set(varFetchError111,"職員データを取得できませんでした：" & FirstError.Message);Set(varFetched111,Blank()));'''
 (OUT/'Screen.OnVisible.fx').write_text(onvisible)
 screen={'Screens':{'scrStaffMasterSearch':{'Properties':dict(src['Screens']['Screen1']['Properties'],OnVisible='='+onvisible),'Children':[root]}}}
 def dump(p,v):(OUT/p).write_text(yaml.dump(v,Dumper=pay.Dumper,allow_unicode=True,sort_keys=False,width=100000))
