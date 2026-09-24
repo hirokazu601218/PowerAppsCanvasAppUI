@@ -33,7 +33,7 @@ test('lightweight published UI: initial fetch, search, selection, tabs and respo
  const expectedPayrollGuid=url.includes('204a48dc-7f23-43dd-b934-4654a3cfa306')?'4114e036-1b88-5e36-bd25-b32a64b2965e':'69142286-20d0-5ffe-b458-7d3810c6bc1f';
  const payrollHead=app.getByText('2026/04/23 / 5',{exact:false});
  await expect(payrollHead).toBeVisible();
- await expect(payrollHead).toHaveText('2026/04/23 / 5 '+expectedPayrollGuid);
+ await expect(payrollHead).toHaveText('2026/04/23 / 5 '+expectedPayrollGuid,{useInnerText:true});
  await expect(app.getByRole('textbox',{name:'表示開始月',exact:true})).toHaveValue(new Date().getFullYear()+'/01');
  await app.getByRole('button',{name:'基本情報',exact:true}).click();
  for(const width of [900,1100,1366,1600,1920]){
