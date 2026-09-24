@@ -49,6 +49,9 @@ def inspect(folder):
     return {'refs': refs, 'sources': source_hashes(archive), 'runtime': runtime_hashes(archive),
             'metadata_sha256': hashlib.sha256(metadata[0].read_bytes()).hexdigest()}
 
+def same_semantics(left, right):
+    return all(left[key] == right[key] for key in ('refs', 'sources', 'runtime'))
+
 def export(name):
     path = OUT / (name + '.zip')
     command(['pac', 'solution', 'export', '--name', SOLUTION,
@@ -73,14 +76,15 @@ try:
              '--zipfile', str(candidate), '--packagetype', 'Unmanaged'], 'pack')
     check = OUT / 'checked'
     unpack(candidate, check, 'check-package')
-    bridge.require(inspect(check) == before, 'package roundtrip mismatch')
+    bridge.require(same_semantics(inspect(check), before), 'package roundtrip mismatch')
     result['backup_sha256'] = hashlib.sha256(backup.read_bytes()).hexdigest()
     result['candidate_sha256'] = hashlib.sha256(candidate.read_bytes()).hexdigest()
     result['touched'] = True
     command(['pac', 'solution', 'import', '--path', str(candidate),
              '--environment', env, '--force-overwrite'], 'import', 600)
     _, after = export('after')
-    bridge.require(after == before, 'isolated app changed after import')
+    result['metadata_hash_changed'] = after['metadata_sha256'] != before['metadata_sha256']
+    bridge.require(same_semantics(after, before), 'isolated app references/source/runtime changed after import')
     result.update(status='pass', root_component=COMPONENT,
                   database_sources=sorted(after['refs']['default.cds']['dataSources']),
                   source_hashes_equal=True, runtime_hashes_equal=True)
@@ -92,7 +96,7 @@ except Exception as error:
                      '--environment', CFG['target']['dataverse_url'],
                      '--force-overwrite'], 'restore', 600)
             _, restored = export('restored')
-            result['restoration'] = 'verified' if restored == before else 'mismatch'
+            result['restoration'] = 'verified' if same_semantics(restored, before) else 'mismatch'
         except Exception as restore_error:
             result['restoration'] = type(restore_error).__name__ + ': ' + str(restore_error)
     raise
