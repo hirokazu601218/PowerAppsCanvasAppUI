@@ -575,7 +575,7 @@ Screens:
                             )
                             )
                           Width: =Parent.Width
-                          Y: =256
+                          Y: =galStaff111.Y
             - lblSidebarTitle111:
                 Control: Label@2.5.1
                 Properties:
