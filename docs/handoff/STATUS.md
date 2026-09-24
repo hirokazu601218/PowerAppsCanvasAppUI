@@ -3,11 +3,11 @@
 - 編集コピー `自動開発_職員マスタ検索_STUDIO_EDIT`（App ID `204a48dc-7f23-43dd-b934-4654a3cfa306`）は開発環境 `StaffMaster-Automation-Test` で保存・公開済み。画面の3データ接続は `crb3c_studiostaffbasic` / `crb3c_studiocommute` / `crb3c_studiopayrollledger` に切替済み。Studio App checkerの数式問題0件、プレビューで職員・通勤・給与を確認。
 - 編集用3テーブルの合成fixtureは25／6／7件。専用ユーザー `powerapps-test@govaca.onmicrosoft.com` には既存の `StaffMaster Test Reader` ロールで編集用3テーブルのCRUD/Append/AppendToを付与。元3テーブルの作成・更新・削除権限なし。[権限検証run](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35858002859)。
 - [代理実行CRUD検証run](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35930141288) で、専用ユーザーの実効権限として隔離テーブルへ合成行を作成・更新・削除し読戻し済み。これはDataverse APIの `MSCRMCallerID` による検証であり、専用アカウントのブラウザでのアプリ操作試験とは区別する。既存の `009900009999` 行の作成者は専用ユーザーと一致しなかったため、前回の画面操作を作成成功の根拠にしない。
-- 専用ユーザーはMicrosoft個人アカウント管理ページで `Power Apps 自動テスト` としてサインイン済み。ただし同じクラウドブラウザのPower Apps Makerは所有者 `山下 浩和` のセッションを表示した。専用ユーザーによるMaker画面CRUDは未実施。Makerの所有者サインアウトは自動承認審査で「専用ユーザーへの切替操作ではなく、現セッションを終了する」として拒否されたため、実行していない。代理実行APIの合格を画面操作の合格に読み替えない。次は所有者セッション終了の明示許可を得てから専用ユーザーをMakerで選び直し、隔離テーブルで合成行の作成・更新・削除と後片付けを行う。
+- 2026-09-24、ユーザーの明示承認を受けてMakerの所有者セッションをサインアウトし、新規タブで専用ユーザー `Power Apps 自動テスト` と開発環境 `StaffMaster-Automation-Test` の `M_職員基本_STUDIO` を画面確認。新しい行の操作で入力用の空行が表示されたが、案内ダイアログを閉じるブラウザ操作が応答せず、値の入力・保存・更新・削除は未実施。既存fixtureへの変更は観測していないが、最終件数の再読戻しは未実施。代理実行APIの合格を画面操作の合格に読み替えない。再開時はまず隔離テーブルの件数・試験番号の不在を確認し、専用アカウント画面で合成行の作成・更新・削除と後片付けを行う。
 - 元の安定版アプリと元3テーブルは無変更。元件数25／6／7件をCRUD検証runで確認。編集コピーの安定版への反映は実施していない。
 - [後片付けrun](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35930232601) で作業中の合成行 `009900009999` と未割当て試作ロール `StaffMaster Studio CRUD` を削除し、不在を読戻し確認。編集用のfixture25／6／7件を維持。
 - `pac canvas download` によるサービスプリンシパルの保存パッケージ取得は[run 35854544372](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35854544372)で「No canvas apps in the selected environment」となり未成立。失敗するワークフローは削除し、保存版の読戻し合格を主張しない。再構築時はアプリへのサービスプリンシパルアクセスとライセンス要件を別途判断する。
-- 読取り対象：`scripts/automation/studio_edit_{schema,fixtures,access,cleanup,dataverse}.py`、`.github/workflows/studio-edit-dataverse.yml`、`automation/studio-edit-run.json`、関連Actionsログ。今回の作業期限は2026-09-23 23:33 UTC。職員基本**元テーブル**を編集する次回はIssue #51を確認。
+- 読取り対象：`scripts/automation/studio_edit_{schema,fixtures,access,cleanup,dataverse}.py`、`.github/workflows/studio-edit-dataverse.yml`、`automation/studio-edit-run.json`、関連Actionsログ。このWorkの次回再開時は60分制限を新たに起算する。職員基本**元テーブル**を編集する次回はIssue #51を確認。
 
 ---
 
