@@ -19,6 +19,11 @@ try:
  with (out/'pac.log').open('w') as log:
   subprocess.run(['pac','auth','create','--name','lightweight-readback','--githubFederated','--tenant',cfg['tenant_id'],'--applicationId',cfg['client_id'],'--environment',cfg['target']['dataverse_url']],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=120)
   subprocess.run(['pac','canvas','download','--name',cfg['target']['app_id'],'--file-name',str(out/'baseline.msapp'),'--environment',cfg['target']['dataverse_url'],'--overwrite'],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=180)
+ with (out/'solution-export.log').open('w') as log:
+  subprocess.run(['pac','solution','export','--name','StaffMasterAutomation','--path',str(out/'stable-solution.zip'),'--overwrite'],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=300)
+  subprocess.run(['pac','solution','unpack','--zipfile',str(out/'stable-solution.zip'),'--folder',str(out/'solution'),'--packagetype','Unmanaged'],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=180)
+ result['database_reference_keys']=list(p.get('databaseReferences',{}))
+ result['connection_reference_keys']=list(p.get('connectionReferences',{}))
  data=(out/'baseline.msapp').read_bytes()
  result['sha256']=hashlib.sha256(data).hexdigest()
  with zipfile.ZipFile(out/'baseline.msapp') as z:
