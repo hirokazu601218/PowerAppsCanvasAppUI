@@ -56,6 +56,7 @@
 | サブ分類 | ドキュメント | タイトル | 対象アプリ | 概要 |
 |---|---|---|---|---|
 | Work運用 | [docs/operations/work-policy.md](operations/work-policy.md) | Work運用方針 | 共通 | ChatGPT Sol Workでの役割、実装手順、確認条件、検証方法を定めた運用正本。 |
+| 画面変更の配布 | [docs/operations/three-app-release-flow.md](operations/three-app-release-flow.md) | 3アプリ運用・画面確認後の自動配布フロー | 自動テスト専用 | 編集用でのユーザー確認、配布検証、安定版反映、公開後照合の順序と停止条件。 |
 | 差分管理 | [docs/operations/control-diff-policy.md](operations/control-diff-policy.md) | YAML差分配布方針 | 共通 | コントロール単位のYAML差分を安全に配布・適用する方針。 |
 | 差分管理 | [src/staff-master/patches/README.md](../src/staff-master/patches/README.md) | 差分YAML案内 | 共通 | 差分YAMLの格納方法、適用単位、安全上の注意。 |
 | 基準版比較 | [docs/operations/templates/powerapps-baseline-diff-template.md](operations/templates/powerapps-baseline-diff-template.md) | 基準版差分記録テンプレート | 共通 | 公開アプリ由来の基準版とGitHub版の差分を記録する様式。 |
