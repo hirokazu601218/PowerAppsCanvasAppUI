@@ -159,6 +159,5 @@ except Exception as error:
             result["restoration"] = type(restore_error).__name__ + ": " + str(restore_error)
     raise
 finally:
-    (OUT / "result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "
-")
+    (OUT / "result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(result, ensure_ascii=False), flush=True)
