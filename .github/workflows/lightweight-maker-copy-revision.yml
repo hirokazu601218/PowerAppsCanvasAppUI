@@ -1,8 +1,5 @@
 name: Lightweight maker copy GitHub revision
 'on':
-  push:
-    branches: [feat/lightweight-v127-20260924]
-    paths: [automation/lightweight-maker-copy-revision-request.txt]
   workflow_dispatch: {}
 permissions:
   contents: read
@@ -12,6 +9,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   revise:
+    # Solution import made the isolated app live immediately. Hold all further imports.
+    if: false
     runs-on: ubuntu-latest
     environment: powerapps-test
     timeout-minutes: 35
