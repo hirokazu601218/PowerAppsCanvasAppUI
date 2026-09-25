@@ -1,0 +1,1 @@
+2026-09-25 read only stable solution scope inventory, no import
