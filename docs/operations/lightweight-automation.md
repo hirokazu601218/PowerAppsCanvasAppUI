@@ -2,6 +2,14 @@
 
 対象は既存の自動テスト専用アプリ。旧版のテスト・成功タグを削除または緩和しない。
 
+## 2026-09-25 停止・復旧の実証と安定版への適用境界
+
+[隔離アプリの安全試験 run 36083472923](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36083472923)で次を実行した。誤った対象アプリIDは認証より前に、誤った変更前の値はimportより前に停止し、いずれも `touched=false`。成功済みの隔離版から1ラベルだけを一時変更してimportし、候補のサーバー読戻し後に意図的な不一致を発生させた。自動復旧でバックアップを再importし、3参照・全ソース・全実行定義がバックアップと一致した（`restoration=verified`）。Playerの「最新版へ更新」後、元の `【GitHub配布試験】` を確認。復旧は履歴上の同じ版番号を戻すものではなく、元の**内容**を再公開する。importが即ライブになった観測から、一時版が利用者に見える時間はゼロと保証できない。
+
+事前ゲートは対象ID・変更前値と指定差分・必要な参照・パッケージ範囲の**機械的な照合**に絞る。取り込み後は全ソース・実行定義・参照とPlayerを照合する。同じ内容の人手審査を前後に重ねない。復旧確認に使った専用ワークフローは証跡取得後に `if: false` で停止。元の改訂ワークフローも停止したまま。
+
+[安定版の読取り専用run 36083565028](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36083565028)では `StaffMasterAutomation` のRootComponentは10件（Canvas type 300が1、type 1が6、type 61が3）。Canvasメタデータには必要な3参照を確認したが、隔離版の「Canvas 1件だけ」のimport対象ガードはこのSolutionには適用できない。安定版v61 Live／v62未公開、配布ガードは未設定のまま。安定版へは一度もimportしていない。安定版の自動配布は、アプリ1件だけの専用Solutionに切り分けて新たに検証するか、現行10件を含む配布範囲の安全性を個別に実証するまで有効化しない。
+
 ## 2026-09-25 GitHub改訂から隔離アプリのライブ反映
 
 同じ検証環境の別アプリ `DEPLOYPROBE_AUTOPUBLISH_20260924` だけを非管理ソリューション `DEPLOYPROBE_AUTOPUBLISH_SOLUTION_20260925` に登録した。RootComponentは当該Canvasアプリ1件。
