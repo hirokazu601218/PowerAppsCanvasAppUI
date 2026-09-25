@@ -1,7 +1,9 @@
 """Import one GitHub-reviewed property change into the maker-owned isolated copy.
 
 The active app, its data references, and every runtime rule are read back.
-The observed solution import made this isolated app live immediately, even without a separate\nPublish action. The workflow is disabled pending a pre-import release gate.\nFailure attempts to restore the exported backup.
+The observed solution import made this isolated app live immediately, even without a separate
+Publish action. The workflow is disabled pending a pre-import release gate.
+Failure attempts to restore the exported backup.
 """
 import copy
 import hashlib
@@ -157,5 +159,6 @@ except Exception as error:
             result["restoration"] = type(restore_error).__name__ + ": " + str(restore_error)
     raise
 finally:
-    (OUT / "result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    (OUT / "result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "
+")
     print(json.dumps(result, ensure_ascii=False), flush=True)
