@@ -1,121 +1,13 @@
-name: Isolated copy owner transfer
+name: Isolated copy owner transfer (disabled)
 'on':
   workflow_dispatch: {}
 permissions:
   contents: read
-  id-token: write
-concurrency:
-  group: staff-master-isolated-environment
-  cancel-in-progress: false
 jobs:
-  transfer:
+  unsupported:
     runs-on: ubuntu-latest
-    environment: powerapps-test
-    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v5
-      - uses: azure/login@v2
-        with:
-          client-id: 1c94f011-c447-4af1-968f-ec564f489395
-          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
-          allow-no-subscriptions: true
-      - name: Verify exact copy and transfer owner once
-        shell: bash
+      - name: Explain unsupported service principal owner
         run: |
-          python - <<'PY'
-          import base64
-          import json
-          import re
-          import subprocess
-          import urllib.error
-          import urllib.request
-          from pathlib import Path
-
-          env = '68e00049-b7e5-eda6-9888-9a3cc493c5be'
-          app = 'c5dece33-b799-43be-a55b-3344c83979d9'
-          client = '1c94f011-c447-4af1-968f-ec564f489395'
-          tenant = 'a00c92fa-e1db-4aa6-ab28-356c3203353d'
-          folder = Path('artifacts/isolated-owner-transfer')
-          folder.mkdir(parents=True, exist_ok=True)
-          result = {'app_id': app, 'environment_id': env,
-                    'status': 'blocked', 'touched': False}
-          endpoint = (f'https://api.powerapps.com/providers/Microsoft.PowerApps/scopes/admin/'
-                      f'environments/{env}/apps/{app}')
-          token = subprocess.check_output(
-              ['az', 'account', 'get-access-token', '--resource',
-               'https://service.powerapps.com/', '--query', 'accessToken',
-               '--output', 'tsv'], text=True).strip()
-          try:
-              encoded = token.split('.')[1]
-              claims = json.loads(base64.urlsafe_b64decode(
-                  encoded + '=' * (-len(encoded) % 4)))
-              owner_id = claims.get('oid')
-              if (claims.get('tid') != tenant
-                      or claims.get('appid', claims.get('azp')) != client
-                      or not isinstance(owner_id, str)
-                      or not re.fullmatch(r'[0-9a-fA-F-]{36}', owner_id)):
-                  result['reason'] = 'deployment identity mismatch'
-                  raise SystemExit(2)
-
-              def call(url, body=None):
-                  req = urllib.request.Request(
-                      url, data=body, method='POST' if body is not None else 'GET',
-                      headers={'Authorization': 'Bearer ' + token,
-                               'Content-Type': 'application/json'})
-                  with urllib.request.urlopen(req, timeout=60) as response:
-                      raw = response.read()
-                      return response.status, json.loads(raw) if raw else {}
-
-              try:
-                  _, before = call(endpoint + '?api-version=2016-11-01')
-              except urllib.error.HTTPError as error:
-                  result.update(reason='admin preflight denied', http_status=error.code)
-                  raise SystemExit(3)
-              properties = before.get('properties') or {}
-              current_owner = properties.get('owner') or {}
-              if (before.get('name') != app
-                      or properties.get('displayName') != 'DEPLOYPROBE_AUTOPUBLISH_20260924'
-                      or current_owner.get('displayName') != '山下 浩和'
-                      or current_owner.get('id') == owner_id):
-                  result['reason'] = 'copy or human owner preflight mismatch'
-                  raise SystemExit(4)
-              result['preflight'] = 'exact_copy_and_human_owner'
-
-              payload = json.dumps({
-                  'newAppOwner': owner_id,
-                  'roleForOldAppOwner': 'CanView'
-              }).encode('utf-8')
-              try:
-                  status, _ = call(endpoint + '/modifyAppOwner?api-version=2016-11-01', payload)
-                  result.update(status='accepted_pending_readback', touched=True,
-                                http_status=status)
-              except urllib.error.HTTPError as error:
-                  result.update(reason='admin owner transfer rejected',
-                                http_status=error.code)
-                  raise SystemExit(5)
-
-              try:
-                  _, after = call(endpoint + '?api-version=2016-11-01')
-                  actual = ((after.get('properties') or {}).get('owner') or {}).get('id')
-                  if actual != owner_id:
-                      result.update(status='unknown_after_post',
-                                    reason='new owner not confirmed by readback')
-                      raise SystemExit(6)
-                  result['status'] = 'pass'
-              except urllib.error.HTTPError as error:
-                  result.update(status='unknown_after_post',
-                                reason='post-transfer readback denied',
-                                readback_http_status=error.code)
-                  raise SystemExit(7)
-          finally:
-              (folder / 'result.json').write_text(
-                  json.dumps(result, ensure_ascii=False, indent=2) + '\n')
-              print(json.dumps(result, ensure_ascii=False))
-          PY
-      - name: Preserve narrow result
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: isolated-owner-transfer-${{ github.run_id }}
-          path: artifacts/isolated-owner-transfer/result.json
-          retention-days: 14
+          echo "::error::Disabled: Power Apps rejected the service principal as canvas app owner on 2026-09-25 (principal type ServicePrincipal; required User). No ownership mutation was attempted by this workflow."
+          exit 1
