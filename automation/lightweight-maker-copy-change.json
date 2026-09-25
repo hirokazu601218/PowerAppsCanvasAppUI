@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "approved": true,
+  "issue": 73,
+  "solution": "DEPLOYPROBE_AUTOPUBLISH_SOLUTION_20260925",
+  "component": "cra05_deployprobeautopublish20260924_d98b1",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "dataverse_url": "https://orge762dd9e.crm7.dynamics.com/",
+    "app_id": "c5dece33-b799-43be-a55b-3344c83979d9"
+  },
+  "baseline_msapp_sha256": "98e2eecf2feeba4298d82fe28366175cc197e65cee0ce1244e0227bd7abd47c8",
+  "changes": [
+    {
+      "source": "Src/scrHome.pa.yaml",
+      "control": "lblHomePrototype",
+      "property": "Text",
+      "before": "=\"【公開試験】UI検討用 v1.27 ｜ 追加画面の金額・料率・権限区分は仮例です\"",
+      "after": "=\"【GitHub配布試験】UI検討用 v1.27 ｜ 追加画面の金額・料率・権限区分は仮例です\""
+    }
+  ]
+}
