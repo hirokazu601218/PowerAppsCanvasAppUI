@@ -1,7 +1,7 @@
 """Import one GitHub-reviewed property change into the maker-owned isolated copy.
 
 The active app, its data references, and every runtime rule are read back.
-No publish action occurs here; failure attempts to restore the exported backup.
+The observed solution import made this isolated app live immediately, even without a separate\nPublish action. The workflow is disabled pending a pre-import release gate.\nFailure attempts to restore the exported backup.
 """
 import copy
 import hashlib
