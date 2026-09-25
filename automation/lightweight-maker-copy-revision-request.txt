@@ -1,0 +1,1 @@
+Import GitHub manifest into DEPLOYPROBE_AUTOPUBLISH_20260924 only; verify backup, one property, data references, source and runtime readback. Do not publish.
