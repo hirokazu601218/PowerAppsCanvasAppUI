@@ -1,3 +1,13 @@
+# 現在の作業と読取り対象：隔離アプリの停止・復旧試験と安定版適用判定（2026-09-25）
+
+- [安全試験 run 36083472923](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36083472923)：対象IDを誤った入力は認証前で停止、変更前の値を誤った入力はimport前で停止。ともに `touched=false`。隔離アプリ `c5dece33-b799-43be-a55b-3344c83979d9` へ一時的に `【切り戻し試験】` を取り込んだ後、意図的な読戻し不一致を発生させ、取得済みバックアップを再import。参照・全ソース・全実行定義が元版と一致し、`restoration=verified`。Playerを最新へ更新後、元の `【GitHub配布試験】` 表示を確認。復旧で元の**内容**が戻ったのであり、履歴の版番号を戻したわけではない。テストの一時版はimport時に公開された可能性があるため、利用者に見える時間をゼロにする保証はない。
+- 上記は同じ検証環境の**隔離アプリのみ**で実施。単発の公開フローは今回起動せずOFFを維持。再実行によるライブ変更を防ぐため、元の改訂ワークフローと一時安全試験ワークフローはどちらもジョブ `if: false` で停止。安定版はMakerでv61 Live／v62未公開のまま、安定版の `deployment_enabled` は未設定（trueでない）。
+- [安定版ソリューションの読取り専用run 36083565028](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36083565028)：`StaffMasterAutomation` のRootComponentは10件（Canvas 1・type 1の部品6・type 61の部品3）。Canvas文書とメタデータは各1件で、M_職員基本／T_基準給与簿／T_通勤の3参照を確認。隔離試験の「Canvas 1件だけ」の対象ガードをこの広いSolutionへそのまま適用することはできない。安定版へのimport・公開・権限変更は実施していない。
+- 終了判定：隔離アプリにおける誤指定拒否、改訂のライブ反映、エラー後の元内容への復旧とPlayer再確認は合格。**安定版の自動配布資格は未成立**。次の実装課題は安定版専用のアプリ1件のみを含む配布範囲を作るか、広いSolutionの全10部品・関連データを含む安全性を個別に実証すること。リリース判断は別途。事前は対象ID・指定差分・3参照の機械検査に絞り、取り込み後の全読戻しを維持する。ユーザーの現在の操作は不要。今回の60分中断ルールは解除済み。
+- 読取り対象：[改訂自動化](../operations/lightweight-automation.md)、`scripts/automation/lightweight_maker_copy_safety_test.py`、`scripts/automation/lightweight_stable_scope_probe.py`、上記Actions、PR #73、下記履歴。
+
+---
+
 # 現在の作業と読取り対象：GitHub改訂の隔離アプリ配布試験（2026-09-25）
 
 - 対象は同じ検証環境内の隔離アプリ `DEPLOYPROBE_AUTOPUBLISH_20260924`（App ID `c5dece33-b799-43be-a55b-3344c83979d9`）。専用の非管理ソリューション `DEPLOYPROBE_AUTOPUBLISH_SOLUTION_20260925`（ID `57d6f9cb-7eb8-f111-aaad-000d3acf1175`）にはこのCanvasアプリ1件だけを追加。安定版アプリは含めない。
