@@ -2,6 +2,21 @@
 
 対象は既存の自動テスト専用アプリ。旧版のテスト・成功タグを削除または緩和しない。
 
+## 2026-09-25 GitHub改訂から隔離アプリのライブ反映
+
+同じ検証環境の別アプリ `DEPLOYPROBE_AUTOPUBLISH_20260924` だけを非管理ソリューション `DEPLOYPROBE_AUTOPUBLISH_SOLUTION_20260925` に登録した。RootComponentは当該Canvasアプリ1件。
+
+| 段階 | 証跡 | 観測結果 |
+|---|---|---|
+| 現在のソリューションを読取り | [run 36081568851](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36081568851) | 3参照、7ソース、244実行定義、元の表示を照合 |
+| GitHubの1プロパティ改訂をpack/import | [run 36081788927](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36081788927) | 成功。再exportで指定の `lblHomePrototype.Text` のみ変更し、参照・その他のソースと実行定義を照合 |
+| Maker版一覧と公開Player | 隔離アプリv3 Live | import直後にv3がLive。Player更新後に `【GitHub配布試験】` を表示。別の公開フローは未起動 |
+| 安定版 | Maker版一覧 | v61 Live、v62未公開のまま |
+
+この環境の非管理ソリューションimportは隔離アプリを即座にライブへ反映した。したがってimport後に未公開下書きの状態でレビューしてから公開する設計は成り立たない。export・候補照合・承認などのゲートはimport **前** に行う必要がある。import後の復元処理も、一時的に公開された版を利用者から隠す保証にはならない。この観測結果を他環境の一般的な仕様と断定せず、配布先ごとに検証する。
+
+追加配布を止めるため、`lightweight-maker-copy-revision.yml` のpushトリガーを削除し、ジョブに `if: false` を設定した。単発のPower Automate公開フローはOFFを維持し、安定版 `deployment_enabled: false` を維持する。旧試験で使った別のコピー `bd256de5-c7a5-4487-9aef-91ee26d4c946` は今回の対象ではない。安定版への配布資格、専用ユーザーの受入、200%表示・実端末・業務受入は未完了。PR #73はdraftのまま。
+
 ## 2026-09-24 隔離した改訂配布の実証
 
 従来の安定版SolutionテンプレートはCanvasの`DatabaseReferences`が空であり、実際のimportで元の3テーブル参照が消えた。Studioの版履歴から安定版を復旧済み。現行の`lightweight-transaction.py`は現行Solutionのexportを元にpackし、3参照を照合するが、`automation/lightweight-expected.json`に`deployment_enabled: true`を設定していないため、安定版へのimportは実行できない。このガードを単に有効化しない。
