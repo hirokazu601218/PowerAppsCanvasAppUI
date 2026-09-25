@@ -1,8 +1,6 @@
 name: Lightweight isolated copy safety tests
 'on':
-  push:
-    branches: [feat/lightweight-v127-20260924]
-    paths: [automation/lightweight-maker-copy-safety-request.txt]
+  workflow_dispatch: {}
 permissions:
   contents: read
   id-token: write
@@ -11,6 +9,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   safety:
+    # One-off restoration evidence captured; hold further live imports.
+    if: false
     runs-on: ubuntu-latest
     environment: powerapps-test
     timeout-minutes: 50
