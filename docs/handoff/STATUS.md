@@ -1,3 +1,15 @@
+# 現在の作業と読取り対象：GitHub改訂の隔離アプリ配布試験（2026-09-25）
+
+- 対象は同じ検証環境内の隔離アプリ `DEPLOYPROBE_AUTOPUBLISH_20260924`（App ID `c5dece33-b799-43be-a55b-3344c83979d9`）。専用の非管理ソリューション `DEPLOYPROBE_AUTOPUBLISH_SOLUTION_20260925`（ID `57d6f9cb-7eb8-f111-aaad-000d3acf1175`）にはこのCanvasアプリ1件だけを追加。安定版アプリは含めない。
+- [読取り専用run 36081568851](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36081568851)は3 Dataverse参照、7ソース、244実行定義、変更前のホーム表示 `【公開試験】` とmsapp SHA256 `98e2eecf2feeba4298d82fe28366175cc197e65cee0ce1244e0227bd7abd47c8` を確認した。
+- [1プロパティ改訂の取り込みrun 36081788927](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36081788927)は成功。GitHubの改訂指定に従い `lblHomePrototype.Text` の先頭を `【GitHub配布試験】` に変更し、ソリューションをimport。サーバーの再exportでは参照・7ソース・244実行定義を照合し、指定1項目以外の改訂なし。バックアップからの復旧は不要だった。
+- **想定外の公開動作**：この環境では上記の非管理ソリューションimport直後に隔離アプリv3がLiveになった。Power Automateの `DEPLOYPROBE_PUBLISH_ONCE_20260925` は今回起動していない。Playerを更新すると `【GitHub配布試験】` を表示した。したがって、この取り込み経路を「未公開下書きで停止し、別の公開操作で反映」と説明してはならない。import前に承認と公開判定を完了する設計が必要。
+- 再実行防止：`.github/workflows/lightweight-maker-copy-revision.yml` はpush起動を削除し、ジョブに `if: false` を設け停止した（commit `0eb586bed9670edc164f573ca55fe7c8559528ff`）。単発の公開フローはOFFのまま。安定版への `deployment_enabled` ガードはfalseのまま。Makerの安定版はv61 Live／v62未公開で変化なし。PR #73はdraft、main/成功タグへの昇格なし。
+- 次にCodexが行うこと：公開前審査・取り込み対象を固定するゲートを設計し、隔離先で再検証する。安定版への自動importはこの試験結果だけで有効化しない。ユーザーが現時点で行う操作はない。今回の60分中断ルールはユーザーが解除済み。
+- 読取り対象：[改訂自動化](../operations/lightweight-automation.md)、`automation/lightweight-maker-copy-change.json`、`scripts/automation/lightweight_maker_copy_{probe,revision}.py`、上記Actions、PR #73、以下の履歴。
+
+---
+
 # 現在の作業と読取り対象：軽量版 v1.27 改訂自動配布の隔離試験（2026-09-24）
 
 - [複製アプリ所有権移管の試行 run 36068855848](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36068855848)：ユーザーは新規複製`c5dece33-b799-43be-a55b-3344c83979d9`に限り自動化主体への所有権変更（旧所有者CanView）を承認。OIDC自動化主体から管理者APIで対象・現所有者を事前読取りした時点でHTTP 403。結果`status=blocked,touched=false`、変更要求未送信。Maker画面を再読取りし所有者は山下 浩和のまま。対象1件と旧所有者を照合するワークフローは保存したが再実行は手動起動のみ。Dataverseシステム管理者ロールだけでPower Apps管理者APIを利用できるとはみなさない。安定版・元コピー・配布ガードは無変更。自動化主体のEntraオブジェクトIDは`aa8d08a7-54c4-4e49-9395-6a2c50904815`と専用OIDCトークンから読取り確認。対象・現所有者を厳密に照合する[scripts/automation/transfer_isolated_owner.ps1](../../scripts/automation/transfer_isolated_owner.ps1)を用意。山下さんの管理者コンテキストでWindows PowerShell 5.1から公式`Set-AdminPowerAppOwner`を実行する必要がある。自動公開は未実証。
