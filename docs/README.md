@@ -6,12 +6,13 @@
 
 ## 対象アプリ
 
-| 区分 | 環境 | 環境ID | アプリ | アプリID |
-|---|---|---|---|---|
-| 自動テスト専用 | StaffMaster-Automation-Test | `68e00049-b7e5-eda6-9888-9a3cc493c5be` | 自動開発_職員マスタ検索（指定名） | `362ac991-eead-4f07-8373-afdb3ebfdba1` |
-| ハンドメイド専用 | 山下 浩和 の環境 | `2fa12587-ea8f-ee93-ac2f-054f6b7fe2bb` | ハンドメイド職員マスタ検索 | `0e5f5c05-b67d-4a27-af71-ebe5e5381221` |
+| 区分 | 環境 | アプリ | App ID・扱い |
+|---|---|---|---|
+| 職員マスタ検索（継続対象1件） | StaffMaster-Automation-Test | 自動開発_職員マスタ検索（旧_STUDIO_EDIT） | `204a48dc-7f23-43dd-b934-4654a3cfa306`。隔離STUDIOテーブルを参照 |
+| 旧安定版（削除候補） | 同上 | 削除候補_自動開発_職員マスタ検索 | `362ac991-eead-4f07-8373-afdb3ebfdba1`。削除は未実施 |
+| ハンドメイド専用（別環境） | 山下 浩和 の環境 | ハンドメイド職員マスタ検索 | `0e5f5c05-b67d-4a27-af71-ebe5e5381221`。今回の変更対象外 |
 
-表示名の手動変更はユーザー担当で、完了は未確認です。固定App IDを識別の基準とし、過去の実行記録の旧表示名は履歴として保持します。
+同じ検証環境の旧配布試験用を含むその他3アプリも「削除候補_」と表示する。[単一アプリ運用](operations/single-app-workflow.md)で各IDと停止条件を確認する。表示名の変更だけではGitHub上の旧App ID参照は変わらない。過去の実行記録は当時のIDと名称を保持する。
 
 「共通」は、両アプリに適用する仕様・参考資料、またはハンドメイド版を基準に自動テスト版を構築・比較する文書を表します。以下は文書の目的別に分類し、各表の「対象アプリ」で適用範囲を示します。
 
@@ -56,7 +57,8 @@
 | サブ分類 | ドキュメント | タイトル | 対象アプリ | 概要 |
 |---|---|---|---|---|
 | Work運用 | [docs/operations/work-policy.md](operations/work-policy.md) | Work運用方針 | 共通 | ChatGPT Sol Workでの役割、実装手順、確認条件、検証方法を定めた運用正本。 |
-| 画面変更の配布 | [docs/operations/three-app-release-flow.md](operations/three-app-release-flow.md) | 3アプリ運用・画面確認後の自動配布フロー | 自動テスト専用 | 編集用でのユーザー確認、配布検証、安定版反映、公開後照合の順序と停止条件。 |
+| 画面変更の運用 | [docs/operations/single-app-workflow.md](operations/single-app-workflow.md) | 単一アプリ運用 | 職員マスタ検索 | 旧編集用アプリ1件で実装・試験・公開・ユーザー確認する順序と旧ID自動化の停止条件。 |
+| 旧運用案 | [docs/operations/three-app-release-flow.md](operations/three-app-release-flow.md) | 3アプリ運用案（廃止） | 履歴 | 2026-09-25時点の案。現行手順には使わない。 |
 | 差分管理 | [docs/operations/control-diff-policy.md](operations/control-diff-policy.md) | YAML差分配布方針 | 共通 | コントロール単位のYAML差分を安全に配布・適用する方針。 |
 | 差分管理 | [src/staff-master/patches/README.md](../src/staff-master/patches/README.md) | 差分YAML案内 | 共通 | 差分YAMLの格納方法、適用単位、安全上の注意。 |
 | 基準版比較 | [docs/operations/templates/powerapps-baseline-diff-template.md](operations/templates/powerapps-baseline-diff-template.md) | 基準版差分記録テンプレート | 共通 | 公開アプリ由来の基準版とGitHub版の差分を記録する様式。 |
