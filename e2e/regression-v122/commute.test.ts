@@ -11,7 +11,7 @@ test('COM-APP-001 six Dataverse records, chosen recognition, dates, money and bl
   await page.goto(process.env.CANVAS_APP_URL!, {waitUntil: 'domcontentloaded'});
   const app = page.frameLocator('iframe[name="fullscreen-app-host"]');
   const ctl = (name: string) => app.locator(`[data-control-name="${name}"]`);
-  await expect(app.locator('[data-control-name="lblHomePrototype"]')).toContainText('UI検討用 v1.24',{timeout:60000});
+  await expect(app.locator('[data-control-name="lblHomePrototype"]')).toContainText('UI検討用 v1.25',{timeout:60000});
   await app.locator('[data-control-name="btnHomeStaff"]').getByRole('button').click();
   const selectStaff = async (id: string) => {
     await app.getByRole('button',{name:'ホーム',exact:true}).first().click();

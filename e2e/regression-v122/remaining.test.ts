@@ -13,7 +13,7 @@ async function start(p:Page){
  await p.setViewportSize({width:1366,height:1000});
  await p.goto(process.env.CANVAS_APP_URL!,{waitUntil:'domcontentloaded',timeout:60000});
  const a=p.frameLocator('iframe[name="fullscreen-app-host"]');
- await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.24',{timeout:60000});
+ await expect(ctl(a,'lblHomePrototype')).toContainText('UI検討用 v1.25',{timeout:60000});
  return a;
 }
 async function search(a:FrameLocator,q:string){await a.getByRole('searchbox',{name:'氏名・職員番号・項目を検索',exact:true}).fill(q);await button(a,'検索').click();}
@@ -114,8 +114,8 @@ test('REMAIN-MODAL background is blocked and close returns keyboard focus',async
  for(const [open,close,modal] of [['btnCertificate111','btnLedgerClose111','conLedgerModal111'],['btnPayrollOpen111','btnPayClose111','conPayrollModal111'],['btnExport111','btnReportClose111','conReport111']]){
   await ctl(a,open).getByRole('button').click();
   const toggle=ctl(a,'btnSidebarToggle111').getByRole('button');
-  if(await toggle.isVisible())await expect(toggle).toBeDisabled();
-  else await expect(toggle).toBeHidden();
+  await expect(ctl(a,modal)).toBeVisible();
+  await expect.poll(async()=>!await toggle.isVisible() || !await toggle.isEnabled(),{message:'Background toggle hidden or disabled after modal opens'}).toBe(true);
   await expect(ctl(a,close).getByRole('button')).toBeVisible();
   await ctl(a,close).getByRole('button').click();
   await expect(ctl(a,'lblPersonSub111')).toContainText('009900000011');
