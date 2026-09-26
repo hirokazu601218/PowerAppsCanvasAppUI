@@ -28,11 +28,12 @@
 
 | サブ分類 | ドキュメント | タイトル | 対象アプリ | 概要 |
 |---|---|---|---|---|
-| 要件定義 | [docs/requirements/requirements.md](requirements/requirements.md) | 要件定義書 | 共通 | 職員検索、履歴、帳票、出力、サイドバー、表示品質に関するアプリ要件。 |
+| 要件定義 | [docs/requirements/requirements.md](requirements/requirements.md) | 要件定義書 | 現行単一アプリ＋旧版履歴 | 職員検索、履歴、帳票、出力、サイドバー、表示品質に関するアプリ要件。 |
+| 画面要件定義 | [docs/requirements/screen-requirements.md](requirements/screen-requirements.md) | 画面要件定義書 | 現行単一アプリ | 6画面の遷移・権限、SCR-002軽量化・編集、SCR-005内蔵仮例試算と共通余白の要件。 |
 | 非機能要件 | [docs/requirements/non-functional-requirements.md](requirements/non-functional-requirements.md) | 非機能要件・判定基準整理 | 現行単一アプリ | ガイドの分類ごとに、既定の確認条件、測定方法、未決の目標値と責任分担を区別。 |
-| 要件・設計・試験対応 | [docs/requirements/traceability-matrix.md](requirements/traceability-matrix.md) | 要件・設計・試験対応表 | 現行単一アプリ | 現行要件IDごとの基本・詳細設計、試験ケース、未設計・未試験の範囲を整理。旧版の結果と区別。 |
-| 基本設計 | [docs/design/basic-design.md](design/basic-design.md) | 基本設計書 | 共通 | 現行単一アプリの全体図、画面とデータの流れ、CRUDの境界、配置・検索サイドバーなどの基本設計。 |
-| 詳細設計 | [docs/design/detailed-design.md](design/detailed-design.md) | 詳細設計書 | 共通 | コントロール、データ契約、状態遷移、配置式、帳票・出力の詳細設計。 |
+| 要件・設計・試験対応 | [docs/requirements/traceability-matrix.md](requirements/traceability-matrix.md) | 要件・設計・試験対応表 | 現行単一アプリ | 78件の要件IDと基本・詳細設計、試験ケース、未照合・未試験の範囲を整理。旧版の結果と区別。 |
+| 基本設計 | [docs/design/basic-design.md](design/basic-design.md) | 基本設計書 | 現行単一アプリ＋旧版履歴 | 現行単一アプリの全体図、機能・状態・データ・CRUDの境界、画面間受渡しと未決の保存先。 |
+| 詳細設計 | [docs/design/detailed-design.md](design/detailed-design.md) | 詳細設計書 | 現行単一アプリ＋旧版履歴 | SCR-002の検索・編集、SCR-005試算31項目と全画面共通領域の実装契約。旧版の配置式は履歴として区別。 |
 | UI・デザイン | [docs/design/design-system.md](design/design-system.md) | デザイン基準 | 共通 | 文字、色、余白、操作性、アクセシビリティに関するデザイン基準。 |
 
 ## 3. 導入・引継ぎ・変更管理
