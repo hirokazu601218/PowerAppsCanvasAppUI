@@ -14,7 +14,6 @@ RECORD_PREFIX = "docs/testing/change-records/"
 TEST_PREFIX = "e2e/current-app/"
 SOURCE_PREFIXES = ("powerapps/", "src/", "automation/", "scripts/ui/")
 SOURCE_FILES = {"config/apps/staff-master.json"}
-SMOKE = f"{TEST_PREFIX}navigation.test.ts"
 
 
 class SelectionError(ValueError):
@@ -132,9 +131,16 @@ def validate(repo: Path, changed: set[str], *, smoke_if_tests_changed: bool = Fa
 
     if covered != source:
         raise SelectionError(f"app source without test selection: {sorted(source - covered)}")
-    if not source and smoke_if_tests_changed and any(p.startswith(TEST_PREFIX) for p in changed):
-        tests.add(SMOKE)
-        all_ids.update(("UT-HOME-001", "IT-HOME-DETAIL-001"))
+    if smoke_if_tests_changed:
+        for file in sorted(p for p in changed if p.startswith(TEST_PREFIX) and p.endswith('.test.ts')):
+            test_file = repo / file
+            if not test_file.is_file():
+                raise SelectionError(f"changed test file is missing: {file}")
+            ids = re.findall(r"\btest\s*\(\s*['\"`]((?:UT|IT)-[A-Z0-9-]+)\b", test_file.read_text(encoding="utf-8"))
+            if not ids:
+                raise SelectionError(f"changed test file has no executable unit/integration case: {file}")
+            tests.add(file)
+            all_ids.update(ids)
     return {"source_paths": sorted(source), "record_paths": records, "test_files": sorted(tests), "case_ids": sorted(all_ids)}
 
 

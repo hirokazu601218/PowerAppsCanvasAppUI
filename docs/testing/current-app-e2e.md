@@ -6,7 +6,7 @@
 
 - [.github/workflows/current-app-test-gate.yml](../../.github/workflows/current-app-test-gate.yml)：PRの差分と[試験選定記録](change-records/README.md)を検証。アプリソース変更がある場合は単体ケースと必要な結合ケースを選び、同じPRのE2Eジョブで公開Playerを読み取り専用で操作する。
 - [e2e/current-app/navigation.test.ts](../../e2e/current-app/navigation.test.ts)：単体 `UT-HOME-001`（ホームの職員マスタ検索ボタンと部門内一覧）、結合 `IT-HOME-DETAIL-001`（一覧で選択した架空職員の詳細への受渡し）。アプリソース変更のないテスト基盤変更と手動実行では、この2ケースを対象とする。
-- [e2e/current-app/search.test.ts](../../e2e/current-app/search.test.ts)：単体 `UT-SRCH-001`（検索入力・実結果）、結合 `IT-SRCH-DETAIL-001`（絞り込んだ結果から詳細への受渡し）。検索部品を改修する場合などに選ぶ。2026-09-26時点で[現行Playerの検索不一致](current-app-search-observation.md)を検出しており、合格済みとは扱わない。未改修の検索ケースを全PRで毎回実行する運用にはしない。
+- 検索の試験設計 `UT-SRCH-001`／`IT-SRCH-DETAIL-001` は、2026-09-26の[現行Playerの検索不一致](current-app-search-observation.md)を確認したため、今回の安定ゲートへ組み込まない。検索部品を改修するPRで実行可能なケースを追加し、試験選定記録に対応付ける。未実装のケースを合格と扱わない。
 - 新規の改修部品が既存ケースで検証できないときは、新たなケースとコードを追加する。workflow_dispatchは固定の現行アプリでホーム・一覧・詳細の2ケースを実行する。旧版のスタッフP0ワークフローは変更しない。
 
 既存のGitHub Actions用テストアカウントのsecretsと、Power Appsの閲覧権限が前提。対象URLは固定環境IDとApp IDから組み立て、旧App IDやリポジトリ変数による上書きを拒否する。認証状態、動画、traceをartifactへ格納しない。失敗時のスクリーンショットも公開artifactにしない。テストは登録・更新・削除、ソリューション取込み、公開、復元を実施しない。

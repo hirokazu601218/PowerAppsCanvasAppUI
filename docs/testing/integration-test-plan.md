@@ -13,6 +13,5 @@
 | 現行の実装済みケース | 操作と独立期待値 | 実装 |
 |---|---|---|
 | `IT-HOME-DETAIL-001` | ホームから職員一覧へ移動し、架空職員011を選択。詳細の番号と所属が011／03会計課へ切り替わる | [navigation.test.ts](../../e2e/current-app/navigation.test.ts) |
-| `IT-SRCH-DETAIL-001` | 会計課の絞り込んだ検索結果で架空職員011を選択し、詳細の職員番号と所属に011／03会計課が渡る。検索段階で[不一致](current-app-search-observation.md)を検出 | [search.test.ts](../../e2e/current-app/search.test.ts) |
 
-これらのケースは各行に示す部品間の連携だけに適用する。他の連携改修は別ケースを選ぶ。[実施記録](templates/test-execution-record.md)へケースごとの操作、実測、PASS/FAIL/BLOCKED/NOT_RUNと残件を記録する。関連する単体ケースと必要な結合ケースの完了、公開版の照合を終了条件とする。
+実装済みケースはホーム→一覧→詳細の連携だけに適用する。検索結果→詳細の `IT-SRCH-DETAIL-001` は[前提の検索不一致](current-app-search-observation.md)により現行ゲートへは未実装。他の連携改修は別ケースを選ぶ。[実施記録](templates/test-execution-record.md)へケースごとの操作、実測、PASS/FAIL/BLOCKED/NOT_RUNと残件を記録する。関連する単体ケースと必要な結合ケースの完了、公開版の照合を終了条件とする。

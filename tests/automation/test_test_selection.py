@@ -44,10 +44,23 @@ class TestSelectionGate(unittest.TestCase):
         self.assertEqual(result['case_ids'], ['IT-SRCH-DETAIL-001', 'UT-SRCH-001'])
         self.assertEqual(result['test_files'], ['e2e/current-app/search.test.ts'])
 
-    def test_test_code_change_runs_only_current_app_navigation_smoke(self):
+    def test_test_code_change_runs_its_own_cases(self):
         result = validate(self.repo, {'e2e/current-app/search.test.ts'}, smoke_if_tests_changed=True)
-        self.assertEqual(result['case_ids'], ['IT-HOME-DETAIL-001', 'UT-HOME-001'])
-        self.assertEqual(result['test_files'], ['e2e/current-app/navigation.test.ts'])
+        self.assertEqual(result['case_ids'], ['IT-SRCH-DETAIL-001', 'UT-SRCH-001'])
+        self.assertEqual(result['test_files'], ['e2e/current-app/search.test.ts'])
+
+    def test_changed_test_file_is_not_hidden_by_another_selected_case(self):
+        navigation = self.repo / 'e2e/current-app/navigation.test.ts'
+        navigation.write_text("test('UT-HOME-001 opens staff list', () => {});\n", encoding='utf-8')
+        result = validate(self.repo, {self.source, self.record, 'e2e/current-app/navigation.test.ts'},
+                          smoke_if_tests_changed=True)
+        self.assertEqual(result['test_files'], ['e2e/current-app/navigation.test.ts',
+                                                'e2e/current-app/search.test.ts'])
+        self.assertIn('UT-HOME-001', result['case_ids'])
+
+    def test_deleted_test_file_cannot_silently_pass(self):
+        with self.assertRaisesRegex(SelectionError, 'changed test file is missing'):
+            validate(self.repo, {'e2e/current-app/missing.test.ts'}, smoke_if_tests_changed=True)
 
     def test_missing_record_does_not_mark_app_change_as_tested(self):
         with self.assertRaisesRegex(SelectionError, 'without a changed selection record'):
