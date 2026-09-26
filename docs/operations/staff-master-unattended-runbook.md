@@ -1,6 +1,6 @@
 # 職員マスタ 無人修正・テスト公開の運用手順
 
-> 対象アプリ：自動テスト専用
+> 対象：旧App ID `362ac991-eead-4f07-8373-afdb3ebfdba1` 向けの歴史的手順。2026-09-26以降の継続対象は[単一アプリ運用](single-app-workflow.md)の `204a48dc-7f23-43dd-b934-4654a3cfa306`。本書の旧ID向け配布・復旧工程を現行アプリに起動しない。
 
 更新：2026-09-16。v1.12でテスト公開運用を開始。構築と受入は [Issue #7](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/7)、v1.14の配置とREADME更新は [Issue #23](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/23) に記録する。
 
@@ -44,7 +44,7 @@
 
 ## 2. 編集方式と対応範囲
 
-指定一覧名は`config/apps/staff-master.json`の`display_name`（自動開発_職員マスタ検索）とする。Power Apps実体の手動改名はユーザー担当で、Workは完了を推測しない。対象は表示名でなく固定環境ID・App IDで識別する。README生成と配布用meta.xmlを指定名へ揃え、通常配布・旧タグ復元のpack時も現在の指定名を使う。旧タグ・元msapp・スキーマ名・内部111部品ID・画面内の版表示は改名しない。過去の実行記録には当時の旧名を残す。今回の名称・報告ルール更新では配布要求を起動しない。
+指定一覧名は`config/apps/staff-master.json`の`display_name`（自動開発_職員マスタ検索）とする。表示名変更はCodexがMaker画面で完了を確認した。旧ID向け設定の `display_name` は履歴であり、現行アプリのIDを表さない。対象は表示名でなく固定環境ID・App IDで識別する。README生成と配布用meta.xmlを指定名へ揃え、通常配布・旧タグ復元のpack時も現在の指定名を使う。旧タグ・元msapp・スキーマ名・内部111部品ID・画面内の版表示は改名しない。過去の実行記録には当時の旧名を残す。今回の名称・報告ルール更新では配布要求を起動しない。
 
 `scripts/automation/bridge.py` は既存コントロールの既存プロパティを、承認済み変更前後値と照合してactive YAMLと実行用ルールへ同期する。元msappのハッシュとソース全体も検査し、記載外の変更やSolutionの接続・部品変更を拒否する。
 
