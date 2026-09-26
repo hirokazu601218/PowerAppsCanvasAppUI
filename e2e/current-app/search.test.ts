@@ -23,12 +23,14 @@ async function openStaffSearch(page: Page): Promise<FrameLocator> {
   await page.goto(url.toString(), { waitUntil: 'domcontentloaded', timeout: 60_000 });
   const canvas = page.frameLocator(FRAME);
   const homeLink = canvas.getByRole('button', { name: '職員マスタ検索', exact: true });
-  const heading = canvas.getByText('非常勤職員マスタ検索', { exact: true });
-  await expect.poll(async () => await homeLink.isVisible() || await heading.isVisible(), {
+  const searchInput = canvas.getByRole('searchbox', {
+    name: '氏名・職員番号・項目を検索', exact: true,
+  });
+  await expect.poll(async () => await homeLink.isVisible() || await searchInput.isVisible(), {
     timeout: 60_000,
   }).toBe(true);
-  if (await homeLink.isVisible()) await homeLink.click();
-  await expect(heading).toBeVisible({ timeout: 30_000 });
+  if (!(await searchInput.isVisible())) await homeLink.click();
+  await expect(searchInput).toBeVisible({ timeout: 30_000 });
   return canvas;
 }
 
@@ -39,16 +41,17 @@ async function searchSameName(canvas: FrameLocator): Promise<void> {
   await expect(input).toBeVisible();
   await input.fill('同姓同名');
   await canvas.getByRole('button', { name: '検索', exact: true }).click();
-  await expect(canvas.getByText(/職員一覧\s*2件/)).toBeVisible({ timeout: 30_000 });
+  // The current app limits the dedicated test user's view to 03会計課.
+  await expect(canvas.getByText(/職員一覧\s*1件/)).toBeVisible({ timeout: 30_000 });
   await expect(canvas.getByRole('button', {
     name: '009900000011 試験 同姓同名 詳細を表示', exact: true,
   })).toBeVisible();
   await expect(canvas.getByRole('button', {
     name: '009900000012 試験 同姓同名 詳細を表示', exact: true,
-  })).toBeVisible();
+  })).toHaveCount(0);
 }
 
-test('UT-SRCH-001 検索部品は入力を受けて架空の2名を表示する', async ({ page }) => {
+test('UT-SRCH-001 検索部品は入力を受けて所属内の架空の1名を表示する', async ({ page }) => {
   const canvas = await openStaffSearch(page);
   await searchSameName(canvas);
 });
@@ -57,15 +60,10 @@ test('IT-SRCH-DETAIL-001 検索結果の選択が詳細へ反映される', asyn
   const canvas = await openStaffSearch(page);
   await searchSameName(canvas);
   await canvas.getByRole('button', {
-    name: '009900000012 試験 同姓同名 詳細を表示', exact: true,
+    name: '009900000011 試験 同姓同名 詳細を表示', exact: true,
   }).click();
   await expect(canvas.getByText('職員基本情報', { exact: true })).toBeVisible();
-  // Both list rows are still present. The selected number must also be visible in the right detail area.
-  await expect.poll(async () => {
-    for (const candidate of await canvas.getByText('009900000012', { exact: true }).all()) {
-      const box = await candidate.boundingBox();
-      if (box && box.width > 0 && box.x >= 360) return true;
-    }
-    return false;
-  }, { timeout: 30_000, message: 'selected staff number in the detail area' }).toBe(true);
+  // Check the detail summary, not a matching number inside the search result row.
+  await expect(canvas.locator('[data-control-name="lblPersonSub111"]'))
+    .toHaveText(/職員番号：009900000011\s*／\s*所属：03会計課/, { timeout: 30_000 });
 });

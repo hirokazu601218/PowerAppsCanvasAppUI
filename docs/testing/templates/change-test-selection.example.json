@@ -10,7 +10,7 @@
       "path": "src/staff-master/example-only.pa.yaml",
       "component": "btnSearch111.OnSelect",
       "unit_case_ids": ["UT-SRCH-001"],
-      "expected_result": "検索を押すと架空の同姓同名2名が表示される"
+      "expected_result": "検索を押すと03会計課の架空の同姓同名1名が表示される"
     }
   ],
   "integration": {
