@@ -14,7 +14,7 @@ RECORD_PREFIX = "docs/testing/change-records/"
 TEST_PREFIX = "e2e/current-app/"
 SOURCE_PREFIXES = ("powerapps/", "src/", "automation/", "scripts/ui/")
 SOURCE_FILES = {"config/apps/staff-master.json"}
-SMOKE = f"{TEST_PREFIX}search.test.ts"
+SMOKE = f"{TEST_PREFIX}navigation.test.ts"
 
 
 class SelectionError(ValueError):
@@ -134,7 +134,7 @@ def validate(repo: Path, changed: set[str], *, smoke_if_tests_changed: bool = Fa
         raise SelectionError(f"app source without test selection: {sorted(source - covered)}")
     if not source and smoke_if_tests_changed and any(p.startswith(TEST_PREFIX) for p in changed):
         tests.add(SMOKE)
-        all_ids.update(("UT-SRCH-001", "IT-SRCH-DETAIL-001"))
+        all_ids.update(("UT-HOME-001", "IT-HOME-DETAIL-001"))
     return {"source_paths": sorted(source), "record_paths": records, "test_files": sorted(tests), "case_ids": sorted(all_ids)}
 
 

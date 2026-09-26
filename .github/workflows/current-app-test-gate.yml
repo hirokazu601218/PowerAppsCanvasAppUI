@@ -58,8 +58,8 @@ jobs:
           from pathlib import Path
           Path('selection-plan.json').write_text(json.dumps({
             'source_paths': [], 'record_paths': [],
-            'test_files': ['e2e/current-app/search.test.ts'],
-            'case_ids': ['UT-SRCH-001', 'IT-SRCH-DETAIL-001'],
+            'test_files': ['e2e/current-app/navigation.test.ts'],
+            'case_ids': ['UT-HOME-001', 'IT-HOME-DETAIL-001'],
           }))
           PY
           else

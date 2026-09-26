@@ -25,7 +25,7 @@ class TestSelectionGate(unittest.TestCase):
             'schema_version': 1, 'change_id': 'CHANGE-123',
             'target': {'environment_id': ENV_ID, 'app_id': APP_ID},
             'changes': [{'path': self.source, 'component': 'btnSearch111.OnSelect',
-                         'unit_case_ids': ['UT-SRCH-001'], 'expected_result': 'two staff'}],
+                         'unit_case_ids': ['UT-SRCH-001'], 'expected_result': 'one staff'}],
             'integration': {'required': True, 'reason': 'Search passes selection to detail',
                             'case_ids': ['IT-SRCH-DETAIL-001']},
             'system_test': {'status': 'deferred', 'reason': 'business scenarios pending'},
@@ -43,6 +43,11 @@ class TestSelectionGate(unittest.TestCase):
         result = validate(self.repo, {self.source, self.record})
         self.assertEqual(result['case_ids'], ['IT-SRCH-DETAIL-001', 'UT-SRCH-001'])
         self.assertEqual(result['test_files'], ['e2e/current-app/search.test.ts'])
+
+    def test_test_code_change_runs_only_current_app_navigation_smoke(self):
+        result = validate(self.repo, {'e2e/current-app/search.test.ts'}, smoke_if_tests_changed=True)
+        self.assertEqual(result['case_ids'], ['IT-HOME-DETAIL-001', 'UT-HOME-001'])
+        self.assertEqual(result['test_files'], ['e2e/current-app/navigation.test.ts'])
 
     def test_missing_record_does_not_mark_app_change_as_tested(self):
         with self.assertRaisesRegex(SelectionError, 'without a changed selection record'):
