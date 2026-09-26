@@ -31,6 +31,8 @@
 | 要件定義 | [docs/requirements/requirements.md](requirements/requirements.md) | 要件定義書 | 現行単一アプリ＋旧版履歴 | 職員検索、履歴、帳票、出力、サイドバー、表示品質に関するアプリ要件。 |
 | 画面要件定義 | [docs/requirements/screen-requirements.md](requirements/screen-requirements.md) | 画面要件定義書 | 現行単一アプリ | 6画面の遷移・権限、SCR-002軽量化・編集、SCR-005内蔵仮例試算と共通余白の要件。 |
 | 非機能要件 | [docs/requirements/non-functional-requirements.md](requirements/non-functional-requirements.md) | 非機能要件・判定基準整理 | 現行単一アプリ | ガイドの分類ごとに、既定の確認条件、測定方法、未決の目標値と責任分担を区別。 |
+| 未決事項 | [docs/requirements/open-decisions.md](requirements/open-decisions.md) | 未決事項一覧 | 現行単一アプリ | 業務・画面・非機能の判断待ちを一覧化し、実装・試験の未確認と分離。 |
+| 要件間の関係 | [docs/requirements/requirement-relations.md](requirements/requirement-relations.md) | 要件間マトリクス | 現行単一アプリ | R15～R23、画面固有・共通要件、非機能検討IDの対応と画面間依存・別機能を逆引き。 |
 | 要件・設計・試験対応 | [docs/requirements/traceability-matrix.md](requirements/traceability-matrix.md) | 要件・設計・試験対応表 | 現行単一アプリ | 86件の要件IDと基本・詳細設計の参照先、業務上の未決事項、未照合・未試験の範囲を区別。旧版の結果と区別。 |
 | 基本設計 | [docs/design/basic-design.md](design/basic-design.md) | 基本設計書 | 現行単一アプリ＋旧版履歴 | 現行単一アプリの全体図、機能・状態・データ・CRUDの境界、画面間受渡しと未決の保存先。 |
 | 詳細設計 | [docs/design/detailed-design.md](design/detailed-design.md) | 詳細設計書 | 現行単一アプリ＋旧版履歴 | SCR-002の検索・編集、SCR-005試算31項目と全画面共通領域の実装契約。旧版の配置式は履歴として区別。 |
