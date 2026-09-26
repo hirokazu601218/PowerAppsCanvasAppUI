@@ -42,7 +42,24 @@ async function searchSameName(canvas: FrameLocator): Promise<void> {
   await input.fill('同姓同名');
   await canvas.getByRole('button', { name: '検索', exact: true }).click();
   // The current app limits the dedicated test user's view to 03会計課.
-  await expect(canvas.getByText(/職員一覧\s*1件/)).toBeVisible({ timeout: 30_000 });
+  try {
+    await expect(canvas.getByText(/職員一覧\s*1件/)).toBeVisible({ timeout: 30_000 });
+  } catch (error) {
+    const title = await canvas.locator('[data-control-name="lblListTitle111"]')
+      .innerText({ timeout: 5_000 }).catch(() => '');
+    // Only publish a synthetic row's presence and the numeric result count.
+    console.log('Search diagnostics:', JSON.stringify({
+      count: title.match(/職員一覧\s*([0-9０-９]+)件/)?.[1] ?? null,
+      row011: await canvas.getByRole('button', {
+        name: '009900000011 試験 同姓同名 詳細を表示', exact: true,
+      }).isVisible(),
+      row012: await canvas.getByRole('button', {
+        name: '009900000012 試験 同姓同名 詳細を表示', exact: true,
+      }).isVisible(),
+      keywordEntered: await input.inputValue() === '同姓同名',
+    }));
+    throw error;
+  }
   await expect(canvas.getByRole('button', {
     name: '009900000011 試験 同姓同名 詳細を表示', exact: true,
   })).toBeVisible();

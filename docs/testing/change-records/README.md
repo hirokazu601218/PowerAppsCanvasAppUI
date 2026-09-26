@@ -12,9 +12,11 @@
 
 [記入例](../templates/change-test-selection.example.json)は架空の変更を示し、実行結果ではない。職員データは架空値のみ使用する。
 
+実施後は[実施記録の様式](../templates/test-execution-record.md)を使い、ケースごとの期待値・画面実測・判定・残件を記録する。Actionsのrun URLとコミットSHAを結び付け、公開版の読戻しが未完了ならその旨を明示する。選定記録と実施記録は別の段階で作る。
+
 ## 機械判定と実行結果
 
-`.github/workflows/current-app-test-gate.yml`はPR差分と変更記録を照合し、対象ソースの記入漏れ、各部品の単体ケース漏れ、結合が必要な場合のケース漏れ、未知のテストファイル・ケースID、旧App IDを失敗にする。選定されたPlaywrightファイルを現行App IDで実行する。実行結果はGitHub Actionsのrunとstep summaryに記録する。変更記録は**試験の選定**であり、PR作成時点でPASSを宣言する資料ではない。
+`.github/workflows/current-app-test-gate.yml`はPR差分と変更記録を照合し、対象ソースの記入漏れ、各部品の単体ケース漏れ、結合が必要な場合のケース漏れ、未知のテストファイル・ケースID、旧App IDを失敗にする。選定されたPlaywrightファイルを現行App IDで実行する。実行結果はGitHub Actionsのrunとstep summaryに記録する。変更記録は**試験の選定**であり、PR作成時点でPASSを宣言する資料ではない。実施記録を後からGitHubへ追加するときは、期待値・実測・判定の内容をレビューする。Actionsは実測内容が真実かどうかを自動判定できない。
 
 Actionsは影響判断の意味的な正しさを判定できない。Codexが変更ソースと設計を読み、影響先をレビューする。レビューで不足が見つかったら記録とテストコードを追加してから再実行する。Actionsの必須チェック設定（branch protection/ruleset）は別途確認する。設定前はチェック失敗だけではマージを禁止できない。
 

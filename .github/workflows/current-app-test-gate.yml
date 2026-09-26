@@ -178,6 +178,10 @@ jobs:
         run: |
           {
             echo '## 現行アプリの公開Player E2E'
+            echo "- 実施run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo "- Gitコミット: \`$GITHUB_SHA\`"
+            echo "- 実施時刻（UTC）: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+            echo '- 対象環境ID: `68e00049-b7e5-eda6-9888-9a3cc493c5be`'
             echo "- App ID: \`204a48dc-7f23-43dd-b934-4654a3cfa306\`"
             echo "- 対象ケース: $SELECTED_CASES"
             echo "- 認証: $AUTH_RESULT"
