@@ -1,0 +1,24 @@
+name: Document placement
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  document-placement:
+    name: Document placement validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Validate path routing and record metadata
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          python3 -m unittest discover -s tests/governance -v
+          python3 scripts/governance/validate_document_placement.py --base "$BASE_SHA"
