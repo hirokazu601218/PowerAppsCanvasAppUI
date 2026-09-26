@@ -11,7 +11,7 @@
   "selected_case_ids": ["IT-HOME-DETAIL-001", "UT-HOME-001"],
   "source_comparison": {
     "result": "MATCH",
-    "checked_paths": ["src/staff-master/example-only.pa.yaml"],
+    "checked_paths": ["src/screen-ui/v1.24/studio-readback/Screen1.pa.yaml"],
     "method_and_findings": "公開版の読戻しと対象部品を候補ソースへ照合した方法および一致・差異を記録する"
   },
   "publication": {

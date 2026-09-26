@@ -170,14 +170,14 @@ block-beta
 
 2026/09/18の修正デザインを、次回の貼付用YAML／Power Fx作成の基準とする。今回の成果は要件と画像であり、YAML実装・Studio検証・公開・Dataverse変更は未実施。
 
-- [確定配置のデザイン案 PNG](../design/images/scr-005-payroll-detail-v1.png)
+- [確定配置のデザイン案 PNG](../../records/docs/design/images/scr-005-payroll-detail-v1.png)
 - [B案デザイン基準](../design/design-system.md)
-- [旧2画面プロトタイプ](../prototypes/attendance-payroll-prototype.md)：勤務日数・欠勤時間の集計方法を参考にする。SCR-005の旧レイアウトと「基本額−欠勤控除＋超過勤務手当」の合計は本節に置き換える。旧YAMLが本節対応済みであるとは扱わない。
+- [旧2画面プロトタイプ](../../other/docs/prototypes/attendance-payroll-prototype.md)：勤務日数・欠勤時間の集計方法を参考にする。SCR-005の旧レイアウトと「基本額−欠勤控除＋超過勤務手当」の合計は本節に置き換える。旧YAMLが本節対応済みであるとは扱わない。
 - [通勤テーブル定義](../design/dataverse-commute.md)、[基準給与簿項目定義](../../config/dataverse/payrollledger-columns.json)
 
 画像は配置の参考。数値・文字列・データ型・状態・操作は本書を正とし、画像を背景に貼る実装ではなく、各表示をCanvasコントロールとして構成する。画像の職員番号の桁数を転記せず、実装では12桁文字列を使用する。
 
-![SCR-005 支給明細画面デザイン案 v1](../design/images/scr-005-payroll-detail-v1.png)
+![SCR-005 支給明細画面デザイン案 v1](../../records/docs/design/images/scr-005-payroll-detail-v1.png)
 
 ### 8.2 表示順・構成
 
@@ -290,7 +290,7 @@ block-beta
 
 ### 9.1 適用範囲と優先順位
 
-本節は2026-09-24に確定したSCR-002の軽量化要件であり、同画面について本書、[要件定義書](requirements.md)、[基本設計書](../design/basic-design.md)、[詳細設計書](../design/detailed-design.md)、[v1.21給与詳細・認定簿軽量化](ui-v1.20.md)の旧配置と競合する場合は本節を優先する。現行実装の検証記録は履歴として保持し、本節の実装完了を示すものではない。SCR-005支給明細画面は別機能であり、本節の基準給与簿へ統合しない。
+本節は2026-09-24に確定したSCR-002の軽量化要件であり、同画面について本書、[要件定義書](requirements.md)、[基本設計書](../design/basic-design.md)、[詳細設計書](../design/detailed-design.md)、[v1.21給与詳細・認定簿軽量化](../../records/docs/requirements/ui-v1.20.md)の旧配置と競合する場合は本節を優先する。現行実装の検証記録は履歴として保持し、本節の実装完了を示すものではない。SCR-005支給明細画面は別機能であり、本節の基準給与簿へ統合しない。
 
 ### 9.2 画面構成
 

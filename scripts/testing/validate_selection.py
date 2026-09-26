@@ -13,8 +13,8 @@ ENV_ID = "68e00049-b7e5-eda6-9888-9a3cc493c5be"
 RECORD_PREFIX = "docs/testing/change-records/"
 REQUEST_PREFIX = "docs/changes/requests/"
 TEST_PREFIX = "e2e/current-app/"
-SOURCE_PREFIXES = ("powerapps/", "src/", "automation/", "scripts/ui/")
-SOURCE_FILES = {"config/apps/staff-master.json"}
+SOURCE_PREFIXES = ("powerapps/canvas-v3/Src/", "powerapps/test-data/", "src/screen-ui/v1.24/", "config/dataverse/")
+SOURCE_FILES = {"powerapps/canvas-v3/baseline.msapr"}
 
 
 class SelectionError(ValueError):
@@ -30,7 +30,7 @@ def changed_paths(repo: Path, base: str, head: str) -> set[str]:
 
 
 def source_path(path: str) -> bool:
-    return path.startswith(SOURCE_PREFIXES) or path in SOURCE_FILES
+    return (path.startswith(SOURCE_PREFIXES) and not path.endswith('/README.md')) or path in SOURCE_FILES
 
 
 def check_case(repo: Path, case: dict) -> None:

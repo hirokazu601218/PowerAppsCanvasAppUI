@@ -6,9 +6,9 @@
 
 - 対象は `StaffMaster-Automation-Test`、App ID `204a48dc-7f23-43dd-b934-4654a3cfa306`。`_STUDIO`隔離テーブルと隔離HTMLを使用する。[全体テスト計画](test-policy.md)に従い、改修部品の単体試験を必ず実施。他部品への影響があれば結合試験も実施し、[選定記録](change-records/README.md)で理由・ケースIDを示す。
 - 現行アプリの単体 `UT-HOME-001`：ホームの職員マスタ検索ボタンで03会計課の架空職員7名の一覧を開く。結合 `IT-HOME-DETAIL-001`：一覧の011を選択して詳細の番号・所属へ反映する。実装は[e2e/current-app/navigation.test.ts](../../e2e/current-app/navigation.test.ts)。
-- 検索の単体 `UT-SRCH-001`（同姓同名の1件絞り込み）と結合 `IT-SRCH-DETAIL-001`（絞り込みから詳細への受渡し）は[実施記録](current-app-search-observation.md)で単体FAIL／結合BLOCKED。今回の安定ゲートに実装したケースには含めず、検索部品を改修するときにコードと期待値を整える。合格済みとは扱わない。
+- 検索の単体 `UT-SRCH-001`（同姓同名の1件絞り込み）と結合 `IT-SRCH-DETAIL-001`（絞り込みから詳細への受渡し）は[実施記録](../../records/docs/testing/current-app-search-observation.md)で単体FAIL／結合BLOCKED。今回の安定ゲートに実装したケースには含めず、検索部品を改修するときにコードと期待値を整える。合格済みとは扱わない。
 - 実装済みの2ケースは全改修部品の単体テストを代替しない。対象部品に対応するケースがなければ追加する。改修ごとにテストコードを無条件で新規作成する必要はない。GitHub候補を公開版へ反映したことの照合は別に行う。
-- 以下のv1.11由来の25名・11桁番号等の記述は**当時の基準と試験履歴**であり、現行アプリの全ケースに一律適用しない。後続追記のSCR-002等も各記載の適用版を確認する。総合テストのシナリオと実施時期は未確定。[旧受入基準](acceptance.md)をユーザーの業務受入完了と扱わない。
+- 以下のv1.11由来の25名・11桁番号等の記述は**当時の基準と試験履歴**であり、現行アプリの全ケースに一律適用しない。後続追記のSCR-002等も各記載の適用版を確認する。総合テストのシナリオと実施時期は未確定。[旧受入基準](../../records/docs/testing/acceptance.md)をユーザーの業務受入完了と扱わない。
 - 現行の要件IDごとの設計・試験対応、未設計・未ケース化の範囲は[要件・設計・試験対応表](../requirements/traceability-matrix.md)を参照する。下記`LT-*`は試験計画上のケースであり、現行App IDで自動実行可能な`UT-*`／`IT-*`ケースや実施済み結果と区別する。
 
 ---
@@ -24,9 +24,9 @@
 
 - [要件定義v1.04](../requirements/requirements.md)：R01～R14、Issue #23の追加受入条件。
 - [基本設計v1.04](../design/basic-design.md)、[詳細設計v1.04](../design/detailed-design.md)、[B案デザイン基準](../design/design-system.md)。
-- [v1.11貼付版](../../src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml)、[管理版](../../src/staff-master/scrStaffMasterSearch_v1.11.pa.yaml)、[導入手順](../handoff/install-v1.11.md)。
+- [v1.11貼付版](../../other/src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml)、[管理版](../../other/src/staff-master/scrStaffMasterSearch_v1.11.pa.yaml)、[導入手順](../../records/docs/handoff/install-v1.11.md)。
 - 作成時のmain：`2197fd5608fc673ec53db1f30791b50f5c6af91e`。貼付版Git blob：`0951813e229c017007b42cf70cff0d1042550433`。これはGit blob IDであり、SHA-256ではない。
-- 既存[T01～T14](acceptance.md)を本書で細分化する。旧ローカル検査結果を本書のPASSへ転記しない。
+- 既存[T01～T14](../../records/docs/testing/acceptance.md)を本書で細分化する。旧ローカル検査結果を本書のPASSへ転記しない。
 
 ## 2. 実行共通条件
 

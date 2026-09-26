@@ -10,7 +10,7 @@ on:
       - main
     paths:
       - '.github/workflows/staff-master-e2e.yml'
-      - 'e2e/staff-master-p0.test.ts'
+      - 'other/e2e/staff-master-p0.test.ts'
 
 permissions:
   contents: read
@@ -87,7 +87,7 @@ jobs:
 
       - name: Add staff master P0 test
         shell: bash
-        run: cp project/e2e/staff-master-p0.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/staff-master-p0.test.ts
+        run: cp project/other/e2e/staff-master-p0.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/staff-master-p0.test.ts
 
       - name: Prepare certificate authentication
         if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}

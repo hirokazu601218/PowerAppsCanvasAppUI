@@ -19,6 +19,6 @@
 
 ## 現行の配布経路に関する制限
 
-[旧配布ワークフロー](../../.github/workflows/staff-master-transaction.yml)と`config/apps/staff-master.json`は別App ID `362ac991-eead-4f07-8373-afdb3ebfdba1`を向く。これらを現行アプリの公開・復元に起動しない。**本手順はCodexが対象アプリで構築・保存・公開した後の照合をActionsで自動化したもの**。現行App ID向けのpack/import/publish/restoreをActionsで自動実行可能とは宣言しない。単一アプリへ安全な自動配布を追加する場合は、接続、バックアップ、復旧、実機再照合を別途実証する。
+[旧配布ワークフロー](../../records/workflows/staff-master-transaction.yml)と`records/config/apps/staff-master.json`は別App ID `362ac991-eead-4f07-8373-afdb3ebfdba1`を向く。これらを現行アプリの公開・復元に起動しない。**本手順はCodexが対象アプリで構築・保存・公開した後の照合をActionsで自動化したもの**。現行App ID向けのpack/import/publish/restoreをActionsで自動実行可能とは宣言しない。単一アプリへ安全な自動配布を追加する場合は、接続、バックアップ、復旧、実機再照合を別途実証する。
 
 総合テストの業務シナリオ・実施時期・仕様の範囲は[未決事項 D-07](../requirements/open-decisions.md)。決定まで[総合テスト計画](../testing/system-test-plan.md)は策定待ちとし、今回のケース再実行を総合テストPASSとしない。

@@ -17,7 +17,7 @@ class TestSelectionGate(unittest.TestCase):
         script.parent.mkdir(parents=True)
         script.write_text("test('UT-SRCH-001 checks search', () => {});\n"
                           "test('IT-SRCH-DETAIL-001 checks detail', () => {});\n", encoding='utf-8')
-        self.source = 'src/staff-master/Screen1.pa.yaml'
+        self.source = 'src/screen-ui/v1.24/Screen1.pa.yaml'
         self.record = 'docs/testing/change-records/change-123.json'
         self.request = 'docs/changes/requests/change-123.json'
         source = self.repo / self.source
@@ -89,7 +89,11 @@ class TestSelectionGate(unittest.TestCase):
 
     def test_additional_changed_file_must_be_covered(self):
         with self.assertRaisesRegex(SelectionError, 'without test selection'):
-            validate(self.repo, {self.source, 'src/staff-master/Other.pa.yaml', self.record, self.request})
+            validate(self.repo, {self.source, 'src/screen-ui/v1.24/Other.pa.yaml', self.record, self.request})
+
+    def test_archived_sources_do_not_require_current_app_tests(self):
+        result = validate(self.repo, {'records/automation/change.json', 'other/src/staff-master/Screen1.pa.yaml'})
+        self.assertEqual(result['source_paths'], [])
 
     def test_unit_test_cannot_be_omitted(self):
         self.data['changes'][0]['unit_case_ids'] = []
