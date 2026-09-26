@@ -1,0 +1,154 @@
+name: Current app published source and document reconciliation
+
+on:
+  pull_request:
+    paths:
+      - 'docs/verification/postpublish/*.json'
+      - '.github/workflows/current-app-postpublish-docs.yml'
+      - 'scripts/automation/validate_current_app_postpublish.py'
+      - 'scripts/automation/read_current_app_metadata.py'
+      - 'scripts/testing/validate_selection.py'
+      - 'tests/automation/test_current_app_postpublish.py'
+  workflow_dispatch:
+    inputs:
+      change_id:
+        description: '変更要求ID。文書更新ブランチを指定して実行'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: current-app-doc-readback
+  cancel-in-progress: false
+
+jobs:
+  document-diff:
+    name: Check post-publication record on documentation PR
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Test the gate and check a changed release record if present
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest tests.automation.test_test_selection tests.automation.test_current_app_postpublish -q
+          python3 - <<'PY'
+          import os
+          import subprocess
+          from pathlib import Path
+          changed = subprocess.check_output(
+              ['git', 'diff', '--name-only', f'{os.environ["BASE_SHA"]}...HEAD'],
+              text=True).splitlines()
+          records = [p for p in changed if p.startswith('docs/verification/postpublish/')
+                     and p.endswith('.json')]
+          if records:
+              if len(records) != 1:
+                  raise SystemExit('exactly one post-publication release record must change')
+              change_id = Path(records[0]).stem.upper()
+              subprocess.run(['python3', 'scripts/automation/validate_current_app_postpublish.py',
+                              '--change-id', change_id], check=True)
+          else:
+              print('Gate code changed; no release record in this PR')
+          PY
+
+  readback:
+    name: Check fixed app, release evidence and document changes
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 15
+    outputs:
+      record_path: ${{ steps.paths.outputs.record_path }}
+    env:
+      CHANGE_ID: ${{ inputs.change_id }}
+      TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
+      DATAVERSE_URL: https://orge762dd9e.crm7.dynamics.com/
+      CURRENT_APP_ID: 204a48dc-7f23-43dd-b934-4654a3cfa306
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Validate recorded request, selected cases and post-publication document diff
+        id: paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/automation/validate_current_app_postpublish.py --change-id "$CHANGE_ID" > postpublish-plan.json
+          python3 - <<'PY'
+          import json, os
+          state = json.load(open('postpublish-plan.json', encoding='utf-8'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+              out.write('record_path=' + state['selection_path'] + '\n')
+          PY
+      - name: Sign in with existing GitHub OIDC identity
+        uses: azure/login@v2
+        with:
+          client-id: ${{ env.CLIENT_ID }}
+          tenant-id: ${{ env.TENANT_ID }}
+          allow-no-subscriptions: true
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Read current App ID and downloaded package twice around verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/postpublish"
+          python3 scripts/automation/read_current_app_metadata.py --output "$RUNNER_TEMP/postpublish/before.json"
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool --version 2.12.2
+          pac auth create --name current-app-doc-readback --githubFederated \
+            --tenant "$TENANT_ID" --applicationId "$CLIENT_ID" --environment "$DATAVERSE_URL"
+          pac canvas download --name "$CURRENT_APP_ID" \
+            --file-name "$RUNNER_TEMP/postpublish/readback.msapp" \
+            --environment "$DATAVERSE_URL" --overwrite
+          python3 scripts/automation/read_current_app_metadata.py --output "$RUNNER_TEMP/postpublish/after.json"
+          python3 scripts/automation/validate_current_app_postpublish.py \
+            --change-id "$CHANGE_ID" \
+            --package "$RUNNER_TEMP/postpublish/readback.msapp" \
+            --metadata-before "$RUNNER_TEMP/postpublish/before.json" \
+            --metadata-after "$RUNNER_TEMP/postpublish/after.json" > "$RUNNER_TEMP/postpublish/verified.json"
+          python3 - <<'PY'
+          import json, os
+          state = json.load(open(os.path.join(os.environ['RUNNER_TEMP'], 'postpublish', 'verified.json')))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as result:
+              result.write('## 公開版と文書の照合\n')
+              result.write(f"- 変更要求: `{state['change_id']}`、ソース: `{state['source_commit']}`\n")
+              result.write(f"- 現行App ID: `{os.environ['CURRENT_APP_ID']}`、公開版: `{state['version']}`\n")
+              result.write(f"- 公開メタデータ／ダウンロードSHA-256／文書差分: 照合成功\n")
+              result.write('- Playwrightの選定ケースは後続ジョブで判定。業務受入と総合テストは別判定。\n')
+          PY
+      # The downloaded msapp can contain connection metadata: do not upload it.
+
+  selected-e2e:
+    name: Re-run selected unit and integration cases on published Player
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    needs: readback
+    uses: ./.github/workflows/current-app-test-gate.yml
+    with:
+      record_path: ${{ needs.readback.outputs.record_path }}
+    secrets: inherit
+
+  completed:
+    name: Release reconciliation gate
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    needs: [readback, selected-e2e]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Preserve run URL and scope in Actions summary
+        env:
+          CHANGE_ID: ${{ inputs.change_id }}
+        run: |
+          echo "変更要求 $CHANGE_ID の公開版読戻し・選定単体／結合ケース・文書更新を照合しました。" >> "$GITHUB_STEP_SUMMARY"
+          echo "run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$GITHUB_STEP_SUMMARY"
+          echo '文書の業務的な正しさと業務受入はCodex・ユーザーが別途確認します。' >> "$GITHUB_STEP_SUMMARY"

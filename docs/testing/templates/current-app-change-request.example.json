@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "change_id": "EXAMPLE-HOME-001",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "request_text": "ホームの職員マスタ検索ボタンの動作を修正し、選択した職員の詳細まで到達できるようにする",
+  "requirement_ids": ["COMMON-NAV-001", "SCR002-LT-007"],
+  "acceptance_criteria": [
+    "ホームから職員検索へ移動する",
+    "選択した架空職員の番号が詳細と一致する"
+  ]
+}
