@@ -47,6 +47,7 @@
 | サブ分類 | ドキュメント | タイトル | 対象アプリ | 概要 |
 |---|---|---|---|---|
 | 全体計画 | [docs/testing/test-policy.md](testing/test-policy.md) | 全体テスト計画 | 現行単一アプリ | 単体・結合・総合・受入の区分、改修時の選定、リスク、合否。旧版は[履歴](testing/archive/test-policy-v1.00.md)。 |
+| 工程別計画 | [単体](testing/unit-test-plan.md)・[結合](testing/integration-test-plan.md)・[総合](testing/system-test-plan.md) | テスト工程別の計画 | 現行単一アプリ | 単体は毎改修、結合は影響に応じて実施。総合の業務シナリオと時期は後続で策定。 |
 | 実施要領 | [docs/testing/test-specification.md](testing/test-specification.md) | テスト実施要領・ケース仕様 | 現行プロファイル＋旧版履歴 | 現行ケースを先頭に、旧版ケースID・見出しも履歴として保持。 |
 | 選定記録 | [docs/testing/change-records/README.md](testing/change-records/README.md) | 改修ごとの試験選定記録 | 現行単一アプリ | 変更部品、単体ケース、結合の影響判断とActionsのチェック対象。 |
 | 実施記録様式 | [docs/testing/templates/test-execution-record.md](testing/templates/test-execution-record.md) | 改修試験の実施記録 | 現行単一アプリ | Actions runと紐付け、期待値・実測・判定・残件と公開版の照合を記録。 |

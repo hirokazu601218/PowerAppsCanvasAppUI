@@ -4,7 +4,7 @@
 
 ## 1. 位置付け・対象
 
-本書は試験の対象、工程、選び方、役割、判定を定める正本。ケースの操作と期待値は[テスト実施要領](test-specification.md)を参照する。改修ごとの選定は[試験選定記録](change-records/README.md)、業務受入は[受入テスト計画](user-acceptance.md)、自動実行設定は[現行アプリE2E運用](current-app-e2e.md)に分ける。[旧テスト方針v1.00](archive/test-policy-v1.00.md)は作成当時の記録。
+本書は試験の対象、工程、選び方、役割、判定を定める正本。工程別の詳細は[単体テスト計画](unit-test-plan.md)、[結合テスト計画](integration-test-plan.md)、[総合テスト計画](system-test-plan.md)を参照する。ケースの操作と期待値は[テスト実施要領](test-specification.md)を参照する。改修ごとの選定は[試験選定記録](change-records/README.md)、業務受入は[受入テスト計画](user-acceptance.md)、自動実行設定は[現行アプリE2E運用](current-app-e2e.md)に分ける。[旧テスト方針v1.00](archive/test-policy-v1.00.md)は作成当時の記録。
 
 対象環境は StaffMaster-Automation-Test（`68e00049-b7e5-eda6-9888-9a3cc493c5be`）、対象App IDは **`204a48dc-7f23-43dd-b934-4654a3cfa306`**。アプリの表示名は「自動開発_職員マスタ検索」。職員基本・通勤・基準給与簿の`_STUDIO`隔離テーブルと隔離HTMLを使用する。[単一アプリ運用](../operations/single-app-workflow.md)を優先する。旧App ID `362ac991-eead-4f07-8373-afdb3ebfdba1` 向けのpack/import/publish/restoreと旧テストの合格は現行アプリの証跡に転用しない。
 

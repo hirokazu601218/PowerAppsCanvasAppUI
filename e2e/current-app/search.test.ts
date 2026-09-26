@@ -40,6 +40,9 @@ async function searchSameName(canvas: FrameLocator): Promise<void> {
   });
   await expect(input).toBeVisible();
   await input.fill('同姓同名');
+  // Commit the modern input's pending value before the button reads Text.
+  await input.press('Tab');
+  await expect(input).toHaveValue('同姓同名');
   await canvas.getByRole('button', { name: '検索', exact: true }).click();
   // The current app limits the dedicated test user's view to 03会計課.
   try {
@@ -50,12 +53,9 @@ async function searchSameName(canvas: FrameLocator): Promise<void> {
     // Only publish a synthetic row's presence and the numeric result count.
     console.log('Search diagnostics:', JSON.stringify({
       count: title.match(/職員一覧\s*([0-9０-９]+)件/)?.[1] ?? null,
-      row011: await canvas.getByRole('button', {
-        name: '009900000011 試験 同姓同名 詳細を表示', exact: true,
-      }).isVisible(),
-      row012: await canvas.getByRole('button', {
-        name: '009900000012 試験 同姓同名 詳細を表示', exact: true,
-      }).isVisible(),
+      row004: await canvas.getByRole('button', { name: /009900000004/ }).isVisible(),
+      row011: await canvas.getByRole('button', { name: /009900000011/ }).isVisible(),
+      row012: await canvas.getByRole('button', { name: /009900000012/ }).isVisible(),
       keywordEntered: await input.inputValue() === '同姓同名',
     }));
     throw error;
