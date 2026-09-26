@@ -1,6 +1,6 @@
 # 職員マスタ検索：単一アプリ運用（2026-09-26）
 
-> 現行方針。2026-09-25の[3アプリ運用案](three-app-release-flow.md)を廃止する。過去の配布試験と失敗・復旧の記録は履歴として残す。
+> 現行方針。2026-09-25の[3アプリ運用案](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/main/docs/operations/three-app-release-flow.md)を廃止する。過去の配布試験と失敗・復旧の記録は履歴として残す。
 
 ## 対象
 
