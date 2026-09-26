@@ -29,8 +29,9 @@
 | サブ分類 | ドキュメント | タイトル | 対象アプリ | 概要 |
 |---|---|---|---|---|
 | 要件定義 | [docs/requirements/requirements.md](requirements/requirements.md) | 要件定義書 | 共通 | 職員検索、履歴、帳票、出力、サイドバー、表示品質に関するアプリ要件。 |
+| 非機能要件 | [docs/requirements/non-functional-requirements.md](requirements/non-functional-requirements.md) | 非機能要件・判定基準整理 | 現行単一アプリ | ガイドの分類ごとに、既定の確認条件、測定方法、未決の目標値と責任分担を区別。 |
 | 要件・設計・試験対応 | [docs/requirements/traceability-matrix.md](requirements/traceability-matrix.md) | 要件・設計・試験対応表 | 現行単一アプリ | 現行要件IDごとの基本・詳細設計、試験ケース、未設計・未試験の範囲を整理。旧版の結果と区別。 |
-| 基本設計 | [docs/design/basic-design.md](design/basic-design.md) | 基本設計書 | 共通 | 画面構成、配置、検索サイドバー、状態保持などの基本設計。 |
+| 基本設計 | [docs/design/basic-design.md](design/basic-design.md) | 基本設計書 | 共通 | 現行単一アプリの全体図、画面とデータの流れ、CRUDの境界、配置・検索サイドバーなどの基本設計。 |
 | 詳細設計 | [docs/design/detailed-design.md](design/detailed-design.md) | 詳細設計書 | 共通 | コントロール、データ契約、状態遷移、配置式、帳票・出力の詳細設計。 |
 | UI・デザイン | [docs/design/design-system.md](design/design-system.md) | デザイン基準 | 共通 | 文字、色、余白、操作性、アクセシビリティに関するデザイン基準。 |
 
