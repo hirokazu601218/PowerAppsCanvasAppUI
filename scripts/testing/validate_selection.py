@@ -11,6 +11,7 @@ from pathlib import Path
 APP_ID = "204a48dc-7f23-43dd-b934-4654a3cfa306"
 ENV_ID = "68e00049-b7e5-eda6-9888-9a3cc493c5be"
 RECORD_PREFIX = "docs/testing/change-records/"
+REQUEST_PREFIX = "docs/changes/requests/"
 TEST_PREFIX = "e2e/current-app/"
 SOURCE_PREFIXES = ("powerapps/", "src/", "automation/", "scripts/ui/")
 SOURCE_FILES = {"config/apps/staff-master.json"}
@@ -75,6 +76,23 @@ def validate(repo: Path, changed: set[str], *, smoke_if_tests_changed: bool = Fa
             raise SelectionError(f"{record}: schema_version=1 and change_id required")
         if data.get("target") != {"environment_id": ENV_ID, "app_id": APP_ID}:
             raise SelectionError(f"{record}: wrong environment or App ID")
+        request_path = REQUEST_PREFIX + Path(record).name
+        if request_path not in changed:
+            raise SelectionError(f"{record}: change request must be updated with the selection record: {request_path}")
+        request_file = repo / request_path
+        if not request_file.is_file():
+            raise SelectionError(f"{record}: missing change request: {request_path}")
+        request = json.loads(request_file.read_text(encoding="utf-8"))
+        if request.get("schema_version") != 1 or request.get("change_id") != data["change_id"]:
+            raise SelectionError(f"{request_path}: change ID or schema mismatch")
+        if request.get("target") != data["target"]:
+            raise SelectionError(f"{request_path}: wrong environment or App ID")
+        if not isinstance(request.get("request_text"), str) or len(request["request_text"].strip()) < 10:
+            raise SelectionError(f"{request_path}: record the original request and its scope")
+        for key in ("requirement_ids", "acceptance_criteria"):
+            values = request.get(key)
+            if not isinstance(values, list) or not values or any(not isinstance(v, str) or not v.strip() for v in values):
+                raise SelectionError(f"{request_path}: {key} must be a nonempty list")
         changes = data.get("changes")
         cases = data.get("cases")
         integration = data.get("integration")
@@ -141,19 +159,43 @@ def validate(repo: Path, changed: set[str], *, smoke_if_tests_changed: bool = Fa
                 raise SelectionError(f"changed test file has no executable unit/integration case: {file}")
             tests.add(file)
             all_ids.update(ids)
-    return {"source_paths": sorted(source), "record_paths": records, "test_files": sorted(tests), "case_ids": sorted(all_ids)}
+    return {"source_paths": sorted(source), "record_paths": records,
+            "request_paths": [REQUEST_PREFIX + Path(p).name for p in records],
+            "test_files": sorted(tests), "case_ids": sorted(all_ids)}
+
+
+def select_record(repo: Path, record: str) -> dict:
+    """Select exactly the recorded cases for a post-publication run."""
+    if not re.fullmatch(r"docs/testing/change-records/[a-z0-9][a-z0-9-]*\.json", record):
+        raise SelectionError("invalid selection record path")
+    file = repo / record
+    if not file.is_file():
+        raise SelectionError(f"missing selection record: {record}")
+    data = json.loads(file.read_text(encoding="utf-8"))
+    changes = data.get("changes")
+    if not isinstance(changes, list) or not changes:
+        raise SelectionError(f"{record}: changes required")
+    source = {entry.get("path") for entry in changes if isinstance(entry, dict)}
+    if not source or any(not isinstance(p, str) or not source_path(p) or not (repo / p).is_file() for p in source):
+        raise SelectionError(f"{record}: source paths must be current app files")
+    request = REQUEST_PREFIX + Path(record).name
+    return validate(repo, source | {record, request})
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", type=Path, default=Path("."))
-    parser.add_argument("--base", required=True)
+    parser.add_argument("--base", help="merge base for PR/push selection")
+    parser.add_argument("--record", help="post-publication: run only the named selection record")
     parser.add_argument("--head", default="HEAD")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
+    if not args.record and not args.base:
+        parser.error("--base is required unless --record is supplied")
     try:
         repo = args.repo.resolve()
-        plan = validate(repo, changed_paths(repo, args.base, args.head), smoke_if_tests_changed=True)
+        plan = (select_record(repo, args.record) if args.record else
+                validate(repo, changed_paths(repo, args.base, args.head), smoke_if_tests_changed=True))
     except (SelectionError, subprocess.CalledProcessError, json.JSONDecodeError) as error:
         print(f"::error::{error}", file=sys.stderr)
         return 1

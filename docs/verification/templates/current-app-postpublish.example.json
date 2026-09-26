@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "change_id": "EXAMPLE-HOME-001",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "source_commit": "0000000000000000000000000000000000000000",
+  "documentation_base_commit": "0000000000000000000000000000000000000000",
+  "requirement_ids": ["COMMON-NAV-001", "SCR002-LT-007"],
+  "selected_case_ids": ["IT-HOME-DETAIL-001", "UT-HOME-001"],
+  "source_comparison": {
+    "result": "MATCH",
+    "checked_paths": ["src/staff-master/example-only.pa.yaml"],
+    "method_and_findings": "公開版の読戻しと対象部品を候補ソースへ照合した方法および一致・差異を記録する"
+  },
+  "publication": {
+    "version": "2026-09-26T09:00:00Z",
+    "player_observed_at": "2026-09-26T09:05:00Z",
+    "player_app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+    "player_result": "PASS",
+    "player_observation": "公開Playerで変更した操作と画面表示を確認し、未確認の範囲もここに記す",
+    "download_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

@@ -9,6 +9,7 @@ on:
       - 'scripts/ui/**'
       - 'config/apps/staff-master.json'
       - 'docs/testing/**'
+      - 'docs/changes/requests/**'
       - 'e2e/current-app/**'
       - 'scripts/testing/**'
       - '.github/workflows/current-app-test-gate.yml'
@@ -21,10 +22,21 @@ on:
       - 'scripts/ui/**'
       - 'config/apps/staff-master.json'
       - 'docs/testing/change-records/**'
+      - 'docs/changes/requests/**'
       - 'e2e/current-app/**'
       - 'scripts/testing/**'
       - '.github/workflows/current-app-test-gate.yml'
   workflow_dispatch:
+    inputs:
+      record_path:
+        description: '公開後に再実行する改修の試験選定記録。空欄は既定のホーム・詳細スモーク'
+        type: string
+        required: false
+  workflow_call:
+    inputs:
+      record_path:
+        type: string
+        required: true
 
 permissions:
   contents: read
@@ -50,14 +62,17 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
           EVENT_NAME: ${{ github.event_name }}
+          RECORD_PATH: ${{ inputs.record_path || '' }}
         run: |
           set -euo pipefail
-          if [[ "$EVENT_NAME" == workflow_dispatch ]]; then
+          if [[ -n "$RECORD_PATH" ]]; then
+            python3 scripts/testing/validate_selection.py --record "$RECORD_PATH" --output selection-plan.json
+          elif [[ "$EVENT_NAME" == workflow_dispatch ]]; then
             python3 - <<'PY'
           import json
           from pathlib import Path
           Path('selection-plan.json').write_text(json.dumps({
-            'source_paths': [], 'record_paths': [],
+            'source_paths': [], 'record_paths': [], 'request_paths': [],
             'test_files': ['e2e/current-app/navigation.test.ts'],
             'case_ids': ['UT-HOME-001', 'IT-HOME-DETAIL-001'],
           }))
@@ -74,7 +89,7 @@ jobs:
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as result:
               result.write('## 試験選定\n')
               result.write('対象App ID: `204a48dc-7f23-43dd-b934-4654a3cfa306`\n\n')
-              for key in ('source_paths', 'record_paths', 'case_ids'):
+              for key in ('source_paths', 'record_paths', 'request_paths', 'case_ids'):
                   result.write(f'- {key}: {", ".join(plan[key]) or "なし"}\n')
               result.write('\n形式・参照の検査結果であり、影響分析の正しさや公開版の一致は別途確認。\n')
           PY

@@ -34,6 +34,7 @@
 | 未決事項 | [docs/requirements/open-decisions.md](requirements/open-decisions.md) | 未決事項一覧 | 現行単一アプリ | 業務・画面・非機能の判断待ちを一覧化し、実装・試験の未確認と分離。 |
 | 要件間の関係 | [docs/requirements/requirement-relations.md](requirements/requirement-relations.md) | 要件間マトリクス | 現行単一アプリ | R15～R23、画面固有・共通要件、非機能検討IDの対応と画面間依存・別機能を逆引き。 |
 | 要件・設計・試験対応 | [docs/requirements/traceability-matrix.md](requirements/traceability-matrix.md) | 要件・設計・試験対応表 | 現行単一アプリ | 86件の要件IDと基本・詳細設計の参照先、業務上の未決事項、未照合・未試験の範囲を区別。旧版の結果と区別。 |
+| 変更要求 | [docs/changes/requests/README.md](changes/requests/README.md) | 変更要求の記録 | 現行単一アプリ | 修正・機能追加の指示、要件IDと受入条件を改修ごとに記録。 |
 | 基本設計 | [docs/design/basic-design.md](design/basic-design.md) | 基本設計書 | 現行単一アプリ＋旧版履歴 | 現行単一アプリの全体図、機能・状態・データ・CRUDの境界、画面間受渡しと未決の保存先。 |
 | 詳細設計 | [docs/design/detailed-design.md](design/detailed-design.md) | 詳細設計書 | 現行単一アプリ＋旧版履歴 | SCR-002の検索・編集、SCR-005試算31項目と全画面共通領域の実装契約。旧版の配置式は履歴として区別。 |
 | UI・デザイン | [docs/design/design-system.md](design/design-system.md) | デザイン基準 | 共通 | 文字、色、余白、操作性、アクセシビリティに関するデザイン基準。 |
@@ -70,6 +71,7 @@
 |---|---|---|---|---|
 | Work運用 | [docs/operations/work-policy.md](operations/work-policy.md) | Work運用方針 | 共通 | ChatGPT Sol Workでの役割、実装手順、確認条件、検証方法を定めた運用正本。 |
 | 画面変更の運用 | [docs/operations/single-app-workflow.md](operations/single-app-workflow.md) | 単一アプリ運用 | 職員マスタ検索 | 旧編集用アプリ1件で実装・試験・公開・ユーザー確認する順序と旧ID自動化の停止条件。 |
+| 公開後の文書反映 | [docs/operations/current-app-request-to-release.md](operations/current-app-request-to-release.md) | 変更要求から公開・文書反映まで | 現行単一アプリ | 変更要求、単体／結合、公開版読戻し、要件・設計・結合仕様の更新とActionsによる照合。 |
 | 旧運用案 | [docs/operations/three-app-release-flow.md](operations/three-app-release-flow.md) | 3アプリ運用案（廃止） | 履歴 | 2026-09-25時点の案。現行手順には使わない。 |
 | 差分管理 | [docs/operations/control-diff-policy.md](operations/control-diff-policy.md) | YAML差分配布方針 | 共通 | コントロール単位のYAML差分を安全に配布・適用する方針。 |
 | 差分管理 | [src/staff-master/patches/README.md](../src/staff-master/patches/README.md) | 差分YAML案内 | 共通 | 差分YAMLの格納方法、適用単位、安全上の注意。 |

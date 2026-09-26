@@ -2,6 +2,8 @@
 
 アプリのソースを変更するPRでは、PR全体で1件の`docs/testing/change-records/<変更ID>.json`を追加または更新する。[全体テスト計画](../test-policy.md)に従い、変更部品ごとに単体テスト、他部品への影響がある場合は結合テストを選定する。総合テストの業務シナリオは後日定義する。ケースの自動化だけで業務受入済みとはしない。
 
+同じPRで同じファイル名の[変更要求](../../changes/requests/README.md)を追加・更新し、指示内容、要件ID、受入条件を記録する。Actionsが変更IDと対象App IDを照合する。公開後は[文書反映の工程](../../operations/current-app-request-to-release.md)に従い、実版から要件・設計・必要な結合ケース仕様を更新する。
+
 ## 記入順
 
 1. `target`に現行アプリの環境ID、App IDを記入する。

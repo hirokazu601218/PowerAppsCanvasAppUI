@@ -1,3 +1,10 @@
+# 現在の作業と読取り対象：変更要求から公開後の文書反映までの現行アプリ工程を整備（2026-09-26）
+
+- [変更要求](../changes/requests/README.md)と[試験選定](../testing/change-records/README.md)を同じ変更IDで記録し、[現行アプリの実行手順](../operations/current-app-request-to-release.md)で構築・単体／結合・公開・読戻し・要件／基本／詳細／結合ケース仕様の更新を連続させる。[公開後文書照合Actions](../../.github/workflows/current-app-postpublish-docs.yml)は公開メタデータ・パッケージSHA・文書差分を確認し、選定ケースを公開Playerで再実行する。旧App IDの配布／復旧Actionsは起動せず、現行アプリ向けの自動配布成立とはしない。
+- [未決事項一覧 D-07](../requirements/open-decisions.md)に総合テスト仕様のシナリオ・時期等の判断待ちを明記。今回はフロー・文書のみ変更し、現行アプリの保存・公開、Dataverse変更、実環境での新ワークフロー実行は行っていない。読取り対象：上記文書、[単一アプリ運用](../operations/single-app-workflow.md)、新しいActions・検証スクリプトとテスト。
+
+---
+
 # 現在の作業と読取り対象：要件間の関係と未決事項を索引化（2026-09-26）
 
 - [未決事項一覧](../requirements/open-decisions.md)に仕様の判断待ちD-01～D-06、非機能の残る判断点、実装・試験の未確認を分けて記録。[要件間マトリクス](../requirements/requirement-relations.md)にR15～R23とSCR-001／002／005の画面要件、全画面共通の遷移・権限・選択情報、NFR-A～Rの接点を対応付けた。要件→設計→試験の縦方向は[既存対応表](../requirements/traceability-matrix.md)を使用する。
