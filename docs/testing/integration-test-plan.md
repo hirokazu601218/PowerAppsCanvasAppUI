@@ -14,6 +14,6 @@
 |---|---|---|
 | `IT-HOME-DETAIL-001` | ホームから職員一覧へ移動し、架空職員011を選択。詳細の番号と所属が011／03会計課へ切り替わる | [navigation.test.ts](../../e2e/current-app/navigation.test.ts) |
 
-実装済みケースはホーム→一覧→詳細の連携だけに適用する。検索結果→詳細の `IT-SRCH-DETAIL-001` は[前提の検索不一致](current-app-search-observation.md)により現行ゲートへは未実装。他の連携改修は別ケースを選ぶ。[実施記録](templates/test-execution-record.md)へケースごとの操作、実測、PASS/FAIL/BLOCKED/NOT_RUNと残件を記録する。関連する単体ケースと必要な結合ケースの完了、公開版の照合を終了条件とする。
+実装済みケースはホーム→一覧→詳細の連携だけに適用する。検索結果→詳細の `IT-SRCH-DETAIL-001` は[前提の検索不一致](../../records/docs/testing/current-app-search-observation.md)により現行ゲートへは未実装。他の連携改修は別ケースを選ぶ。[実施記録](templates/test-execution-record.md)へケースごとの操作、実測、PASS/FAIL/BLOCKED/NOT_RUNと残件を記録する。関連する単体ケースと必要な結合ケースの完了、公開版の照合を終了条件とする。
 
 機能改修で結合が必要な場合、[試験選定](change-records/README.md)とコードの追加・更新に加え、公開後に確認した受渡し・例外・独立期待値を[テスト実施要領](test-specification.md)へ反映する。[公開後文書照合](../operations/current-app-request-to-release.md)はケースIDの記載と選定済みE2Eを検査する。記述内容の妥当性はCodexが実際の画面と設計に照らして確認する。

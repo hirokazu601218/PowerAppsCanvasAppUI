@@ -43,7 +43,7 @@
 
 | 区分 | 現在の状態と次の確認先 |
 |---|---|
-| 現行Playerとの相違 | 検索専用ケース`UT-SRCH-001`はFAIL、`IT-SRCH-DETAIL-001`はBLOCKED。SCR-002⇄005往復後の検索結果、SCR-005固定サマリー、SCR-002表示名などの差は[公開Player観察](../verification/current-app-player-20260926.md)と[検索試験](../testing/current-app-search-observation.md)の残件。未決の業務仕様に読み替えない |
+| 現行Playerとの相違 | 検索専用ケース`UT-SRCH-001`はFAIL、`IT-SRCH-DETAIL-001`はBLOCKED。SCR-002⇄005往復後の検索結果、SCR-005固定サマリー、SCR-002表示名などの差は[公開Player観察](../../records/docs/verification/current-app-player-20260926.md)と[検索試験](../../records/docs/testing/current-app-search-observation.md)の残件。未決の業務仕様に読み替えない |
 | 保存版・公開版・データ読戻し | SCR-002の5区分保存、所属／管理者の実効権限、SCR-005のデータ取得元と計算結果の照合が未完。詳細は[対応表](traceability-matrix.md)と[STATUS](../handoff/STATUS.md) |
 | 職員基本の欠勤時間単価 | 元の`M_職員基本`への反映と読戻しは[Issue #51](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/51)。試作の計算要件を変更する決定待ちではなく、別の未実施タスク |
 

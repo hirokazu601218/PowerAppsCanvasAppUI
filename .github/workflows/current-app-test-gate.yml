@@ -3,11 +3,10 @@ name: Current app test selection and E2E
 on:
   pull_request:
     paths:
-      - 'powerapps/**'
-      - 'src/**'
-      - 'automation/**'
-      - 'scripts/ui/**'
-      - 'config/apps/staff-master.json'
+      - 'powerapps/canvas-v3/**'
+      - 'powerapps/test-data/**'
+      - 'src/screen-ui/v1.24/**'
+      - 'config/dataverse/**'
       - 'docs/testing/**'
       - 'docs/changes/requests/**'
       - 'e2e/current-app/**'
@@ -16,11 +15,10 @@ on:
   push:
     branches: [main]
     paths:
-      - 'powerapps/**'
-      - 'src/**'
-      - 'automation/**'
-      - 'scripts/ui/**'
-      - 'config/apps/staff-master.json'
+      - 'powerapps/canvas-v3/**'
+      - 'powerapps/test-data/**'
+      - 'src/screen-ui/v1.24/**'
+      - 'config/dataverse/**'
       - 'docs/testing/change-records/**'
       - 'docs/changes/requests/**'
       - 'e2e/current-app/**'

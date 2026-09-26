@@ -11,4 +11,6 @@
 
 その後はSTATUSが指定する資料だけを基本の読取り対象とする。STATUS不一致時の優先順位、追加読取り、確認、検証、正本、Library資料の扱いはWork運用方針に従う。
 
+作成・アップロード先は `docs/operations/document-organization.md` の三分法（現行入力、実行結果・履歴、別件）で判断する。旧パスからの移動は `records/operations/migration/source-map.csv` を確認する。
+
 Libraryの `skills` フォルダ内のMarkdownは保管ルール文書であり、このリポジトリで自動実行されるSkillまたは `SKILL.md` ではない。

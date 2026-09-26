@@ -13,8 +13,8 @@
 - `B全`＝[基本設計「現行アプリの全体構成」](../design/basic-design.md#現行アプリの全体構成)、`B構`＝[「軽量化後の構成」](../design/basic-design.md#軽量化後の構成)、`B配`＝[「軽量化後の配置」](../design/basic-design.md#軽量化後の配置)、`B側`＝[「職員検索サイドバー」](../design/basic-design.md#職員検索サイドバー)、`B機`＝[「現行画面の機能・状態・データ境界」](../design/basic-design.md#現行画面の機能状態データ境界)。旧版の「構成」「配置」は現行設計の根拠にしない。
 - `D10.x`＝[詳細設計10章](../design/detailed-design.md#10-scr-002軽量化設計2026-09-24)、`D11.x`＝[SCR-005試算設計](../design/detailed-design.md#11-scr-005-支給明細の内蔵仮例試算設計)、`D12.x`＝[SCR-001と共通設計](../design/detailed-design.md#12-scr-001と全6画面の共通設計)。1～9章は旧版履歴。設計への対応は公開版の実装確認を意味しない。試験欄の`—`は現行ケース未設定を示す。
 - `計画 LT-*`＝[SCR-002軽量化の試験ケース仕様](../testing/test-specification.md#scr-002軽量化追加受入2026-09-24)。**現行App IDで実行するテストコードの存在やPASSを意味しない。** `コード UT-*`／`IT-*`＝[現行E2E](../../e2e/current-app/navigation.test.ts)に実装済みのケース。実行結果はコミットと公開版を照合して別途判定する。
-- `実測`＝[2026-09-26の検索試験記録](../testing/current-app-search-observation.md)。`UT-SRCH-001`はFAIL、`IT-SRCH-DETAIL-001`はBLOCKEDで、どちらも現行の安定ゲートに入っていない。旧版の試験や別App IDのPASSを現行アプリの合格へ転記しない。
-- [同日の所有者セッションによる公開Playerの読取り照合](../verification/current-app-player-20260926.md)は、画面の部分的な実測と要件との差を示す。専用利用者のActionsケース、ソース読戻し、保存・権限・計算の合格へ転用しない。
+- `実測`＝[2026-09-26の検索試験記録](../../records/docs/testing/current-app-search-observation.md)。`UT-SRCH-001`はFAIL、`IT-SRCH-DETAIL-001`はBLOCKEDで、どちらも現行の安定ゲートに入っていない。旧版の試験や別App IDのPASSを現行アプリの合格へ転記しない。
+- [同日の所有者セッションによる公開Playerの読取り照合](../../records/docs/verification/current-app-player-20260926.md)は、画面の部分的な実測と要件との差を示す。専用利用者のActionsケース、ソース読戻し、保存・権限・計算の合格へ転用しない。
 
 表の試験列は**関連する検査観点**であり、同じケースIDが複数行にあっても全条件を検証できるとは限らない。要件の一部しか確認しない場合は残件を明記した。単体・結合・総合の実施判断は[全体テスト計画](../testing/test-policy.md)と[改修ごとの選定記録](../testing/change-records/README.md)で行う。総合テストのシナリオと実施時期は未確定。
 
@@ -81,7 +81,7 @@
 
 ## SCR-005：支給明細の画面要件
 
-[画面要件8章](screen-requirements.md)の31件を、[基本設計B機](../design/basic-design.md#現行画面の機能状態データ境界)と[詳細設計11章](../design/detailed-design.md#11-scr-005-支給明細の内蔵仮例試算設計)へ要件ID単位で対応させた。これは**内蔵仮例の試算設計**であり、現行ソース上の名称・計算実装・公開版の合格の読戻しではない。[v1.22の画面試験記録](../testing/screens-v1.22-results.md)は旧アプリ版の結果で、現行単一App IDへの試験完了と扱わない。特に端数処理、権限主体、欠勤単価の元テーブル反映は未決／別残件として残す。
+[画面要件8章](screen-requirements.md)の31件を、[基本設計B機](../design/basic-design.md#現行画面の機能状態データ境界)と[詳細設計11章](../design/detailed-design.md#11-scr-005-支給明細の内蔵仮例試算設計)へ要件ID単位で対応させた。これは**内蔵仮例の試算設計**であり、現行ソース上の名称・計算実装・公開版の合格の読戻しではない。[v1.22の画面試験記録](../../records/docs/testing/screens-v1.22-results.md)は旧アプリ版の結果で、現行単一App IDへの試験完了と扱わない。特に端数処理、権限主体、欠勤単価の元テーブル反映は未決／別残件として残す。
 
 | 要件ID | 対象事項 | 基本・詳細設計 | 現行試験 | 必要な対応 |
 |---|---|---|---|---|
@@ -119,7 +119,7 @@
 
 ## 公開Playerの部分照合と差分（2026-09-26）
 
-上表の「計画」「コード」「—」は試験実施状態を表すものではない。今回の[観察手順・結果・対象範囲](../verification/current-app-player-20260926.md)を、次に修正・試験する要件IDへ結び付ける。
+上表の「計画」「コード」「—」は試験実施状態を表すものではない。今回の[観察手順・結果・対象範囲](../../records/docs/verification/current-app-player-20260926.md)を、次に修正・試験する要件IDへ結び付ける。
 
 | 対応ID | 今回のPlayer観察 | 次の扱い |
 |---|---|---|
@@ -187,8 +187,8 @@ SCR-003／004は画面の仮例を観察したが、業務上の登録・更新�
 | [画面要件1～5章](screen-requirements.md#1-画面一覧) | 8つの`COMMON-*`追跡IDを付与し、B機・D12.3／12.4へ割り付けた。全経路・実権限の試験と業務上の未定義範囲は上表に残す。6章は未決一覧、7章は変更履歴であり、確定要件としてカウントしない。 |
 | [画面要件9.2.1](screen-requirements.md#921-scr-001-ホームの操作配置) | `SCR001-UI-001`・`002`を付与。画面遷移の全方向・管理者／所属の実権限は現行ケース未整備。 |
 | [画面要件9.5～9.8](screen-requirements.md#95-全画面共通の画面領域比率) | 比率に`COMMON-LAYOUT-001`、性能に`SCR002-PERF-001`を付与。9.8は複数IDの包括受入であり、単独の新規業務要件にしない。全画面200%・可読性と改修前後の実測は未完了。 |
-| 旧R01～R14、HYB-001～004 | [要件定義書の適用区分](requirements.md#適用区分と優先順位)に従い旧版履歴。[旧版R01～R14のケース対応](../testing/test-specification.md#4-要件ケース対応)は旧プロファイルの設計であり、現在のE2E合格を示さない。HYBの設計は[ハイブリッドデータ](../design/hybrid-test-data.md)を参照。 |
-| COM-DV-001～003 | [通勤Dataverse設計](../design/dataverse-commute.md)と[当時の実施記録](../testing/commute-dataverse-results.md)で照合。元テーブルの実施記録であり、現行アプリの`_STUDIO`接続試験ではない。 |
+| 旧R01～R14、HYB-001～004 | [要件定義書の適用区分](requirements.md#適用区分と優先順位)に従い旧版履歴。[旧版R01～R14のケース対応](../testing/test-specification.md#4-要件ケース対応)は旧プロファイルの設計であり、現在のE2E合格を示さない。HYBの設計は[ハイブリッドデータ](../../records/docs/design/hybrid-test-data.md)を参照。 |
+| COM-DV-001～003 | [通勤Dataverse設計](../design/dataverse-commute.md)と[当時の実施記録](../../records/docs/testing/commute-dataverse-results.md)で照合。元テーブルの実施記録であり、現行アプリの`_STUDIO`接続試験ではない。 |
 
 ## 変更時の更新手順
 

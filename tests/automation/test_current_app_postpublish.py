@@ -23,7 +23,7 @@ class PostpublishGateTest(unittest.TestCase):
             subprocess.run(["git", *args], cwd=self.repo, check=True, capture_output=True)
         self.change_id = "CHANGE-123"
         self.target = {"environment_id": ENV_ID, "app_id": APP_ID}
-        self.source = "src/staff-master/Screen1.pa.yaml"
+        self.source = "src/screen-ui/v1.24/Screen1.pa.yaml"
         self.write(self.source, "Screen1: {}\n")
         self.write("e2e/current-app/search.test.ts",
                    "test('UT-SRCH-001 search', () => {});\n"

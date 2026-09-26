@@ -7,7 +7,7 @@
   },
   "changes": [
     {
-      "path": "src/staff-master/example-only.pa.yaml",
+      "path": "src/screen-ui/v1.24/studio-readback/Screen1.pa.yaml",
       "component": "btnHomeStaff.OnSelect",
       "unit_case_ids": ["UT-HOME-001"],
       "expected_result": "ホームから職員一覧を開き、03会計課の架空職員7名が表示される"
