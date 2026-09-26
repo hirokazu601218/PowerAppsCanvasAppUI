@@ -46,10 +46,13 @@
 
 | サブ分類 | ドキュメント | タイトル | 対象アプリ | 概要 |
 |---|---|---|---|---|
-| テスト方針 | [docs/testing/test-policy.md](testing/test-policy.md) | テスト方針 | 共通 | テスト対象、実施時期、テスト層、合否基準、証跡を定めた方針。 |
-| テスト仕様 | [docs/testing/test-specification.md](testing/test-specification.md) | テスト仕様書 | 共通 | テストデータ、環境、操作、期待値、判定方法をケース単位で定めた詳細仕様。 |
-| 受入基準 | [docs/testing/acceptance.md](testing/acceptance.md) | テスト・レビュー基準 | 共通 | 要件R01～R14に対応する受入観点と旧テスト手順の索引。 |
+| 全体計画 | [docs/testing/test-policy.md](testing/test-policy.md) | 全体テスト計画 | 現行単一アプリ | 単体・結合・総合・受入の区分、改修時の選定、リスク、合否。旧版は[履歴](testing/archive/test-policy-v1.00.md)。 |
+| 実施要領 | [docs/testing/test-specification.md](testing/test-specification.md) | テスト実施要領・ケース仕様 | 現行プロファイル＋旧版履歴 | 現行ケースを先頭に、旧版ケースID・見出しも履歴として保持。 |
+| 選定記録 | [docs/testing/change-records/README.md](testing/change-records/README.md) | 改修ごとの試験選定記録 | 現行単一アプリ | 変更部品、単体ケース、結合の影響判断とActionsのチェック対象。 |
+| 業務受入 | [docs/testing/user-acceptance.md](testing/user-acceptance.md) | 受入テスト計画と結果 | 現行単一アプリ | ユーザーが確認する業務シナリオ、期待結果、受入結果を記録。 |
+| 旧受入基準 | [docs/testing/acceptance.md](testing/acceptance.md) | テスト・レビュー基準 | 旧版履歴 | 旧T01～T14の索引。現行受入の結果ではない。 |
 | 検査結果 | [docs/testing/RESULTS.md](testing/RESULTS.md) | 格納前検査結果 | 共通 | v1.08・v1.11のYAML、数式、配置、項目保持などの検査結果。 |
+| 現行E2E運用 | [docs/testing/current-app-e2e.md](testing/current-app-e2e.md) | 現行アプリE2E運用 | 現行単一アプリ | 選定記録のActionsチェック、固定App IDでの読み取り専用E2Eと検証限界。 |
 | E2E運用 | [docs/testing/unattended-e2e-setup.md](testing/unattended-e2e-setup.md) | 完全無人テスト運用手順 | ハンドメイド専用 | GitHub ActionsとPlaywrightによるハンドメイド版の無人E2E運用手順。 |
 
 ## 5. プロジェクト運用・差分管理

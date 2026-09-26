@@ -1,0 +1,186 @@
+name: Current app test selection and E2E
+
+on:
+  pull_request:
+    paths:
+      - 'powerapps/**'
+      - 'src/**'
+      - 'automation/**'
+      - 'scripts/ui/**'
+      - 'config/apps/staff-master.json'
+      - 'docs/testing/**'
+      - 'e2e/current-app/**'
+      - 'scripts/testing/**'
+      - '.github/workflows/current-app-test-gate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'powerapps/**'
+      - 'src/**'
+      - 'automation/**'
+      - 'scripts/ui/**'
+      - 'config/apps/staff-master.json'
+      - 'docs/testing/change-records/**'
+      - 'e2e/current-app/**'
+      - 'scripts/testing/**'
+      - '.github/workflows/current-app-test-gate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: current-app-readonly-e2e
+  cancel-in-progress: false
+
+jobs:
+  selection:
+    name: Check change record and select cases
+    runs-on: ubuntu-latest
+    outputs:
+      files: ${{ steps.plan.outputs.files }}
+      cases: ${{ steps.plan.outputs.cases }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Compare changed app source to test selection
+        id: plan
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == workflow_dispatch ]]; then
+            python3 - <<'PY'
+          import json
+          from pathlib import Path
+          Path('selection-plan.json').write_text(json.dumps({
+            'source_paths': [], 'record_paths': [],
+            'test_files': ['e2e/current-app/search.test.ts'],
+            'case_ids': ['UT-SRCH-001', 'IT-SRCH-DETAIL-001'],
+          }))
+          PY
+          else
+            python3 scripts/testing/validate_selection.py --base "$BASE_SHA" --output selection-plan.json
+          fi
+          python3 - <<'PY'
+          import json, os
+          plan = json.load(open('selection-plan.json', encoding='utf-8'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as result:
+              result.write('files=' + ' '.join(plan['test_files']) + '\n')
+              result.write('cases=' + '|'.join(plan['case_ids']) + '\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as result:
+              result.write('## 試験選定\n')
+              result.write('対象App ID: `204a48dc-7f23-43dd-b934-4654a3cfa306`\n\n')
+              for key in ('source_paths', 'record_paths', 'case_ids'):
+                  result.write(f'- {key}: {", ".join(plan[key]) or "なし"}\n')
+              result.write('\n形式・参照の検査結果であり、影響分析の正しさや公開版の一致は別途確認。\n')
+          PY
+      - name: Prevent an untested fork PR from appearing green
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository && steps.plan.outputs.files != '' }}
+        run: |
+          echo '::error::E2E requires a trusted same-repository branch with test-user secrets; this PR cannot be marked tested.'
+          exit 1
+
+  e2e:
+    name: Current app selected E2E
+    needs: selection
+    if: ${{ needs.selection.outputs.files != '' }}
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 25
+    env:
+      OFFICIAL_SAMPLES_REF: 43e3db8d131aeb09415b1faef030e783fd2e320f
+      POWER_APPS_BASE_URL: https://make.powerapps.com
+      POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
+      CANVAS_APP_URL: https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/204a48dc-7f23-43dd-b934-4654a3cfa306?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
+      MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
+      MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
+      MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
+      MS_AUTH_LOCAL_FILE_PATH: ../../cert/powerapps-test-user.pfx
+      MS_AUTH_HEADLESS: true
+      MS_AUTH_WAIT_FOR_MSAL_TOKENS: true
+      MS_AUTH_MSAL_TOKEN_TIMEOUT: 60000
+      HEADLESS: true
+      WORKERS: 1
+      RETRIES: 0
+      TEST_TIMEOUT: 120000
+      CI: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: project
+      - uses: actions/checkout@v4
+        with:
+          repository: microsoft/power-platform-playwright-samples
+          ref: ${{ env.OFFICIAL_SAMPLES_REF }}
+          path: power-platform-playwright
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: power-platform-playwright/package-lock.json
+      - name: Install and build pinned toolkit
+        working-directory: power-platform-playwright
+        run: |
+          npm ci
+          npm run build
+      - name: Install Chromium
+        working-directory: power-platform-playwright/packages/e2e-tests
+        run: npx playwright install chromium --with-deps
+      - name: Copy only current-app tests
+        run: |
+          mkdir -p power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/current-app
+          cp project/e2e/current-app/*.test.ts power-platform-playwright/packages/e2e-tests/tests/northwind/canvas/current-app/
+      - name: Prepare existing test certificate
+        if: ${{ vars.POWERAPPS_AUTH_MODE == 'certificate' }}
+        env:
+          TEST_CERT_BASE64: ${{ secrets.POWERAPPS_TEST_CERT_BASE64 }}
+        run: |
+          mkdir -p power-platform-playwright/cert
+          printf '%s' "$TEST_CERT_BASE64" | base64 --decode > power-platform-playwright/cert/powerapps-test-user.pfx
+          chmod 600 power-platform-playwright/cert/powerapps-test-user.pfx
+      - name: Authenticate dedicated test user
+        id: auth
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+          MS_USER_PASSWORD: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+          MS_AUTH_CERTIFICATE_PASSWORD: ${{ secrets.POWERAPPS_TEST_CERT_PASSWORD }}
+        run: |
+          test "$MS_AUTH_EMAIL" = 'powerapps-test@govaca.onmicrosoft.com'
+          npm run auth
+      - name: Run selected cases against the fixed current App ID
+        id: tests
+        working-directory: power-platform-playwright/packages/e2e-tests
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+          SELECTED_FILES: ${{ needs.selection.outputs.files }}
+          SELECTED_CASES: ${{ needs.selection.outputs.cases }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          files=()
+          for file in $SELECTED_FILES; do
+            [[ "$file" =~ ^e2e/current-app/[a-z0-9-]+\.test\.ts$ ]] || exit 1
+            files+=("tests/northwind/canvas/current-app/${file##*/}")
+          done
+          test ${#files[@]} -gt 0
+          npx playwright test "${files[@]}" --project=canvas-app --grep "($SELECTED_CASES)" --trace=off --retries=0 --reporter=line
+      - name: Summarize result without authentication artifacts
+        if: always()
+        env:
+          AUTH_RESULT: ${{ steps.auth.outcome }}
+          TEST_RESULT: ${{ steps.tests.outcome }}
+          SELECTED_CASES: ${{ needs.selection.outputs.cases }}
+        run: |
+          {
+            echo '## 現行アプリの公開Player E2E'
+            echo "- App ID: \`204a48dc-7f23-43dd-b934-4654a3cfa306\`"
+            echo "- 対象ケース: $SELECTED_CASES"
+            echo "- 認証: $AUTH_RESULT"
+            echo "- ケース実行: $TEST_RESULT"
+            echo '- GitHub候補ソースと公開版の同一性はこの試験だけでは証明しない。'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "change_id": "EXAMPLE-SEARCH-001",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "changes": [
+    {
+      "path": "src/staff-master/example-only.pa.yaml",
+      "component": "btnSearch111.OnSelect",
+      "unit_case_ids": ["UT-SRCH-001"],
+      "expected_result": "検索を押すと架空の同姓同名2名が表示される"
+    }
+  ],
+  "integration": {
+    "required": true,
+    "reason": "検索結果から職員を選択すると、右側の詳細表示へ職員番号が渡る",
+    "case_ids": ["IT-SRCH-DETAIL-001"]
+  },
+  "system_test": {
+    "status": "deferred",
+    "reason": "業務シナリオと実施時期の策定待ち"
+  },
+  "cases": [
+    {
+      "id": "UT-SRCH-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/search.test.ts"
+    },
+    {
+      "id": "IT-SRCH-DETAIL-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/search.test.ts"
+    }
+  ]
+}

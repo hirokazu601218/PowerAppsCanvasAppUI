@@ -59,7 +59,7 @@
 - [公開由来のCanvasソース](powerapps/canvas-v3/Src/Screen1.pa.yaml)
 - [累積変更マニフェスト](automation/change.json)、[対象環境・App ID](config/apps/staff-master.json)
 - [無人修正・テスト公開の運用手順](docs/operations/staff-master-unattended-runbook.md)
-- [デザイン基準](docs/design/design-system.md)、[テスト仕様書](docs/testing/test-specification.md)
+- [デザイン基準](docs/design/design-system.md)、[全体テスト計画](docs/testing/test-policy.md)、[テスト実施要領](docs/testing/test-specification.md)、[改修ごとの試験選定](docs/testing/change-records/README.md)
 - [現行Dataverse・履歴・配置・P0回帰](e2e/hybrid/)、[旧版回復用P0](e2e/staff-master-p0.test.ts)
 
 公開後にサーバー側の実行ルールを読戻し、追加テストとP0の両方に合格した候補だけをmainへ統合します。成功タグを作る前に、検証済み記録からREADMEの成功版欄と文書専用コミットを生成します。READMEの版・リンク・検証runと候補版を照合し、テスト済みソースとの差分がREADMEだけであることを確認してから、そのコミットへ成功タグを付けます。不一致ならタグ作成を停止します。現在のリポジトリ設定ではActionsによるPR作成が禁止されているため、生成した変更をこのWorkがPR経由で統合します。ユーザーへの追加確認は不要です。Actionsだけで文書更新完了とはせず、mainへの反映まで確認します。詳細は運用手順を参照してください。
