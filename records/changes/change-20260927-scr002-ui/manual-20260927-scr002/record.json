@@ -1,0 +1,9 @@
+{
+  "change_id": "change-20260927-scr002-ui",
+  "run_id": "manual-20260927-scr002",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-09-27T12:08:50+09:00",
+  "source_commit": "1c8b1ec73a89c4c759c1b9bb477a74964e77c2c5",
+  "version": "22"
+}
