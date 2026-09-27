@@ -16,8 +16,8 @@ from scripts.testing.validate_selection import APP_ID, ENV_ID, SelectionError, s
 TARGET = {"environment_id": ENV_ID, "app_id": APP_ID}
 DOCS = (
     "docs/requirements/requirements.md",
-    "docs/design/basic-design.md",
-    "docs/design/detailed-design.md",
+    "docs/design/basic/basic-design.md",
+    "docs/design/detailed/detailed-design.md",
 )
 SPEC = "docs/testing/test-specification.md"
 

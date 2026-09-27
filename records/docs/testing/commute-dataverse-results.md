@@ -7,7 +7,7 @@
 | 工程 | 結果 | 証跡 |
 |---|---|---|
 | ① 定義書と既存テーブル確認 | 成功。原本84項目、親25件、一意代替キーActive、新規子テーブル未作成を確認 | [事前確認run](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35164838218) |
-| ② 親子関係設計 | 成功。職員番号で親を特定しLookupで1対0..N、任意84項目、削除Restrict | [設計](../../../docs/design/dataverse-commute.md) |
+| ② 親子関係設計 | 成功。職員番号で親を特定しLookupで1対0..N、任意84項目、削除Restrict | [設計](../../../docs/design/basic/data-model.md) |
 | ③ Dataverse作成 | 成功。84項目＋主列＋親Lookupを作成・公開し、型・長さ・範囲・任意設定と関連メタデータを読戻し | [作成run](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35165234474) |
 | ④ 整合テストデータ投入 | 成功。5名に6件。既存親25件の対象項目とETagが投入前後で一致 | [投入run](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/35165488926) |
 | ⑤ 検証・GitHub記録 | 実環境検証成功。全84項目を6件とも照合、親Lookup・職員番号・氏名一致。GitHubの設計・要件・fixture・結果・STATUSへ記録 | [機械可読証跡](commute-dataverse-evidence.json) |

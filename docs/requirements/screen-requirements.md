@@ -5,7 +5,7 @@
 - 定義範囲：画面一覧、画面遷移、操作、引継ぎ情報、権限制御、全画面共通余白、SCR-002の軽量化・表示編集要件、SCR-005のUI・試算要件
 - 本書は画面要件を定義するものであり、実装済みであることを示すものではない。
 
-機能要件R15～R23や他画面との関係は[要件間マトリクス](requirement-relations.md)、決定を待つ画面内事項は[未決事項一覧](open-decisions.md)に索引化する。正式な画面条件は本書の各IDを参照する。
+機能要件R15～R23や他画面との関係は[要件間マトリクス](traceability-matrix.md)、決定を待つ画面内事項は[未決事項一覧](open-decisions.md)に索引化する。正式な画面条件は本書の各IDを参照する。
 
 ## 1. 画面一覧
 
@@ -171,9 +171,9 @@ block-beta
 2026/09/18の修正デザインを、次回の貼付用YAML／Power Fx作成の基準とする。今回の成果は要件と画像であり、YAML実装・Studio検証・公開・Dataverse変更は未実施。
 
 - [確定配置のデザイン案 PNG](../../records/docs/design/images/scr-005-payroll-detail-v1.png)
-- [B案デザイン基準](../design/design-system.md)
+- [B案デザイン基準](../design/basic/design-system.md)
 - [旧2画面プロトタイプ](../../other/docs/prototypes/attendance-payroll-prototype.md)：勤務日数・欠勤時間の集計方法を参考にする。SCR-005の旧レイアウトと「基本額−欠勤控除＋超過勤務手当」の合計は本節に置き換える。旧YAMLが本節対応済みであるとは扱わない。
-- [通勤テーブル定義](../design/dataverse-commute.md)、[基準給与簿項目定義](../../config/dataverse/payrollledger-columns.json)
+- [通勤テーブル定義](../design/basic/data-model.md)、[基準給与簿項目定義](../../config/dataverse/payrollledger-columns.json)
 
 画像は配置の参考。数値・文字列・データ型・状態・操作は本書を正とし、画像を背景に貼る実装ではなく、各表示をCanvasコントロールとして構成する。画像の職員番号の桁数を転記せず、実装では12桁文字列を使用する。
 
@@ -290,7 +290,7 @@ block-beta
 
 ### 9.1 適用範囲と優先順位
 
-本節は2026-09-24に確定したSCR-002の軽量化要件であり、同画面について本書、[要件定義書](requirements.md)、[基本設計書](../design/basic-design.md)、[詳細設計書](../design/detailed-design.md)、[v1.21給与詳細・認定簿軽量化](../../records/docs/requirements/ui-v1.20.md)の旧配置と競合する場合は本節を優先する。現行実装の検証記録は履歴として保持し、本節の実装完了を示すものではない。SCR-005支給明細画面は別機能であり、本節の基準給与簿へ統合しない。
+本節は2026-09-24に確定したSCR-002の軽量化要件であり、同画面について本書、[要件定義書](requirements.md)、[基本設計書](../design/basic/basic-design.md)、[詳細設計書](../design/detailed/detailed-design.md)、[v1.21給与詳細・認定簿軽量化](../../records/docs/requirements/ui-v1.20.md)の旧配置と競合する場合は本節を優先する。現行実装の検証記録は履歴として保持し、本節の実装完了を示すものではない。SCR-005支給明細画面は別機能であり、本節の基準給与簿へ統合しない。
 
 ### 9.2 画面構成
 

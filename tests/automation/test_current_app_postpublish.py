@@ -73,8 +73,8 @@ class PostpublishGateTest(unittest.TestCase):
             },
         }
         self.write(self.evidence, json.dumps(self.record))
-        for path in ("docs/requirements/requirements.md", "docs/design/basic-design.md",
-                     "docs/design/detailed-design.md"):
+        for path in ("docs/requirements/requirements.md", "docs/design/basic/basic-design.md",
+                     "docs/design/detailed/detailed-design.md"):
             self.write(path, f"# {self.change_id} - 2026-09-26T09:00:00Z documented after publication\n")
         self.spec = "docs/testing/test-specification.md"
         self.write(self.spec, "CHANGE-123: 2026-09-26T09:00:00Z IT-SRCH-DETAIL-001: list selection goes to matching detail\n")
