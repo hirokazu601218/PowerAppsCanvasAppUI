@@ -37,4 +37,4 @@
 料金・ライセンス・課金設定の変更なし。Power Apps編集ロックの上書き操作なし。
 Workの起算は2026-09-17T03:41:43.436Z。最終Dataverse検証は60分の期限内に完了。全段階で同じ開始時刻を引継いだ。
 
-詳細: [機械可読証跡](payrollledger-dataverse-evidence.json)、[設計・受入条件](../../../docs/design/dataverse-payrollledger.md)。
+詳細: [機械可読証跡](payrollledger-dataverse-evidence.json)、[設計・受入条件](../../../docs/design/basic/data-model.md)。

@@ -36,7 +36,7 @@
 
 ## 3. 根拠と現状の扱い
 
-正本は[要件R01～R14](../../../../docs/requirements/requirements.md)、[基本設計](../../../../docs/design/basic-design.md)、[詳細設計](../../../../docs/design/detailed-design.md)、[B案](../../../../docs/design/design-system.md)。旧HTML設計は業務項目の参考で、旧接続仕様を自動化へ持ち込まない。
+正本は[要件R01～R14](../../../../docs/requirements/requirements.md)、[基本設計](../../../../docs/design/basic/basic-design.md)、[詳細設計](../../../../docs/design/detailed/detailed-design.md)、[B案](../../../../docs/design/basic/design-system.md)。旧HTML設計は業務項目の参考で、旧接続仕様を自動化へ持ち込まない。
 
 v1.11についてユーザーから「検索してもデータが表示されない」と報告を受けている。これは未解決不具合`BUG-SEARCH-001`として扱う。実行版・環境の厳密な照合と原因再現は未実施。既存の[68件のローカル検査記録](../RESULTS.md)は保存するが、実機合格や不具合解決の根拠にしない。
 

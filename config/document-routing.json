@@ -4,19 +4,19 @@
   "current_documents": [
     "docs/README.md",
     "docs/changes/requests/README.md",
+    "docs/requirements/README.md",
     "docs/requirements/requirements.md",
     "docs/requirements/screen-requirements.md",
     "docs/requirements/non-functional-requirements.md",
     "docs/requirements/open-decisions.md",
-    "docs/requirements/requirement-relations.md",
     "docs/requirements/traceability-matrix.md",
-    "docs/design/basic-design.md",
-    "docs/design/detailed-design.md",
-    "docs/design/design-system.md",
-    "docs/design/dataverse-staff-basic.md",
-    "docs/design/dataverse-commute.md",
-    "docs/design/dataverse-payrollledger.md",
-    "docs/design/field-inventory.json",
+    "docs/design/README.md",
+    "docs/design/basic/README.md",
+    "docs/design/basic/basic-design.md",
+    "docs/design/basic/design-system.md",
+    "docs/design/basic/data-model.md",
+    "docs/design/detailed/README.md",
+    "docs/design/detailed/detailed-design.md",
     "docs/testing/test-policy.md",
     "docs/testing/unit-test-plan.md",
     "docs/testing/integration-test-plan.md",
@@ -43,5 +43,7 @@
     "^docs/verification/postpublish/[a-z0-9][a-z0-9-]*\\.json$"
   ],
   "legacy_migration_map": "records/operations/migration/source-map.csv",
-  "record_index_paths": ["records/README.md"]
+  "record_index_paths": [
+    "records/README.md"
+  ]
 }

@@ -7,14 +7,14 @@
 
 # 現在の作業と読取り対象：要件間の関係と未決事項を索引化（2026-09-26）
 
-- [未決事項一覧](../../../docs/requirements/open-decisions.md)に仕様の判断待ちD-01～D-06、非機能の残る判断点、実装・試験の未確認を分けて記録。[要件間マトリクス](../../../docs/requirements/requirement-relations.md)にR15～R23とSCR-001／002／005の画面要件、全画面共通の遷移・権限・選択情報、NFR-A～Rの接点を対応付けた。要件→設計→試験の縦方向は[既存対応表](../../../docs/requirements/traceability-matrix.md)を使用する。
+- [未決事項一覧](../../../docs/requirements/open-decisions.md)に仕様の判断待ちD-01～D-06、非機能の残る判断点、実装・試験の未確認を分けて記録。[要件間マトリクス](../../../docs/requirements/traceability-matrix.md)にR15～R23とSCR-001／002／005の画面要件、全画面共通の遷移・権限・選択情報、NFR-A～Rの接点を対応付けた。要件→設計→試験の縦方向は[既存対応表](../../../docs/requirements/traceability-matrix.md)を使用する。
 - 未決の業務条件を確定した扱いにはしない。現行アプリ・Dataverse・テストコード・Actions設定は変更していない。文書のリンク・要件ID・状態区分だけ検査する。読取り対象：上記2文書と各要件正本、既存対応表。
 
 ---
 
 # 現在の作業と読取り対象：要件→基本→詳細の参照漏れを補完（2026-09-26）
 
-- [画面要件1～5章](../../../docs/requirements/screen-requirements.md#1-画面一覧)の未採番だった確定済み事項へ8つの`COMMON-*`追跡IDを付け、[基本設計の機能割付](../../../docs/design/basic-design.md#画面要件15章の追跡単位)、[詳細設計12.3／12.4](../../../docs/design/detailed-design.md)、[対応表](../../../docs/requirements/traceability-matrix.md)へ対応付けた。新しい業務要件の承認ではない。既存の通勤HTMLの横2ページ／0・NULL／権限、SCR-005試作の最終切捨て規則も詳細化。**要件IDの文書上の設計参照は86/86で、実装可能な業務・物理設計やテストの完了を示さない。**
+- [画面要件1～5章](../../../docs/requirements/screen-requirements.md#1-画面一覧)の未採番だった確定済み事項へ8つの`COMMON-*`追跡IDを付け、[基本設計の機能割付](../../../docs/design/basic/basic-design.md#画面要件15章の追跡単位)、[詳細設計12.3／12.4](../../../docs/design/detailed/detailed-design.md)、[対応表](../../../docs/requirements/traceability-matrix.md)へ対応付けた。新しい業務要件の承認ではない。既存の通勤HTMLの横2ページ／0・NULL／権限、SCR-005試作の最終切捨て規則も詳細化。**要件IDの文書上の設計参照は86/86で、実装可能な業務・物理設計やテストの完了を示さない。**
 - 未決：ログイン属性・管理者判定の権威ある取得元と実効権限、SCR-002の勤務／社会保険／税固定控除の更新先・列、SCR-005の本番計算・個別端数処理、SCR-003／004／006の画面内業務要件。専用利用者の検索FAIL／結合BLOCKED、所有者Playerで見た差分も未解消。今回の対象は文書だけで、アプリ・Dataverse・テストコード・Actionsを変更していない。リンク・ID・版・参照数の整合を確認する。
 
 ---
@@ -29,7 +29,7 @@
 
 # 現在の作業と読取り対象：要件→基本→詳細の設計対応を補完（2026-09-26）
 
-- [要件定義書](../../../docs/requirements/requirements.md)、[画面要件](../../../docs/requirements/screen-requirements.md)、[対応表](../../../docs/requirements/traceability-matrix.md)、[基本設計](../../../docs/design/basic-design.md)、[詳細設計](../../../docs/design/detailed-design.md)を同一の単一App IDに合わせて更新。旧816／657コントロールを現行改修直前値から除外し、安定版アプリへの反映という旧完了条件を取り除いた。既存74 IDは維持し、未採番だった既存要件4 IDを追加して計78 IDを対応付けた。
+- [要件定義書](../../../docs/requirements/requirements.md)、[画面要件](../../../docs/requirements/screen-requirements.md)、[対応表](../../../docs/requirements/traceability-matrix.md)、[基本設計](../../../docs/design/basic/basic-design.md)、[詳細設計](../../../docs/design/detailed/detailed-design.md)を同一の単一App IDに合わせて更新。旧816／657コントロールを現行改修直前値から除外し、安定版アプリへの反映という旧完了条件を取り除いた。既存74 IDは維持し、未採番だった既存要件4 IDを追加して計78 IDを対応付けた。
 - SCR-002の検索・選択・編集／保存・給与簿の表示と、SCR-005の試作試算31 IDについて、画面責務と実装契約を設計に補った。**設計済みはアプリ実装済み・試験合格を意味しない。** 現行Playerの再確認はMicrosoftのサインイン画面までで停止。今回は既存の[検索実測FAIL／結合BLOCKED](../testing/current-app-search-observation.md)を継承し、公開版ソースやDataverse権限・保存先の新しい読戻しを行っていない。
 - 残件：現行アプリのソースと公開Playerの照合、SCR-002の勤務／保険／税の保存先とロール、SCR-005の計算データ・端数規則と実行ケース、SCR-003／004／006の画面内業務要件。今回はアプリ・Dataverse・テストコード・Actionsの設定を変更していないため、実機の単体・結合試験は実施していない。文書リンク・ID・版・旧方針の整合のみ検査する。
 
@@ -126,7 +126,7 @@
 - 基準給与簿は163項目を縦、表示開始月～終了月を選択して範囲内の登録済み給与レコードだけを横列で動的表示。未登録月は列なし。同月の正常な複数行はすべて別列で表示し、登録可否条件は登録処理側で精査する。初版では採用前・退職後だけを理由に月を除外しない。SCR-005支給明細とは別機能。
 - `Screen1`の改名先は`scrStaffMasterSearch`。親領域内の配置は横4:56:4、縦2:26:2。既存部品名末尾111は一括改名しない。
 - 今回は軽量化の給与月列に関する要件・基本設計・詳細設計・給与UI置換要件・追加受入条件をGitHub更新。登録処理における同月複数行の可否条件は後続の精査対象。YAML、Power Fx、アプリ、Dataverse、権限、公開版は未変更。リンク・用語・差分整合のみ確認し、実機試験は対象外。
-- 次回実装時は本節、[画面要件9章](../../../docs/requirements/screen-requirements.md#9-scr-002-職員マスタ検索詳細軽量化要件)、[詳細設計10章](../../../docs/design/detailed-design.md#10-scr-002軽量化設計2026-09-24)、[追加受入](../../../docs/testing/test-specification.md#scr-002軽量化追加受入2026-09-24)を読む。編集用アプリで削除前台帳、段階実装、読戻し、回帰、部品数・性能比較を行う。
+- 次回実装時は本節、[画面要件9章](../../../docs/requirements/screen-requirements.md#9-scr-002-職員マスタ検索詳細軽量化要件)、[詳細設計10章](../../../docs/design/detailed/detailed-design.md#10-scr-002軽量化設計2026-09-24)、[追加受入](../../../docs/testing/test-specification.md#scr-002軽量化追加受入2026-09-24)を読む。編集用アプリで削除前台帳、段階実装、読戻し、回帰、部品数・性能比較を行う。
 - Issue #51：職員基本テーブルの編集は今回なし。欠勤時間単価の実テーブル反映は未実施のまま引き継ぐ。
 
 ---

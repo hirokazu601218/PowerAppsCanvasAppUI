@@ -23,7 +23,7 @@
 ## 1. 基準資料・試験対象
 
 - [要件定義v1.04](../requirements/requirements.md)：R01～R14、Issue #23の追加受入条件。
-- [基本設計v1.04](../design/basic-design.md)、[詳細設計v1.04](../design/detailed-design.md)、[B案デザイン基準](../design/design-system.md)。
+- [基本設計v1.04](../design/basic/basic-design.md)、[詳細設計v1.04](../design/detailed/detailed-design.md)、[B案デザイン基準](../design/basic/design-system.md)。
 - [v1.11貼付版](../../other/src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml)、[管理版](../../other/src/staff-master/scrStaffMasterSearch_v1.11.pa.yaml)、[導入手順](../../records/docs/handoff/install-v1.11.md)。
 - 作成時のmain：`2197fd5608fc673ec53db1f30791b50f5c6af91e`。貼付版Git blob：`0951813e229c017007b42cf70cff0d1042550433`。これはGit blob IDであり、SHA-256ではない。
 - 既存[T01～T14](../../records/docs/testing/acceptance.md)を本書で細分化する。旧ローカル検査結果を本書のPASSへ転記しない。
