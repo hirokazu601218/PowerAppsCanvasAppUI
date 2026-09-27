@@ -1,0 +1,9 @@
+{
+  "change_id": "requirements-audit-20260927",
+  "run_id": "manual-20260927-v20",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-09-27T01:37:00Z",
+  "source_commit": "9efa0040343979c4ae8e155e71cd28aa752e318b",
+  "version": "Maker live v20 (published 2026-09-25 19:17:35; source package unverified)"
+}
