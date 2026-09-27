@@ -13,8 +13,13 @@ on:
     inputs:
       change_id:
         description: '変更要求ID。文書更新ブランチを指定して実行'
-        required: true
+        required: false
         type: string
+      readback_only:
+        description: '公開版の時刻とSHAのみ取得。文書照合は行わない'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -24,6 +29,85 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  capture-readback:
+    name: Capture current published app metadata and package digest
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.readback_only }}
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    env:
+      TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      DATAVERSE_URL: https://orge762dd9e.crm7.dynamics.com/
+      CURRENT_APP_ID: 204a48dc-7f23-43dd-b934-4654a3cfa306
+      TEST_USER: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+      TEST_PASS: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Download current package and check the saved screen definition
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/postpublish"
+          test "$TEST_USER" = 'powerapps-test@govaca.onmicrosoft.com'
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool --version 2.12.2
+          az login --username "$TEST_USER" --password "$TEST_PASS" \
+            --tenant "$TENANT_ID" --allow-no-subscriptions --output none
+          python3 scripts/automation/read_current_app_metadata.py --output "$RUNNER_TEMP/postpublish/before.json"
+          pac auth create --name current-app-capture \
+            --username "$TEST_USER" --password "$TEST_PASS" --environment "$DATAVERSE_URL"
+          pac canvas download --name "$CURRENT_APP_ID" \
+            --file-name "$RUNNER_TEMP/postpublish/readback.msapp" \
+            --environment "$DATAVERSE_URL" --overwrite
+          python3 - <<'PY'
+          import hashlib, os
+          from pathlib import Path
+          candidate = Path(os.environ['RUNNER_TEMP']) / 'postpublish/readback.msapp'
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as result:
+              result.write('PAC取得候補 SHA-256: `' + hashlib.sha256(candidate.read_bytes()).hexdigest() +
+                           '`。公開版との一致は未判定。\n')
+          PY
+          python3 scripts/automation/read_current_app_metadata.py --output "$RUNNER_TEMP/postpublish/after.json"
+          python3 - <<'PY'
+          import hashlib, json, os, zipfile
+          from pathlib import Path
+
+          root = Path(os.environ['RUNNER_TEMP']) / 'postpublish'
+          before = json.loads((root / 'before.json').read_text())
+          after = json.loads((root / 'after.json').read_text())
+          app = os.environ['CURRENT_APP_ID']
+          prefix = ('https://apps.powerapps.com/play/e/'
+                    '68e00049-b7e5-eda6-9888-9a3cc493c5be/a/' + app + '?')
+          for data in (before, after):
+              if data.get('status') != 'Ready' or not str(data.get('appOpenUri', '')).startswith(prefix):
+                  raise SystemExit('metadata is not Ready or does not point to the fixed app')
+          if before != after:
+              raise SystemExit('app metadata changed during package download')
+          package = root / 'readback.msapp'
+          package_sha = hashlib.sha256(package.read_bytes()).hexdigest()
+          manifest = json.loads(Path('src/screen-ui/v1.24/studio-readback/scr002-ui-20260927.delta.json').read_text())
+          with zipfile.ZipFile(package) as archive:
+              screen = next(name for name in archive.namelist()
+                            if name.replace('\\', '/').endswith('Src/scrStaffMasterSearch.pa.yaml'))
+              screen_sha = hashlib.sha256(archive.read(screen)).hexdigest()
+          expected = manifest['saved_screen_sha256']
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as output:
+              output.write('## 現行アプリ公開版の読戻し（文書照合前）\n')
+              output.write(f'- App ID: `{app}`\n')
+              output.write(f'- 公開時刻: `{before["lastPublishTime"]}`\n')
+              output.write(f'- 最終下書き版: `{before["lastDraftVersion"]}`\n')
+              output.write(f'- msapp SHA-256: `{package_sha}`\n')
+              output.write(f'- SCR-002画面定義SHA-256: `{screen_sha}`\n')
+              output.write(f'- 保存版の画面定義との一致: `{screen_sha == expected}`\n')
+              output.write('パッケージ本体と認証情報はアップロードしていません。全画面・接続の一致は別の検査が必要です。\n')
+          if screen_sha != expected:
+              raise SystemExit('published SCR-002 screen differs from saved source; investigate before reconciliation')
+          PY
+
   document-diff:
     name: Check post-publication record on documentation PR
     if: ${{ github.event_name == 'pull_request' }}
@@ -60,10 +144,9 @@ jobs:
 
   readback:
     name: Check fixed app, release evidence and document changes
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.readback_only }}
     permissions:
       contents: read
-      id-token: write
     runs-on: ubuntu-latest
     environment: powerapps-test
     timeout-minutes: 15
@@ -72,9 +155,10 @@ jobs:
     env:
       CHANGE_ID: ${{ inputs.change_id }}
       TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
-      CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
       DATAVERSE_URL: https://orge762dd9e.crm7.dynamics.com/
       CURRENT_APP_ID: 204a48dc-7f23-43dd-b934-4654a3cfa306
+      TEST_USER: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+      TEST_PASS: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -91,12 +175,6 @@ jobs:
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
               out.write('record_path=' + state['selection_path'] + '\n')
           PY
-      - name: Sign in with existing GitHub OIDC identity
-        uses: azure/login@v2
-        with:
-          client-id: ${{ env.CLIENT_ID }}
-          tenant-id: ${{ env.TENANT_ID }}
-          allow-no-subscriptions: true
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.0.x
@@ -105,10 +183,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/postpublish"
-          python3 scripts/automation/read_current_app_metadata.py --output "$RUNNER_TEMP/postpublish/before.json"
+          test "$TEST_USER" = 'powerapps-test@govaca.onmicrosoft.com'
           dotnet tool install --global Microsoft.PowerApps.CLI.Tool --version 2.12.2
-          pac auth create --name current-app-doc-readback --githubFederated \
-            --tenant "$TENANT_ID" --applicationId "$CLIENT_ID" --environment "$DATAVERSE_URL"
+          az login --username "$TEST_USER" --password "$TEST_PASS" \
+            --tenant "$TENANT_ID" --allow-no-subscriptions --output none
+          python3 scripts/automation/read_current_app_metadata.py --output "$RUNNER_TEMP/postpublish/before.json"
+          pac auth create --name current-app-doc-readback \
+            --username "$TEST_USER" --password "$TEST_PASS" --environment "$DATAVERSE_URL"
           pac canvas download --name "$CURRENT_APP_ID" \
             --file-name "$RUNNER_TEMP/postpublish/readback.msapp" \
             --environment "$DATAVERSE_URL" --overwrite
@@ -132,7 +213,7 @@ jobs:
 
   selected-e2e:
     name: Re-run selected unit and integration cases on published Player
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.readback_only }}
     needs: readback
     uses: ./.github/workflows/current-app-test-gate.yml
     with:
@@ -141,7 +222,7 @@ jobs:
 
   completed:
     name: Release reconciliation gate
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.readback_only }}
     needs: [readback, selected-e2e]
     runs-on: ubuntu-latest
     steps:

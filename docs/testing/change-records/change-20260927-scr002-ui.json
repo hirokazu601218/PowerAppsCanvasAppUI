@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20260927-SCR002-UI",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "changes": [
+    {
+      "path": "src/screen-ui/v1.24/studio-readback/scr002-ui-20260927.delta.json",
+      "component": "scrStaffMasterSearch: conHeader111, btnStaffHome122, lblStaffScreenId111, ddStaffMonth122, galHistory111, galPayrollRows111, lblPayrollField111, lblPayrollCell111",
+      "unit_case_ids": ["UT-SCR002-HEADER-001", "UT-SCR002-HISTORY-001", "UT-SCR002-PAYROLL-001"],
+      "expected_result": "画面ID・ホームの配置、年月欄削除、履歴の短縮、給与簿の余白・配色を公開版で検証する"
+    }
+  ],
+  "integration": {
+    "required": true,
+    "reason": "ヘッダーの移動と給与簿の配置がSCR-001への復帰、およびSCR-005との職員引渡しに影響するため",
+    "case_ids": ["IT-SCR002-NAV-001", "IT-SCR002-HOME-001"]
+  },
+  "system_test": {
+    "status": "deferred",
+    "reason": "業務シナリオと総合テストの実施時期は未決事項一覧で管理する"
+  },
+  "cases": [
+    {"id": "UT-SCR002-HEADER-001", "level": "unit", "test_file": "e2e/current-app/scr002-layout.test.ts"},
+    {"id": "UT-SCR002-HISTORY-001", "level": "unit", "test_file": "e2e/current-app/scr002-layout.test.ts"},
+    {"id": "UT-SCR002-PAYROLL-001", "level": "unit", "test_file": "e2e/current-app/scr002-layout.test.ts"},
+    {"id": "IT-SCR002-NAV-001", "level": "integration", "test_file": "e2e/current-app/scr002-layout.test.ts"},
+    {"id": "IT-SCR002-HOME-001", "level": "integration", "test_file": "e2e/current-app/scr002-layout.test.ts"}
+  ]
+}

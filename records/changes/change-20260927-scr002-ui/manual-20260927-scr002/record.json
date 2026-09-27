@@ -1,0 +1,19 @@
+{
+  "change_id": "change-20260927-scr002-ui",
+  "run_id": "manual-20260927-scr002",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-09-27T13:11:28+09:00",
+  "source_commit": "1c8b1ec73a89c4c759c1b9bb477a74964e77c2c5",
+  "test_commit": "9ec937c842c82260a154f8794bfebad5bddb8060",
+  "selected_e2e_run": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36299222521",
+  "selected_e2e_result": "PASS_5_OF_5",
+  "reconciliation_run": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36299222521",
+  "reconciliation_result": "PASS_PUBLISHED_DIGEST_METADATA_DOCS_AND_SELECTED_E2E",
+  "published_package_readback": "SCR002_SCREEN_SHA_MATCH",
+  "readback_run": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36298591428",
+  "published_at": "2026-09-27T03:01:06.626618Z",
+  "package_sha256": "478c74dd382bdd975af3eb651d0710eeb5ce1d49edeb3e0be30b8694201869b6",
+  "screen_sha256": "12be61ecf5fb0ba69e21cb6c4598d69a6c2058bb7512c158cf8ef9c025310b0c",
+  "version": "22"
+}

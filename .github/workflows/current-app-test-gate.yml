@@ -182,6 +182,38 @@ jobs:
           done
           test ${#files[@]} -gt 0
           npx playwright test "${files[@]}" --project=canvas-app --grep "($SELECTED_CASES)" --trace=off --retries=0 --reporter=line
+      - name: Diagnose failed navigation without exporting screen contents
+        if: ${{ failure() && steps.tests.outcome == 'failure' }}
+        working-directory: power-platform-playwright/packages/e2e-tests
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          contexts = list(Path('test-results/artifacts').glob('**/error-context.md'))
+          print(f'Failed case contexts: {len(contexts)}')
+          for context in contexts:
+              if 'NAV-001' not in str(context):
+                  continue
+              snapshot = context.read_text(encoding='utf-8')
+              print('NAV-001 screen markers:', {
+                  'SCR-002': 'SCR-002' in snapshot,
+                  'SCR-005': 'SCR-005' in snapshot,
+                  'selected_staff_011': '009900000011 試験 同姓同名' in snapshot,
+                  'back_to_staff_search': '職員マスタ検索' in snapshot,
+                  'payroll_screen_active': 'generic "scrPayroll" [active]' in snapshot,
+                  'staff_screen_active': 'generic "scrStaffMasterSearch" [active]' in snapshot,
+                  'payroll_screen_node': bool(re.search(
+                      r'^\s*- generic "scrPayroll"', snapshot, re.MULTILINE)),
+                  'staff_screen_node': bool(re.search(
+                      r'^\s*- generic "scrStaffMasterSearch"', snapshot, re.MULTILINE)),
+                  'payroll_id_generic': bool(re.search(
+                      r'^\s*- generic: SCR-005\s*$', snapshot, re.MULTILINE)),
+                  'staff_label_in_snapshot': bool(re.search(
+                      r'^\s*- generic: 009900000011 試験 同姓同名', snapshot, re.MULTILINE)),
+              })
+          PY
       - name: Summarize result without authentication artifacts
         if: always()
         env:

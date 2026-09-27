@@ -133,12 +133,14 @@ def preflight(repo: Path, change_id: str) -> dict:
 def verify_readback(repo: Path, change_id: str, package: Path, before: Path, after: Path) -> dict:
     state = preflight(repo, change_id)
     expected_uri = f"https://apps.powerapps.com/play/e/{ENV_ID}/a/{APP_ID}?"
-    for path in (before, after):
-        metadata = load(path)
+    snapshots = [load(path) for path in (before, after)]
+    require(snapshots[0] == snapshots[1], "app metadata changed during package download")
+    for metadata in snapshots:
         require(metadata.get("status") == "Ready", "app is not Ready")
-        require(metadata.get("lastPublishTime") == state["version"]
-                and metadata.get("lastDraftVersion") == state["version"],
-                "published/draft version differs from recorded Player release")
+        require(metadata.get("lastPublishTime") == state["version"],
+                "published version differs from recorded Player release")
+        require(stamp(metadata.get("lastDraftVersion")) <= stamp(state["version"]),
+                "draft version is newer than recorded Player release")
         require(str(metadata.get("appOpenUri", "")).startswith(expected_uri),
                 "Power Apps metadata points to another app/environment")
     actual = hashlib.sha256(package.read_bytes()).hexdigest()

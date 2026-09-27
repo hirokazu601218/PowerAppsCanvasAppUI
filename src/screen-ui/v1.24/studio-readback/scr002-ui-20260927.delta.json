@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "target_environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+  "target_app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "screen": "scrStaffMasterSearch",
+  "saved_msapp_sha256": "43423bbb872e05f61b1727a4d2f9e4418c2e8d1d7700ad6f0e0b5cfd810dca6d",
+  "baseline_screen_sha256": "3ad37e47059eb3d4e4a3a144b31bded630c4699c9cc77ed3e9247ea608df5aa8",
+  "saved_screen_sha256": "12be61ecf5fb0ba69e21cb6c4598d69a6c2058bb7512c158cf8ef9c025310b0c",
+  "changes": [
+    {
+      "control": "btnStaffHome122",
+      "action": "update",
+      "parent_before": "conStaffMaster111/conRightScroll111/conRightSurface111/conStaffActions111",
+      "parent_after": "conStaffMaster111/conHeader111",
+      "properties": {
+        "Appearance": {
+          "before": null,
+          "after": "=ButtonAppearance.Outline"
+        },
+        "Color": {
+          "before": null,
+          "after": "=Color.White"
+        },
+        "LayoutMinWidth": {
+          "before": "=0",
+          "after": null
+        },
+        "Width": {
+          "before": "=140",
+          "after": "=112"
+        },
+        "X": {
+          "before": null,
+          "after": "=Parent.Width-216"
+        },
+        "Y": {
+          "before": null,
+          "after": "=10"
+        }
+      }
+    },
+    {
+      "control": "conHeader111",
+      "action": "update",
+      "parent_before": "conStaffMaster111",
+      "parent_after": "conStaffMaster111",
+      "properties": {
+        "Fill": {
+          "before": "=ColorValue(\"#FFFFFF\")",
+          "after": "=UiTheme.Header"
+        }
+      }
+    },
+    {
+      "control": "conStaffActions111",
+      "action": "update",
+      "parent_before": "conStaffMaster111/conRightScroll111/conRightSurface111",
+      "parent_after": "conStaffMaster111/conRightScroll111/conRightSurface111",
+      "properties": {
+        "Height": {
+          "before": "=RoundUp(7/Max(1,RoundDown(Self.Width/148,0)),0)*52",
+          "after": "=RoundUp(4/Max(1,RoundDown(Self.Width/148,0)),0)*52"
+        }
+      }
+    },
+    {
+      "control": "ddStaffMonth122",
+      "action": "remove",
+      "parent": "conStaffMaster111/conRightScroll111/conRightSurface111/conStaffActions111",
+      "properties": {
+        "AccessibleLabel": "=\"支給対象月\"",
+        "BorderColor": "=UiTheme.Border",
+        "BorderThickness": "=1",
+        "ChevronBackground": "=Color.White",
+        "ChevronFill": "=UiTheme.Primary",
+        "Color": "=UiTheme.Text",
+        "Default": "=Text(UiMonth,\"yyyy/mm\")",
+        "Fill": "=Color.White",
+        "Font": "=\"Segoe UI\"",
+        "Height": "=44",
+        "Items": "=ForAll(Sequence(61),Text(DateAdd(Date(Year(Today()),Month(Today()),1),Value-31,TimeUnit.Months),\"yyyy/mm\"))",
+        "Items.Value": "=Value",
+        "LayoutMinWidth": "=0",
+        "OnChange": "=Set(varUiMonth,DateValue(Self.Selected.Value & \"/01\",\"ja-JP\")); Set(varUiResultKey,Blank())",
+        "SelectionColor": "=UiTheme.Text",
+        "SelectionFill": "=UiTheme.Selected",
+        "Size": "=11",
+        "Width": "=140"
+      }
+    },
+    {
+      "control": "galHistory111",
+      "action": "update",
+      "parent_before": "conStaffMaster111/conRightScroll111/conRightSurface111",
+      "parent_after": "conStaffMaster111/conRightScroll111/conRightSurface111",
+      "properties": {
+        "Height": {
+          "before": "=If(Self.Visible,Min(3,CountRows(Self.AllItems))*80,0)",
+          "after": "=If(Self.Visible,Min(3,CountRows(Self.AllItems))*36,0)"
+        },
+        "TemplateSize": {
+          "before": "=80",
+          "after": "=36"
+        },
+        "Visible": {
+          "before": "=varStaffDetailTab111 in [\"Work\",\"Commute\",\"Social\",\"Tax\"]",
+          "after": "=varStaffDetailTab111 in [\"Work\",\"Commute\",\"Social\",\"Tax\"] && CountRows(Filter(colHistory111,Section=varStaffDetailTab111))>1"
+        }
+      }
+    },
+    {
+      "control": "galPayrollRows111",
+      "action": "update",
+      "parent_before": "conStaffMaster111/conRightScroll111/conRightSurface111/conPayrollLight111/conPayrollScroll111/conPayrollGrid111",
+      "parent_after": "conStaffMaster111/conRightScroll111/conRightSurface111/conPayrollLight111/conPayrollScroll111/conPayrollGrid111",
+      "properties": {
+        "Y": {
+          "before": "=800",
+          "after": "=0"
+        }
+      }
+    },
+    {
+      "control": "lblApp111",
+      "action": "update",
+      "parent_before": "conStaffMaster111/conHeader111",
+      "parent_after": "conStaffMaster111/conHeader111",
+      "properties": {
+        "Text": {
+          "before": "=\"非常勤職員マスタ検索  |  SCR-002\"",
+          "after": "=\"非常勤職員マスタ検索\""
+        },
+        "Width": {
+          "before": "=Parent.Width",
+          "after": "=Parent.Width-232"
+        }
+      }
+    },
+    {
+      "control": "lblHistory111",
+      "action": "update",
+      "parent_before": "conStaffMaster111/conRightScroll111/conRightSurface111/galHistory111",
+      "parent_after": "conStaffMaster111/conRightScroll111/conRightSurface111/galHistory111",
+      "properties": {
+        "Fill": {
+          "before": "=ColorValue(\"#FFFFFF\")",
+          "after": "=If(ThisItem.RecordId=varHistoryId111,ColorValue(\"#DCEAFF\"),ColorValue(\"#FFFFFF\"))"
+        },
+        "Height": {
+          "before": "=72",
+          "after": "=32"
+        },
+        "Text": {
+          "before": "=ThisItem.Title & Char(10) & ThisItem.Period & \"  \" & ThisItem.State",
+          "after": "=\"履歴 \" & ThisItem.State & \" \" & Left(ThisItem.Period,10) & \" #\" & Right(ThisItem.RecordId,4)"
+        }
+      }
+    },
+    {
+      "control": "lblMeta111",
+      "action": "update",
+      "parent_before": "conStaffMaster111/conHeader111",
+      "parent_after": "conStaffMaster111/conHeader111",
+      "properties": {
+        "Width": {
+          "before": "=Parent.Width",
+          "after": "=Parent.Width-232"
+        }
+      }
+    },
+    {
+      "control": "lblPayrollCell111",
+      "action": "update",
+      "parent_before": "conStaffMaster111/conRightScroll111/conRightSurface111/conPayrollLight111/conPayrollScroll111/conPayrollGrid111/galPayrollRows111/galPayrollCells111",
+      "parent_after": "conStaffMaster111/conRightScroll111/conRightSurface111/conPayrollLight111/conPayrollScroll111/conPayrollGrid111/galPayrollRows111/galPayrollCells111",
+      "properties": {
+        "BorderColor": {
+          "before": "=ColorValue(\"#CBD5E1\")",
+          "after": "=ColorValue(\"#D5E0EC\")"
+        }
+      }
+    },
+    {
+      "control": "lblPayrollField111",
+      "action": "update",
+      "parent_before": "conStaffMaster111/conRightScroll111/conRightSurface111/conPayrollLight111/conPayrollScroll111/conPayrollGrid111/galPayrollRows111",
+      "parent_after": "conStaffMaster111/conRightScroll111/conRightSurface111/conPayrollLight111/conPayrollScroll111/conPayrollGrid111/galPayrollRows111",
+      "properties": {
+        "BorderColor": {
+          "before": "=ColorValue(\"#CBD5E1\")",
+          "after": "=ColorValue(\"#D5E0EC\")"
+        },
+        "Fill": {
+          "before": "=ColorValue(\"#FFFFFF\")",
+          "after": "=ColorValue(\"#E3EFFC\")"
+        }
+      }
+    },
+    {
+      "control": "lblStaffScreenId111",
+      "action": "add",
+      "parent": "conStaffMaster111/conHeader111",
+      "properties": {
+        "Align": "=Align.Right",
+        "BorderColor": "=ColorValue(\"#CBD5E1\")",
+        "BorderThickness": "=1",
+        "Color": "=ColorValue(\"#FFFFFF\")",
+        "Fill": "=ColorValue(\"#073B78\")",
+        "Height": "=56",
+        "PaddingLeft": "=8",
+        "Size": "=If(Coalesce(varLargeText111,false),12,10.5)",
+        "Text": "=\"SCR-002\"",
+        "Tooltip": "=Self.Text",
+        "Width": "=92",
+        "X": "=Parent.Width-104",
+        "Y": "=4"
+      }
+    }
+  ]
+}
