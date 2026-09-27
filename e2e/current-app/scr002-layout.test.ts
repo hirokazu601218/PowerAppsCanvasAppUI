@@ -59,7 +59,7 @@ test('IT-SCR002-NAV-001 給与簿から支給明細へ進み同じ職員に戻�
   await screen.getByRole('button', { name: /009900000011 .*詳細を表示/ }).click();
   await screen.getByRole('button', { name: '給与簿', exact: true }).click();
   await screen.getByRole('button', { name: '支給明細画面' }).click();
-  await expect(screen.getByText(/009900000011 試験 同姓同名/)).toBeVisible();
+  await expect(screen.getByText(/009900000011\s+試験\s+同姓同名/)).toBeVisible();
   await screen.getByRole('button', { name: '職員マスタ検索' }).click();
   await expect(screen.getByText(/職員番号：009900000011/)).toBeVisible();
 });
