@@ -99,6 +99,9 @@ class PostpublishGateTest(unittest.TestCase):
         subprocess.run(["git", "commit", "-qm", message], cwd=self.repo, check=True, capture_output=True)
 
     def test_verified_release_and_documents(self):
+        self.metadata["lastDraftVersion"] = "2026-09-26T08:59:00Z"
+        self.before.write_text(json.dumps(self.metadata))
+        self.after.write_text(json.dumps(self.metadata))
         state = verify_readback(self.repo, self.change_id, self.package, self.before, self.after)
         self.assertEqual(state["source_commit"], self.source_commit)
         self.assertEqual(state["case_ids"], ["IT-SRCH-DETAIL-001", "UT-SRCH-001"])
@@ -130,7 +133,14 @@ class PostpublishGateTest(unittest.TestCase):
     def test_rejects_saved_version_newer_than_published_version(self):
         metadata = dict(self.metadata, lastDraftVersion="2026-09-26T09:10:00Z")
         self.after.write_text(json.dumps(metadata))
-        with self.assertRaisesRegex(ReconcileError, "published/draft version"):
+        with self.assertRaisesRegex(ReconcileError, "metadata changed during package download"):
+            verify_readback(self.repo, self.change_id, self.package, self.before, self.after)
+
+    def test_rejects_new_draft_in_both_snapshots(self):
+        metadata = dict(self.metadata, lastDraftVersion="2026-09-26T09:10:00Z")
+        self.before.write_text(json.dumps(metadata))
+        self.after.write_text(json.dumps(metadata))
+        with self.assertRaisesRegex(ReconcileError, "draft version is newer"):
             verify_readback(self.repo, self.change_id, self.package, self.before, self.after)
 
 

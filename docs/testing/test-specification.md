@@ -13,7 +13,7 @@
 
 ### 0.1 CHANGE-20260927-SCR002-UI の単体・結合ケース
 
-対象は同一App IDのSCR-002画面変更。実行選定は[変更記録](change-records/change-20260927-scr002-ui.json)、コードは[scr002-layout.test.ts](../../e2e/current-app/scr002-layout.test.ts)。隔離職員011（03会計課）を所有者の手動確認と専用利用者の自動試験で用いる。SCR-005の職員ラベルでは全角空白も許容して番号と氏名を照合する。認定IDなど機微の実値は試験結果で伏せる。
+対象は同一App IDのSCR-002画面変更。公開v22のメタデータ時刻は`2026-09-27T03:01:06.626618Z`。実行選定は[変更記録](change-records/change-20260927-scr002-ui.json)、コードは[scr002-layout.test.ts](../../e2e/current-app/scr002-layout.test.ts)。隔離職員011（03会計課）を所有者の手動確認と専用利用者の自動試験で用いる。SCR-005の職員ラベルでは全角空白も許容して番号と氏名を照合する。認定IDなど機微の実値は試験結果で伏せる。[公開後照合記録](../verification/postpublish/change-20260927-scr002-ui.json)は画面定義SHAとパッケージSHAを区別する。
 
 | ID | 区分 | 操作 | 独立期待値 |
 |---|---|---|---|

@@ -3,7 +3,7 @@
 - 変更ID：`CHANGE-20260927-SCR002-UI`、対象環境：`68e00049-b7e5-eda6-9888-9a3cc493c5be`、同一App ID：`204a48dc-7f23-43dd-b934-4654a3cfa306`。
 - 編集前：Studioの未公開保存版v21をダウンロードして画面定義を確認。旧公開版はv20。保存版と旧公開版の全ソース一致は確認できていない。
 - 編集後：Studioで保存。ダウンロードした保存パッケージのSHA-256は`43423bbb872e05f61b1727a4d2f9e4418c2e8d1d7700ad6f0e0b5cfd810dca6d`。画面定義の差分は[変更箇所](../../../../src/screen-ui/v1.24/studio-readback/scr002-ui-20260927.delta.json)を参照。この値は**公開版のパッケージ読戻しSHAではない**。
-- 公開：2026-09-27 12:01:08 JST、Studioの「Publish successful / is now available to everyone」を確認。Power Apps Playerで「古いバージョン」の表示から「最新の情報に更新」を実行し、同じApp IDを再読込み。Makerの版履歴でv22（2026-09-27 12:00:28）が「ライブ」と確認。公開版のパッケージSHAは未取得。
+- 公開：2026-09-27 12:01:08 JST、Studioの「Publish successful / is now available to everyone」を確認。Power Apps Playerで「古いバージョン」の表示から「最新の情報に更新」を実行し、同じApp IDを再読込み。Makerの版履歴でv22（保存時刻2026-09-27 12:00:28 JST）が「ライブ」と確認。Power Appsメタデータの公開時刻は`2026-09-27T03:01:06.626618Z`。公開版パッケージSHAは下記のPAC読戻しで取得。
 - 数式：StudioのApp checkerで数式エラー0件。アクセシビリティ251件・パフォーマンス11件を表示したが、この改修での増減は未比較。
 
 | ケース | 確認方法 | 結果 | 範囲と残件 |
@@ -18,6 +18,6 @@
 
 最初の[run 36291762746](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36291762746)では結合ケースだけFAIL（4/5）。原因はテストの正規表現が半角スペースを固定し、SCR-005の全角スペース入り職員表示に一致しなかったこと。所有者の公開Playerで旧式0件／空白可変式1件を確認し、職員番号011と氏名の一致条件を保って試験コードを修正した。再実行は5/5 PASS。失敗を公開アプリの不具合や権限のPASSへ読み替えない。
 
-公開Player画像は作業環境の`scr002-published-20260927.png`、`scr002-published-payroll-20260927.png`。公開後のパッケージSHA・公開メタデータ時刻の読戻しと文書照合Actionの手動起動はNOT_RUN。全163項目末尾、複数履歴、他所属権限、保存エラーを合格としない。総合テストは未決のまま。
+公開Player画像は作業環境の`scr002-published-20260927.png`、`scr002-published-payroll-20260927.png`。[Action 36298591428](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36298591428)は既存の共同所有者専用アカウントを使い固定App IDの公開版をPACで読戻した。パッケージSHA-256は`478c74dd382bdd975af3eb651d0710eeb5ce1d49edeb3e0be30b8694201869b6`、SCR-002画面定義SHA-256は`12be61ecf5fb0ba69e21cb6c4598d69a6c2058bb7512c158cf8ef9c025310b0c`で保存版と一致。公開メタデータは`Ready`、最終下書き時刻`2026-09-27T03:00:28Z`は公開時刻より前。[公開後照合記録](../../../../docs/verification/postpublish/change-20260927-scr002-ui.json)にスコープと証拠を記録した。文書照合Actionの最終手動起動は未実施。全画面・接続、163項目末尾、複数履歴、他所属権限、保存エラーを合格としない。総合テストは未決のまま。
 
-最初のGitHub送信は自動承認審査が送信先の確認を要求して停止した。2026-09-27 12:28 JSTに利用者が`hirokazu601218/PowerAppsCanvasAppUI`への送信とActions実行を承認。[PR #87](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/87)は公開版パッケージ・文書の照合が未了のためdraftのままであり、mainへの統合は未実施。手動起動に必要なGitHubブラウザ認証がこのWorkで完了しておらず、本人による認証操作が中断されたので再試行していない。
+最初のGitHub送信は自動承認審査が送信先の確認を要求して停止した。2026-09-27 12:28 JSTに利用者が`hirokazu601218/PowerAppsCanvasAppUI`への送信とActions実行を承認。[PR #87](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/87)は最終公開版・文書照合ゲートの手動起動待ちでdraft、mainへの統合は未実施。GitHubブラウザ認証は完了済み。

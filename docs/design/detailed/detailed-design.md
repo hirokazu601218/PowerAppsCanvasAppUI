@@ -60,7 +60,7 @@
 - 詳細背景とギャラリー見出しの配色は参照画像に合わせる。「履歴一覧へ戻る」と編集対象フッター、「最新データを読込」「検索結果をTSVで出力」は新しい画面に置かない。
 - 通勤タブ右上に「認定簿表示」を設ける。有効条件と別タブHTMLへのGUID連携は10.4に従う。
 
-`CHANGE-20260927-SCR002-UI`の公開v22では、`ddStaffMonth122`削除、ホーム／画面ID配置、単一履歴での`galHistory111`非表示、給与簿の先頭配置を所有者Playerで観察した。専用利用者の単体3件・結合2件は[Actions](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36293464353)でPASS。PACによる公開画面定義の読戻しと全163項目の一致は未実施。
+`CHANGE-20260927-SCR002-UI`の公開v22（`2026-09-27T03:01:06.626618Z`）では、`ddStaffMonth122`削除、ホーム／画面ID配置、単一履歴での`galHistory111`非表示、給与簿の先頭配置を所有者Playerで観察した。専用利用者の単体3件・結合2件は[Actions](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36293464353)でPASS。PAC読戻しの`Src/scrStaffMasterSearch.pa.yaml` SHA-256は保存版の画面SHA-256と一致した（[公開後照合記録](../../verification/postpublish/change-20260927-scr002-ui.json)）。別画面・接続・全163項目末尾・複数履歴の動作までは確認していない。
 
 ### 10.4.2 HTML認定簿の帳票・権限契約（`SCR002-COM-003`）
 
