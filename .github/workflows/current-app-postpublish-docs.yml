@@ -107,6 +107,11 @@ jobs:
           if screen_sha != expected:
               raise SystemExit('published SCR-002 screen differs from saved source; investigate before reconciliation')
           PY
+      - name: Report capture failure without changing app sharing
+        if: ${{ failure() }}
+        run: |
+          echo '公開版の読戻しに失敗しました。対象App ID・認証・アプリ権限を確認してください。' >> "$GITHUB_STEP_SUMMARY"
+          echo '共有先の追加・削除や共同所有者の入替えは行っていません。' >> "$GITHUB_STEP_SUMMARY"
 
   document-diff:
     name: Check post-publication record on documentation PR
@@ -210,6 +215,11 @@ jobs:
               result.write('- Playwrightの選定ケースは後続ジョブで判定。業務受入と総合テストは別判定。\n')
           PY
       # The downloaded msapp can contain connection metadata: do not upload it.
+      - name: Report reconciliation failure without changing app sharing
+        if: ${{ failure() }}
+        run: |
+          echo '公開後照合に失敗しました。対象App ID・認証・アプリ権限と変更要求記録を確認してください。' >> "$GITHUB_STEP_SUMMARY"
+          echo '共有先の追加・削除や共同所有者の入替えは行っていません。' >> "$GITHUB_STEP_SUMMARY"
 
   selected-e2e:
     name: Re-run selected unit and integration cases on published Player
