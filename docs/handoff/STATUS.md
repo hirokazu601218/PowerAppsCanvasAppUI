@@ -6,14 +6,14 @@
 
 - 継続対象：App ID `204a48dc-7f23-43dd-b934-4654a3cfa306` の単一アプリ。旧配布対象 `362ac991-eead-4f07-8373-afdb3ebfdba1` は現行ではない。
 - 現行の[要件](../requirements/requirements.md)、[基本設計](../design/basic/basic-design.md)、[詳細設計](../design/detailed/detailed-design.md)、[試験方針](../testing/test-policy.md)、[未決一覧](../requirements/open-decisions.md)を基準にする。
-- 専用利用者の検索FAIL／結合BLOCKED、公開版と保存ソースの照合、画面・データ権限、SCR-005計算元などは未解消。移行だけで試験完了とはしない。
+- 旧v20の専用利用者の検索FAIL／結合BLOCKEDは当時の履歴。今回のv22は選定5ケースが専用利用者のE2EでPASSしたが、公開パッケージと保存ソースの照合、画面・データ権限、SCR-005計算元などは未解消。今回の5件だけで全要件完了とはしない。
 - 旧配布・復元・認証診断のActions定義30本は `records/workflows/` に保管し停止する。現行の読み取り専用テスト2本と別アプリ用定期E2E1本は継続する。現行アプリの公開・データ・権限はこの移行では変更しない。
 
 ## SCR-002画面改修（2026-09-27 12:01 JST 公開）
 
 - 同じApp IDのライブv22にSCR-002の年月欄削除、4タブの長文履歴カード縮小、給与簿の余白・配色、ホームと画面IDの位置を反映。Studioの公開成功通知とPlayer再読込みで新画面を観察。[変更要求](../changes/requests/change-20260927-scr002-ui.json)、[実施記録](../../records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md)。
-- 保存版の画面定義差分とSHAは[ソース差分](../../src/screen-ui/v1.24/studio-readback/scr002-ui-20260927.delta.json)。公開版のパッケージSHA読戻し、Actionsの自動テスト、全163行や複数履歴の確認は未実施。総合テストも未決。
-- 送信先`hirokazu601218/PowerAppsCanvasAppUI`への反映をユーザーが承認。ブランチ`change/scr002-ui-20260927`で試験・文書PRを作成し、Actionsで自動試験と公開後照合を確認する。以下のv20／v21記載は改修前の調査履歴。
+- 保存版の画面定義差分とSHAは[ソース差分](../../src/screen-ui/v1.24/studio-readback/scr002-ui-20260927.delta.json)。[PR #87](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/87)で要件・基本／詳細設計・結合テスト仕様を更新し、[Action 36293464353](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36293464353)で単体3件・結合2件がPASS。初回の結合FAILはテストの全角空白照合を修正して再実行。文書配置と公開後照合ルールの静的チェックもPASS。
+- 公開パッケージSHAと公開メタデータ時刻の読戻し、手動起動の公開後文書照合Action、全163項目末尾・複数履歴の確認は未実施。PRはdraft、main未統合。総合テストも未決。以下のv20／v21記載は改修前の調査履歴。
 
 ## 改修前の公開版86行の照合（2026-09-27）
 

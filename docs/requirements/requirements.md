@@ -27,3 +27,5 @@ R15の表示名、R16の検索状態保持、R17のギャラリー構造、R18�
 ## 2026-09-27 SCR-002画面変更要求
 
 [CHANGE-20260927-SCR002-UI](../changes/requests/change-20260927-scr002-ui.json)を適用する。4区分の認定ID・期間・状態の長文履歴カードは削除し、複数履歴だけ短い選択行で過去レコードへ切り替え可能にする。給与簿の件数と先頭行を近接させ、項目名青・値白の一組の表で表示する。単体・結合の選定と公開版確認は[試験記録](../testing/change-records/change-20260927-scr002-ui.json)および[実施記録](../../records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md)に紐づける。
+
+公開v22の所有者Playerで指定した表示とSCR-005往復を観察し、専用利用者の選定E2E 5件がPASSした。公開パッケージのSHAと保存画面定義の一致、複数履歴・給与簿末尾・権限は未照合であり、[実施記録](../../records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md)で区別する。
