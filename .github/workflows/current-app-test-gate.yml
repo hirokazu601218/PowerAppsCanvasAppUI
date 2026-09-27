@@ -204,6 +204,12 @@ jobs:
                   'back_to_staff_search': '職員マスタ検索' in snapshot,
                   'payroll_screen_active': 'generic "scrPayroll" [active]' in snapshot,
                   'staff_screen_active': 'generic "scrStaffMasterSearch" [active]' in snapshot,
+                  'payroll_screen_node': bool(re.search(
+                      r'^\s*- generic "scrPayroll"', snapshot, re.MULTILINE)),
+                  'staff_screen_node': bool(re.search(
+                      r'^\s*- generic "scrStaffMasterSearch"', snapshot, re.MULTILINE)),
+                  'payroll_id_generic': bool(re.search(
+                      r'^\s*- generic: SCR-005\s*$', snapshot, re.MULTILINE)),
                   'staff_label_in_snapshot': bool(re.search(
                       r'^\s*- generic: 009900000011 試験 同姓同名', snapshot, re.MULTILINE)),
               })
