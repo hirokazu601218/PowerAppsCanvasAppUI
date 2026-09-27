@@ -189,6 +189,7 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
 
           contexts = list(Path('test-results/artifacts').glob('**/error-context.md'))
           print(f'Failed case contexts: {len(contexts)}')
@@ -201,6 +202,10 @@ jobs:
                   'SCR-005': 'SCR-005' in snapshot,
                   'selected_staff_011': '009900000011 試験 同姓同名' in snapshot,
                   'back_to_staff_search': '職員マスタ検索' in snapshot,
+                  'payroll_screen_active': 'generic "scrPayroll" [active]' in snapshot,
+                  'staff_screen_active': 'generic "scrStaffMasterSearch" [active]' in snapshot,
+                  'staff_label_in_snapshot': bool(re.search(
+                      r'^\s*- generic: 009900000011 試験 同姓同名', snapshot, re.MULTILINE)),
               })
           PY
       - name: Summarize result without authentication artifacts
