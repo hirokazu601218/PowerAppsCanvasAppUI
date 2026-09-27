@@ -43,6 +43,8 @@ jobs:
       CLIENT_ID: 1c94f011-c447-4af1-968f-ec564f489395
       DATAVERSE_URL: https://orge762dd9e.crm7.dynamics.com/
       CURRENT_APP_ID: 204a48dc-7f23-43dd-b934-4654a3cfa306
+      TEST_USER: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+      TEST_PASS: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
     steps:
       - uses: actions/checkout@v5
       - uses: azure/login@v2
@@ -58,13 +60,22 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/postpublish"
-          python3 scripts/automation/read_current_app_metadata.py --output "$RUNNER_TEMP/postpublish/before.json"
+          test "$TEST_USER" = 'powerapps-test@govaca.onmicrosoft.com'
           dotnet tool install --global Microsoft.PowerApps.CLI.Tool --version 2.12.2
-          pac auth create --name current-app-capture --githubFederated \
-            --tenant "$TENANT_ID" --applicationId "$CLIENT_ID" --environment "$DATAVERSE_URL"
+          pac auth create --name current-app-capture \
+            --username "$TEST_USER" --password "$TEST_PASS" --environment "$DATAVERSE_URL"
           pac canvas download --name "$CURRENT_APP_ID" \
             --file-name "$RUNNER_TEMP/postpublish/readback.msapp" \
             --environment "$DATAVERSE_URL" --overwrite
+          python3 - <<'PY'
+          import hashlib, os
+          from pathlib import Path
+          candidate = Path(os.environ['RUNNER_TEMP']) / 'postpublish/readback.msapp'
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as result:
+              result.write('PAC取得候補 SHA-256: `' + hashlib.sha256(candidate.read_bytes()).hexdigest() +
+                           '`。公開版との一致は未判定。\n')
+          PY
+          python3 scripts/automation/read_current_app_metadata.py --output "$RUNNER_TEMP/postpublish/before.json"
           python3 scripts/automation/read_current_app_metadata.py --output "$RUNNER_TEMP/postpublish/after.json"
           python3 - <<'PY'
           import hashlib, json, os, zipfile
