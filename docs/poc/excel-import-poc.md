@@ -42,6 +42,9 @@ Library `非常勤給与/PoC_Excel一括取込_架空データ.xlsx`。シート
 ## 保存・公開
 2026-09-28 23:04:54 JSTに保存済み表示。23:06:20 JSTに対象環境・同一アプリの `Publish successful` 通知を確認。公開操作成功は確認済み。公開Playerの正常系は上記の利用者受入PASS。公開版番号・PACパッケージSHAの技術照合は未完了。Studioの実測と利用者報告は区別する。
 
+## 公開Playerの自動E2E
+[Action 36437372428](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36437372428)で試験選定・専用テスト利用者の認証はPASS。選定した3ケースは3件FAIL。UT-IMP-01とUT-IMP-05は期待した通知文を30秒以内に検出できず、IT-IMP-03は`TEST-HIRE-001`の保存行を30秒以内に検出できなかった。通知の表示時間／検出方法、テスト利用者の隔離表権限や画面表示の差を切り分ける。利用者による正常系受入PASSとは別の結果として扱う。文書配置[Action 36437372434](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36437372434)と静的照合[Action 36437374122](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36437374122)はPASS。
+
 ## 残件とPoC境界
 - 公開Playerの異常系と新規ログインでの再表示、版番号・PAC読戻し・Actions照合。画面往復は利用者受入PASS。
 - 指定テーブルなし、空テーブル、列不足、行保存拒否、一部失敗、実行中連打の実測。
