@@ -4,7 +4,7 @@
   "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
   "environment": "StaffMaster-Automation-Test",
   "status": "PARTIAL",
-  "observed_at": "2026-09-28T12:34:00Z",
+  "observed_at": "2026-09-28T12:41:03Z",
   "source_commit": "7bee244749e0a8dd6a510d147be7ac88b7ed864f",
   "version": "未公開下書き・版番号未読戻し",
   "results": [
@@ -26,7 +26,12 @@
     {
       "step": "画面・ファイル選択",
       "status": "PARTIAL",
-      "evidence": "同一App IDの未公開下書きに scrExcelImportPoc と依頼表新規Form1、Attachmentsカードを追加。Studioプレビューで指定Excelを選択しファイル名と「未保存」を観察。ホームボタン・実行ボタン・画面整理は未実装。"
+      "evidence": "同一App IDの未公開下書きに scrExcelImportPoc と依頼表新規Form1、Attachmentsカードを追加。Studioプレビューで指定Excelを選択しファイル名と「未保存」を観察。ホームボタン・実行ボタン・画面整理は未実装。 Button1（ファイルを保存（検証））のOnSelect=SubmitForm(Form1)、数式エラーなし。"
+    },
+    {
+      "step": "隔離依頼行の保存",
+      "status": "PASS",
+      "evidence": "Studioプレビューで架空Excelを選択し主列 POC-REQ-20260928-01 を入力してSubmitForm。MakerのPoC_Excel取込依頼_STUDIOを再読込みして同じ行と作成時刻2026/09/28 21:38を確認。添付ファイル本体は未読戻し。"
     },
     {
       "step": "Excel読取・隔離保存",
@@ -41,6 +46,7 @@
   ],
   "safety": "正式職員マスタ・実在職員データへの更新なし。既存アプリの下書き保存のみ、公開なし。",
   "remaining": [
+    "保存済み依頼行の添付Excel本体を読戻し",
     "フォームの不要項目整理、ホームのデータ一括取込みボタンと実行・結果画面の構築",
     "Dataverse添付の取得方法を確認し、Excel Online (Business)のImportPoCTest読取フローへ接続",
     "架空3行の隔離保存、成功・エラー条件および画面再表示の実機単体試験",
