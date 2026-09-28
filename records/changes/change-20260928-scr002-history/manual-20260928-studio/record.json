@@ -16,5 +16,10 @@
     "player": "NOT_RUN",
     "dedicated_user_access": "NOT_RUN"
   },
-  "next": "Reconnect Studio; validate and repair formulas, verify zero new formula errors, save and publish the same app, then test Player and update postpublish documentation."
+  "next": "Reconnect Studio; validate and repair formulas, verify zero new formula errors, save and publish the same app, then test Player and update postpublish documentation.",
+  "formula_artifacts": {
+    "before": "candidate/*.before.fx are the original Studio formulas before this edit",
+    "candidate": "candidate/App.Formulas.fx and btnLoadDetails111.OnSelect.fx are corrected proposals, unvalidated in Studio; do not publish without App Checker and Player verification",
+    "first_attempt": "The first pasted version was different from these corrected proposals and produced 437 errors."
+  }
 }
