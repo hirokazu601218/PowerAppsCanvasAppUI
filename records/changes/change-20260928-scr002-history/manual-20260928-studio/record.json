@@ -4,7 +4,7 @@
   "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
   "status": "PARTIAL",
   "observed_at": "2026-09-28T04:22:00Z",
-  "source_commit": "3b47fff9ba8b61b74658084c6292d0d2e4feeb4a",
+  "source_commit": "35131f18aac5780875d2bc163c2b48a0738019e2",
   "version": "published-v22; saved-unpublished-v25",
   "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
   "results": {
@@ -12,13 +12,13 @@
     "studio_data_sources": "PASS: four isolated tables added to the current single app in Studio",
     "studio_formulas": "PASS: v22 restored as v24; staged btnLoadDetails111.OnSelect and galDetailFields111.Items saved as unpublished v25; App Checker formula errors 0. Initial 437-error v23 retained in history but not published",
     "isolated_fixture": "PASS: Action 36376777042 inserted one synthetic row per four _STUDIO tables for staff 009900000011; no formal-table personnel rows written",
-    "studio_preview": "PASS_PARTIAL: 15 work, 26 social, 9 tax and 6 resident labels and synthetic values seen; zero preserved; staff 004 switch clears prior history. NULL and non-owner Player not yet tested",
+    "studio_preview": "PASS_PARTIAL: 15 work, 26 social, 9 tax and 6 resident labels and synthetic values seen; amount 0 preserved while notes NULL displays blank; staff 004 switch clears prior history. Published non-owner Player not yet tested",
     "saved_app": "PASS_PARTIAL: Maker version history confirms v25 at 2026-09-28 04:07 UTC; full saved-package SHA not yet read back",
-    "published_app": "NOT_RUN",
+    "published_app": "BLOCKED: browser safety review rejected v25 publishing to the shared current app pending explicit user approval; v22 remains live; existing accessibility 251 and performance 11 issues were noted",
     "player": "NOT_RUN",
     "dedicated_user_access": "PASS_PARTIAL: Action 36377417327 granted Read on four isolated tables to existing dedicated reader role; no original or isolated write granted; Player not yet tested"
   },
-  "next": "Read back saved v25 where possible, verify selection tests and publish this same app, then test dedicated-user Player and update postpublish documentation. Do not treat Studio preview as published Player proof.",
+  "next": "Await explicit approval to publish unpublished v25 over the shared current app v22. Do not bypass the rejected publish action. After approval, publish the same App ID, verify dedicated-user Player, read back the package and update postpublish documentation.",
   "formula_artifacts": {
     "before": "candidate-*.before.fx are original Studio formulas before this edit",
     "candidate": "candidate-App.Formulas.fx and candidate-btnLoadDetails111.OnSelect.fx are corrected proposals, unvalidated in Studio; do not publish without App Checker and Player verification",
