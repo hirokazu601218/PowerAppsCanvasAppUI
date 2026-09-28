@@ -1,6 +1,11 @@
 name: SCR-002 isolated history fixtures
 
 on:
+  push:
+    branches: [feat/scr002-dataverse-20260928]
+    paths:
+      - '.github/workflows/scr002-history-seed.yml'
+      - 'scripts/automation/seed_scr002_history.py'
   workflow_dispatch:
 
 permissions:
