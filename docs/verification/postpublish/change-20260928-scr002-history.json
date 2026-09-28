@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20260928-SCR002-HISTORY",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "source_commit": "fc9ae7b09ec2ab0588499dc5df59d9b9181940d8",
+  "documentation_base_commit": "fc9ae7b09ec2ab0588499dc5df59d9b9181940d8",
+  "requirement_ids": [
+    "SCR002-LT-003",
+    "SCR002-LT-004",
+    "SCR002-LT-006",
+    "SCR002-EDIT-001"
+  ],
+  "selected_case_ids": [
+    "IT-SCR002-HISTORY-SWITCH-001",
+    "IT-SCR002-HISTORY-TABS-001",
+    "UT-SCR002-HISTORY-LOAD-001",
+    "UT-SCR002-SOCIAL-56-001",
+    "UT-SCR002-TAX-56-001",
+    "UT-SCR002-WORK-56-001"
+  ],
+  "source_comparison": {
+    "result": "MATCH",
+    "checked_paths": [
+      "config/dataverse/scr002-history-columns.json",
+      "src/screen-ui/v1.28/btnLoadDetails111.OnSelect.fx",
+      "src/screen-ui/v1.28/galDetailFields111.Items.fx"
+    ],
+    "method_and_findings": "Action 36380763781で固定App IDの公開版をPAC downloadし、公開時刻・msapp SHA-256・SCR-002画面SHA-256 498029d25c9191a3cf3157f8a294690afd90b4cbb4a4d3c0845cc27b2ea08e6dを採取。列契約はAction 36363649180の正式／隔離8表56列メタデータと照合。保存式候補の4区分15/26/9/6列と0/NULL、職員切替はStudioプレビューと公開Playerの選定6ケース（Action 36380881898）で振る舞いを照合し一致。PAC画面SHAは保存式ファイル自体のSHAとの同一性を示さず、画面以外の全ソース・接続・権限の同一性も対象外。"
+  },
+  "publication": {
+    "version": "2026-09-28T05:00:02.0455229Z",
+    "player_observed_at": "2026-09-28T05:07:44Z",
+    "player_app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+    "player_result": "PASS",
+    "player_observation": "所有者の新規公開Playerで職員011の勤務条件15項目、0とNULL空欄を確認。専用利用者の選定4単体・2結合ケースはAction 36380881898で6/6 PASS。既存タブの旧バンドル表示は新規タブで解消。実データ、編集・保存、他所属の権限、全画面・接続・総合試験は未判定。",
+    "download_sha256": "12c91c7c70ea2447c7c7f3841109d407218ffd587da1de57b17d0f43b9fc9a96"
+  }
+}

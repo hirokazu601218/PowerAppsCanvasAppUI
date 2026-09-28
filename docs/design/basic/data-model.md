@@ -22,3 +22,16 @@
 元テーブルでは通勤・給与簿の子Lookupは `ApplicationRequired` だが、任意のAPI経路で非NULLが保証されたわけではない。書込み経路ごとに親子関係を検証する。職員基本の税表は甲／乙、勤務時間は分の整数（例7:45＝465分）、保険は未確認の空欄と未加入を区別する。これらの列挙・型は元テーブルの契約であり、現行隔離テーブルの実測値への転記は保留する。
 
 古いDataverse作成作業の実行手順、7件・6件の投入値、60分制限、旧Canvas接続前提は各[移行前の設計](../../../records/docs/design/)に保存した。現在の自動化フローが使う対象と権限は[単一アプリ運用](../../operations/single-app-workflow.md)と実際の接続設定で確認する。
+
+## SCR-002の4履歴テーブル（2026-09-28）
+
+添付4定義書の列名・型・制約を[機械可読の列契約](../../../config/dataverse/scr002-history-columns.json)に転記した。正式4表と隔離4表のメタデータ、親子関係は[構築Action](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36363649180)で読戻し済み。公開v25の隔離4表の全列表示は専用利用者の選定6ケース（Action 36380881898）で検証した。編集保存・他所属の権限と実データは未判定。
+
+| タブ | 正式表 / 隔離表（論理名） | 添付列数 |
+|---|---|---:|
+| 勤務条件 | `crb3c_workcondition` / `crb3c_studioworkcondition` | 15 |
+| 社会保険 | `crb3c_socialinsurance` / `crb3c_studiosocialinsurance` | 26 |
+| 税固定控除 | `crb3c_taxfixeddeduction` / `crb3c_studiotaxfixeddeduction` | 9 |
+| 税固定控除内の住民税 | `crb3c_residenttax` / `crb3c_studioresidenttax` | 6 |
+
+各表は所有者付きで、GUIDの主キー、必須の履歴レコード名、および親職員への必須Lookupを持つ。親は正式表では`M_職員基本`、隔離表では`M_職員基本_STUDIO`。親の削除はRestrict。添付56列はいずれも任意で、日付はDateOnly、数値は整数または小数。元定義の正規表現・候補値など列型だけで表せない条件は列の説明に記録した。正式表に人事行は投入せず、隔離表は架空値だけで試験する。子の職員番号と親GUIDの整合は書込み時に別途検証する。

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20260928-SCR002-HISTORY",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "changes": [
+    {
+      "path": "config/dataverse/scr002-history-columns.json",
+      "component": "添付4定義に基づく56列のDataverse契約",
+      "unit_case_ids": [
+        "UT-SCR002-WORK-56-001",
+        "UT-SCR002-SOCIAL-56-001",
+        "UT-SCR002-TAX-56-001"
+      ],
+      "expected_result": "正式4表・隔離4表の列型と親Lookupをメタデータ試験で照合し、公開Playerの表示列が同じ定義に従う"
+    },
+    {
+      "path": "src/screen-ui/v1.28/galDetailFields111.Items.fx",
+      "component": "SCR-002の勤務条件・社会保険・税固定控除の共通詳細ギャラリー",
+      "unit_case_ids": [
+        "UT-SCR002-WORK-56-001",
+        "UT-SCR002-SOCIAL-56-001",
+        "UT-SCR002-TAX-56-001"
+      ],
+      "expected_result": "選択履歴の定義列15・26・9+6を順序どおり表示し、NULLと0を区別する"
+    },
+    {
+      "path": "src/screen-ui/v1.28/btnLoadDetails111.OnSelect.fx",
+      "component": "4履歴のDataverse取得と職員切替",
+      "unit_case_ids": [
+        "UT-SCR002-HISTORY-LOAD-001"
+      ],
+      "expected_result": "親Lookupおよび12桁番号が一致した隔離行を取得し、0件・別職員・エラー時には前職員の値を消す"
+    }
+  ],
+  "integration": {
+    "required": true,
+    "reason": "共通ギャラリー、6タブ切替、職員選択と既存の通勤・給与簿取得に影響するため",
+    "case_ids": [
+      "IT-SCR002-HISTORY-TABS-001",
+      "IT-SCR002-HISTORY-SWITCH-001"
+    ]
+  },
+  "system_test": {
+    "status": "deferred",
+    "reason": "D-07でシナリオと時期が未決"
+  },
+  "cases": [
+    {
+      "id": "UT-SCR002-WORK-56-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/scr002-history.test.ts"
+    },
+    {
+      "id": "UT-SCR002-SOCIAL-56-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/scr002-history.test.ts"
+    },
+    {
+      "id": "UT-SCR002-TAX-56-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/scr002-history.test.ts"
+    },
+    {
+      "id": "UT-SCR002-HISTORY-LOAD-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/scr002-history.test.ts"
+    },
+    {
+      "id": "IT-SCR002-HISTORY-TABS-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/scr002-history.test.ts"
+    },
+    {
+      "id": "IT-SCR002-HISTORY-SWITCH-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/scr002-history.test.ts"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+name: SCR-002 isolated history fixtures
+
+on:
+  push:
+    branches: [feat/scr002-dataverse-20260928]
+    paths:
+      - '.github/workflows/scr002-history-seed.yml'
+      - 'scripts/automation/seed_scr002_history.py'
+      - 'scripts/automation/grant_scr002_history_read.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 -m unittest discover -s tests/automation -p test_scr002_history_schema.py -v
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - run: python3 -u scripts/automation/seed_scr002_history.py
+      - run: python3 -u scripts/automation/grant_scr002_history_read.py
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scr002-history-seed-${{ github.run_id }}
+          path: |
+            artifacts/scr002-history/seed.json
+            artifacts/scr002-history/read-access.json
+          retention-days: 14
+          if-no-files-found: warn

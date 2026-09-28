@@ -1,0 +1,58 @@
+name: SCR-002 history Dataverse schema
+
+on:
+  push:
+    branches: [feat/scr002-dataverse-20260928]
+    paths:
+      - '.github/workflows/scr002-history-schema.yml'
+      - 'config/dataverse/scr002-history-columns.json'
+      - 'scripts/automation/provision_scr002_history.py'
+      - 'scripts/automation/scr002_history_schema.py'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'preflight / provision / verify'
+        required: true
+        type: choice
+        options: [preflight, provision, verify]
+
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate exact target
+        shell: bash
+        env:
+          MODE: ${{ github.event_name == 'push' && 'provision' || inputs.mode }}
+        run: |
+          set -euo pipefail
+          test "$MODE" = preflight || test "$MODE" = provision || test "$MODE" = verify
+          python3 -m unittest discover -s tests/automation -p test_scr002_history_schema.py -v
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Provision or verify metadata
+        shell: bash
+        env:
+          MODE: ${{ github.event_name == 'push' && 'provision' || inputs.mode }}
+        run: python3 -u scripts/automation/provision_scr002_history.py --mode "$MODE"
+      - name: Preserve metadata evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scr002-history-schema-${{ github.run_id }}
+          path: artifacts/scr002-history/
+          retention-days: 14
+          if-no-files-found: warn
