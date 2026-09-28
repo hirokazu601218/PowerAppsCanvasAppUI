@@ -4,7 +4,7 @@
   "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
   "status": "PARTIAL",
   "observed_at": "2026-09-28T05:15:40Z",
-  "source_commit": "39966f8e540f38d14ac538af1f4d2a321f416cae",
+  "source_commit": "fc9ae7b09ec2ab0588499dc5df59d9b9181940d8",
   "version": "published-v25; 2026-09-28T05:00:02.0455229Z",
   "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
   "results": {
@@ -17,9 +17,9 @@
     "published_app": "PASS: user approved replacing v22 with v25; Studio publish succeeded; Maker v25 Live; metadata lastPublishTime 2026-09-28T05:00:02.0455229Z and same App ID",
     "player": "PASS: fresh owner Player shows staff 011 Work 15 including 0/NULL; Action 36380881898 dedicated user 4 unit + 2 integration cases 6/6 PASS",
     "dedicated_user_access": "PASS: Action 36377417327 granted Read on four isolated tables to existing dedicated reader role; no original or isolated write granted; selected Player cases passed",
-    "pac_readback": "PASS scoped: Action 36380763781 downloaded same App ID, package SHA-256 12c91c7c70ea2447c7c7f3841109d407218ffd587da1de57b17d0f43b9fc9a96, SCR-002 screen SHA-256 498029d25c9191a3cf3157f8a294690afd90b4cbb4a4d3c0845cc27b2ea08e6d. Old v22 digest assertion caused capture job failure; corrected v25 gate pending rerun."
+    "pac_readback": "PASS: Action 36381505625 downloaded the fixed App ID, verified publication timestamp 2026-09-28T05:00:02.0455229Z, package SHA-256 12c91c7c70ea2447c7c7f3841109d407218ffd587da1de57b17d0f43b9fc9a96 and document diff. SCR-002 screen SHA-256 498029d25c9191a3cf3157f8a294690afd90b4cbb4a4d3c0845cc27b2ea08e6d was captured in Action 36380763781; initial v22 digest assertion failed before updating the v25 check."
   },
-  "next": "Re-run v25 readback and post-publication document reconciliation. Business acceptance, edit/save, other-department permissions and system test remain unverified.",
+  "next": "Public v25 and six selected tests verified. Business acceptance, edit/save, other-department permissions and system test remain unverified.",
   "formula_artifacts": {
     "before": "candidate-*.before.fx are original Studio formulas before this edit",
     "candidate": "validated-*.fx are the Studio-preview-confirmed formulas; v1.28 copies record the selected source paths. Full saved package was not exported before publication.",
