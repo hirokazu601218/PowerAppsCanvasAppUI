@@ -1,11 +1,10 @@
 # 現在の作業と読取り対象
 
-## 2026-09-28 Excel一括取込PoC（認証で実体作業停止）
+## 2026-09-28 Excel一括取込PoC（実機着手、未公開）
 
-- [変更要求](../changes/requests/change-20260928-excel-import-poc.json)、[構築候補・単体試験](../poc/excel-import-poc.md)、[実施記録](../../records/changes/change-20260928-excel-import-poc/manual-20260928/record.json)。対象は同じApp ID `204a48dc-7f23-43dd-b934-4654a3cfa306`、隔離データのみ。
-- Libraryの架空Excelをローカルで読取り、テーブル `ImportPoCTest` 3行と職員番号空欄1行を確認。画面、SharePoint隔離リスト、Power Automateフローは**未作成**、実機の取込・再表示・エラー試験は**未実施**。
-- Microsoft認証で旧ページがタイムアウト。新規ページの認証方式選択を安全に行う経路が自動審査で拒否されたため、通常操作へ切り替えず停止。接続成功・技術的実現可とは判定しない。現行アプリの保存・公開なし、正式職員マスタ変更なし。
-- 読取り対象：上記変更要求・構築候補・実施記録、`FUT-IMPORT-001`。認証が回復したらSharePoint隔離保存先→フォーム添付→フロー行読取→行表示→画面再表示→エラー試験の順で進める。
+- [変更要求](../changes/requests/change-20260928-excel-import-poc.json)、[構築候補と実機状況](../poc/excel-import-poc.md)、[実施記録](../../records/changes/change-20260928-excel-import-poc/manual-20260928/record.json)。対象は同じApp ID `204a48dc-7f23-43dd-b934-4654a3cfa306`。
+- 安全な認証で対象環境に接続。Dataverse隔離表2つとアプリ未公開画面 `scrExcelImportPoc` の新規フォーム・Attachmentsカードを作成し、架空Excelのファイル選択をStudioプレビューでPASS。画面の自動追加項目は整理前。保存・取込フロー・3行読取・結果表示・再表示・エラー条件・公開Playerは未実施。正式職員マスタと実在データは未変更。
+- 当初のSharePoint案は未実装。次はDataverse添付取得、Excel読取フローと行表登録、画面・ホーム導線、単体試験を進める。取込成功とは判定しない。
 
 ## 2026-09-28 SCR-002の添付4定義書反映（公開v25）
 
