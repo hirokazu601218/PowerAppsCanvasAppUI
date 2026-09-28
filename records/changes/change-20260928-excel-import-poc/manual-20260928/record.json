@@ -1,0 +1,39 @@
+{
+  "change_id": "CHANGE-20260928-EXCEL-IMPORT-POC",
+  "run_id": "manual-20260928",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "environment": "StaffMaster-Automation-Test",
+  "status": "BLOCKED",
+  "observed_at": "2026-09-28T11:40:22Z",
+  "source_commit": "7bee244749e0a8dd6a510d147be7ac88b7ed864f",
+  "version": null,
+  "results": [
+    {
+      "step": "Excel現物",
+      "status": "PASS",
+      "evidence": "Library /非常勤給与/PoC_Excel一括取込_架空データ.xlsx をopenpyxlで読取。取込データ/ImportPoCTest、ヘッダー5列、架空3行、職員番号空欄1行"
+    },
+    {
+      "step": "画面",
+      "status": "NOT_RUN",
+      "evidence": "GitHubに構築候補とPower Fxを保存。Studioへ接続できず、アプリ実体は未変更"
+    },
+    {
+      "step": "Excel読取・隔離保存",
+      "status": "NOT_RUN",
+      "evidence": "SharePoint隔離リスト・フローの実体は未作成。設計候補のみ"
+    },
+    {
+      "step": "実機単体",
+      "status": "BLOCKED",
+      "evidence": "Microsoftサインインの元ページはタイムアウト。新規ページの方式選択で安全な認証操作が自動審査により拒否された。公開Player接続未確認"
+    }
+  ],
+  "safety": "正式職員マスタ・実在職員データへの更新なし。現行アプリの保存・公開なし。",
+  "remaining": [
+    "安全な認証経路を回復",
+    "検証用SharePointの実体作成と接続",
+    "専用画面・フローの実装",
+    "公開版と行別・再表示・エラーケースの実測"
+  ]
+}
