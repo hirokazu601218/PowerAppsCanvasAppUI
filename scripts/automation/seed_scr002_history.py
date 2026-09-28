@@ -78,6 +78,8 @@ def main():
                 value = STAFF
             elif name == "crb3c_fullname":
                 value = "試験 同姓同名"
+            elif spec["key"] == "work" and name == "crb3c_notes":
+                value = None  # NULLと金額0を区別する表示試験
             elif column["kind"] == "date":
                 value = "2026-09-01"
             elif column["kind"] == "integer":
@@ -90,6 +92,9 @@ def main():
         if not exists:
             api(meta["EntitySetName"] + "(" + key + ")", "PATCH", payload,
                 {"If-None-Match": "*"})
+        elif spec["key"] == "work":
+            api(meta["EntitySetName"] + "(" + key + ")", "PATCH",
+                {"crb3c_notes": None}, {"If-Match": "*"})
         result["fixtures"].append({"table": spec["studio_logical_name"],
                                    "record_id": key, "existed_before": exists,
                                    "columns": len(spec["columns"])})

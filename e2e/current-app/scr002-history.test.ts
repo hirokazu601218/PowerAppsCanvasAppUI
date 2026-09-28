@@ -95,6 +95,7 @@ async function expectFields(page: Page, screen: FrameLocator, key: string) {
   const columns = LABELS[key];
   if (!columns) throw new Error(`Missing field contract: ${key}`);
   const labels = screen.getByRole('list', { name: 'Gallery' }).last();
+  await expect(labels).toBeVisible();
   const found = new Set<string>();
   const box = await labels.boundingBox();
   if (!box) throw new Error('Detail gallery is not visible');
@@ -117,6 +118,9 @@ test('UT-SCR002-WORK-56-001 勤務条件15列', async ({ page }) => {
   const screen = await open(page); await selectFixture(screen);
   await screen.getByRole('button', { name: '勤務条件', exact: true }).click();
   await expectFields(page, screen, 'work');
+  const details = screen.getByRole('list', { name: 'Gallery' }).last();
+  await expect(details.getByRole('listitem').nth(6).getByText('0', { exact: true })).toBeVisible();
+  await expect(details.getByRole('listitem').nth(14).getByText('架空試験-その他備考')).toHaveCount(0);
 });
 
 test('UT-SCR002-SOCIAL-56-001 社会保険26列', async ({ page }) => {
