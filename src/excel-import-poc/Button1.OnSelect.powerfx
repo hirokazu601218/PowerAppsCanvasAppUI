@@ -1,0 +1,37 @@
+If(
+    varImportRunning,
+    Notify("取込処理中です。", NotificationType.Information),
+    CountRows(DataCardValue7.Attachments) <> 1,
+    Set(varImportMessage, "Excelファイルを1件選択してください。"); Notify(varImportMessage, NotificationType.Error),
+    !EndsWith(Lower(First(DataCardValue7.Attachments).Name), ".xlsx"),
+    Set(varImportMessage, ".xlsxファイルを選択してください。"); Notify(varImportMessage, NotificationType.Error),
+    Set(varImportRunning, true);
+    Set(varImportMessage, "Excelを読み取っています。");
+    Set(varImportBatch, Text(GUID()));
+    Clear(colImportErrors);
+    IfError(
+        Set(varImportReply, PoC_ExcelImport_STUDIO.Run({file: {name: First(DataCardValue7.Attachments).Name, contentBytes: First(DataCardValue7.Attachments).Value}}));
+        ClearCollect(colImportParsed, ForAll(Table(ParseJSON(varImportReply.rowsjson)) As j,
+            {採用識別子: Text(j.Value.'採用識別子'), 職員番号: Text(j.Value.'職員番号'), 氏名: Text(j.Value.'氏名'), 部署略称: Text(j.Value.'部署略称'), 採用日: Text(j.Value.'採用日')}
+        ));
+        If(
+            CountRows(colImportParsed) = 0 || CountIf(colImportParsed, IsBlank(採用識別子) || IsBlank(氏名)) > 0,
+            Set(varImportMessage, "取込対象が空、または採用識別子・氏名がありません。"),
+            ForAll(Sequence(CountRows(colImportParsed)) As n,
+                With({r: Index(colImportParsed, n.Value)},
+                    IfError(
+                        Patch('PoC_Excel取込行_STUDIO', Defaults('PoC_Excel取込行_STUDIO'),
+                            {採用識別子: r.採用識別子, 職員番号: If(IsBlank(r.職員番号), Blank(), r.職員番号), 氏名: r.氏名, 部署略称: r.部署略称, 採用日: r.採用日, 取込要求ID: varImportBatch, 行番号: Text(n.Value), 取込結果: "成功"}
+                        ),
+                        Collect(colImportErrors, {採用識別子: r.採用識別子, 詳細: FirstError.Message}); Blank()
+                    )
+                )
+            );
+            Refresh('PoC_Excel取込行_STUDIO');
+            Set(varImportMessage, "読取 " & CountRows(colImportParsed) & " 件 ／ 登録成功 " & (CountRows(colImportParsed) - CountRows(colImportErrors)) & " 件 ／ 失敗 " & CountRows(colImportErrors) & " 件")
+        ),
+        Set(varImportMessage, "取込に失敗しました: " & FirstError.Message)
+    );
+    Set(varImportRunning, false);
+    Notify(varImportMessage, NotificationType.Information)
+)
