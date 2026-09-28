@@ -25,7 +25,7 @@
 
 ## SCR-002の4履歴テーブル（2026-09-28）
 
-添付4定義書の列名・型・制約を[機械可読の列契約](../../../config/dataverse/scr002-history-columns.json)に転記した。正式4表と隔離4表のメタデータ、親子関係は[構築Action](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36363649180)で読戻し済み。現行アプリでの全列表示、利用者権限、保存動作は別途検証する。
+添付4定義書の列名・型・制約を[機械可読の列契約](../../../config/dataverse/scr002-history-columns.json)に転記した。正式4表と隔離4表のメタデータ、親子関係は[構築Action](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36363649180)で読戻し済み。公開v25の隔離4表の全列表示は専用利用者の選定6ケース（Action 36380881898）で検証した。編集保存・他所属の権限と実データは未判定。
 
 | タブ | 正式表 / 隔離表（論理名） | 添付列数 |
 |---|---|---:|
