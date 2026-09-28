@@ -1,0 +1,500 @@
+{
+  "source": "2026-09-28 添付4定義書（列名、型、制約。個人実データなし）",
+  "tables": [
+    {
+      "key": "work",
+      "display_name": "T_給与勤務条件",
+      "schema_name": "crb3c_WorkCondition",
+      "logical_name": "crb3c_workcondition",
+      "studio_schema_name": "crb3c_StudioWorkCondition",
+      "studio_logical_name": "crb3c_studioworkcondition",
+      "columns": [
+        {
+          "display_name": "職員番号",
+          "logical_name": "crb3c_staffnumber",
+          "kind": "text",
+          "source_constraint": "12桁の数字文字列。先頭0埋め。正規表現: ^[0-9]{12}$",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "氏名",
+          "logical_name": "crb3c_fullname",
+          "kind": "text",
+          "source_constraint": "全角氏名を想定。姓と名の間は全角空白",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "適用開始日",
+          "logical_name": "crb3c_startdate",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "適用終了日",
+          "logical_name": "crb3c_enddate",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "異動区分",
+          "logical_name": "crb3c_transferkind",
+          "kind": "text",
+          "source_constraint": "設定値: #N/A、0、非常勤休職、非常勤変更、非常勤採用、非常勤退職",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "発令事由区分",
+          "logical_name": "crb3c_appointmentreason",
+          "kind": "text",
+          "source_constraint": "区分値。元ファイル内の設定値を使用。確認値例: #N/A、0、その他、任期更新（期間変更）、任期満了による退職、新規、新規（METI勤務歴あり）、本務異動（身柄含む）",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "日額単価",
+          "logical_name": "crb3c_dailyrate",
+          "kind": "integer",
+          "source_constraint": "0以上。円単位。小数不可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "勤務時間開始",
+          "logical_name": "crb3c_workstart",
+          "kind": "text",
+          "source_constraint": "時刻。H:MM又はHH:MM形式（24時間制）",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "勤務時間終了",
+          "logical_name": "crb3c_workend",
+          "kind": "text",
+          "source_constraint": "時刻。H:MM又はHH:MM形式（24時間制）",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "１日あたりの勤務時間",
+          "logical_name": "crb3c_dailyhours",
+          "kind": "decimal",
+          "source_constraint": "0以上24以下の時間数。小数可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000,
+          "precision": 2
+        },
+        {
+          "display_name": "超勤基礎単価（参考）",
+          "logical_name": "crb3c_overtimebaserate",
+          "kind": "integer",
+          "source_constraint": "0以上。円単位。小数不可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "支出科目名",
+          "logical_name": "crb3c_budgetitem",
+          "kind": "text",
+          "source_constraint": "支出科目名称。文字列",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "辞令案",
+          "logical_name": "crb3c_appointmentdraft",
+          "kind": "text",
+          "source_constraint": "改行を含む複数行文字列",
+          "source_required": "任意",
+          "max_length": 4000
+        },
+        {
+          "display_name": "辞令コメント",
+          "logical_name": "crb3c_appointmentcomment",
+          "kind": "text",
+          "source_constraint": "改行を含む複数行文字列可",
+          "source_required": "任意",
+          "max_length": 4000
+        },
+        {
+          "display_name": "その他備考",
+          "logical_name": "crb3c_notes",
+          "kind": "text",
+          "source_constraint": "自由記述。改行可",
+          "source_required": "任意",
+          "max_length": 4000
+        }
+      ]
+    },
+    {
+      "key": "social",
+      "display_name": "T_社会保険",
+      "schema_name": "crb3c_SocialInsurance",
+      "logical_name": "crb3c_socialinsurance",
+      "studio_schema_name": "crb3c_StudioSocialInsurance",
+      "studio_logical_name": "crb3c_studiosocialinsurance",
+      "columns": [
+        {
+          "display_name": "職員番号",
+          "logical_name": "crb3c_staffnumber",
+          "kind": "text",
+          "source_constraint": "12桁の数字文字列。先頭0埋め。正規表現: ^[0-9]{12}$",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "氏名",
+          "logical_name": "crb3c_fullname",
+          "kind": "text",
+          "source_constraint": "全角氏名を想定。姓と名の間は全角空白",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "職員雇用区分",
+          "logical_name": "crb3c_employmentcategory",
+          "kind": "text",
+          "source_constraint": "区分値。確認値例: 専門職員、事務補助職員、医療職員、経済産業省調査員",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "生年月日",
+          "logical_name": "crb3c_birthdate",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "4/1時点年齢",
+          "logical_name": "crb3c_ageapril",
+          "kind": "integer",
+          "source_constraint": "0以上の整数。年齢",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "3/1時点年齢",
+          "logical_name": "crb3c_agemarch",
+          "kind": "integer",
+          "source_constraint": "0以上の整数。年齢",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "介護徴収該当",
+          "logical_name": "crb3c_carestatus",
+          "kind": "text",
+          "source_constraint": "判定区分。確認値例: 全月該当、全月該当なし、N月から該当、N月から該当なし",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "厚生年金免除該当",
+          "logical_name": "crb3c_pensionexemption",
+          "kind": "text",
+          "source_constraint": "判定区分。確認値例: 全月該当、全月該当なし、N月から該当、N月から該当なし",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "後期高齢者徴収該当",
+          "logical_name": "crb3c_elderstatus",
+          "kind": "text",
+          "source_constraint": "判定区分。確認値例: 全月該当、全月該当なし、N月から該当、N月から該当なし",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "厚生徴収開始月",
+          "logical_name": "crb3c_pensionstart",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日。未設定可",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "厚生徴収終了月日",
+          "logical_name": "crb3c_pensionend",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日。未設定可",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "厚生_級",
+          "logical_name": "crb3c_pensiongrade",
+          "kind": "integer",
+          "source_constraint": "0以上の整数。未設定可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "厚生月額",
+          "logical_name": "crb3c_pensionmonthly",
+          "kind": "integer",
+          "source_constraint": "0以上。円単位。小数不可。未設定可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "二以上_該当",
+          "logical_name": "crb3c_multiemployer",
+          "kind": "text",
+          "source_constraint": "設定値: 該当。未設定可",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "二以上_通知額_厚生年金保険",
+          "logical_name": "crb3c_multiemployerpensionamount",
+          "kind": "decimal",
+          "source_constraint": "0以上。円額。小数可。未設定可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000,
+          "precision": 2
+        },
+        {
+          "display_name": "企業年金_該当",
+          "logical_name": "crb3c_corporatepension",
+          "kind": "text",
+          "source_constraint": "設定値: 該当。未設定可",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "企業年金通知額",
+          "logical_name": "crb3c_corporatepensionamount",
+          "kind": "integer",
+          "source_constraint": "0以上。円単位。小数不可。未設定可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "短期徴収開始月日",
+          "logical_name": "crb3c_shortstart",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日。未設定可",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "短期徴収終了月日",
+          "logical_name": "crb3c_shortend",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日。未設定可",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "長期徴収開始月",
+          "logical_name": "crb3c_longstart",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日。未設定可",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "長期徴収終了月日",
+          "logical_name": "crb3c_longend",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日。未設定可",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "等級改定日",
+          "logical_name": "crb3c_graderevision",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日。未設定可",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "短期_級",
+          "logical_name": "crb3c_shortgrade",
+          "kind": "integer",
+          "source_constraint": "0以上の整数。未設定可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "短期月額",
+          "logical_name": "crb3c_shortmonthly",
+          "kind": "integer",
+          "source_constraint": "0以上。円単位。小数不可。未設定可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "長期_級",
+          "logical_name": "crb3c_longgrade",
+          "kind": "integer",
+          "source_constraint": "0以上の整数。未設定可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "長期月額",
+          "logical_name": "crb3c_longmonthly",
+          "kind": "integer",
+          "source_constraint": "0以上。円単位。小数不可。未設定可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        }
+      ]
+    },
+    {
+      "key": "tax",
+      "display_name": "T_税・固定控除",
+      "schema_name": "crb3c_TaxFixedDeduction",
+      "logical_name": "crb3c_taxfixeddeduction",
+      "studio_schema_name": "crb3c_StudioTaxFixedDeduction",
+      "studio_logical_name": "crb3c_studiotaxfixeddeduction",
+      "columns": [
+        {
+          "display_name": "職員番号",
+          "logical_name": "crb3c_staffnumber",
+          "kind": "text",
+          "source_constraint": "12桁の数字文字列。先頭0埋め。正規表現: ^[0-9]{12}$",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "氏名",
+          "logical_name": "crb3c_fullname",
+          "kind": "text",
+          "source_constraint": "全角氏名を想定。姓と名の間は全角空白",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "適用開始日",
+          "logical_name": "crb3c_startdate",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日。元ファイルに実データがなく詳細は未確認",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "適用終了日",
+          "logical_name": "crb3c_enddate",
+          "kind": "date",
+          "source_constraint": "YYYY/MM/DD形式。有効な暦日。元ファイルに実データがなく詳細は未確認",
+          "source_required": "任意"
+        },
+        {
+          "display_name": "税表区分",
+          "logical_name": "crb3c_taxtable",
+          "kind": "text",
+          "source_constraint": "区分値。元ファイルに実データがなく設定値は未確認",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "扶養控除対象人数",
+          "logical_name": "crb3c_dependents",
+          "kind": "integer",
+          "source_constraint": "0以上の整数。元ファイルに実データがなく上限は未確認",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "雇用保険加入区分",
+          "logical_name": "crb3c_employmentinsurance",
+          "kind": "text",
+          "source_constraint": "区分値。元ファイルに実データがなく設定値は未確認",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "共済貯金月額",
+          "logical_name": "crb3c_savingsmonthly",
+          "kind": "integer",
+          "source_constraint": "0以上。円単位。小数不可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "共済貸付月額",
+          "logical_name": "crb3c_loanmonthly",
+          "kind": "integer",
+          "source_constraint": "0以上。円単位。小数不可。元ファイルに実データがなく値域詳細は未確認",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        }
+      ]
+    },
+    {
+      "key": "resident",
+      "display_name": "T_住民税",
+      "schema_name": "crb3c_ResidentTax",
+      "logical_name": "crb3c_residenttax",
+      "studio_schema_name": "crb3c_StudioResidentTax",
+      "studio_logical_name": "crb3c_studioresidenttax",
+      "columns": [
+        {
+          "display_name": "職員番号",
+          "logical_name": "crb3c_staffnumber",
+          "kind": "text",
+          "source_constraint": "12桁の数字文字列。先頭0埋め。正規表現: ^[0-9]{12}$",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "氏名",
+          "logical_name": "crb3c_fullname",
+          "kind": "text",
+          "source_constraint": "全角氏名を想定。姓と名の間は全角空白",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "期間区分",
+          "logical_name": "crb3c_periodcategory",
+          "kind": "text",
+          "source_constraint": "区分値。元ファイル内の設定値を使用",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "住民税月額",
+          "logical_name": "crb3c_monthlyamount",
+          "kind": "integer",
+          "source_constraint": "0以上。円単位。小数不可",
+          "source_required": "任意",
+          "min": 0,
+          "max": 1000000000
+        },
+        {
+          "display_name": "自治体コード",
+          "logical_name": "crb3c_municipalitycode",
+          "kind": "text",
+          "source_constraint": "元ファイルに実データがなく、桁数・形式は未確認",
+          "source_required": "任意",
+          "max_length": 200
+        },
+        {
+          "display_name": "納付先自治体",
+          "logical_name": "crb3c_municipalityname",
+          "kind": "text",
+          "source_constraint": "自治体名称。元ファイルに実データがなく文字数制約は未確認",
+          "source_required": "任意",
+          "max_length": 200
+        }
+      ]
+    }
+  ]
+}
