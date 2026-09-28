@@ -1,95 +1,51 @@
-# Excel一括取込 PoC 実機着手・未公開
+# Excel一括取込 PoC — 実機取込成功・公開後照合は未完了
 
-対象：StaffMaster-Automation-Test / App ID `204a48dc-7f23-43dd-b934-4654a3cfa306`。要求 `CHANGE-20260928-EXCEL-IMPORT-POC`、画面配置 `FUT-IMPORT-001`。2026-09-28に既存アプリの下書き画面とDataverse隔離表を作成。フローおよび行読取は未実装で、取込成功の証拠はない。
+対象：StaffMaster-Automation-Test / App ID `204a48dc-7f23-43dd-b934-4654a3cfa306`。要求 `CHANGE-20260928-EXCEL-IMPORT-POC`、画面配置 `FUT-IMPORT-001`。正式職員マスタと実在データは変更していない。
+
+## 構築した操作
+ホーム「データ一括取込み」→ `scrExcelImportPoc` → Excel選択 →「取込を実行」→ 読取件数・登録成功／失敗件数と保存済み行を表示。ホームへ戻って再度開くとDataverseをRefreshする。
 
 ## 検証ファイル
-Library `/非常勤給与/PoC_Excel一括取込_架空データ.xlsx`。シート `取込データ`、テーブル `ImportPoCTest`、列順 `採用識別子・職員番号・氏名・部署略称・採用日`、データ3行。採用識別子 TEST-HIRE-001/002/003、3行目の職員番号は空欄。Excelの採用日は文字列 ISO 日付、職員番号は12桁の文字列として扱い、先頭ゼロを保持する。ローカルのopenpyxlで現物を読取り確認済み。
+Library `非常勤給与/PoC_Excel一括取込_架空データ.xlsx`。シート `取込データ`、テーブル `ImportPoCTest`。採用識別子・職員番号・氏名・部署略称・採用日の5列、3行。TEST-HIRE-001/002の職員番号は000000000101/000000000102、003は空欄。採用日は文字列ISO日付。元ファイルは変更していない。
 
-## 実機で作成・確認した構成（2026-09-28）
+## 実装構成
+- Dataverse `PoC_Excel取込行_STUDIO`（ID `71dee774-8b1d-48c3-ad2b-32cc55cd2de2`）。採用識別子、職員番号、氏名、部署略称、採用日、取込要求ID、行番号、取込結果のテキスト列。
+- `PoC_Excel取込依頼_STUDIO`（ID `881b7b78-fc3f-4292-b3f4-3099757ec22c`）の添付有効フォームをファイル選択に利用。事前検証依頼 `POC-REQ-20260928-01` の保存済み添付ファイル名は再表示PASS。ただしバイナリのダウンロード・ハッシュ照合は未完了。
+- 今回の取込ではSubmitFormを使わず、選択ファイルのname/contentBytesを `PoC_ExcelImport_STUDIO` に直接渡す。
+- フロー：Power Apps (V2) → OneDrive for Businessの一時xlsx作成 → Excel Online (Business)で `ImportPoCTest` の行を読取 → テキスト出力 `rowsjson`。
+- CanvasはParseJSONで5列を取り出し、Patchで隔離行表へ登録する。GUIDの取込要求ID・行番号・結果「成功」を保存。採用識別子と氏名が空の行を含む場合は登録前に止める。行単位のPatch失敗は `colImportErrors` に記録する。
+- ギャラリーはサーバーの隔離行表を直接参照。全バッチを表示する。
+- [実装式と接続構成](../../src/excel-import-poc/README.md)。フローの環境内GUID、run ID、公開パッケージ全文は未取得。
+- 当初のSharePoint候補は採用していない。
 
-- Dataverse隔離表 `PoC_Excel取込行_STUDIO`（ID `71dee774-8b1d-48c3-ad2b-32cc55cd2de2`）を作成。採用識別子を主列とし、職員番号、氏名、部署略称、採用日、取込要求ID、行番号、取込結果のテキスト列を読戻し確認。行データは未登録。
-- Dataverse隔離表 `PoC_Excel取込依頼_STUDIO`（ID `881b7b78-fc3f-4292-b3f4-3099757ec22c`）を作成し、添付機能の有効設定を保存後に読戻し確認。主列の表示名は暫定 `新しい列`。
-- 既存App IDの未公開下書きで画面 `scrExcelImportPoc`、2表のデータソース、依頼表の新規フォーム `Form1` に `Attachments` カードを追加。自動生成された不要なシステム項目は整理前。Studioプレビューで指定Excelを選択するとファイル名と `未保存` を観察。`Button1`（表示文言「ファイルを保存（検証）」、`OnSelect=SubmitForm(Form1)`）を追加。プレビューから `POC-REQ-20260928-01` の依頼を提出し、Makerの表を再読込みして保存済み行を確認。添付ファイル本体の読戻しは未確認。
-- ホームボタン、本来の行取込実行ボタン、フロー、行結果ギャラリー、再表示の処理は未実装。公開版には反映していない。
+## 実測結果（所有者のStudioプレビュー）
+| ケース | 独立期待値 | 実測と判定 |
+|---|---|---|
+| ファイル選択 | 指定xlsx名を表示 | PASS |
+| Excel読取 | 3行・5列・先頭ゼロ・空欄1件 | PASS。実JSONを観察 |
+| 正常登録 | 3行追加、成功3・失敗0 | PASS。初回と修正後再実行でそれぞれ「読取3件／登録成功3件／失敗0件」。合計6行 |
+| ホーム往復 | 再表示後も保存済み3行と5項目 | PASS。001/002の先頭ゼロ、003の空欄も確認 |
+| UT-IMP-01 未選択 | エラー、保存行増加なし | PASS。「Excelファイルを1件選択してください。」。表示改善後も再試験PASS |
+| UT-IMP-05 非xlsx | 拡張子エラー、保存行増加なし | PASS。`PoC_invalid.txt` を拒否 |
+| 破損xlsx | 成功扱いしない | 添付コントロールで「問題が発生しました」。Excelコネクタまで到達した証拠なし。サーバー読取失敗試験の代替にしない |
+| 指定テーブルなしxlsx | 読取失敗を表示 | NOT_RUN |
+| 行書込拒否・一部失敗 | 行別失敗を表示 | NOT_RUN |
+| 実行中再押下 | 二重起動を抑止 | DisplayMode実装済み、実測NOT_RUN |
+| Studio数式検査 | 数式エラー0 | PASS。「エラーは検出されませんでした」 |
+| 公開Player・PAC読戻し | 同じ公開版の操作・版/SHA一致 | BLOCKED。再認証が必要で安全な認証手順が単独パスワード選択を受け付けず未完了 |
 
-## 当初のSharePoint方式の設計候補（未実装）
+最初のフロー応答は式を文字列として返して失敗。動的valueトークンへ修正し、実3行JSONで再試験PASS。数式再入力で混入した重複式も修正後、Studioエラー0と正常登録を再確認した。失敗履歴を隠していない。
 
-1. テスト専用SharePointリスト `PoC_Excel取込依頼` を用意。Title（任意の取込要求ID）、添付ファイルあり、状態（受付／実行中／完了／失敗）、結果メッセージ。正式職員マスタのデータソースに接続しない。
-2. テスト専用SharePointリスト `PoC_Excel取込行` を用意。Title（採用識別子）、要求ID、行番号、職員番号（1行テキスト、空欄可）、氏名、部署略称、採用日（PoCでは1行テキスト）、結果（成功／失敗）、メッセージ。検証用サイト内に限定する。権限は既存のテスト利用者のみに絞る。
-3. Canvas専用画面 `scrExcelImportPoc` に `frmExcelImportPoc`（取込依頼リストの新規フォーム、添付カードを有効化、1ファイル）、`btnImportRunPoc`、`lblImportStatusPoc`、`galImportRowsPoc`、`btnImportHomePoc` を配置。ホーム `scrHome` に「データ一括取込み」ボタンと `Navigate(scrExcelImportPoc,ScreenTransition.None)` を追加。フォームの添付コントロールはフォーム内でのみ保存できる。
-4. 「取込を実行」は添付数1・拡張子xlsxを確認して `SubmitForm(frmExcelImportPoc)`。フォーム `OnSuccess` から保存済み依頼IDを引数に `flowExcelImportPoc.Run(...)` を呼ぶ。二重押下を防止。フロー失敗時は処理完了表示にしない。
-5. Power AutomateフローはPower Apps (V2)から依頼IDを受取り、SharePointの依頼項目／添付一覧を再取得する。添付は必ず1件かつ.xlsx、サイズ制限内とサーバー側でも確認する。添付コンテンツを検証用ドキュメントライブラリの一時フォルダに作成し、その作成結果のIdentifierをExcel Online (Business)「表内に存在する行を一覧表示」に渡す。テーブル名は固定 `ImportPoCTest`。日本語列名にOData Select Queryは使わない。
-6. 取得した各行を要求ID・行番号とともに `PoC_Excel取込行` に新規作成。職員番号空欄はPoCでは受け入れ、空欄のまま保存する。行単位失敗は行別結果へ記録し、総件数・成功・失敗を依頼リストへ保存する。一時ファイルの後片付けは取得結果の確認後に実施する。
-7. 画面の結果ギャラリーは `Filter(PoC_Excel取込行, 要求ID = varImportRequestId)`。再表示時には依頼リストの最近の履歴から要求IDを選び直し、`Refresh` でサーバー側行を再取得する。Power Appsのコレクションだけを永続化根拠にしない。
+## 保存・公開
+2026-09-28 23:04:54 JSTに保存済み表示。23:06:20 JSTに対象環境・同一アプリの `Publish successful` 通知を確認。公開操作成功は確認済みだが、公開版番号・公開Player・PACパッケージSHAの照合は未完了。Studio結果を公開Player PASSへ転記しない。
 
-この方式ではファイル選択の直後に添付を確定し、フォーム保存後にフローを実行する。フローの同期応答より前に終了し得るため、画面では依頼リストの状態を手動更新できるようにする。SharePointサイト・リストの具体的な接続、フローの実行権限、Excelコネクタで動的Identifierを使えるかは環境で試験するまで未判定。
+## 残件とPoC境界
+- 公開Playerで正常／異常系と新規セッション再表示、版番号・PAC読戻し・Actions照合。
+- 指定テーブルなし、空テーブル、列不足、行保存拒否、一部失敗、実行中連打の実測。
+- 行別エラー詳細の可視表示と再ログイン後の失敗履歴保持は未検証。
+- 一時OneDriveファイルは `PoC_ExcelImport_STUDIO_` 接頭辞で残る。後片付け未実装。
+- 再実行は新規行を追加する。重複抑止・本番項目条件・サーバー入力検証・大量行ページング・所有者以外の権限は後続。
+- 現在の保存行は架空データだけの6件。共有権限を広げる変更は実施していない。
+- 本番のFR-E-01全体完了、業務受入、総合試験PASSとはしない。
 
-## Power Fx 候補（Studioに貼る前に接続名・内部列名を確認）
-
-```powerfx
-// scrExcelImportPoc.OnVisible
-Refresh(PoC_Excel取込依頼);
-Refresh(PoC_Excel取込行);
-Set(varImportRunning, false);
-Set(varImportMessage, "Excelファイルを1件選択してください。");
-
-// btnImportRunPoc.OnSelect（attImportPocはフォームの添付カード内）
-If(
-    varImportRunning,
-    Notify("取込処理中です。", NotificationType.Information),
-    If(
-        CountRows(attImportPoc.Attachments) <> 1,
-        Notify("Excelファイルを1件選択してください。", NotificationType.Error),
-        If(
-            !EndsWith(Lower(First(attImportPoc.Attachments).Name), ".xlsx"),
-            Notify(".xlsxファイルを選択してください。", NotificationType.Error),
-            Set(varImportRunning, true);
-            Set(varImportMessage, "ファイルを保存しています。");
-            SubmitForm(frmExcelImportPoc)
-        )
-    )
-)
-
-// frmExcelImportPoc.OnSuccess
-Set(varImportRequestId, frmExcelImportPoc.LastSubmit.ID);
-Set(varImportMessage, "Excelを読み取っています。");
-IfError(
-    Set(varImportFlowResult, flowExcelImportPoc.Run(varImportRequestId)),
-    Set(varImportMessage, "フローを開始できませんでした。");
-    Notify(varImportMessage, NotificationType.Error),
-    Refresh(PoC_Excel取込依頼);
-    Refresh(PoC_Excel取込行);
-    Set(varImportMessage, "実行結果を更新してください。")
-);
-Set(varImportRunning, false)
-
-// frmExcelImportPoc.OnFailure
-Set(varImportRunning, false);
-Set(varImportMessage, "ファイルの保存に失敗しました。");
-Notify(frmExcelImportPoc.Error, NotificationType.Error)
-
-// btnImportRefreshPoc.OnSelect
-Refresh(PoC_Excel取込依頼);
-Refresh(PoC_Excel取込行)
-
-// galImportRowsPoc.Items（実際の内部列名に置換）
-SortByColumns(Filter(PoC_Excel取込行, 要求ID = varImportRequestId), "行番号", SortOrder.Ascending)
-```
-
-### 検証境界
-添付コントロールはSharePoint/Dataverseフォーム内に置く必要がある。Power Appsモバイル版では1回に1ファイルを選択する。Excel Online (Business)の「行一覧」は既定で最大256行なので、本番要件にはページネーション設計が必要。現PoCは3行。採用識別子の重複判定、再実行時の冪等性、ロールと部局の認可、本番の必須列と欠損時の処理はPoC成功後に決める。再実行前には検証用リストの前回分と新規分を区別する。正式マスタへPatchしない。
-
-## 単体テスト（ファイル選択のみ実機PASS、その他未実施）
-| ID | 入力・操作 | 独立した期待値 |
-| --- | --- | --- |
-| UT-IMP-01 | ファイル未選択で実行 | 添付エラー、依頼／行レコードは増えない |
-| UT-IMP-02 | 指定Excelを選択し実行 | 依頼1件、テーブル3行読取、隔離行3件。001/002の12桁先頭ゼロ保持、003の職員番号空欄保持 |
-| UT-IMP-03 | 実行後に画面を開き直して要求履歴を選択 | サーバーから3行と結果を再表示 |
-| UT-IMP-04 | テーブル名が違う.xlsx | 行3件を成功扱いにせず依頼が失敗、読取エラーを表示 |
-| UT-IMP-05 | .xlsx以外のファイル | 画面とフロー双方で拒否、隔離行0件 |
-| UT-IMP-06 | 同一依頼IDで実行中に再押下 | 多重起動しない。フロー側の冪等性はPoCで要測定 |
-
-実測記録には環境、App ID、公開版、フロー実行ID、依頼ID、操作時刻、期待／実際の行数と値、エラー本文、画面再表示後の値を残す。失敗や未実施をPASSへ読み替えない。
-
-### 実機実測
-Studioの新規フォーム上で `PoC_Excel一括取込_架空データ.xlsx` をファイル選択した結果、`PoC_Excel一括取込_架空データ.xlsx 未保存` が表示された。隔離依頼行の保存はPASS。添付本体の読戻し、取込実行、3行の読取・保存、画面再表示、無選択・不正ファイルのエラー確認は未実施。上記SharePoint案は当初の候補であり、作成済みDataverse隔離表の実体と混同しない。フローのファイル取得とExcel Onlineコネクタとの接続方式は再設計が必要。
+詳細は[実施記録](../../records/changes/change-20260928-excel-import-poc/manual-20260928/record.json)を参照。
