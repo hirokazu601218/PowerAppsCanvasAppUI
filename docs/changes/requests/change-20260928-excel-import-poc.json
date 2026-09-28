@@ -2,7 +2,6 @@
   "schema_version": 1,
   "change_id": "CHANGE-20260928-EXCEL-IMPORT-POC",
   "target": {
-    "environment_name": "StaffMaster-Automation-Test",
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
   },
@@ -19,5 +18,6 @@
     "アプリ画面を開き直しても隔離保存先の行を表示できる",
     "空欄職員番号の行を含む成功ケースと不正ファイル・無選択・読取失敗のエラーケースを実機で分けて記録する"
   ],
-  "implementation_status": "同一アプリに専用画面・ホーム導線・Power Automate読取フロー・Dataverse隔離登録・一覧再表示を実装。所有者Studioで3行読取/登録、先頭ゼロ・空欄保持、ホーム往復、未選択/非xlsxエラーを実測PASS。正常系2回で隔離行6件。23:06:20 JSTに公開成功通知確認。公開Player・版番号/PAC照合・行失敗系は未完了。"
+  "implementation_status": "同一アプリに専用画面・ホーム導線・Power Automate読取フロー・Dataverse隔離登録・一覧再表示を実装。所有者Studioで3行読取/登録、先頭ゼロ・空欄保持、ホーム往復、未選択/非xlsxエラーを実測PASS。正常系2回で隔離行6件。23:06:20 JST公開成功通知。利用者は23:33 JSTに公開Playerの正常取込・ホーム往復の受入PASSを報告。版番号/PAC照合・行失敗系は未完了。",
+  "environment_name": "StaffMaster-Automation-Test"
 }
