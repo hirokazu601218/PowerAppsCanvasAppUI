@@ -111,6 +111,7 @@ jobs:
       POWER_APPS_BASE_URL: https://make.powerapps.com
       POWER_APPS_ENVIRONMENT_ID: 68e00049-b7e5-eda6-9888-9a3cc493c5be
       CANVAS_APP_URL: https://apps.powerapps.com/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/204a48dc-7f23-43dd-b934-4654a3cfa306?tenantId=a00c92fa-e1db-4aa6-ab28-356c3203353d
+      SCR002_HISTORY_FIXTURE_STAFF: '009900000011'
       MS_AUTH_CREDENTIAL_TYPE: ${{ vars.POWERAPPS_AUTH_MODE || 'password' }}
       MS_AUTH_CREDENTIAL_PROVIDER: ${{ vars.POWERAPPS_AUTH_PROVIDER || 'environment' }}
       MS_AUTH_ENV_VARIABLE_NAME: MS_USER_PASSWORD
