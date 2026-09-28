@@ -48,4 +48,4 @@ Library `非常勤給与/PoC_Excel一括取込_架空データ.xlsx`。シート
 - 現在の保存行は架空データだけの6件。共有権限を広げる変更は実施していない。
 - 本番のFR-E-01全体完了、業務受入、総合試験PASSとはしない。
 
-詳細は[実施記録](../../records/changes/change-20260928-excel-import-poc/manual-20260928/record.json)を参照。
+詳細は[実施記録](../../records/changes/change-20260928-excel-import-poc/manual-20260928-excel-import/record.json)を参照。
