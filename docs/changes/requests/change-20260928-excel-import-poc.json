@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20260928-EXCEL-IMPORT-POC",
+  "target": {
+    "environment_name": "StaffMaster-Automation-Test",
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "request_text": "ホームの「データ一括取込み」から専用画面を開き、選択したPoC用ExcelのImportPoCTest行を隔離保存先へ取り込み、行別結果・保存済みデータを表示する。画面再表示でも確認する。",
+  "requirement_ids": [
+    "FUT-IMPORT-001",
+    "E-02"
+  ],
+  "scope": "架空3行のみ。正式な職員マスタと実在職員データを変更しない。重複・本番項目の判断は対象外。",
+  "acceptance_criteria": [
+    "Excelファイルを専用画面で選択できる",
+    "実行操作でImportPoCTestの3行を読み隔離先へ登録する",
+    "行別の成功・エラーを表示する",
+    "アプリ画面を開き直しても隔離保存先の行を表示できる",
+    "空欄職員番号の行を含む成功ケースと不正ファイル・無選択・読取失敗のエラーケースを実機で分けて記録する"
+  ],
+  "implementation_status": "GitHubで構築候補を作成。Microsoft認証の方式選択が自動承認審査で拒否されたため、アプリ・SharePoint・フロー実体は未構築、実機試験は未実施。"
+}
