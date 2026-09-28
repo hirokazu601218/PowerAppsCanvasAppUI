@@ -3,7 +3,7 @@
 ## 2026-09-28 Excel一括取込PoC（実機着手、未公開）
 
 - [変更要求](../changes/requests/change-20260928-excel-import-poc.json)、[構築候補と実機状況](../poc/excel-import-poc.md)、[実施記録](../../records/changes/change-20260928-excel-import-poc/manual-20260928/record.json)。対象は同じApp ID `204a48dc-7f23-43dd-b934-4654a3cfa306`。
-- 安全な認証で対象環境に接続。Dataverse隔離表2つとアプリ未公開画面 `scrExcelImportPoc` の新規フォーム・Attachmentsカードを作成し、架空Excelのファイル選択をStudioプレビューでPASS。画面の自動追加項目は整理前。保存・取込フロー・3行読取・結果表示・再表示・エラー条件・公開Playerは未実施。正式職員マスタと実在データは未変更。
+- 安全な認証で対象環境に接続。Dataverse隔離表2つとアプリ未公開画面 `scrExcelImportPoc` の新規フォーム・Attachmentsカードを作成し、架空Excelのファイル選択をStudioプレビューでPASS。新規フォームのSubmitFormで隔離依頼 `POC-REQ-20260928-01` を保存し、Dataverse一覧再読込みで同じ行を確認。添付本体の読戻しは未確認。画面の自動追加項目は整理前。取込フロー・3行読取・結果表示・再表示・エラー条件・公開Playerは未実施。正式職員マスタと実在データは未変更。
 - 当初のSharePoint案は未実装。次はDataverse添付取得、Excel読取フローと行表登録、画面・ホーム導線、単体試験を進める。取込成功とは判定しない。
 
 ## 2026-09-28 SCR-002の添付4定義書反映（公開v25）
