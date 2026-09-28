@@ -1,0 +1,100 @@
+{
+  "change_id": "change-20260928-excel-import-poc",
+  "run_id": "manual-20260928-excel-import",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "environment": "StaffMaster-Automation-Test",
+  "status": "PARTIAL",
+  "observed_at": "2026-09-28T14:20:00Z",
+  "source_commit": "ed8acf6a06307438a933971d8b6d996c602f6a88",
+  "version": "公開成功通知2026-09-28 23:06:20 JST。版番号/PAC未読戻し",
+  "flow": "PoC_ExcelImport_STUDIO",
+  "flow_run_ids": null,
+  "results": [
+    {
+      "step": "認証・添付の再表示",
+      "status": "PASS",
+      "evidence": "前Workで認証済みStudio。保存済み依頼POC-REQ-20260928-01をViewで開き、保存済みExcelファイル名を再表示。添付バイナリのダウンロードは未完了。"
+    },
+    {
+      "step": "隔離保存先",
+      "status": "PASS",
+      "evidence": "PoC_Excel取込行_STUDIOとPoC_Excel取込依頼_STUDIO。正式マスタの更新なし。"
+    },
+    {
+      "step": "ホーム・専用画面",
+      "status": "PASS",
+      "evidence": "scrHomeのデータ一括取込み→scrExcelImportPoc。ファイル選択・実行・結果・5項目一覧・ホームへ戻るを実装して実操作。"
+    },
+    {
+      "step": "Excel読取フロー",
+      "status": "PASS",
+      "evidence": "Power Apps V2→OneDriveファイル作成→Excel ImportPoCTest行一覧→rowsjson応答。初回の文字列式応答を動的valueに修正後、架空3行の実JSONを確認。"
+    },
+    {
+      "step": "正常取込",
+      "status": "PASS",
+      "scope": "所有者Studio",
+      "expected": "3行読取、隔離行3件追加。職員番号先頭ゼロ2件と空欄1件保持。",
+      "actual": "初回・修正後再試験とも読取3件/登録成功3件/失敗0件。合計6行。001 000000000101 架空花子 架空局A 2026-10-01、002 000000000102 架空太郎 架空局B 2026-10-15、003 空欄 架空次郎 架空局A 2026-11-01。画面上の姓名間空白は原本のまま。"
+    },
+    {
+      "step": "IT-IMP-03 ホーム往復",
+      "status": "PASS",
+      "scope": "所有者Studio",
+      "expected": "保存先をRefreshし3行再表示",
+      "actual": "ホームの導線から再び開き、001/002の先頭ゼロ・003空欄・3件の氏名/部署/日付/成功を確認。新規Playerセッションでは未試験。"
+    },
+    {
+      "step": "UT-IMP-01 未選択",
+      "status": "PASS",
+      "scope": "所有者Studio",
+      "expected": "エラー、行増加なし",
+      "actual": "Excelファイルを1件選択してください。と通知。3件のまま。結果欄更新修正後も再試験PASS。"
+    },
+    {
+      "step": "UT-IMP-05 非xlsx",
+      "status": "PASS",
+      "scope": "所有者Studio",
+      "expected": "xlsx以外拒否、行増加なし",
+      "actual": "PoC_invalid.txt選択後、.xlsxファイルを選択してください。と通知。3件のまま。"
+    },
+    {
+      "step": "破損xlsx",
+      "status": "PARTIAL",
+      "actual": "PoC_corrupt.xlsxは添付欄で問題が発生しました。Excelフロー到達の証拠なし。サーバー読取失敗のPASSにしない。"
+    },
+    {
+      "step": "数式検査",
+      "status": "PASS",
+      "evidence": "再入力の重複式を修正後、アプリチェックの数式エラーなし。修正後に3件取込を再試験。"
+    },
+    {
+      "step": "保存・公開",
+      "status": "PASS",
+      "evidence": "保存済み2026/9/28 23:04:54、外側MakerのPublish successful通知2026/9/28 23:06:20を確認。同じアプリ、対象環境。"
+    },
+    {
+      "step": "公開Player・PAC・版照合",
+      "status": "BLOCKED",
+      "evidence": "Maker別画面はアカウント選択後にパスワード方式を要求。browserAuthは資格情報なしsubmitを拒否し、単一optionも2件必須として拒否。代替のpasskeyは使用不可。認証を迂回せず停止。"
+    },
+    {
+      "step": "公開Player自動テスト",
+      "status": "NOT_RUN",
+      "evidence": "3ケースのPlaywrightコードと試験選定を追加。実行結果は未取得。Studio実測と区別する。"
+    }
+  ],
+  "safety": "正式職員マスタ・実在データは未変更。検証用行6件と事前検証依頼1件。共有・セキュリティ設定を変更していない。",
+  "remaining": [
+    "公開Playerでの正常/異常系、新規セッション再表示",
+    "公開版番号、PACパッケージSHA、フローGUID/run ID読戻し",
+    "指定テーブルなし、空テーブル、列不足、行書込拒否、一部失敗、実行中再押下",
+    "行別失敗詳細の表示と永続化の検証",
+    "OneDrive一時ファイル後片付け",
+    "GitHub Actions検査、公開後3文書照合、PR統合"
+  ],
+  "github_checks": {
+    "placement": "Previous failure corrected: run path and lowercase matching IDs",
+    "e2e": "pending"
+  }
+}
