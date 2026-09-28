@@ -7,6 +7,16 @@
   },
   "changes": [
     {
+      "path": "config/dataverse/scr002-history-columns.json",
+      "component": "添付4定義に基づく56列のDataverse契約",
+      "unit_case_ids": [
+        "UT-SCR002-WORK-56-001",
+        "UT-SCR002-SOCIAL-56-001",
+        "UT-SCR002-TAX-56-001"
+      ],
+      "expected_result": "正式4表・隔離4表の列型と親Lookupをメタデータ試験で照合し、公開Playerの表示列が同じ定義に従う"
+    },
+    {
       "path": "src/screen-ui/v1.28/galDetailFields111.Items.fx",
       "component": "SCR-002の勤務条件・社会保険・税固定控除の共通詳細ギャラリー",
       "unit_case_ids": [
