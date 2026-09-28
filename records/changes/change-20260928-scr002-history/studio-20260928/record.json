@@ -1,0 +1,20 @@
+{
+  "change_id": "CHANGE-20260928-SCR002-HISTORY",
+  "run_id": "studio-20260928",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-09-28T10:01:23Z",
+  "source_commit": "7b4de161b6e3d52ebc30070a8285cde80141f7e1",
+  "version": "published-v22; editing-version-unverified",
+  "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+  "results": {
+    "dataverse_metadata": "PASS: eight tables, 56 columns in each of the formal and isolated sets, parent lookup and Restrict verified in Action 36363649180",
+    "studio_data_sources": "PASS: four isolated tables added to the current single app in Studio",
+    "studio_formulas": "FAIL: App Checker reported 437 formula errors after a candidate App.Formulas edit; corrections were prepared but could not be rechecked because the browser editing service stopped responding",
+    "saved_app": "NOT_VERIFIED",
+    "published_app": "NOT_RUN",
+    "player": "NOT_RUN",
+    "dedicated_user_access": "NOT_RUN"
+  },
+  "next": "Reconnect Studio; validate and repair formulas, verify zero new formula errors, save and publish the same app, then test Player and update postpublish documentation."
+}
