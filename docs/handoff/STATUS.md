@@ -5,6 +5,7 @@
 - [変更要求](../changes/requests/change-20260928-excel-import-poc.json)、[実装と実測](../poc/excel-import-poc.md)、[実施記録](../../records/changes/change-20260928-excel-import-poc/manual-20260928-excel-import/record.json)、[Power Fx](../../src/excel-import-poc/README.md)、[試験選定](../testing/change-records/change-20260928-excel-import-poc.json)。対象は同じApp ID `204a48dc-7f23-43dd-b934-4654a3cfa306`。
 - ホーム導線、専用画面、フロー `PoC_ExcelImport_STUDIO`、隔離表登録、結果一覧を実装。所有者Studioで実Excelの3行読取・登録成功3/失敗0、先頭ゼロと空欄保持、ホーム往復後の保存済み再表示、未選択・非xlsx拒否がPASS。正常系2回で計6件。数式エラー0。利用者は公開Playerで同じ検証Excelを取り込み、読取3／成功3／失敗0、先頭ゼロと空欄、ホーム往復後の再表示が期待どおりと2026-09-28 23:33 JSTに報告し、PoC正常系の受入テスト終了。合計9行相当は画面確認報告に基づき、サーバー総件数の独立読戻しは未実施。
 - 保存23:04:54 JST、公開成功通知23:06:20 JST。公開Player正常系は上記の利用者報告に基づくPASS。公開版番号・PAC読戻しと自動E2Eは未完了。エージェントの別画面再認証は安全な方法で完了できなかった。Action 36435607283の配置検査PASS、Action 36435607491の試験選定はPoCソースパス未登録でFAILしE2E未起動。パス検出と変更要求の対象形式を修正。Action 36437372428で試験選定PASS、専用利用者の認証PASS、公開Player自動E2Eは3件FAIL（2件は通知テキスト未検出、1件は隔離保存行未検出）。文書配置Action 36437372434と静的照合Action 36437374122はPASS。
+- 2026-09-28、利用者指示により[基本設計](../design/basic/basic-design.md#excel一括取込pocの構成と正式版への置換change-20260928-excel-import-poc)と[詳細設計](../design/detailed/detailed-design.md#13-excel一括取込pocの実装境界と置換方針change-20260928-excel-import-poc)へPoCの仕組みと正式版への置換条件を追記。要件索引・画面要件の「将来」記載はPoC例外を明記。文書のみの変更でアプリ改修・追加の実機試験は対象外。リンク・記述整合を確認する。
 - 次は版/SHA読戻し、公開Player異常系、新規ログインでの再表示、行エラー詳細表示、自動E2Eの3件FAIL原因切り分けとPR統合。OneDrive一時ファイル後片付け未実装。正式職員マスタ・実在データ・共有権限は未変更。
 
 ## 2026-09-28 SCR-002の添付4定義書反映（公開v25）
