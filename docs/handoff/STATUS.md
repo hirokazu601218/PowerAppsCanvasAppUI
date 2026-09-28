@@ -2,7 +2,7 @@
 
 ## 2026-09-28 Excel一括取込PoC（Studio取込成功、公開後照合は未完了）
 
-- [変更要求](../changes/requests/change-20260928-excel-import-poc.json)、[実装と実測](../poc/excel-import-poc.md)、[実施記録](../../records/changes/change-20260928-excel-import-poc/manual-20260928/record.json)、[Power Fx](../../src/excel-import-poc/README.md)、[試験選定](../testing/change-records/change-20260928-excel-import-poc.json)。対象は同じApp ID `204a48dc-7f23-43dd-b934-4654a3cfa306`。
+- [変更要求](../changes/requests/change-20260928-excel-import-poc.json)、[実装と実測](../poc/excel-import-poc.md)、[実施記録](../../records/changes/change-20260928-excel-import-poc/manual-20260928-excel-import/record.json)、[Power Fx](../../src/excel-import-poc/README.md)、[試験選定](../testing/change-records/change-20260928-excel-import-poc.json)。対象は同じApp ID `204a48dc-7f23-43dd-b934-4654a3cfa306`。
 - ホーム導線、専用画面、フロー `PoC_ExcelImport_STUDIO`、隔離表登録、結果一覧を実装。所有者Studioで実Excelの3行読取・登録成功3/失敗0、先頭ゼロと空欄保持、ホーム往復後の保存済み再表示、未選択・非xlsx拒否がPASS。正常系2回で計6件。数式エラー0。
 - 保存23:04:54 JST、公開成功通知23:06:20 JST。公開版番号・公開Player・PAC読戻しとActions照合は未完了。別画面の再認証でパスワード方式への安全な遷移が機能制約に阻まれた。認証を迂回していない。公開通知だけで公開版機能PASSとしない。
 - 次は公開版の再認証・Player確認・版/SHA読戻し、指定テーブルなしと行保存拒否の異常系、行エラー詳細表示、GitHub検査とPR統合。OneDrive一時ファイル後片付け未実装。正式職員マスタ・実在データ・共有権限は未変更。
