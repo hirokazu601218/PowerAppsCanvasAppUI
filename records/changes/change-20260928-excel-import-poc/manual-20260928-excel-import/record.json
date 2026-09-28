@@ -4,7 +4,7 @@
   "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
   "environment": "StaffMaster-Automation-Test",
   "status": "PARTIAL",
-  "observed_at": "2026-09-28T14:20:00Z",
+  "observed_at": "2026-09-28T14:33:00Z",
   "source_commit": "ed8acf6a06307438a933971d8b6d996c602f6a88",
   "version": "公開成功通知2026-09-28 23:06:20 JST。版番号/PAC未読戻し",
   "flow": "PoC_ExcelImport_STUDIO",
@@ -74,27 +74,34 @@
       "evidence": "保存済み2026/9/28 23:04:54、外側MakerのPublish successful通知2026/9/28 23:06:20を確認。同じアプリ、対象環境。"
     },
     {
-      "step": "公開Player・PAC・版照合",
-      "status": "BLOCKED",
-      "evidence": "Maker別画面はアカウント選択後にパスワード方式を要求。browserAuthは資格情報なしsubmitを拒否し、単一optionも2件必須として拒否。代替のpasskeyは使用不可。認証を迂回せず停止。"
+      "step": "利用者受入テスト（公開Player・正常系）",
+      "status": "PASS",
+      "scope": "利用者報告（独立した画面証跡なし）",
+      "expected": "PoC Excel 3行を読取・登録成功3／失敗0。先頭ゼロ2件・職員番号空欄1件、ホーム往復後も保存行を再表示。",
+      "actual": "2026-09-28 23:33 JST、本Workで「そのとおりになりました。受入テストは成功し終了」と報告。直前に案内した上記期待結果どおりとの回答。事前Studio検証6行に3行を追加した合計9行相当の画面結果と解釈するが、サーバー実測件数の独立読戻しは行っていない。"
+    },
+    {
+      "step": "公開版番号・PAC照合",
+      "status": "NOT_RUN",
+      "evidence": "エージェントのMaker再認証は安全な方法で完了できず、版番号とPAC SHAは未取得。利用者の受入PASSとは別の技術照合。"
     },
     {
       "step": "公開Player自動テスト",
       "status": "NOT_RUN",
-      "evidence": "3ケースのPlaywrightコードと試験選定を追加。実行結果は未取得。Studio実測と区別する。"
+      "evidence": "Action 36435607491 の選定ジョブが 'selection record changed without an app source change' で失敗し、E2Eはスキップ。src/excel-import-poc/ を選定スクリプトのSOURCE_PREFIXESへ追加し再実行待ち。"
     }
   ],
-  "safety": "正式職員マスタ・実在データは未変更。検証用行6件と事前検証依頼1件。共有・セキュリティ設定を変更していない。",
+  "safety": "正式職員マスタ・実在データは未変更。事前の隔離行6件に利用者が3件を取り込んだ受入PASS報告（合計9件相当、サーバー再読戻し未実施）。事前検証依頼1件。共有・セキュリティ設定を変更していない。",
   "remaining": [
-    "公開Playerでの正常/異常系、新規セッション再表示",
+    "公開Playerの異常系・新規ログインでの再表示は未試験（利用者は画面往復の再表示PASSを報告）",
     "公開版番号、PACパッケージSHA、フローGUID/run ID読戻し",
     "指定テーブルなし、空テーブル、列不足、行書込拒否、一部失敗、実行中再押下",
     "行別失敗詳細の表示と永続化の検証",
     "OneDrive一時ファイル後片付け",
-    "GitHub Actions検査、公開後3文書照合、PR統合"
+    "GitHub Actionsの試験選定再実行・E2E、公開後3文書照合、PR統合"
   ],
   "github_checks": {
-    "placement": "Previous failure corrected: run path and lowercase matching IDs",
-    "e2e": "pending"
+    "placement": "Action 36435607283 PASS",
+    "e2e": "Action 36435607491 selection FAIL, E2E skipped; source prefix corrected in dac16c1, rerun pending"
   }
 }
