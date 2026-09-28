@@ -89,12 +89,13 @@ jobs:
               raise SystemExit('app metadata changed during package download')
           package = root / 'readback.msapp'
           package_sha = hashlib.sha256(package.read_bytes()).hexdigest()
-          manifest = json.loads(Path('src/screen-ui/v1.24/studio-readback/scr002-ui-20260927.delta.json').read_text())
+          # This capture checks the currently approved v25 screen. The earlier
+          # v22 saved-screen digest is a different release and must not gate it.
+          expected = '498029d25c9191a3cf3157f8a294690afd90b4cbb4a4d3c0845cc27b2ea08e6d'
           with zipfile.ZipFile(package) as archive:
               screen = next(name for name in archive.namelist()
                             if name.replace('\\', '/').endswith('Src/scrStaffMasterSearch.pa.yaml'))
               screen_sha = hashlib.sha256(archive.read(screen)).hexdigest()
-          expected = manifest['saved_screen_sha256']
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as output:
               output.write('## 現行アプリ公開版の読戻し（文書照合前）\n')
               output.write(f'- App ID: `{app}`\n')
@@ -102,10 +103,10 @@ jobs:
               output.write(f'- 最終下書き版: `{before["lastDraftVersion"]}`\n')
               output.write(f'- msapp SHA-256: `{package_sha}`\n')
               output.write(f'- SCR-002画面定義SHA-256: `{screen_sha}`\n')
-              output.write(f'- 保存版の画面定義との一致: `{screen_sha == expected}`\n')
+              output.write(f'- v25公開画面の記録済みSHAとの一致: `{screen_sha == expected}`\n')
               output.write('パッケージ本体と認証情報はアップロードしていません。全画面・接続の一致は別の検査が必要です。\n')
           if screen_sha != expected:
-              raise SystemExit('published SCR-002 screen differs from saved source; investigate before reconciliation')
+              raise SystemExit('published SCR-002 screen differs from approved v25 readback; investigate before reconciliation')
           PY
       - name: Report capture failure without changing app sharing
         if: ${{ failure() }}

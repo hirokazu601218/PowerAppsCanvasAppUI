@@ -2,26 +2,27 @@
   "change_id": "change-20260928-scr002-history",
   "run_id": "manual-20260928-studio",
   "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
-  "status": "PARTIAL",
-  "observed_at": "2026-09-28T04:22:00Z",
-  "source_commit": "35131f18aac5780875d2bc163c2b48a0738019e2",
-  "version": "published-v22; saved-unpublished-v25",
+  "status": "PASS_WITH_OPEN_SCOPE",
+  "observed_at": "2026-09-28T05:15:40Z",
+  "source_commit": "39966f8e540f38d14ac538af1f4d2a321f416cae",
+  "version": "published-v25; 2026-09-28T05:00:02.0455229Z",
   "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
   "results": {
     "dataverse_metadata": "PASS: eight tables, 56 columns in each of the formal and isolated sets, parent lookup and Restrict verified in Action 36363649180",
     "studio_data_sources": "PASS: four isolated tables added to the current single app in Studio",
     "studio_formulas": "PASS: v22 restored as v24; staged btnLoadDetails111.OnSelect and galDetailFields111.Items saved as unpublished v25; App Checker formula errors 0. Initial 437-error v23 retained in history but not published",
     "isolated_fixture": "PASS: Action 36376777042 inserted one synthetic row per four _STUDIO tables for staff 009900000011; no formal-table personnel rows written",
-    "studio_preview": "PASS_PARTIAL: 15 work, 26 social, 9 tax and 6 resident labels and synthetic values seen; amount 0 preserved while notes NULL displays blank; staff 004 switch clears prior history. Published non-owner Player not yet tested",
+    "studio_preview": "PASS_PARTIAL: 15 work, 26 social, 9 tax and 6 resident labels and synthetic values seen; amount 0 preserved while notes NULL displays blank; staff 004 switch clears prior history. Dedicated non-owner Player subsequently tested in Action 36380881898",
     "saved_app": "PASS_PARTIAL: Maker version history confirms v25 at 2026-09-28 04:07 UTC; full saved-package SHA not yet read back",
-    "published_app": "BLOCKED: browser safety review rejected v25 publishing to the shared current app pending explicit user approval; v22 remains live; existing accessibility 251 and performance 11 issues were noted",
-    "player": "NOT_RUN",
-    "dedicated_user_access": "PASS_PARTIAL: Action 36377417327 granted Read on four isolated tables to existing dedicated reader role; no original or isolated write granted; Player not yet tested"
+    "published_app": "PASS: user approved replacing v22 with v25; Studio publish succeeded; Maker v25 Live; metadata lastPublishTime 2026-09-28T05:00:02.0455229Z and same App ID",
+    "player": "PASS: fresh owner Player shows staff 011 Work 15 including 0/NULL; Action 36380881898 dedicated user 4 unit + 2 integration cases 6/6 PASS",
+    "dedicated_user_access": "PASS: Action 36377417327 granted Read on four isolated tables to existing dedicated reader role; no original or isolated write granted; selected Player cases passed",
+    "pac_readback": "PASS scoped: Action 36380763781 downloaded same App ID, package SHA-256 12c91c7c70ea2447c7c7f3841109d407218ffd587da1de57b17d0f43b9fc9a96, SCR-002 screen SHA-256 498029d25c9191a3cf3157f8a294690afd90b4cbb4a4d3c0845cc27b2ea08e6d. Old v22 digest assertion caused capture job failure; corrected v25 gate pending rerun."
   },
-  "next": "Await explicit approval to publish unpublished v25 over the shared current app v22. Do not bypass the rejected publish action. After approval, publish the same App ID, verify dedicated-user Player, read back the package and update postpublish documentation.",
+  "next": "Re-run v25 readback and post-publication document reconciliation. Business acceptance, edit/save, other-department permissions and system test remain unverified.",
   "formula_artifacts": {
     "before": "candidate-*.before.fx are original Studio formulas before this edit",
-    "candidate": "candidate-App.Formulas.fx and candidate-btnLoadDetails111.OnSelect.fx are corrected proposals, unvalidated in Studio; do not publish without App Checker and Player verification",
+    "candidate": "validated-*.fx are the Studio-preview-confirmed formulas; v1.28 copies record the selected source paths. Full saved package was not exported before publication.",
     "first_attempt": "The first pasted version was different from these corrected proposals and produced 437 errors."
   }
 }
