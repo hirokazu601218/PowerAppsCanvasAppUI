@@ -3,37 +3,47 @@
   "run_id": "manual-20260928",
   "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
   "environment": "StaffMaster-Automation-Test",
-  "status": "BLOCKED",
-  "observed_at": "2026-09-28T11:40:22Z",
+  "status": "PARTIAL",
+  "observed_at": "2026-09-28T12:34:00Z",
   "source_commit": "7bee244749e0a8dd6a510d147be7ac88b7ed864f",
-  "version": null,
+  "version": "未公開下書き・版番号未読戻し",
   "results": [
+    {
+      "step": "認証",
+      "status": "PASS",
+      "evidence": "browserAuthのパスワード入力で安全にサインイン。StaffMaster-Automation-Testで同じApp IDのStudioを開いた。"
+    },
     {
       "step": "Excel現物",
       "status": "PASS",
-      "evidence": "Library /非常勤給与/PoC_Excel一括取込_架空データ.xlsx をopenpyxlで読取。取込データ/ImportPoCTest、ヘッダー5列、架空3行、職員番号空欄1行"
+      "evidence": "Libraryの架空Excelをopenpyxlで読取。取込データ/ImportPoCTest、5列3行、職員番号空欄1行。"
     },
     {
-      "step": "画面",
-      "status": "NOT_RUN",
-      "evidence": "GitHubに構築候補とPower Fxを保存。Studioへ接続できず、アプリ実体は未変更"
+      "step": "隔離保存先",
+      "status": "PARTIAL",
+      "evidence": "Dataverse PoC_Excel取込行_STUDIO (71dee774-8b1d-48c3-ad2b-32cc55cd2de2) と PoC_Excel取込依頼_STUDIO (881b7b78-fc3f-4292-b3f4-3099757ec22c) を作成。行表の8列と依頼表添付有効設定をUIで読戻し。レコードは未投入。"
+    },
+    {
+      "step": "画面・ファイル選択",
+      "status": "PARTIAL",
+      "evidence": "同一App IDの未公開下書きに scrExcelImportPoc と依頼表新規Form1、Attachmentsカードを追加。Studioプレビューで指定Excelを選択しファイル名と「未保存」を観察。ホームボタン・実行ボタン・画面整理は未実装。"
     },
     {
       "step": "Excel読取・隔離保存",
       "status": "NOT_RUN",
-      "evidence": "SharePoint隔離リスト・フローの実体は未作成。設計候補のみ"
+      "evidence": "Power Automateフロー未作成、SubmitForm未実行。行データ未登録。"
     },
     {
       "step": "実機単体",
-      "status": "BLOCKED",
-      "evidence": "Microsoftサインインの元ページはタイムアウト。新規ページの方式選択で安全な認証操作が自動審査により拒否された。公開Player接続未確認"
+      "status": "PARTIAL",
+      "evidence": "ファイル選択のみPASS。実行・行数・再表示・無選択・不正ファイルはNOT_RUN。公開版Playerでの確認なし。"
     }
   ],
-  "safety": "正式職員マスタ・実在職員データへの更新なし。現行アプリの保存・公開なし。",
+  "safety": "正式職員マスタ・実在職員データへの更新なし。既存アプリの下書き保存のみ、公開なし。",
   "remaining": [
-    "安全な認証経路を回復",
-    "検証用SharePointの実体作成と接続",
-    "専用画面・フローの実装",
-    "公開版と行別・再表示・エラーケースの実測"
+    "フォームの不要項目整理、ホームのデータ一括取込みボタンと実行・結果画面の構築",
+    "Dataverse添付の取得方法を確認し、Excel Online (Business)のImportPoCTest読取フローへ接続",
+    "架空3行の隔離保存、成功・エラー条件および画面再表示の実機単体試験",
+    "未公開版の番号・保存状態を読戻し、公開・Player確認・GitHub正本との照合"
   ]
 }
