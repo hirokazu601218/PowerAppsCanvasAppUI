@@ -87,8 +87,8 @@
     },
     {
       "step": "公開Player自動テスト",
-      "status": "NOT_RUN",
-      "evidence": "Action 36435607491 の選定ジョブが 'selection record changed without an app source change' で失敗し、E2Eはスキップ。src/excel-import-poc/ を選定スクリプトのSOURCE_PREFIXESへ追加し再実行待ち。"
+      "status": "FAIL",
+      "evidence": "Action 36437372428: 試験選定PASS、専用テスト利用者認証PASS、3ケース実行3 FAIL。UT-IMP-01/05は期待通知テキストが30秒内にDOMで見つからず、IT-IMP-03はTEST-HIRE-001の保存行が30秒内に見つからず。通知表示時間/ロケータ、テスト利用者の隔離表権限・画面内容は未切り分け。利用者受入PASSと区別。"
     }
   ],
   "safety": "正式職員マスタ・実在データは未変更。事前の隔離行6件に利用者が3件を取り込んだ受入PASS報告（合計9件相当、サーバー再読戻し未実施）。事前検証依頼1件。共有・セキュリティ設定を変更していない。",
@@ -98,10 +98,12 @@
     "指定テーブルなし、空テーブル、列不足、行書込拒否、一部失敗、実行中再押下",
     "行別失敗詳細の表示と永続化の検証",
     "OneDrive一時ファイル後片付け",
-    "GitHub Actionsの試験選定再実行・E2E、公開後3文書照合、PR統合"
+    "自動E2Eの3件FAIL原因切り分け、公開後3文書とPAC/版照合、PR統合"
   ],
   "github_checks": {
-    "placement": "Action 36435607283 PASS",
-    "e2e": "Action 36435607491 selection FAIL, E2E skipped; source prefix corrected in dac16c1, rerun pending"
+    "placement": "Action 36437372434 PASS",
+    "reconciliation": "Action 36437374122 PASS（静的検査。公開版SHAの実照合を示さない）",
+    "selection": "Action 36437372428 PASS",
+    "e2e": "Action 36437372428 FAIL: UT-IMP-01, UT-IMP-05, IT-IMP-03 all fail locator visibility; authentication PASS"
   }
 }
