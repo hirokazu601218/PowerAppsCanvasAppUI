@@ -4,7 +4,7 @@
 
 - 変更要求：[`CHANGE-20260928-SCR002-HISTORY`](../changes/requests/change-20260928-scr002-history.json)。勤務条件15列、社会保険26列、税固定控除9列、住民税6列を対象とする。住民税は税固定控除タブ内で扱う。
 - [列契約](../../config/dataverse/scr002-history-columns.json)に従って正式4表と隔離`_STUDIO`4表を作成し、列型、親職員Lookup、削除Restrictを[Action 36363649180](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36363649180)で読戻した。正式表へ職員データは投入していない。
-- 現行App ID `204a48dc-7f23-43dd-b934-4654a3cfa306` のStudioへ隔離4表をデータソースとして追加済み。詳細表示用の式はStudioの検査で437件のエラーを検出し、修正・再検査中。**この変更の保存・公開・Player確認および専用利用者の権限・E2Eは未完了**。公開v22の受入結果を本変更の結果へ転用しない。
+- 現行App ID `204a48dc-7f23-43dd-b934-4654a3cfa306` のStudioで、エラーを含む未公開v23を公開v22からv24へ復元（v23は履歴に保存）。隔離4表を再接続し、[読込・表示の差分候補](../../src/screen-ui/v1.28/README.md)に勤務条件15・社会保険26・税固定控除9・住民税6項目を反映。StudioのApp Checkerで数式エラー0件を確認し、v24の保存操作を実施。プレビューの既存職員の勤務条件タブは、隔離表に該当行がなく「登録されている履歴はありません」と表示。**公開v22はそのまま。v24の保存版読戻し、隔離試験行と専用利用者の権限・E2E、公開・Player確認は未完了**。公開v22の受入結果を本変更の結果へ転用しない。
 - 読取り対象：[変更要求](../changes/requests/change-20260928-scr002-history.json)、[データ設計](../design/basic/data-model.md)、[選定記録](../testing/change-records/change-20260928-scr002-history.json)、[単一アプリ公開手順](../operations/current-app-request-to-release.md)。D-02の編集対象列・入力検証・権限は未決のまま。
 
 以下の既存記録は2026-09-27更新。過去の時系列全文は[移行前STATUS](../../records/docs/handoff/STATUS-history.md)へ保管。

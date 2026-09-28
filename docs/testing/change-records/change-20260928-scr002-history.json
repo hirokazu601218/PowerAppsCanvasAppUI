@@ -7,7 +7,7 @@
   },
   "changes": [
     {
-      "path": "src/screen-ui/v1.28/App.Formulas.fx",
+      "path": "src/screen-ui/v1.28/galDetailFields111.Items.fx",
       "component": "SCR-002の勤務条件・社会保険・税固定控除の共通詳細ギャラリー",
       "unit_case_ids": [
         "UT-SCR002-WORK-56-001",
