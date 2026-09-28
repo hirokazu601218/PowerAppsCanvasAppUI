@@ -96,6 +96,7 @@ async function expectFields(page: Page, screen: FrameLocator, key: string) {
   if (!columns) throw new Error(`Missing field contract: ${key}`);
   const labels = screen.getByRole('list', { name: 'Gallery' }).last();
   await expect(labels).toBeVisible();
+  await expect(labels.getByText(columns[2], { exact: true })).toBeVisible({ timeout: 30_000 });
   const found = new Set<string>();
   const box = await labels.boundingBox();
   if (!box) throw new Error('Detail gallery is not visible');
