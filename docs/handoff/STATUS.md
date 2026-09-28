@@ -1,5 +1,12 @@
 # 現在の作業と読取り対象
 
+## 2026-09-28 Excel一括取込PoC（認証で実体作業停止）
+
+- [変更要求](../changes/requests/change-20260928-excel-import-poc.json)、[構築候補・単体試験](../poc/excel-import-poc.md)、[実施記録](../../records/changes/change-20260928-excel-import-poc/manual-20260928/record.json)。対象は同じApp ID `204a48dc-7f23-43dd-b934-4654a3cfa306`、隔離データのみ。
+- Libraryの架空Excelをローカルで読取り、テーブル `ImportPoCTest` 3行と職員番号空欄1行を確認。画面、SharePoint隔離リスト、Power Automateフローは**未作成**、実機の取込・再表示・エラー試験は**未実施**。
+- Microsoft認証で旧ページがタイムアウト。新規ページの認証方式選択を安全に行う経路が自動審査で拒否されたため、通常操作へ切り替えず停止。接続成功・技術的実現可とは判定しない。現行アプリの保存・公開なし、正式職員マスタ変更なし。
+- 読取り対象：上記変更要求・構築候補・実施記録、`FUT-IMPORT-001`。認証が回復したらSharePoint隔離保存先→フォーム添付→フロー行読取→行表示→画面再表示→エラー試験の順で進める。
+
 ## 2026-09-28 SCR-002の添付4定義書反映（公開v25）
 
 - 変更要求：[`CHANGE-20260928-SCR002-HISTORY`](../changes/requests/change-20260928-scr002-history.json)。勤務条件15列、社会保険26列、税固定控除9列、住民税6列を対象とする。住民税は税固定控除タブ内で扱う。
