@@ -1,0 +1,34 @@
+{
+  "change_id": "change-20260929-scr003-attendance-import",
+  "run_id": "manual-20260929-profile-repair",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "BLOCKED",
+  "observed_at": "2026-09-29T09:47:00Z",
+  "source_commit": "098f82a34d659969c12b39320bb57bc0535422d8",
+  "version": "2026-09-29T09:11:07.0090418Z",
+  "repair": {
+    "before_flag": 32,
+    "action": "Clear Personal Site Capabilities per Microsoft standard diagnostic",
+    "saved_readback": "empty",
+    "later_service_value": 4,
+    "personal_site_before": "SPSSITEERROR",
+    "personal_site_after": "valid personal site path; not manually changed",
+    "connection": "All three connectors complete; Allow accepted; consent dismissed"
+  },
+  "remaining": {
+    "missing_privileges": [
+      "prvReadcrb3c_AttendanceReport",
+      "prvReadcrb3c_AttendanceTargetMonth"
+    ],
+    "player": "SCR-003 rendered, data retrieval denied",
+    "role_changes": false,
+    "e2e_run": 36549616110,
+    "e2e_attempt": 2,
+    "e2e_status_at_checkpoint": "in_progress"
+  },
+  "evidence": [
+    "libfile_b64665bb26648191a7023cb2209f7d40",
+    "libfile_65ced903580c819196255d2001246196"
+  ],
+  "limitations": "Screenshot shows screen rendering; privilege error was observed in live DOM. It does not prove data correctness."
+}

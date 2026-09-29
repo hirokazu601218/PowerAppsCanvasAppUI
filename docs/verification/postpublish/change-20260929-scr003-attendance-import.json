@@ -32,10 +32,10 @@
   },
   "publication": {
     "version": "2026-09-29T09:11:07.0090418Z",
-    "player_observed_at": "2026-09-29T09:14:00Z",
+    "player_observed_at": "2026-09-29T09:46:00Z",
     "player_app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
     "player_result": "BLOCKED",
-    "player_observation": "18:11 JSTに接続情報更新版を公開。18:14 JSTの専用利用者PlayerはOneDrive接続警告で許可が無効。画面操作PASSとは扱わない。旧15:38版の所有者操作結果は過去の証跡であり、この公開版へ転記しない。OneDrive初回起動は専用利用者でサインイン成功し、設定中。最終E2Eは接続成立後に実施。",
+    "player_observation": "専用ユーザーのOneDriveプロファイル修復後、全接続が接続済みとなり許可を確定、同意画面消去とSCR-003遷移を確認。ただしAttendanceReport/AttendanceTargetMonthのDataverse Read権限不足でデータ取得失敗。PlayerはBLOCKEDを維持。E2E 36549616110 attempt 2を再実行。",
     "download_sha256": "01ece7bd31766f5ce5b17b75f4426281abfefe6c3342962b6a8b4625891f6d9c"
   }
 }

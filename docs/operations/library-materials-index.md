@@ -54,3 +54,8 @@ YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、�
 ### 2026-09-29 OneDrive公式プロファイル診断
 
 `/非常勤給与/onedrive-profile-diagnosis-20260929.jpg`（`libfile_4020f1b54e6c81918f75972e459f2ed2`）。Microsoft管理センターの標準診断が対象ユーザーのプロファイル問題と個人用サイト機能フラグの修復手順を示した画像。修復完了の証跡ではない。OneDrive作成阻害の修復時に参照する。
+
+### 2026-09-29 OneDrive修復・接続回復
+
+- `/非常勤給与/onedrive-profile-flag-cleared-20260929.jpg`（`libfile_b64665bb26648191a7023cb2209f7d40`）：機能フラグを空欄へ保存した読戻し。後のサービス値4への更新は診断記録を参照。
+- `/非常勤給与/scr003-connected-permission-block-20260929.jpg`（`libfile_65ced903580c819196255d2001246196`）：接続同意解消後の専用Player SCR-003画面。データ参照権限不足はDOM観測で記録、画像自体にエラー文は写っていない。接続・権限調査時に参照。
