@@ -5,8 +5,8 @@
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
   },
-  "source_commit": "098f82a34d659969c12b39320bb57bc0535422d8",
-  "documentation_base_commit": "2404cbe85ce1bc9155a17979518ee415913b33cd",
+  "source_commit": "53cb5348a44a9da9deb438edfa05d410958f12d9",
+  "documentation_base_commit": "53cb5348a44a9da9deb438edfa05d410958f12d9",
   "requirement_ids": [
     "D-04",
     "COMMON-AUTH-001",
@@ -28,7 +28,7 @@
       "src/screen-ui/v1.29/scrAttendanceFormal.OnVisible.fx",
       "src/screen-ui/v1.29/scrAttendanceFormal.paste.yaml"
     ],
-    "method_and_findings": "PAC読戻しAction 36532637596でv1.29の718プロパティ、OnVisible、ホーム遷移、読込上限2000を照合。Gallery.Visible=trueの既定値省略を意味同一として判定。列契約20列はフロー定義と架空10件の取込/編集/再取込結果に照合。SCR002は旧保存ソース＋v1.28の2式とNative CDS論理名/表示名対応を正規化し全コントロールの意味上差分0。権限要件は後工程。 接続情報更新後の再公開をAction 36547553342で読戻し、718プロパティ差分0、SCR002画面SHA一致を再確認。"
+    "method_and_findings": "PAC読戻しAction 36532637596でv1.29の718プロパティ、OnVisible、ホーム遷移、読込上限2000を照合。Gallery.Visible=trueの既定値省略を意味同一として判定。列契約20列はフロー定義と架空10件の取込/編集/再取込結果に照合。SCR002は旧保存ソース＋v1.28の2式とNative CDS論理名/表示名対応を正規化し全コントロールの意味上差分0。権限要件は後工程。 接続情報更新後の再公開をAction 36547553342で読戻し、718プロパティ差分0、SCR002画面SHA一致を再確認。 検証基準コミットは53cb534へ更新。Canvas/Power Fxの実装は098f82aから変更なし、公開版も変更なし。変更はE2Eの報告行選択と月・勤務期間を共通要素として扱うセレクターのみ。選定4ケースと独立期待値は不変。"
   },
   "publication": {
     "version": "2026-09-29T09:11:07.0090418Z",
