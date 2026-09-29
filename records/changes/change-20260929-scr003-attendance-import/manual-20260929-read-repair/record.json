@@ -1,0 +1,41 @@
+{
+  "change_id": "change-20260929-scr003-attendance-import",
+  "run_id": "manual-20260929-read-repair",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PASS",
+  "observed_at": "2026-09-29T11:30:00Z",
+  "source_commit": "098f82a34d659969c12b39320bb57bc0535422d8",
+  "version": "2026-09-29T09:11:07.0090418Z",
+  "scope": "Dedicated test-reader access repair and published Player readback only",
+  "authorization": "User approved three-table Read only at 2026-09-29 20:25 JST",
+  "grant_run": 36561770802,
+  "grant_result": {
+    "tables": [
+      "crb3c_attendancereport",
+      "crb3c_attendancereportline",
+      "crb3c_attendancetargetmonth"
+    ],
+    "read_count": 3,
+    "dedicated_user_only": true,
+    "other_privileges_unchanged": true,
+    "write_privileges": false
+  },
+  "local_safety_tests": [
+    "normal grants only three Read",
+    "wrong organization rejected",
+    "shared role rejected",
+    "team role rejected",
+    "existing write rejected"
+  ],
+  "player": {
+    "report": "2026/08 秘書課",
+    "synthetic_rows": 10,
+    "staff_number_digits": 12,
+    "period": "2026/08/01 - 2026/08/31",
+    "zero": true,
+    "decimal_33_167": true,
+    "remarks": true
+  },
+  "image": "libfile_7cd38c08170c8191874647b6947b5425",
+  "limitations": "No business authorization, update permission, boundary/concurrency/failure or acceptance certification."
+}

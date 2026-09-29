@@ -32,10 +32,10 @@
   },
   "publication": {
     "version": "2026-09-29T09:11:07.0090418Z",
-    "player_observed_at": "2026-09-29T09:46:00Z",
+    "player_observed_at": "2026-09-29T11:30:00Z",
     "player_app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
-    "player_result": "BLOCKED",
-    "player_observation": "専用ユーザーのOneDriveプロファイル修復後、全接続が接続済みとなり許可を確定、同意画面消去とSCR-003遷移を確認。ただしAttendanceReport/AttendanceTargetMonthのDataverse Read権限不足でデータ取得失敗。PlayerはBLOCKEDを維持。E2E 36549616110 attempt 2を再実行。",
+    "player_result": "PASS",
+    "player_observation": "20:25 JSTの承認に基づき専用テストユーザーの既存専用ロールへ正式3表のReadのみ追加。Action 36561770802で実効Read3件、専用ユーザーのみ、他権限不変、Create/Write/Deleteなしを検証。専用Playerで2026/08秘書課、架空10件の12桁番号、勤務期間08/01～08/31、0、33.167、備考をDOMと画面で確認。接続警告なし。これは表示・読戻し範囲のPASSであり、業務認可・専用ユーザーの更新操作・業務受入のPASSではない。",
     "download_sha256": "01ece7bd31766f5ce5b17b75f4426281abfefe6c3342962b6a8b4625891f6d9c"
   }
 }
