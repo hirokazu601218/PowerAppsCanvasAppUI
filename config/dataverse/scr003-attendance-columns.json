@@ -285,7 +285,7 @@
       "所属部局名"
     ],
     "replacement": "validate all rows, then replace child detail set for one report under server-side transaction/compensation; never write reported report",
-    "staff_number": "12 digits text, left-pad only if Excel cell is numeric digits and source value is unambiguous; reject nonnumeric or over-12",
+    "staff_number": "one to twelve ASCII digits in a numeric or text Excel cell; normalize by left-padding zeros to exactly twelve digits; reject blanks, non-digits, negatives and over-twelve digits",
     "zero_display": "all overtime 0 renders '0', nonzero at most 3 decimals without unnecessary trailing zeros",
     "report_period": "first and last calendar day of work_month"
   }
