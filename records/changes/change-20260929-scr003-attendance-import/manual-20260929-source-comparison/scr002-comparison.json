@@ -1,0 +1,7 @@
+{
+  "baseline": "v22 download SHA 12be61ecf5fb0ba69e21cb6c4598d69a6c2058bb7512c158cf8ef9c025310b0c plus committed v1.28 two formulas",
+  "method": "All controls and properties; native CDS logical/display identifier mapping; string literals preserved",
+  "differences": [],
+  "controls": 75,
+  "screen_sha256": "4124f74ecf5e3e51c751ab1197745704e1995725bc0b74ca01fd5af87299c27a"
+}
