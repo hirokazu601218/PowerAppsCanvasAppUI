@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20260928-EXCEL-IMPORT-POC",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "changes": [
+    {
+      "path": "src/excel-import-poc/Button1.OnSelect.powerfx",
+      "component": "専用画面のExcel読取と隔離登録、入力検証",
+      "unit_case_ids": [
+        "UT-IMP-01",
+        "UT-IMP-05"
+      ],
+      "expected_result": "未選択・非xlsxを拒否。正常3行登録は別途manual-20260928実測。公開Playerでの自動ケースは未実行"
+    }
+  ],
+  "integration": {
+    "required": true,
+    "reason": "ホーム導線とDataverse再表示に影響するため",
+    "case_ids": [
+      "IT-IMP-03"
+    ]
+  },
+  "system_test": {
+    "status": "deferred",
+    "reason": "D-07未決。本PoCは架空データのみ"
+  },
+  "cases": [
+    {
+      "id": "UT-IMP-01",
+      "level": "unit",
+      "test_file": "e2e/current-app/excel-import-poc.test.ts"
+    },
+    {
+      "id": "UT-IMP-05",
+      "level": "unit",
+      "test_file": "e2e/current-app/excel-import-poc.test.ts"
+    },
+    {
+      "id": "IT-IMP-03",
+      "level": "integration",
+      "test_file": "e2e/current-app/excel-import-poc.test.ts"
+    }
+  ]
+}

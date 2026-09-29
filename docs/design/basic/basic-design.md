@@ -27,13 +27,28 @@ Canvas内の旧認定簿2ページ、PDFViewer、PDF生成・保存、旧PoC入�
 
 Studio数式エラー0件、架空職員011の56項目、NULLと0、別職員への切替をプレビューで確認した。所有者の公開Playerでは勤務条件15項目を確認した。公開後の専用利用者試験と読戻し結果は[公開後記録](../../verification/postpublish/change-20260928-scr002-history.json)に記す。編集対象列、保存先、実効ロール、実データ運用は本変更の読取り確認に含めない。
 
+## Excel一括取込PoCの構成と正式版への置換（CHANGE-20260928-EXCEL-IMPORT-POC）
+
+> **適用区分：PoC。** `FUT-IMPORT-001` のホーム導線とExcelの読取・隔離登録を現行App ID `204a48dc-7f23-43dd-b934-4654a3cfa306`、環境 `StaffMaster-Automation-Test` に試作した。異動情報アプリの実データを扱う `FR-E-01` の正式実装・業務運用の承認ではない。[PoCの実測と残件](../../poc/excel-import-poc.md)を参照。
+
+| 層 | PoCの役割・境界 |
+|---|---|
+| 入口・画面 | `scrHome` の「データ一括取込み」から専用 `scrExcelImportPoc` を開く。添付欄で1件のxlsxを選び、実行・件数結果・保存済み行を確認し、ホームへ戻る。 |
+| 読取 | Canvasから選択ファイルを `PoC_ExcelImport_STUDIO`（Power Apps V2）へ渡す。フローがOneDrive for Businessに一時xlsxを作成し、Excel Online (Business)でテーブル `ImportPoCTest` を読み、行JSONを返す。 |
+| 登録 | Canvasが行JSONの5項目を解析し、`PoC_Excel取込行_STUDIO` に行単位で追加する。正式な `M_職員基本` および実在の職員データへ書き込まない。 |
+| 結果・再表示 | 読取／登録成功／失敗件数を画面に示し、隔離表を再取得して保存済み行を表示する。画面再入時にもRefreshする。成功行には取込要求ID・行番号・結果「成功」を保存する。失敗詳細は画面上での再現・永続保存まで確認できていない。 |
+
+PoC用Excelは架空3行・5列（採用識別子、職員番号、氏名、部署略称、採用日）で、職員番号の先頭ゼロ2件と空欄1件を含む。所有者Studioでは3行読取／成功3／失敗0、ホーム往復後の再表示、未選択・非xlsxの拒否を確認した。利用者も公開Playerで正常取込と画面往復の受入PASSを報告した。一方、専用利用者の自動E2E 3件は通知／保存行の検出でFAILし、公開版のPAC SHA・版番号は未照合。[実施記録](../../../records/changes/change-20260928-excel-import-poc/manual-20260928-excel-import/record.json)を参照。
+
+**正式版への移行条件：** 実業務Excelの項目・型・取込対象、重複候補の判定と会計課給与班の行別採否、入力検証と権限、失敗詳細の保存・再実行時の重複防止、一時ファイル削除、行数上限・ページング、監査・復旧、正式保存先との関係を別途決定する。正式版の設計・構築・試験・受入後にこの専用画面／フロー／隔離表の接続を置き換える。PoCのテーブル名や `ImportPoCTest` の5列、OneDrive一時ファイルを正式な業務仕様として固定しない。既存のPoC記録は試験履歴として保持し、正式版の合格へ流用しない。[詳細設計のPoC節](../detailed/detailed-design.md#13-excel一括取込pocの実装境界と置換方針change-20260928-excel-import-poc)を参照。
+
 ## 現行アプリの全体構成
 
 > **接続先と設計範囲の整理：** [単一アプリ運用](../../operations/single-app-workflow.md#対象)で確認したApp ID、環境、隔離接続先を基準とする。画面要件のうち実装・接続が未確認の部分は、実装済みとして図に補わない。[ガイド第7章の基本設計の構成例](https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/0af5ce68/20260715_resources_standard_guidelines_guideline_05.pdf)にいう全体図・データの流れ・機能とデータの対応を、このアプリ向けに整理する。
 
 ```mermaid
 flowchart TB
-    User["検証用の利用者"] --> App["単一Canvas App／6画面"]
+    User["検証用の利用者"] --> App["単一Canvas App／標準6画面＋Excel取込PoC画面"]
     App --> Staff["M_職員基本_STUDIO"]
     App --> Commute["T_通勤_STUDIO"]
     App --> Payroll["T_基準給与簿_STUDIO"]

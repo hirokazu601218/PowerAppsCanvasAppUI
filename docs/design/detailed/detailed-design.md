@@ -217,3 +217,35 @@ Canvasから渡す値は選択した認定レコードのGUIDとし、HTML側で
 ログイン職員の氏名・メールと、選択した非常勤職員の番号・氏名・対象月は別の状態として保持する。画面移動時にはログイン職員の主体を維持し、職員番号と対象月だけをSCR-002／005間の業務対象として渡す。氏名一致だけで対象を結合せず、未選択時は別職員の初期fixtureを代用しない。
 
 所属の一致は検索結果／一覧を生成する段階、選択した職員・履歴・通勤・給与の再取得時、編集保存直前、職員番号を伴う画面遷移先のそれぞれで確認する。SCR-006は入口の無効化に加えて画面到達時にも管理者属性を確認する。管理者でも他部署の職員データを扱える例外は設けない。確認用所属・権限のUI値を権威ある属性やDataverse実効権限に代用しない。属性の取得元、ロールとサーバー側の権限契約は未決なので、接続方式を無根拠に確定しない。
+
+## 13. Excel一括取込PoCの実装境界と置換方針（CHANGE-20260928-EXCEL-IMPORT-POC）
+
+### 13.1 対象と画面配線
+
+`FUT-IMPORT-001` の操作導線を現行App ID `204a48dc-7f23-43dd-b934-4654a3cfa306` の `StaffMaster-Automation-Test` 環境に**PoCとして**追加した。12章のSCR-001～006の標準6画面には含めず、`scrExcelImportPoc` を独立した検証用画面として扱う。正式な `FR-E-01` の行別判断・本番Excel仕様・正式職員マスタ連携は未実装。
+
+| 対象 | PoCで適用した設定・動作 |
+|---|---|
+| `scrHome.Button3` | Text「データ一括取込み」、OnSelectで `Navigate(scrExcelImportPoc, ScreenTransition.None)`。 |
+| `scrExcelImportPoc.OnVisible` | `Refresh('PoC_Excel取込行_STUDIO'); ResetForm(Form1); NewForm(Form1)`。隔離表から再表示し、前回のファイル選択を初期化。 |
+| `Form1` / `DataCardValue7` | 添付有効な `PoC_Excel取込依頼_STUDIO` の新規フォームでファイルを選択する。今回の実行時に `SubmitForm` は呼ばず、選択ファイルの `Name` と `Value` をフローに渡す。事前検証の添付依頼行は取込行の保存先ではない。 |
+| `Button1` | Text「取込を実行」。処理中は `varImportRunning` によりDisplayModeをDisabledへ切替。詳細式は[実装Power Fx](../../../src/excel-import-poc/Button1.OnSelect.powerfx)を正とする。 |
+| `Gallery1` / `Title1` / `Subtitle1` | Itemsは隔離表 `PoC_Excel取込行_STUDIO`。採用識別子・氏名、職員番号・部署略称・採用日・結果を表示。全バッチの行を表示し、画面再入で再取得する。 |
+| `Text1` / `Button2` | `varImportMessage` による件数・失敗メッセージ表示／`Navigate(scrHome, ScreenTransition.None)`。 |
+
+### 13.2 入出力と処理順
+
+| 順序 | 動作 | 保存先・エラー境界 |
+|---|---|---|
+| 1 | 添付数が1件でない場合は「Excelファイルを1件選択してください。」、ファイル名が `.xlsx` で終わらない場合は「.xlsxファイルを選択してください。」を通知。 | 取込フローと行登録は呼ばない。拡張子のみの検査で、内容や型の保証ではない。 |
+| 2 | `varImportRunning=true`、取込要求IDに新しいGUID、エラーコレクションを初期化。選択ファイルを `PoC_ExcelImport_STUDIO.Run({file:{name,contentBytes}})` に渡す。 | 同一画面の実行ボタンを無効化。並行実行・再送・冪等性の保証は未検証。 |
+| 3 | Power Apps (V2) の `file` をOneDrive for Businessの一時xlsxへ書く。ファイル名は `PoC_ExcelImport_STUDIO_`＋GUID＋`.xlsx`。Excel Online (Business)がテーブル `ImportPoCTest` の行を列挙し、応答 `rowsjson` へ行配列を返す。 | 一時ファイルの自動削除は未実装。指定テーブルなし、破損、空表、ページングの実機結果は未取得。 |
+| 4 | Canvasで `ParseJSON(rowsjson)` を適用し、採用識別子・職員番号・氏名・部署略称・採用日を文字列として `colImportParsed` に収める。0行または採用識別子／氏名が空の行があれば登録前に止める。 | 職員番号は数値化せず先頭ゼロを保つ。空欄は登録時にBlank。採用日はPoCでは文字列。全列・型の本番検査は未定。 |
+| 5 | 行順に `Patch(Defaults('PoC_Excel取込行_STUDIO'))` で1行ずつ追加。取込要求ID、行番号（文字列）、取込結果「成功」を併記し、Patch失敗は `colImportErrors` に採用識別子とメッセージを収集。 | 登録先は検証専用のDataverse表のみ。部分失敗時の全件取消しや失敗詳細の永続化は行わない。 |
+| 6 | 登録後に隔離表をRefreshし、`読取 n 件 ／ 登録成功 m 件 ／ 失敗 k 件` を表示。フロー／解析失敗時は `取込に失敗しました: ...` とし、最後に `varImportRunning=false`。 | 表示上の件数は当該実行分。ギャラリーは過去の検証分を含む全バッチ。成功時の行は永続化され、ホーム往復後も表示される。 |
+
+隔離行テーブルのIDは `71dee774-8b1d-48c3-ad2b-32cc55cd2de2`。添付フォームの隔離依頼テーブルIDは `881b7b78-fc3f-4292-b3f4-3099757ec22c`。フローGUID、run ID、PACパッケージSHA、公開版番号は未取得。フロー設定の[実装メモ](../../../src/excel-import-poc/README.md)と[実施記録](../../../records/changes/change-20260928-excel-import-poc/manual-20260928-excel-import/record.json)を照合する。実施記録の利用者受入PASSは正常取込とホーム往復についての報告であり、専用利用者の自動E2Eは3件FAIL（通知2件、保存行1件が未検出）。原因を未特定のまま成功へ変更しない。
+
+### 13.3 正式版へ置き換えるときの設計事項
+
+`FR-E-01` の正式版では、異動情報アプリから出力するExcelの列契約、行ごとの入力不備・重複可能性の判定、問題のない行の先行取込と注意行の給与班による採否を決めて設計する。加えて正式保存先、実効権限、ファイル内容の検証、失敗履歴と監査、部分失敗後の再実行と二重登録防止、一時ファイル削除、大量行のページング／タイムアウト、再ログイン時の結果表示と復旧を実証する。PoCの `ImportPoCTest` テーブル名、5列、文字列日付、Canvas側Patch、OneDrive一時保存と検証専用の2表は**置換候補の実装詳細**であり、正式版の確定仕様ではない。正式版の要件・設計・テスト・利用者受入を経て、専用画面・フロー・接続先を切り替え、PoCは履歴として保持する。PoCの受入を正式版の合格へ転用しない。
