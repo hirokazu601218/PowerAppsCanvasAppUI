@@ -40,8 +40,11 @@ test('UT-SCR006-MONTH-001 対象月設定と解除の入口', async ({ page }) =
 test('IT-SCR003-READBACK-001 保存済み架空10件と勤務期間を再表示', async ({ page }) => {
   const app = await open(page);
   await app.getByRole('button', { name: '勤務時間報告画面', exact: true }).click();
-  await app.getByText(/^2026\/08\s+秘書課$/, { exact: true }).click();
-  await expect(app.getByText('勤務期間：2026/08/01 ～ 2026/08/31', { exact: true })).toBeVisible();
+  // Power Apps renders month/bureau and status in one text container.
+  const report = app.getByRole('listitem').filter({ hasText: /2026\/08\s+秘書課/ });
+  await expect(report).toHaveCount(1);
+  await report.click();
+  await expect(app.getByText('勤務期間：2026/08/01 ～ 2026/08/31', { exact: false })).toBeVisible();
   for (let n = 1; n <= 10; n++) {
     const staff = app.getByText(String(n).padStart(12, '0'), { exact: true });
     await staff.scrollIntoViewIfNeeded();
