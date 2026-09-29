@@ -152,6 +152,33 @@
           },
           "runAfter": {}
         },
+        "Valid_request_month": {
+          "type": "If",
+          "expression": "@or(equals(body('Request')?['operation'],'import'),equals(body('Request')?['operation'],'edit'),equals(body('Request')?['operation'],'month'))",
+          "actions": {
+            "Validate_month_format": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@and(equals(length(string(body('Request')?['month'])),7),equals(formatDateTime(concat(body('Request')?['month'],'-01'),'yyyy-MM'),body('Request')?['month']))",
+                "schema": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                }
+              },
+              "runAfter": {}
+            }
+          },
+          "else": {
+            "actions": {}
+          },
+          "runAfter": {
+            "Request": [
+              "Succeeded"
+            ]
+          }
+        },
         "Operation": {
           "type": "If",
           "expression": "@or(equals(body('Request')?['operation'],'import'),equals(body('Request')?['operation'],'edit'))",
@@ -407,8 +434,7 @@
                       "職員番号": {
                         "type": "string",
                         "minLength": 12,
-                        "maxLength": 12,
-                        "pattern": "^[0-9]{12}$"
+                        "maxLength": 12
                       },
                       "氏名": {
                         "type": "string",
@@ -509,7 +535,8 @@
                       },
                       "勤務月": {
                         "type": "string",
-                        "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+                        "minLength": 7,
+                        "maxLength": 7
                       },
                       "所属部局名": {
                         "type": "string",
@@ -1043,10 +1070,12 @@
                   "Check_month": {
                     "type": "ParseJson",
                     "inputs": {
-                      "content": "@body('Request')?['month']",
+                      "content": "@and(equals(length(string(body('Request')?['month'])),7),equals(formatDateTime(concat(body('Request')?['month'],'-01'),'yyyy-MM'),body('Request')?['month']))",
                       "schema": {
-                        "type": "string",
-                        "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+                        "type": "boolean",
+                        "enum": [
+                          true
+                        ]
                       }
                     },
                     "runAfter": {
@@ -1333,7 +1362,7 @@
             }
           },
           "runAfter": {
-            "Request": [
+            "Valid_request_month": [
               "Succeeded"
             ]
           }

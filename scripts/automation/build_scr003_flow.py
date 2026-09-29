@@ -70,7 +70,7 @@ def build():
         col=f['display_name']; val="item()?['"+col+"']"
         if f['key']=='staff_number':
             mapping[col]=expr(f"formatNumber(int({val}),'000000000000','en-US')")
-            props[col]={'type':'string','minLength':12,'maxLength':12,'pattern':'^[0-9]{12}$'}
+            props[col]={'type':'string','minLength':12,'maxLength':12}
         elif f['kind']=='text':
             mapping[col]=expr(f"string(coalesce({val},''))")
             props[col]={'type':'string','maxLength':f['max_length']}
@@ -80,7 +80,7 @@ def build():
             props[col]={'type': ['integer' if f['kind']=='integer' else 'number','null'],
                         'minimum':f['min'],'maximum':f['max']}
             if f['required']: props[col]['type']=props[col]['type'][0]
-    props.update({'勤務月':{'type':'string','pattern':'^[0-9]{4}-(0[1-9]|1[0-2])$'},'所属部局名':{'type':'string','minLength':1,'maxLength':100}})
+    props.update({'勤務月':{'type':'string','minLength':7,'maxLength':7},'所属部局名':{'type':'string','minLength':1,'maxLength':100}})
     mapping['勤務月']=expr("string(item()?['勤務月'])")
     mapping['所属部局名']=expr("string(item()?['所属部局名'])")
     # Raw lexical checks prevent int() accepting/truncating malformed identifiers.
@@ -162,14 +162,16 @@ def build():
         ('Transition_done',setvar('result',{'success':True,'reportId':reportid,'count':0,'version':expr('add('+version+',1)'),'message':'報告状態を更新しました。'}))]
     month=[
         ('Month_message',setvar('message','勤務月はyyyy-mm形式で指定してください。')),
-        ('Check_month',{'type':'ParseJson','inputs':{'content':expr(request+"?['month']"),'schema':{'type':'string','pattern':'^[0-9]{4}-(0[1-9]|1[0-2])$'}}}),
+        ('Check_month',guard("and(equals(length(string(body('Request')?['month'])),7),equals(formatDateTime(concat(body('Request')?['month'],'-01'),'yyyy-MM'),body('Request')?['month']))")),
         ('Find_month',listrows(MONTHS,expr("concat('crb3c_workmonth eq ',body('Request')?['month'],'-01')"),2)),
         ('Unique_month',guard("lessOrEquals(length(body('Find_month')?['value']),1)")),
         ('Set_month',branch("equals(length(body('Find_month')?['value']),0)",[
             ('Create_month',create(MONTHS,{'crb3c_name':expr(request+"?['month']"),'crb3c_workmonth':expr("concat(body('Request')?['month'],'-01')"),'crb3c_enabled':expr(request+"?['enabled']")}))],
             [('Update_month',update(MONTHS,expr("first(body('Find_month')?['value'])?['crb3c_attendancetargetmonthid']"),{'crb3c_enabled':expr(request+"?['enabled']")}))])),
         ('Month_done',setvar('result',{'success':True,'reportId':'','count':0,'version':0,'message':'報告対象月を設定しました。'}))]
+    # Month parsing runs before any writes.
     execute=[('Request',{'type':'ParseJson','inputs':{'content':expr("json(triggerBody()['text'])"),'schema':schema}}),
+             ('Valid_request_month',branch("or(equals(body('Request')?['operation'],'import'),equals(body('Request')?['operation'],'edit'),equals(body('Request')?['operation'],'month'))",[('Validate_month_format',guard("and(equals(length(string(body('Request')?['month'])),7),equals(formatDateTime(concat(body('Request')?['month'],'-01'),'yyyy-MM'),body('Request')?['month']))"))])),
              ('Operation',branch("or(equals("+op+",'import'),equals("+op+",'edit'))",import_or_edit,
                           [('Other_operation',branch("equals("+op+",'month')",month,transitions))]))]
     definition={'$schema':'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#','contentVersion':'1.0.0.0',

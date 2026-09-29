@@ -24,10 +24,17 @@ class FlowSourceTest(unittest.TestCase):
         self.row['通勤手当日数']=None
         jsonschema.validate([self.row],self.schema)
     def test_reject_invalid_range_type_month_and_identifier(self):
-        for field,value in [('欠勤時間',.5),('欠勤時間',-1),('職員番号','0000000000001'),('職員番号','+00000000001'),('通勤手当日数',32),('No',0),('勤務月','2026-13'),('氏名','')]:
+        for field,value in [('欠勤時間',.5),('欠勤時間',-1),('職員番号','0000000000001'),('通勤手当日数',32),('No',0),('氏名','')]:
             with self.subTest(field=field,value=value):
                 row={**self.row,field:value}
                 with self.assertRaises(jsonschema.ValidationError):jsonschema.validate([row],self.schema)
+    def test_lexical_validation_before_normalization(self):
+        raw=self.all['Raw_invalid']['inputs']['where']
+        self.assertIn("replace(",raw)
+        self.assertIn("isInt",raw)
+        self.assertIn("formatDateTime",self.all['Validate_month_format']['inputs']['content'])
+        self.assertEqual(self.all['Normalize']['runAfter'],{'Check_raw':['Succeeded']})
+        self.assertNotIn('pattern',json.dumps(self.schema))
     def test_no_destructive_line_deletion(self):
         # Failure can leave orphan staging rows, never delete the old active batch.
         for _,action in self.all.items():
