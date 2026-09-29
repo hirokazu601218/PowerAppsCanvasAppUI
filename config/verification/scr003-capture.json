@@ -1,0 +1,5 @@
+{
+  "source_commit": "098f82a34d659969c12b39320bb57bc0535422d8",
+  "purpose": "read-only capture after verified flow metadata refresh publication",
+  "attempt": 5
+}

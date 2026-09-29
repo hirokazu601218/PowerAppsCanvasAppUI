@@ -13,7 +13,7 @@ ENV_ID = "68e00049-b7e5-eda6-9888-9a3cc493c5be"
 RECORD_PREFIX = "docs/testing/change-records/"
 REQUEST_PREFIX = "docs/changes/requests/"
 TEST_PREFIX = "e2e/current-app/"
-SOURCE_PREFIXES = ("powerapps/canvas-v3/Src/", "powerapps/test-data/", "src/screen-ui/v1.24/", "src/screen-ui/v1.28/", "config/dataverse/")
+SOURCE_PREFIXES = ("powerapps/canvas-v3/Src/", "powerapps/test-data/", "src/screen-ui/v1.24/", "src/screen-ui/v1.28/", "src/screen-ui/v1.29/", "config/dataverse/")
 SOURCE_FILES = {"powerapps/canvas-v3/baseline.msapr"}
 
 

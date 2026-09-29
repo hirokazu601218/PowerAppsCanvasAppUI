@@ -1,0 +1,31 @@
+{
+  "change_id": "change-20260929-scr003-attendance-import",
+  "run_id": "manual-20260929-connection-flow",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-09-29T06:19:46.140114+00:00",
+  "source_commit": "2d5b35b11b3930143b729f88158f7d3ff170f219",
+  "version": "unpublished Studio candidate",
+  "connection": "Dataverse connected and existing reader saved; checker 0 errors / 1 warning",
+  "source_tests": "10 source tests PASS; runtime tests listed separately",
+  "deployment": "PASS: definition and existing connections read back; test flow ON",
+  "app_publish": "NOT_RUN",
+  "remaining": [
+    "Publication and Player/PAC comparison",
+    "Temporary Excel cleanup after connector lock",
+    "999-row, concurrent and mid-write fault tests",
+    "Role/bureau authorization deferred by user"
+  ],
+  "authorization_boundary": "Bureau and payroll roles deferred by user; synthetic data only",
+  "github": "Sent with user approval; PR #122",
+  "runs": [
+    36522882832,
+    36524019723
+  ],
+  "runtime": {
+    "initial_import": "08584109488948630483362960509CU57: 10 lines saved",
+    "invalid_absence": "08584109487785618346680282753CU50: Check_raw failed before Normalize/writes",
+    "edit": "08584109487396563871571583444CU57: success, 10 lines, version 2",
+    "observed": "Report/reopen, reported import rejection, reimport restoring note, six sections and target-month enable/disable passed in owner Studio preview"
+  }
+}

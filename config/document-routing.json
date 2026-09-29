@@ -36,6 +36,7 @@
     "docs/operations/library-materials-index.md",
     "docs/operations/document-organization.md",
     "docs/handoff/STATUS.md",
+    "docs/changes/scr003-attendance-import-design-candidate.md",
     "docs/verification/templates/current-app-postpublish.example.json"
   ],
   "current_dynamic_patterns": [

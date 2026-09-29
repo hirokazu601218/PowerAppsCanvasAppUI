@@ -1,0 +1,1456 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "$authentication": {
+      "type": "SecureObject",
+      "defaultValue": {}
+    },
+    "$connections": {
+      "type": "Object",
+      "defaultValue": {}
+    }
+  },
+  "triggers": {
+    "manual": {
+      "type": "Request",
+      "kind": "PowerAppV2",
+      "inputs": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "text"
+          ],
+          "properties": {
+            "text": {
+              "title": "requestjson",
+              "type": "string",
+              "x-ms-dynamically-added": true,
+              "x-ms-content-hint": "TEXT"
+            },
+            "file": {
+              "title": "file",
+              "type": "object",
+              "x-ms-dynamically-added": true,
+              "x-ms-content-hint": "FILE",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "contentBytes": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          }
+        }
+      },
+      "runtimeConfiguration": {
+        "concurrency": {
+          "runs": 1,
+          "maximumWaitingRuns": 10
+        }
+      }
+    }
+  },
+  "actions": {
+    "Initialize": {
+      "type": "InitializeVariable",
+      "inputs": {
+        "variables": [
+          {
+            "name": "rows",
+            "type": "array",
+            "value": []
+          },
+          {
+            "name": "report",
+            "type": "object",
+            "value": {}
+          },
+          {
+            "name": "reportId",
+            "type": "string",
+            "value": ""
+          },
+          {
+            "name": "fileId",
+            "type": "string",
+            "value": ""
+          },
+          {
+            "name": "batch",
+            "type": "string",
+            "value": "@guid()"
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "value": "入力または接続を確認してください。"
+          },
+          {
+            "name": "result",
+            "type": "object",
+            "value": {
+              "success": false,
+              "reportId": "",
+              "count": 0,
+              "version": -1,
+              "message": "処理未完了"
+            }
+          }
+        ]
+      },
+      "runAfter": {}
+    },
+    "Execute": {
+      "type": "Scope",
+      "actions": {
+        "Request": {
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@json(triggerBody()['text'])",
+            "schema": {
+              "type": "object",
+              "required": [
+                "operation",
+                "expectedVersion"
+              ],
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "import",
+                    "edit",
+                    "report",
+                    "reopen",
+                    "month"
+                  ]
+                },
+                "expectedVersion": {
+                  "type": "integer",
+                  "minimum": -1
+                },
+                "reportId": {
+                  "type": "string"
+                },
+                "month": {
+                  "type": "string"
+                },
+                "bureau": {
+                  "type": "string"
+                },
+                "enabled": {
+                  "type": "boolean"
+                },
+                "rows": {
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "runAfter": {}
+        },
+        "Valid_request_month": {
+          "type": "If",
+          "expression": "@or(equals(body('Request')?['operation'],'import'),equals(body('Request')?['operation'],'edit'),equals(body('Request')?['operation'],'month'))",
+          "actions": {
+            "Validate_month_format": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@and(equals(length(string(body('Request')?['month'])),7),equals(formatDateTime(concat(body('Request')?['month'],'-01'),'yyyy-MM'),body('Request')?['month']))",
+                "schema": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                }
+              },
+              "runAfter": {}
+            }
+          },
+          "else": {
+            "actions": {}
+          },
+          "runAfter": {
+            "Request": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Operation": {
+          "type": "If",
+          "expression": "@or(equals(body('Request')?['operation'],'import'),equals(body('Request')?['operation'],'edit'))",
+          "actions": {
+            "Import_message": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "message",
+                "value": "Excelの列・値・局・勤務月を確認してください。既存明細は変更されていません。"
+              },
+              "runAfter": {}
+            },
+            "Read_source": {
+              "type": "If",
+              "expression": "@equals(body('Request')?['operation'],'import')",
+              "actions": {
+                "Xlsx_only": {
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@and(endsWith(toLower(coalesce(triggerBody()?['file']?['name'],'')),'.xlsx'),not(empty(triggerBody()?['file']?['contentBytes'])))",
+                    "schema": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    }
+                  },
+                  "runAfter": {}
+                },
+                "Create_temp": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+                      "connectionName": "shared_onedriveforbusiness",
+                      "operationId": "CreateFile"
+                    },
+                    "parameters": {
+                      "folderPath": "/",
+                      "name": "@concat('SCR003_',variables('batch'),'.xlsx')",
+                      "body": "@base64ToBinary(triggerBody()?['file']?['contentBytes'])"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "runAfter": {
+                    "Xlsx_only": [
+                      "Succeeded"
+                    ]
+                  }
+                },
+                "Remember_temp": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "fileId",
+                    "value": "@body('Create_temp')?['Id']"
+                  },
+                  "runAfter": {
+                    "Create_temp": [
+                      "Succeeded"
+                    ]
+                  }
+                },
+                "Excel_rows": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                      "connectionName": "shared_excelonlinebusiness",
+                      "operationId": "GetItems"
+                    },
+                    "parameters": {
+                      "source": "me",
+                      "drive": "__BIND_EXISTING_DRIVE__",
+                      "file": "@variables('fileId')",
+                      "table": "TestData"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "runAfter": {
+                    "Remember_temp": [
+                      "Succeeded"
+                    ]
+                  },
+                  "runtimeConfiguration": {
+                    "paginationPolicy": {
+                      "minimumItemCount": 1000
+                    }
+                  }
+                },
+                "Use_excel_rows": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "rows",
+                    "value": "@body('Excel_rows')?['value']"
+                  },
+                  "runAfter": {
+                    "Excel_rows": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "else": {
+                "actions": {
+                  "Use_edit_rows": {
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "rows",
+                      "value": "@body('Request')?['rows']"
+                    },
+                    "runAfter": {}
+                  }
+                }
+              },
+              "runAfter": {
+                "Import_message": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Count_rows": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@and(greater(length(variables('rows')),0),lessOrEquals(length(variables('rows')),999))",
+                "schema": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                }
+              },
+              "runAfter": {
+                "Read_source": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Raw_invalid": {
+              "type": "Query",
+              "inputs": {
+                "from": "@variables('rows')",
+                "where": "@not(and(greater(length(string(item()?['職員番号'])),0),lessOrEquals(length(string(item()?['職員番号'])),12),equals(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(string(item()?['職員番号']),'0',''),'1',''),'2',''),'3',''),'4',''),'5',''),'6',''),'7',''),'8',''),'9',''),''),contains(item(),'勤務月'),contains(item(),'所属部局名'),contains(item(),'所属課室名'),contains(item(),'所属長氏名'),contains(item(),'勤務時間管理員氏名'),contains(item(),'No'),contains(item(),'職員番号'),contains(item(),'氏名'),contains(item(),'通勤手当日数'),contains(item(),'出勤日数'),contains(item(),'超過勤務時間25'),contains(item(),'超過勤務時間100'),contains(item(),'超過勤務時間125'),contains(item(),'超過勤務時間135'),contains(item(),'超過勤務時間150'),contains(item(),'超過勤務時間160'),contains(item(),'超過勤務時間175'),contains(item(),'休日給135'),contains(item(),'欠勤時間'),contains(item(),'備考'),or(empty(string(item()?['No'])),isInt(string(item()?['No']))),or(empty(string(item()?['通勤手当日数'])),isInt(string(item()?['通勤手当日数']))),or(empty(string(item()?['出勤日数'])),isInt(string(item()?['出勤日数']))),or(empty(string(item()?['欠勤時間'])),isInt(string(item()?['欠勤時間'])))))"
+              },
+              "runAfter": {
+                "Count_rows": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Check_raw": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@equals(length(body('Raw_invalid')),0)",
+                "schema": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                }
+              },
+              "runAfter": {
+                "Raw_invalid": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Normalize": {
+              "type": "Select",
+              "inputs": {
+                "from": "@variables('rows')",
+                "select": {
+                  "所属課室名": "@string(coalesce(item()?['所属課室名'],''))",
+                  "所属長氏名": "@string(coalesce(item()?['所属長氏名'],''))",
+                  "勤務時間管理員氏名": "@string(coalesce(item()?['勤務時間管理員氏名'],''))",
+                  "No": "@if(empty(string(item()?['No'])),null,int(item()?['No']))",
+                  "職員番号": "@formatNumber(int(item()?['職員番号']),'000000000000','en-US')",
+                  "氏名": "@string(coalesce(item()?['氏名'],''))",
+                  "通勤手当日数": "@if(empty(string(item()?['通勤手当日数'])),null,int(item()?['通勤手当日数']))",
+                  "出勤日数": "@if(empty(string(item()?['出勤日数'])),null,int(item()?['出勤日数']))",
+                  "超過勤務時間25": "@if(empty(string(item()?['超過勤務時間25'])),null,float(item()?['超過勤務時間25']))",
+                  "超過勤務時間100": "@if(empty(string(item()?['超過勤務時間100'])),null,float(item()?['超過勤務時間100']))",
+                  "超過勤務時間125": "@if(empty(string(item()?['超過勤務時間125'])),null,float(item()?['超過勤務時間125']))",
+                  "超過勤務時間135": "@if(empty(string(item()?['超過勤務時間135'])),null,float(item()?['超過勤務時間135']))",
+                  "超過勤務時間150": "@if(empty(string(item()?['超過勤務時間150'])),null,float(item()?['超過勤務時間150']))",
+                  "超過勤務時間160": "@if(empty(string(item()?['超過勤務時間160'])),null,float(item()?['超過勤務時間160']))",
+                  "超過勤務時間175": "@if(empty(string(item()?['超過勤務時間175'])),null,float(item()?['超過勤務時間175']))",
+                  "休日給135": "@if(empty(string(item()?['休日給135'])),null,float(item()?['休日給135']))",
+                  "欠勤時間": "@if(empty(string(item()?['欠勤時間'])),null,int(item()?['欠勤時間']))",
+                  "備考": "@string(coalesce(item()?['備考'],''))",
+                  "勤務月": "@if(isInt(string(item()?['勤務月'])),formatDateTime(addDays('1899-12-30',int(string(item()?['勤務月']))),'yyyy-MM'),if(equals(length(string(item()?['勤務月'])),7),string(item()?['勤務月']),formatDateTime(string(item()?['勤務月']),'yyyy-MM')))",
+                  "所属部局名": "@string(item()?['所属部局名'])"
+                }
+              },
+              "runAfter": {
+                "Check_raw": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Check_shape": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Normalize')",
+                "schema": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 999,
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "所属課室名",
+                      "所属長氏名",
+                      "勤務時間管理員氏名",
+                      "No",
+                      "職員番号",
+                      "氏名",
+                      "通勤手当日数",
+                      "出勤日数",
+                      "超過勤務時間25",
+                      "超過勤務時間100",
+                      "超過勤務時間125",
+                      "超過勤務時間135",
+                      "超過勤務時間150",
+                      "超過勤務時間160",
+                      "超過勤務時間175",
+                      "休日給135",
+                      "欠勤時間",
+                      "備考",
+                      "勤務月",
+                      "所属部局名"
+                    ],
+                    "properties": {
+                      "所属課室名": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 1
+                      },
+                      "所属長氏名": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "minLength": 1
+                      },
+                      "勤務時間管理員氏名": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "minLength": 1
+                      },
+                      "No": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 999
+                      },
+                      "職員番号": {
+                        "type": "string",
+                        "minLength": 12,
+                        "maxLength": 12
+                      },
+                      "氏名": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "minLength": 1
+                      },
+                      "通勤手当日数": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 31
+                      },
+                      "出勤日数": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 31
+                      },
+                      "超過勤務時間25": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 999.999
+                      },
+                      "超過勤務時間100": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 999.999
+                      },
+                      "超過勤務時間125": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 999.999
+                      },
+                      "超過勤務時間135": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 999.999
+                      },
+                      "超過勤務時間150": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 999.999
+                      },
+                      "超過勤務時間160": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 999.999
+                      },
+                      "超過勤務時間175": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 999.999
+                      },
+                      "休日給135": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 999.999
+                      },
+                      "欠勤時間": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 2147483647
+                      },
+                      "備考": {
+                        "type": "string",
+                        "maxLength": 1000
+                      },
+                      "勤務月": {
+                        "type": "string",
+                        "minLength": 7,
+                        "maxLength": 7
+                      },
+                      "所属部局名": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      }
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Normalize": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Invalid_values": {
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Normalize')",
+                "where": "@not(and(equals(item()?['勤務月'],body('Request')?['month']),equals(item()?['所属部局名'],body('Request')?['bureau']),equals(coalesce(item()?['超過勤務時間25'],0),float(formatNumber(coalesce(item()?['超過勤務時間25'],0),'0.000','en-US'))),equals(coalesce(item()?['超過勤務時間100'],0),float(formatNumber(coalesce(item()?['超過勤務時間100'],0),'0.000','en-US'))),equals(coalesce(item()?['超過勤務時間125'],0),float(formatNumber(coalesce(item()?['超過勤務時間125'],0),'0.000','en-US'))),equals(coalesce(item()?['超過勤務時間135'],0),float(formatNumber(coalesce(item()?['超過勤務時間135'],0),'0.000','en-US'))),equals(coalesce(item()?['超過勤務時間150'],0),float(formatNumber(coalesce(item()?['超過勤務時間150'],0),'0.000','en-US'))),equals(coalesce(item()?['超過勤務時間160'],0),float(formatNumber(coalesce(item()?['超過勤務時間160'],0),'0.000','en-US'))),equals(coalesce(item()?['超過勤務時間175'],0),float(formatNumber(coalesce(item()?['超過勤務時間175'],0),'0.000','en-US'))),equals(coalesce(item()?['休日給135'],0),float(formatNumber(coalesce(item()?['休日給135'],0),'0.000','en-US')))))"
+              },
+              "runAfter": {
+                "Check_shape": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Check_values": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@equals(length(body('Invalid_values')),0)",
+                "schema": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                }
+              },
+              "runAfter": {
+                "Invalid_values": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Staff_keys": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Normalize')",
+                "select": {
+                  "key": "@item()?['職員番号']"
+                }
+              },
+              "runAfter": {
+                "Check_values": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Line_keys": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Normalize')",
+                "select": {
+                  "key": "@item()?['No']"
+                }
+              },
+              "runAfter": {
+                "Staff_keys": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "No_duplicates": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@and(equals(length(union(body('Staff_keys'),body('Staff_keys'))),length(variables('rows'))),equals(length(union(body('Line_keys'),body('Line_keys'))),length(variables('rows'))))",
+                "schema": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                }
+              },
+              "runAfter": {
+                "Line_keys": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Target_message": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "message",
+                "value": "勤務月が報告対象外です。メンテナンスの設定を確認してください。"
+              },
+              "runAfter": {
+                "No_duplicates": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Target_month": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords"
+                },
+                "parameters": {
+                  "entityName": "crb3c_attendancetargetmonths",
+                  "$filter": "@concat('crb3c_workmonth eq ',body('Request')?['month'],'-01 and crb3c_enabled eq true')",
+                  "$top": 2
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runtimeConfiguration": {
+                "paginationPolicy": {
+                  "minimumItemCount": 2
+                }
+              },
+              "runAfter": {
+                "Target_message": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Enabled_month": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@equals(length(body('Target_month')?['value']),1)",
+                "schema": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                }
+              },
+              "runAfter": {
+                "Target_month": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Find_report": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords"
+                },
+                "parameters": {
+                  "entityName": "crb3c_attendancereports",
+                  "$filter": "@concat('crb3c_workmonth eq ',body('Request')?['month'],'-01 and crb3c_bureaukey eq ',decodeUriComponent('%27'),replace(body('Request')?['bureau'],decodeUriComponent('%27'),decodeUriComponent('%27%27')),decodeUriComponent('%27'))",
+                  "$top": 2
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runtimeConfiguration": {
+                "paginationPolicy": {
+                  "minimumItemCount": 2
+                }
+              },
+              "runAfter": {
+                "Enabled_month": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Unique_report": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@lessOrEquals(length(body('Find_report')?['value']),1)",
+                "schema": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                }
+              },
+              "runAfter": {
+                "Find_report": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Version_message": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "message",
+                "value": "報告済または別の操作で更新されています。一覧を再読込してください。"
+              },
+              "runAfter": {
+                "Unique_report": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Get_or_create_report": {
+              "type": "If",
+              "expression": "@equals(length(body('Find_report')?['value']),0)",
+              "actions": {
+                "New_report_only": {
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@and(equals(body('Request')?['operation'],'import'),equals(body('Request')?['expectedVersion'],-1))",
+                    "schema": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    }
+                  },
+                  "runAfter": {}
+                },
+                "Create_report": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "CreateRecord"
+                    },
+                    "parameters": {
+                      "entityName": "crb3c_attendancereports",
+                      "item/crb3c_name": "@concat(body('Request')?['month'],' ',body('Request')?['bureau'])",
+                      "item/crb3c_workmonth": "@concat(body('Request')?['month'],'-01')",
+                      "item/crb3c_bureaukey": "@body('Request')?['bureau']",
+                      "item/crb3c_bureauname": "@body('Request')?['bureau']",
+                      "item/crb3c_status": 100000000,
+                      "item/crb3c_importversion": 0
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "runAfter": {
+                    "New_report_only": [
+                      "Succeeded"
+                    ]
+                  }
+                },
+                "New_report": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "report",
+                    "value": "@body('Create_report')"
+                  },
+                  "runAfter": {
+                    "Create_report": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "else": {
+                "actions": {
+                  "Existing_report": {
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "report",
+                      "value": "@first(body('Find_report')?['value'])"
+                    },
+                    "runAfter": {}
+                  },
+                  "Existing_version": {
+                    "type": "ParseJson",
+                    "inputs": {
+                      "content": "@equals(int(coalesce(variables('report')?['crb3c_importversion'],0)),body('Request')?['expectedVersion'])",
+                      "schema": {
+                        "type": "boolean",
+                        "enum": [
+                          true
+                        ]
+                      }
+                    },
+                    "runAfter": {
+                      "Existing_report": [
+                        "Succeeded"
+                      ]
+                    }
+                  },
+                  "Editable_status": {
+                    "type": "ParseJson",
+                    "inputs": {
+                      "content": "@equals(variables('report')?['crb3c_status'],100000000)",
+                      "schema": {
+                        "type": "boolean",
+                        "enum": [
+                          true
+                        ]
+                      }
+                    },
+                    "runAfter": {
+                      "Existing_version": [
+                        "Succeeded"
+                      ]
+                    }
+                  },
+                  "Edit_report_match": {
+                    "type": "ParseJson",
+                    "inputs": {
+                      "content": "@or(equals(body('Request')?['operation'],'import'),equals(body('Request')?['reportId'],variables('report')?['crb3c_attendancereportid']))",
+                      "schema": {
+                        "type": "boolean",
+                        "enum": [
+                          true
+                        ]
+                      }
+                    },
+                    "runAfter": {
+                      "Editable_status": [
+                        "Succeeded"
+                      ]
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Version_message": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Remember_report": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "reportId",
+                "value": "@variables('report')?['crb3c_attendancereportid']"
+              },
+              "runAfter": {
+                "Get_or_create_report": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Stage_message": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "message",
+                "value": "明細保存に失敗しました。再読込し、反映状態を確認してください。旧版は保持されています。"
+              },
+              "runAfter": {
+                "Remember_report": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Stage_rows": {
+              "type": "Foreach",
+              "foreach": "@body('Normalize')",
+              "actions": {
+                "Stage_line": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "CreateRecord"
+                    },
+                    "parameters": {
+                      "entityName": "crb3c_attendancereportlines",
+                      "item/crb3c_sectionname": "@items('Stage_rows')?['所属課室名']",
+                      "item/crb3c_sectionhead": "@items('Stage_rows')?['所属長氏名']",
+                      "item/crb3c_timemanager": "@items('Stage_rows')?['勤務時間管理員氏名']",
+                      "item/crb3c_lineno": "@items('Stage_rows')?['No']",
+                      "item/crb3c_staffnumber": "@items('Stage_rows')?['職員番号']",
+                      "item/crb3c_staffname": "@items('Stage_rows')?['氏名']",
+                      "item/crb3c_commutedays": "@items('Stage_rows')?['通勤手当日数']",
+                      "item/crb3c_attendancedays": "@items('Stage_rows')?['出勤日数']",
+                      "item/crb3c_overtime25": "@items('Stage_rows')?['超過勤務時間25']",
+                      "item/crb3c_overtime100": "@items('Stage_rows')?['超過勤務時間100']",
+                      "item/crb3c_overtime125": "@items('Stage_rows')?['超過勤務時間125']",
+                      "item/crb3c_overtime135": "@items('Stage_rows')?['超過勤務時間135']",
+                      "item/crb3c_overtime150": "@items('Stage_rows')?['超過勤務時間150']",
+                      "item/crb3c_overtime160": "@items('Stage_rows')?['超過勤務時間160']",
+                      "item/crb3c_overtime175": "@items('Stage_rows')?['超過勤務時間175']",
+                      "item/crb3c_holiday135": "@items('Stage_rows')?['休日給135']",
+                      "item/crb3c_absencehours": "@items('Stage_rows')?['欠勤時間']",
+                      "item/crb3c_remarks": "@items('Stage_rows')?['備考']",
+                      "item/crb3c_name": "@concat(variables('batch'),'-',string(items('Stage_rows')?['No']))",
+                      "item/crb3c_batchid": "@variables('batch')",
+                      "item/crb3c_AttendanceReportId@odata.bind": "@concat('/crb3c_attendancereports(',variables('reportId'),')')"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "runAfter": {}
+                }
+              },
+              "runAfter": {
+                "Stage_message": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Read_staged": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords"
+                },
+                "parameters": {
+                  "entityName": "crb3c_attendancereportlines",
+                  "$filter": "@concat('crb3c_batchid eq ',decodeUriComponent('%27'),variables('batch'),decodeUriComponent('%27'))",
+                  "$top": 1000
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runtimeConfiguration": {
+                "paginationPolicy": {
+                  "minimumItemCount": 1000
+                }
+              },
+              "runAfter": {
+                "Stage_rows": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Verify_staged": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@equals(length(body('Read_staged')?['value']),length(body('Normalize')))",
+                "schema": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                }
+              },
+              "runAfter": {
+                "Read_staged": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Before_commit": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem"
+                },
+                "parameters": {
+                  "entityName": "crb3c_attendancereports",
+                  "recordId": "@variables('reportId')"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Verify_staged": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Commit_guard": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@and(equals(body('Before_commit')?['crb3c_status'],100000000),equals(body('Before_commit')?['crb3c_importversion'],variables('report')?['crb3c_importversion']))",
+                "schema": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                }
+              },
+              "runAfter": {
+                "Before_commit": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Activate_batch": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateRecord"
+                },
+                "parameters": {
+                  "entityName": "crb3c_attendancereports",
+                  "recordId": "@variables('reportId')",
+                  "item/crb3c_activebatchid": "@variables('batch')",
+                  "item/crb3c_importversion": "@add(int(coalesce(variables('report')?['crb3c_importversion'],0)),1)"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Commit_guard": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Committed": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "result",
+                "value": {
+                  "success": true,
+                  "reportId": "@variables('reportId')",
+                  "count": "@length(body('Normalize'))",
+                  "version": "@add(int(coalesce(variables('report')?['crb3c_importversion'],0)),1)",
+                  "message": "明細を保存しました。"
+                }
+              },
+              "runAfter": {
+                "Activate_batch": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "else": {
+            "actions": {
+              "Other_operation": {
+                "type": "If",
+                "expression": "@equals(body('Request')?['operation'],'month')",
+                "actions": {
+                  "Month_message": {
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "message",
+                      "value": "勤務月はyyyy-mm形式で指定してください。"
+                    },
+                    "runAfter": {}
+                  },
+                  "Check_month": {
+                    "type": "ParseJson",
+                    "inputs": {
+                      "content": "@and(equals(length(string(body('Request')?['month'])),7),equals(formatDateTime(concat(body('Request')?['month'],'-01'),'yyyy-MM'),body('Request')?['month']))",
+                      "schema": {
+                        "type": "boolean",
+                        "enum": [
+                          true
+                        ]
+                      }
+                    },
+                    "runAfter": {
+                      "Month_message": [
+                        "Succeeded"
+                      ]
+                    }
+                  },
+                  "Find_month": {
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "ListRecords"
+                      },
+                      "parameters": {
+                        "entityName": "crb3c_attendancetargetmonths",
+                        "$filter": "@concat('crb3c_workmonth eq ',body('Request')?['month'],'-01')",
+                        "$top": 2
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    },
+                    "runtimeConfiguration": {
+                      "paginationPolicy": {
+                        "minimumItemCount": 2
+                      }
+                    },
+                    "runAfter": {
+                      "Check_month": [
+                        "Succeeded"
+                      ]
+                    }
+                  },
+                  "Unique_month": {
+                    "type": "ParseJson",
+                    "inputs": {
+                      "content": "@lessOrEquals(length(body('Find_month')?['value']),1)",
+                      "schema": {
+                        "type": "boolean",
+                        "enum": [
+                          true
+                        ]
+                      }
+                    },
+                    "runAfter": {
+                      "Find_month": [
+                        "Succeeded"
+                      ]
+                    }
+                  },
+                  "Set_month": {
+                    "type": "If",
+                    "expression": "@equals(length(body('Find_month')?['value']),0)",
+                    "actions": {
+                      "Create_month": {
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                            "connectionName": "shared_commondataserviceforapps",
+                            "operationId": "CreateRecord"
+                          },
+                          "parameters": {
+                            "entityName": "crb3c_attendancetargetmonths",
+                            "item/crb3c_name": "@body('Request')?['month']",
+                            "item/crb3c_workmonth": "@concat(body('Request')?['month'],'-01')",
+                            "item/crb3c_enabled": "@body('Request')?['enabled']"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        },
+                        "runAfter": {}
+                      }
+                    },
+                    "else": {
+                      "actions": {
+                        "Update_month": {
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "UpdateRecord"
+                            },
+                            "parameters": {
+                              "entityName": "crb3c_attendancetargetmonths",
+                              "recordId": "@first(body('Find_month')?['value'])?['crb3c_attendancetargetmonthid']",
+                              "item/crb3c_enabled": "@body('Request')?['enabled']"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          },
+                          "runAfter": {}
+                        }
+                      }
+                    },
+                    "runAfter": {
+                      "Unique_month": [
+                        "Succeeded"
+                      ]
+                    }
+                  },
+                  "Month_done": {
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "result",
+                      "value": {
+                        "success": true,
+                        "reportId": "",
+                        "count": 0,
+                        "version": 0,
+                        "message": "報告対象月を設定しました。"
+                      }
+                    },
+                    "runAfter": {
+                      "Set_month": [
+                        "Succeeded"
+                      ]
+                    }
+                  }
+                },
+                "else": {
+                  "actions": {
+                    "Transition_message": {
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "message",
+                        "value": "報告状態または版が変わっています。一覧を再読込してください。"
+                      },
+                      "runAfter": {}
+                    },
+                    "Transition_id": {
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "reportId",
+                        "value": "@body('Request')?['reportId']"
+                      },
+                      "runAfter": {
+                        "Transition_message": [
+                          "Succeeded"
+                        ]
+                      }
+                    },
+                    "Transition_report": {
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "GetItem"
+                        },
+                        "parameters": {
+                          "entityName": "crb3c_attendancereports",
+                          "recordId": "@variables('reportId')"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      },
+                      "runAfter": {
+                        "Transition_id": [
+                          "Succeeded"
+                        ]
+                      }
+                    },
+                    "Transition_remember": {
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "report",
+                        "value": "@body('Transition_report')"
+                      },
+                      "runAfter": {
+                        "Transition_report": [
+                          "Succeeded"
+                        ]
+                      }
+                    },
+                    "Transition_version": {
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@equals(int(coalesce(variables('report')?['crb3c_importversion'],0)),body('Request')?['expectedVersion'])",
+                        "schema": {
+                          "type": "boolean",
+                          "enum": [
+                            true
+                          ]
+                        }
+                      },
+                      "runAfter": {
+                        "Transition_remember": [
+                          "Succeeded"
+                        ]
+                      }
+                    },
+                    "Transition_state": {
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@if(equals(body('Request')?['operation'],'report'),and(equals(variables('report')?['crb3c_status'],100000000),not(empty(variables('report')?['crb3c_activebatchid']))),equals(variables('report')?['crb3c_status'],100000001))",
+                        "schema": {
+                          "type": "boolean",
+                          "enum": [
+                            true
+                          ]
+                        }
+                      },
+                      "runAfter": {
+                        "Transition_version": [
+                          "Succeeded"
+                        ]
+                      }
+                    },
+                    "Change_state": {
+                      "type": "If",
+                      "expression": "@equals(body('Request')?['operation'],'report')",
+                      "actions": {
+                        "Report": {
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "UpdateRecord"
+                            },
+                            "parameters": {
+                              "entityName": "crb3c_attendancereports",
+                              "recordId": "@variables('reportId')",
+                              "item/crb3c_status": 100000001,
+                              "item/crb3c_reportedat": "@utcNow()",
+                              "item/crb3c_importversion": "@add(int(coalesce(variables('report')?['crb3c_importversion'],0)),1)"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          },
+                          "runAfter": {}
+                        }
+                      },
+                      "else": {
+                        "actions": {
+                          "Reopen": {
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "UpdateRecord"
+                              },
+                              "parameters": {
+                                "entityName": "crb3c_attendancereports",
+                                "recordId": "@variables('reportId')",
+                                "item/crb3c_status": 100000000,
+                                "item/crb3c_reopenedat": "@utcNow()",
+                                "item/crb3c_importversion": "@add(int(coalesce(variables('report')?['crb3c_importversion'],0)),1)"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            },
+                            "runAfter": {}
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Transition_state": [
+                          "Succeeded"
+                        ]
+                      }
+                    },
+                    "Transition_done": {
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "result",
+                        "value": {
+                          "success": true,
+                          "reportId": "@variables('reportId')",
+                          "count": 0,
+                          "version": "@add(int(coalesce(variables('report')?['crb3c_importversion'],0)),1)",
+                          "message": "報告状態を更新しました。"
+                        }
+                      },
+                      "runAfter": {
+                        "Change_state": [
+                          "Succeeded"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "runAfter": {}
+              }
+            }
+          },
+          "runAfter": {
+            "Valid_request_month": [
+              "Succeeded"
+            ]
+          }
+        }
+      },
+      "runAfter": {
+        "Initialize": [
+          "Succeeded"
+        ]
+      }
+    },
+    "Failure": {
+      "type": "SetVariable",
+      "inputs": {
+        "name": "result",
+        "value": {
+          "success": false,
+          "reportId": "@variables('reportId')",
+          "count": 0,
+          "version": -1,
+          "message": "@variables('message')"
+        }
+      },
+      "runAfter": {
+        "Execute": [
+          "Failed",
+          "TimedOut"
+        ]
+      }
+    },
+    "Cleanup": {
+      "type": "If",
+      "expression": "@not(empty(variables('fileId')))",
+      "actions": {
+        "Delete_temp": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "connectionName": "shared_onedriveforbusiness",
+              "operationId": "DeleteFile"
+            },
+            "parameters": {
+              "id": "@variables('fileId')"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "runAfter": {}
+        }
+      },
+      "else": {
+        "actions": {}
+      },
+      "runAfter": {
+        "Failure": [
+          "Succeeded",
+          "Skipped"
+        ]
+      }
+    },
+    "Respond": {
+      "type": "Response",
+      "kind": "PowerApp",
+      "runAfter": {
+        "Cleanup": [
+          "Succeeded",
+          "Failed",
+          "Skipped",
+          "TimedOut"
+        ]
+      },
+      "inputs": {
+        "statusCode": 200,
+        "body": {
+          "resultjson": "@string(variables('result'))"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "resultjson": {
+              "title": "resultjson",
+              "type": "string",
+              "x-ms-dynamically-added": true
+            }
+          }
+        }
+      },
+      "operationOptions": "Asynchronous"
+    }
+  }
+}

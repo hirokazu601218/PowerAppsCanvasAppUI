@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20260929-SCR003-ATTENDANCE-IMPORT",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "changes": [
+    {
+      "path": "config/dataverse/scr003-attendance-columns.json",
+      "component": "SCR-003 source/schema candidate contract",
+      "unit_case_ids": [
+        "UT-SCR003-CONTRACT-001"
+      ],
+      "expected_result": "Excel TestDataの20列、局×勤務月、職員番号12桁、欠勤時間整数、対象月表の設計契約が一致する。実Dataverseやアプリの動作は未検証"
+    },
+    {
+      "path": "src/screen-ui/v1.29/app-settings.json",
+      "component": "SCR003正式勤務報告画面と初期化・遷移",
+      "unit_case_ids": [
+        "UT-SCR003-VIEW-001"
+      ],
+      "expected_result": "ホームからSCR003へ遷移し、初期未選択と取込入口を表示。999件以内に対して読込上限2000件"
+    },
+    {
+      "path": "src/screen-ui/v1.29/attendance-month-settings.paste.yaml",
+      "component": "SCR006対象月設定",
+      "unit_case_ids": [
+        "UT-SCR006-MONTH-001"
+      ],
+      "expected_result": "対象月設定・解除の入口を表示"
+    },
+    {
+      "path": "src/screen-ui/v1.29/btnHomeAttendance.OnSelect.fx",
+      "component": "SCR003正式勤務報告画面と初期化・遷移",
+      "unit_case_ids": [
+        "UT-SCR003-VIEW-001"
+      ],
+      "expected_result": "ホームからSCR003へ遷移し、初期未選択と取込入口を表示。999件以内に対して読込上限2000件"
+    },
+    {
+      "path": "src/screen-ui/v1.29/scrAttendanceFormal.OnVisible.fx",
+      "component": "SCR003正式勤務報告画面と初期化・遷移",
+      "unit_case_ids": [
+        "UT-SCR003-VIEW-001"
+      ],
+      "expected_result": "ホームからSCR003へ遷移し、初期未選択と取込入口を表示。999件以内に対して読込上限2000件"
+    },
+    {
+      "path": "src/screen-ui/v1.29/scrAttendanceFormal.paste.yaml",
+      "component": "SCR003正式勤務報告画面と初期化・遷移",
+      "unit_case_ids": [
+        "UT-SCR003-VIEW-001"
+      ],
+      "expected_result": "ホームからSCR003へ遷移し、初期未選択と取込入口を表示。999件以内に対して読込上限2000件"
+    }
+  ],
+  "integration": {
+    "required": true,
+    "reason": "SCR003とSCR006、Power Automate、Dataverseが連携する。所有者Studioで保存・状態遷移を試験し、公開後の専用利用者E2Eで保存済み架空10件と勤務期間を読戻す。",
+    "case_ids": [
+      "IT-SCR003-READBACK-001"
+    ]
+  },
+  "system_test": {
+    "status": "deferred",
+    "reason": "実効権限はユーザー指示で後工程。999件境界、同時更新、保存途中の障害、全画面総合試験は未実施。"
+  },
+  "cases": [
+    {
+      "id": "UT-SCR003-CONTRACT-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/attendance-contract.test.ts"
+    },
+    {
+      "id": "UT-SCR003-VIEW-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/attendance-ui.test.ts"
+    },
+    {
+      "id": "UT-SCR006-MONTH-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/attendance-ui.test.ts"
+    },
+    {
+      "id": "IT-SCR003-READBACK-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/attendance-ui.test.ts"
+    }
+  ],
+  "manual_cases": [
+    "初回10件取込",
+    "備考編集保存",
+    "欠勤0.5の拒否",
+    "報告確認と報告済変更",
+    "報告済編集・取込拒否",
+    "入力中へ戻す",
+    "再取込で備考復元・10件維持",
+    "6課室候補・情報経済課2件",
+    "対象月解除・候補除外・再設定",
+    "画面再表示時の旧明細消去"
+  ]
+}

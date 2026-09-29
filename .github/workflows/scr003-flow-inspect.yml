@@ -1,0 +1,21 @@
+name: SCR-003 draft flow read-only inspection
+on:
+  push:
+    branches: [feat/scr003-attendance-import-20260929]
+    paths: ['.github/workflows/scr003-flow-inspect.yml', 'scripts/automation/inspect_scr003_flow.py']
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - run: python3 -u scripts/automation/inspect_scr003_flow.py

@@ -1,0 +1,37 @@
+{
+  "change_id": "change-20260929-scr003-attendance-import",
+  "run_id": "manual-20260929-connection-diagnosis",
+  "started_at": "2026-09-29T07:19:05Z",
+  "status": "BLOCKED",
+  "confirmed": [
+    "Final run 36533040055 Microsoft authentication succeeded; consent OneDrive Warning/Refresh connection; Excel and Dataverse Complete; Allow disabled.",
+    "Saved pre-fix app package (13) Properties.LocalConnectionReferences shows OneDrive and Excel dependencies for both SCR003 and PoC flows.",
+    "SCR003 flow connection change at 15:51 JST occurred after 15:38 publication; app was not refreshed/re-published after that change."
+  ],
+  "hypotheses": [
+    "Stale app flow metadata contributes to required connections after run-only settings change.",
+    "Dedicated OneDrive authentication/resource provisioning or permission problem; exact service error not yet observed.",
+    "Existing PoC invoker connection dependency can continue requiring dedicated OneDrive even after SCR003 metadata refresh."
+  ],
+  "action": [
+    "Refreshed SCR003 via Studio Power Automate pane; observed latest information refreshed.",
+    "Saved draft at 16:22:29 JST; NOT published. Published version remains 15:38.",
+    "Signed out owner from Player to inspect dedicated test user's actual connector error; secure sign-in required."
+  ],
+  "next": [
+    "Securely sign in as powerapps-test@govaca.onmicrosoft.com.",
+    "Inspect OneDrive connection warning details and refresh response before selecting remedy.",
+    "Verify refreshed draft connection metadata and publish only after checking source consistency.",
+    "Rerun required E2E and reconcile publication/documents before merge."
+  ],
+  "reference": "https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/working-with-flows",
+  "not_done": [
+    "No PoC settings or sharing/security-role changes.",
+    "No claim of root-cause resolution or E2E success; PR122 remains Draft."
+  ],
+  "blocked_reason": "BLOCKED_PENDING_DEDICATED_ACCOUNT_AUTH",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "observed_at": "2026-09-29T07:22:29Z",
+  "source_commit": "098f82a34d659969c12b39320bb57bc0535422d8",
+  "version": "published 2026-09-29T06:38:41.555451Z; metadata refresh draft 2026-09-29T07:22:29Z"
+}

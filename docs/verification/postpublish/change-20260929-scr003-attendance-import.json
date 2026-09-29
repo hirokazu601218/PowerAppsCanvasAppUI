@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20260929-SCR003-ATTENDANCE-IMPORT",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "source_commit": "53cb5348a44a9da9deb438edfa05d410958f12d9",
+  "documentation_base_commit": "53cb5348a44a9da9deb438edfa05d410958f12d9",
+  "requirement_ids": [
+    "D-04",
+    "COMMON-AUTH-001",
+    "SCR003-IMPORT-001"
+  ],
+  "selected_case_ids": [
+    "IT-SCR003-READBACK-001",
+    "UT-SCR003-CONTRACT-001",
+    "UT-SCR003-VIEW-001",
+    "UT-SCR006-MONTH-001"
+  ],
+  "source_comparison": {
+    "result": "MATCH",
+    "checked_paths": [
+      "config/dataverse/scr003-attendance-columns.json",
+      "src/screen-ui/v1.29/app-settings.json",
+      "src/screen-ui/v1.29/attendance-month-settings.paste.yaml",
+      "src/screen-ui/v1.29/btnHomeAttendance.OnSelect.fx",
+      "src/screen-ui/v1.29/scrAttendanceFormal.OnVisible.fx",
+      "src/screen-ui/v1.29/scrAttendanceFormal.paste.yaml"
+    ],
+    "method_and_findings": "PAC読戻しAction 36532637596でv1.29の718プロパティ、OnVisible、ホーム遷移、読込上限2000を照合。Gallery.Visible=trueの既定値省略を意味同一として判定。列契約20列はフロー定義と架空10件の取込/編集/再取込結果に照合。SCR002は旧保存ソース＋v1.28の2式とNative CDS論理名/表示名対応を正規化し全コントロールの意味上差分0。権限要件は後工程。 接続情報更新後の再公開をAction 36547553342で読戻し、718プロパティ差分0、SCR002画面SHA一致を再確認。 検証基準コミットは53cb534へ更新。Canvas/Power Fxの実装は098f82aから変更なし、公開版も変更なし。変更はE2Eの報告行選択と月・勤務期間を共通要素として扱うセレクターのみ。選定4ケースと独立期待値は不変。"
+  },
+  "publication": {
+    "version": "2026-09-29T09:11:07.0090418Z",
+    "player_observed_at": "2026-09-29T11:30:00Z",
+    "player_app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+    "player_result": "PASS",
+    "player_observation": "20:25 JSTの承認に基づき専用テストユーザーの既存専用ロールへ正式3表のReadのみ追加。Action 36561770802で実効Read3件、専用ユーザーのみ、他権限不変、Create/Write/Deleteなしを検証。専用Playerで2026/08秘書課、架空10件の12桁番号、勤務期間08/01～08/31、0、33.167、備考をDOMと画面で確認。接続警告なし。これは表示・読戻し範囲のPASSであり、業務認可・専用ユーザーの更新操作・業務受入のPASSではない。",
+    "download_sha256": "01ece7bd31766f5ce5b17b75f4426281abfefe6c3342962b6a8b4625891f6d9c"
+  }
+}

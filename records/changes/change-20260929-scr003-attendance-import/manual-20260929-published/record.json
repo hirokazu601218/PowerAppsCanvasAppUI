@@ -1,0 +1,28 @@
+{
+  "change_id": "change-20260929-scr003-attendance-import",
+  "run_id": "manual-20260929-published",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-09-29T07:03:33.507883+00:00",
+  "source_commit": "098f82a34d659969c12b39320bb57bc0535422d8",
+  "version": "2026-09-29T06:38:41.555451Z",
+  "publication": "PASS: same existing app and unchanged Canvas sharing",
+  "player": "PASS: owner observes 10 synthetic rows, 12-digit staff numbers, 0 and 33.167, month boundaries and sidebar collapse",
+  "readback": "PASS: Action 36532637596; 718 authored properties and row limit 2000",
+  "final_reconciliation": "Action 36533040055: metadata, SHA, source and document checks PASS; E2E static contract 1 PASS, UI 3 FAIL blocked by OneDrive Refresh connection warning and disabled Allow; completion gate skipped",
+  "flow_connection_fix": {
+    "observed": "Dedicated E2E OneDrive Refresh connection warning disabled Allow; SCR003 run-only settings had OneDrive and Excel supplied by invoker",
+    "change": "Only SCR003 run-only connection sources switched to the existing owner-provided OneDrive and Excel connections; Dataverse remained owner-provided",
+    "readback": "Power Automate settings reopened and all three owner-provided sources verified",
+    "not_changed": "No Canvas sharing, coowners, run-only users or business security roles changed",
+    "result": "Warning persisted. Existing PoC_ExcelImport_STUDIO still uses invoker OneDrive and Excel connections; inspected only, not modified."
+  },
+  "proof": "Library /非常勤給与/scr003-published-20260929.jpg, libfile_df82021399d081918917d417bff0f0bb",
+  "remaining": [
+    "Reconnect dedicated test account OneDrive, rerun failed final reconciliation jobs, then merge PR #122 only after required gates PASS",
+    "Temporary Excel cleanup remains locked",
+    "999-row boundary/concurrency/mid-write fault tests",
+    "Role/bureau authorization deferred; business acceptance and system testing not performed"
+  ],
+  "github": "PR #122 Draft; design and verification documents updated on feature branch; not merged to main"
+}

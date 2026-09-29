@@ -32,3 +32,34 @@ YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、�
 - PowerAppsCanvasAppUIに関係するLibrary資料を追加、移動、改名、削除または役割変更した場合は、この索引を更新する。
 - 現在の作業で読むLibrary資料が変わる場合は、STATUSも更新する。STATUSには実際に読むLibrary資料だけを記載し、関係しない資料は読まない。
 - Library資料が不要になっても、削除判断はこの索引だけで行わず、利用箇所を確認する。
+
+
+### 2026-09-29 SCR-003公開確認画像
+
+`/非常勤給与/scr003-published-20260929.jpg`（`libfile_df82021399d081918917d417bff0f0bb`）。公開版 `2026-09-29T06:38:41.555451Z` の所有者Playerで架空明細を表示した画像。画面の外観証跡であり、取込・権限・全ケースの合格証明ではない。読取りはこの公開版の表示調査時に限定する。
+
+
+## 2026-09-29 OneDrive接続診断
+
+- `onedrive-test-connection-confirm-20260929.jpg`：専用検証アカウントのOneDrive接続作成前の確認画面。Library ID `libfile_7cbd438864a48191ac3fe146ad1d8d88`、所在 `/非常勤給与/onedrive-test-connection-confirm-20260929.jpg`。接続新設の確認時に読む。完了証跡ではない。
+
+- `onedrive-test-account-missing-20260929.jpg`：OneDrive接続追加時の実エラー。Library ID `libfile_5b205db8d1488191bf14ee3faee063a1`、所在 `/非常勤給与/onedrive-test-account-missing-20260929.jpg`。専用ユーザーのOneDrive未検出の証跡。接続成立の証跡ではない。
+
+- `test-user-license-assigned-20260929.jpg`：専用ユーザーへの既存ライセンス割当と23/25席空きの読戻し。Library ID `libfile_6e26e8b6e0d881919730c0fd052f2304`、所在 `/test-user-license-assigned-20260929.jpg`。OneDrive接続成立の証拠ではない。
+
+### 2026-09-29 OneDrive初回作成中の確認画像
+
+`/非常勤給与/onedrive-first-run-20260929.jpg`（`libfile_02fee80b9a948191bfec37e0fdf956c5`）。専用検証ユーザーが安全な認証フォームでサインインした後のOneDrive初回設定画面。設定中の証跡であり、作成完了・コネクタ接続成功を示さない。接続阻害の調査時に参照する。
+
+### 2026-09-29 OneDrive公式プロファイル診断
+
+`/非常勤給与/onedrive-profile-diagnosis-20260929.jpg`（`libfile_4020f1b54e6c81918f75972e459f2ed2`）。Microsoft管理センターの標準診断が対象ユーザーのプロファイル問題と個人用サイト機能フラグの修復手順を示した画像。修復完了の証跡ではない。OneDrive作成阻害の修復時に参照する。
+
+### 2026-09-29 OneDrive修復・接続回復
+
+- `/非常勤給与/onedrive-profile-flag-cleared-20260929.jpg`（`libfile_b64665bb26648191a7023cb2209f7d40`）：機能フラグを空欄へ保存した読戻し。後のサービス値4への更新は診断記録を参照。
+- `/非常勤給与/scr003-connected-permission-block-20260929.jpg`（`libfile_65ced903580c819196255d2001246196`）：接続同意解消後の専用Player SCR-003画面。データ参照権限不足はDOM観測で記録、画像自体にエラー文は写っていない。接続・権限調査時に参照。
+
+### 2026-09-29 専用利用者の読戻し成功
+
+`/非常勤給与/scr003-test-reader-pass-20260929.jpg`（`libfile_7cd38c08170c8191874647b6947b5425`）。18:11公開版を専用利用者で開き、Read修復後の架空明細を表示した画像。10件の番号・値はDOMでも照合。全業務・認可の合格証跡ではない。今回の公開版読戻しの調査時に読む。

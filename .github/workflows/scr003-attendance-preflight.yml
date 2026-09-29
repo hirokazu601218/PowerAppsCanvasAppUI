@@ -1,0 +1,43 @@
+name: SCR-003 attendance schema preflight
+
+on:
+  push:
+    branches: [feat/scr003-attendance-import-20260929]
+    paths:
+      - '.github/workflows/scr003-attendance-preflight.yml'
+      - 'config/dataverse/scr003-attendance-columns.json'
+      - 'scripts/automation/preflight_scr003_attendance.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check source contract
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('config/dataverse/scr003-attendance-columns.json').read_text())
+          assert len(d['entities']) == 3
+          assert len(d['import_contract']['columns']) == 20
+          assert d['import_contract']['excel_table'] == 'TestData'
+          print('Contract checked: three candidate entities and twenty Excel columns')
+          PY
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Verify target and existing metadata (no writes)
+        run: python3 -u scripts/automation/preflight_scr003_attendance.py

@@ -1,0 +1,63 @@
+- conAttendanceMonthSettings:
+    Control: GroupContainer@1.5.0
+    Variant: ManualLayout
+    Properties:
+      Fill: =Color.White
+      Height: =340
+      Width: =Parent.Width-64
+      X: =32
+      Y: =160
+    Children:
+    - lblAttendanceMonthSettings:
+        Control: Label@2.5.1
+        Properties:
+          Size: =18
+          Text: ="勤務報告対象月の設定"
+          Width: =650
+          X: =20
+          Y: =16
+    - txtAttendanceTargetMonth:
+        Control: Classic/TextInput@2.3.2
+        Properties:
+          Default: ="2026-08"
+          HintText: ="yyyy-mm"
+          Width: =200
+          X: =20
+          Y: =72
+    - btnAttendanceMonthEnable:
+        Control: ModernButton@1.0.0
+        Properties:
+          DisplayMode: =If(Coalesce(varAttendanceMonthBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+          Height: =40
+          OnSelect: =Set(varAttendanceMonthBusy,true); IfError(Set(varAttendanceMonthReply,ParseJSON(SCR003_勤務時間報告_Excel取込_開発中.Run(JSON({operation:"month",expectedVersion:0,month:Trim(txtAttendanceTargetMonth.Text),enabled:true},JSONFormat.Compact)).resultjson)); Set(varAttendanceMonthResult,Text(varAttendanceMonthReply.message)); Refresh(M_勤務報告対象月),Set(varAttendanceMonthResult,FirstError.Message)); Set(varAttendanceMonthBusy,false)
+          Text: ="対象月に設定"
+          Width: =160
+          X: =240
+          Y: =72
+    - btnAttendanceMonthDisable:
+        Control: ModernButton@1.0.0
+        Properties:
+          DisplayMode: =If(Coalesce(varAttendanceMonthBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+          Height: =40
+          OnSelect: =Set(varAttendanceMonthBusy,true); IfError(Set(varAttendanceMonthReply,ParseJSON(SCR003_勤務時間報告_Excel取込_開発中.Run(JSON({operation:"month",expectedVersion:0,month:Trim(txtAttendanceTargetMonth.Text),enabled:false},JSONFormat.Compact)).resultjson)); Set(varAttendanceMonthResult,Text(varAttendanceMonthReply.message)); Refresh(M_勤務報告対象月),Set(varAttendanceMonthResult,FirstError.Message)); Set(varAttendanceMonthBusy,false)
+          Text: ="対象月から外す"
+          Width: =160
+          X: =420
+          Y: =72
+    - lblAttendanceMonthSaveResult:
+        Control: Label@2.5.1
+        Properties:
+          Height: =130
+          Text: =Coalesce(varAttendanceMonthResult,"") & Char(10) & "現在の対象月：" & Concat(SortByColumns(Filter(M_勤務報告対象月,報告対象=true),"crb3c_workmonth",SortOrder.Ascending),Text(勤務月,"yyyy-mm"),"、")
+          Width: =Parent.Width-40
+          X: =20
+          Y: =132
+    - btnAttendanceMonthToReport:
+        Control: ModernButton@1.0.0
+        Properties:
+          Height: =40
+          OnSelect: =Navigate(scrAttendanceFormal,ScreenTransition.None)
+          Text: ="勤務時間報告へ"
+          Width: =180
+          X: =20
+          Y: =280

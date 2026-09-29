@@ -1,0 +1,10 @@
+{
+  "change_id": "change-20260929-scr003-attendance-import",
+  "run_id": "manual-20260929-source-comparison",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PASS",
+  "observed_at": "2026-09-29T06:42:00Z",
+  "source_commit": "098f82a34d659969c12b39320bb57bc0535422d8",
+  "version": "2026-09-29T06:38:41.555451Z",
+  "findings": "SCR002 controls/properties match v22 plus committed v1.28 after native CDS identifier normalization; explicit Gallery.Visible=true is omitted as default by Canvas source export."
+}

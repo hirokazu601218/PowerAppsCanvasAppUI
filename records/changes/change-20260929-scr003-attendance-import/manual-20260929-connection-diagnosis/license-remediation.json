@@ -1,0 +1,11 @@
+{
+  "observed_at": "2026-09-29T08:47:00Z",
+  "root_cause": "Dedicated user did not have a SharePoint/OneDrive-capable license. Admin license list contained only Power Apps for Developer and Power Automate Free; connector reported no user OneDrive for Business account.",
+  "remediation": "Assigned one existing Microsoft 365 Business Basic (no Teams) seat with default services. 24/25 available before; 23/25 after. Saved and reloaded admin page to verify.",
+  "cost": "No license purchase or subscription quantity change.",
+  "safety": "Bulk optional-service disabling was rejected by automatic review and not executed. Used default-service assignment instead; existing products retained; no roles or sharing modified.",
+  "result": "License prerequisite repaired. OneDrive provisioning and connection creation NOT verified.",
+  "auth": "Post-remediation OAuth account-choice request aborted; creation page showed generic sign-in failure. No further sign-in retry after interruption.",
+  "next": "Complete dedicated account OneDrive provisioning/authentication, validate connection then Player and automated tests. Retain current published app until updated draft is verified.",
+  "proof": "libfile_6e26e8b6e0d881919730c0fd052f2304"
+}

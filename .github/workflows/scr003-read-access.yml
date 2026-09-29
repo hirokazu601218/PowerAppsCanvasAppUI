@@ -1,0 +1,35 @@
+name: SCR-003 dedicated read access
+on:
+  push:
+    branches: [feat/scr003-attendance-import-20260929]
+    paths:
+      - '.github/workflows/scr003-read-access.yml'
+      - 'scripts/automation/grant_scr003_read.py'
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+jobs:
+  grant-read:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 -m py_compile scripts/automation/grant_scr003_read.py
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Grant approved three-table Read and verify isolated role
+        run: python3 -u scripts/automation/grant_scr003_read.py
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scr003-read-access-${{ github.run_id }}
+          path: artifacts/scr003-read-access/read-access.json
+          retention-days: 14
+          if-no-files-found: warn

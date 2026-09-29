@@ -1,0 +1,20 @@
+{
+  "change_id": "change-20260929-scr003-attendance-import",
+  "observed_at": "2026-09-29T08:09:00Z",
+  "result": "BLOCKED",
+  "confirmed": [
+    "Dedicated account powerapps-test authenticated in Player and Power Automate.",
+    "New Player still shows OneDrive Connection Warning; Allow disabled; Excel and Dataverse complete.",
+    "Power Automate Connections lists four entries: three Dataverse (two reconnect, one connected) and one Excel connected; no OneDrive for Business connection.",
+    "OneDrive refresh opened OAuth account selection; secure handoff returned submission_failed and popup closed. Fresh canonical Player verification still shows warning.",
+    "SCR003 metadata refresh saved draft at 16:22:29 JST, not published."
+  ],
+  "unknown": [
+    "Why OneDrive connection creation has not completed; no service error detail obtained.",
+    "License/provisioning condition is not established from app launcher absence or redirect."
+  ],
+  "approval_needed": "Create OneDrive for Business connection for dedicated test account in StaffMaster-Automation-Test. This persists authorization permitting connector file upload/update/read/delete within that account's existing access. No paid license purchase or roles/sharing changes.",
+  "safety": "Broad browser developer-log request rejected by automatic approval review because session/sensitive data could be included. Used rendered UI instead; no bypass.",
+  "next": "With approval create the dedicated OneDrive connection, inspect any returned service error, then verify app consent and E2E. Do not infer root cause from success alone.",
+  "proof": "libfile_7cbd438864a48191ac3fe146ad1d8d88 /非常勤給与/onedrive-test-connection-confirm-20260929.jpg"
+}

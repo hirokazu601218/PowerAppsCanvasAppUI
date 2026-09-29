@@ -1,0 +1,96 @@
+name: SCR003 publication capture
+'on':
+  push:
+    branches:
+    - feat/scr003-attendance-import-20260929
+    paths:
+    - config/verification/scr003-capture.json
+permissions:
+  contents: read
+jobs:
+  capture:
+    name: Capture current published app metadata and package digest
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    env:
+      TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
+      DATAVERSE_URL: https://orge762dd9e.crm7.dynamics.com/
+      CURRENT_APP_ID: 204a48dc-7f23-43dd-b934-4654a3cfa306
+      TEST_USER: ${{ secrets.POWERAPPS_TEST_EMAIL }}
+      TEST_PASS: ${{ secrets.POWERAPPS_TEST_PASSWORD }}
+    steps:
+    - uses: actions/checkout@v5
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+    - run: pip install pyyaml
+    - name: Download current package and check the saved screen definition
+      shell: bash
+      run: "set -euo pipefail\nmkdir -p \"$RUNNER_TEMP/postpublish\"\ntest \"$TEST_USER\"\
+        \ = 'powerapps-test@govaca.onmicrosoft.com'\ndotnet tool install --global\
+        \ Microsoft.PowerApps.CLI.Tool --version 2.12.2\naz login --username \"$TEST_USER\"\
+        \ --password \"$TEST_PASS\" \\\n  --tenant \"$TENANT_ID\" --allow-no-subscriptions\
+        \ --output none\npython3 scripts/automation/read_current_app_metadata.py --output\
+        \ \"$RUNNER_TEMP/postpublish/before.json\"\npac auth create --name current-app-capture\
+        \ \\\n  --username \"$TEST_USER\" --password \"$TEST_PASS\" --environment\
+        \ \"$DATAVERSE_URL\"\npac canvas download --name \"$CURRENT_APP_ID\" \\\n\
+        \  --file-name \"$RUNNER_TEMP/postpublish/readback.msapp\" \\\n  --environment\
+        \ \"$DATAVERSE_URL\" --overwrite\npython3 - <<'PY'\nimport hashlib, os\nfrom\
+        \ pathlib import Path\ncandidate = Path(os.environ['RUNNER_TEMP']) / 'postpublish/readback.msapp'\n\
+        with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as result:\n\
+        \    result.write('PAC取得候補 SHA-256: `' + hashlib.sha256(candidate.read_bytes()).hexdigest()\
+        \ +\n                 '`。公開版との一致は未判定。\\n')\nPY\npython3 scripts/automation/read_current_app_metadata.py\
+        \ --output \"$RUNNER_TEMP/postpublish/after.json\"\npython3 - <<'PY'\nimport\
+        \ hashlib, json, os, zipfile\nfrom pathlib import Path\n\nroot = Path(os.environ['RUNNER_TEMP'])\
+        \ / 'postpublish'\nbefore = json.loads((root / 'before.json').read_text())\n\
+        after = json.loads((root / 'after.json').read_text())\napp = os.environ['CURRENT_APP_ID']\n\
+        prefix = ('https://apps.powerapps.com/play/e/'\n          '68e00049-b7e5-eda6-9888-9a3cc493c5be/a/'\
+        \ + app + '?')\nfor data in (before, after):\n    if data.get('status') !=\
+        \ 'Ready' or not str(data.get('appOpenUri', '')).startswith(prefix):\n   \
+        \     raise SystemExit('metadata is not Ready or does not point to the fixed\
+        \ app')\nif before != after:\n    raise SystemExit('app metadata changed during\
+        \ package download')\npackage = root / 'readback.msapp'\npackage_sha = hashlib.sha256(package.read_bytes()).hexdigest()\n\
+        # This capture checks the currently reviewed v25-equivalent screen. The earlier\n\
+        # v22 saved-screen digest is a different release and must not gate it.\nexpected\
+        \ = '4124f74ecf5e3e51c751ab1197745704e1995725bc0b74ca01fd5af87299c27a'\nwith\
+        \ zipfile.ZipFile(package) as archive:\n    screen = next(name for name in\
+        \ archive.namelist()\n                  if name.replace('\\\\', '/').endswith('Src/scrStaffMasterSearch.pa.yaml'))\n\
+        \    screen_sha = hashlib.sha256(archive.read(screen)).hexdigest()\nwith open(os.environ['GITHUB_STEP_SUMMARY'],\
+        \ 'a', encoding='utf-8') as output:\n    output.write('## 現行アプリ公開版の読戻し（文書照合前）\\\
+        n')\n    output.write(f'- App ID: `{app}`\\n')\n    output.write(f'- 公開時刻:\
+        \ `{before[\"lastPublishTime\"]}`\\n')\n    output.write(f'- 最終下書き版: `{before[\"\
+        lastDraftVersion\"]}`\\n')\n    output.write(f'- msapp SHA-256: `{package_sha}`\\\
+        n')\n    output.write(f'- SCR-002画面定義SHA-256: `{screen_sha}`\\n')\n    output.write(f'-\
+        \ 論理名/表示名正規化でv25相当と照合した画面の記録済みSHAとの一致: `{screen_sha == expected}`\\n')\n \
+        \   output.write('パッケージ本体と認証情報はアップロードしていません。全画面・接続の一致は別の検査が必要です。\\n')\nif\
+        \ screen_sha != expected:\n    raise SystemExit('published SCR-002 screen\
+        \ differs from reviewed v25-equivalent readback; investigate before reconciliation')\n\
+        PY\n"
+    - name: Print verified non-secret publication metadata
+      run: 'python3 - <<''PYMETA''
+
+        import json,hashlib,os
+
+        from pathlib import Path
+
+        p=Path(os.environ[''RUNNER_TEMP''])/''postpublish''
+
+        print((p/''after.json'').read_text())
+
+        print(''PACKAGE_SHA256=''+hashlib.sha256((p/''readback.msapp'').read_bytes()).hexdigest())
+
+        PYMETA'
+      if: ${{ always() }}
+    - name: Report capture failure without changing app sharing
+      if: ${{ failure() }}
+      run: 'echo ''公開版の読戻しに失敗しました。対象App ID・認証・アプリ権限を確認してください。'' >> "$GITHUB_STEP_SUMMARY"
+
+        echo ''共有先の追加・削除や共同所有者の入替えは行っていません。'' >> "$GITHUB_STEP_SUMMARY"
+
+        '
+    - name: Compare SCR003 and SCR006 with committed candidate
+      run: python3 scripts/automation/compare_scr003_readback.py "$RUNNER_TEMP/postpublish/readback.msapp"
+      if: ${{ always() }}

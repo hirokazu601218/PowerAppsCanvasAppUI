@@ -1,0 +1,53 @@
+name: SCR-003 attendance Dataverse schema
+
+on:
+  push:
+    branches: [feat/scr003-attendance-import-20260929]
+    paths:
+      - '.github/workflows/scr003-attendance-schema.yml'
+      - 'scripts/automation/provision_scr003_attendance.py'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'preflight / provision / verify'
+        required: true
+        type: choice
+        options: [preflight, provision, verify]
+
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: staff-master-isolated-environment
+  cancel-in-progress: false
+
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    environment: powerapps-test
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate source contract
+        run: |
+          python3 -m py_compile scripts/automation/provision_scr003_attendance.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          spec=json.loads(Path('config/dataverse/scr003-attendance-columns.json').read_text())
+          assert len(spec['entities']) == 3
+          assert len(spec['import_contract']['columns']) == 20
+          assert spec['import_contract']['excel_table'] == 'TestData'
+          PY
+      - uses: azure/login@v2
+        with:
+          client-id: 1c94f011-c447-4af1-968f-ec564f489395
+          tenant-id: a00c92fa-e1db-4aa6-ab28-356c3203353d
+          allow-no-subscriptions: true
+      - name: Check expected absence before new table creation
+        if: ${{ github.event_name == 'push' || inputs.mode == 'provision' }}
+        run: python3 -u scripts/automation/provision_scr003_attendance.py --mode preflight
+      - name: Provision or verify schema
+        env:
+          MODE: ${{ github.event_name == 'push' && 'provision' || inputs.mode }}
+        run: python3 -u scripts/automation/provision_scr003_attendance.py --mode "$MODE"
