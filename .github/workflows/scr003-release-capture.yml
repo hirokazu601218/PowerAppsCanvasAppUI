@@ -82,6 +82,7 @@ jobs:
         print(''PACKAGE_SHA256=''+hashlib.sha256((p/''readback.msapp'').read_bytes()).hexdigest())
 
         PYMETA'
+      if: ${{ always() }}
     - name: Report capture failure without changing app sharing
       if: ${{ failure() }}
       run: 'echo ''公開版の読戻しに失敗しました。対象App ID・認証・アプリ権限を確認してください。'' >> "$GITHUB_STEP_SUMMARY"
@@ -91,3 +92,11 @@ jobs:
         '
     - name: Compare SCR003 and SCR006 with committed candidate
       run: python3 scripts/automation/compare_scr003_readback.py "$RUNNER_TEMP/postpublish/readback.msapp"
+      if: ${{ always() }}
+    - name: Read-only screen comparison diagnostics
+      if: ${{ always() }}
+      run: "python3 - <<'PYDIAG'\nimport zipfile,hashlib,os,json\nfrom pathlib import\
+        \ Path\np=Path(os.environ['RUNNER_TEMP'])/'postpublish/readback.msapp'\nwith\
+        \ zipfile.ZipFile(p) as z:\n for n in z.namelist():\n  if n.endswith('Src/scrStaffMasterSearch.pa.yaml'):\n\
+        \   raw=z.read(n);print('SCR002_SHA='+hashlib.sha256(raw).hexdigest());print(raw.decode())\n\
+        PYDIAG"

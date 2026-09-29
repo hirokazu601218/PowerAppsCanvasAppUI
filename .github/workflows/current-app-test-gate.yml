@@ -199,6 +199,16 @@ jobs:
           contexts = list(Path('test-results/artifacts').glob('**/error-context.md'))
           print(f'Failed case contexts: {len(contexts)}')
           for context in contexts:
+              if 'BACK-001' in str(context):
+                  attendance_snapshot = context.read_text(encoding='utf-8')
+                  print('SCR003 diagnostics:', {
+                      'report_month': '2026/08' in attendance_snapshot,
+                      'report_bureau': '秘書課' in attendance_snapshot,
+                      'permission_error': bool(re.search(r'privilege|permission|権限|アクセス.*拒否', attendance_snapshot, re.I)),
+                      'consent': bool(re.search(r'アクセスを許可|Allow access', attendance_snapshot, re.I)),
+                      'first_staff': '000000000001' in attendance_snapshot,
+                  })
+                  print('SCR003 relevant labels:', [line.strip() for line in attendance_snapshot.splitlines() if re.search(r'2026/08|秘書課|エラー|Error|privilege|permission',line,re.I)])
               if 'NAV-001' not in str(context):
                   continue
               snapshot = context.read_text(encoding='utf-8')
