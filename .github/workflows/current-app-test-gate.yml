@@ -201,6 +201,8 @@ jobs:
           for context in contexts:
               if 'BACK-001' in str(context):
                   attendance_snapshot = context.read_text(encoding='utf-8')
+                  snap = attendance_snapshot.split('# Page snapshot')[-1].split('# Test source')[0]
+                  print('SCR003 consent snapshot:', re.sub(r'[\w.+-]+@[\w.-]+', '[account]', snap)[:7000])
                   print('SCR003 diagnostics:', {
                       'report_month': '2026/08' in attendance_snapshot,
                       'report_bureau': '秘書課' in attendance_snapshot,

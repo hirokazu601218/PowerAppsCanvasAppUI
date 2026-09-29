@@ -40,6 +40,8 @@ def main():
                 if name not in found: differences.append(name+': missing');continue
                 for prop,value in control.get('Properties',{}).items():
                     got=found[name].get('Properties',{}).get(prop)
+                    # Canvas export omits Gallery.Visible at its true default.
+                    if name=='galAttendanceFormalLines' and prop=='Visible' and got is None and value=='=true': got='=true'
                     if normalized(value)!=normalized(got):differences.append(name+'.'+prop)
                     checked+=1
         report_controls=controls(reports)
