@@ -1,6 +1,5 @@
 {
   "source_commit": "098f82a34d659969c12b39320bb57bc0535422d8",
-  "purpose": "read-only postpublication source comparison",
-  "published_observed": "2026-09-29T15:22:16+09:00",
-  "attempt": 4
+  "purpose": "read-only capture after verified flow metadata refresh publication",
+  "attempt": 5
 }
