@@ -1,0 +1,1 @@
+Navigate(scrAttendanceFormal,ScreenTransition.None)

@@ -5,7 +5,7 @@
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
   },
-  "request_text": "SCR-003勤務時間報告にExcel取込モーダル、局×勤務月の報告状態、課室フィルター、会計課給与班の一覧、局担当の編集・報告、給与班のみの差戻しを実装する。添付の架空Excel TestDataテーブルを入力例とする。",
+  "request_text": "SCR-003勤務時間報告にExcel取込モーダル、局×勤務月の報告状態、課室フィルター、会計課給与班の一覧、局担当の編集・報告、給与班のみの差戻しを実装する。添付の架空Excel TestDataテーブルを入力例とする。 2026-09-29追記：権限判定は全て後工程としてテスト環境・架空データで実装を進める。15:13 JSTに公開とGitHub設計書等への反映まで継続する指示。",
   "requirement_ids": [
     "D-04",
     "COMMON-AUTH-001",
@@ -31,7 +31,7 @@
     "overtime_zero_display": "0",
     "period": "勤務月の1日～末日",
     "office_options": "勤務時間報告明細の実データ",
-    "target_month_configuration": "SCR-006で給与班が設定。未実装"
+    "target_month_configuration": "SCR-006で対象月設定・解除。権限判定は後工程"
   },
   "preflight": {
     "dataverse": "2026-09-29 Makerで勤務時間0件・報告0件。勤務の検索結果は給与勤務条件2表のみ。勤務時間報告の既存表なし。",
@@ -42,5 +42,10 @@
     "SCR-006の対象月設定を本変更に含める。テーブル・画面と実効権限を設計する",
     "報告済の訂正後の履歴・監査方式および全件置換の失敗時原子性を実装・検証する"
   ],
-  "implementation_status": "変更要求と入力Excel照合を記録。アプリ・Dataverseメタデータ・取込フローへの変更は未実施。"
+  "implementation_status": "正式3表・バッチ列とフロー、SCR003取込/編集/報告/戻し、SCR006対象月設定を実装。所有者Studioで架空10件の結合試験済み。公開版照合前。",
+  "scope_override": {
+    "authorization": "局・給与班・職員本人の権限判定はユーザー指示で後工程。今回の合格対象外。",
+    "environment": "StaffMaster-Automation-Test、架空データのみ",
+    "publication": "同一App IDへの公開、公開版照合、GitHub文書反映を承認済み"
+  }
 }
