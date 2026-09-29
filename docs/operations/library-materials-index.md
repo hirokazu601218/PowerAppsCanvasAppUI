@@ -42,3 +42,5 @@ YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、�
 ## 2026-09-29 OneDrive接続診断
 
 - `onedrive-test-connection-confirm-20260929.jpg`：専用検証アカウントのOneDrive接続作成前の確認画面。Library ID `libfile_7cbd438864a48191ac3fe146ad1d8d88`、所在 `/非常勤給与/onedrive-test-connection-confirm-20260929.jpg`。接続新設の確認時に読む。完了証跡ではない。
+
+- `onedrive-test-account-missing-20260929.jpg`：OneDrive接続追加時の実エラー。Library ID `libfile_5b205db8d1488191bf14ee3faee063a1`、所在 `/非常勤給与/onedrive-test-account-missing-20260929.jpg`。専用ユーザーのOneDrive未検出の証跡。接続成立の証跡ではない。

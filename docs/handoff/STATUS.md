@@ -1,5 +1,14 @@
 # 現在の作業と読取り対象
 
+## 2026-09-29 17:14 JST 接続追加の診断結果
+
+- 利用者の追加承認後、専用検証アカウントでOneDrive接続作成を実行。Microsoftから `No user OneDrive for Business account found` が返り、作成失敗。新しい接続一覧にもOneDriveはない。ログイン失敗や単なるトークン期限切れとは扱わない。
+- 原因の確定範囲：コネクタが専用ユーザーのOneDrive実体を取得できない。ライセンス未割当かプロビジョニング未完了かは未確定。管理者による既存SharePoint/OneDriveライセンスと初期作成状態の確認が必要。有料契約は追加していない。
+- SCR003フローの接続設定変更をStudioへ更新し16:22:29に下書き保存済み。未公開。公開中は15:38版のまま。PoC設定・共有・実効ロールは変更していない。
+- 次はOneDrive利用前提の確認・整備→接続作成→Player警告解消確認→必要な下書き公開と読戻し→最終E2E・文書照合→PR統合。PR #122はDraft、main未統合。
+- 証跡：`records/changes/change-20260929-scr003-attendance-import/manual-20260929-connection-diagnosis/creation-error.json`。同フォルダの過去の再接続待ち記録は当時の観測であり、この結果が最新。
+
+
 ## 2026-09-29 SCR-003公開後の最終照合
 
 - 15:13 JST開始、16:13 JST期限。利用者は公開とGitHub設計書等への反映を承認。権限判定は後工程、架空データのテスト環境。

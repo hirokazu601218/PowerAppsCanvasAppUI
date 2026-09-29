@@ -1,0 +1,15 @@
+{
+  "change_id": "change-20260929-scr003-attendance-import",
+  "result": "BLOCKED_ONEDRIVE_ACCOUNT_NOT_FOUND",
+  "user_authorized_at": "2026-09-29T17:11:22+09:00",
+  "account": "powerapps-test@govaca.onmicrosoft.com",
+  "action": "Create OneDrive for Business connection SCR003_自動テスト_OneDrive; user selected dedicated test account via secure sign-in",
+  "error": "OAuth2CertificateOneDriveForBusiness authorization flow failed for service 'OneDrive For Business Certificate'. No user OneDrive for Business account found.",
+  "verification": "Fresh Power Automate Connections still has no OneDrive entry. Creation failed; not success.",
+  "cause": "Connector cannot find a OneDrive for Business account for the dedicated test user.",
+  "unknown": "Underlying reason (SharePoint/OneDrive license assignment versus provisioning) not yet determined. Account subscription page redirected to Copilot; not evidence of license status.",
+  "next": "Administrator should verify existing SharePoint/OneDrive entitlement and provision the dedicated user's OneDrive. No purchase authorized. Then retry connection creation and confirm Connected, Player consent and E2E.",
+  "publication": "15:38 published version unchanged; 16:22:29 draft SCR003 metadata refresh saved but not published.",
+  "proof": "libfile_5b205db8d1488191bf14ee3faee063a1",
+  "pr": 122
+}
