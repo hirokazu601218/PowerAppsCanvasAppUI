@@ -3,7 +3,7 @@
 No activation, sharing, roles, business rows or other flows are changed.
 Uses the documented Dataverse workflow clientdata API.
 """
-import copy, hashlib, json, subprocess, urllib.request
+import copy, hashlib, json, subprocess, urllib.request, urllib.error
 from pathlib import Path
 from provision_scr003_attendance import URL, ORG
 from build_scr003_flow import build
@@ -23,9 +23,14 @@ def main():
         headers={'Authorization':'Bearer '+token,'Accept':'application/json','Content-Type':'application/json'}
         if etag: headers['If-Match']=etag
         req=urllib.request.Request(URL+'/api/data/v9.2/'+path,data=None if body is None else json.dumps(body).encode(),headers=headers,method='GET' if body is None else 'PATCH')
-        with urllib.request.urlopen(req,timeout=60) as r:
-            data=r.read()
-            return json.loads(data) if data else None
+        try:
+            with urllib.request.urlopen(req,timeout=60) as r:
+                data=r.read()
+                return json.loads(data) if data else None
+        except urllib.error.HTTPError as e:
+            error=json.loads(e.read()).get('error',{})
+            print('Dataverse error',error.get('code'),str(error.get('message',''))[:3000])
+            raise
     assert request('WhoAmI')['OrganizationId'].lower()==ORG
     path='workflows('+FLOW+')'
     original=request(path+'?$select=workflowid,name,statecode,clientdata,ismanaged')
@@ -59,3 +64,4 @@ def main():
     print('Actions',len(list(walk(definition['actions']))))
 
 if __name__=='__main__': main()
+
