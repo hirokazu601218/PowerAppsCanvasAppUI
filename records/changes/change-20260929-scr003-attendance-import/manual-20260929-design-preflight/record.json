@@ -4,7 +4,7 @@
   "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
   "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
   "status": "PARTIAL",
-  "observed_at": "2026-09-29T01:25:00Z",
+  "observed_at": "2026-09-29T01:29:00Z",
   "source_commit": "517fa097cf760994280196f727e9f2e319dcba1a",
   "version": "published v25 unchanged; SCR-003 formal change unpublished",
   "checks": [
@@ -30,8 +30,8 @@
     },
     {
       "id": "CI-CONTRACT",
-      "result": "NOT_RUN",
-      "actual": "Selected contract test rerun pending after runner path correction; initial run 36507317167 failed because test looked for config relative to toolkit working directory."
+      "result": "PASS",
+      "actual": "Selected static contract case UT-SCR003-CONTRACT-001 passed in Actions run 36507518921 after correcting test runner path. It does not exercise Dataverse, uploaded file, or published app."
     },
     {
       "id": "DV-API",
@@ -51,6 +51,7 @@
   "evidence": [
     "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/122",
     "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36507317167",
-    "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36507588944"
+    "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36507588944",
+    "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36507518921"
   ]
 }
