@@ -46,3 +46,7 @@ YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、�
 - `onedrive-test-account-missing-20260929.jpg`：OneDrive接続追加時の実エラー。Library ID `libfile_5b205db8d1488191bf14ee3faee063a1`、所在 `/非常勤給与/onedrive-test-account-missing-20260929.jpg`。専用ユーザーのOneDrive未検出の証跡。接続成立の証跡ではない。
 
 - `test-user-license-assigned-20260929.jpg`：専用ユーザーへの既存ライセンス割当と23/25席空きの読戻し。Library ID `libfile_6e26e8b6e0d881919730c0fd052f2304`、所在 `/test-user-license-assigned-20260929.jpg`。OneDrive接続成立の証拠ではない。
+
+### 2026-09-29 OneDrive初回作成中の確認画像
+
+`/非常勤給与/onedrive-first-run-20260929.jpg`（`libfile_02fee80b9a948191bfec37e0fdf956c5`）。専用検証ユーザーが安全な認証フォームでサインインした後のOneDrive初回設定画面。設定中の証跡であり、作成完了・コネクタ接続成功を示さない。接続阻害の調査時に参照する。

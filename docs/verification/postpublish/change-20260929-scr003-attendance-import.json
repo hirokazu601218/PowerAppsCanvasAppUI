@@ -28,14 +28,14 @@
       "src/screen-ui/v1.29/scrAttendanceFormal.OnVisible.fx",
       "src/screen-ui/v1.29/scrAttendanceFormal.paste.yaml"
     ],
-    "method_and_findings": "PAC読戻しAction 36532637596でv1.29の718プロパティ、OnVisible、ホーム遷移、読込上限2000を照合。Gallery.Visible=trueの既定値省略を意味同一として判定。列契約20列はフロー定義と架空10件の取込/編集/再取込結果に照合。SCR002は旧保存ソース＋v1.28の2式とNative CDS論理名/表示名対応を正規化し全コントロールの意味上差分0。権限要件は後工程。"
+    "method_and_findings": "PAC読戻しAction 36532637596でv1.29の718プロパティ、OnVisible、ホーム遷移、読込上限2000を照合。Gallery.Visible=trueの既定値省略を意味同一として判定。列契約20列はフロー定義と架空10件の取込/編集/再取込結果に照合。SCR002は旧保存ソース＋v1.28の2式とNative CDS論理名/表示名対応を正規化し全コントロールの意味上差分0。権限要件は後工程。 接続情報更新後の再公開をAction 36547553342で読戻し、718プロパティ差分0、SCR002画面SHA一致を再確認。"
   },
   "publication": {
-    "version": "2026-09-29T06:38:41.555451Z",
-    "player_observed_at": "2026-09-29T06:42:30Z",
+    "version": "2026-09-29T09:11:07.0090418Z",
+    "player_observed_at": "2026-09-29T09:14:00Z",
     "player_app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
-    "player_result": "PASS",
-    "player_observation": "所有者の新規公開Playerで初期未選択、局×月選択、架空10件、勤務期間8/1～8/31、12桁番号、0/33.167、元備考、報告一覧開閉を確認。初期非表示ギャラリー幅1pxの不具合をVisible=trueとして再公開して解消。最終Action 36533040055の公開版・SHA・ソース・文書照合はPASS。専用利用者E2Eは静的1件PASS、UI3件FAIL（OneDrive再接続警告によるAllow無効）。PR #122はDraftでmain未統合。実効権限、999件境界、同時操作・途中障害、全画面総合と業務受入は未判定。一時Excel削除失敗を残件とする。",
-    "download_sha256": "0a7b6b1c12494fce6df7d0e3353af9bc16c08856a242fe7d935721482d9b448e"
+    "player_result": "BLOCKED",
+    "player_observation": "18:11 JSTに接続情報更新版を公開。18:14 JSTの専用利用者PlayerはOneDrive接続警告で許可が無効。画面操作PASSとは扱わない。旧15:38版の所有者操作結果は過去の証跡であり、この公開版へ転記しない。OneDrive初回起動は専用利用者でサインイン成功し、設定中。最終E2Eは接続成立後に実施。",
+    "download_sha256": "01ece7bd31766f5ce5b17b75f4426281abfefe6c3342962b6a8b4625891f6d9c"
   }
 }

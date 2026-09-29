@@ -1,5 +1,14 @@
 # 現在の作業と読取り対象
 
+## 2026-09-29 18:14 JST 認証代替・OneDrive初期作成・再公開
+
+- キーボードが表示されない手動操作を安全な認証フォームへ切替え、専用利用者のPower Automateサインインを確認。再接続では `No user OneDrive for Business account found` を再確認。ライセンス付与後も個人領域が未作成だった。
+- 再ログイン後のアプリ起動ツールにOneDriveが出現。初回起動・本人認証を完了し、画面は「設定しています。しばらくお待ちください...」。作成完了や接続成立とは扱わない。
+- 未公開下書きをダウンロードし、718プロパティ差分0とSCR002画面SHA一致を確認して同一アプリへ再公開。公開時刻 `2026-09-29T09:11:07.0090418Z`、最終下書き `2026-09-29T09:10:05Z`。読戻しAction 36547553342はPASS、パッケージSHA `01ece7bd31766f5ce5b17b75f4426281abfefe6c3342962b6a8b4625891f6d9c`。
+- 新公開版の専用PlayerはOneDrive警告・許可無効のまま。公開後記録はBLOCKEDへ更新し、旧版のPlayer PASSを転用しない。要件・基本・詳細設計の公開版識別を更新。
+- 文書配置チェックのFAIL原因は過去診断record.jsonのapp_id等不足と規定外status。診断内容は残し、BLOCKEDと必須メタデータを補完。最終E2E未完了のためPR #122はDraft、main未統合。
+- 次：OneDrive作成完了→コネクタ作成・Player同意→新公開版Player検証→公開後記録更新と最終照合→全必須ゲート合格後にPR統合。
+
 ## 2026-09-29 17:47 JST ライセンス原因の確定と修復
 
 - 管理センターで専用検証ユーザーがPower Apps for DeveloperとPower Automate Freeのみで、Business Basic未割当と確認。既存Business Basic (Teamsなし)は24/25席空き。OneDrive未検出エラーの前提不備を特定。
