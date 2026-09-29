@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20260929-SCR003-ATTENDANCE-IMPORT",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "changes": [
+    {
+      "path": "config/dataverse/scr003-attendance-columns.json",
+      "component": "SCR-003 source/schema candidate contract",
+      "unit_case_ids": [
+        "UT-SCR003-CONTRACT-001"
+      ],
+      "expected_result": "Excel TestDataの20列、局×勤務月、職員番号12桁、欠勤時間整数、対象月表の設計契約が一致する。実Dataverseやアプリの動作は未検証"
+    }
+  ],
+  "integration": {
+    "required": false,
+    "reason": "設計候補のみでアプリ/表/フロー未実装。実環境での結合試験は公開可能な実装後に選定する",
+    "case_ids": []
+  },
+  "system_test": {
+    "status": "deferred",
+    "reason": "正式実装、権限対応、対象月画面と単体試験の完了後に実施"
+  },
+  "cases": [
+    {
+      "id": "UT-SCR003-CONTRACT-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/attendance-contract.test.ts"
+    }
+  ]
+}
