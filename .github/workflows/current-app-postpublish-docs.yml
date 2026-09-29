@@ -1,6 +1,9 @@
 name: Current app published source and document reconciliation
 
 on:
+  push:
+    branches: [feat/scr003-attendance-import-20260929]
+    paths: [config/verification/scr003-reconcile.json]
   pull_request:
     paths:
       - 'docs/verification/postpublish/*.json'
@@ -150,7 +153,7 @@ jobs:
 
   readback:
     name: Check fixed app, release evidence and document changes
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.readback_only }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.readback_only) || github.event_name == 'push' }}
     permissions:
       contents: read
     runs-on: ubuntu-latest
@@ -159,7 +162,7 @@ jobs:
     outputs:
       record_path: ${{ steps.paths.outputs.record_path }}
     env:
-      CHANGE_ID: ${{ inputs.change_id }}
+      CHANGE_ID: ${{ inputs.change_id || 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
       TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
       DATAVERSE_URL: https://orge762dd9e.crm7.dynamics.com/
       CURRENT_APP_ID: 204a48dc-7f23-43dd-b934-4654a3cfa306
@@ -215,6 +218,11 @@ jobs:
               result.write(f"- 公開メタデータ／ダウンロードSHA-256／文書差分: 照合成功\n")
               result.write('- Playwrightの選定ケースは後続ジョブで判定。業務受入と総合テストは別判定。\n')
           PY
+      - name: Recheck authored SCR003 properties
+        if: ${{ env.CHANGE_ID == 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
+        run: |
+          pip install pyyaml
+          python3 scripts/automation/compare_scr003_readback.py "$RUNNER_TEMP/postpublish/readback.msapp"
       # The downloaded msapp can contain connection metadata: do not upload it.
       - name: Report reconciliation failure without changing app sharing
         if: ${{ failure() }}
@@ -224,7 +232,7 @@ jobs:
 
   selected-e2e:
     name: Re-run selected unit and integration cases on published Player
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.readback_only }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.readback_only) || github.event_name == 'push' }}
     needs: readback
     uses: ./.github/workflows/current-app-test-gate.yml
     with:
@@ -233,13 +241,13 @@ jobs:
 
   completed:
     name: Release reconciliation gate
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.readback_only }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.readback_only) || github.event_name == 'push' }}
     needs: [readback, selected-e2e]
     runs-on: ubuntu-latest
     steps:
       - name: Preserve run URL and scope in Actions summary
         env:
-          CHANGE_ID: ${{ inputs.change_id }}
+          CHANGE_ID: ${{ inputs.change_id || 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
         run: |
           echo "変更要求 $CHANGE_ID の公開版読戻し・選定単体／結合ケース・文書更新を照合しました。" >> "$GITHUB_STEP_SUMMARY"
           echo "run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20260929-SCR003-ATTENDANCE-IMPORT",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "source_commit": "098f82a34d659969c12b39320bb57bc0535422d8",
+  "documentation_base_commit": "2404cbe85ce1bc9155a17979518ee415913b33cd",
+  "requirement_ids": [
+    "D-04",
+    "COMMON-AUTH-001",
+    "SCR003-IMPORT-001"
+  ],
+  "selected_case_ids": [
+    "IT-SCR003-READBACK-001",
+    "UT-SCR003-CONTRACT-001",
+    "UT-SCR003-VIEW-001",
+    "UT-SCR006-MONTH-001"
+  ],
+  "source_comparison": {
+    "result": "MATCH",
+    "checked_paths": [
+      "config/dataverse/scr003-attendance-columns.json",
+      "src/screen-ui/v1.29/app-settings.json",
+      "src/screen-ui/v1.29/attendance-month-settings.paste.yaml",
+      "src/screen-ui/v1.29/btnHomeAttendance.OnSelect.fx",
+      "src/screen-ui/v1.29/scrAttendanceFormal.OnVisible.fx",
+      "src/screen-ui/v1.29/scrAttendanceFormal.paste.yaml"
+    ],
+    "method_and_findings": "PAC読戻しAction 36532637596でv1.29の718プロパティ、OnVisible、ホーム遷移、読込上限2000を照合。Gallery.Visible=trueの既定値省略を意味同一として判定。列契約20列はフロー定義と架空10件の取込/編集/再取込結果に照合。SCR002は旧保存ソース＋v1.28の2式とNative CDS論理名/表示名対応を正規化し全コントロールの意味上差分0。権限要件は後工程。"
+  },
+  "publication": {
+    "version": "2026-09-29T06:38:41.555451Z",
+    "player_observed_at": "2026-09-29T06:42:30Z",
+    "player_app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+    "player_result": "PASS",
+    "player_observation": "所有者の新規公開Playerで初期未選択、局×月選択、架空10件、勤務期間8/1～8/31、12桁番号、0/33.167、元備考、報告一覧開閉を確認。初期非表示ギャラリー幅1pxの不具合をVisible=trueとして再公開して解消。専用利用者E2Eは接続確認Allow無効を調査中で合格ではない。実効権限、999件境界、同時操作・途中障害、全画面総合と業務受入は未判定。一時Excel削除失敗を残件とする。",
+    "download_sha256": "0a7b6b1c12494fce6df7d0e3353af9bc16c08856a242fe7d935721482d9b448e"
+  }
+}
