@@ -10,8 +10,8 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
-SPEC = json.loads((ROOT / "scr003-attendance-columns.json").read_text())
+ROOT = Path(__file__).resolve().parents[2]
+SPEC = json.loads((ROOT / "config/dataverse/scr003-attendance-columns.json").read_text())
 URL = "https://orge762dd9e.crm7.dynamics.com"
 ORG = "9efe0732-a9b0-f111-8ade-002248f061b1"
 SOLUTION = "StaffMasterAutomation"
