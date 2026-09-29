@@ -37,6 +37,8 @@ class FlowSourceTest(unittest.TestCase):
         self.assertEqual(self.all['Activate_batch']['runAfter'],{'Commit_guard':['Succeeded']})
         self.assertEqual(self.all['Read_staged']['runAfter'],{'Stage_rows':['Succeeded']})
         self.assertEqual(self.all['Commit_guard']['runAfter'],{'Before_commit':['Succeeded']})
+    def test_concurrency_uses_async_response(self):
+        self.assertEqual(self.all['Respond']['operationOptions'],'Asynchronous')
     def test_response_even_when_cleanup_fails(self):
         self.assertIn('Failed',self.all['Respond']['runAfter']['Cleanup'])
         self.assertEqual(self.all['Failure']['runAfter'],{'Execute':['Failed','TimedOut']})

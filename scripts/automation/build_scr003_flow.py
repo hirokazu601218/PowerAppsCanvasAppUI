@@ -186,6 +186,7 @@ def build():
     actions['Failure']={**setvar('result',{'success':False,'reportId':reportid,'count':0,'version':-1,'message':expr("variables('message')")}), 'runAfter':{'Execute':['Failed','TimedOut']}}
     actions['Cleanup']={**branch("not(empty(variables('fileId')))",[('Delete_temp',api('DeleteFile',{'id':expr("variables('fileId')")},'shared_onedriveforbusiness'))]),'runAfter':{'Failure':['Succeeded','Skipped']}}
     actions['Respond']={'type':'Response','kind':'PowerApp','runAfter':{'Cleanup':['Succeeded','Failed','Skipped','TimedOut']},'inputs':{'statusCode':200,'body':{'resultjson':expr("string(variables('result'))")},'schema':{'type':'object','properties':{'resultjson':{'title':'resultjson','type':'string','x-ms-dynamically-added':True}}}}}
+    actions['Respond']['operationOptions']='Asynchronous'
     return definition
 
 if __name__=='__main__':
