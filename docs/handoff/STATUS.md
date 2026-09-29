@@ -1,5 +1,14 @@
 # 現在の作業と読取り対象
 
+## 2026-09-29 17:47 JST ライセンス原因の確定と修復
+
+- 管理センターで専用検証ユーザーがPower Apps for DeveloperとPower Automate Freeのみで、Business Basic未割当と確認。既存Business Basic (Teamsなし)は24/25席空き。OneDrive未検出エラーの前提不備を特定。
+- 既存の空き1席を標準サービス設定で割り当て、保存成功とページ再読込み後の3製品割当・23/25席空きを確認。購入、ロール・共有変更はない。サービスの一括無効化案は自動承認審査で拒否され未実行。
+- OneDrive初回利用は個人領域未確認。ライセンス修復後の接続作成で認証選択を要求したが中断され、元画面に「サインインできません。やり直してください。」。接続成立とは扱わない。
+- 再開位置：専用ユーザーでOneDrive初期作成と接続認証を完了→接続済みとPlayer警告解消を確認→下書き版の扱い・公開読戻し→最終E2E・文書照合→PR統合。公開15:38版、未公開16:22:29下書き、PR #122 Draftを維持。
+- 今回は新しいテストActionsを起動していない。詳細は `records/changes/change-20260929-scr003-attendance-import/manual-20260929-connection-diagnosis/license-remediation.json`。
+
+
 ## 2026-09-29 17:14 JST 接続追加の診断結果
 
 - 利用者の追加承認後、専用検証アカウントでOneDrive接続作成を実行。Microsoftから `No user OneDrive for Business account found` が返り、作成失敗。新しい接続一覧にもOneDriveはない。ログイン失敗や単なるトークン期限切れとは扱わない。
