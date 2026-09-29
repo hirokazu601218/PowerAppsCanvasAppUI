@@ -37,3 +37,8 @@ YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、�
 ### 2026-09-29 SCR-003公開確認画像
 
 `/非常勤給与/scr003-published-20260929.jpg`（`libfile_df82021399d081918917d417bff0f0bb`）。公開版 `2026-09-29T06:38:41.555451Z` の所有者Playerで架空明細を表示した画像。画面の外観証跡であり、取込・権限・全ケースの合格証明ではない。読取りはこの公開版の表示調査時に限定する。
+
+
+## 2026-09-29 OneDrive接続診断
+
+- `onedrive-test-connection-confirm-20260929.jpg`：専用検証アカウントのOneDrive接続作成前の確認画面。Library ID `libfile_7cbd438864a48191ac3fe146ad1d8d88`、所在 `/非常勤給与/onedrive-test-connection-confirm-20260929.jpg`。接続新設の確認時に読む。完了証跡ではない。
