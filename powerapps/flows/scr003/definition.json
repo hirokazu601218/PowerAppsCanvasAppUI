@@ -368,7 +368,7 @@
                   "休日給135": "@if(empty(string(item()?['休日給135'])),null,float(item()?['休日給135']))",
                   "欠勤時間": "@if(empty(string(item()?['欠勤時間'])),null,int(item()?['欠勤時間']))",
                   "備考": "@string(coalesce(item()?['備考'],''))",
-                  "勤務月": "@string(item()?['勤務月'])",
+                  "勤務月": "@if(isInt(string(item()?['勤務月'])),formatDateTime(addDays('1899-12-30',int(string(item()?['勤務月']))),'yyyy-MM'),if(equals(length(string(item()?['勤務月'])),7),string(item()?['勤務月']),formatDateTime(string(item()?['勤務月']),'yyyy-MM')))",
                   "所属部局名": "@string(item()?['所属部局名'])"
                 }
               },

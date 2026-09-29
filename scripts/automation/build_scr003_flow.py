@@ -81,7 +81,9 @@ def build():
                         'minimum':f['min'],'maximum':f['max']}
             if f['required']: props[col]['type']=props[col]['type'][0]
     props.update({'勤務月':{'type':'string','minLength':7,'maxLength':7},'所属部局名':{'type':'string','minLength':1,'maxLength':100}})
-    mapping['勤務月']=expr("string(item()?['勤務月'])")
+    # Excel returns date cells as serial days; edit requests already use yyyy-MM.
+    rawmonth="string(item()?['勤務月'])"
+    mapping['勤務月']=expr(f"if(isInt({rawmonth}),formatDateTime(addDays('1899-12-30',int({rawmonth})),'yyyy-MM'),if(equals(length({rawmonth}),7),{rawmonth},formatDateTime({rawmonth},'yyyy-MM')))")
     mapping['所属部局名']=expr("string(item()?['所属部局名'])")
     # Raw lexical checks prevent int() accepting/truncating malformed identifiers.
     rawstaff="string(item()?['職員番号'])"
