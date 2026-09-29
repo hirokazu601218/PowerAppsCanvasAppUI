@@ -53,7 +53,7 @@ def numeric(field,raw=False):
     col=field['display_name']
     val="item()?['"+col+"']"
     convert='int' if field['kind']=='integer' else 'float'
-    return expr(f"if(empty(string({val})),null(),{convert}({val}))")
+    return expr(f"if(empty(string({val})),null,{convert}({val}))")
 
 def build():
     schema={'type':'object','required':['operation','expectedVersion'], 'properties':{
