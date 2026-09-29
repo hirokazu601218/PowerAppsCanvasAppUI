@@ -1,5 +1,17 @@
 # 現在の作業と読取り対象
 
+## 2026-09-29 SCR-003フロー実装候補・実環境保存エラー
+
+- ユーザーは13:35 JSTに既存PR #122への送信と無効な開発用フローへの反映を明示承認。Git CLI認証がなく、接続済みGitHubツールで同ブランチへ送信した。最新実装候補コミットは `8c9f74d36952e7ee230d78d7738a4c7ad11aa2e7`。
+- 所有者のDataverse接続完了を画面で確認。従来の読取用下書きに対象月表を設定して保存。フローチェッカーはエラー0・無条件一覧警告1。これは新しい保存処理の合格ではない。
+- 候補コード：`scripts/automation/build_scr003_flow.py`、`powerapps/flows/scr003/definition.json`。全行検証、先頭0埋め、対象月照合、バッチ保存、報告・戻し、対象月設定を実装。`tests/automation/test_scr003_flow.py` の静的8件はActionsでもPASS。ただし実機試験ではない。
+- `scripts/automation/deploy_scr003_flow.py` は既存の無効なSCR003フロー1件と承認済み接続を照合し、バックアップ後にETag付き更新を試行。認証・読取・バックアップは成功。更新はPower Automate検証で拒否。
+- 最初の [run 36522420673](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36522420673) で `null()` 構文エラーを特定し、`null`へ修正。
+- 修正後の [run 36522487189](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36522487189) は `InvalidConcurrencyConfiguration`：Requestトリガーの同時実行制御と同期Responseを併用できないためFAIL。候補定義の反映・読戻しは未達。単に同時実行制御を削除すると更新競合を招くため、修正していない。
+- 次工程：アプリへの同期応答を維持できる排他制御または非同期ジョブ方式を設計し、競合・途中失敗を試験。その後SCR003呼出し/編集/報告/戻しとSCR006対象月設定を配線。架空Excel取込、再取込、対象外月、報告済拒否、画面再表示、公開Playerとソース照合は未実施。
+- 権限判定はユーザー指示で後工程。テスト環境・架空データ専用。アプリ公開・フロー有効化・共有やロール変更は今回行っていない。
+- 12:41開始の継続作業は13:41までの停止ルールを適用。読取り対象は本節、上記コード、変更要求・設計候補・列契約と `docs/operations/current-app-request-to-release.md`。
+
 ## 2026-09-29 SCR-003 Excel取込の正式設計準備（未実装）
 
 - [変更要求](../changes/requests/change-20260929-scr003-attendance-import.json)、[設計候補](../changes/scr003-attendance-import-design-candidate.md)、[20列の列契約](../../config/dataverse/scr003-attendance-columns.json)をDraft PR #122に記録。局×勤務月の状態、入力中の全件置換、報告済取込不可、給与班だけの戻し、対象月設定、0と12桁番号の扱いを整理した。

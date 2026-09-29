@@ -1,0 +1,27 @@
+{
+  "change_id": "CHANGE-20260929-SCR003-ATTENDANCE-IMPORT",
+  "run_id": "connection-and-flow-draft-20260929",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "FAIL",
+  "observed_at": "2026-09-29T04:39:08.541208+00:00",
+  "source_commit": "8c9f74d36952e7ee230d78d7738a4c7ad11aa2e7",
+  "version": "unpublished candidate",
+  "connection": "Dataverse connected and existing reader saved; checker 0 errors / 1 warning",
+  "source_tests": "8 static source tests PASS; not runtime tests",
+  "deployment": "FAIL: InvalidConcurrencyConfiguration; Request trigger concurrency is incompatible with synchronous Response",
+  "app_publish": "NOT_RUN",
+  "remaining": [
+    "Redesign concurrency without removing lost-update protection",
+    "Power Automate definition validation and runtime tests",
+    "SCR003 import/edit/report/reopen wiring",
+    "SCR006 target month UI",
+    "Player and published source readback"
+  ],
+  "authorization_boundary": "Bureau and payroll roles deferred by user; synthetic data only",
+  "github": "Sent with user approval; PR #122",
+  "runs": [
+    36522359180,
+    36522420673,
+    36522487189
+  ]
+}
