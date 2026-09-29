@@ -5,7 +5,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-from provision_scr003_attendance import ORG, SOLUTION, URL, attr, label
+from provision_scr003_attendance import ORG, SOLUTION, URL, attr
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC = json.loads((ROOT / "config/dataverse/scr003-attendance-columns.json").read_text())
@@ -46,7 +46,8 @@ def main():
         if column not in actual:
             api(path + "/Attributes", "POST", expected)
             print("ADDED", logical, column, flush=True)
-        observed = api(path + "/Attributes(LogicalName='" + column + "')?$select=LogicalName,MaxLength")
+        refreshed = api(path + "?$expand=Attributes")
+        observed = next(a for a in refreshed["Attributes"] if a["LogicalName"] == column)
         assert observed["MaxLength"] == 36, (logical, column)
         result.append((logical, column))
     api("PublishXml", "POST", {"ParameterXml": "<importexportxml><entities>" +
