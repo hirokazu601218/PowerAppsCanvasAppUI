@@ -6,8 +6,8 @@
       Height: =Parent.Height
       LayoutAlignItems: =LayoutAlignItems.Stretch
       LayoutDirection: =LayoutDirection.Vertical
-      Width: =Parent.Width
       Visible: =!varAttendanceImportOpen && !varAttendanceConfirmOpen && !Coalesce(varAttendanceEditOpen,false)
+      Width: =Parent.Width
     Children:
     - conAttendanceFormalHeader:
         Control: GroupContainer@1.5.0
@@ -170,245 +170,227 @@
                 - btnAttendanceReopen:
                     Control: ModernButton@1.0.0
                     Properties:
-                      Text: ="入力中へ戻す"
-                      X: =0
-                      Y: =0
-                      Width: =160
+                      DisplayMode: =If(IsBlank(varAttendanceCurrent) || Text(varAttendanceCurrent.報告状態)<>"報告済",DisplayMode.Disabled,DisplayMode.Edit)
                       Height: =40
                       OnSelect: =Set(varAttendanceAction,"reopen"); Set(varAttendanceConfirmOpen,true)
-                      DisplayMode: =If(IsBlank(varAttendanceCurrent) || Text(varAttendanceCurrent.報告状態)<>"報告済",DisplayMode.Disabled,DisplayMode.Edit)
+                      Text: ="入力中へ戻す"
+                      Width: =160
             - conAttendanceFormalColumns:
                 Control: GroupContainer@1.5.0
+                Variant: ManualLayout
                 Properties:
                   FillPortions: =0
                   Height: =48
                   Width: =Parent.Width
-                Variant: ManualLayout
                 Children:
                 - lblAttendanceCol0:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="No"
-                      X: =Parent.Width*0.000000
-                      Y: =0
-                      Width: =Parent.Width*0.038674
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="No"
+                      Width: =Parent.Width*0.038674
+                      X: =Parent.Width*0.000000
                 - lblAttendanceCol1:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="職員番号"
-                      X: =Parent.Width*0.038674
-                      Y: =0
-                      Width: =Parent.Width*0.127072
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="職員番号"
+                      Width: =Parent.Width*0.127072
+                      X: =Parent.Width*0.038674
                 - lblAttendanceCol2:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="課室"
-                      X: =Parent.Width*0.165746
-                      Y: =0
-                      Width: =Parent.Width*0.104972
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="課室"
+                      Width: =Parent.Width*0.104972
+                      X: =Parent.Width*0.165746
                 - lblAttendanceCol3:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="氏名"
-                      X: =Parent.Width*0.270718
-                      Y: =0
-                      Width: =Parent.Width*0.093923
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="氏名"
+                      Width: =Parent.Width*0.093923
+                      X: =Parent.Width*0.270718
                 - lblAttendanceCol4:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="通勤" & Char(10) & "日数"
-                      X: =Parent.Width*0.364641
-                      Y: =0
-                      Width: =Parent.Width*0.049724
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="通勤" & Char(10) & "日数"
+                      Width: =Parent.Width*0.049724
+                      X: =Parent.Width*0.364641
                 - lblAttendanceCol5:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="出勤" & Char(10) & "日数"
-                      X: =Parent.Width*0.414365
-                      Y: =0
-                      Width: =Parent.Width*0.049724
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="出勤" & Char(10) & "日数"
+                      Width: =Parent.Width*0.049724
+                      X: =Parent.Width*0.414365
                 - lblAttendanceCol6:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="25"
-                      X: =Parent.Width*0.464088
-                      Y: =0
-                      Width: =Parent.Width*0.047514
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="25"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.464088
                 - lblAttendanceCol7:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="100"
-                      X: =Parent.Width*0.511602
-                      Y: =0
-                      Width: =Parent.Width*0.047514
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="100"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.511602
                 - lblAttendanceCol8:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="125"
-                      X: =Parent.Width*0.559116
-                      Y: =0
-                      Width: =Parent.Width*0.047514
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="125"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.559116
                 - lblAttendanceCol9:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="135"
-                      X: =Parent.Width*0.606630
-                      Y: =0
-                      Width: =Parent.Width*0.047514
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="135"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.606630
                 - lblAttendanceCol10:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="150"
-                      X: =Parent.Width*0.654144
-                      Y: =0
-                      Width: =Parent.Width*0.047514
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="150"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.654144
                 - lblAttendanceCol11:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="160"
-                      X: =Parent.Width*0.701657
-                      Y: =0
-                      Width: =Parent.Width*0.047514
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="160"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.701657
                 - lblAttendanceCol12:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="175"
-                      X: =Parent.Width*0.749171
-                      Y: =0
-                      Width: =Parent.Width*0.047514
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="175"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.749171
                 - lblAttendanceCol13:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="休日" & Char(10) & "135"
-                      X: =Parent.Width*0.796685
-                      Y: =0
-                      Width: =Parent.Width*0.050829
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="休日" & Char(10) & "135"
+                      Width: =Parent.Width*0.050829
+                      X: =Parent.Width*0.796685
                 - lblAttendanceCol14:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="欠勤" & Char(10) & "時間"
-                      X: =Parent.Width*0.847514
-                      Y: =0
-                      Width: =Parent.Width*0.049724
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="欠勤" & Char(10) & "時間"
+                      Width: =Parent.Width*0.049724
+                      X: =Parent.Width*0.847514
                 - lblAttendanceCol15:
                     Control: Label@2.5.1
                     Properties:
-                      Text: ="備考"
-                      X: =Parent.Width*0.897238
-                      Y: =0
-                      Width: =Parent.Width*0.102762
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
                       Height: =48
                       Size: =10
-                      Align: =Align.Center
-                      FontWeight: =FontWeight.Semibold
-                      Fill: =RGBA(231,239,247,1)
-                      BorderThickness: =1
-                      BorderColor: =RGBA(210,220,230,1)
+                      Text: ="備考"
+                      Width: =Parent.Width*0.102762
+                      X: =Parent.Width*0.897238
             - galAttendanceFormalLines:
                 Control: Gallery@2.15.0
                 Variant: Vertical
@@ -417,334 +399,315 @@
                   Items: =SortByColumns(Filter(colAttendanceLines,Coalesce(varAttendanceSection,"すべて")="すべて" || 所属課室名=varAttendanceSection),"crb3c_lineno",SortOrder.Ascending)
                   TemplatePadding: =1
                   TemplateSize: =58
+                  Visible: =true
                   Width: =Parent.Width
-                  Visible: =!IsBlank(varAttendanceBatch)
                 Children:
                 - lblAttendanceCell0:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.No),"",Text(ThisItem.No,"0"))
-                      X: =Parent.TemplateWidth*0.000000
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.038674
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.No),"",Text(ThisItem.No,"0"))
                       Tooltip: =Text(ThisItem.No)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.038674
+                      X: =Parent.TemplateWidth*0.000000
                 - lblAttendanceCell1:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =ThisItem.職員番号
-                      X: =Parent.TemplateWidth*0.038674
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.127072
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =ThisItem.職員番号
                       Tooltip: =ThisItem.職員番号
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.127072
+                      X: =Parent.TemplateWidth*0.038674
                 - lblAttendanceCell2:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =ThisItem.所属課室名
-                      X: =Parent.TemplateWidth*0.165746
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.104972
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =ThisItem.所属課室名
                       Tooltip: =ThisItem.所属課室名
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.104972
+                      X: =Parent.TemplateWidth*0.165746
                 - lblAttendanceCell3:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =ThisItem.氏名
-                      X: =Parent.TemplateWidth*0.270718
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.093923
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =ThisItem.氏名
                       Tooltip: =ThisItem.氏名
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.093923
+                      X: =Parent.TemplateWidth*0.270718
                 - lblAttendanceCell4:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.通勤手当日数),"",Text(ThisItem.通勤手当日数,"0"))
-                      X: =Parent.TemplateWidth*0.364641
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.049724
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.通勤手当日数),"",Text(ThisItem.通勤手当日数,"0"))
                       Tooltip: =Text(ThisItem.通勤手当日数)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.049724
+                      X: =Parent.TemplateWidth*0.364641
                 - lblAttendanceCell5:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.出勤日数),"",Text(ThisItem.出勤日数,"0"))
-                      X: =Parent.TemplateWidth*0.414365
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.049724
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.出勤日数),"",Text(ThisItem.出勤日数,"0"))
                       Tooltip: =Text(ThisItem.出勤日数)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.049724
+                      X: =Parent.TemplateWidth*0.414365
                 - lblAttendanceCell6:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.超過勤務時間25),"",If(ThisItem.超過勤務時間25=0,"0",Text(ThisItem.超過勤務時間25,If(Mod(ThisItem.超過勤務時間25,1)=0,"0","0.###"),"en-US")))
-                      X: =Parent.TemplateWidth*0.464088
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.047514
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間25),"",If(ThisItem.超過勤務時間25=0,"0",Text(ThisItem.超過勤務時間25,If(Mod(ThisItem.超過勤務時間25,1)=0,"0","0.###"),"en-US")))
                       Tooltip: =Text(ThisItem.超過勤務時間25)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.464088
                 - lblAttendanceCell7:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.超過勤務時間100),"",If(ThisItem.超過勤務時間100=0,"0",Text(ThisItem.超過勤務時間100,If(Mod(ThisItem.超過勤務時間100,1)=0,"0","0.###"),"en-US")))
-                      X: =Parent.TemplateWidth*0.511602
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.047514
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間100),"",If(ThisItem.超過勤務時間100=0,"0",Text(ThisItem.超過勤務時間100,If(Mod(ThisItem.超過勤務時間100,1)=0,"0","0.###"),"en-US")))
                       Tooltip: =Text(ThisItem.超過勤務時間100)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.511602
                 - lblAttendanceCell8:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.超過勤務時間125),"",If(ThisItem.超過勤務時間125=0,"0",Text(ThisItem.超過勤務時間125,If(Mod(ThisItem.超過勤務時間125,1)=0,"0","0.###"),"en-US")))
-                      X: =Parent.TemplateWidth*0.559116
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.047514
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間125),"",If(ThisItem.超過勤務時間125=0,"0",Text(ThisItem.超過勤務時間125,If(Mod(ThisItem.超過勤務時間125,1)=0,"0","0.###"),"en-US")))
                       Tooltip: =Text(ThisItem.超過勤務時間125)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.559116
                 - lblAttendanceCell9:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.超過勤務時間135),"",If(ThisItem.超過勤務時間135=0,"0",Text(ThisItem.超過勤務時間135,If(Mod(ThisItem.超過勤務時間135,1)=0,"0","0.###"),"en-US")))
-                      X: =Parent.TemplateWidth*0.606630
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.047514
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間135),"",If(ThisItem.超過勤務時間135=0,"0",Text(ThisItem.超過勤務時間135,If(Mod(ThisItem.超過勤務時間135,1)=0,"0","0.###"),"en-US")))
                       Tooltip: =Text(ThisItem.超過勤務時間135)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.606630
                 - lblAttendanceCell10:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.超過勤務時間150),"",If(ThisItem.超過勤務時間150=0,"0",Text(ThisItem.超過勤務時間150,If(Mod(ThisItem.超過勤務時間150,1)=0,"0","0.###"),"en-US")))
-                      X: =Parent.TemplateWidth*0.654144
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.047514
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間150),"",If(ThisItem.超過勤務時間150=0,"0",Text(ThisItem.超過勤務時間150,If(Mod(ThisItem.超過勤務時間150,1)=0,"0","0.###"),"en-US")))
                       Tooltip: =Text(ThisItem.超過勤務時間150)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.654144
                 - lblAttendanceCell11:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.超過勤務時間160),"",If(ThisItem.超過勤務時間160=0,"0",Text(ThisItem.超過勤務時間160,If(Mod(ThisItem.超過勤務時間160,1)=0,"0","0.###"),"en-US")))
-                      X: =Parent.TemplateWidth*0.701657
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.047514
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間160),"",If(ThisItem.超過勤務時間160=0,"0",Text(ThisItem.超過勤務時間160,If(Mod(ThisItem.超過勤務時間160,1)=0,"0","0.###"),"en-US")))
                       Tooltip: =Text(ThisItem.超過勤務時間160)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.701657
                 - lblAttendanceCell12:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.超過勤務時間175),"",If(ThisItem.超過勤務時間175=0,"0",Text(ThisItem.超過勤務時間175,If(Mod(ThisItem.超過勤務時間175,1)=0,"0","0.###"),"en-US")))
-                      X: =Parent.TemplateWidth*0.749171
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.047514
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間175),"",If(ThisItem.超過勤務時間175=0,"0",Text(ThisItem.超過勤務時間175,If(Mod(ThisItem.超過勤務時間175,1)=0,"0","0.###"),"en-US")))
                       Tooltip: =Text(ThisItem.超過勤務時間175)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.749171
                 - lblAttendanceCell13:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.休日給135),"",If(ThisItem.休日給135=0,"0",Text(ThisItem.休日給135,If(Mod(ThisItem.休日給135,1)=0,"0","0.###"),"en-US")))
-                      X: =Parent.TemplateWidth*0.796685
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.050829
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.休日給135),"",If(ThisItem.休日給135=0,"0",Text(ThisItem.休日給135,If(Mod(ThisItem.休日給135,1)=0,"0","0.###"),"en-US")))
                       Tooltip: =Text(ThisItem.休日給135)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.050829
+                      X: =Parent.TemplateWidth*0.796685
                 - lblAttendanceCell14:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =If(IsBlank(ThisItem.欠勤時間),"",Text(ThisItem.欠勤時間,"0"))
-                      X: =Parent.TemplateWidth*0.847514
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.049724
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.欠勤時間),"",Text(ThisItem.欠勤時間,"0"))
                       Tooltip: =Text(ThisItem.欠勤時間)
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.049724
+                      X: =Parent.TemplateWidth*0.847514
                 - lblAttendanceCell15:
                     Control: Label@2.5.1
                     Properties:
-                      Text: =ThisItem.備考
-                      X: =Parent.TemplateWidth*0.897238
-                      Y: =0
-                      Width: =Parent.TemplateWidth*0.102762
-                      Height: =56
-                      Size: =10
-                      BorderThickness: =1
                       BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
                       Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
                       PaddingLeft: =4
                       PaddingRight: =4
+                      Size: =10
+                      Text: =ThisItem.備考
                       Tooltip: =ThisItem.備考
-                      OnSelect: =If(Text(varAttendanceCurrent.報告状態)="入力中",Set(varAttendanceEditRow,ThisItem); ClearCollect(colAttendanceEditFields,{Field:"所属課室名",Val:Text(ThisItem.所属課室名)},{Field:"所属長氏名",Val:Text(ThisItem.所属長氏名)},{Field:"勤務時間管理員氏名",Val:Text(ThisItem.勤務時間管理員氏名)},{Field:"No",Val:Text(ThisItem.No)},{Field:"職員番号",Val:Text(ThisItem.職員番号)},{Field:"氏名",Val:Text(ThisItem.氏名)},{Field:"通勤手当日数",Val:Text(ThisItem.通勤手当日数)},{Field:"出勤日数",Val:Text(ThisItem.出勤日数)},{Field:"超過勤務時間25",Val:Text(ThisItem.超過勤務時間25)},{Field:"超過勤務時間100",Val:Text(ThisItem.超過勤務時間100)},{Field:"超過勤務時間125",Val:Text(ThisItem.超過勤務時間125)},{Field:"超過勤務時間135",Val:Text(ThisItem.超過勤務時間135)},{Field:"超過勤務時間150",Val:Text(ThisItem.超過勤務時間150)},{Field:"超過勤務時間160",Val:Text(ThisItem.超過勤務時間160)},{Field:"超過勤務時間175",Val:Text(ThisItem.超過勤務時間175)},{Field:"休日給135",Val:Text(ThisItem.休日給135)},{Field:"欠勤時間",Val:Text(ThisItem.欠勤時間)},{Field:"備考",Val:Text(ThisItem.備考)}); Set(varAttendanceEditOpen,true))
+                      Width: =Parent.TemplateWidth*0.102762
+                      X: =Parent.TemplateWidth*0.897238
 - conAttendanceImportOverlay:
     Control: GroupContainer@1.5.0
+    Variant: ManualLayout
     Properties:
       Fill: =RGBA(0,0,0,0.35)
-      X: =0
-      Y: =0
-      Width: =Parent.Width
       Height: =Parent.Height
       Visible: =varAttendanceImportOpen
-    Variant: ManualLayout
+      Width: =Parent.Width
     Children:
     - conAttendanceImportDialog:
         Control: GroupContainer@1.5.0
+        Variant: ManualLayout
         Properties:
           Fill: =Color.White
+          Height: =520
+          Width: =Min(760,Parent.Width-32)
           X: =(Parent.Width-Self.Width)/2
           Y: =Max(12,(Parent.Height-Self.Height)/2)
-          Width: =Min(760,Parent.Width-32)
-          Height: =520
-        Variant: ManualLayout
         Children:
         - lblAttendanceImportTitle:
             Control: Label@2.5.1
             Properties:
-              Text: ="Excel取込"
-              X: =24
-              Y: =18
-              Width: =Parent.Width-100
+              FontWeight: =FontWeight.Semibold
               Height: =36
               Size: =20
-              FontWeight: =FontWeight.Semibold
+              Text: ="Excel取込"
+              Width: =Parent.Width-100
+              X: =24
+              Y: =18
         - lblAttendanceImportHelp:
             Control: Label@2.5.1
             Properties:
+              Height: =38
+              Size: =12
               Text: ="勤務月を選び、TestDataテーブルを含むExcelを添付してください。"
+              Width: =Parent.Width-48
               X: =24
               Y: =62
-              Width: =Parent.Width-48
-              Height: =38
-              Size: =12
-        - lblAttendanceMonth:
+        - lblAttendanceMonth_1:
             Control: Label@2.5.1
             Properties:
-              Text: ="報告対象月"
-              X: =24
-              Y: =108
-              Width: =130
               Height: =38
               Size: =12
-        - ddAttendanceMonth:
+              Text: ="報告対象月"
+              Width: =130
+              X: =24
+              Y: =108
+        - ddAttendanceMonth_1:
             Control: Classic/DropDown@2.3.1
             Properties:
-              X: =160
-              Y: =108
-              Width: =260
-              Height: =40
+              AllowEmptySelection: =true
               Items: =Filter(M_勤務報告対象月,報告対象=true)
               Items.Value: =crb3c_name
-              AllowEmptySelection: =true
+              Width: =260
+              X: =160
+              Y: =108
         - frmAttendanceUpload:
             Control: Form@2.4.4
             Variant: Modern
             Layout: Vertical
             Properties:
               BorderColor: =RGBA(245, 245, 245, 1)
-              DataSource: ='PoC_Excel取込依頼_STUDIO'
+              DataSource: =PoC_Excel取込依頼_STUDIO
               DefaultMode: '=FormMode.New    '
               Height: =190
-              Item: '=Defaults(''PoC_Excel取込依頼_STUDIO'')    '
+              Item: '=Defaults(PoC_Excel取込依頼_STUDIO)    '
               NumberOfColumns: =1
               Width: =Parent.Width-48
               X: =24
@@ -793,6 +756,7 @@
                       DisplayMode: =Parent.DisplayMode
                       Fill: =RGBA(245,245,245, 1)
                       Font: =Font.'Segoe UI'
+                      Height: =130
                       HoverColor: =RGBA(50, 49, 48, 1)
                       HoverFill: =RGBA(245, 245, 245, 1)
                       ItemColor: =RGBA(0, 0, 0, 1)
@@ -801,7 +765,10 @@
                       ItemHoverFill: =RGBA(245, 245, 245, 1)
                       ItemSpacing: =12
                       Items: =Parent.Default
+                      MaxAttachments: =1
                       NoAttachmentsColor: =RGBA(161, 159, 157, 1)
+                      OnAddFile: =Set(varAttendanceImportMessage,"")
+                      OnRemoveFile: =Set(varAttendanceImportMessage,"")
                       PaddingBottom: =5
                       PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
                       PaddingRight: =5
@@ -812,11 +779,6 @@
                       Width: =Parent.Width - 48
                       X: =24
                       Y: =lblAttendanceUpload.Y + lblAttendanceUpload.Height + 4
-                      MaxAttachments: =1
-                      MaxAttachmentSize: =10
-                      Height: =130
-                      OnAddFile: =Set(varAttendanceImportMessage,"")
-                      OnRemoveFile: =Set(varAttendanceImportMessage,"")
                 - errAttendanceUpload:
                     Control: ModernText@1.0.0
                     MetadataKey: ErrorMessage
@@ -844,160 +806,154 @@
         - lblAttendanceImportResult:
             Control: Label@2.5.1
             Properties:
-              Text: =Coalesce(varAttendanceImportMessage,"")
-              X: =24
-              Y: =366
-              Width: =Parent.Width-48
+              Color: =RGBA(170,50,20,1)
               Height: =70
               Size: =12
-              Color: =RGBA(170,50,20,1)
+              Text: =Coalesce(varAttendanceImportMessage,"")
+              Width: =Parent.Width-48
+              X: =24
+              Y: =366
         - btnAttendanceImportRun:
             Control: ModernButton@1.0.0
             Properties:
+              DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+              Height: =40
+              OnSelect: =If(CountRows(attAttendanceUpload.Attachments)<>1,Set(varAttendanceImportMessage,"Excelファイルを1件選択してください。"),!EndsWith(Lower(First(attAttendanceUpload.Attachments).Name),".xlsx"),Set(varAttendanceImportMessage,".xlsxファイルを選択してください。"),IsBlank(ddAttendanceMonth_1.Selected.勤務月),Set(varAttendanceImportMessage,"報告対象月が設定されていません。"),IsBlank(Trim(txtAttendanceImportBureau.Text)),Set(varAttendanceImportMessage,"所属部局名を入力してください。"),Set(varAttendanceBusy,true); Set(varAttendanceImportMessage,"取込中です。完了までお待ちください。"); IfError(Set(varAttendanceExisting,LookUp(T_勤務時間報告,勤務月=ddAttendanceMonth_1.Selected.勤務月 && 所属部局名=Trim(txtAttendanceImportBureau.Text))); Set(varAttendanceReply,ParseJSON(SCR003_勤務時間報告_Excel取込_開発中.Run(JSON({operation:"import",expectedVersion:If(IsBlank(varAttendanceExisting),-1,Coalesce(varAttendanceExisting.取込版,0)),month:Text(ddAttendanceMonth_1.Selected.勤務月,"yyyy-mm"),bureau:Trim(txtAttendanceImportBureau.Text)},JSONFormat.Compact),{file:{name:First(attAttendanceUpload.Attachments).Name,contentBytes:First(attAttendanceUpload.Attachments).Value}}).resultjson)); Set(varAttendanceImportMessage,Text(varAttendanceReply.message) & " 登録件数：" & Text(varAttendanceReply.count)); If(Boolean(varAttendanceReply.success),Refresh(T_勤務時間報告); Refresh(T_勤務時間報告明細); Set(varAttendanceCurrent,LookUp(T_勤務時間報告,crb3c_attendancereportid=GUID(Text(varAttendanceReply.reportId)))); Set(varAttendanceBatch,Coalesce(varAttendanceCurrent.有効取込バッチID,"")); ClearCollect(colAttendanceLines,Filter(T_勤務時間報告明細,取込バッチID=varAttendanceBatch)); Set(varAttendanceSection,"すべて"); ClearCollect(colAttendanceSections,{Value:"すべて"}); Collect(colAttendanceSections,ForAll(Distinct(colAttendanceLines,所属課室名),{Value:ThisRecord.Value})); Reset(ddAttendanceFormalSection)),Set(varAttendanceImportMessage,FirstError.Message)); Set(varAttendanceBusy,false))
               Text: ="取込実行"
+              Width: =160
               X: =24
               Y: =458
-              Width: =160
-              Height: =40
-              OnSelect: =If(CountRows(attAttendanceUpload.Attachments)<>1,Set(varAttendanceImportMessage,"Excelファイルを1件選択してください。"),!EndsWith(Lower(First(attAttendanceUpload.Attachments).Name),".xlsx"),Set(varAttendanceImportMessage,".xlsxファイルを選択してください。"),IsBlank(ddAttendanceMonth.Selected.勤務月),Set(varAttendanceImportMessage,"報告対象月が設定されていません。"),IsBlank(Trim(txtAttendanceImportBureau.Text)),Set(varAttendanceImportMessage,"所属部局名を入力してください。"),Set(varAttendanceBusy,true); Set(varAttendanceImportMessage,"取込中です。完了までお待ちください。"); IfError(Set(varAttendanceExisting,LookUp(T_勤務時間報告,勤務月=ddAttendanceMonth.Selected.勤務月 && 所属部局名=Trim(txtAttendanceImportBureau.Text))); Set(varAttendanceReply,ParseJSON(SCR003_勤務時間報告_Excel取込_開発中.Run(JSON({operation:"import",expectedVersion:If(IsBlank(varAttendanceExisting),-1,Coalesce(varAttendanceExisting.取込版,0)),month:Text(ddAttendanceMonth.Selected.勤務月,"yyyy-mm"),bureau:Trim(txtAttendanceImportBureau.Text)},JSONFormat.Compact),{file:{name:First(attAttendanceUpload.Attachments).Name,contentBytes:First(attAttendanceUpload.Attachments).Value}}).resultjson)); Set(varAttendanceImportMessage,Text(varAttendanceReply.message) & " 登録件数：" & Text(varAttendanceReply.count)); If(Boolean(varAttendanceReply.success),Refresh(T_勤務時間報告); Refresh(T_勤務時間報告明細); Set(varAttendanceCurrent,LookUp(T_勤務時間報告,crb3c_attendancereportid=GUID(Text(varAttendanceReply.reportId)))); Set(varAttendanceBatch,Coalesce(varAttendanceCurrent.有効取込バッチID,"")); ClearCollect(colAttendanceLines,Filter(T_勤務時間報告明細,取込バッチID=varAttendanceBatch)); Set(varAttendanceSection,"すべて"); ClearCollect(colAttendanceSections,{Value:"すべて"}); Collect(colAttendanceSections,ForAll(Distinct(colAttendanceLines,所属課室名),{Value:ThisRecord.Value})); Reset(ddAttendanceFormalSection)),Set(varAttendanceImportMessage,FirstError.Message)); Set(varAttendanceBusy,false))
-              DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
         - btnAttendanceImportCancel:
             Control: ModernButton@1.0.0
             Properties:
-              Text: ="閉じる"
-              X: =Parent.Width-144
-              Y: =458
-              Width: =120
-              Height: =40
-              OnSelect: =Set(varAttendanceImportOpen,false); ResetForm(frmAttendanceUpload)
               Appearance: =ButtonAppearance.Outline
               DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+              Height: =40
+              OnSelect: =Set(varAttendanceImportOpen,false); ResetForm(frmAttendanceUpload)
+              Text: ="閉じる"
+              Width: =120
+              X: =Parent.Width-144
+              Y: =458
         - txtAttendanceImportBureau:
             Control: Classic/TextInput@2.3.2
             Properties:
               Default: =Coalesce(varAttendanceCurrent.所属部局名,"")
               HintText: ="所属部局名（Excelと一致）"
+              Width: =300
               X: =440
               Y: =108
-              Width: =300
-              Height: =40
 - conAttendanceConfirmOverlay:
     Control: GroupContainer@1.5.0
+    Variant: ManualLayout
     Properties:
       Fill: =RGBA(0,0,0,0.35)
-      Width: =Parent.Width
       Height: =Parent.Height
       Visible: =varAttendanceConfirmOpen
-    Variant: ManualLayout
+      Width: =Parent.Width
     Children:
     - conAttendanceConfirmDialog:
         Control: GroupContainer@1.5.0
+        Variant: ManualLayout
         Properties:
           Fill: =Color.White
+          Height: =240
+          Width: =Min(620,Parent.Width-32)
           X: =(Parent.Width-Self.Width)/2
           Y: =(Parent.Height-Self.Height)/2
-          Width: =Min(620,Parent.Width-32)
-          Height: =240
-        Variant: ManualLayout
         Children:
         - lblAttendanceConfirmTitle:
             Control: Label@2.5.1
             Properties:
-              Text: =If(varAttendanceAction="reopen","入力中への変更","報告の確認")
-              X: =24
-              Y: =22
-              Width: =Parent.Width-48
               Height: =68
               Size: =18
+              Text: =If(varAttendanceAction="reopen","入力中への変更","報告の確認")
+              Width: =Parent.Width-48
+              X: =24
+              Y: =22
         - lblAttendanceConfirmText:
             Control: Label@2.5.1
             Properties:
-              Text: =If(varAttendanceAction="reopen","入力中へ戻しますか？","局全体の当月データを報告しますか？報告後は編集できません。")
-              X: =24
-              Y: =94
-              Width: =Parent.Width-48
               Height: =48
               Size: =12
+              Text: =If(varAttendanceAction="reopen","入力中へ戻しますか？","局全体の当月データを報告しますか？報告後は編集できません。")
+              Width: =Parent.Width-48
+              X: =24
+              Y: =94
         - btnAttendanceConfirmOk:
             Control: ModernButton@1.0.0
             Properties:
-              Text: ="OK"
-              X: =24
-              Y: =168
-              Width: =120
               Height: =40
               OnSelect: =IfError(Set(varAttendanceReply,ParseJSON(SCR003_勤務時間報告_Excel取込_開発中.Run(JSON({operation:varAttendanceAction,expectedVersion:varAttendanceCurrent.取込版,reportId:Text(varAttendanceCurrent.crb3c_attendancereportid)},JSONFormat.Compact)).resultjson)); Notify(Text(varAttendanceReply.message),If(Boolean(varAttendanceReply.success),NotificationType.Success,NotificationType.Error)); If(Boolean(varAttendanceReply.success),Refresh(T_勤務時間報告); Refresh(T_勤務時間報告明細); Set(varAttendanceCurrent,LookUp(T_勤務時間報告,crb3c_attendancereportid=GUID(Text(varAttendanceReply.reportId)))); Set(varAttendanceBatch,Coalesce(varAttendanceCurrent.有効取込バッチID,"")); ClearCollect(colAttendanceLines,Filter(T_勤務時間報告明細,取込バッチID=varAttendanceBatch)); Set(varAttendanceSection,"すべて"); ClearCollect(colAttendanceSections,{Value:"すべて"}); Collect(colAttendanceSections,ForAll(Distinct(colAttendanceLines,所属課室名),{Value:ThisRecord.Value})); Reset(ddAttendanceFormalSection); Set(varAttendanceConfirmOpen,false)),Notify(FirstError.Message,NotificationType.Error))
+              Text: ="OK"
+              Width: =120
+              X: =24
+              Y: =168
         - btnAttendanceConfirmCancel:
             Control: ModernButton@1.0.0
             Properties:
-              Text: ="キャンセル"
-              X: =Parent.Width-174
-              Y: =168
-              Width: =150
+              Appearance: =ButtonAppearance.Outline
               Height: =40
               OnSelect: =Set(varAttendanceConfirmOpen,false)
-              Appearance: =ButtonAppearance.Outline
+              Text: ="キャンセル"
+              Width: =150
+              X: =Parent.Width-174
+              Y: =168
 - conAttendanceEditOverlay:
     Control: GroupContainer@1.5.0
+    Variant: ManualLayout
     Properties:
       Fill: =Color.White
-      X: =0
-      Y: =0
-      Width: =Parent.Width
       Height: =Parent.Height
       Visible: =Coalesce(varAttendanceEditOpen,false)
-    Variant: ManualLayout
+      Width: =Parent.Width
     Children:
     - lblAttendanceEditTitle:
         Control: Label@2.5.1
         Properties:
+          Size: =18
           Text: ="勤務時間報告の明細編集"
+          Width: =600
           X: =24
           Y: =16
-          Width: =600
-          Height: =40
-          Size: =18
     - galAttendanceEditFields:
         Control: Gallery@2.15.0
+        Variant: Vertical
         Properties:
+          Height: =Parent.Height-144
           Items: =colAttendanceEditFields
+          TemplatePadding: =0
+          TemplateSize: =48
+          Width: =Parent.Width-48
           X: =24
           Y: =64
-          Width: =Parent.Width-48
-          Height: =Parent.Height-144
-          TemplateSize: =48
-          TemplatePadding: =0
-        Variant: Vertical
         Children:
         - lblAttendanceEditField:
             Control: Label@2.5.1
             Properties:
               Text: =ThisItem.Field
               Width: =240
-              Height: =40
         - txtAttendanceEditValue:
             Control: Classic/TextInput@2.3.2
             Properties:
               Default: =ThisItem.Val
-              X: =250
-              Width: =Parent.TemplateWidth-260
-              Height: =40
               OnChange: =Patch(colAttendanceEditFields,ThisItem,{Val:Self.Text})
+              Width: =Parent.TemplateWidth-260
+              X: =250
     - btnAttendanceEditSave:
         Control: ModernButton@1.0.0
         Properties:
+          Height: =40
+          OnSelect: =IfError(Set(varAttendanceReply,ParseJSON(SCR003_勤務時間報告_Excel取込_開発中.Run(JSON({operation:"edit",expectedVersion:varAttendanceCurrent.取込版,reportId:Text(varAttendanceCurrent.crb3c_attendancereportid),month:Text(varAttendanceCurrent.勤務月,"yyyy-mm"),bureau:varAttendanceCurrent.所属部局名,rows:ForAll(colAttendanceLines As r,{所属課室名:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="所属課室名",Val),r.所属課室名),所属長氏名:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="所属長氏名",Val),r.所属長氏名),勤務時間管理員氏名:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="勤務時間管理員氏名",Val),r.勤務時間管理員氏名),No:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="No",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="No",Val),"en-US")),r.No),職員番号:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="職員番号",Val),r.職員番号),氏名:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="氏名",Val),r.氏名),通勤手当日数:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="通勤手当日数",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="通勤手当日数",Val),"en-US")),r.通勤手当日数),出勤日数:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="出勤日数",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="出勤日数",Val),"en-US")),r.出勤日数),超過勤務時間25:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間25",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間25",Val),"en-US")),r.超過勤務時間25),超過勤務時間100:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間100",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間100",Val),"en-US")),r.超過勤務時間100),超過勤務時間125:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間125",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間125",Val),"en-US")),r.超過勤務時間125),超過勤務時間135:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間135",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間135",Val),"en-US")),r.超過勤務時間135),超過勤務時間150:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間150",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間150",Val),"en-US")),r.超過勤務時間150),超過勤務時間160:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間160",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間160",Val),"en-US")),r.超過勤務時間160),超過勤務時間175:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間175",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間175",Val),"en-US")),r.超過勤務時間175),休日給135:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="休日給135",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="休日給135",Val),"en-US")),r.休日給135),欠勤時間:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="欠勤時間",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="欠勤時間",Val),"en-US")),r.欠勤時間),備考:If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="備考",Val),r.備考),勤務月:Text(varAttendanceCurrent.勤務月,"yyyy-mm"),所属部局名:varAttendanceCurrent.所属部局名})},JSONFormat.Compact)).resultjson)); Notify(Text(varAttendanceReply.message),If(Boolean(varAttendanceReply.success),NotificationType.Success,NotificationType.Error)); If(Boolean(varAttendanceReply.success),Refresh(T_勤務時間報告); Refresh(T_勤務時間報告明細); Set(varAttendanceCurrent,LookUp(T_勤務時間報告,crb3c_attendancereportid=GUID(Text(varAttendanceReply.reportId)))); Set(varAttendanceBatch,Coalesce(varAttendanceCurrent.有効取込バッチID,"")); ClearCollect(colAttendanceLines,Filter(T_勤務時間報告明細,取込バッチID=varAttendanceBatch)); Set(varAttendanceSection,"すべて"); ClearCollect(colAttendanceSections,{Value:"すべて"}); Collect(colAttendanceSections,ForAll(Distinct(colAttendanceLines,所属課室名),{Value:ThisRecord.Value})); Reset(ddAttendanceFormalSection); Set(varAttendanceEditOpen,false)),Notify(FirstError.Message,NotificationType.Error))
           Text: ="保存"
+          Width: =140
           X: =24
           Y: =Parent.Height-64
-          Width: =140
-          Height: =40
-          OnSelect: =IfError(Set(varAttendanceReply,ParseJSON(SCR003_勤務時間報告_Excel取込_開発中.Run(JSON({operation:"edit",expectedVersion:varAttendanceCurrent.取込版,reportId:Text(varAttendanceCurrent.crb3c_attendancereportid),month:Text(varAttendanceCurrent.勤務月,"yyyy-mm"),bureau:varAttendanceCurrent.所属部局名,rows:ForAll(colAttendanceLines As r,{'所属課室名':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="所属課室名",Val),r.所属課室名),'所属長氏名':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="所属長氏名",Val),r.所属長氏名),'勤務時間管理員氏名':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="勤務時間管理員氏名",Val),r.勤務時間管理員氏名),'No':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="No",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="No",Val),"en-US")),r.No),'職員番号':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="職員番号",Val),r.職員番号),'氏名':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="氏名",Val),r.氏名),'通勤手当日数':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="通勤手当日数",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="通勤手当日数",Val),"en-US")),r.通勤手当日数),'出勤日数':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="出勤日数",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="出勤日数",Val),"en-US")),r.出勤日数),'超過勤務時間25':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間25",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間25",Val),"en-US")),r.超過勤務時間25),'超過勤務時間100':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間100",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間100",Val),"en-US")),r.超過勤務時間100),'超過勤務時間125':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間125",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間125",Val),"en-US")),r.超過勤務時間125),'超過勤務時間135':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間135",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間135",Val),"en-US")),r.超過勤務時間135),'超過勤務時間150':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間150",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間150",Val),"en-US")),r.超過勤務時間150),'超過勤務時間160':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間160",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間160",Val),"en-US")),r.超過勤務時間160),'超過勤務時間175':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="超過勤務時間175",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="超過勤務時間175",Val),"en-US")),r.超過勤務時間175),'休日給135':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="休日給135",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="休日給135",Val),"en-US")),r.休日給135),'欠勤時間':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,If(IsBlank(LookUp(colAttendanceEditFields,Field="欠勤時間",Val)),Blank(),Value(LookUp(colAttendanceEditFields,Field="欠勤時間",Val),"en-US")),r.欠勤時間),'備考':If(r.crb3c_attendancereportlineid=varAttendanceEditRow.crb3c_attendancereportlineid,LookUp(colAttendanceEditFields,Field="備考",Val),r.備考),勤務月:Text(varAttendanceCurrent.勤務月,"yyyy-mm"),所属部局名:varAttendanceCurrent.所属部局名})},JSONFormat.Compact)).resultjson)); Notify(Text(varAttendanceReply.message),If(Boolean(varAttendanceReply.success),NotificationType.Success,NotificationType.Error)); If(Boolean(varAttendanceReply.success),Refresh(T_勤務時間報告); Refresh(T_勤務時間報告明細); Set(varAttendanceCurrent,LookUp(T_勤務時間報告,crb3c_attendancereportid=GUID(Text(varAttendanceReply.reportId)))); Set(varAttendanceBatch,Coalesce(varAttendanceCurrent.有効取込バッチID,"")); ClearCollect(colAttendanceLines,Filter(T_勤務時間報告明細,取込バッチID=varAttendanceBatch)); Set(varAttendanceSection,"すべて"); ClearCollect(colAttendanceSections,{Value:"すべて"}); Collect(colAttendanceSections,ForAll(Distinct(colAttendanceLines,所属課室名),{Value:ThisRecord.Value})); Reset(ddAttendanceFormalSection); Set(varAttendanceEditOpen,false)),Notify(FirstError.Message,NotificationType.Error))
     - btnAttendanceEditCancel:
         Control: ModernButton@1.0.0
         Properties:
-          Text: ="キャンセル"
-          X: =184
-          Y: =Parent.Height-64
-          Width: =140
           Height: =40
           OnSelect: =Set(varAttendanceEditOpen,false)
+          Text: ="キャンセル"
+          Width: =140
+          X: =184
+          Y: =Parent.Height-64

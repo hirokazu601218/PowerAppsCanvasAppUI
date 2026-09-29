@@ -51,7 +51,7 @@ def main():
             if normalized(value)!=normalized((ROOT/'src/screen-ui/v1.29'/file).read_text()):differences.append(name+'.'+prop)
             checked+=1
         properties=[n for n in names if n.endswith('Properties.json')]
-        limit=any(json.loads(z.read(n)).get('DataRowLimit')==2000 for n in properties)
+        limit=any(json.loads(z.read(n)).get('DefaultConnectedDataSourceMaxGetRowsCount')==2000 for n in properties)
         if not limit: differences.append('DataRowLimit expected 2000')
         print(json.dumps({'checked_properties':checked,'differences':differences},ensure_ascii=False))
         if differences:raise SystemExit('Candidate/readback difference requires review')
