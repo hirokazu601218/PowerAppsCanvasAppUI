@@ -5,6 +5,7 @@ on:
     branches: [feat/scr003-attendance-import-20260929]
     paths:
       - '.github/workflows/scr003-attendance-schema.yml'
+      - 'scripts/automation/provision_scr003_attendance.py'
   workflow_dispatch:
     inputs:
       mode:
