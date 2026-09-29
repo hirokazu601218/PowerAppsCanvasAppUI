@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "source": "勤務時間報告書_テーブル定義書 1(1).xlsx / 勤務時間報告書_テストデータ.xlsx, シート テストデータ, Excelテーブル TestData, 20列",
+  "target_environment": "StaffMaster-Automation-Test",
+  "status": "設計候補。アカウントの所属・ロールと実効セキュリティの確定前には公開運用しない",
+  "entities": [
+    {
+      "key": "report",
+      "display_name": "T_勤務時間報告",
+      "logical_name": "crb3c_attendancereport",
+      "ownership": "UserOwned",
+      "unique_business_key": [
+        "work_month",
+        "bureau_key"
+      ],
+      "fields": [
+        {
+          "key": "work_month",
+          "display_name": "勤務月",
+          "kind": "date_only",
+          "required": true
+        },
+        {
+          "key": "bureau_key",
+          "display_name": "所属局識別子",
+          "kind": "text",
+          "max_length": 100,
+          "required": true
+        },
+        {
+          "key": "bureau_name",
+          "display_name": "所属部局名",
+          "kind": "text",
+          "max_length": 100,
+          "required": true
+        },
+        {
+          "key": "status",
+          "display_name": "報告状態",
+          "kind": "choice",
+          "values": [
+            "入力中",
+            "報告済"
+          ],
+          "required": true
+        },
+        {
+          "key": "reported_at",
+          "display_name": "報告日時",
+          "kind": "datetime",
+          "required": false
+        },
+        {
+          "key": "reported_by",
+          "display_name": "報告者",
+          "kind": "lookup_user",
+          "required": false
+        },
+        {
+          "key": "reopened_at",
+          "display_name": "入力中へ戻した日時",
+          "kind": "datetime",
+          "required": false
+        },
+        {
+          "key": "reopened_by",
+          "display_name": "戻した給与班担当",
+          "kind": "lookup_user",
+          "required": false
+        },
+        {
+          "key": "import_version",
+          "display_name": "取込版",
+          "kind": "integer",
+          "min": 0,
+          "max": 2147483647,
+          "required": true
+        }
+      ]
+    },
+    {
+      "key": "detail",
+      "display_name": "T_勤務時間報告明細",
+      "logical_name": "crb3c_attendancereportline",
+      "ownership": "UserOwned",
+      "parent": "report",
+      "delete_policy": "Restrict until controlled replacement",
+      "fields": [
+        {
+          "display_name": "所属課室名",
+          "key": "section_name",
+          "kind": "text",
+          "required": true,
+          "max_length": 100
+        },
+        {
+          "display_name": "所属長氏名",
+          "key": "section_head",
+          "kind": "text",
+          "required": true,
+          "max_length": 50
+        },
+        {
+          "display_name": "勤務時間管理員氏名",
+          "key": "time_manager",
+          "kind": "text",
+          "required": true,
+          "max_length": 50
+        },
+        {
+          "display_name": "No",
+          "key": "line_no",
+          "kind": "integer",
+          "required": true,
+          "min": 1,
+          "max": 999
+        },
+        {
+          "display_name": "職員番号",
+          "key": "staff_number",
+          "kind": "text",
+          "required": true,
+          "max_length": 12
+        },
+        {
+          "display_name": "氏名",
+          "key": "staff_name",
+          "kind": "text",
+          "required": true,
+          "max_length": 50
+        },
+        {
+          "display_name": "通勤手当日数",
+          "key": "commute_days",
+          "kind": "integer",
+          "required": false,
+          "min": 0,
+          "max": 31
+        },
+        {
+          "display_name": "出勤日数",
+          "key": "attendance_days",
+          "kind": "integer",
+          "required": false,
+          "min": 0,
+          "max": 31
+        },
+        {
+          "display_name": "超過勤務時間25",
+          "key": "overtime_25",
+          "kind": "decimal",
+          "required": false,
+          "min": 0,
+          "max": 999.999,
+          "precision": 3
+        },
+        {
+          "display_name": "超過勤務時間100",
+          "key": "overtime_100",
+          "kind": "decimal",
+          "required": false,
+          "min": 0,
+          "max": 999.999,
+          "precision": 3
+        },
+        {
+          "display_name": "超過勤務時間125",
+          "key": "overtime_125",
+          "kind": "decimal",
+          "required": false,
+          "min": 0,
+          "max": 999.999,
+          "precision": 3
+        },
+        {
+          "display_name": "超過勤務時間135",
+          "key": "overtime_135",
+          "kind": "decimal",
+          "required": false,
+          "min": 0,
+          "max": 999.999,
+          "precision": 3
+        },
+        {
+          "display_name": "超過勤務時間150",
+          "key": "overtime_150",
+          "kind": "decimal",
+          "required": false,
+          "min": 0,
+          "max": 999.999,
+          "precision": 3
+        },
+        {
+          "display_name": "超過勤務時間160",
+          "key": "overtime_160",
+          "kind": "decimal",
+          "required": false,
+          "min": 0,
+          "max": 999.999,
+          "precision": 3
+        },
+        {
+          "display_name": "超過勤務時間175",
+          "key": "overtime_175",
+          "kind": "decimal",
+          "required": false,
+          "min": 0,
+          "max": 999.999,
+          "precision": 3
+        },
+        {
+          "display_name": "休日給135",
+          "key": "holiday_135",
+          "kind": "decimal",
+          "required": false,
+          "min": 0,
+          "max": 999.999,
+          "precision": 3
+        },
+        {
+          "display_name": "欠勤時間",
+          "key": "absence_hours",
+          "kind": "integer",
+          "required": false,
+          "min": 0,
+          "max": 2147483647
+        },
+        {
+          "display_name": "備考",
+          "key": "remarks",
+          "kind": "text",
+          "required": false,
+          "max_length": 1000
+        }
+      ]
+    },
+    {
+      "key": "target_month",
+      "display_name": "M_勤務報告対象月",
+      "logical_name": "crb3c_attendancetargetmonth",
+      "ownership": "OrganizationOwned or admin controlled UserOwned (to decide)",
+      "fields": [
+        {
+          "key": "work_month",
+          "display_name": "勤務月",
+          "kind": "date_only",
+          "required": true
+        },
+        {
+          "key": "enabled",
+          "display_name": "報告対象",
+          "kind": "boolean",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "import_contract": {
+    "sheet": "テストデータ",
+    "excel_table": "TestData",
+    "columns": [
+      "勤務月",
+      "所属部局名",
+      "所属課室名",
+      "所属長氏名",
+      "勤務時間管理員氏名",
+      "No",
+      "職員番号",
+      "氏名",
+      "通勤手当日数",
+      "出勤日数",
+      "超過勤務時間25",
+      "超過勤務時間100",
+      "超過勤務時間125",
+      "超過勤務時間135",
+      "超過勤務時間150",
+      "超過勤務時間160",
+      "超過勤務時間175",
+      "休日給135",
+      "欠勤時間",
+      "備考"
+    ],
+    "group_by": [
+      "勤務月",
+      "所属部局名"
+    ],
+    "replacement": "validate all rows, then replace child detail set for one report under server-side transaction/compensation; never write reported report",
+    "staff_number": "12 digits text, left-pad only if Excel cell is numeric digits and source value is unambiguous; reject nonnumeric or over-12",
+    "zero_display": "all overtime 0 renders '0', nonzero at most 3 decimals without unnecessary trailing zeros",
+    "report_period": "first and last calendar day of work_month"
+  }
+}
