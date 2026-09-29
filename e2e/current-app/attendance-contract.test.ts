@@ -1,8 +1,15 @@
 import { expect, test } from '@playwright/test';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 test('UT-SCR003-CONTRACT-001 添付Excelの20列と報告単位の設計契約を固定する', () => {
-  const spec = JSON.parse(readFileSync('config/dataverse/scr003-attendance-columns.json', 'utf8'));
+  const candidates = [
+    resolve(process.cwd(), 'config/dataverse/scr003-attendance-columns.json'),
+    resolve(process.cwd(), '../../../project/config/dataverse/scr003-attendance-columns.json'),
+  ];
+  const specPath = candidates.find(existsSync);
+  expect(specPath, 'checked-out SCR-003 contract path').toBeDefined();
+  const spec = JSON.parse(readFileSync(specPath!, 'utf8'));
   expect(spec.target_environment).toBe('StaffMaster-Automation-Test');
   expect(spec.import_contract.sheet).toBe('テストデータ');
   expect(spec.import_contract.excel_table).toBe('TestData');
