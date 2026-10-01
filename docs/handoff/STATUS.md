@@ -8,7 +8,7 @@
 - 初回E2E7件PASS／3件FAILは履歴。起動待ち、破棄確認ボタン名、描画CSS要素、Confirm後のARIA名消失に対するテスト修正後、最終E2E成功。アプリソースと公開版は維持。
 - 所有者Studioで架空10件の備考保存・再表示・空欄への完全復元、公開Playerで3画面・モード切替・未保存変更破棄を確認。
 - 未判定：今回の業務受入、総合試験D-07、実データ運用、業務認可、999件境界、同時更新・途中障害。従来の残件を今回のUI変更完了に含めない。
-- 読取り対象：新たな変更指示があるまで、要求・v1.30・[公開後記録](../verification/postpublish/change-20261001-scr001-003-ui.json)・選定ケース・最終Actions結果。完了詳細は[実施記録](../../records/changes/change-20261001-scr001-003-ui/completion.md)。
+- 読取り対象：新たな変更指示があるまで、要求・v1.30・[公開後記録](../verification/postpublish/change-20261001-scr001-003-ui.json)・選定ケース・最終Actions結果。完了詳細は[実施記録](../../records/changes/change-20261001-scr001-003-ui/manual-20261001-completion/completion.md)。
 - 今回の統合作業は11:04 JST開始、12:04 JST期限。アプリの再公開・共有や権限の変更は行っていない。
 
 ## 2026-09-29 20:30 JST 専用ユーザーのRead修復・公開Player読戻しPASS
