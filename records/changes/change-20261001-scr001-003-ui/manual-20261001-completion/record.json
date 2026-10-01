@@ -1,0 +1,11 @@
+{
+  "change_id": "change-20261001-scr001-003-ui",
+  "run_id": "manual-20261001-completion",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PASS",
+  "observed_at": "2026-10-01T02:05:30Z",
+  "source_commit": "308ab4cb4668553ce158a8f1d5873321784d5233",
+  "version": "2026-10-01T00:26:01.1961006Z",
+  "merge_commit": "1e0b2b39df99542970ed057494fa65a040256a0e",
+  "workflow_run_id": 36797346142
+}
