@@ -1,0 +1,67 @@
+- conHeader111:
+    Control: GroupContainer@1.5.0
+    Variant: ManualLayout
+    Properties:
+      DropShadow: =DropShadow.None
+      Fill: '=UiTheme.Header  '
+      Height: =64
+      Width: =Parent.Width
+    Children:
+    - lblApp111:
+        Control: Label@2.5.1
+        Properties:
+          BorderColor: =UiTheme.Header
+          BorderThickness: =1
+          Color: =ColorValue("#FFFFFF")
+          Fill: =ColorValue("#073B78")
+          Height: =32
+          PaddingLeft: =8
+          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+          Text: '="非常勤職員マスタ検索"  '
+          Tooltip: =Self.Text
+          Width: '=Parent.Width-232    '
+    - lblMeta111:
+        Control: Label@2.5.1
+        Properties:
+          BorderColor: =UiTheme.Header
+          BorderThickness: =1
+          Color: =ColorValue("#FFFFFF")
+          Fill: =ColorValue("#073B78")
+          Height: =32
+          PaddingLeft: =8
+          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+          Text: =If(IsBlank(varFetched111),Coalesce(varFetchError111,"データ取得中"),"取得日時：" & Text(varFetched111,"yyyy/mm/dd hh:mm:ss"))
+          Tooltip: =Self.Text
+          Width: '=Parent.Width-232    '
+          Y: =32
+    - btnStaffHome122:
+        Control: ModernButton@1.0.0
+        Properties:
+          AccessibleLabel: ="ホーム"
+          Appearance: '=ButtonAppearance.Outline    '
+          BasePaletteColor: =UiTheme.Primary
+          Color: '=Color.White '
+          Font: ="Segoe UI"
+          Height: =44
+          OnSelect: =If(IsEmpty(colDraft111) || Confirm("保存していない変更を破棄してホームへ移動しますか？",{Title:"変更の破棄",ConfirmButton:"変更を破棄",CancelButton:"編集を続ける"}),Clear(colDraft111);Set(varEditMode111,false);Navigate(scrHome,ScreenTransition.None))
+          Size: =14
+          Text: ="ホーム"
+          Width: '=112 '
+          X: '=Parent.Width-216    '
+          Y: '=10  '
+    - lblStaffScreenId111:
+        Control: Label@2.5.1
+        Properties:
+          Align: '=Align.Right '
+          BorderColor: =ColorValue("#CBD5E1")
+          BorderThickness: =0
+          Color: =ColorValue("#FFFFFF")
+          Fill: =ColorValue("#073B78")
+          Height: '=56  '
+          PaddingLeft: =8
+          Size: =If(Coalesce(varLargeText111,false),12,10.5)
+          Text: '="SCR-002"   '
+          Tooltip: =Self.Text
+          Width: '=92  '
+          X: '=Parent.Width-104    '
+          Y: '=4   '

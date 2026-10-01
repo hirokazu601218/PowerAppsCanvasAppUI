@@ -1,0 +1,1061 @@
+- conAttendanceFormalRoot:
+    Control: GroupContainer@1.5.0
+    Variant: AutoLayout
+    Properties:
+      Fill: =RGBA(248,250,252,1)
+      Height: =Parent.Height*UiOuterHeight
+      LayoutAlignItems: =LayoutAlignItems.Stretch
+      LayoutDirection: =LayoutDirection.Vertical
+      Visible: =!varAttendanceImportOpen && !varAttendanceConfirmOpen
+      Width: =Parent.Width*UiOuterWidth
+      X: =Parent.Width*UiOuterX
+      Y: =Parent.Height*UiOuterY
+    Children:
+    - conAttendanceFormalHeader:
+        Control: GroupContainer@1.5.0
+        Variant: AutoLayout
+        Properties:
+          Fill: =UiTheme.Header
+          FillPortions: =0
+          Height: =64
+          LayoutAlignItems: =LayoutAlignItems.Center
+          LayoutDirection: =LayoutDirection.Horizontal
+          LayoutGap: =12
+          PaddingLeft: =20
+          PaddingRight: =20
+          Width: =Parent.Width
+        Children:
+        - lblAttendanceFormalTitle:
+            Control: Label@2.5.1
+            Properties:
+              Color: =Color.White
+              FillPortions: =1
+              FontWeight: =FontWeight.Semibold
+              Height: =48
+              Size: =18
+              Text: ="勤務時間報告書"
+              Width: =650
+        - btnAttendanceFormalImport:
+            Control: ModernButton@1.0.0
+            Properties:
+              AccessibleLabel: ="Excel取込"
+              Height: =44
+              OnSelect: =Set(varAttendanceImportOpen,true); Set(varAttendanceImportMessage,""); ResetForm(frmAttendanceUpload); NewForm(frmAttendanceUpload); Refresh(M_勤務報告対象月)
+              Text: ="Excel取込"
+              Width: =160
+              DisplayMode: =If(Coalesce(varAttendanceInlineEdit,false) || Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+        - btnAttendanceFormalHome:
+            Control: ModernButton@1.0.0
+            Properties:
+              AccessibleLabel: ="ホーム"
+              Appearance: =ButtonAppearance.Outline
+              Height: =44
+              OnSelect: =Navigate(scrHome,ScreenTransition.None)
+              Text: ="ホーム"
+              Width: =110
+              Color: =Color.White
+              BorderColor: =Color.White
+              DisplayMode: =If(Coalesce(varAttendanceInlineEdit,false) || Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+        - lblAttendanceFormalId:
+            Control: Label@2.5.1
+            Properties:
+              Text: ="SCR-003"
+              Size: =If(Coalesce(varLargeText111,false),12,10.5)
+              Color: =Color.White
+              Align: =Align.Right
+              Height: =56
+              Width: =92
+              BorderThickness: =0
+    - conAttendanceFormalBody:
+        Control: GroupContainer@1.5.0
+        Variant: AutoLayout
+        Properties:
+          Height: =Parent.Height-64
+          LayoutAlignItems: =LayoutAlignItems.Stretch
+          LayoutDirection: =LayoutDirection.Horizontal
+          LayoutGap: =8
+          PaddingBottom: =12
+          PaddingLeft: =12
+          PaddingRight: =12
+          PaddingTop: =12
+          Width: =Parent.Width
+        Children:
+        - conAttendanceFormalSidebar:
+            Control: GroupContainer@1.5.0
+            Variant: AutoLayout
+            Properties:
+              Fill: =Color.White
+              FillPortions: =0
+              Height: =Parent.Height
+              LayoutDirection: =LayoutDirection.Vertical
+              LayoutGap: =8
+              PaddingLeft: =8
+              PaddingRight: =8
+              PaddingTop: =8
+              Width: =If(Coalesce(varAttendancePanelOpen,true),300,52)
+            Children:
+            - btnAttendanceFormalToggle:
+                Control: ModernButton@1.0.0
+                Properties:
+                  Appearance: =ButtonAppearance.Outline
+                  Height: =42
+                  OnSelect: =Set(varAttendancePanelOpen,!Coalesce(varAttendancePanelOpen,true))
+                  Text: =If(Coalesce(varAttendancePanelOpen,true),"報告状況  ◀","▶")
+                  Width: =Parent.Width-16
+            - galAttendanceFormalReports:
+                Control: Gallery@2.15.0
+                Variant: Vertical
+                Properties:
+                  Height: =Parent.Height-65
+                  Items: =SortByColumns(T_勤務時間報告,"crb3c_workmonth",SortOrder.Descending)
+                  OnSelect: =Set(varAttendanceCurrent,ThisItem); Set(varAttendanceBatch,Coalesce(varAttendanceCurrent.有効取込バッチID,"")); ClearCollect(colAttendanceLines,Filter(T_勤務時間報告明細,取込バッチID=varAttendanceBatch)); Set(varAttendanceSection,"すべて"); ClearCollect(colAttendanceSections,{Value:"すべて"}); Collect(colAttendanceSections,ForAll(Distinct(colAttendanceLines,所属課室名),{Value:ThisRecord.Value})); Reset(ddAttendanceFormalSection)
+                  TemplatePadding: =2
+                  TemplateSize: =72
+                  Visible: =Coalesce(varAttendancePanelOpen,true)
+                  Width: =Parent.Width-16
+                  DisplayMode: =If(Coalesce(varAttendanceInlineEdit,false) || Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                Children:
+                - lblAttendanceFormalReportRow:
+                    Control: Label@2.5.1
+                    Properties:
+                      Fill: =If(ThisItem.IsSelected,RGBA(223,235,248,1),Color.White)
+                      Height: =68
+                      OnSelect: =Select(Parent)
+                      Size: =12
+                      Text: =Text(ThisItem.勤務月,"yyyy/mm") & "  " & ThisItem.所属部局名 & Char(10) & Text(ThisItem.報告状態)
+                      Width: =Parent.TemplateWidth
+        - conAttendanceFormalReport:
+            Control: GroupContainer@1.5.0
+            Variant: AutoLayout
+            Properties:
+              Fill: =Color.White
+              Height: =Parent.Height
+              LayoutDirection: =LayoutDirection.Vertical
+              LayoutGap: =8
+              PaddingLeft: =12
+              PaddingRight: =12
+              PaddingTop: =8
+              Width: =Parent.Width-320
+            Children:
+            - lblAttendanceFormalPeriod:
+                Control: Label@2.5.1
+                Properties:
+                  FontWeight: =FontWeight.Semibold
+                  Height: =64
+                  Size: =14
+                  Text: =If(IsBlank(varAttendanceCurrent),"局と勤務月を選択してください","勤務月：" & Text(varAttendanceCurrent.勤務月,"yyyy年m月") & Char(10) & "勤務期間：" & Text(Date(Year(varAttendanceCurrent.勤務月),Month(varAttendanceCurrent.勤務月),1),"yyyy/mm/dd") & " ～ " & Text(DateAdd(Date(Year(varAttendanceCurrent.勤務月),Month(varAttendanceCurrent.勤務月)+1,1),-1,TimeUnit.Days),"yyyy/mm/dd"))
+                  Width: =Parent.Width
+            - lblAttendanceFormalBureau:
+                Control: Label@2.5.1
+                Properties:
+                  Height: =36
+                  Size: =12
+                  Text: =If(IsBlank(varAttendanceCurrent),"","所属部局名：" & varAttendanceCurrent.所属部局名 & "   状態：" & Text(varAttendanceCurrent.報告状態))
+                  Width: =Parent.Width
+            - conAttendanceInlineToolbar:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  Height: =48
+                  FillPortions: =0
+                  LayoutGap: =12
+                  LayoutMinWidth: =0
+                Children:
+                - btnAttendanceReadMode:
+                    Control: ModernButton@1.0.0
+                    Properties:
+                      Text: ="読み取りモード"
+                      AccessibleLabel: ="読み取りモード"
+                      OnSelect: =If(!Coalesce(varAttendanceInlineDirty,false) || Confirm("保存していない変更を破棄して読み取りモードへ戻りますか？",{Title:"変更の破棄",ConfirmButton:"変更を破棄",CancelButton:"編集を続ける"}),Set(varAttendanceInlineEdit,false); Set(varAttendanceInlineDirty,false); Clear(colAttendanceInlineDraft))
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      Width: =144
+                      Height: =40
+                - btnAttendanceInlineMode:
+                    Control: ModernButton@1.0.0
+                    Properties:
+                      Text: ="編集モード"
+                      AccessibleLabel: ="編集モード"
+                      OnSelect: =If(!IsBlank(varAttendanceCurrent) && Text(varAttendanceCurrent.報告状態)="入力中" && !IsBlank(varAttendanceBatch),ClearCollect(colAttendanceInlineDraft,ForAll(colAttendanceLines As r,{RowId:Text(r.crb3c_attendancereportlineid),No:If(IsBlank(r.No),Blank(),Text(r.No)),職員番号:If(IsBlank(r.職員番号),Blank(),Text(r.職員番号)),所属課室名:If(IsBlank(r.所属課室名),Blank(),Text(r.所属課室名)),氏名:If(IsBlank(r.氏名),Blank(),Text(r.氏名)),通勤手当日数:If(IsBlank(r.通勤手当日数),Blank(),Text(r.通勤手当日数)),出勤日数:If(IsBlank(r.出勤日数),Blank(),Text(r.出勤日数)),超過勤務時間25:If(IsBlank(r.超過勤務時間25),Blank(),Text(r.超過勤務時間25)),超過勤務時間100:If(IsBlank(r.超過勤務時間100),Blank(),Text(r.超過勤務時間100)),超過勤務時間125:If(IsBlank(r.超過勤務時間125),Blank(),Text(r.超過勤務時間125)),超過勤務時間135:If(IsBlank(r.超過勤務時間135),Blank(),Text(r.超過勤務時間135)),超過勤務時間150:If(IsBlank(r.超過勤務時間150),Blank(),Text(r.超過勤務時間150)),超過勤務時間160:If(IsBlank(r.超過勤務時間160),Blank(),Text(r.超過勤務時間160)),超過勤務時間175:If(IsBlank(r.超過勤務時間175),Blank(),Text(r.超過勤務時間175)),休日給135:If(IsBlank(r.休日給135),Blank(),Text(r.休日給135)),欠勤時間:If(IsBlank(r.欠勤時間),Blank(),Text(r.欠勤時間)),備考:If(IsBlank(r.備考),Blank(),Text(r.備考)),所属長氏名:If(IsBlank(r.所属長氏名),Blank(),Text(r.所属長氏名)),勤務時間管理員氏名:If(IsBlank(r.勤務時間管理員氏名),Blank(),Text(r.勤務時間管理員氏名))})); Set(varAttendanceInlineEdit,true); Set(varAttendanceInlineDirty,false))
+                      DisplayMode: =If(Coalesce(varAttendanceInlineEdit,false) || Coalesce(varAttendanceBusy,false) || IsBlank(varAttendanceCurrent) || Text(varAttendanceCurrent.報告状態)<>"入力中",DisplayMode.Disabled,DisplayMode.Edit)
+                      Width: =144
+                      Height: =40
+                - btnAttendanceInlineSave:
+                    Control: ModernButton@1.0.0
+                    Properties:
+                      Text: ="保存"
+                      AccessibleLabel: ="保存"
+                      OnSelect: =Set(varAttendanceBusy,true); IfError(Set(varAttendanceReply,ParseJSON(SCR003_勤務時間報告_Excel取込_開発中.Run(JSON({operation:"edit",expectedVersion:varAttendanceCurrent.取込版,reportId:Text(varAttendanceCurrent.crb3c_attendancereportid),month:Text(varAttendanceCurrent.勤務月,"yyyy-mm"),bureau:varAttendanceCurrent.所属部局名,rows:ForAll(colAttendanceInlineDraft As r,{No:If(IsBlank(r.No),Blank(),Value(r.No,"en-US")),職員番号:r.職員番号,所属課室名:r.所属課室名,氏名:r.氏名,通勤手当日数:If(IsBlank(r.通勤手当日数),Blank(),Value(r.通勤手当日数,"en-US")),出勤日数:If(IsBlank(r.出勤日数),Blank(),Value(r.出勤日数,"en-US")),超過勤務時間25:If(IsBlank(r.超過勤務時間25),Blank(),Value(r.超過勤務時間25,"en-US")),超過勤務時間100:If(IsBlank(r.超過勤務時間100),Blank(),Value(r.超過勤務時間100,"en-US")),超過勤務時間125:If(IsBlank(r.超過勤務時間125),Blank(),Value(r.超過勤務時間125,"en-US")),超過勤務時間135:If(IsBlank(r.超過勤務時間135),Blank(),Value(r.超過勤務時間135,"en-US")),超過勤務時間150:If(IsBlank(r.超過勤務時間150),Blank(),Value(r.超過勤務時間150,"en-US")),超過勤務時間160:If(IsBlank(r.超過勤務時間160),Blank(),Value(r.超過勤務時間160,"en-US")),超過勤務時間175:If(IsBlank(r.超過勤務時間175),Blank(),Value(r.超過勤務時間175,"en-US")),休日給135:If(IsBlank(r.休日給135),Blank(),Value(r.休日給135,"en-US")),欠勤時間:If(IsBlank(r.欠勤時間),Blank(),Value(r.欠勤時間,"en-US")),備考:r.備考,所属長氏名:r.所属長氏名,勤務時間管理員氏名:r.勤務時間管理員氏名,勤務月:Text(varAttendanceCurrent.勤務月,"yyyy-mm"),所属部局名:varAttendanceCurrent.所属部局名})},JSONFormat.Compact)).resultjson)); Notify(Text(varAttendanceReply.message),If(Boolean(varAttendanceReply.success),NotificationType.Success,NotificationType.Error)); If(Boolean(varAttendanceReply.success),Refresh(T_勤務時間報告); Refresh(T_勤務時間報告明細); Set(varAttendanceCurrent,LookUp(T_勤務時間報告,crb3c_attendancereportid=GUID(Text(varAttendanceReply.reportId)))); Set(varAttendanceBatch,Coalesce(varAttendanceCurrent.有効取込バッチID,"")); ClearCollect(colAttendanceLines,Filter(T_勤務時間報告明細,取込バッチID=varAttendanceBatch)); Set(varAttendanceSection,"すべて"); ClearCollect(colAttendanceSections,{Value:"すべて"}); Collect(colAttendanceSections,ForAll(Distinct(colAttendanceLines,所属課室名),{Value:ThisRecord.Value})); Reset(ddAttendanceFormalSection); Set(varAttendanceInlineEdit,false); Set(varAttendanceInlineDirty,false); Clear(colAttendanceInlineDraft)),Notify(FirstError.Message,NotificationType.Error)); Set(varAttendanceBusy,false)
+                      DisplayMode: =If(!Coalesce(varAttendanceInlineEdit,false) || !Coalesce(varAttendanceInlineDirty,false) || Coalesce(varAttendanceBusy,false) || Text(varAttendanceCurrent.報告状態)<>"入力中",DisplayMode.Disabled,DisplayMode.Edit)
+                      Width: =144
+                      Height: =40
+            - conAttendanceFormalFilters:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  FillPortions: =0
+                  Height: =48
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =12
+                  Width: =Parent.Width
+                Children:
+                - lblAttendanceFormalSection:
+                    Control: Label@2.5.1
+                    Properties:
+                      Text: ="所属課室名"
+                      Width: =110
+                - ddAttendanceFormalSection:
+                    Control: Classic/DropDown@2.3.1
+                    Properties:
+                      Default: ="すべて"
+                      Items: =colAttendanceSections
+                      Items.Value: =Value
+                      OnChange: =Set(varAttendanceSection,Self.Selected.Value)
+                      Width: =230
+                - btnAttendanceFormalReport:
+                    Control: ModernButton@1.0.0
+                    Properties:
+                      DisplayMode: =If(Coalesce(varAttendanceInlineEdit,false) || Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,If(IsBlank(varAttendanceCurrent) || Text(varAttendanceCurrent.報告状態)<>"入力中" || IsBlank(varAttendanceBatch),DisplayMode.Disabled,DisplayMode.Edit))
+                      Height: =40
+                      OnSelect: =Set(varAttendanceAction,"report"); Set(varAttendanceConfirmOpen,true)
+                      Text: ="報告"
+                      Width: =110
+                - btnAttendanceReopen:
+                    Control: ModernButton@1.0.0
+                    Properties:
+                      DisplayMode: =If(Coalesce(varAttendanceInlineEdit,false) || Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,If(IsBlank(varAttendanceCurrent) || Text(varAttendanceCurrent.報告状態)<>"報告済",DisplayMode.Disabled,DisplayMode.Edit))
+                      Height: =40
+                      OnSelect: =Set(varAttendanceAction,"reopen"); Set(varAttendanceConfirmOpen,true)
+                      Text: ="入力中へ戻す"
+                      Width: =160
+            - conAttendanceFormalColumns:
+                Control: GroupContainer@1.5.0
+                Variant: ManualLayout
+                Properties:
+                  FillPortions: =0
+                  Height: =48
+                  Width: =Parent.Width
+                Children:
+                - lblAttendanceCol0:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="No"
+                      Width: =Parent.Width*0.038674
+                      X: =Parent.Width*0.000000
+                - lblAttendanceCol1:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="職員番号"
+                      Width: =Parent.Width*0.127072
+                      X: =Parent.Width*0.038674
+                - lblAttendanceCol2:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="課室"
+                      Width: =Parent.Width*0.104972
+                      X: =Parent.Width*0.165746
+                - lblAttendanceCol3:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="氏名"
+                      Width: =Parent.Width*0.093923
+                      X: =Parent.Width*0.270718
+                - lblAttendanceCol4:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="通勤" & Char(10) & "日数"
+                      Width: =Parent.Width*0.049724
+                      X: =Parent.Width*0.364641
+                - lblAttendanceCol5:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="出勤" & Char(10) & "日数"
+                      Width: =Parent.Width*0.049724
+                      X: =Parent.Width*0.414365
+                - lblAttendanceCol6:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="25"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.464088
+                - lblAttendanceCol7:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="100"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.511602
+                - lblAttendanceCol8:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="125"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.559116
+                - lblAttendanceCol9:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="135"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.606630
+                - lblAttendanceCol10:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="150"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.654144
+                - lblAttendanceCol11:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="160"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.701657
+                - lblAttendanceCol12:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="175"
+                      Width: =Parent.Width*0.047514
+                      X: =Parent.Width*0.749171
+                - lblAttendanceCol13:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="休日" & Char(10) & "135"
+                      Width: =Parent.Width*0.050829
+                      X: =Parent.Width*0.796685
+                - lblAttendanceCol14:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="欠勤" & Char(10) & "時間"
+                      Width: =Parent.Width*0.049724
+                      X: =Parent.Width*0.847514
+                - lblAttendanceCol15:
+                    Control: Label@2.5.1
+                    Properties:
+                      Align: =Align.Center
+                      BorderColor: =RGBA(210,220,230,1)
+                      BorderThickness: =1
+                      Fill: =RGBA(231,239,247,1)
+                      FontWeight: =FontWeight.Semibold
+                      Height: =48
+                      Size: =10
+                      Text: ="備考"
+                      Width: =Parent.Width*0.102762
+                      X: =Parent.Width*0.897238
+            - galAttendanceFormalLines:
+                Control: Gallery@2.15.0
+                Variant: Vertical
+                Properties:
+                  Height: =Parent.Height-238
+                  Items: =SortByColumns(Filter(colAttendanceLines,Coalesce(varAttendanceSection,"すべて")="すべて" || 所属課室名=varAttendanceSection),"crb3c_lineno",SortOrder.Ascending)
+                  TemplatePadding: =1
+                  TemplateSize: =58
+                  Width: =Parent.Width
+                Children:
+                - lblAttendanceCell0:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.No),"",Text(ThisItem.No,"0"))
+                      Tooltip: =Text(ThisItem.No)
+                      Width: =Parent.TemplateWidth*0.038674
+                      X: =Parent.TemplateWidth*0.000000
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                - lblAttendanceCell1:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =ThisItem.職員番号
+                      Tooltip: =ThisItem.職員番号
+                      Width: =Parent.TemplateWidth*0.127072
+                      X: =Parent.TemplateWidth*0.038674
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                - lblAttendanceCell2:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =ThisItem.所属課室名
+                      Tooltip: =ThisItem.所属課室名
+                      Width: =Parent.TemplateWidth*0.104972
+                      X: =Parent.TemplateWidth*0.165746
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                - lblAttendanceCell3:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =ThisItem.氏名
+                      Tooltip: =ThisItem.氏名
+                      Width: =Parent.TemplateWidth*0.093923
+                      X: =Parent.TemplateWidth*0.270718
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                - lblAttendanceCell4:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.通勤手当日数),"",Text(ThisItem.通勤手当日数,"0"))
+                      Tooltip: =Text(ThisItem.通勤手当日数)
+                      Width: =Parent.TemplateWidth*0.049724
+                      X: =Parent.TemplateWidth*0.364641
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell5:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.出勤日数),"",Text(ThisItem.出勤日数,"0"))
+                      Tooltip: =Text(ThisItem.出勤日数)
+                      Width: =Parent.TemplateWidth*0.049724
+                      X: =Parent.TemplateWidth*0.414365
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell6:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間25),"",If(ThisItem.超過勤務時間25=0,"0",Text(ThisItem.超過勤務時間25,If(Mod(ThisItem.超過勤務時間25,1)=0,"0","0.###"),"en-US")))
+                      Tooltip: =Text(ThisItem.超過勤務時間25)
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.464088
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell7:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間100),"",If(ThisItem.超過勤務時間100=0,"0",Text(ThisItem.超過勤務時間100,If(Mod(ThisItem.超過勤務時間100,1)=0,"0","0.###"),"en-US")))
+                      Tooltip: =Text(ThisItem.超過勤務時間100)
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.511602
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell8:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間125),"",If(ThisItem.超過勤務時間125=0,"0",Text(ThisItem.超過勤務時間125,If(Mod(ThisItem.超過勤務時間125,1)=0,"0","0.###"),"en-US")))
+                      Tooltip: =Text(ThisItem.超過勤務時間125)
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.559116
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell9:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間135),"",If(ThisItem.超過勤務時間135=0,"0",Text(ThisItem.超過勤務時間135,If(Mod(ThisItem.超過勤務時間135,1)=0,"0","0.###"),"en-US")))
+                      Tooltip: =Text(ThisItem.超過勤務時間135)
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.606630
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell10:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間150),"",If(ThisItem.超過勤務時間150=0,"0",Text(ThisItem.超過勤務時間150,If(Mod(ThisItem.超過勤務時間150,1)=0,"0","0.###"),"en-US")))
+                      Tooltip: =Text(ThisItem.超過勤務時間150)
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.654144
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell11:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間160),"",If(ThisItem.超過勤務時間160=0,"0",Text(ThisItem.超過勤務時間160,If(Mod(ThisItem.超過勤務時間160,1)=0,"0","0.###"),"en-US")))
+                      Tooltip: =Text(ThisItem.超過勤務時間160)
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.701657
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell12:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.超過勤務時間175),"",If(ThisItem.超過勤務時間175=0,"0",Text(ThisItem.超過勤務時間175,If(Mod(ThisItem.超過勤務時間175,1)=0,"0","0.###"),"en-US")))
+                      Tooltip: =Text(ThisItem.超過勤務時間175)
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.749171
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell13:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.休日給135),"",If(ThisItem.休日給135=0,"0",Text(ThisItem.休日給135,If(Mod(ThisItem.休日給135,1)=0,"0","0.###"),"en-US")))
+                      Tooltip: =Text(ThisItem.休日給135)
+                      Width: =Parent.TemplateWidth*0.050829
+                      X: =Parent.TemplateWidth*0.796685
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell14:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =If(IsBlank(ThisItem.欠勤時間),"",Text(ThisItem.欠勤時間,"0"))
+                      Tooltip: =Text(ThisItem.欠勤時間)
+                      Width: =Parent.TemplateWidth*0.049724
+                      X: =Parent.TemplateWidth*0.847514
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                      Align: =Align.Right
+                - lblAttendanceCell15:
+                    Control: Label@2.5.1
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      OnSelect: =false
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Text: =ThisItem.備考
+                      Tooltip: =ThisItem.備考
+                      Width: =Parent.TemplateWidth*0.102762
+                      X: =Parent.TemplateWidth*0.897238
+                      Visible: =!Coalesce(varAttendanceInlineEdit,false)
+                - txtAttendanceInline0:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.038674
+                      X: =Parent.TemplateWidth*0.000000
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),No)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{No:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Left
+                      Tooltip: ="No"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline1:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.127072
+                      X: =Parent.TemplateWidth*0.038674
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),職員番号)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{職員番号:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Left
+                      Tooltip: ="職員番号"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline2:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.104972
+                      X: =Parent.TemplateWidth*0.165746
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),所属課室名)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{所属課室名:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Left
+                      Tooltip: ="所属課室名"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline3:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.093923
+                      X: =Parent.TemplateWidth*0.270718
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),氏名)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{氏名:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Left
+                      Tooltip: ="氏名"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline4:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.049724
+                      X: =Parent.TemplateWidth*0.364641
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),通勤手当日数)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{通勤手当日数:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="通勤手当日数"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline5:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.049724
+                      X: =Parent.TemplateWidth*0.414365
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),出勤日数)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{出勤日数:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="出勤日数"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline6:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.464088
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),超過勤務時間25)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{超過勤務時間25:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="超過勤務時間25"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline7:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.511602
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),超過勤務時間100)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{超過勤務時間100:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="超過勤務時間100"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline8:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.559116
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),超過勤務時間125)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{超過勤務時間125:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="超過勤務時間125"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline9:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.606630
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),超過勤務時間135)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{超過勤務時間135:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="超過勤務時間135"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline10:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.654144
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),超過勤務時間150)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{超過勤務時間150:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="超過勤務時間150"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline11:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.701657
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),超過勤務時間160)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{超過勤務時間160:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="超過勤務時間160"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline12:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.047514
+                      X: =Parent.TemplateWidth*0.749171
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),超過勤務時間175)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{超過勤務時間175:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="超過勤務時間175"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline13:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.050829
+                      X: =Parent.TemplateWidth*0.796685
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),休日給135)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{休日給135:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="休日給135"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline14:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.049724
+                      X: =Parent.TemplateWidth*0.847514
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),欠勤時間)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{欠勤時間:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Right
+                      Tooltip: ="欠勤時間"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                - txtAttendanceInline15:
+                    Control: Classic/TextInput@2.3.2
+                    Properties:
+                      BorderColor: =RGBA(225,230,235,1)
+                      BorderThickness: =1
+                      Fill: =If(Mod(ThisItem.No,2)=0,RGBA(248,250,252,1),Color.White)
+                      Height: =56
+                      PaddingLeft: =4
+                      PaddingRight: =4
+                      Size: =10
+                      Width: =Parent.TemplateWidth*0.102762
+                      X: =Parent.TemplateWidth*0.897238
+                      Default: =LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid),備考)
+                      Visible: =Coalesce(varAttendanceInlineEdit,false)
+                      DisplayMode: =If(Coalesce(varAttendanceBusy,false),DisplayMode.Disabled,DisplayMode.Edit)
+                      OnChange: =Patch(colAttendanceInlineDraft,LookUp(colAttendanceInlineDraft,RowId=Text(ThisItem.crb3c_attendancereportlineid)),{備考:Self.Text}); Set(varAttendanceInlineDirty,true)
+                      OnSelect: =false
+                      Align: =Align.Left
+                      Tooltip: ="備考"
+                      Font: ="Segoe UI"
+                      DelayOutput: =false
+                      Mode: =TextMode.MultiLine
