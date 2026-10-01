@@ -5,8 +5,8 @@
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
   },
-  "source_commit": "58ee73edc3e35d1f554ca98eb268fd572f9920b2",
-  "documentation_base_commit": "c7a7b90fe8b568c3dfa7f98271a1b3f7b2e187cf",
+  "source_commit": "3da92238d70f0b6f1ddbad44462bfc85f752a0c9",
+  "documentation_base_commit": "3da92238d70f0b6f1ddbad44462bfc85f752a0c9",
   "requirement_ids": [
     "COMMON-NAV-001",
     "COMMON-NAV-003",
@@ -34,7 +34,7 @@
       "src/screen-ui/v1.30/scr002-header.paste.yaml",
       "src/screen-ui/v1.30/scrAttendanceFormal.OnVisible.fx"
     ],
-    "method_and_findings": "Studioダウンロードの3画面と候補の全明示プロパティを空白正規化比較し差異0。false/0等の既定省略は区別。OnVisibleも一致。PAC取得SCR002 SHAは保存ソースと一致。公開Playerで3画面の変更操作を確認。"
+    "method_and_findings": "Studioダウンロードの3画面と候補の全明示プロパティを空白正規化比較し差異0。false/0等の既定省略は区別。OnVisibleも一致。PAC取得SCR002 SHAは保存ソースと一致。公開Playerで3画面の変更操作を確認。 修正テストsnapshotをsource_commitに固定。アプリソースは58ee73edと同一で再公開なし。"
   },
   "publication": {
     "version": "2026-10-01T00:26:01.1961006Z",

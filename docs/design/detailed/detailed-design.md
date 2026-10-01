@@ -255,3 +255,5 @@ ExcelのTestDataを最大1000行取得し、1～999件のみ受け付ける。20
 SCR003 rootはX/Y/Width/Heightへ共通UiOuterX/Y/Width/Height比率を適用。IDは右側Width92、Size=If(Coalesce(varLargeText111,false),12,10.5)。numericセル4～14はLabelと入力のAlign.Right。各TextInputはRowIdでドラフトをPatchしDirtyを立てる。保存時は数値文字列をen-USでValue変換し、既存フローへ全件・reportId・expectedVersionを送る。入力変換やフロー失敗はIfErrorで通知し編集を維持する。OnVisibleは編集／Dirty／ドラフトを初期化する。
 
 Studioダウンロード3画面と候補の明示プロパティは空白正規化後の差異0。Studioが省略するfalse、0、左寄せ、overflow既定値は差異から区別した。PAC読戻しのSCR002 SHAも一致、パッケージSHAと公開時刻は公開後記録に固定。公開Playerで10件、0、33.167、備考と同一画面の編集／読み取り切替を確認。選定E2Eと最終文書照合はActions結果で別判定する。
+
+2026-10-01再照合：アプリソースと公開版は維持し、起動待ち60秒、破棄ボタン「変更を破棄」、実描画borderfill要素を測る試験コードへ修正した。初回E2Eは7/10 PASS・3/10 FAIL、修正後の最終結果は未確定。
