@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20261001-SCR001-003-UI",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "source_commit": "3da92238d70f0b6f1ddbad44462bfc85f752a0c9",
+  "documentation_base_commit": "3da92238d70f0b6f1ddbad44462bfc85f752a0c9",
+  "requirement_ids": [
+    "COMMON-NAV-001",
+    "COMMON-NAV-003",
+    "COMMON-SCREEN-001",
+    "D-04",
+    "SCR003-IMPORT-001"
+  ],
+  "selected_case_ids": [
+    "IT-HOME-DETAIL-001",
+    "IT-SCR002-NAV-001",
+    "IT-SCR003-READBACK-001",
+    "UT-HOME-001",
+    "UT-SCR001-TILES-001",
+    "UT-SCR002-BORDER-001",
+    "UT-SCR002-HEADER-001",
+    "UT-SCR003-INLINE-001",
+    "UT-SCR003-VIEW-001",
+    "UT-SCR006-MONTH-001"
+  ],
+  "source_comparison": {
+    "result": "MATCH",
+    "checked_paths": [
+      "src/screen-ui/v1.30/attendance-root.paste.yaml",
+      "src/screen-ui/v1.30/home.paste.yaml",
+      "src/screen-ui/v1.30/scr002-header.paste.yaml",
+      "src/screen-ui/v1.30/scrAttendanceFormal.OnVisible.fx"
+    ],
+    "method_and_findings": "Studioダウンロードの3画面と候補の全明示プロパティを空白正規化比較し差異0。false/0等の既定省略は区別。OnVisibleも一致。PAC取得SCR002 SHAは保存ソースと一致。公開Playerで3画面の変更操作を確認。 修正テストsnapshotをsource_commitに固定。アプリソースは58ee73edと同一で再公開なし。"
+  },
+  "publication": {
+    "version": "2026-10-01T00:26:01.1961006Z",
+    "player_observed_at": "2026-10-01T00:34:00Z",
+    "player_app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+    "player_result": "PASS",
+    "player_observation": "所有者公開Playerでホーム4正方形白背景青枠・PoC下配置・直接支給明細なし、SCR002ヘッダー線同色・ID枠なし、SCR003共通余白・ID右・10件・0/33.167・備考・編集と読取り切替を確認。保存／復元はStudio。公開版保存E2E・同時更新／障害・業務認可・業務受入・総合試験は未判定。",
+    "download_sha256": "2f0b2447f3744157fa538d095830990157602f5e1fc596396266b4f5d9c78ff5"
+  }
+}

@@ -2,7 +2,7 @@ name: Current app published source and document reconciliation
 
 on:
   push:
-    branches: [feat/scr003-attendance-import-20260929]
+    branches: [feat/scr003-attendance-import-20260929, change/20261001-scr001-003-ui]
     paths: [config/verification/scr003-reconcile.json]
   pull_request:
     paths:
@@ -28,7 +28,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: current-app-doc-readback
+  group: current-app-doc-readback-${{ github.event_name }}
   cancel-in-progress: false
 
 jobs:
@@ -162,7 +162,7 @@ jobs:
     outputs:
       record_path: ${{ steps.paths.outputs.record_path }}
     env:
-      CHANGE_ID: ${{ inputs.change_id || 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
+      CHANGE_ID: ${{ inputs.change_id || (github.ref_name == 'change/20261001-scr001-003-ui' && 'CHANGE-20261001-SCR001-003-UI') || 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
       TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
       DATAVERSE_URL: https://orge762dd9e.crm7.dynamics.com/
       CURRENT_APP_ID: 204a48dc-7f23-43dd-b934-4654a3cfa306
@@ -247,7 +247,7 @@ jobs:
     steps:
       - name: Preserve run URL and scope in Actions summary
         env:
-          CHANGE_ID: ${{ inputs.change_id || 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
+          CHANGE_ID: ${{ inputs.change_id || (github.ref_name == 'change/20261001-scr001-003-ui' && 'CHANGE-20261001-SCR001-003-UI') || 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
         run: |
           echo "変更要求 $CHANGE_ID の公開版読戻し・選定単体／結合ケース・文書更新を照合しました。" >> "$GITHUB_STEP_SUMMARY"
           echo "run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$GITHUB_STEP_SUMMARY"

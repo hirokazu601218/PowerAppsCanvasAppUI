@@ -7,7 +7,7 @@ async function open(page: Page) {
   if (url.hostname !== 'apps.powerapps.com' || !url.pathname.endsWith('/a/204a48dc-7f23-43dd-b934-4654a3cfa306')) throw new Error('Unexpected app');
   await page.goto(value, { waitUntil: 'domcontentloaded', timeout: 60000 });
   const app = page.frameLocator('iframe[name="fullscreen-app-host"]');
-  await expect(app.getByRole('button', { name: '勤務時間報告画面', exact: true })).toBeVisible();
+  await expect(app.getByRole('button', { name: '勤務時間報告', exact: true })).toBeVisible({ timeout: 60000 });
   // Existing owner-provided flow connections require Player consent after release.
   const consent = page.frameLocator('iframe[src*="/consent/"]');
   const allow = consent.getByRole('button', { name: /^(Allow|許可)$/ });
@@ -19,8 +19,9 @@ async function open(page: Page) {
 
 test('UT-SCR003-VIEW-001 正式勤務報告画面の初期状態と取込入口', async ({ page }) => {
   const app = await open(page);
-  await app.getByRole('button', { name: '勤務時間報告画面', exact: true }).click();
-  await expect(app.getByText('勤務時間報告書 ｜ SCR-003', { exact: true })).toBeVisible();
+  await app.getByRole('button', { name: '勤務時間報告', exact: true }).click();
+  await expect(app.getByText('勤務時間報告書', { exact: true })).toBeVisible();
+  await expect(app.getByText('SCR-003', { exact: true })).toBeVisible();
   await expect(app.getByText('局と勤務月を選択してください', { exact: true })).toBeVisible();
   await expect(app.getByRole('button', { name: '報告', exact: true })).toBeDisabled();
   await app.getByRole('button', { name: 'Excel取込', exact: true }).click();
@@ -31,7 +32,7 @@ test('UT-SCR003-VIEW-001 正式勤務報告画面の初期状態と取込入口'
 test('UT-SCR006-MONTH-001 対象月設定と解除の入口', async ({ page }) => {
   const app = await open(page);
   await app.getByRole('button', { name: '一般 → 管理者に切替', exact: true }).click();
-  await app.getByRole('button', { name: 'メンテナンス画面', exact: true }).click();
+  await app.getByRole('button', { name: 'メンテナンス', exact: true }).click();
   await expect(app.getByText('勤務報告対象月の設定', { exact: true })).toBeVisible();
   await expect(app.getByRole('button', { name: '対象月に設定', exact: true })).toBeVisible();
   await expect(app.getByRole('button', { name: '対象月から外す', exact: true })).toBeVisible();
@@ -39,7 +40,7 @@ test('UT-SCR006-MONTH-001 対象月設定と解除の入口', async ({ page }) =
 
 test('IT-SCR003-READBACK-001 保存済み架空10件と勤務期間を再表示', async ({ page }) => {
   const app = await open(page);
-  await app.getByRole('button', { name: '勤務時間報告画面', exact: true }).click();
+  await app.getByRole('button', { name: '勤務時間報告', exact: true }).click();
   // Power Apps renders month/bureau and status in one text container.
   const report = app.getByRole('listitem').filter({ hasText: /2026\/08\s+秘書課/ });
   await expect(report).toHaveCount(1);
@@ -52,4 +53,29 @@ test('IT-SCR003-READBACK-001 保存済み架空10件と勤務期間を再表示'
   }
   await expect(app.getByText('33.167', { exact: true })).toBeVisible();
   await expect(app.getByText('年次休暇：8/28 5.25h、8/31', { exact: true })).toBeVisible();
+});
+
+
+test('UT-SCR003-INLINE-001 読取初期状態から同一画面で編集して破棄する', async ({ page }) => {
+  const app = await open(page);
+  await app.getByRole('button', { name: '勤務時間報告', exact: true }).click();
+  await expect(app.getByRole('button', { name: '編集モード', exact: true })).toBeDisabled();
+  await app.getByRole('listitem').filter({ hasText: /2026\/08\s+秘書課/ }).click();
+  await expect(app.getByRole('textbox', { name: '欠勤時間', exact: true })).toHaveCount(0);
+  await app.getByText('000000000001', { exact: true }).click();
+  await expect(app.getByText('勤務時間報告の明細編集', { exact: true })).toHaveCount(0);
+  await app.getByRole('button', { name: '編集モード', exact: true }).click();
+  const absence = app.getByRole('textbox', { name: '欠勤時間', exact: true }).first();
+  await expect(absence).toHaveValue('0');
+  await expect(absence).toHaveCSS('text-align', 'right');
+  await expect(app.getByRole('button', { name: '保存', exact: true })).toBeDisabled();
+  await absence.press('Home'); await absence.press('Shift+End');
+  await absence.pressSequentially('1'); await absence.press('Tab');
+  await expect(app.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
+  await app.getByRole('button', { name: '読み取りモード', exact: true }).click();
+  await app.getByRole('button', { name: '変更を破棄', exact: true }).click();
+  const restored = app.locator('[data-control-name="txtAttendanceInline14"] input').first();
+  await expect(restored).toBeHidden();
+  await app.getByText('編集モード', { exact: true }).click();
+  await expect(restored).toHaveValue('0');
 });

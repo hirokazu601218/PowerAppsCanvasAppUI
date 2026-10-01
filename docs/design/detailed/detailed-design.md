@@ -242,3 +242,18 @@ ExcelのTestDataを最大1000行取得し、1～999件のみ受け付ける。20
 同公開版の表示検証用に、専用ユーザーだけが持つ既存 `StaffMaster Test Reader` ロールへ勤務時間報告・明細・対象月の3表の組織範囲Readのみを追加（利用者承認20:25、Action 36561770802）。他権限不変、3表および既存基本3表へのCreate/Write/Deleteなしを読戻した。個人用OneDriveの前提不備も修復済み。専用Playerで保存済み架空10件と勤務期間・0・小数・備考を確認した。これはテスト環境の表示試験用アクセスであり、給与班／自局／本人の業務認可の完成ではない。Canvasから所有者接続フローを呼ぶ更新経路の認可も別途必要で、DataverseのRead限定だけでアプリ全体が読取り専用になるとは扱わない。
 
 検証基準更新：`53cb5348a44a9da9deb438edfa05d410958f12d9` はテストのDOM要素選択のみの修正。公開Power Fxは変更せず、上記公開版の再照合を実施する。保存済み10件・勤務期間・数値・備考という期待値は不変。
+
+
+## SCR001～003 UI変更（CHANGE-20261001-SCR001-003-UI）
+
+公開版識別時刻：`2026-10-01T00:26:01.1961006Z`。同一App ID `204a48dc-7f23-43dd-b934-4654a3cfa306`。以下は従来のホーム表示とSCR003明細編集方式に優先する。
+
+対象ソース：src/screen-ui/v1.30のhome.paste.yaml、scr002-header.paste.yaml、attendance-root.paste.yaml、scrAttendanceFormal.OnVisible.fx。既存名を維持し対象root/headerのみ置換する。ホーム旧単独Button3を削除しroot下に配置、btnHomePayrollを削除する。
+
+ホーム辺長はMax(0,(Parent.Width-48-3*16)/4)、Height=Self.Width、Radius=16、Size=14、枠#0B4A8B、文字#0F6CBD、親Fill=Color.White。SCR002のlblApp111・lblMeta111のBorderColor=UiTheme.Header、lblStaffScreenId111のBorderThickness=0。
+
+SCR003 rootはX/Y/Width/Heightへ共通UiOuterX/Y/Width/Height比率を適用。IDは右側Width92、Size=If(Coalesce(varLargeText111,false),12,10.5)。numericセル4～14はLabelと入力のAlign.Right。各TextInputはRowIdでドラフトをPatchしDirtyを立てる。保存時は数値文字列をen-USでValue変換し、既存フローへ全件・reportId・expectedVersionを送る。入力変換やフロー失敗はIfErrorで通知し編集を維持する。OnVisibleは編集／Dirty／ドラフトを初期化する。
+
+Studioダウンロード3画面と候補の明示プロパティは空白正規化後の差異0。Studioが省略するfalse、0、左寄せ、overflow既定値は差異から区別した。PAC読戻しのSCR002 SHAも一致、パッケージSHAと公開時刻は公開後記録に固定。公開Playerで10件、0、33.167、備考と同一画面の編集／読み取り切替を確認。選定E2Eと最終文書照合はActions結果で別判定する。
+
+2026-10-01再照合：アプリソースと公開版は維持し、起動待ち60秒、破棄ボタン「変更を破棄」、実描画borderfill要素を測る試験コードへ修正した。初回E2Eは7/10 PASS・3/10 FAIL、修正後の最終結果は未確定。

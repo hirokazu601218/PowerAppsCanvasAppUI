@@ -1,0 +1,2 @@
+Set(varAttendanceInlineEdit,false); Set(varAttendanceInlineDirty,false); Clear(colAttendanceInlineDraft); Set(varAttendancePanelOpen,true); Set(varAttendanceImportOpen,false); Set(varAttendanceConfirmOpen,false); Set(varAttendanceEditOpen,false); Set(varAttendanceBusy,false); Set(varAttendanceSection,"すべて"); Set(varAttendanceBatch,""); Set(varAttendanceCurrent,Blank()); Clear(colAttendanceLines); ClearCollect(colAttendanceSections,{Value:"すべて"}); Refresh(T_勤務時間報告); Refresh(T_勤務時間報告明細); Refresh(M_勤務報告対象月)
+
