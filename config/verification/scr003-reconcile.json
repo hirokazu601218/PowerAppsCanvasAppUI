@@ -1,6 +1,6 @@
 {
-  "change_id": "CHANGE-20260929-SCR003-ATTENDANCE-IMPORT",
-  "published_version": "2026-09-29T09:11:07.0090418Z",
-  "attempt": 3,
-  "purpose": "User-authorized final publication, document and selected E2E reconciliation"
+  "change_id": "CHANGE-20261001-SCR001-003-UI",
+  "source_commit": "58ee73edc3e35d1f554ca98eb268fd572f9920b2",
+  "documentation_base_commit": "c7a7b90fe8b568c3dfa7f98271a1b3f7b2e187cf",
+  "attempt": 1
 }
