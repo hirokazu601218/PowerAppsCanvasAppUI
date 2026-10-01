@@ -1,0 +1,17 @@
+{
+  "change_id": "change-20261001-scr001-003-ui",
+  "run_id": "manual-20261001-acceptance",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PASS",
+  "observed_at": "2026-10-01T02:55:03Z",
+  "source_commit": "b3230d90b784fcbbd7d30e9c51315b9b8b80909f",
+  "version": "2026-10-01T00:26:01.1961006Z",
+  "evidence_type": "user_acceptance_declaration",
+  "scope": "SCR001～003 UI変更",
+  "statement": "受け入れテスト完了。okです。Githubに記録してください。",
+  "postmerge_e2e": {
+    "run_id": 36804181953,
+    "attempt": 2,
+    "status": "PASS"
+  }
+}

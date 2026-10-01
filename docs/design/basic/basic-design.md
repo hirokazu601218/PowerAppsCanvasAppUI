@@ -179,4 +179,8 @@ SCR003は表示用colAttendanceLinesと編集用colAttendanceInlineDraftを分�
 
 保存操作は架空10件でStudio確認、公開Playerは読み取りとモード切替を確認。既存の業務認可未完了・総合試験未決の範囲は維持する。
 
-2026-10-01再照合：アプリソースと公開版は維持し、起動待ち60秒、破棄ボタン「変更を破棄」、実描画borderfill要素を測る試験コードへ修正した。初回E2Eは7/10 PASS・3/10 FAIL、修正後の最終結果は未確定。
+2026-10-01最終結果：初回E2Eは7/10 PASS・3/10 FAIL。試験コード修正後の[最終照合36797346142](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36797346142)は公開版・パッケージ・文書差分・選定E2E・最終ゲートすべてPASS。アプリソースと公開版は維持した。PR #124・#125をmainへ統合済み。統合後の[36804181953](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36804181953)は初回9/10 PASS・1/10起動待ち時間超過、失敗ジョブの再実行（attempt 2）で成功。
+
+2026-10-01 11:55 JST、ユーザーから「受け入れテスト完了。okです。」の申告を受領し、今回のSCR001～003 UI変更の業務受入をPASSとして記録した。受入項目別の操作ログは提供されていないため、本申告を個別ケースの実測証跡へ読み替えない。総合試験D-07・実データ運用・業務認可・境界／同時操作／障害は別判定。
+
+受入と文書照合の記録：[実施記録](../../../records/changes/change-20261001-scr001-003-ui/manual-20261001-acceptance/acceptance.md)。

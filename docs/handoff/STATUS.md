@@ -7,9 +7,10 @@
 - [PR #124](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/124)を2026-10-01 11:05 JSTにmainへmerge。マージコミット `1e0b2b39df99542970ed057494fa65a040256a0e`。今回の要求・実装・試験・公開・文書反映・統合の6工程は完了。
 - 初回E2E7件PASS／3件FAILは履歴。起動待ち、破棄確認ボタン名、描画CSS要素、Confirm後のARIA名消失に対するテスト修正後、最終E2E成功。アプリソースと公開版は維持。
 - 所有者Studioで架空10件の備考保存・再表示・空欄への完全復元、公開Playerで3画面・モード切替・未保存変更破棄を確認。
-- 未判定：今回の業務受入、総合試験D-07、実データ運用、業務認可、999件境界、同時更新・途中障害。従来の残件を今回のUI変更完了に含めない。
+- 業務受入：2026-10-01 11:55 JST、ユーザーが今回のSCR001～003 UI変更について「受け入れテスト完了。okです。」と申告、PASS。項目別操作ログは未提供。総合試験D-07、実データ運用、業務認可、999件境界、同時更新・途中障害は別判定。
 - 読取り対象：新たな変更指示があるまで、要求・v1.30・[公開後記録](../verification/postpublish/change-20261001-scr001-003-ui.json)・選定ケース・最終Actions結果。完了詳細は[実施記録](../../records/changes/change-20261001-scr001-003-ui/manual-20261001-completion/completion.md)。
-- 今回の統合作業は11:04 JST開始、12:04 JST期限。アプリの再公開・共有や権限の変更は行っていない。
+- 統合後E2E [36804181953](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36804181953)は初回9件PASS／1件起動待ち時間超過、attempt 2で成功。完了記録PR #125もmainへ統合済み。
+- 受入記録と3文書の最終結果更新：[受入記録](../../records/changes/change-20261001-scr001-003-ui/manual-20261001-acceptance/acceptance.md)。今回の文書記録作業は11:55 JST開始、12:55 JST期限。関連テスト：動作変更なしにつき対象外。リンク・記述整合と文書配置を確認。
 
 ## 2026-09-29 20:30 JST 専用ユーザーのRead修復・公開Player読戻しPASS
 
