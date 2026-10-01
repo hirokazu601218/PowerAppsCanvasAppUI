@@ -7,7 +7,7 @@ async function open(page: Page) {
   if (url.hostname !== 'apps.powerapps.com' || !url.pathname.endsWith('/a/204a48dc-7f23-43dd-b934-4654a3cfa306')) throw new Error('Unexpected app');
   await page.goto(value, { waitUntil: 'domcontentloaded', timeout: 60000 });
   const app = page.frameLocator('iframe[name="fullscreen-app-host"]');
-  await expect(app.getByRole('button', { name: '勤務時間報告', exact: true })).toBeVisible();
+  await expect(app.getByRole('button', { name: '勤務時間報告', exact: true })).toBeVisible({ timeout: 60000 });
   // Existing owner-provided flow connections require Player consent after release.
   const consent = page.frameLocator('iframe[src*="/consent/"]');
   const allow = consent.getByRole('button', { name: /^(Allow|許可)$/ });
@@ -73,9 +73,9 @@ test('UT-SCR003-INLINE-001 読取初期状態から同一画面で編集して�
   await absence.pressSequentially('1'); await absence.press('Tab');
   await expect(app.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
   await app.getByRole('button', { name: '読み取りモード', exact: true }).click();
-  const discard = app.getByRole('button', { name: /^(OK|はい|Yes)$/ });
-  if (await discard.isVisible()) await discard.click();
-  await expect(app.getByRole('textbox', { name: '欠勤時間', exact: true })).toHaveCount(0);
-  await app.getByRole('button', { name: '編集モード', exact: true }).click();
-  await expect(absence).toHaveValue('0');
+  await app.getByRole('button', { name: '変更を破棄', exact: true }).click();
+  const restored = app.locator('[data-control-name="txtAttendanceInline14"] input').first();
+  await expect(restored).toBeHidden();
+  await app.getByText('編集モード', { exact: true }).click();
+  await expect(restored).toHaveValue('0');
 });

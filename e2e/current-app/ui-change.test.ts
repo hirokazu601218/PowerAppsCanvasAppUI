@@ -23,7 +23,7 @@ test('UT-SCR002-BORDER-001 ヘッダー境界線と画面ID枠',async ({page})=>
  const app=await open(page); await app.getByRole('button',{name:'職員マスタ検索',exact:true}).click();
  const header=app.locator('[data-control-name="conHeader111"]');
  const id=app.locator('[data-control-name="lblStaffScreenId111"]');
- await expect(id).toBeVisible(); await expect(id).toHaveCSS('border-top-width','0px');
- const color=await header.evaluate(el=>getComputedStyle(el).backgroundColor);
- for(const name of ['lblApp111','lblMeta111']) await expect(app.locator(`[data-control-name="${name}"]`)).toHaveCSS('border-top-color',color);
+ await expect(id).toBeVisible(); await expect(id.locator('.appmagic-borderfill-container').first()).toHaveCSS('border-top-width','0px');
+ const color=await header.locator('.appmagic-borderfill-container').first().evaluate(el=>getComputedStyle(el).backgroundColor);
+ for(const name of ['lblApp111','lblMeta111']) await expect(app.locator(`[data-control-name="${name}"]`).locator('.appmagic-borderfill-container').first()).toHaveCSS('border-top-color',color);
 });
