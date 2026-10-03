@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20261003-COMMUTE-OFFICIAL",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "request_text": "現行の別タブ表示・ブラウザPDF印刷を維持し、人事院000015000.pdfの様式を並行新規HTML Webリソースとして実装する。受入合格まで現行様式と通常ボタンを残し、受入テスト前まで進める。",
+  "requirement_ids": [
+    "COMMUTE-OFFICIAL-001",
+    "COMMUTE-PARALLEL-001"
+  ],
+  "acceptance_criteria": [
+    "現行Webリソースと通常ボタンの処理・URLを変更しない",
+    "新様式は独立Webリソースと試験用ボタンで開き、同一GUID・同一データ取得・window.printの機構を維持する",
+    "公式PDFの用紙寸法・2ページ・罫線・見出し・欄位置を照合する",
+    "同じ架空職員の旧新データが一致し、改行・はみ出し・認証エラー・0件を確認する",
+    "ユーザーの受入合格と切替指示まで通常ボタンを新様式へ切り替えない"
+  ]
+}

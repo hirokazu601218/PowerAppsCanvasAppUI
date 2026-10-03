@@ -1,0 +1,14 @@
+{
+  "change_id": "change-20261003-commute-official",
+  "run_id": "manual-20261003-local-candidate",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-03T14:46:00Z",
+  "source_commit": "5ec82e07327691b8a78d761c5d159dd7bdb3f623",
+  "version": "v1.02-layout-candidate",
+  "local_unit": "3 PASS",
+  "legacy_runtime": "10 PASS",
+  "deployed": false,
+  "live_baseline_verified": false,
+  "blocker": "Microsoft owner passkey authentication requires user completion"
+}
