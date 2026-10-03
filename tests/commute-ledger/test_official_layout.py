@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 p=ROOT/'src/commute-ledger/v1.02/build.py'
 spec=importlib.util.spec_from_file_location('builder',p);b=importlib.util.module_from_spec(spec);spec.loader.exec_module(b)
-BASE=ROOT/'other/src/staff-master/candidates/commute-html-v1.01/src/commute-ledger.html'
+BASE=ROOT/'src/commute-ledger/v1.02/live-baseline.html'
 PDF=ROOT/'tmp/commute-review/official.pdf'
 class LayoutTests(unittest.TestCase):
  def test_field_contract(self):
@@ -22,7 +22,7 @@ class LayoutTests(unittest.TestCase):
  def test_preserves_complete_runtime_and_toolbar(self):
   old=BASE.read_text();new=b.build(BASE,PDF)
   self.assertEqual(re.findall(r'<script\b[^>]*>.*?</script>',old,re.S),re.findall(r'<script\b[^>]*>.*?</script>',new,re.S))
-  self.assertEqual(old.split('<body>')[1].split('<main')[0],new.split('<body>')[1].split('<main')[0])
+  self.assertEqual(old.split('<body>')[1].split('<main')[0].replace('通勤手当認定簿 HTML版 1.01','通勤手当認定簿 公式様式 1.02（受入テスト用）'),new.split('<body>')[1].split('<main')[0])
   self.assertEqual(new.count('class="page official-page"'),2)
   self.assertEqual(new.count('<svg class="official-form"'),2)
   self.assertNotIn('foreignObject',new)

@@ -1,0 +1,61 @@
+import { expect, test, type Page } from '@playwright/test';
+
+async function reports(page: Page) {
+  const configured=process.env.CANVAS_APP_URL;
+  if(!configured) throw Error('CANVAS_APP_URL is required');
+  const u=new URL(configured);
+  if(u.hostname!=='apps.powerapps.com'||u.pathname!=='/play/e/68e00049-b7e5-eda6-9888-9a3cc493c5be/a/204a48dc-7f23-43dd-b934-4654a3cfa306') throw Error('Unexpected app');
+  await page.goto(configured,{waitUntil:'domcontentloaded'});
+  const app=page.frameLocator('iframe[name="fullscreen-app-host"]');
+  await expect(app.getByRole('button',{name:'職員マスタ検索',exact:true})).toBeVisible({timeout:60000});
+  await app.getByRole('button',{name:'職員マスタ検索',exact:true}).click();
+  await expect(app.locator('[data-control-name="lblPersonSub111"]')).toContainText('009900000004',{timeout:30000});
+  await app.getByRole('button',{name:'通勤',exact:true}).click();
+  const oldButton=app.getByRole('button',{name:'認定簿表示',exact:true});
+  const newButton=app.getByRole('button',{name:'新様式（受入テスト）',exact:true});
+  await expect(oldButton).toBeEnabled({timeout:30000});await expect(newButton).toBeEnabled();
+  const oldPromise=page.waitForEvent('popup');await oldButton.click();const old=await oldPromise;
+  const freshPromise=page.waitForEvent('popup');await newButton.click();const fresh=await freshPromise;
+  await expect(old.locator('#print')).toBeEnabled({timeout:30000});
+  await expect(fresh.locator('#print')).toBeEnabled({timeout:30000});
+  return {old,fresh};
+}
+
+test('UT-COM-FORM-001 新様式の71表示欄と公式2ページの枠に収まる',async({page})=>{
+  const {fresh}=await reports(page);
+  await expect(fresh.locator('.official-page')).toHaveCount(2);
+  await expect(fresh.locator('svg.official-form')).toHaveCount(2);
+  await expect(fresh.locator('[data-field]')).toHaveCount(71);
+  expect(await fresh.locator('[data-field],.official-page').evaluateAll(es=>es.filter(e=>e.scrollWidth>e.clientWidth+1||e.scrollHeight>e.clientHeight+1).length)).toBe(0);
+  await expect(fresh.locator('[data-field="staff"]')).toHaveText('009900000004');
+  await expect(fresh.locator('[data-field="total"]')).toHaveText('16,800');
+});
+
+test('IT-COM-PARALLEL-001 旧新ボタンが別タブで同一認定と同一71表示値を開く',async({page})=>{
+  const {old,fresh}=await reports(page);const a=new URL(old.url()),b=new URL(fresh.url());
+  expect(a.pathname).toBe('/WebResources/crb3c_reports/commute-ledger-studio.html');
+  expect(b.pathname).toBe('/WebResources/new_reports/commute-ledger-official-v102.html');
+  expect(b.origin).toBe(a.origin);expect(b.searchParams.get('id')).toBe(a.searchParams.get('id'));
+  expect(a.searchParams.get('id')).toMatch(/^[0-9a-f-]{36}$/i);
+  const values=(p:Page)=>p.locator('[data-field]').evaluateAll(es=>Object.fromEntries(es.map(e=>[e.getAttribute('data-field'),e.textContent])));
+  expect(await values(fresh)).toEqual(await values(old));
+});
+
+test('UT-COM-OVERFLOW-001 新様式の枠超過を印刷前に検知し表示を消す',async({page})=>{
+  const {fresh}=await reports(page);
+  // DOM-only test perturbation; no Dataverse write. Exercises the unchanged print handler.
+  await fresh.locator('[data-field="r1_remarks"]').evaluate(e=>{e.textContent='長文'.repeat(500);});
+  await fresh.locator('#print').click();
+  await expect(fresh.locator('#print')).toBeDisabled();await expect(fresh.locator('#report')).toBeHidden();
+  await expect(fresh.locator('#status')).toContainText('文字が枠内に収まらない');
+});
+
+test('IT-COM-PRINT-001 新旧HTMLをブラウザの印刷CSSで2ページPDFへ出力する',async({page})=>{
+  const {old,fresh}=await reports(page);
+  for(const p of [old,fresh]){
+    const pdf=await p.pdf({preferCSSPageSize:true,printBackground:true});
+    expect(pdf.subarray(0,5).toString()).toBe('%PDF-');
+    expect((pdf.toString('latin1').match(/\/Type\s*\/Page\b/g)||[]).length).toBe(2);
+    await expect(p.locator('#print')).toBeEnabled();
+  }
+});

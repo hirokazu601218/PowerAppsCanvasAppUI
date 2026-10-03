@@ -1,0 +1,14 @@
+{
+  "change_id": "change-20261003-commute-official",
+  "run_id": "manual-20261004-deployment",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-03T18:28:00Z",
+  "source_commit": "a5c817fac40b904eacc8de963e4bbaa8d6075eb3",
+  "version": "v1.02-studio-parallel",
+  "baseline_sha256": "593a5d72d92bbfda05cc225d997676b413af309123bdf4677ea7d4428ded50be",
+  "candidate_sha256": "7466bb790056d948a68c08f23872fcaba28a1c3fe6f754d752c9261cf04b0ef1",
+  "preview_data_equal": true,
+  "player_verification": "PENDING",
+  "browser_pdf": "PENDING"
+}

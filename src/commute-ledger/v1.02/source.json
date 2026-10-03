@@ -4,6 +4,9 @@
   "page_count": 2,
   "width_pt": 841.89,
   "height_pt": 595.276,
-  "proposed_resource_name": "crb3c_reports/commute-ledger-official-v102.html",
-  "live_baseline_verified": false
+  "proposed_resource_name": "new_reports/commute-ledger-official-v102.html",
+  "live_baseline_verified": true,
+  "baseline_resource_name": "crb3c_reports/commute-ledger-studio.html",
+  "baseline_sha256": "593a5d72d92bbfda05cc225d997676b413af309123bdf4677ea7d4428ded50be",
+  "baseline_readback_at": "2026-10-03T18:10:00Z"
 }

@@ -79,6 +79,7 @@ def build(baseline,pdf):
     main=layout(pdf)
     result,count=re.subn(r'<main\b[^>]*\bid="report"[^>]*>.*?</main>',lambda _:main,source,flags=re.S)
     if count!=1:raise ValueError('Expected exactly one report main.')
+    result=result.replace('<strong>通勤手当認定簿 HTML版 1.01</strong>','<strong>通勤手当認定簿 公式様式 1.02（受入テスト用）</strong>',1)
     result=result.replace('</head>','<style>'+CSS+'</style></head>',1)
     if re.findall(r'<script\b[^>]*>.*?</script>',source,re.S)!=re.findall(r'<script\b[^>]*>.*?</script>',result,re.S):
         raise ValueError('Runtime script changed')

@@ -1,0 +1,14 @@
+- btnCertificateOfficial102:
+    Control: ModernButton@1.0.0
+    Properties:
+      AccessibleLabel: ="新様式（受入テスト）"
+      BasePaletteColor: =ColorValue("#0F6CBD")
+      DisplayMode: =If(IsBlank(varHistoryId111)||IsBlank(varCommuteReportBase111),DisplayMode.Disabled,DisplayMode.Edit)
+      Font: ="Segoe UI"
+      Height: =44
+      OnSelect: =If(varHistoryStaff111=StaffSelected.StaffId && !IsBlank(varHistoryId111) && !IsBlank(LookUp(colCommute111,Text(T_通勤_STUDIO)=varHistoryId111 && 職員基本.職員番号=StaffSelected.StaffId)),Launch(Substitute(varCommuteReportBase111,"crb3c_reports/commute-ledger-studio.html","new_reports/commute-ledger-official-v102.html") & "?id=" & EncodeUrl(varHistoryId111),{},LaunchTarget.New),Notify("通勤認定レコードを選び直してください。",NotificationType.Error))
+      Text: ="新様式（受入テスト）"
+      Visible: =varStaffDetailTab111="Commute"
+      Width: =176
+      X: =Max(0,Parent.Width-334)
+      Y: =galDetailTabs111.Y+galDetailTabs111.Height+4

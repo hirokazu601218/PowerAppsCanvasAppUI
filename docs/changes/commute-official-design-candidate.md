@@ -1,16 +1,16 @@
 # 通勤認定簿 公式様式への並行変更候補
 
-状態：未配置・未受入。CHANGE-20261003-COMMUTE-OFFICIAL。現行App IDは204a48dc-7f23-43dd-b934-4654a3cfa306。2026-10-03 23:28 JST着手。
+状態：並行配置済み・公開後検証中・未受入。CHANGE-20261003-COMMUTE-OFFICIAL。現行App IDは204a48dc-7f23-43dd-b934-4654a3cfa306。2026-10-03 23:28 JST着手。
 
 ## 要件・基本設計差分（候補）
 
 - COMMUTE-OFFICIAL-001：人事院 https://www.jinji.go.jp/content/000015000.pdf の2ページを原寸のベクター罫線・文字としてHTMLに組み込み、動的値をHTMLのdata-field要素に表示する。別タブ起動・GUID引渡し・同一オリジンDataverse読取・window.printを維持する。
-- COMMUTE-PARALLEL-001：既存リソースと通常ボタンは変更しない。新規リソース候補名はcrb3c_reports/commute-ledger-official-v102.html。既存ボタンを元に試験専用ボタンを追加し、変更は参照リソース名と表示名に限定する。受入前に切替・旧版削除をしない。受入後の切替もユーザー指示後。
+- COMMUTE-PARALLEL-001：既存リソースと通常ボタンは変更しない。新規リソース候補名はnew_reports/commute-ledger-official-v102.html。既存ボタンを元に試験専用ボタンを追加し、変更は参照リソース名と表示名に限定する。受入前に切替・旧版削除をしない。受入後の切替もユーザー指示後。
 - 実行中の隔離版_STUDIOのHTML・通常ボタン式を読戻してから実装する。GitHubの旧v1.01はレイアウト検証専用であり、本番用ベースではない。
 
 ## 詳細設計差分（候補）
 
-`src/commute-ledger/v1.02/build.py`で配置済みHTMLのmain#reportと追加CSSだけを変更。script群と既存toolbarを完全保持し、71個のdata-field集合不一致なら停止する。背景はPDFから抽出したインラインSVG。ページ間のglyph IDは分離し、外部画像ロード待ちを発生させない。
+`src/commute-ledger/v1.02/build.py`で配置済みHTMLのmain#reportと追加CSSだけを変更。script群と既存toolbarの機能を保持（版名表示だけ1.02に変更）し、71個のdata-field集合不一致なら停止する。背景はPDFから抽出したインラインSVG。ページ間のglyph IDは分離し、外部画像ロード待ちを発生させない。
 
 ページは841.89×595.276pt、印刷余白0。2ページ目の狭い表も原資料の位置・大きさを維持。氏名等6欄、4経路×13欄、合計1欄、12か月を対応付ける。新しい業務項目や計算式は追加せず、経路5〜8等の未取得欄は空欄のまま。既存distancekm等の意味と公式列の対応は現行実体・設計を再確認して確定する。
 
@@ -30,7 +30,7 @@
 | IT-COM-ERROR | 未選択・認証失敗・不正ID時に別人表示や印刷なし | 旧処理mock PASS、実環境未実施 |
 | IT-COM-REGRESSION | 既定スモークと現行認定簿表示・印刷が維持 | 未実施 |
 
-現行test-selectionゲートは新しいsrc/commute-ledgerをまだ対象にしていない。実体読戻し後、実画面UT/ITケースと選定JSONを追加し、新パスのゲート適用を完了してから公開する。既存ゲートの成功だけで今回をPASSと扱わない。
+src/commute-ledgerを既存test-selectionゲートの対象へ追加し、実画面UT/IT・PDF出力ケースと選定JSONを追加した。実行結果は公開後記録で確認する。既存ゲートの成功だけで今回をPASSと扱わない。
 
 配置前に現行リソースの名前・ID・内容SHAとLaunch式、アプリ公開版を記録する。新規リソース配置・公開→読戻しSHA照合→試験ボタン追加→通常ボタン差分なし確認→同一App ID公開→Playerと新旧帳票照合→上記試験→要件・基本・詳細設計・試験仕様への確定反映→受入案内。現時点ではこの一連の工程は未完了。
 

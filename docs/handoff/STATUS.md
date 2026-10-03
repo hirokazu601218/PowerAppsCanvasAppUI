@@ -1,5 +1,13 @@
 # 現在の作業と読取り対象
 
+## 2026-10-04 通勤新様式の並行配置・公開後検証中
+
+- 今回開始02:58 JST、期限03:58 JST。所有者のサインイン完了。現行隔離版HTMLをMakerから読取り、SHA593a5d72…で照合。認証待ちは解消。
+- new_reports/commute-ledger-official-v102.htmlを独立作成・公開。SHA7466bb79…。現行のcrb3c_reports/commute-ledger-studio.htmlは未変更。作成UIのnew_接頭辞を使用。
+- 同一アプリにbtnCertificateOfficial102を追加。前後の全画面YAMLを構造比較し、新ボタン以外の差分0。通常ボタンの式・位置を維持。
+- Studioプレビューで旧新とも別タブ、TK-910003の全71欄一致、新様式はみ出し0。試験入口付き版の公開を実行。公開Player・PDF出力・選定E2E・設計確定を確認中。受入開始可とはまだ扱わない。
+- 試験選定：docs/testing/change-records/change-20261003-commute-official.json。新srcパスを既存ゲートへ追加。証跡：records/changes/change-20261003-commute-official/manual-20261004-deployment/。
+
 ## 2026-10-03 通勤認定簿の公式様式・並行配置候補（認証待ち）
 
 - ユーザー指示：受入前まで実装・試験を進める。受入合格までは現行様式と通常ボタンを残す。開始23:28 JST、期限00:28 JST。
