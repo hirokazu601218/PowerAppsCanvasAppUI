@@ -356,3 +356,11 @@ R15～R23と画面IDの直接対応は本書のR15～R23表を正本とする。
 SCR-002・SCR-006の追加領域、将来の独立画面（仮ID `SCR-007`）、および役割別対象範囲は要件の決定だけであり、現行の6画面・86行の実装・試験合格へ算入しない。役割別の実効権限と画面間遷移は未決。
 
 Fの業務を通す試験シナリオ（提出→差戻し→再提出→認定→認定情報参照→PDF出力）と、Gの紙・電子によらない担当者の決定結果登録と給与班確認の試験シナリオは[総合テスト計画](../testing/system-test-plan.md)のD-07判断後に仕様化する。上記はシナリオ策定やPASSを意味しない。
+
+
+## CHANGE-20261003-COMMUTE-OFFICIAL／通勤認定簿公式様式 v1.02（受入待ち）
+
+| 要件ID | 実装 | 検証 |
+|---|---|---|
+| COMMUTE-OFFICIAL-001 | src/commute-ledger/v1.02/build.py | UT-COM-FORM-001、UT-COM-OVERFLOW-001、IT-COM-PRINT-001 |
+| COMMUTE-PARALLEL-001 | src/commute-ledger/v1.02/test-button.paste.yaml | IT-COM-PARALLEL-001 |

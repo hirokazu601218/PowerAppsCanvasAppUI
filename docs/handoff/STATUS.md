@@ -1,12 +1,12 @@
 # 現在の作業と読取り対象
 
-## 2026-10-04 通勤新様式の並行配置・公開後検証中
+## 2026-10-04 通勤新様式の並行配置・受入準備
 
-- 今回開始02:58 JST、期限03:58 JST。所有者のサインイン完了。現行隔離版HTMLをMakerから読取り、SHA593a5d72…で照合。認証待ちは解消。
-- new_reports/commute-ledger-official-v102.htmlを独立作成・公開。SHA7466bb79…。現行のcrb3c_reports/commute-ledger-studio.htmlは未変更。作成UIのnew_接頭辞を使用。
-- 同一アプリにbtnCertificateOfficial102を追加。前後の全画面YAMLを構造比較し、新ボタン以外の差分0。通常ボタンの式・位置を維持。
-- Studioプレビューで旧新とも別タブ、TK-910003の全71欄一致、新様式はみ出し0。試験入口付き版の公開を実行。公開Player・PDF出力・選定E2E・設計確定を確認中。受入開始可とはまだ扱わない。
-- 試験選定：docs/testing/change-records/change-20261003-commute-official.json。新srcパスを既存ゲートへ追加。証跡：records/changes/change-20261003-commute-official/manual-20261004-deployment/。
+- 同一アプリ公開版 2026-10-03T18:31:30.4607518Z。旧Webリソースと通常ボタンを維持し、新様式試験ボタンを追加。新旧ボタン以外の全画面YAML差分0。
+- 公開Player変更範囲E2E4件PASS（37158642318）：71欄一致、別タブ、各2ページPDF、枠超過印刷停止。PAC読戻し・新旧ボタン全プロパティ・Webリソース両SHA照合PASS（37159201219）。
+- 要件・基本／詳細設計・結合仕様・受入手順に確定反映。最終文書照合と既定スモークを含む6ケースを実行中。PR #127は受入前の並行配置を記録する。旧版への通常経路切替なし。
+- 受入入口：いつものPlayer→職員マスタ検索→架空009900000004→通勤→「新様式（受入テスト）」。業務受入・実機印刷設定・総合試験は未実施。
+- 読取り対象：docs/verification/postpublish/change-20261003-commute-official.json、docs/acceptance/user-acceptance.md、src/commute-ledger/v1.02、当変更の選定JSONとrecords/changes/change-20261003-commute-official/manual-20261004-deployment/。確認画像はLibrary資料索引。
 
 ## 2026-10-03 通勤認定簿の公式様式・並行配置候補（認証待ち）
 

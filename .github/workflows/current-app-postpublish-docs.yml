@@ -153,7 +153,7 @@ jobs:
 
   readback:
     name: Check fixed app, release evidence and document changes
-    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.readback_only) || github.event_name == 'push' }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.readback_only) || github.event_name == 'push' || (github.event_name == 'pull_request' && github.head_ref == 'change/commute-official-parallel-20261003' && github.event.pull_request.head.repo.full_name == github.repository) }}
     permissions:
       contents: read
     runs-on: ubuntu-latest
@@ -162,7 +162,7 @@ jobs:
     outputs:
       record_path: ${{ steps.paths.outputs.record_path }}
     env:
-      CHANGE_ID: ${{ inputs.change_id || (github.ref_name == 'change/20261001-scr001-003-ui' && 'CHANGE-20261001-SCR001-003-UI') || 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
+      CHANGE_ID: ${{ inputs.change_id || (github.head_ref == 'change/commute-official-parallel-20261003' && 'CHANGE-20261003-COMMUTE-OFFICIAL') || (github.ref_name == 'change/20261001-scr001-003-ui' && 'CHANGE-20261001-SCR001-003-UI') || 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
       TENANT_ID: a00c92fa-e1db-4aa6-ab28-356c3203353d
       DATAVERSE_URL: https://orge762dd9e.crm7.dynamics.com/
       CURRENT_APP_ID: 204a48dc-7f23-43dd-b934-4654a3cfa306
@@ -232,7 +232,7 @@ jobs:
 
   selected-e2e:
     name: Re-run selected unit and integration cases on published Player
-    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.readback_only) || github.event_name == 'push' }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.readback_only) || github.event_name == 'push' || (github.event_name == 'pull_request' && github.head_ref == 'change/commute-official-parallel-20261003' && github.event.pull_request.head.repo.full_name == github.repository) }}
     needs: readback
     uses: ./.github/workflows/current-app-test-gate.yml
     with:
@@ -241,13 +241,13 @@ jobs:
 
   completed:
     name: Release reconciliation gate
-    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.readback_only) || github.event_name == 'push' }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.readback_only) || github.event_name == 'push' || (github.event_name == 'pull_request' && github.head_ref == 'change/commute-official-parallel-20261003' && github.event.pull_request.head.repo.full_name == github.repository) }}
     needs: [readback, selected-e2e]
     runs-on: ubuntu-latest
     steps:
       - name: Preserve run URL and scope in Actions summary
         env:
-          CHANGE_ID: ${{ inputs.change_id || (github.ref_name == 'change/20261001-scr001-003-ui' && 'CHANGE-20261001-SCR001-003-UI') || 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
+          CHANGE_ID: ${{ inputs.change_id || (github.head_ref == 'change/commute-official-parallel-20261003' && 'CHANGE-20261003-COMMUTE-OFFICIAL') || (github.ref_name == 'change/20261001-scr001-003-ui' && 'CHANGE-20261001-SCR001-003-UI') || 'CHANGE-20260929-SCR003-ATTENDANCE-IMPORT' }}
         run: |
           echo "変更要求 $CHANGE_ID の公開版読戻し・選定単体／結合ケース・文書更新を照合しました。" >> "$GITHUB_STEP_SUMMARY"
           echo "run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$GITHUB_STEP_SUMMARY"

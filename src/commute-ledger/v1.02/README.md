@@ -1,4 +1,4 @@
-# 通勤認定簿 v1.02 レイアウト候補（未配置）
+# 通勤認定簿 v1.02 並行配置版（受入待ち）
 
 設計・残工程は[候補設計](../../../docs/changes/commute-official-design-candidate.md)。旧版に上書きせず、独立出力を作るビルダー。PythonとPyMuPDFが必要。
 
@@ -7,7 +7,7 @@ python src/commute-ledger/v1.02/build.py --baseline <配置済みHTML読戻し> 
 python -m unittest discover -s tests/commute-ledger -v
 ```
 
-公式PDFはsource.jsonのSHA256に固定。旧保管v1.01を入力にする場合は必ず--reference-onlyを付け、配置しない。出力隣の.build.jsonはビルド履歴であり、配置・公開成功の証跡ではない。現時点で隔離版の実体照合は未完了。印刷設定は実ブラウザで検証してから確定する。
+公式PDFはsource.jsonのSHA256に固定。旧保管v1.01を入力にする場合は必ず--reference-onlyを付け、配置しない。出力隣の.build.jsonはビルド履歴であり、配置・公開成功の証跡ではない。隔離版の実体SHAを照合済み。公開Playerの新旧71欄一致・2ページPDF出力・枠超過検知はActions37158642318でPASS。業務受入は未実施。
 
 静的描画の再現（PyMuPDF・WeasyPrint・NumPy・Node.js、日本語フォントが必要）：
 
