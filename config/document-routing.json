@@ -37,7 +37,8 @@
     "docs/operations/document-organization.md",
     "docs/handoff/STATUS.md",
     "docs/changes/scr003-attendance-import-design-candidate.md",
-    "docs/verification/templates/current-app-postpublish.example.json"
+    "docs/verification/templates/current-app-postpublish.example.json",
+    "docs/changes/commute-official-design-candidate.md"
   ],
   "current_dynamic_patterns": [
     "^docs/changes/requests/[a-z0-9][a-z0-9-]*\\.json$",

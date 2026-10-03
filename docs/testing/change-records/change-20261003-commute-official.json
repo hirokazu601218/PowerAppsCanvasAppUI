@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20261003-COMMUTE-OFFICIAL",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "changes": [
+    {
+      "path": "src/commute-ledger/v1.02/build.py",
+      "component": "build.py",
+      "expected_result": "公式様式の表示欄が枠内に収まり、既存の別タブ・データ取得・印刷処理を維持する",
+      "unit_case_ids": [
+        "UT-COM-FORM-001",
+        "UT-COM-OVERFLOW-001"
+      ]
+    },
+    {
+      "path": "src/commute-ledger/v1.02/source.json",
+      "component": "source.json",
+      "expected_result": "公式様式の表示欄が枠内に収まり、既存の別タブ・データ取得・印刷処理を維持する",
+      "unit_case_ids": [
+        "UT-COM-FORM-001",
+        "UT-COM-OVERFLOW-001"
+      ]
+    },
+    {
+      "path": "src/commute-ledger/v1.02/test-button.paste.yaml",
+      "component": "test-button.paste.yaml",
+      "expected_result": "公式様式の表示欄が枠内に収まり、既存の別タブ・データ取得・印刷処理を維持する",
+      "unit_case_ids": [
+        "UT-COM-FORM-001",
+        "UT-COM-OVERFLOW-001",
+        "UT-HOME-001"
+      ]
+    },
+    {
+      "path": "src/commute-ledger/v1.02/live-baseline.html",
+      "component": "live-baseline.html",
+      "expected_result": "公式様式の表示欄が枠内に収まり、既存の別タブ・データ取得・印刷処理を維持する",
+      "unit_case_ids": [
+        "UT-COM-FORM-001",
+        "UT-COM-OVERFLOW-001"
+      ]
+    }
+  ],
+  "integration": {
+    "required": true,
+    "reason": "旧新ボタンから同一認定を別タブ表示し、既存データ取得と印刷の結合を確認する",
+    "case_ids": [
+      "IT-COM-PARALLEL-001",
+      "IT-COM-PRINT-001",
+      "IT-HOME-DETAIL-001"
+    ]
+  },
+  "system_test": {
+    "status": "deferred",
+    "reason": "D-07の総合シナリオは後続。今回の範囲は帳票様式と並行入口に限定。"
+  },
+  "cases": [
+    {
+      "id": "UT-COM-FORM-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/commute-official.test.ts"
+    },
+    {
+      "id": "UT-COM-OVERFLOW-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/commute-official.test.ts"
+    },
+    {
+      "id": "IT-COM-PARALLEL-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/commute-official.test.ts"
+    },
+    {
+      "id": "IT-COM-PRINT-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/commute-official.test.ts"
+    },
+    {
+      "id": "UT-HOME-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/navigation.test.ts"
+    },
+    {
+      "id": "IT-HOME-DETAIL-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/navigation.test.ts"
+    }
+  ]
+}

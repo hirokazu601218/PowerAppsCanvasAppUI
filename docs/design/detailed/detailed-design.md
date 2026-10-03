@@ -261,3 +261,16 @@ Studioダウンロード3画面と候補の明示プロパティは空白正規�
 2026-10-01 11:55 JST、ユーザーから「受け入れテスト完了。okです。」の申告を受領し、今回のSCR001～003 UI変更の業務受入をPASSとして記録した。受入項目別の操作ログは提供されていないため、本申告を個別ケースの実測証跡へ読み替えない。総合試験D-07・実データ運用・業務認可・境界／同時操作／障害は別判定。
 
 受入と文書照合の記録：[実施記録](../../../records/changes/change-20261001-scr001-003-ui/manual-20261001-acceptance/acceptance.md)。
+
+
+## CHANGE-20261003-COMMUTE-OFFICIAL／通勤認定簿公式様式 v1.02（受入待ち）
+
+実体は検証環境のソリューション「職員マスタ_確認用テーブル移送」のWebリソース new_reports/commute-ledger-official-v102.html。旧実体はcrb3c_reports/commute-ledger-studio.html。Makerで環境→ソリューション→対象ソリューション→Webリソースから確認できる。
+
+編集正本はsrc/commute-ledger/v1.02/build.py、source.json、test-button.paste.yaml。VS Code等のテキストエディタで変更し、配置済み旧HTMLの読戻しlive-baseline.htmlと固定SHAの人事院PDFから生成する。生成HTMLを新Webリソースへアップロードして保存・個別公開する。既存版を入力に使う際はbaseline SHAを検証する。
+
+main#reportと様式CSSを変更し、scriptは実体と同一、toolbarは版名以外同一。表示71欄＝氏名等6＋4経路×13＋合計1＋月額12。HTMLのdata-field名でDOMへtextContentを設定する。CSS幅とoverflow-wrapで文字数指定なしに折り返し、既存検知処理で収まらない場合は印刷停止。distancekmは現行画面の「定期券(km)_算定基礎」に対応。経路5〜8等、従来取得しない欄は空欄であり、新たな入力・計算はしない。
+
+btnCertificateOfficial102の式は既存職員・履歴照合を保ち、参照リソース部分だけSubstituteする。旧btnCertificate111を変更していないことを全画面YAMLの構造比較で確認。生成HTML SHA-256：7466bb790056d948a68c08f23872fcaba28a1c3fe6f754d752c9261cf04b0ef1。
+
+対象公開版：`2026-10-03T18:31:30.4607518Z`。公開後読戻しActions37159201219で新旧WebリソースSHAと新旧ボタン全明示プロパティ一致。

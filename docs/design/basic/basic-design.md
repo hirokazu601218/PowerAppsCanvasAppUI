@@ -184,3 +184,12 @@ SCR003は表示用colAttendanceLinesと編集用colAttendanceInlineDraftを分�
 2026-10-01 11:55 JST、ユーザーから「受け入れテスト完了。okです。」の申告を受領し、今回のSCR001～003 UI変更の業務受入をPASSとして記録した。受入項目別の操作ログは提供されていないため、本申告を個別ケースの実測証跡へ読み替えない。総合試験D-07・実データ運用・業務認可・境界／同時操作／障害は別判定。
 
 受入と文書照合の記録：[実施記録](../../../records/changes/change-20261001-scr001-003-ui/manual-20261001-acceptance/acceptance.md)。
+
+
+## CHANGE-20261003-COMMUTE-OFFICIAL／通勤認定簿公式様式 v1.02（受入待ち）
+
+同じApp ID 204a48dc-7f23-43dd-b934-4654a3cfa306の通勤タブに並行入口を追加。通常の「認定簿表示」はcrb3c_reports/commute-ledger-studio.html、試験入口はnew_reports/commute-ledger-official-v102.html。両方とも同一認定GUIDを渡して別タブへLaunchする。旧Webリソースを上書きしない。
+
+公式PDFの罫線・見出しをSVG、動的値をHTML data-fieldで重ねる。A4横2ページ、余白0。PDFへの印刷は既存window.print経路を維持。固定様式のため行高は可変にせず、枠超過時は帳票非表示・印刷停止。長文の省略を正常として扱わない。
+
+対象公開版：`2026-10-03T18:31:30.4607518Z`。公開後読戻しActions37159201219で新旧WebリソースSHAと新旧ボタン全明示プロパティ一致。
