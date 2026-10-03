@@ -1,12 +1,12 @@
 name: Capture commute parallel published UI
 on:
-  push:
-    branches: [change/commute-official-parallel-20261003]
-    paths: [config/verification/commute-capture.json]
+  pull_request:
+    paths: [config/verification/commute-capture.json, .github/workflows/commute-capture.yml]
 permissions:
   contents: read
 jobs:
   capture-readback:
+    if: github.head_ref == 'change/commute-official-parallel-20261003' && github.event.pull_request.head.repo.full_name == github.repository
     name: Capture current published app metadata and package digest
     runs-on: ubuntu-latest
     environment: powerapps-test
