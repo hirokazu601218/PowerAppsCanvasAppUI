@@ -30,7 +30,8 @@
       "expected_result": "公式様式の表示欄が枠内に収まり、既存の別タブ・データ取得・印刷処理を維持する",
       "unit_case_ids": [
         "UT-COM-FORM-001",
-        "UT-COM-OVERFLOW-001"
+        "UT-COM-OVERFLOW-001",
+        "UT-HOME-001"
       ]
     },
     {
@@ -48,7 +49,8 @@
     "reason": "旧新ボタンから同一認定を別タブ表示し、既存データ取得と印刷の結合を確認する",
     "case_ids": [
       "IT-COM-PARALLEL-001",
-      "IT-COM-PRINT-001"
+      "IT-COM-PRINT-001",
+      "IT-HOME-DETAIL-001"
     ]
   },
   "system_test": {
@@ -75,6 +77,16 @@
       "id": "IT-COM-PRINT-001",
       "level": "integration",
       "test_file": "e2e/current-app/commute-official.test.ts"
+    },
+    {
+      "id": "UT-HOME-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/navigation.test.ts"
+    },
+    {
+      "id": "IT-HOME-DETAIL-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/navigation.test.ts"
     }
   ]
 }
