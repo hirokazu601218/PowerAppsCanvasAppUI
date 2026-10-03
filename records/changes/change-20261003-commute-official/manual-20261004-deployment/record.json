@@ -13,6 +13,10 @@
   "browser_pdf": "PASS",
   "uat": "NOT_RUN",
   "capture_run": 37159201219,
-  "e2e_run": 37158642318,
-  "package_sha256": "671e5f5b3064215645a025f3b34bc5c0f3bb4a5a104cb7e0512f428d5895fa2e"
+  "e2e_run": 37159537696,
+  "package_sha256": "671e5f5b3064215645a025f3b34bc5c0f3bb4a5a104cb7e0512f428d5895fa2e",
+  "selected_cases_passed": 6,
+  "reconciliation": "PASS",
+  "uat_ready": true,
+  "merge_commit": "dcf621a17df5c8d7b5dde43856727fcf52f0b49b"
 }
