@@ -38,7 +38,9 @@
     "docs/handoff/STATUS.md",
     "docs/changes/scr003-attendance-import-design-candidate.md",
     "docs/verification/templates/current-app-postpublish.example.json",
-    "docs/changes/commute-official-design-candidate.md"
+    "docs/changes/commute-official-design-candidate.md",
+    "docs/requirements/payroll-confirmed-20261007.md",
+    "docs/changes/payroll-markdown-change-list-20261007.md"
   ],
   "current_dynamic_patterns": [
     "^docs/changes/requests/[a-z0-9][a-z0-9-]*\\.json$",
