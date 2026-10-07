@@ -641,6 +641,6 @@ Q1/Q2等が未決でも、初期表示・検索・サイドバー・基本の視
 
 同一App ID `204a48dc-7f23-43dd-b934-4654a3cfa306`、公開版 `2026-10-07T01:17:13.7960236Z`。受入済み帳票v1.02を通常利用へ切替済み。通常の「認定簿表示」（btnCertificate111）を唯一の入口とし、btnCertificateOfficial102を撤去した。入口差分のソース版は `src/commute-ledger/v1.03/`。上記の旧新並行配置・切替未実施という記録は過去時点の履歴。
 
-旧Webリソース `crb3c_reports/commute-ledger-studio.html` は公開アプリから参照されない。環境からの削除は操作時確認待ちで未実施。別の `crb3c_reports/commute-ledger.html` は保持する。削除前検証と削除完了を混同しない。
+旧Webリソース `crb3c_reports/commute-ledger-studio.html` は公開アプリから参照されない。2026-10-07 12:22頃 JST、ユーザーの操作時承認後に環境から当該1件を削除した。削除後Actions37566672250で不存在・新HTML SHA一致・通常ボタン全プロパティ一致を確認。別の `crb3c_reports/commute-ledger.html` は保持。削除後Playerで別タブ・TK-910003・71欄・2ページ・枠超過0を再確認した。
 
 今回の選定はUT-COM-FORM-001（単一入口・71欄・公式SVG2枚・枠超過0）、UT-COM-OVERFLOW-001（印刷前の枠超過停止）、IT-COM-CUTOVER-001（通常入口から別タブ・GUID・職員番号・認定ID・金額照合）、IT-COM-PRINT-001（新様式のみのA4横2ページPDF）、UT-HOME-001、IT-HOME-DETAIL-001。旧IT-COM-PARALLEL-001は履歴。新テストは旧リソースの実行を前提にしない。今回のActions結果は実施記録を参照し、過去PASSは転記しない。

@@ -181,6 +181,6 @@ COMMUTE-PARALLEL-001：旧認定簿と通常ボタンを保持し、「新様式
 
 同一App ID `204a48dc-7f23-43dd-b934-4654a3cfa306`、公開版 `2026-10-07T01:17:13.7960236Z`。受入済み帳票v1.02を通常利用へ切替済み。通常の「認定簿表示」（btnCertificate111）を唯一の入口とし、btnCertificateOfficial102を撤去した。入口差分のソース版は `src/commute-ledger/v1.03/`。上記の旧新並行配置・切替未実施という記録は過去時点の履歴。
 
-旧Webリソース `crb3c_reports/commute-ledger-studio.html` は公開アプリから参照されない。環境からの削除は操作時確認待ちで未実施。別の `crb3c_reports/commute-ledger.html` は保持する。削除前検証と削除完了を混同しない。
+旧Webリソース `crb3c_reports/commute-ledger-studio.html` は公開アプリから参照されない。2026-10-07 12:22頃 JST、ユーザーの操作時承認後に環境から当該1件を削除した。削除後Actions37566672250で不存在・新HTML SHA一致・通常ボタン全プロパティ一致を確認。別の `crb3c_reports/commute-ledger.html` は保持。削除後Playerで別タブ・TK-910003・71欄・2ページ・枠超過0を再確認した。
 
 COMMUTE-CUTOVER-001：認定GUID・職員／履歴照合・データ取得・別タブ起動・71欄・公式様式・A4横2ページPDFを維持する。無関係な画面、業務データ、フロー、権限を変更しない。新様式の受入PASSは従来記録を保持し、今回の技術検証は新規実施する。
