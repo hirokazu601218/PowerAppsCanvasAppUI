@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20261007-COMMUTE-CUTOVER",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "request_text": "受入済み新様式v1.02を通常の認定簿表示へ切り替え、試験ボタンと実際に参照される旧Webリソースを撤去する。同一アプリへ保存・公開し公開Playerと2ページPDFを今回新たに検証、ソース・要件・設計・試験・STATUS・実施記録をmainへ統合する。ユーザーが切替と撤去を明示承認済み。",
+  "requirement_ids": ["COMMUTE-OFFICIAL-001", "COMMUTE-CUTOVER-001"],
+  "acceptance_criteria": [
+    "現行実体と公開版を読戻し、変更前の復元材料を確保する",
+    "btnCertificate111の認定簿表示からnew_reports/commute-ledger-official-v102.htmlを別タブ表示する",
+    "認定GUID・職員と履歴の照合・データ取得・71表示欄・公式SVGとHTML/CSSを維持する",
+    "btnCertificateOfficial102を撤去して入口を一本化する",
+    "旧参照がないことと新様式動作を確認後、特定した旧crb3c_reports/commute-ledger-studio.htmlだけを撤去する。別リソースcrb3c_reports/commute-ledger.htmlは変更しない",
+    "同一App IDへ保存・公開し、公開Playerの別タブ・対象データ・A4横2ページPDFを新たに検証する",
+    "無関係な画面・データ・フロー・権限は変更しない。Git履歴と過去受入・試験結果を保持し過去PASSを転記しない"
+  ]
+}
