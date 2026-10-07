@@ -12,5 +12,6 @@
   "per_item_logs": null,
   "individual_print_settings": null,
   "scope": "Post-cutover business acceptance; separate from prior parallel-release acceptance",
-  "application_changed": false
+  "application_changed": false,
+  "observed_at": "2026-10-07T03:49:11Z"
 }
