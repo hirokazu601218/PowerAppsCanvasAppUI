@@ -89,3 +89,5 @@ YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、�
 
 - `/非常勤給与/commute-cutover-before-20261007.msapp`（libfile_c78d037cc0e0819196fe695bbe19062a）：変更前Studio保存内容。SHA256 8ec9e0ed40b1bed72d21b5d1afb72abcf19cb3bd7f6ab85ddadac0312d80d7d5。
 - `/非常勤給与/commute-cutover-recovery-20261007.zip`（libfile_4897ec03b94081919392b6328ec5595d）：変更前後msapp、新旧HTML全文、入口・新様式画像。復元または今回の差分再照合時に読む。画像だけをPDF成功の根拠にしない。ソース・要件・判定の正本はGitHub。
+
+- `/非常勤給与/commute-legacy-delete-confirm-20261007.jpg`（libfile_6ba82a8805f08191a351a001d2b53633）：旧Studio HTMLだけを選んだ環境削除の直前確認画面。削除成功の証跡ではない。
