@@ -191,6 +191,14 @@ jobs:
           done
           test ${#files[@]} -gt 0
           npx playwright test "${files[@]}" --project=canvas-app --grep "($SELECTED_CASES)" --trace=off --retries=0 --reporter=line
+      - name: Preserve only synthetic commute PDF evidence
+        if: ${{ success() && contains(needs.selection.outputs.cases, 'IT-COM-PRINT-001') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: commute-cutover-pdf
+          path: power-platform-playwright/packages/e2e-tests/test-results/**/attachments/*.pdf
+          if-no-files-found: error
+          retention-days: 7
       - name: Diagnose failed navigation without exporting screen contents
         if: ${{ failure() && steps.tests.outcome == 'failure' }}
         working-directory: power-platform-playwright/packages/e2e-tests
