@@ -35,7 +35,7 @@ test('IT-COM-CUTOVER-001 通常入口だけが新様式を別タブで開き選�
   expect(url.pathname).toBe('/WebResources/new_reports/commute-ledger-official-v102.html');
   expect(url.searchParams.getAll('id')).toHaveLength(1);
   expect(url.searchParams.get('id')).toBe('d3f72e11-eaad-58c0-a9df-a13a0df938cd');
-  await expect(app.locator('[data-control-name="galHistory111"]')).toContainText('TK-910003');
+  await expect(app.locator('[data-control-name="galDetailFields111"]')).toContainText('TK-910003');
   await expect(fresh.locator('#status')).toContainText('TK-910003');
   await expect(fresh.locator('[data-field="staff"]')).toHaveText('009900000004');
   await expect(fresh.locator('[data-field="name"]')).toHaveText('試験　退職');
