@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20261007-COMMUTE-CUTOVER",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "changes": [
+    {
+      "path": "src/commute-ledger/v1.03/cutover.json",
+      "component": "cutover.json",
+      "expected_result": "通常入口で受入済み新様式を別タブ表示し、職員照合・データ・印刷を維持。試験入口は存在しない。",
+      "unit_case_ids": [
+        "UT-COM-FORM-001",
+        "UT-COM-OVERFLOW-001",
+        "UT-HOME-001"
+      ]
+    },
+    {
+      "path": "src/commute-ledger/v1.03/normal-button.paste.yaml",
+      "component": "normal-button.paste.yaml",
+      "expected_result": "通常入口で受入済み新様式を別タブ表示し、職員照合・データ・印刷を維持。試験入口は存在しない。",
+      "unit_case_ids": [
+        "UT-COM-FORM-001",
+        "UT-COM-OVERFLOW-001",
+        "UT-HOME-001"
+      ]
+    },
+    {
+      "path": "src/commute-ledger/v1.03/scrStaffMasterSearch.OnVisible.fx",
+      "component": "scrStaffMasterSearch.OnVisible.fx",
+      "expected_result": "通常入口で受入済み新様式を別タブ表示し、職員照合・データ・印刷を維持。試験入口は存在しない。",
+      "unit_case_ids": [
+        "UT-COM-FORM-001",
+        "UT-COM-OVERFLOW-001",
+        "UT-HOME-001"
+      ]
+    }
+  ],
+  "integration": {
+    "required": true,
+    "reason": "通常入口から新様式へ切り替えた結合とPDF出力、ホーム詳細遷移の回帰を確認する",
+    "case_ids": [
+      "IT-COM-CUTOVER-001",
+      "IT-COM-PRINT-001",
+      "IT-HOME-DETAIL-001"
+    ]
+  },
+  "system_test": {
+    "status": "deferred",
+    "reason": "D-07の総合シナリオは後続。今回の範囲は帳票様式と並行入口に限定。"
+  },
+  "cases": [
+    {
+      "id": "UT-COM-FORM-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/commute-official.test.ts"
+    },
+    {
+      "id": "UT-COM-OVERFLOW-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/commute-official.test.ts"
+    },
+    {
+      "id": "IT-COM-CUTOVER-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/commute-official.test.ts"
+    },
+    {
+      "id": "IT-COM-PRINT-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/commute-official.test.ts"
+    },
+    {
+      "id": "UT-HOME-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/navigation.test.ts"
+    },
+    {
+      "id": "IT-HOME-DETAIL-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/navigation.test.ts"
+    }
+  ]
+}
