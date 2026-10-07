@@ -13,5 +13,7 @@
   "individual_print_settings": null,
   "scope": "Post-cutover business acceptance; separate from prior parallel-release acceptance",
   "application_changed": false,
-  "observed_at": "2026-10-07T03:49:11Z"
+  "observed_at": "2026-10-07T03:49:11Z",
+  "source_commit": "0facaab8d3eaddaec9c2b827a036eb98c8613e5e",
+  "version": "2026-10-07T01:17:13.7960236Z"
 }
