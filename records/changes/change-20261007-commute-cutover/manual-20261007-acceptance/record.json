@@ -1,0 +1,19 @@
+{
+  "change_id": "change-20261007-commute-cutover",
+  "run_id": "manual-20261007-acceptance",
+  "status": "PASS",
+  "acceptance_result": "PASS",
+  "reported_at": "2026-10-07T12:49:11+09:00",
+  "report_source": "User statement: 受入テスト終了。okです。進めてください",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "published_version": "2026-10-07T01:17:13.7960236Z",
+  "actual_test_time": null,
+  "tested_records": null,
+  "per_item_logs": null,
+  "individual_print_settings": null,
+  "scope": "Post-cutover business acceptance; separate from prior parallel-release acceptance",
+  "application_changed": false,
+  "observed_at": "2026-10-07T03:49:11Z",
+  "source_commit": "0facaab8d3eaddaec9c2b827a036eb98c8613e5e",
+  "version": "2026-10-07T01:17:13.7960236Z"
+}

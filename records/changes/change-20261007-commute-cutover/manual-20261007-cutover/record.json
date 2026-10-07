@@ -48,7 +48,8 @@
   "final_pdf_artifact_id": 11458829514,
   "document_placement_run": 37567285369,
   "verification_limitations": [
-    "cloud native print save dialog not visible; automated Chromium print output verified",
-    "no new business UAT or full data-combination/system tests; prior accepted form retained"
-  ]
+    "cloud native print save dialog not visible to agent; automated Chromium print output verified",
+    "business acceptance PASS by user statement; per-item logs not provided; full data-combination/system tests not inferred"
+  ],
+  "business_acceptance": "PASS: user statement received 2026-10-07 12:49 JST; separate acceptance record"
 }
