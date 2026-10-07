@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "change_id": "CHANGE-20261007-COMMUTE-CUTOVER",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "source_commit": "0facaab8d3eaddaec9c2b827a036eb98c8613e5e",
+  "documentation_base_commit": "0facaab8d3eaddaec9c2b827a036eb98c8613e5e",
+  "requirement_ids": [
+    "COMMUTE-OFFICIAL-001",
+    "COMMUTE-CUTOVER-001"
+  ],
+  "selected_case_ids": [
+    "IT-COM-CUTOVER-001",
+    "IT-COM-PRINT-001",
+    "IT-HOME-DETAIL-001",
+    "UT-COM-FORM-001",
+    "UT-COM-OVERFLOW-001",
+    "UT-HOME-001"
+  ],
+  "source_comparison": {
+    "result": "MATCH",
+    "checked_paths": [
+      "src/commute-ledger/v1.03/cutover.json",
+      "src/commute-ledger/v1.03/normal-button.paste.yaml",
+      "src/commute-ledger/v1.03/scrStaffMasterSearch.OnVisible.fx"
+    ],
+    "method_and_findings": "Studio保存前後の全Source YAMLをURL置換と試験ボタン削除だけ正規化し完全一致。Actions37556764035で通常ボタン全プロパティ・OnVisible・旧参照なしと新HTML SHAを照合。cutover.jsonの旧リソース削除は対象定義であり、環境削除はまだ未実施。"
+  },
+  "publication": {
+    "version": "2026-10-07T01:17:13.7960236Z",
+    "player_observed_at": "2026-10-07T01:19:00Z",
+    "player_app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+    "player_result": "PASS",
+    "player_observation": "公開Playerで通常ボタン1個・試験ボタン0、別タブ新様式、架空009900000004／TK-910003、GUID d3f72e11-eaad-58c0-a9df-a13a0df938cd、71欄・枠超過0・16,800円を確認。印刷ボタン押下時のクラウドOSダイアログは表示されず、PDFはActionsの今回試験で別途判定。旧リソース削除は操作時確認待ち。",
+    "download_sha256": "465dcdc2eec6deb181f8df811558bdade4f0b6494675346e1cac700d90f1a740"
+  }
+}
