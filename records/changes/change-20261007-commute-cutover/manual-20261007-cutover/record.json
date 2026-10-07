@@ -2,8 +2,8 @@
   "change_id": "change-20261007-commute-cutover",
   "run_id": "manual-20261007-cutover",
   "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
-  "status": "PARTIAL",
-  "observed_at": "2026-10-07T03:27:00Z",
+  "status": "PASS",
+  "observed_at": "2026-10-07T03:39:00Z",
   "source_commit": "0facaab8d3eaddaec9c2b827a036eb98c8613e5e",
   "version": "2026-10-07T01:17:13.7960236Z",
   "normal_entry_cutover": "PASS",
@@ -24,11 +24,8 @@
   "recovery_library_id": "libfile_4897ec03b94081919392b6328ec5595d",
   "delete_confirmation_library_id": "libfile_6ba82a8805f08191a351a001d2b53633",
   "pull_request": 130,
-  "main_merge": "NOT_RUN",
-  "remaining": [
-    "complete after-removal E2E/PDF evidence and final reconciliation",
-    "merge PR 130 into main"
-  ],
+  "main_merge": "39a59d23f306b3d98d18ad1aaa3dae29c2d363b5",
+  "remaining": [],
   "capture_after_removal_run": 37566672250,
   "player_after_removal": "PASS: separate new tab, exact GUID, synthetic staff 009900000004 / TK-910003, 71 fields, 2 pages, 2 SVG, total 16,800 and no overflow",
   "removal_proof_library_id": "libfile_219bac5c99f48191a4f9272aefae5878",
@@ -43,5 +40,15 @@
     841.92,
     594.96
   ],
-  "pdf_visual_review": "PASS: rendered both pages, borders/headings/field data preserved without clipping"
+  "pdf_visual_review": "PASS: rendered both pages, borders/headings/field data preserved without clipping",
+  "final_reconciliation_run": 37567285581,
+  "final_capture_run": 37567285358,
+  "final_selected_e2e_run": 37567285395,
+  "final_selected_e2e_result": "6 passed; final reconciliation reused six-case execution passed at 2026-10-07T03:38:39Z",
+  "final_pdf_artifact_id": 11458829514,
+  "document_placement_run": 37567285369,
+  "verification_limitations": [
+    "cloud native print save dialog not visible; automated Chromium print output verified",
+    "no new business UAT or full data-combination/system tests; prior accepted form retained"
+  ]
 }
