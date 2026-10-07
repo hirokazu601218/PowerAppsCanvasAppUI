@@ -93,3 +93,5 @@ YAML、Power Fx、要件、設計、テスト仕様、運用方針、進捗、�
 - `/非常勤給与/commute-legacy-delete-confirm-20261007.jpg`（libfile_6ba82a8805f08191a351a001d2b53633）：旧Studio HTMLだけを選んだ環境削除の直前確認画面。削除成功の証跡ではない。
 
 - `/非常勤給与/commute-legacy-removed-20261007.jpg`（libfile_219bac5c99f48191a4f9272aefae5878）：旧Studio HTMLの削除成功通知と残存2件の確認画像。不存在の機械読戻しはActions37566672250。
+
+- `/非常勤給与/commute-cutover-verified-20261007.pdf`（libfile_105d3a368ffc81919c17037e129c4939）：削除後E2E37566672248で新規生成した架空TK-910003のPDF証跡。2ページ・A4横841.92×594.96pt、両ページ描画を確認。業務認定用ではない。

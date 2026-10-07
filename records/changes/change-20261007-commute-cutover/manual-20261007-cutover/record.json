@@ -32,5 +32,16 @@
   "capture_after_removal_run": 37566672250,
   "player_after_removal": "PASS: separate new tab, exact GUID, synthetic staff 009900000004 / TK-910003, 71 fields, 2 pages, 2 SVG, total 16,800 and no overflow",
   "removal_proof_library_id": "libfile_219bac5c99f48191a4f9272aefae5878",
-  "previous_reconciliation": "37557608249: 6 tests passed; PDF evidence upload failed because body attachment was not persisted by line reporter. Added HTML reporter and scoped PDF-only upload; no HTML/authentication data exported."
+  "previous_reconciliation": "37557608249: 6 tests passed; PDF evidence upload failed because body attachment was not persisted by line reporter. Added HTML reporter and scoped PDF-only upload; no HTML/authentication data exported.",
+  "selected_e2e_after_removal_run": 37566672248,
+  "selected_e2e_after_removal_result": "6 passed at 2026-10-07T03:28:24Z; synthetic PDF artifact uploaded successfully",
+  "pdf_artifact_id": 11458867748,
+  "pdf_library_id": "libfile_105d3a368ffc81919c17037e129c4939",
+  "pdf_original_sha256": "8ff4a17d0d2b58ac8f4b68bd1e9992d80f8814c9fe2286c202c623fff88a04e6",
+  "pdf_page_count": 2,
+  "pdf_page_size_pt": [
+    841.92,
+    594.96
+  ],
+  "pdf_visual_review": "PASS: rendered both pages, borders/headings/field data preserved without clipping"
 }
