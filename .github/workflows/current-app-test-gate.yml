@@ -181,6 +181,8 @@ jobs:
           MS_AUTH_EMAIL: ${{ secrets.POWERAPPS_TEST_EMAIL }}
           SELECTED_FILES: ${{ needs.selection.outputs.files }}
           SELECTED_CASES: ${{ needs.selection.outputs.cases }}
+          PLAYWRIGHT_HTML_OPEN: never
+          PLAYWRIGHT_HTML_OUTPUT_DIR: test-results/pdf-report
         shell: bash
         run: |
           set -euo pipefail
@@ -190,13 +192,13 @@ jobs:
             files+=("tests/northwind/canvas/current-app/${file##*/}")
           done
           test ${#files[@]} -gt 0
-          npx playwright test "${files[@]}" --project=canvas-app --grep "($SELECTED_CASES)" --trace=off --retries=0 --reporter=line
+          npx playwright test "${files[@]}" --project=canvas-app --grep "($SELECTED_CASES)" --trace=off --retries=0 --reporter=line,html
       - name: Preserve only synthetic commute PDF evidence
         if: ${{ success() && contains(needs.selection.outputs.cases, 'IT-COM-PRINT-001') }}
         uses: actions/upload-artifact@v4
         with:
           name: commute-cutover-pdf
-          path: power-platform-playwright/packages/e2e-tests/test-results/**/attachments/*.pdf
+          path: power-platform-playwright/packages/e2e-tests/test-results/pdf-report/data/*.pdf
           if-no-files-found: error
           retention-days: 7
       - name: Diagnose failed navigation without exporting screen contents
@@ -249,6 +251,8 @@ jobs:
           AUTH_RESULT: ${{ steps.auth.outcome }}
           TEST_RESULT: ${{ steps.tests.outcome }}
           SELECTED_CASES: ${{ needs.selection.outputs.cases }}
+          PLAYWRIGHT_HTML_OPEN: never
+          PLAYWRIGHT_HTML_OUTPUT_DIR: test-results/pdf-report
         run: |
           {
             echo '## 現行アプリの公開Player E2E'
