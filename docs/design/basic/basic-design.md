@@ -227,3 +227,9 @@ SCR003は表示用colAttendanceLinesと編集用colAttendanceInlineDraftを分�
 旧Webリソース `crb3c_reports/commute-ledger-studio.html` は公開アプリから参照されない。2026-10-07 12:22頃 JST、ユーザーの操作時承認後に環境から当該1件を削除した。削除後Actions37566672250で不存在・新HTML SHA一致・通常ボタン全プロパティ一致を確認。別の `crb3c_reports/commute-ledger.html` は保持。削除後Playerで別タブ・TK-910003・71欄・2ページ・枠超過0を再確認した。
 
 入口は通勤タブの既存「認定簿表示」1個。受入済みHTML/CSSと公式PDF由来SVGは変更せず、new_reports/commute-ledger-official-v102.htmlを使用する。画面内の帳票化や追加アプリへの配布は行わない。復元は保存前msappと旧リソースHTMLから行う。
+
+## 2026-10-08 人給連携確定仕様
+
+責務は計算版→Excel生成→人給取込・計算→給与簿CSV取込→照合。人給キーとDataverse内部IDを分け、計算式精査保留でも入出力・照合設計を進める。実装は未検証。
+
+[出力仕様](../detailed/payroll-jinkyu-interface.md)、[決定台帳](../../requirements/payroll-interface-decisions-20261008.md)。
