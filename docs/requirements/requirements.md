@@ -184,3 +184,9 @@ COMMUTE-PARALLEL-001：旧認定簿と通常ボタンを保持し、「新様式
 旧Webリソース `crb3c_reports/commute-ledger-studio.html` は公開アプリから参照されない。2026-10-07 12:22頃 JST、ユーザーの操作時承認後に環境から当該1件を削除した。削除後Actions37566672250で不存在・新HTML SHA一致・通常ボタン全プロパティ一致を確認。別の `crb3c_reports/commute-ledger.html` は保持。削除後Playerで別タブ・TK-910003・71欄・2ページ・枠超過0を再確認した。
 
 COMMUTE-CUTOVER-001：認定GUID・職員／履歴照合・データ取得・別タブ起動・71欄・公式様式・A4横2ページPDFを維持する。無関係な画面、業務データ、フロー、権限を変更しない。新様式の受入PASSは従来記録を保持し、今回の技術検証は新規実施する。
+
+## 2026-10-08 人給連携確定仕様
+
+IF-01～12、PERIOD-01～05を機能要件に追加する。職員指定A/M、空欄0化、11キー、237列・文字列形式、給与簿CSV読取専用、エラー行表示を適用。新機能の実装未検証を維持する。
+
+[出力仕様](../design/detailed/payroll-jinkyu-interface.md)、[決定台帳](payroll-interface-decisions-20261008.md)。

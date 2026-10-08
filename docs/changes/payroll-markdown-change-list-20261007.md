@@ -2241,3 +2241,7 @@ T 行1134: | 超勤時間50日分（候補）           | J11_chokin_h_50d      
 | --- | --- | --- |
 | T | 153044 | `cbb9be3d5f4a53b2660704d28853ebf9261721c5cae86d1ef4d01848f5af4871` |
 | D | 10894 | `a482c3f5d1d4b021bde6fd9b5ce105f067eed5151812f59d37ddc241ba7cbec7` |
+
+## 2026-10-08 後続確定による読み替え
+
+本一覧の原文引用・当時の回答は維持する。アプリ→人給はExcel（.xlsx）、人給→アプリは給与簿CSVと訂正。237列・11キー・職員判断A/M・空欄0化は[出力仕様](../design/detailed/payroll-jinkyu-interface.md)を優先。対象期間・欠勤と過去月差額、D1～D8確定／D9以降保留は[決定台帳](../requirements/payroll-interface-decisions-20261008.md)。

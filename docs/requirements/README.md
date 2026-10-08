@@ -17,3 +17,7 @@
 ## 2026-10-07の給与業務改修の入口
 
 [確定要件（Q1～Q60・R1～R21）](payroll-confirmed-20261007.md)を先に読み、対象グループの業務・画面・非機能・基本／詳細設計とPD残件を確認する。[添付２文書の変更対応](../changes/payroll-markdown-change-list-20261007.md)は修正前の位置・修正後・理由・会話根拠を示す現行設計入力。Libraryにある同名修正一覧は作成時点の参考コピーであり、GitHubを正本とする。
+
+## 2026-10-08 人給連携
+
+[人給Excel出力・給与簿CSV取込仕様](../design/detailed/payroll-jinkyu-interface.md)。出力形式・キー等は確定、計算式確認は保留。
