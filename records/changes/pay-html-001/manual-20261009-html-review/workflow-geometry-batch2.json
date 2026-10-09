@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "[\n  { path: 'wf-06', issues: [], labels: 32 },\n  { path: 'wf-07', issues: [], labels: 28 },\n  { path: 'wf-08', issues: [], labels: 32 },\n  { path: 'wf-09', issues: [], labels: 36 },\n  { path: 'wf-10', issues: [], labels: 64 },\n  { path: 'wf-11', issues: [], labels: 24 },\n  { path: 'wf-12', issues: [], labels: 60 },\n  { path: 'wf-13', issues: [], labels: 56 },\n  { path: 'wf-14', issues: [], labels: 48 },\n  { path: 'wf-15', issues: [], labels: 28 }\n]"
+    }
+  ],
+  "isError": false
+}

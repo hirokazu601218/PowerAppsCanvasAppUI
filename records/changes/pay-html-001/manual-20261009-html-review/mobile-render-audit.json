@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "[\n  {\n    path: 'operations/index.html',\n    normal: { chars: 6571, scroll: 375, width: 375 },\n    nojs: { chars: 6571, script: false, scroll: 375, width: 375 }\n  },\n  {\n    path: 'operations/fut-jlink.html',\n    normal: { chars: 18722, scroll: 375, width: 375 },\n    nojs: { chars: 18722, script: false, scroll: 375, width: 375 }\n  },\n  {\n    path: 'wireframes/scr-002.html',\n    normal: { chars: 22077, scroll: 375, width: 375 },\n    nojs: { chars: 26537, script: false, scroll: 375, width: 375 }\n  },\n  {\n    path: 'wireframes/fut-jlink.html',\n    normal: { chars: 2869, scroll: 375, width: 375 },\n    nojs: { chars: 3422, script: false, scroll: 375, width: 375 }\n  },\n  {\n    path: 'workflows/wf-13.html',\n    normal: { chars: 2736, scroll: 375, width: 375 },\n    nojs: { chars: 2736, script: false, scroll: 375, width: 375 }\n  },\n  {\n    path: 'coverage.html',\n    normal: { chars: 3868, scroll: 375, width: 375 },\n    nojs: { chars: 3868, script: false, scroll: 375, width: 375 }\n  }\n]"
+    }
+  ],
+  "isError": false
+}

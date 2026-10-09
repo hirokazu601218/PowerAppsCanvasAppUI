@@ -1,0 +1,267 @@
+{
+  "status": "PASS",
+  "version": "0.2-review",
+  "scope": "stdlib model/layout checks; actual font bounds and interaction require separate browser QA",
+  "counts": {
+    "workflows": 15,
+    "steps": 135,
+    "edges": 154,
+    "navigation_sources": 12,
+    "navigation_relationships": 30
+  },
+  "tests": [
+    "start reachability",
+    "all nodes can reach a view-end",
+    "one semantic node per step",
+    "all original business edges drawn once",
+    "model-SVG-table parity",
+    "condition labels",
+    "node bounds and non-overlap",
+    "orthogonal edges with attached endpoints",
+    "no edge through unrelated nodes",
+    "no edge label overlaps nodes, other labels or edges",
+    "navigation source/destination uniqueness",
+    "external relationship classification",
+    "baseline workflow core hash excluding documented WF15 normal-path addition",
+    "event labels are routing obstacles and do not overlap nodes",
+    "condition label is within 30 SVG units of its own connector"
+  ],
+  "workflows": [
+    {
+      "id": "WF-01",
+      "business_steps": 10,
+      "business_edges": 14,
+      "display_nodes": 17,
+      "connected_edges": 21,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-c"
+      ],
+      "width": 800,
+      "height": 1590
+    },
+    {
+      "id": "WF-02",
+      "business_steps": 9,
+      "business_edges": 10,
+      "display_nodes": 17,
+      "connected_edges": 18,
+      "start_events": [
+        "start-a",
+        "start-i"
+      ],
+      "end_events": [
+        "end-h"
+      ],
+      "width": 1160,
+      "height": 1790
+    },
+    {
+      "id": "WF-03",
+      "business_steps": 8,
+      "business_edges": 8,
+      "display_nodes": 12,
+      "connected_edges": 12,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-f",
+        "end-h"
+      ],
+      "width": 800,
+      "height": 1390
+    },
+    {
+      "id": "WF-04",
+      "business_steps": 8,
+      "business_edges": 9,
+      "display_nodes": 14,
+      "connected_edges": 15,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-g",
+        "end-h"
+      ],
+      "width": 1160,
+      "height": 1390
+    },
+    {
+      "id": "WF-05",
+      "business_steps": 9,
+      "business_edges": 10,
+      "display_nodes": 13,
+      "connected_edges": 14,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-i"
+      ],
+      "width": 1160,
+      "height": 1790
+    },
+    {
+      "id": "WF-06",
+      "business_steps": 7,
+      "business_edges": 8,
+      "display_nodes": 10,
+      "connected_edges": 11,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-g"
+      ],
+      "width": 1160,
+      "height": 1390
+    },
+    {
+      "id": "WF-07",
+      "business_steps": 8,
+      "business_edges": 7,
+      "display_nodes": 12,
+      "connected_edges": 11,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-e",
+        "end-f",
+        "end-h"
+      ],
+      "width": 800,
+      "height": 1390
+    },
+    {
+      "id": "WF-08",
+      "business_steps": 7,
+      "business_edges": 8,
+      "display_nodes": 10,
+      "connected_edges": 11,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-g"
+      ],
+      "width": 800,
+      "height": 1390
+    },
+    {
+      "id": "WF-09",
+      "business_steps": 9,
+      "business_edges": 9,
+      "display_nodes": 13,
+      "connected_edges": 13,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-h",
+        "end-i"
+      ],
+      "width": 1160,
+      "height": 1590
+    },
+    {
+      "id": "WF-10",
+      "business_steps": 12,
+      "business_edges": 16,
+      "display_nodes": 20,
+      "connected_edges": 24,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-l"
+      ],
+      "width": 1160,
+      "height": 1990
+    },
+    {
+      "id": "WF-11",
+      "business_steps": 6,
+      "business_edges": 6,
+      "display_nodes": 10,
+      "connected_edges": 10,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-e",
+        "end-f"
+      ],
+      "width": 800,
+      "height": 1190
+    },
+    {
+      "id": "WF-12",
+      "business_steps": 12,
+      "business_edges": 15,
+      "display_nodes": 20,
+      "connected_edges": 23,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-l"
+      ],
+      "width": 1160,
+      "height": 2390
+    },
+    {
+      "id": "WF-13",
+      "business_steps": 11,
+      "business_edges": 14,
+      "display_nodes": 17,
+      "connected_edges": 20,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-k"
+      ],
+      "width": 1160,
+      "height": 1990
+    },
+    {
+      "id": "WF-14",
+      "business_steps": 11,
+      "business_edges": 12,
+      "display_nodes": 16,
+      "connected_edges": 17,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-g",
+        "end-k"
+      ],
+      "width": 800,
+      "height": 1990
+    },
+    {
+      "id": "WF-15",
+      "business_steps": 8,
+      "business_edges": 8,
+      "display_nodes": 15,
+      "connected_edges": 15,
+      "start_events": [
+        "start-a"
+      ],
+      "end_events": [
+        "end-c",
+        "end-f",
+        "end-g",
+        "end-h"
+      ],
+      "width": 800,
+      "height": 1390
+    }
+  ]
+}

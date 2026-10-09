@@ -15,3 +15,7 @@ Codexや他の作成者がGitHubへ上げる際は、対象App IDと利用目的
 GitHub Actions の `Document placement validation` はPRと`main`へのpushで配置・メタデータを検査します。チェック成功だけではブロックできないため、運用開始時はリポジトリ設定で `main` のPR必須チェックとしてこの名前を登録します。設定前、または管理者による直接pushでは予防できないため、設定済みと確認できるまで「強制済み」と報告しません。`records/workflows/` はGitHub Actionsとして実行されません。旧フローを現行App IDへ読み替えて復活させないでください。
 
 検証例：`python3 -m unittest discover -s tests/governance -v`、`python3 scripts/governance/validate_document_placement.py --base <mainのSHA>`。PRでは変更した相対リンク、対象ID、動作対象の3本のワークフローも確認します。
+
+## PAY-HTML-001限定のレビューHTML例外（2026-10-09）
+
+利用者の明示依頼により、`docs/review/pay-html-001/` に現在のMarkdown正本から生成する4種のレビュー用HTML、共通データ・CSS・JavaScript・READMEを配置する。現行改修の確認入力として①に分類し、機械判定はこのディレクトリに限定して登録する。HTMLは非正本・未承認の確認資料であり、Markdown正本を置換・削除しない。HTML原本をLibraryに置く通常方針の一般的な変更ではない。生成元・更新手順・元mainのSHAを併記し、実アプリ・Dataverse・Power Automate・公開版の変更やHTML代替アプリの運用には使用しない。検証結果は②へ分離する。
