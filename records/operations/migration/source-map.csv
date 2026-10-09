@@ -618,3 +618,4 @@ source_path,proposed_path,category,action,audit_note
 "tools/patch-v111-studio-compat.mjs","records/tools/patch-v111-studio-compat.mjs","2","move","旧生成・再構成ツール候補。現行参照確認"
 "tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj","records/tools/powerapps-source-reconstruct/PowerAppsSourceReconstruct.csproj","2","move","旧生成・再構成ツール候補。現行参照確認"
 "tools/powerapps-source-reconstruct/Program.cs","records/tools/powerapps-source-reconstruct/Program.cs","2","move","旧生成・再構成ツール候補。現行参照確認"
+docs/testing/change-records/pay-html-002.json,records/changes/pay-html-002/manual-20261009-connected-flow/review-test-selection.json,2,move,PAY-HTML-002: レビューHTMLの実施済み検証記録。実アプリ専用選定の対象外。CI失敗37978759967を受け配置のみ修正
