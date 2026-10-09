@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+  <title>③ SCR-002 職員マスタ検索・詳細の操作定義 | 非常勤給与レビュー</title>
+  <link rel="stylesheet" href="../assets/review.css">
+  <script src="../assets/review.js" defer></script>
+</head>
+<body data-screen-id="SCR-002">
+<a class="skip" href="#main">本文へ移動</a>
+<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001</p></header>
+<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<a href="../navigation.html" >① 画面遷移</a>
+<a href="../workflows/index.html" >② 業務フロー</a>
+<a href="index.html" aria-current="page">③ 操作定義</a>
+<a href="../wireframes/index.html" >④ ワイヤー</a>
+<a href="../coverage.html" >対応表</a>
+<a href="../design-notes.html" >設計注記</a></nav>
+<main id="main">
+<div class="document-meta"><span>0.1-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<h1>③ SCR-002 職員マスタ検索・詳細の操作定義</h1>
+<p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
+<p><span class="badge current">現行実装</span> 検索・履歴・6タブ表示の現行画面。E・F・Gの将来業務を既存タブに追加する。</p><p><a href="../wireframes/scr-002.html" >この画面を操作する</a></p><nav aria-label="この画面の操作"><a href="#OP-002-SEARCH">職員を検索</a> <a href="#OP-002-SELECT">職員を選択</a> <a href="#OP-002-SIDEBAR">検索欄を開閉</a> <a href="#OP-002-TABS">詳細タブを切替</a> <a href="#OP-002-HISTORY">履歴を選択</a> <a href="#OP-002-EDIT">編集モードへ</a> <a href="#OP-002-SAVE">変更を保存</a> <a href="#OP-002-READMODE">読取りモードへ</a> <a href="#OP-002-CANCEL">破棄確認を取消</a> <a href="#OP-002-DISCARD">破棄して続行</a> <a href="#OP-002-LEDGER">給与簿の月範囲変更</a> <a href="#OP-002-PAYDETAIL">支給明細へ</a> <a href="#OP-002-HOME">ホームへ戻る</a> <a href="#OP-AD-NUMBER">発行職員番号を反映</a> <a href="#OP-AD-CHANGE">前工程変更の差異確認</a> <a href="#OP-AD-CANCEL">採用取消を反映</a> <a href="#OP-E-PENDING">確認待ちで絞り込む</a> <a href="#OP-E-HISTORY">実際の条件変更を登録</a> <a href="#OP-E-CORRECT">誤登録を訂正</a> <a href="#OP-E-SUBMIT">内容を確認待ちにする</a> <a href="#OP-E-RETURN">給与情報を差し戻す</a> <a href="#OP-E-CONFIRM">給与情報を確定・再確定</a> <a href="#OP-F-EDIT">通勤届を入力</a> <a href="#OP-F-SUBMIT">通勤届を提出・再提出</a> <a href="#OP-F-RETURN">通勤届を差し戻す</a> <a href="#OP-F-CERTIFY">通勤手当を認定</a> <a href="#OP-F-CHANGE">変更届から新認定へ</a> <a href="#OP-F-NOPAY">一時不支給期間を確認</a> <a href="#OP-F-END">認定期間の終了を確定</a> <a href="#OP-F-HTML">認定簿を表示</a> <a href="#OP-G-REGISTER">外部決定結果を登録</a> <a href="#OP-G-CONFIRM">外部決定結果を確認確定</a> <a href="#OP-002-CLEAR">検索条件をクリア</a> <a href="#OP-002-FONT">文字サイズを切替</a> <a href="#OP-JLINK-RETURN">人給連携へ戻る</a> </nav><section class="operation" id="OP-002-SEARCH" data-operation-id="OP-002-SEARCH" data-screen-id="SCR-002"><h2>OP-002-SEARCH 職員を検索</h2><p><span class="badge current">現行実装</span> <span id="TR-002-SEARCH">遷移：TR-002-SEARCH</span> / 業務：職員検索</p><span class="requirement" data-requirement-id="SCR002-UI-004">SCR002-UI-004</span> <span class="requirement" data-requirement-id="SCR002-LT-007">SCR002-LT-007</span><div class="table-scroll" tabindex="0" role="region" aria-label="職員を検索の詳細契約">
+<table ><caption>職員を検索の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a> / <a href="../../../requirements/open-decisions.md">未決・未照合 D-01～08、PD-01～09、2026-10-08モック・I決定反映後残件</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>検索</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>入力条件を確定し、認可範囲の職員を取得する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>正常0件時は選択職員・詳細・履歴・認定GUID・給与を全て空にする。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>通信失敗・権限拒否と正常0件を区別し、旧職員を表示しない。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>職員基本・所属・在籍状態</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>12桁文字列・先頭ゼロを保持。</li><li>0件で旧詳細や帳票が残らない。</li></ul><h3>未決・注記</h3><ul><li>現行検索の利用者別結果と未照合はopen-decisionsを参照。全条件PASSではない。</li></ul></section><section class="operation" id="OP-002-SELECT" data-operation-id="OP-002-SELECT" data-screen-id="SCR-002"><h2>OP-002-SELECT 職員を選択</h2><p><span class="badge current">現行実装</span> <span id="TR-002-SELECT">遷移：TR-002-SELECT</span> / 業務：職員検索</p><span class="requirement" data-requirement-id="SCR002-LT-002">SCR002-LT-002</span> <span class="requirement" data-requirement-id="SCR002-EDIT-003">SCR002-EDIT-003</span><div class="table-scroll" tabindex="0" role="region" aria-label="職員を選択の詳細契約">
+<table ><caption>職員を選択の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>検索結果の職員行</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>12桁番号と所属を再検証し、当該職員の必要データを取得する。</td></tr>
+<tr><td>保持する情報</td><td>検索入力・結果・ページ位置。</td></tr>
+<tr><td>解除する情報</td><td>職員切替後に旧職員の履歴・通勤GUID・給与表示を消去。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存なら先に破棄確認。キャンセル時は現在の職員と入力を保持。</td></tr>
+<tr><td>参照エンティティ</td><td>職員基本・勤務条件・通勤・保険・税・給与簿の履歴</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>選択だけでサイドバーを自動的に閉じない。</li></ul></section><section class="operation" id="OP-002-SIDEBAR" data-operation-id="OP-002-SIDEBAR" data-screen-id="SCR-002"><h2>OP-002-SIDEBAR 検索欄を開閉</h2><p><span class="badge current">現行実装</span> <span id="TR-002-SIDEBAR">遷移：TR-002-SIDEBAR</span> / 業務：職員検索</p><span class="requirement" data-requirement-id="SCR002-LT-002">SCR002-LT-002</span><div class="table-scroll" tabindex="0" role="region" aria-label="検索欄を開閉の詳細契約">
+<table ><caption>検索欄を開閉の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>検索サイドバー開閉</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>検索欄の幅と表示を切替え、閉じた領域をTab対象から外す。</td></tr>
+<tr><td>保持する情報</td><td>検索入力・検索結果・選択職員・ページ位置・入力バッファ。</td></tr>
+<tr><td>解除する情報</td><td>なし。開閉で再検索・初期化しない。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>保持する。</td></tr>
+<tr><td>参照エンティティ</td><td>画面表示状態</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul></ul></section><section class="operation" id="OP-002-TABS" data-operation-id="OP-002-TABS" data-screen-id="SCR-002"><h2>OP-002-TABS 詳細タブを切替</h2><p><span class="badge current">現行実装</span> <span id="TR-002-TABS">遷移：TR-002-TABS</span> / 業務：職員詳細</p><span class="requirement" data-requirement-id="SCR002-LT-003">SCR002-LT-003</span> <span class="requirement" data-requirement-id="SCR002-EDIT-003">SCR002-EDIT-003</span><div class="table-scroll" tabindex="0" role="region" aria-label="詳細タブを切替の詳細契約">
+<table ><caption>詳細タブを切替の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a> / <a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>基本情報／勤務条件／通勤／社会保険／税固定控除／給与簿</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>基本情報／勤務条件／通勤／社会保険／税固定控除／給与簿</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>6タブ</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>取得済みデータでタブを切替える。給与簿は常時読取り専用。</td></tr>
+<tr><td>保持する情報</td><td>職員・区分ごとの履歴選択・未保存入力。</td></tr>
+<tr><td>解除する情報</td><td>なし。タブ切替だけで再取得しない。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>編集入力を保持。</td></tr>
+<tr><td>参照エンティティ</td><td>取得済み詳細・履歴</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul></ul></section><section class="operation" id="OP-002-HISTORY" data-operation-id="OP-002-HISTORY" data-screen-id="SCR-002"><h2>OP-002-HISTORY 履歴を選択</h2><p><span class="badge current">現行実装</span> <span id="TR-002-HISTORY">遷移：TR-002-HISTORY</span> / 業務：職員詳細</p><span class="requirement" data-requirement-id="SCR002-LT-004">SCR002-LT-004</span><div class="table-scroll" tabindex="0" role="region" aria-label="履歴を選択の詳細契約">
+<table ><caption>履歴を選択の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a> / <a href="../../../design/basic/data-model.md">データ設計 現行隔離表、2026-10-07変更後論理モデル、2026-10-08連携</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>勤務条件／通勤／社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>勤務条件／通勤／社会保険／税固定控除</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>履歴一覧</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>GUID・親職員Lookup・12桁職員番号の一致。</td></tr>
+<tr><td>処理</td><td>選択GUIDで該当職員の履歴を表示する。0件・単一件・複数件を区別する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>履歴切替で同一入力を失う場合の扱いは詳細未決。提案：未保存確認。</td></tr>
+<tr><td>参照エンティティ</td><td>対象タブの履歴</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>同一職員の複数履歴を無条件Firstで潰さない。</li></ul></section><section class="operation" id="OP-002-EDIT" data-operation-id="OP-002-EDIT" data-screen-id="SCR-002"><h2>OP-002-EDIT 編集モードへ</h2><p><span class="badge current">現行実装</span> <span id="TR-002-EDIT">遷移：TR-002-EDIT</span> / 業務：職員詳細</p><span class="requirement" data-requirement-id="SCR002-EDIT-001">SCR002-EDIT-001</span><div class="table-scroll" tabindex="0" role="region" aria-label="編集モードへの詳細契約">
+<table ><caption>編集モードへの詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a> / <a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>基本情報／勤務条件／通勤／社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>基本情報／勤務条件／通勤／社会保険／税固定控除</td></tr>
+<tr><td>遷移先モード</td><td>編集</td></tr>
+<tr><td>操作部品</td><td>編集モード</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>編集権限と保存先が確定した対象列。給与簿は非対象。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>対象レコードと表示値を確認し、許可列の入力バッファを作る。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>選択職員・選択履歴・許可列</td></tr>
+<tr><td>更新エンティティ</td><td>画面内の編集バッファ</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>現行モード切替の存在を各履歴の実保存合格としない。</li></ul></section><section class="operation" id="OP-002-SAVE" data-operation-id="OP-002-SAVE" data-screen-id="SCR-002"><h2>OP-002-SAVE 変更を保存</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-002-SAVE">遷移：TR-002-SAVE</span> / 業務：職員詳細</p><span class="requirement" data-requirement-id="SCR002-EDIT-002">SCR002-EDIT-002</span> <span class="requirement" data-requirement-id="SCR002-EDIT-003">SCR002-EDIT-003</span><div class="table-scroll" tabindex="0" role="region" aria-label="変更を保存の詳細契約">
+<table ><caption>変更を保存の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a> / <a href="../../../requirements/open-decisions.md">未決・未照合 D-01～08、PD-01～09、2026-10-08モック・I決定反映後残件</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>基本情報／勤務条件／通勤／社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>編集</td></tr>
+<tr><td>遷移先タブ</td><td>基本情報／勤務条件／通勤／社会保険／税固定控除</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>保存</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>保存直前に対象職員・履歴ID・所属権限・許可列を再検証。</td></tr>
+<tr><td>処理</td><td>変更された許可列のみ保存し、再取得した内容と一致を確認して読取りへ戻す。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>保存と再取得一致後に当該編集バッファを消去。</td></tr>
+<tr><td>成功</td><td>再取得成功後に取得日時を更新。</td></tr>
+<tr><td>失敗・再実行</td><td>入力と選択を保持。保存後の再取得失敗を確認済みとしない。部分更新を全件成功にしない。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>保存失敗時は保持。</td></tr>
+<tr><td>参照エンティティ</td><td>選択レコード・編集差分</td></tr>
+<tr><td>更新エンティティ</td><td>保存先確認済みの職員基本・履歴レコード</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>各列の正式保存先・実効権限はD-02／PD-01・04残件。給与簿は書込禁止。</li></ul></section><section class="operation" id="OP-002-READMODE" data-operation-id="OP-002-READMODE" data-screen-id="SCR-002"><h2>OP-002-READMODE 読取りモードへ</h2><p><span class="badge current">現行実装</span> <span id="TR-002-READMODE">遷移：TR-002-READMODE</span> / 業務：職員詳細</p><span class="requirement" data-requirement-id="SCR002-EDIT-003">SCR002-EDIT-003</span> <span class="requirement" data-requirement-id="SCR002-EDIT-004">SCR002-EDIT-004</span><div class="table-scroll" tabindex="0" role="region" aria-label="読取りモードへの詳細契約">
+<table ><caption>読取りモードへの詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>編集</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>読取りモード</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>変更なしなら読取りへ。未保存なら破棄確認を表示する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>「変更を破棄して移動しますか」。常設の変更を破棄ボタンは設けない。</td></tr>
+<tr><td>参照エンティティ</td><td>編集バッファの変更状態</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul></ul></section><section class="operation" id="OP-002-CANCEL" data-operation-id="OP-002-CANCEL" data-screen-id="SCR-002"><h2>OP-002-CANCEL 破棄確認を取消</h2><p><span class="badge current">現行実装</span> <span id="TR-002-CANCEL">遷移：TR-002-CANCEL</span> / 業務：共通取消</p><span class="requirement" data-requirement-id="SCR002-EDIT-003">SCR002-EDIT-003</span><div class="table-scroll" tabindex="0" role="region" aria-label="破棄確認を取消の詳細契約">
+<table ><caption>破棄確認を取消の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>破棄確認</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>編集</td></tr>
+<tr><td>操作部品</td><td>確認内のキャンセル</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>保留した移動・職員変更・読取り切替を取消し、編集を続ける。</td></tr>
+<tr><td>保持する情報</td><td>現在職員・タブ・履歴・全未保存入力。</td></tr>
+<tr><td>解除する情報</td><td>保留中の遷移要求だけを解除。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>全て保持。</td></tr>
+<tr><td>参照エンティティ</td><td>保留中の遷移・編集バッファ</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul></ul></section><section class="operation" id="OP-002-DISCARD" data-operation-id="OP-002-DISCARD" data-screen-id="SCR-002"><h2>OP-002-DISCARD 破棄して続行</h2><p><span class="badge current">現行実装</span> <span id="TR-002-DISCARD">遷移：TR-002-DISCARD</span> / 業務：共通取消</p><span class="requirement" data-requirement-id="SCR002-EDIT-003">SCR002-EDIT-003</span><div class="table-scroll" tabindex="0" role="region" aria-label="破棄して続行の詳細契約">
+<table ><caption>破棄して続行の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>破棄確認</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>保留中の遷移先状態</td></tr>
+<tr><td>操作部品</td><td>確認内の続行</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>明示的な続行を受けた後に入力を破棄し、保留していた目的画面／職員へ移動する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>承認された未保存入力。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>続行選択後にだけ破棄。</td></tr>
+<tr><td>参照エンティティ</td><td>保留中の遷移・編集バッファ</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>destination_screen_idは確認の表示元。実際の遷移先は保留中の操作が持つ。</li></ul></section><section class="operation" id="OP-002-LEDGER" data-operation-id="OP-002-LEDGER" data-screen-id="SCR-002"><h2>OP-002-LEDGER 給与簿の月範囲変更</h2><p><span class="badge current">現行実装</span> <span id="TR-002-LEDGER">遷移：TR-002-LEDGER</span> / 業務：給与簿参照</p><span class="requirement" data-requirement-id="SCR002-PAY-005">SCR002-PAY-005</span> <span class="requirement" data-requirement-id="SCR002-PAY-006">SCR002-PAY-006</span> <span class="requirement" data-requirement-id="SCR002-PAY-008">SCR002-PAY-008</span><div class="table-scroll" tabindex="0" role="region" aria-label="給与簿の月範囲変更の詳細契約">
+<table ><caption>給与簿の月範囲変更の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>給与簿</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>給与簿</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>表示開始月／表示終了月と隣接カレンダー</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>開始月≦終了月。解釈不能支給日は例外として表示。</td></tr>
+<tr><td>処理</td><td>職員と月範囲で取得し、163項目×登録済み支給行を表示。同月複数行は別列。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>範囲外の表示列を再構成。未登録月の空列は作らない。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>基準給与簿の163項目・支給年月日・番号・行GUID</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>0・負数・NULLを区別する。</li><li>末尾まで到達し、月列と項目が対応する。</li></ul><h3>未決・注記</h3><ul><li>改修後は人給CSV取込給与簿を読取り専用で表示する。</li></ul></section><section class="operation" id="OP-002-PAYDETAIL" data-operation-id="OP-002-PAYDETAIL" data-screen-id="SCR-002"><h2>OP-002-PAYDETAIL 支給明細へ</h2><p><span class="badge current">現行実装</span> <span id="TR-002-PAYDETAIL">遷移：TR-002-PAYDETAIL</span> / 業務：支給明細参照</p><span class="requirement" data-requirement-id="COMMON-NAV-003">COMMON-NAV-003</span> <span class="requirement" data-requirement-id="COMMON-CONTEXT-002">COMMON-CONTEXT-002</span><div class="table-scroll" tabindex="0" role="region" aria-label="支給明細への詳細契約">
+<table ><caption>支給明細への詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/screen-requirements.md">10月1日画面改修 SCR001～003 UI変更（CHANGE-20261001-SCR001-003-UI）</a> / <a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-005</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>支給明細画面</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>選択職員・対象月を渡し、遷移先で存在と所属を再確認。</td></tr>
+<tr><td>保持する情報</td><td>職員番号・対象月・ログイン主体。検索結果保持は現行未達記録あり。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存ならSCR-002の破棄確認を先行。</td></tr>
+<tr><td>参照エンティティ</td><td>選択職員・対象月</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>ホーム直通を復活させない。</li></ul></section><section class="operation" id="OP-002-HOME" data-operation-id="OP-002-HOME" data-screen-id="SCR-002"><h2>OP-002-HOME ホームへ戻る</h2><p><span class="badge current">現行実装</span> <span id="TR-002-HOME">遷移：TR-002-HOME</span> / 業務：共通ナビゲーション</p><span class="requirement" data-requirement-id="COMMON-NAV-002">COMMON-NAV-002</span> <span class="requirement" data-requirement-id="COMMON-CONTEXT-001">COMMON-CONTEXT-001</span><div class="table-scroll" tabindex="0" role="region" aria-label="ホームへ戻るの詳細契約">
+<table ><caption>ホームへ戻るの詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a> / <a href="../../../requirements/screen-requirements.md">10月1日画面改修 SCR001～003 UI変更（CHANGE-20261001-SCR001-003-UI）</a> / <a href="../../../design/detailed/detailed-design.md">詳細設計：勤怠 2026-09-29勤務時間報告／2026-10-01 UI／2026-10-07勤怠再取込</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-001</td></tr>
+<tr><td>利用可能な役割</td><td>ログイン利用者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>ホーム</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>SCR-003は編集中にホームを無効化。他画面は対象条件に従う。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>ログイン主体を保持してホームへ戻る。</td></tr>
+<tr><td>保持する情報</td><td>ログイン者の氏名・メール。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>SCR-002は破棄確認。SCR-003は編集中の遷移を無効化し読取り切替の確認へ。SCR-004／006は未決。SCR-005は試算のみ。</td></tr>
+<tr><td>参照エンティティ</td><td>画面コンテキスト</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul></ul></section><section class="operation" id="OP-AD-NUMBER" data-operation-id="OP-AD-NUMBER" data-screen-id="SCR-002"><h2>OP-AD-NUMBER 発行職員番号を反映</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-AD-NUMBER">遷移：TR-AD-NUMBER</span> / 業務：D</p><span class="requirement" data-requirement-id="AD-04">AD-04</span> <span class="requirement" data-requirement-id="AD-05">AD-05</span> <span class="requirement" data-requirement-id="FR-AD-02">FR-AD-02</span> <span class="requirement" data-requirement-id="PAYREQ-01">PAYREQ-01</span> <span class="requirement" data-requirement-id="PAYREQ-02">PAYREQ-02</span><div class="table-scroll" tabindex="0" role="region" aria-label="発行職員番号を反映の詳細契約">
+<table ><caption>発行職員番号を反映の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：採用前工程 A～D／AD-01～10</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a> / <a href="../../../requirements/open-decisions.md">未決・未照合 D-01～08、PD-01～09、2026-10-08モック・I決定反映後残件</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>基本情報</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>基本情報</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>発行情報の自動反映（目標）</td></tr>
+<tr><td>操作方法</td><td>Dの番号発行後の受渡し。具体方式未決。</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>番号一意・先頭ゼロ・GUID Lookup整合。職員基本を再採用のたびに重複作成しない。</td></tr>
+<tr><td>処理</td><td>採用ごとの識別子で同じ候補へ12桁番号を反映する。再採用は新しい採用識別子を使う。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>採用ごとの識別子・発行職員番号</td></tr>
+<tr><td>更新エンティティ</td><td>既存候補と職員基本の対応（物理方式未決）</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>手動紐づけ操作を設けない。番号発行を候補作成・確認確定の前提にしない。</li></ul></section><section class="operation" id="OP-AD-CHANGE" data-operation-id="OP-AD-CHANGE" data-screen-id="SCR-002"><h2>OP-AD-CHANGE 前工程変更の差異確認</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-AD-CHANGE">遷移：TR-AD-CHANGE</span> / 業務：A～D変更</p><span class="requirement" data-requirement-id="AD-08">AD-08</span> <span class="requirement" data-requirement-id="E-09">E-09</span> <span class="requirement" data-requirement-id="FR-E-03">FR-E-03</span><div class="table-scroll" tabindex="0" role="region" aria-label="前工程変更の差異確認の詳細契約">
+<table ><caption>前工程変更の差異確認の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：採用前工程 A～D／AD-01～10</a> / <a href="../../../requirements/business-requirements.md">業務要件：給与登録 E／E-01～12</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班</td></tr>
+<tr><td>遷移元タブ</td><td>勤務条件</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>勤務条件</td></tr>
+<tr><td>遷移先モード</td><td>確認待ち</td></tr>
+<tr><td>操作部品</td><td>提案：前工程変更の差異確認</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>給与班の実効権限、対象、業務状態を検証した場合。物理方式はPD-04。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>確定後変更なら再確認・再確定まで計算に使用しない。</td></tr>
+<tr><td>処理</td><td>変更前を保持。給与班の修正値と前工程変更値が食い違えば自動上書きせず採用値を給与班が判断する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>変更前候補・前工程変更値・給与班修正値</td></tr>
+<tr><td>更新エンティティ</td><td>採用された変更・変更前後履歴・確認待ち状態</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>自動受領方式は未決。差異の採用値判断はEの前工程変更でありG外部決定の採否判定ではない。</li></ul></section><section class="operation" id="OP-AD-CANCEL" data-operation-id="OP-AD-CANCEL" data-screen-id="SCR-002"><h2>OP-AD-CANCEL 採用取消を反映</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-AD-CANCEL">遷移：TR-AD-CANCEL</span> / 業務：A～D取消</p><span class="requirement" data-requirement-id="AD-06">AD-06</span> <span class="requirement" data-requirement-id="AD-07">AD-07</span> <span class="requirement" data-requirement-id="FR-AD-03">FR-AD-03</span><div class="table-scroll" tabindex="0" role="region" aria-label="採用取消を反映の詳細契約">
+<table ><caption>採用取消を反映の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：採用前工程 A～D／AD-01～10</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>確認待ち／確定</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>採用取消</td></tr>
+<tr><td>操作部品</td><td>取消情報受領（連携方式未決）</td></tr>
+<tr><td>操作方法</td><td>秘書課が前工程で登録した取消情報を受領したとき。自動連携方式は未決。アプリ内の手動取消ボタンを確定しない。</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>採用取消の状態を既存候補・履歴で参照する。具体表示は未入力。</td></tr>
+<tr><td>活性条件</td><td>前工程の取消情報と同じ候補との対応を確認できること。給与班のボタンクリックで取消を創作しない。</td></tr>
+<tr><td>実行前提</td><td>給与支給前。秘書課が異動情報アプリへ取消を登録。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>確認待ち・確定のいずれからも採用取消へ移し、候補を保持して給与計算から除外。</td></tr>
+<tr><td>保持する情報</td><td>取消前候補・変更履歴。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>取消情報・対応候補</td></tr>
+<tr><td>更新エンティティ</td><td>採用取消状態・履歴</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>削除しない。採用取消に伴う既支給返納は対象外。</li></ul></section><section class="operation" id="OP-E-PENDING" data-operation-id="OP-E-PENDING" data-screen-id="SCR-002"><h2>OP-E-PENDING 確認待ちで絞り込む</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-E-PENDING">遷移：TR-E-PENDING</span> / 業務：E</p><span class="requirement" data-requirement-id="SCR002-E-001">SCR002-E-001</span> <span class="requirement" data-requirement-id="FUT-STATE-E">FUT-STATE-E</span><div class="table-scroll" tabindex="0" role="region" aria-label="確認待ちで絞り込むの詳細契約">
+<table ><caption>確認待ちで絞り込むの詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a> / <a href="../../../requirements/business-requirements.md">業務要件：給与登録 E／E-01～12</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>確認待ち</td></tr>
+<tr><td>操作部品</td><td>提案：給与情報の確認待ち</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>左検索に確認待ち絞込みを追加し、右詳細で不足・不整合を表示。確定後修正で戻った候補も含める。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>認可範囲の候補・確認状態</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>「再確認待ち」という別状態を作らない。</li></ul></section><section class="operation" id="OP-E-HISTORY" data-operation-id="OP-E-HISTORY" data-screen-id="SCR-002"><h2>OP-E-HISTORY 実際の条件変更を登録</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-E-HISTORY">遷移：TR-E-HISTORY</span> / 業務：勤務条件・控除</p><span class="requirement" data-requirement-id="PAYREQ-01">PAYREQ-01</span> <span class="requirement" data-requirement-id="PAYREQ-02">PAYREQ-02</span> <span class="requirement" data-requirement-id="PAYREQ-03">PAYREQ-03</span> <span class="requirement" data-requirement-id="PAYREQ-04">PAYREQ-04</span><div class="table-scroll" tabindex="0" role="region" aria-label="実際の条件変更を登録の詳細契約">
+<table ><caption>実際の条件変更を登録の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a> / <a href="../../../design/basic/data-model.md">データ設計 現行隔離表、2026-10-07変更後論理モデル、2026-10-08連携</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>勤務条件／社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>編集</td></tr>
+<tr><td>遷移先タブ</td><td>勤務条件／社会保険／税固定控除</td></tr>
+<tr><td>遷移先モード</td><td>登録</td></tr>
+<tr><td>操作部品</td><td>提案：実際の条件変更を登録</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>計算対象の採用日は必須。保険未確認／加入／非加入、資格日と控除期間を分ける。固定控除は職員×項目×期間×額。</td></tr>
+<tr><td>処理</td><td>実際の条件変更は月途中を含む新しい有効期間履歴として登録。発令は勤務条件へ統合し、所属既定予算を個別予算で上書き可能。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>職員基本・旧履歴・日額／時間額単価・所属既定予算</td></tr>
+<tr><td>更新エンティティ</td><td>勤務条件・保険・税・固定控除の新履歴・職員×控除年月の住民税</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>月額基本給与、始終業・休憩・週時間、家族個別情報、銀行等は初回対象外。</li><li>具体列・入力範囲・期間重複条件は未入力。</li></ul></section><section class="operation" id="OP-E-CORRECT" data-operation-id="OP-E-CORRECT" data-screen-id="SCR-002"><h2>OP-E-CORRECT 誤登録を訂正</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-E-CORRECT">遷移：TR-E-CORRECT</span> / 業務：E・元データ訂正</p><span class="requirement" data-requirement-id="E-06">E-06</span> <span class="requirement" data-requirement-id="E-08">E-08</span> <span class="requirement" data-requirement-id="PAYREQ-03">PAYREQ-03</span> <span class="requirement" data-requirement-id="PAYREQ-04">PAYREQ-04</span> <span class="requirement" data-requirement-id="PAYREQ-07">PAYREQ-07</span><div class="table-scroll" tabindex="0" role="region" aria-label="誤登録を訂正の詳細契約">
+<table ><caption>誤登録を訂正の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：給与登録 E／E-01～12</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a> / <a href="../../../design/detailed/detailed-design.md">詳細設計：改修先 2026-10-07変更後処理契約、計算・人給照合・状態制御</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>基本情報／勤務条件／社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>登録／確認待ち／確定</td></tr>
+<tr><td>遷移先タブ</td><td>基本情報／勤務条件／社会保険／税固定控除</td></tr>
+<tr><td>遷移先モード</td><td>確認待ち</td></tr>
+<tr><td>操作部品</td><td>提案：誤登録を訂正</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>実際の条件変更による新履歴と誤登録訂正を区別する。</td></tr>
+<tr><td>処理</td><td>原則は局担当が不足・不整合を訂正。給与班も直接訂正可能。誤登録は確定済み履歴も直接訂正でき、前後値を残して再確認へ戻す。</td></tr>
+<tr><td>保持する情報</td><td>旧値・処理履歴、戻り先の支給回・職員。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>訂正前の元データ・影響する未払い支給回</td></tr>
+<tr><td>更新エンティティ</td><td>訂正後元データ・訂正前後履歴・確認待ち状態・影響情報</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>支払済み結果は更新せず追給・返納へ。未払いは再確認後に再計算・再照合。</li></ul></section><section class="operation" id="OP-E-SUBMIT" data-operation-id="OP-E-SUBMIT" data-screen-id="SCR-002"><h2>OP-E-SUBMIT 内容を確認待ちにする</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-E-SUBMIT">遷移：TR-E-SUBMIT</span> / 業務：E</p><span class="requirement" data-requirement-id="E-07">E-07</span> <span class="requirement" data-requirement-id="E-12">E-12</span> <span class="requirement" data-requirement-id="PAYREQ-03">PAYREQ-03</span> <span class="requirement" data-requirement-id="PAYREQ-04">PAYREQ-04</span><div class="table-scroll" tabindex="0" role="region" aria-label="内容を確認待ちにするの詳細契約">
+<table ><caption>内容を確認待ちにするの詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：給与登録 E／E-01～12</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>勤務条件／社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>登録／差戻し</td></tr>
+<tr><td>遷移先タブ</td><td>勤務条件／社会保険／税固定控除</td></tr>
+<tr><td>遷移先モード</td><td>確認待ち</td></tr>
+<tr><td>操作部品</td><td>提案：内容を確認待ちにする</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>勤務条件・保険・税等の内容を給与班の確認待ちにする。局との連絡・調整はアプリ外。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>登録・訂正された内容</td></tr>
+<tr><td>更新エンティティ</td><td>確認待ち状態</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>必要情報の未確認・未確定を支給確定に使用しない。具体ボタン名は提案。</li></ul></section><section class="operation" id="OP-E-RETURN" data-operation-id="OP-E-RETURN" data-screen-id="SCR-002"><h2>OP-E-RETURN 給与情報を差し戻す</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-E-RETURN">遷移：TR-E-RETURN</span> / 業務：E</p><span class="requirement" data-requirement-id="E-07">E-07</span> <span class="requirement" data-requirement-id="E-12">E-12</span> <span class="requirement" data-requirement-id="PAYREQ-03">PAYREQ-03</span> <span class="requirement" data-requirement-id="PAYREQ-04">PAYREQ-04</span><div class="table-scroll" tabindex="0" role="region" aria-label="給与情報を差し戻すの詳細契約">
+<table ><caption>給与情報を差し戻すの詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：給与登録 E／E-01～12</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班</td></tr>
+<tr><td>遷移元タブ</td><td>勤務条件／社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>確認待ち</td></tr>
+<tr><td>遷移先タブ</td><td>勤務条件／社会保険／税固定控除</td></tr>
+<tr><td>遷移先モード</td><td>差戻し</td></tr>
+<tr><td>操作部品</td><td>提案：給与情報を差し戻す</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>給与班の実効権限、対象、業務状態を検証した場合。物理方式はPD-04。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>必要な修正を差戻しとし、原則局担当が直して再提出する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>確認待ちの内容</td></tr>
+<tr><td>更新エンティティ</td><td>差戻し状態・確認履歴（物理項目未決）</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>2026-09-27の差戻しなし方針はQ18・Q27・R11で更新済み。</li></ul></section><section class="operation" id="OP-E-CONFIRM" data-operation-id="OP-E-CONFIRM" data-screen-id="SCR-002"><h2>OP-E-CONFIRM 給与情報を確定・再確定</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-E-CONFIRM">遷移：TR-E-CONFIRM</span> / 業務：E</p><span class="requirement" data-requirement-id="E-07">E-07</span> <span class="requirement" data-requirement-id="E-08">E-08</span> <span class="requirement" data-requirement-id="E-10">E-10</span> <span class="requirement" data-requirement-id="PAYREQ-03">PAYREQ-03</span> <span class="requirement" data-requirement-id="PAYREQ-04">PAYREQ-04</span> <span class="requirement" data-requirement-id="PAYREQ-07">PAYREQ-07</span><div class="table-scroll" tabindex="0" role="region" aria-label="給与情報を確定・再確定の詳細契約">
+<table ><caption>給与情報を確定・再確定の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：給与登録 E／E-01～12</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班</td></tr>
+<tr><td>遷移元タブ</td><td>勤務条件／社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>確認待ち</td></tr>
+<tr><td>遷移先タブ</td><td>勤務条件／社会保険／税固定控除</td></tr>
+<tr><td>遷移先モード</td><td>給与班確定</td></tr>
+<tr><td>操作部品</td><td>提案：給与情報を確定・再確定</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>給与班の実効権限、対象、業務状態を検証した場合。物理方式はPD-04。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>採用取消・必要情報の未確認は計算利用不可。詳細チェック項目は未入力。</td></tr>
+<tr><td>処理</td><td>給与班が対象・内容を確認して確定する。訂正後も同じ確認待ちから再確定し、影響する未払い結果を再計算・再照合へ。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>確認待ちデータ・確認履歴</td></tr>
+<tr><td>更新エンティティ</td><td>給与班確定状態・確認記録</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>これは元データ確定。人給差分ゼロ後の支給回確定とは別。</li></ul></section><section class="operation" id="OP-F-EDIT" data-operation-id="OP-F-EDIT" data-screen-id="SCR-002"><h2>OP-F-EDIT 通勤届を入力</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-F-EDIT">遷移：TR-F-EDIT</span> / 業務：F</p><span class="requirement" data-requirement-id="F-01">F-01</span> <span class="requirement" data-requirement-id="F-02">F-02</span> <span class="requirement" data-requirement-id="PAYREQ-05">PAYREQ-05</span><div class="table-scroll" tabindex="0" role="region" aria-label="通勤届を入力の詳細契約">
+<table ><caption>通勤届を入力の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：通勤認定 F／F-01～08</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>通勤</td></tr>
+<tr><td>遷移元モード</td><td>入力／差戻し</td></tr>
+<tr><td>遷移先タブ</td><td>通勤</td></tr>
+<tr><td>遷移先モード</td><td>入力</td></tr>
+<tr><td>操作部品</td><td>提案：通勤届を入力</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>局担当者の自局に属する業務記録。必要な共通職員基本情報だけを併用し、他局履歴を開示しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>通常非常勤職員。調査員はF対象外。詳細必須項目・証憑・算式は未決。</td></tr>
+<tr><td>処理</td><td>認定ヘッダーと経路ごとの明細を入力。経路ごとに定期券前払いまたはIC運賃×実通勤日数を選択し混在可能。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>自局職員・旧認定</td></tr>
+<tr><td>更新エンティティ</td><td>通勤届の入力内容</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>本人入力は将来追加。現在4経路を新モデルの上限としない。</li></ul></section><section class="operation" id="OP-F-SUBMIT" data-operation-id="OP-F-SUBMIT" data-screen-id="SCR-002"><h2>OP-F-SUBMIT 通勤届を提出・再提出</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-F-SUBMIT">遷移：TR-F-SUBMIT</span> / 業務：F</p><span class="requirement" data-requirement-id="F-01">F-01</span> <span class="requirement" data-requirement-id="F-02">F-02</span> <span class="requirement" data-requirement-id="F-03">F-03</span> <span class="requirement" data-requirement-id="SCR002-F-001">SCR002-F-001</span><div class="table-scroll" tabindex="0" role="region" aria-label="通勤届を提出・再提出の詳細契約">
+<table ><caption>通勤届を提出・再提出の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：通勤認定 F／F-01～08</a> / <a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>通勤</td></tr>
+<tr><td>遷移元モード</td><td>入力／差戻し</td></tr>
+<tr><td>遷移先タブ</td><td>通勤</td></tr>
+<tr><td>遷移先モード</td><td>提出</td></tr>
+<tr><td>操作部品</td><td>提案：通勤届を提出・再提出</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>局担当者の自局に属する業務記録。必要な共通職員基本情報だけを併用し、他局履歴を開示しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>内容検証後に提出。差戻しは原則提出者が修正し、同じ通勤タブから再提出する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>不備を表示し認定済みとして計算に使わない。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>通勤届・経路・対象職員</td></tr>
+<tr><td>更新エンティティ</td><td>提出状態</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul></ul></section><section class="operation" id="OP-F-RETURN" data-operation-id="OP-F-RETURN" data-screen-id="SCR-002"><h2>OP-F-RETURN 通勤届を差し戻す</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-F-RETURN">遷移：TR-F-RETURN</span> / 業務：F</p><span class="requirement" data-requirement-id="F-03">F-03</span> <span class="requirement" data-requirement-id="FUT-STATE-F">FUT-STATE-F</span><div class="table-scroll" tabindex="0" role="region" aria-label="通勤届を差し戻すの詳細契約">
+<table ><caption>通勤届を差し戻すの詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：通勤認定 F／F-01～08</a> / <a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班</td></tr>
+<tr><td>遷移元タブ</td><td>通勤</td></tr>
+<tr><td>遷移元モード</td><td>提出</td></tr>
+<tr><td>遷移先タブ</td><td>通勤</td></tr>
+<tr><td>遷移先モード</td><td>差戻し</td></tr>
+<tr><td>操作部品</td><td>提案：通勤届を差し戻す</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>給与班の実効権限、対象、業務状態を検証した場合。物理方式はPD-04。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>給与班が不備を差戻し状態にし、差戻し理由をアプリ外で提出者へ連絡する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>提出内容</td></tr>
+<tr><td>更新エンティティ</td><td>差戻し状態</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>理由の外部連絡を自動送信する機能は追加しない。</li></ul></section><section class="operation" id="OP-F-CERTIFY" data-operation-id="OP-F-CERTIFY" data-screen-id="SCR-002"><h2>OP-F-CERTIFY 通勤手当を認定</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-F-CERTIFY">遷移：TR-F-CERTIFY</span> / 業務：F</p><span class="requirement" data-requirement-id="F-04">F-04</span> <span class="requirement" data-requirement-id="PAYREQ-05">PAYREQ-05</span><div class="table-scroll" tabindex="0" role="region" aria-label="通勤手当を認定の詳細契約">
+<table ><caption>通勤手当を認定の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：通勤認定 F／F-01～08</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班</td></tr>
+<tr><td>遷移元タブ</td><td>通勤</td></tr>
+<tr><td>遷移元モード</td><td>提出</td></tr>
+<tr><td>遷移先タブ</td><td>通勤</td></tr>
+<tr><td>遷移先モード</td><td>認定</td></tr>
+<tr><td>操作部品</td><td>提案：通勤手当を認定</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>給与班の実効権限、対象、業務状態を検証した場合。物理方式はPD-04。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>給与班が認定し、計算は認定済みヘッダーと経路を直接参照する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>提出内容・経路・期間</td></tr>
+<tr><td>更新エンティティ</td><td>認定情報・認定状態</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>認定額を別給与情報へ重複転記する要件なし。PDFを認定時に自動作成しない。</li><li>支給月と期間対応・通勤精算式は未決。</li></ul></section><section class="operation" id="OP-F-CHANGE" data-operation-id="OP-F-CHANGE" data-screen-id="SCR-002"><h2>OP-F-CHANGE 変更届から新認定へ</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-F-CHANGE">遷移：TR-F-CHANGE</span> / 業務：F</p><span class="requirement" data-requirement-id="F-07">F-07</span> <span class="requirement" data-requirement-id="PAYREQ-05">PAYREQ-05</span><div class="table-scroll" tabindex="0" role="region" aria-label="変更届から新認定への詳細契約">
+<table ><caption>変更届から新認定への詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：通勤認定 F／F-01～08</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>通勤</td></tr>
+<tr><td>遷移元モード</td><td>認定</td></tr>
+<tr><td>遷移先タブ</td><td>通勤</td></tr>
+<tr><td>遷移先モード</td><td>新たな提出</td></tr>
+<tr><td>操作部品</td><td>提案：変更届から新認定へ</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>局担当者の自局に属する業務記録。必要な共通職員基本情報だけを併用し、他局履歴を開示しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>変更届を新たに提出し給与班が再認定。旧認定を残し、精算・追給・返納と関連付ける。</td></tr>
+<tr><td>保持する情報</td><td>旧認定と当時の経路・期間。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>旧認定・変更後経路</td></tr>
+<tr><td>更新エンティティ</td><td>新通勤届・新旧認定の関連</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul></ul></section><section class="operation" id="OP-F-NOPAY" data-operation-id="OP-F-NOPAY" data-screen-id="SCR-002"><h2>OP-F-NOPAY 一時不支給期間を確認</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-F-NOPAY">遷移：TR-F-NOPAY</span> / 業務：F</p><span class="requirement" data-requirement-id="F-08">F-08</span> <span class="requirement" data-requirement-id="FR-F-03">FR-F-03</span><div class="table-scroll" tabindex="0" role="region" aria-label="一時不支給期間を確認の詳細契約">
+<table ><caption>一時不支給期間を確認の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：通勤認定 F／F-01～08</a> / <a href="../../../requirements/open-decisions.md">未決・未照合 D-01～08、PD-01～09、2026-10-08モック・I決定反映後残件</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>通勤</td></tr>
+<tr><td>遷移元モード</td><td>認定</td></tr>
+<tr><td>遷移先タブ</td><td>通勤</td></tr>
+<tr><td>遷移先モード</td><td>認定</td></tr>
+<tr><td>操作部品</td><td>提案：一時不支給期間を確認</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>支給月への対応、算定・遡及条件は未入力。</td></tr>
+<tr><td>処理</td><td>病気・欠勤で通勤しない期間は通勤手当を支給しない。認定期間終了と区別する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>認定期間・病気・欠勤と勤務実績</td></tr>
+<tr><td>更新エンティティ</td><td>不支給対象期間の記録（方式未決）</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>業務方針は確定。入力部品・記録方式は提案。独立した終了状態にしない。</li></ul></section><section class="operation" id="OP-F-END" data-operation-id="OP-F-END" data-screen-id="SCR-002"><h2>OP-F-END 認定期間の終了を確定</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-F-END">遷移：TR-F-END</span> / 業務：F</p><span class="requirement" data-requirement-id="F-08">F-08</span> <span class="requirement" data-requirement-id="FUT-STATE-F">FUT-STATE-F</span><div class="table-scroll" tabindex="0" role="region" aria-label="認定期間の終了を確定の詳細契約">
+<table ><caption>認定期間の終了を確定の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：通勤認定 F／F-01～08</a> / <a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班</td></tr>
+<tr><td>遷移元タブ</td><td>通勤</td></tr>
+<tr><td>遷移元モード</td><td>認定</td></tr>
+<tr><td>遷移先タブ</td><td>通勤</td></tr>
+<tr><td>遷移先モード</td><td>認定（期間終了）</td></tr>
+<tr><td>操作部品</td><td>提案：認定期間の終了を確定</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>給与班の実効権限、対象、業務状態を検証した場合。物理方式はPD-04。</td></tr>
+<tr><td>実行前提</td><td>局担当から受給要件喪失の届出を受ける。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>給与班が認定期間の終了を確定する。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>終了届出・認定期間</td></tr>
+<tr><td>更新エンティティ</td><td>認定期間の終了情報</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>「認定終了」という新しい状態を設けない。一時不支給とは別。</li></ul></section><section class="operation" id="OP-F-HTML" data-operation-id="OP-F-HTML" data-screen-id="SCR-002"><h2>OP-F-HTML 認定簿を表示</h2><p><span class="badge current">現行実装</span> <span id="TR-F-HTML">遷移：TR-F-HTML</span> / 業務：F・帳票</p><span class="requirement" data-requirement-id="SCR002-COM-003">SCR002-COM-003</span> <span class="requirement" data-requirement-id="FR-F-04">FR-F-04</span><div class="table-scroll" tabindex="0" role="region" aria-label="認定簿を表示の詳細契約">
+<table ><caption>認定簿を表示の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">通勤HTMLの現行契約 10.4／CHANGE-20261003-COMMUTE-OFFICIAL／CHANGE-20261007-COMMUTE-CUTOVER</a> / <a href="../../../handoff/STATUS.md">現在の作業と読取り対象 2026-10-08人給連携／2026-10-07給与・通勤／2026-10-01 UI</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → EXT-COMMUTE</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>通勤</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>認定簿表示</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>選択職員・保持職員・親職員・認定GUIDが一致。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>直接URL・古いGUIDでも存在・親・権限を確認。実効認可方式は未決。</td></tr>
+<tr><td>処理</td><td>選択認定GUIDだけを別タブHTMLへ渡し、HTML側で親職員と認定を再取得。</td></tr>
+<tr><td>保持する情報</td><td>元の職員・通勤選択。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>不一致・削除済み・権限拒否では帳票本文を出さない。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>選択認定・親職員・閲覧範囲</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>通常入口は新様式v1.02への単一入口。旧様式／受入テストボタンを復活させない。</li><li>将来は給与班全対象・局担当自局。新モデルの取得契約はPD-09。</li></ul></section><section class="operation" id="OP-G-REGISTER" data-operation-id="OP-G-REGISTER" data-screen-id="SCR-002"><h2>OP-G-REGISTER 外部決定結果を登録</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-G-REGISTER">遷移：TR-G-REGISTER</span> / 業務：G</p><span class="requirement" data-requirement-id="G-01">G-01</span> <span class="requirement" data-requirement-id="G-02">G-02</span> <span class="requirement" data-requirement-id="G-04">G-04</span> <span class="requirement" data-requirement-id="G-06">G-06</span> <span class="requirement" data-requirement-id="SCR002-G-001">SCR002-G-001</span> <span class="requirement" data-requirement-id="SCR002-G-002">SCR002-G-002</span><div class="table-scroll" tabindex="0" role="region" aria-label="外部決定結果を登録の詳細契約">
+<table ><caption>外部決定結果を登録の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：外部決定 G／G-01～06</a> / <a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>編集</td></tr>
+<tr><td>遷移先タブ</td><td>社会保険／税固定控除</td></tr>
+<tr><td>遷移先モード</td><td>登録（確認待ち）</td></tr>
+<tr><td>操作部品</td><td>提案：外部決定結果を登録</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>決定内容を正とする。証憑保存・具体項目は未入力。</td></tr>
+<tr><td>処理</td><td>紙・電子で受領した外部機関の決定結果を担当局または給与班が手入力する。住民税は税固定控除、共済・保険・ハローワークは社会保険。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>外部機関の決定結果・対象職員</td></tr>
+<tr><td>更新エンティティ</td><td>決定結果と確認待ち状態</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>電子申請操作、自動結果取込、申請・受付進捗は作らない。</li><li>二重申請防止方法は未決。</li></ul></section><section class="operation" id="OP-G-CONFIRM" data-operation-id="OP-G-CONFIRM" data-screen-id="SCR-002"><h2>OP-G-CONFIRM 外部決定結果を確認確定</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-G-CONFIRM">遷移：TR-G-CONFIRM</span> / 業務：G</p><span class="requirement" data-requirement-id="G-05">G-05</span> <span class="requirement" data-requirement-id="SCR002-G-004">SCR002-G-004</span> <span class="requirement" data-requirement-id="PAYREQ-04">PAYREQ-04</span><div class="table-scroll" tabindex="0" role="region" aria-label="外部決定結果を確認確定の詳細契約">
+<table ><caption>外部決定結果を確認確定の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/business-requirements.md">業務要件：外部決定 G／G-01～06</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班</td></tr>
+<tr><td>遷移元タブ</td><td>社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>登録（確認待ち）</td></tr>
+<tr><td>遷移先タブ</td><td>社会保険／税固定控除</td></tr>
+<tr><td>遷移先モード</td><td>確定</td></tr>
+<tr><td>操作部品</td><td>提案：外部決定結果を確認確定</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>給与班の実効権限、対象、業務状態を検証した場合。物理方式はPD-04。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>必要情報の未確認を支給確定へ流さない。制度の自動判定は初回対象外。</td></tr>
+<tr><td>処理</td><td>給与班が決定内容・対象職員を確認して確定する。給与へ影響する内容はそれまで使わない。</td></tr>
+<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>外部決定の登録内容</td></tr>
+<tr><td>更新エンティティ</td><td>確認確定状態</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>給与班が外部決定の採否を決め直す工程は設けない。</li></ul></section><section class="operation" id="OP-002-CLEAR" data-operation-id="OP-002-CLEAR" data-screen-id="SCR-002"><h2>OP-002-CLEAR 検索条件をクリア</h2><p><span class="badge proposed">提案</span> <span id="TR-002-CLEAR">遷移：TR-002-CLEAR</span> / 業務：職員検索</p><span class="requirement" data-requirement-id="SCR002-LT-002">SCR002-LT-002</span> <span class="requirement" data-requirement-id="SCR002-UI-004">SCR002-UI-004</span><div class="table-scroll" tabindex="0" role="region" aria-label="検索条件をクリアの詳細契約">
+<table ><caption>検索条件をクリアの詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a> / <a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a> / <a href="../../../requirements/open-decisions.md">未決・未照合 D-01～08、PD-01～09、2026-10-08モック・I決定反映後残件</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>検索条件をクリア</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>レビュー案として検索入力・条件を初期状態へ戻す。再検索・選択解除のタイミングは未確定。</td></tr>
+<tr><td>保持する情報</td><td>未保存入力を勝手に破棄しない。</td></tr>
+<tr><td>解除する情報</td><td>提案：検索入力・選択条件のみ。旧職員消去は正常0件／職員変更時の確定契約に従う。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>画面内の検索入力・確定条件</td></tr>
+<tr><td>更新エンティティ</td><td>画面内の検索条件</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>既存ソースにクリア操作の履歴があるが、最新版の全挙動を設計記述だけで確定しない。</li></ul></section><section class="operation" id="OP-002-FONT" data-operation-id="OP-002-FONT" data-screen-id="SCR-002"><h2>OP-002-FONT 文字サイズを切替</h2><p><span class="badge current">現行実装</span> <span id="TR-002-FONT">遷移：TR-002-FONT</span> / 業務：表示調整</p><span class="requirement" data-requirement-id="SCR002-UI-003">SCR002-UI-003</span><div class="table-scroll" tabindex="0" role="region" aria-label="文字サイズを切替の詳細契約">
+<table ><caption>文字サイズを切替の詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a> / <a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → SCR-002</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
+<tr><td>遷移元タブ</td><td>該当なし</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>該当なし</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>文字：標準／文字：大</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>ヘッダー直下の操作領域で文字サイズを切替える。</td></tr>
+<tr><td>保持する情報</td><td>対象職員・検索条件・選択履歴・未保存入力。</td></tr>
+<tr><td>解除する情報</td><td>業務データのリセットなし。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
+<tr><td>参照エンティティ</td><td>文字サイズ表示状態</td></tr>
+<tr><td>更新エンティティ</td><td>画面内の文字サイズ状態</td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>具体サイズ・各画面への共有範囲の検証は別。</li></ul></section><section class="operation" id="OP-JLINK-RETURN" data-operation-id="OP-JLINK-RETURN" data-screen-id="SCR-002"><h2>OP-JLINK-RETURN 人給連携へ戻る</h2><p><span class="badge accepted">確定改修要件</span> <span id="TR-JLINK-RETURN">遷移：TR-JLINK-RETURN</span> / 業務：人給連携</p><span class="requirement" data-requirement-id="JLINK-UI-09">JLINK-UI-09</span><div class="table-scroll" tabindex="0" role="region" aria-label="人給連携へ戻るの詳細契約">
+<table ><caption>人給連携へ戻るの詳細契約</caption>
+<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tbody>
+<tr><td>出典</td><td><a href="../../../requirements/screen-requirements.md">人給連携画面要件 2026-10-08／JLINK-UI-01～11</a> / <a href="../../../design/detailed/payroll-jinkyu-interface.md">承認画面の処理契約 7.1 出力／7.2 最新版照合／7.3 訂正・エラー・確定</a></td></tr>
+<tr><td>画面</td><td>SCR-002 → FUT-JLINK</td></tr>
+<tr><td>利用可能な役割</td><td>会計課給与班</td></tr>
+<tr><td>遷移元タブ</td><td>勤務条件／通勤／社会保険／税固定控除</td></tr>
+<tr><td>遷移元モード</td><td>読取り</td></tr>
+<tr><td>遷移先タブ</td><td>取込・照合</td></tr>
+<tr><td>遷移先モード</td><td>読取り</td></tr>
+<tr><td>操作部品</td><td>提案：人給連携へ戻る</td></tr>
+<tr><td>操作方法</td><td>クリック／キーボード実行（具体部品は未入力）</td></tr>
+<tr><td>対象行・データ範囲</td><td>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td></tr>
+<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
+<tr><td>活性条件</td><td>給与班の実効権限、対象、業務状態を検証した場合。物理方式はPD-04。</td></tr>
+<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
+<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
+<tr><td>処理</td><td>訂正経路から支給回・職員を保持して人給連携へ戻る。更新された元データは再確認・再計算・再照合が必要。</td></tr>
+<tr><td>保持する情報</td><td>支給回・職員。</td></tr>
+<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
+<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
+<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
+<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
+<tr><td>未保存</td><td>SCR-002の破棄確認を適用。取消なら現在の入力を保持。</td></tr>
+<tr><td>参照エンティティ</td><td>戻り先の支給回・職員・保存・確認状態</td></tr>
+<tr><td>更新エンティティ</td><td></td></tr>
+</tbody></table></div>
+<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>戻り時に古い差分ゼロを復活させない。</li></ul></section>
+</main>
+<footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。モックの操作補助のみJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+</body>
+</html>

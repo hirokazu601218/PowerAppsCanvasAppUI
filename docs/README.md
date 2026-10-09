@@ -17,3 +17,7 @@
 ## 2026-10-08 人給連携
 
 [人給Excel出力・給与簿CSV取込仕様](design/detailed/payroll-jinkyu-interface.md)。出力形式・キー等は確定、計算式確認は保留。
+
+## レビュー用HTML（非正本）
+
+[PAY-HTML-001の入口](review/pay-html-001/index.html) / [生成・更新手順](review/pay-html-001/README.md)。画面遷移、業務フロー、操作定義、クリック式ワイヤーを同じデータから作成。Markdown正本と実装・未検証の境界を維持する。

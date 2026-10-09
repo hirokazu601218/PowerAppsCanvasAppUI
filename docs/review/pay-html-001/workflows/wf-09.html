@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+  <title>② G 外部機関の決定結果登録 | 非常勤給与レビュー</title>
+  <link rel="stylesheet" href="../assets/review.css">
+  <script src="../assets/review.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001</p></header>
+<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<a href="../navigation.html" >① 画面遷移</a>
+<a href="index.html" aria-current="page">② 業務フロー</a>
+<a href="../operations/index.html" >③ 操作定義</a>
+<a href="../wireframes/index.html" >④ ワイヤー</a>
+<a href="../coverage.html" >対応表</a>
+<a href="../design-notes.html" >設計注記</a></nav>
+<main id="main">
+<div class="document-meta"><span>0.1-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<h1>② G 外部機関の決定結果登録</h1>
+<p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
+<p><span class="badge accepted">確定改修要件</span> 担当：担当局・給与班・外部機関</p><dl><dt>開始</dt><dd>外部で手続きし決定結果を受領</dd><dt>終了</dt><dd>確定した決定結果を管理・計算へ利用</dd></dl><span class="requirement" data-requirement-id="G-01">G-01</span> <span class="requirement" data-requirement-id="G-02">G-02</span> <span class="requirement" data-requirement-id="G-04">G-04</span> <span class="requirement" data-requirement-id="G-05">G-05</span> <span class="requirement" data-requirement-id="G-06">G-06</span> <span class="requirement" data-requirement-id="SCR002-G-001">SCR002-G-001</span> <span class="requirement" data-requirement-id="SCR002-G-002">SCR002-G-002</span><div class="diagram-scroll" tabindex="0" role="region" aria-label="G 外部機関の決定結果登録。狭い画面では横スクロール"><svg class="lane-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1184" role="img" aria-label="G 外部機関の決定結果登録"><title>G 外部機関の決定結果登録</title><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0f6cbd"/></marker></defs><rect x="12" y="36" width="310" height="94" rx="6" class="node start"/><text x="26" y="58" class="node-id">a</text><text x="26" y="83" class="node-label">外部機関で手続きを実施</text><rect x="678" y="36" width="310" height="94" rx="6" class="node external"/><text x="692" y="58" class="node-id">b</text><text x="692" y="83" class="node-label">外部の決定結果を受領</text><path d="M 328 100 H 664" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrow)"/><text x="496" y="56" text-anchor="middle" class="edge-label">決定</text><rect x="12" y="162" width="310" height="94" rx="6" class="node external"/><text x="26" y="184" class="node-id">b</text><text x="26" y="209" class="node-label">外部の決定結果を受領</text><rect x="678" y="162" width="310" height="94" rx="6" class="node action"/><text x="692" y="184" class="node-id">c</text><text x="692" y="209" class="node-label">担当者が該当タブへ登録</text><path d="M 328 226 H 664" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrow)"/><text x="496" y="182" text-anchor="middle" class="edge-label">手動登録</text><rect x="12" y="288" width="310" height="94" rx="6" class="node action"/><text x="26" y="310" class="node-id">c</text><text x="26" y="335" class="node-label">担当者が該当タブへ登録</text><rect x="678" y="288" width="310" height="94" rx="6" class="node decision"/><text x="692" y="310" class="node-id">d</text><text x="692" y="335" class="node-label">対象・登録内容を確認</text><path d="M 328 352 H 664" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrow)"/><text x="496" y="308" text-anchor="middle" class="edge-label">確認待ち</text><rect x="12" y="414" width="310" height="94" rx="6" class="node decision"/><text x="26" y="436" class="node-id">d</text><text x="26" y="461" class="node-label">対象・登録内容を確認</text><rect x="678" y="414" width="310" height="94" rx="6" class="node action"/><text x="692" y="436" class="node-id">e</text><text x="692" y="461" class="node-label">誤入力・不足を修正</text><path d="M 328 478 H 664" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrow)"/><text x="496" y="434" text-anchor="middle" class="edge-label">入力不備</text><rect x="12" y="540" width="310" height="94" rx="6" class="node action"/><text x="26" y="562" class="node-id">e</text><text x="26" y="587" class="node-label">誤入力・不足を修正</text><rect x="678" y="540" width="310" height="94" rx="6" class="node action"/><text x="692" y="562" class="node-id">c</text><text x="692" y="587" class="node-label">担当者が該当タブへ登録</text><path d="M 328 604 H 664" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrow)"/><text x="496" y="560" text-anchor="middle" class="edge-label">訂正</text><rect x="12" y="666" width="310" height="94" rx="6" class="node decision"/><text x="26" y="688" class="node-id">d</text><text x="26" y="713" class="node-label">対象・登録内容を確認</text><rect x="678" y="666" width="310" height="94" rx="6" class="node action"/><text x="692" y="688" class="node-id">f</text><text x="692" y="713" class="node-label">給与班が確認・確定</text><path d="M 328 730 H 664" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrow)"/><text x="496" y="686" text-anchor="middle" class="edge-label">確認可</text><rect x="12" y="792" width="310" height="94" rx="6" class="node action"/><text x="26" y="814" class="node-id">f</text><text x="26" y="839" class="node-label">給与班が確認・確定</text><rect x="678" y="792" width="310" height="94" rx="6" class="node decision"/><text x="692" y="814" class="node-id">g</text><text x="692" y="839" class="node-label">給与計算に影響するか</text><path d="M 328 856 H 664" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrow)"/><text x="496" y="812" text-anchor="middle" class="edge-label">影響確認</text><rect x="12" y="918" width="310" height="94" rx="6" class="node decision"/><text x="26" y="940" class="node-id">g</text><text x="26" y="965" class="node-label">給与計算に影響するか</text><rect x="678" y="918" width="310" height="94" rx="6" class="node end"/><text x="692" y="940" class="node-id">h</text><text x="692" y="965" class="node-label">確定結果を給与へ利用</text><path d="M 328 982 H 664" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrow)"/><text x="496" y="938" text-anchor="middle" class="edge-label">影響あり</text><rect x="12" y="1044" width="310" height="94" rx="6" class="node decision"/><text x="26" y="1066" class="node-id">g</text><text x="26" y="1091" class="node-label">給与計算に影響するか</text><rect x="678" y="1044" width="310" height="94" rx="6" class="node end"/><text x="692" y="1066" class="node-id">i</text><text x="692" y="1091" class="node-label">決定結果として保持</text><path d="M 328 1108 H 664" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrow)"/><text x="496" y="1064" text-anchor="middle" class="edge-label">影響なし</text></svg></div><div class="table-scroll" tabindex="0" role="region" aria-label="SVGと同一データの分岐表">
+<table ><caption>SVGと同一データの分岐表</caption>
+<thead><tr><th scope="col">起点</th><th scope="col">条件／操作</th><th scope="col">到達点</th></tr></thead>
+<tbody>
+<tr><td>a 外部機関で手続きを実施</td><td>決定</td><td>b 外部の決定結果を受領</td></tr>
+<tr><td>b 外部の決定結果を受領</td><td>手動登録</td><td>c 担当者が該当タブへ登録</td></tr>
+<tr><td>c 担当者が該当タブへ登録</td><td>確認待ち</td><td>d 対象・登録内容を確認</td></tr>
+<tr><td>d 対象・登録内容を確認</td><td>入力不備</td><td>e 誤入力・不足を修正</td></tr>
+<tr><td>e 誤入力・不足を修正</td><td>訂正</td><td>c 担当者が該当タブへ登録</td></tr>
+<tr><td>d 対象・登録内容を確認</td><td>確認可</td><td>f 給与班が確認・確定</td></tr>
+<tr><td>f 給与班が確認・確定</td><td>影響確認</td><td>g 給与計算に影響するか</td></tr>
+<tr><td>g 給与計算に影響するか</td><td>影響あり</td><td>h 確定結果を給与へ利用</td></tr>
+<tr><td>g 給与計算に影響するか</td><td>影響なし</td><td>i 決定結果として保持</td></tr>
+</tbody></table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="業務工程の定義">
+<table ><caption>業務工程の定義</caption>
+<thead><tr><th scope="col">工程</th><th scope="col">画面・種類</th><th scope="col">動作・条件</th><th scope="col">操作定義／画面</th></tr></thead>
+<tbody>
+<tr><td><span id="a">a</span> 外部機関で手続きを実施</td><td><br>start</td><td>電子申請・紙手続きはアプリ外。申請進捗をアプリ管理しない。</td><td>業務境界・状態（操作なし）</td></tr>
+<tr><td><span id="b">b</span> 外部の決定結果を受領</td><td><br>external</td><td>紙・電子どちらも同じ登録扱い。</td><td>業務境界・状態（操作なし）</td></tr>
+<tr><td><span id="c">c</span> 担当者が該当タブへ登録</td><td>SCR-002<br>action</td><td>保険・共済・ハローワークは社会保険、住民税は税固定控除。</td><td><a href="../operations/scr-002.html#OP-G-REGISTER" >OP-G-REGISTER</a> / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
+<tr><td><span id="d">d</span> 対象・登録内容を確認</td><td>SCR-002<br>decision</td><td>外部決定内容を正とする。採否の再判断ではない。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
+<tr><td><span id="e">e</span> 誤入力・不足を修正</td><td>SCR-002<br>action</td><td>元の決定を変更せず登録内容を整える。詳細手順は提案。</td><td><a href="../operations/scr-002.html#OP-E-CORRECT" >OP-E-CORRECT</a> / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
+<tr><td><span id="f">f</span> 給与班が確認・確定</td><td>SCR-002<br>action</td><td>確定前は給与へ影響する内容を使用しない。</td><td><a href="../operations/scr-002.html#OP-G-CONFIRM" >OP-G-CONFIRM</a> / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
+<tr><td><span id="g">g</span> 給与計算に影響するか</td><td>SCR-002<br>decision</td><td>適用時点・個別項目は未入力。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
+<tr><td><span id="h">h</span> 確定結果を給与へ利用</td><td>SCR-002<br>end</td><td>保険は登録額を使用。制度判定自動化なし。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
+<tr><td><span id="i">i</span> 決定結果として保持</td><td>SCR-002<br>end</td><td>証憑方式・二重申請防止は未決。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
+</tbody></table></div>
+<h2>例外・未保存・引継ぎの確認</h2><p>各操作定義の失敗／取消／未保存／保持・解除欄を確認してください。処理中・報告済み・支払済みの編集制限、並行更新、再試行の物理方式は確定業務と未決方式を分けています。モックの再試行成功は実データの復旧保証ではありません。</p><p>出典：<a href="../../../requirements/business-requirements.md">業務要件：外部決定 G／G-01～06</a> / <a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></p>
+</main>
+<footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。モックの操作補助のみJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+</body>
+</html>

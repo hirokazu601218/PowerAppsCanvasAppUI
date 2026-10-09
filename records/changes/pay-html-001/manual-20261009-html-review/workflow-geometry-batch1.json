@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "[\n  { path: 'wf-01', issues: [], labels: 56 },\n  { path: 'wf-02', issues: [], labels: 40 },\n  { path: 'wf-03', issues: [], labels: 32 },\n  { path: 'wf-04', issues: [], labels: 36 },\n  { path: 'wf-05', issues: [], labels: 40 }\n]"
+    }
+  ],
+  "isError": false
+}
