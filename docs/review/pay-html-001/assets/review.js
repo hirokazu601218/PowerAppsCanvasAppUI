@@ -344,3 +344,35 @@
   baseline=new Map($$('[data-editable]',app).map(input=>[input,input.value]));
   applyStaffFixture();drawContext();updatePay();lockControls();
 })();
+
+/* Optional diagram controls: never change workflow data or the surrounding page. */
+(() => {
+  document.querySelectorAll('[data-connected-workflow]').forEach(section => {
+    const viewport = section.querySelector('.workflow-scroll');
+    const svg = section.querySelector('svg');
+    const tools = section.querySelector('[data-diagram-tools]');
+    if (!viewport || !svg || !tools) return;
+    tools.hidden = false;
+    const baseWidth = svg.viewBox.baseVal.width;
+    const baseHeight = svg.viewBox.baseVal.height;
+    let scale = 1;
+    function apply(value) {
+      scale = Math.max(.15, Math.min(1.8, value));
+      svg.style.minWidth = '0';
+      svg.style.width = `${Math.round(baseWidth * scale)}px`;
+      svg.style.height = `${Math.round(baseHeight * scale)}px`;
+      tools.querySelector('[data-diagram-scale]').textContent = `${Math.round(scale * 100)}%`;
+    }
+    function fit() { apply(viewport.clientWidth / baseWidth); }
+    tools.querySelector('[data-diagram-fit]').addEventListener('click', fit);
+    tools.querySelector('[data-diagram-all]').addEventListener('click', () => {
+      apply(Math.min(viewport.clientWidth / baseWidth, Math.max(350, window.innerHeight * .76) / baseHeight));
+      viewport.scrollTop = 0; viewport.scrollLeft = 0;
+    });
+    tools.querySelector('[data-diagram-actual]').addEventListener('click', () => apply(1));
+    tools.querySelector('[data-diagram-out]').addEventListener('click', () => apply(scale - .15));
+    tools.querySelector('[data-diagram-in]').addEventListener('click', () => apply(scale + .15));
+    // Keep mobile labels legible; the reader can deliberately fit the whole width.
+    apply(Math.min(1, Math.max(.8, viewport.clientWidth / baseWidth)));
+  });
+})();

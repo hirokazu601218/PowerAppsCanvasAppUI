@@ -1,0 +1,7 @@
+{
+  "modalText": "Excel出力前確認\n支給回：例示2026年10月通常／人数：2人／明細数：3件／A：3件／M：0件。選択した明細をExcel出力します。（デモのため実ファイルは生成しません）\nキャンセル\nExcel出力",
+  "cancelDialogClosed": true,
+  "canConfirm": true,
+  "afterConfirm": "給与班確定を模擬しました。確認ダイアログは表示していません。支払い済み記録は別の操作です。",
+  "visibleDialogs": 0
+}

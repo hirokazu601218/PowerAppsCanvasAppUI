@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "change_id": "PAY-HTML-002",
+  "target": {
+    "artifact": "docs/review/pay-html-001/",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+    "application_changes": false
+  },
+  "changes": [
+    {
+      "path": "scripts/review/payroll_flow_diagrams.py",
+      "component": "connected workflow and source-grouped navigation rendering",
+      "unit_case_ids": [
+        "HTML2-GRAPH",
+        "HTML2-PARITY",
+        "HTML2-GEOMETRY",
+        "HTML2-NAVIGATION"
+      ],
+      "expected_result": "15図135工程154業務経路の接続・図表一致、12起点30関係の1:Nと境界分類"
+    }
+  ],
+  "cases": [
+    {
+      "id": "HTML2-GRAPH",
+      "level": "unit",
+      "test_file": "tests/review/test_connected_workflows.py"
+    },
+    {
+      "id": "HTML2-PARITY",
+      "level": "unit",
+      "test_file": "tests/review/test_connected_workflows.py"
+    },
+    {
+      "id": "HTML2-GEOMETRY",
+      "level": "unit and browser review",
+      "test_file": "tests/review/test_connected_workflows.py"
+    },
+    {
+      "id": "HTML2-NAVIGATION",
+      "level": "unit and browser review",
+      "test_file": "tests/review/test_connected_workflows.py"
+    }
+  ],
+  "integration": {
+    "required": true,
+    "reason": "共通CSS/JSとHTML生成による既存ワイヤー・相互参照の回帰を確認",
+    "case_ids": [
+      "HTML2-STATIC-REGRESSION",
+      "HTML2-BROWSER-REGRESSION"
+    ]
+  },
+  "application_tests": {
+    "status": "NOT_RUN",
+    "reason": "文書・レビューHTMLのみ。実アプリ・業務認可・給与計算・D-07の合格へ転用しない。"
+  },
+  "system_test": {
+    "status": "deferred",
+    "reason": "D-07未決のまま。本変更はHTMLの表示検証のみ。"
+  }
+}

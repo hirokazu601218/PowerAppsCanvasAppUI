@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "scope": "actual changes relative to published PAY-HTML-001 manifest",
+  "counts": {
+    "current": 52,
+    "record": 19,
+    "other": 0,
+    "code": 4
+  }
+}

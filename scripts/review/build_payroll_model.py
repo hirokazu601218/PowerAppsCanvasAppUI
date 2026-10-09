@@ -221,8 +221,8 @@ wf('WF-14','遡及差額・追給・分割返納','給与班・業務マスタ�
 ('a','過去月の訂正・遡及改定','SCR-007','','start','元の支払済み結果を上書きしない。'),('b','旧結果と再計算との差額','SCR-007','OP-RETRO-CALCULATE','action','月別・項目別内訳を保持。式・端数は未決。'),('c','給与班が差額内訳を確認','SCR-007','','decision','確認待ち→確定。'),('d','元データ・条件を見直す','SCR-007','','action','未確定差額を支給・返納へ流さない。'),('e','差額を確定','SCR-007','OP-RETRO-CONFIRM','action','実施結果は差額状態と別記録。'),('f','追給か返納か','SCR-007','','decision','制度判定・例外詳細は未決。'),('g','過去月内訳を集約し出力へ','SCR-007','OP-RETRO-EXPORT','end','集約と対象日の両立は未決。月別との対応保持。'),('h','給与相殺・告知書を判断','SCR-007','OP-REPAY-METHOD','action','分割・両方法併用を許容。画面配置は提案。'),('i','回収実績・残額を記録','SCR-007','OP-REPAY-RECORD','action','案件に複数回収を関連。元支払を不訂正。'),('j','未回収残額があるか','SCR-007','','decision','過回収・取消・完了条件・相殺限度はPD-07。'),('k','実績と最終根拠を保持','SCR-007','','end','回収完了の正式判定条件は未決。')],
 [('a','b','影響計算'),('b','c','確認待ち'),('c','d','要修正'),('d','b','再計算'),('c','e','確認できた'),('e','f','実施方法へ'),('f','g','追給'),('f','h','返納'),('h','i','回収実施後'),('i','j','残額確認'),('j','h','残額あり・次回収'),('j','k','記録整理')])
 wf('WF-15','業務マスタ・権限と有効期間','業務マスタ管理者','管理権限と改定対象を確認','旧版保持・新期間適用・必要なら差額へ',CONFIRMED,['SCR-001','SCR-006','SCR-007'],['PAYREQ-09','AUTH-04','PAY-01','PAY-02','SCR006-RULE-001'],['SRC-AUTH','SRC-PAY','SRC-SCREEN','SRC-OPEN'],[
-('a','メンテナンスを開く','SCR-001','OP-001-MAINTENANCE','start','現行入口は管理者限定。改修先の業務権限は別途判定。'),('b','業務マスタ管理権限ありか','SCR-006','','decision','給与班と兼務可能。システム管理者権限は別。'),('c','権限外は変更不可','SCR-006','','end','UIの切替値だけで許可しない。実効方式PD-04。'),('d','適用開始日付きで改定','SCR-006','OP-006-RULE','action','単価・区分・予算等。旧版と適用済み額を保持。'),('e','対象期間に新ルール適用','SCR-006','','decision','調査員初任給は採用日版。在職者も対象期間以降。'),('f','過去への影響は差額処理','SCR-007','OP-RETRO-CALCULATE','end','旧結果を不訂正。式・適用境界は未決。'),('g','使用停止・終了で履歴保持','SCR-006','OP-006-END','end','物理削除条件は未入力。')],
-[('a','b','入口と実効権限確認'),('b','c','権限なし'),('b','d','権限あり'),('d','e','改定保存'),('e','f','既計算期間に影響'),('e','g','停止・終了が必要'),('d','d','検証エラー・修正')])
+('a','メンテナンスを開く','SCR-001','OP-001-MAINTENANCE','start','現行入口は管理者限定。改修先の業務権限は別途判定。'),('b','業務マスタ管理権限ありか','SCR-006','','decision','給与班と兼務可能。システム管理者権限は別。'),('c','権限外は変更不可','SCR-006','','end','UIの切替値だけで許可しない。実効方式PD-04。'),('d','適用開始日付きで改定','SCR-006','OP-006-RULE','action','単価・区分・予算等。旧版と適用済み額を保持。'),('e','対象期間に新ルール適用','SCR-006','','decision','調査員初任給は採用日版。在職者も対象期間以降。'),('f','過去への影響は差額処理','SCR-007','OP-RETRO-CALCULATE','end','旧結果を不訂正。式・適用境界は未決。'),('g','使用停止・終了で履歴保持','SCR-006','OP-006-END','end','物理削除条件は未入力。'),('h','新期間への適用を確認','SCR-006','','end','PAY-02／AD-10。適用開始日以降の対象期間に新ルールを使用し、旧版・適用済み額を保持する。遡及影響や停止終了を全改定の必須工程としない。')],
+[('a','b','入口と実効権限確認'),('b','c','権限なし'),('b','d','権限あり'),('d','e','改定保存'),('e','f','既計算期間に影響'),('e','g','停止・終了が必要'),('d','d','検証エラー・修正'),('e','h','将来期間の適用確認')])
 # Keep the exact approved D decision boundary alongside the output operation.
 next(o for o in ops if o['id']=='OP-JLINK-EXPORT')['notes'].extend([
 'D1：実績U6は10、D2：本俸差額U6は11、D3：実績差額U6は11。D4：本俸E6は1か月前。',
@@ -237,7 +237,10 @@ for w in workflows:
 # Review-level scope caveats are placed on relevant screen cards and operations.
 screens[3]['notes'].append('年末調整、法定控除の随時改定・定時決定は業務要件未確定。住民税年度更新手順も未入力。実行可能な業務フローは創作しない。')
 screens[5]['notes'].append('勤務報告対象月を無効化しても保存済み報告を削除する要件はない。')
-model=dict(metadata=dict(version='0.1-review',source_sha='252abe4aa5d3b1d99a584a30c97d9b48153c91f5',updated='2026-10-09',status='提案・レビュー用（未承認）'),sources=S,screens=screens,operations=ops,workflows=workflows)
+from payroll_flow_diagrams import apply_display_metadata
+apply_display_metadata(workflows)
+
+model=dict(metadata=dict(version='0.2-review',source_sha='252abe4aa5d3b1d99a584a30c97d9b48153c91f5',updated='2026-10-09',status='提案・レビュー用（未承認）'),sources=S,screens=screens,operations=ops,workflows=workflows)
 def validate():
     ids=lambda seq:{r['id'] for r in seq}
     sid,oid,srcid=ids(screens),ids(ops),ids(S)

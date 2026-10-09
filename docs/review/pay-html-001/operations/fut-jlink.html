@@ -10,7 +10,7 @@
 </head>
 <body data-screen-id="FUT-JLINK">
 <a class="skip" href="#main">本文へ移動</a>
-<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001</p></header>
+<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
 <nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
 <a href="../navigation.html" >① 画面遷移</a>
 <a href="../workflows/index.html" >② 業務フロー</a>
@@ -19,7 +19,7 @@
 <a href="../coverage.html" >対応表</a>
 <a href="../design-notes.html" >設計注記</a></nav>
 <main id="main">
-<div class="document-meta"><span>0.1-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<div class="document-meta"><span>0.2-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
 <h1>③ FUT-JLINK 人給連携の操作定義</h1>
 <p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
 <p><span class="badge accepted">確定改修要件</span> 支給回ごとに出力・給与簿取込・最新照合・給与班確定を行う承認済み構成。</p><p><a href="../wireframes/fut-jlink.html" >この画面を操作する</a></p><nav aria-label="この画面の操作"><a href="#OP-PAY-PERIOD">支給回・対象期間を設定</a> <a href="#OP-PAY-CALCULATE">給与を計算・再計算</a> <a href="#OP-PAY-ADJUST">例外調整を記録</a> <a href="#OP-PAY-INDIVIDUAL">個別・所属一括確定の境界</a> <a href="#OP-PAY-PAID">支払い済みを記録</a> <a href="#OP-JLINK-SELECT">支給回・タブを選択</a> <a href="#OP-JLINK-TARGET">出力対象を選択</a> <a href="#OP-JLINK-AM">A/Mを指定</a> <a href="#OP-JLINK-EXPORT">確認してExcel出力</a> <a href="#OP-JLINK-IMPORT">給与簿CSVを取り込む</a> <a href="#OP-JLINK-RECONCILE">最新版と照合</a> <a href="#OP-JLINK-FILTER">差分・全件表示を切替</a> <a href="#OP-JLINK-CORRECT">差分原因の入力画面へ</a> <a href="#OP-JLINK-REEXPORT">差分対応明細を再出力</a> <a href="#OP-JLINK-ERROR">人給エラー行を確認</a> <a href="#OP-JLINK-CONFIRM">給与班が支給回を確定</a> <a href="#OP-JLINK-HISTORY">処理回の履歴を確認</a> <a href="#OP-JLINK-HOME">ホームへ戻る</a> <a href="#OP-JLINK-CORRECT-ATT">勤怠の差分訂正へ</a> </nav><section class="operation" id="OP-PAY-PERIOD" data-operation-id="OP-PAY-PERIOD" data-screen-id="FUT-JLINK"><h2>OP-PAY-PERIOD 支給回・対象期間を設定</h2><p><span class="badge proposed">提案</span> <span id="TR-PAY-PERIOD">遷移：TR-PAY-PERIOD</span> / 業務：給与計算</p><span class="requirement" data-requirement-id="PAYREQ-07">PAYREQ-07</span> <span class="requirement" data-requirement-id="PERIOD-01">PERIOD-01</span> <span class="requirement" data-requirement-id="PERIOD-02">PERIOD-02</span><div class="table-scroll" tabindex="0" role="region" aria-label="支給回・対象期間を設定の詳細契約">
@@ -556,6 +556,6 @@
 </tbody></table></div>
 <h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>動線は確定。具体ボタン名、対象報告の選択方法は提案。</li></ul></section>
 </main>
-<footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。モックの操作補助のみJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+<footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
 </body>
 </html>

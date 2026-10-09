@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "version": "0.1-review",
+    "version": "0.2-review",
     "source_sha": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
     "updated": "2026-10-09",
     "status": "提案・レビュー用（未承認）"
@@ -5740,7 +5740,75 @@
           "label": "職員・月を保持",
           "from": "j"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "利用者",
+            "scope": "職員検索・詳細",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "利用者",
+            "scope": "未保存の移動・画面往復",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-1",
+            "row": 4
+          },
+          "f": {
+            "lane_id": "lane-1",
+            "row": 5
+          },
+          "g": {
+            "lane_id": "lane-2",
+            "row": 4
+          },
+          "h": {
+            "lane_id": "lane-2",
+            "row": 3
+          },
+          "i": {
+            "lane_id": "lane-2",
+            "row": 5
+          },
+          "j": {
+            "lane_id": "lane-2",
+            "row": 6
+          }
+        },
+        "summary": "検索 → 職員選択 → 編集。保存は元の詳細へ、移動取消は入力へ、支給明細からの復路は職員選択へ戻ります。",
+        "notes": [],
+        "gateway_types": {},
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {
+          "c": "読取りで確認区間終了"
+        }
+      }
     },
     {
       "id": "WF-02",
@@ -5895,7 +5963,82 @@
           "label": "確認状態を保持",
           "from": "e"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "秘書課・前工程担当",
+            "scope": "A～D／給与アプリ外",
+            "boundary": "external"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与アプリ",
+            "scope": "候補作成・番号反映",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-3",
+            "label": "給与班",
+            "scope": "候補の確認・確定",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "i": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "d": {
+            "lane_id": "lane-2",
+            "row": 4
+          },
+          "e": {
+            "lane_id": "lane-3",
+            "row": 5
+          },
+          "f": {
+            "lane_id": "lane-1",
+            "row": 4
+          },
+          "g": {
+            "lane_id": "lane-2",
+            "row": 6
+          },
+          "h": {
+            "lane_id": "lane-3",
+            "row": 7
+          }
+        },
+        "summary": "Cの発令登録完了から、候補作成と職員番号発行へ分かれます。番号発行を待たず給与班の確認・確定へ進めます。",
+        "notes": [
+          "「＋」は並行する後続関係です。番号と候補の整合確認は、給与班の確認・確定を待たせる条件ではありません。",
+          "番号反映の合流は、候補の存在と番号発行済みを合わせる関係です。最終の整合確認は給与計算開始の新しい条件ではありません。",
+          "自動通知・番号反映の方式と実現可否は未決です。"
+        ],
+        "gateway_types": {
+          "c": "parallel",
+          "d": "parallel"
+        },
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-03",
@@ -6026,7 +6169,65 @@
           "label": "履歴保持",
           "from": "g"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "給与班・給与アプリ",
+            "scope": "変更の比較と再確認",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与班・給与アプリ",
+            "scope": "取消と計算除外",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-1",
+            "row": 4
+          },
+          "f": {
+            "lane_id": "lane-1",
+            "row": 5
+          },
+          "g": {
+            "lane_id": "lane-2",
+            "row": 2
+          },
+          "h": {
+            "lane_id": "lane-2",
+            "row": 3
+          }
+        },
+        "summary": "変更は旧値を保持して給与班が再確認。採用取消は候補を削除せず、履歴を残して給与計算から除外します。",
+        "notes": [],
+        "gateway_types": {},
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-04",
@@ -6163,7 +6364,75 @@
           "label": "確認待ちへ",
           "from": "f"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "給与班・取込処理",
+            "scope": "検証と正常行",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与班",
+            "scope": "問題行の判断",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-3",
+            "label": "局担当者／給与班",
+            "scope": "不足の訂正",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-2",
+            "row": 3
+          },
+          "f": {
+            "lane_id": "lane-1",
+            "row": 4
+          },
+          "g": {
+            "lane_id": "lane-2",
+            "row": 4
+          },
+          "h": {
+            "lane_id": "lane-3",
+            "row": 5
+          }
+        },
+        "summary": "ファイルを検証し、正常行を先行取込。問題行は給与班が1行ずつ取り込むか見送るか判断し、確認待ち候補へつなぎます。",
+        "notes": [
+          "「○」は行ごとの振分けです。同じファイルに正常行と問題行があれば、両方の経路を扱います。勤怠取込の全件事前検証とは異なります。"
+        ],
+        "gateway_types": {
+          "c": "inclusive"
+        },
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-05",
@@ -6316,7 +6585,77 @@
           "label": "未払いに影響",
           "from": "h"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "局担当者／給与班",
+            "scope": "登録・訂正と提出",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与班",
+            "scope": "内容確認と確定",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-3",
+            "label": "給与計算",
+            "scope": "未払いの再計算・照合",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-1",
+            "row": 4
+          },
+          "f": {
+            "lane_id": "lane-2",
+            "row": 5
+          },
+          "g": {
+            "lane_id": "lane-1",
+            "row": 5
+          },
+          "h": {
+            "lane_id": "lane-2",
+            "row": 6
+          },
+          "i": {
+            "lane_id": "lane-3",
+            "row": 7
+          }
+        },
+        "summary": "実際の変更と誤登録訂正を分け、同じ確認待ちへ合流。不足は訂正へ戻し、給与班確定後に未払い分へ反映します。",
+        "notes": [
+          "登録・訂正は原則局担当者、給与班も直接修正可能です。レーンはこの権限範囲を追加・縮小しません。"
+        ],
+        "gateway_types": {},
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-06",
@@ -6440,7 +6779,69 @@
           "label": "給与計算へ",
           "from": "f"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "局担当者",
+            "scope": "入力・提出・再提出",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与アプリ",
+            "scope": "入力検証・計算参照",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-3",
+            "label": "給与班",
+            "scope": "審査・差戻し・認定",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-2",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-3",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-3",
+            "row": 2
+          },
+          "f": {
+            "lane_id": "lane-3",
+            "row": 4
+          },
+          "g": {
+            "lane_id": "lane-2",
+            "row": 5
+          }
+        },
+        "summary": "局担当が入力・提出 → 給与班が審査・認定。不備は元の提出者の入力へ戻り、認定後は給与計算が情報を直接参照します。",
+        "notes": [
+          "差戻しの状態変更はアプリ内、理由の連絡はアプリ外です。認定時の自動PDF生成は行いません。"
+        ],
+        "gateway_types": {},
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-07",
@@ -6566,7 +6967,65 @@
           "label": "確認後",
           "from": "g"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "局担当者",
+            "scope": "事情変更・届出",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与班",
+            "scope": "認定・期間・差額",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-2",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-2",
+            "row": 4
+          },
+          "f": {
+            "lane_id": "lane-2",
+            "row": 2
+          },
+          "g": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "h": {
+            "lane_id": "lane-2",
+            "row": 5
+          }
+        },
+        "summary": "変更の種類で、変更通勤届・一時不支給・受給要件喪失へ分岐。旧認定を残し、新認定や終了日を管理します。",
+        "notes": [],
+        "gateway_types": {},
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-08",
@@ -6688,7 +7147,61 @@
           "label": "保存／印刷取消",
           "from": "f"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "給与班／局担当者",
+            "scope": "元の通勤タブ",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "同じ利用者・ブラウザー",
+            "scope": "別タブHTML・印刷／PDF",
+            "boundary": "external"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-2",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "f": {
+            "lane_id": "lane-2",
+            "row": 4
+          },
+          "g": {
+            "lane_id": "lane-1",
+            "row": 5
+          }
+        },
+        "summary": "認定選択 → 別タブで再取得 → 印刷・PDF。権限拒否・不一致は本文を残さず選択へ戻ります。",
+        "notes": [],
+        "gateway_types": {},
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-09",
@@ -6834,7 +7347,75 @@
           "label": "影響なし",
           "from": "g"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "担当局／給与班",
+            "scope": "アプリ外：手続き・結果受領",
+            "boundary": "external"
+          },
+          {
+            "id": "lane-2",
+            "label": "担当局／給与班",
+            "scope": "決定結果の登録・訂正",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-3",
+            "label": "給与班",
+            "scope": "確認・確定・利用判断",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-2",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-3",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-2",
+            "row": 3
+          },
+          "f": {
+            "lane_id": "lane-3",
+            "row": 4
+          },
+          "g": {
+            "lane_id": "lane-3",
+            "row": 5
+          },
+          "h": {
+            "lane_id": "lane-2",
+            "row": 6
+          },
+          "i": {
+            "lane_id": "lane-3",
+            "row": 6
+          }
+        },
+        "summary": "外部で決まった結果を担当者が登録し、入力内容を給与班が確認。入力不備は訂正へ戻し、確定後に給与への影響を分けます。",
+        "notes": [],
+        "gateway_types": {},
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-10",
@@ -7035,7 +7616,91 @@
           "label": "利用可能",
           "from": "j"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "局担当者／給与班",
+            "scope": "入力中の操作",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与アプリ・取込処理",
+            "scope": "全件検証・反映・復旧",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-3",
+            "label": "給与班",
+            "scope": "報告後の確認・差戻し",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-2",
+            "row": 2
+          },
+          "e": {
+            "lane_id": "lane-2",
+            "row": 3
+          },
+          "f": {
+            "lane_id": "lane-2",
+            "row": 4
+          },
+          "g": {
+            "lane_id": "lane-2",
+            "row": 5
+          },
+          "h": {
+            "lane_id": "lane-1",
+            "row": 5
+          },
+          "i": {
+            "lane_id": "lane-1",
+            "row": 6
+          },
+          "j": {
+            "lane_id": "lane-3",
+            "row": 7
+          },
+          "k": {
+            "lane_id": "lane-3",
+            "row": 6
+          },
+          "l": {
+            "lane_id": "lane-3",
+            "row": 8
+          }
+        },
+        "summary": "入力とExcel取込を分け、保存後に報告へ合流。取込途中失敗は隔離・復旧へ、給与班差戻しは入力中へ戻って再報告します。",
+        "notes": [
+          "取込中は同じ報告の編集・提出を停止します。復旧・再実行は方式未決（PD-05）であり、無条件のロールバックを保証しません。"
+        ],
+        "gateway_types": {},
+        "display_labels": {
+          "j": "報告済み内容に訂正が必要か"
+        },
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-11",
@@ -7138,7 +7803,57 @@
           "label": "確定済条件のみ",
           "from": "d"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "給与班（配置案）",
+            "scope": "期末率・勤勉率の登録",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "条件確認・給与計算",
+            "scope": "未決の保留／根拠保持",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-2",
+            "row": 3
+          },
+          "f": {
+            "lane_id": "lane-1",
+            "row": 4
+          }
+        },
+        "summary": "期末率と勤勉率を別々に登録。入力不備は登録へ戻し、式などが未確定なら確認で止め、確定条件だけを計算根拠へ渡します。",
+        "notes": [],
+        "gateway_types": {},
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-12",
@@ -7343,7 +8058,87 @@
           "label": "記録後",
           "from": "k"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "給与班・給与アプリ",
+            "scope": "計算・照合・確定と記録",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与班／原因データ担当",
+            "scope": "訂正・再確認",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-3",
+            "label": "外部処理",
+            "scope": "人給／支払い実施",
+            "boundary": "external"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-3",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-1",
+            "row": 4
+          },
+          "f": {
+            "lane_id": "lane-1",
+            "row": 5
+          },
+          "g": {
+            "lane_id": "lane-1",
+            "row": 6
+          },
+          "h": {
+            "lane_id": "lane-2",
+            "row": 6
+          },
+          "i": {
+            "lane_id": "lane-1",
+            "row": 7
+          },
+          "j": {
+            "lane_id": "lane-3",
+            "row": 8
+          },
+          "k": {
+            "lane_id": "lane-1",
+            "row": 9
+          },
+          "l": {
+            "lane_id": "lane-1",
+            "row": 10
+          }
+        },
+        "summary": "計算 → 人給 → 給与簿取込 → 最新版照合。差分は原因側へ戻し、全体最新ゼロを確認して給与班確定、その後に外部支払いと記録を分けます。",
+        "notes": [],
+        "gateway_types": {},
+        "display_labels": {},
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-13",
@@ -7549,7 +8344,88 @@
           "label": "全体最新ゼロ",
           "from": "h"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "給与班・給与アプリ",
+            "scope": "人給連携：出力／取込・照合",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与班／原因データ担当",
+            "scope": "原因訂正と再出力準備",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-3",
+            "label": "給与班・人給システム",
+            "scope": "アプリ外：取込・CSV出力",
+            "boundary": "external"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "e": {
+            "lane_id": "lane-3",
+            "row": 4
+          },
+          "f": {
+            "lane_id": "lane-1",
+            "row": 5
+          },
+          "g": {
+            "lane_id": "lane-1",
+            "row": 6
+          },
+          "h": {
+            "lane_id": "lane-1",
+            "row": 7
+          },
+          "i": {
+            "lane_id": "lane-2",
+            "row": 7
+          },
+          "j": {
+            "lane_id": "lane-2",
+            "row": 6
+          },
+          "k": {
+            "lane_id": "lane-1",
+            "row": 8
+          }
+        },
+        "summary": "全職員を起点に出力準備 → 人給 → 最新版照合。差分の原因を訂正し、必要な明細だけ再出力するループを、全体確定への主線から分けて示します。",
+        "notes": [
+          "出力前確認と給与班確定は別です。確定は全体最新ゼロ・未解決なしを検証するボタン操作で、確認ダイアログはありません。",
+          "I8の人給エラー取得方式、給与簿と出力明細の対応、最新結果の識別・同時更新の物理方式は未決です。"
+        ],
+        "gateway_types": {},
+        "display_labels": {
+          "e": "人給へ取込・給与簿CSV出力"
+        },
+        "end_labels": {},
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-14",
@@ -7730,7 +8606,82 @@
           "label": "記録整理",
           "from": "j"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "給与班・給与アプリ",
+            "scope": "差額計算・確認・確定",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与班",
+            "scope": "追給／返納と実績管理",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "d": {
+            "lane_id": "lane-2",
+            "row": 2
+          },
+          "e": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "f": {
+            "lane_id": "lane-1",
+            "row": 4
+          },
+          "g": {
+            "lane_id": "lane-1",
+            "row": 5
+          },
+          "h": {
+            "lane_id": "lane-2",
+            "row": 5
+          },
+          "i": {
+            "lane_id": "lane-2",
+            "row": 6
+          },
+          "j": {
+            "lane_id": "lane-2",
+            "row": 7
+          },
+          "k": {
+            "lane_id": "lane-2",
+            "row": 8
+          }
+        },
+        "summary": "差額内訳の確認・確定後、追給と返納へ分岐。返納は回収実施後に実績を記録し、残額があれば次の回収へ戻ります。",
+        "notes": [
+          "ルール改定は業務マスタ管理者、差額の確認・確定や返納判断は給与班です。回収実施はアプリ外。正式な回収完了条件はPD-07未決です。"
+        ],
+        "gateway_types": {},
+        "display_labels": {},
+        "end_labels": {
+          "k": "実績・根拠の記録区間終了",
+          "g": "人給出力の業務へ引継ぎ"
+        },
+        "review_finish": {}
+      }
     },
     {
       "id": "WF-15",
@@ -7813,6 +8764,14 @@
           "operation_id": "OP-006-END",
           "kind": "end",
           "detail": "物理削除条件は未入力。"
+        },
+        {
+          "id": "h",
+          "label": "新期間への適用を確認",
+          "screen_id": "SCR-006",
+          "operation_id": "",
+          "kind": "end",
+          "detail": "PAY-02／AD-10。適用開始日以降の対象期間に新ルールを使用し、旧版・適用済み額を保持する。遡及影響や停止終了を全改定の必須工程としない。"
         }
       ],
       "edges": [
@@ -7850,8 +8809,77 @@
           "to": "d",
           "label": "検証エラー・修正",
           "from": "d"
+        },
+        {
+          "to": "h",
+          "label": "将来期間の適用確認",
+          "from": "e"
         }
-      ]
+      ],
+      "diagram": {
+        "notation": "BPMN-style-review",
+        "direction": "top-to-bottom",
+        "lanes": [
+          {
+            "id": "lane-1",
+            "label": "業務マスタ管理者",
+            "scope": "権限確認・有効期間改定",
+            "boundary": "app"
+          },
+          {
+            "id": "lane-2",
+            "label": "給与班／給与アプリ",
+            "scope": "差額への引継ぎ・履歴保持",
+            "boundary": "app"
+          }
+        ],
+        "layout": {
+          "a": {
+            "lane_id": "lane-1",
+            "row": 0
+          },
+          "b": {
+            "lane_id": "lane-1",
+            "row": 1
+          },
+          "c": {
+            "lane_id": "lane-2",
+            "row": 1
+          },
+          "d": {
+            "lane_id": "lane-1",
+            "row": 2
+          },
+          "e": {
+            "lane_id": "lane-1",
+            "row": 3
+          },
+          "f": {
+            "lane_id": "lane-2",
+            "row": 4
+          },
+          "g": {
+            "lane_id": "lane-1",
+            "row": 5
+          },
+          "h": {
+            "lane_id": "lane-1",
+            "row": 4
+          }
+        },
+        "summary": "実効権限を確認して有効期間付き改定へ。旧版を残し、過去への影響は差額処理へ引き継ぎ、停止・終了も履歴で管理します。",
+        "notes": [
+          "対象期間への通常適用を含みます。遡及影響・停止終了は該当する場合の経路であり、すべての改定で必須ではありません。"
+        ],
+        "gateway_types": {
+          "e": "inclusive"
+        },
+        "display_labels": {
+          "e": "該当する後続処理へ"
+        },
+        "end_labels": {},
+        "review_finish": {}
+      }
     }
   ]
 }

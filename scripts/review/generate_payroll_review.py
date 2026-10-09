@@ -9,6 +9,7 @@ import json
 import os
 import re
 import sys
+from payroll_flow_diagrams import render as render_workflow, render_navigation_fanout, navigation_kind
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'docs/review/pay-html-001'
@@ -73,7 +74,7 @@ def page(model, current, title, body, active='', screen=None):
 </head>
 <body{f' data-screen-id="{E(screen)}"' if screen else ''}>
 <a class="skip" href="#main">本文へ移動</a>
-<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001</p></header>
+<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
 <nav class="doc-nav" aria-label="資料ナビゲーション">{navhtml}</nav>
 <main id="main">
 <div class="document-meta"><span>{E(meta['version'])} / {E(meta['updated'])}</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>{E(meta['source_sha'])}</code></span></div>
@@ -81,39 +82,10 @@ def page(model, current, title, body, active='', screen=None):
 <p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
 {body}
 </main>
-<footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。モックの操作補助のみJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+<footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
 </body>
 </html>
 '''
-
-
-def svg_lanes(nodes, edges, title):
-    """Each edge owns a lane: no crossing connectors or label/box overlap.
-    SVG and equivalent table are rendered from exactly the same nodes/edges.
-    """
-    nmap={n['id']:n for n in nodes}
-    rowh=126
-    height=50+len(edges)*rowh
-    pieces=[f'<svg class="lane-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 {height}" role="img" aria-label="{E(title)}">',
-            '<title>'+E(title)+'</title>',
-            '<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0f6cbd"/></marker></defs>']
-    def chunks(text,width=18):
-        return [text[i:i+width] for i in range(0,len(text),width)] or ['']
-    for i,edge in enumerate(edges):
-        y=36+i*rowh
-        for x,key in ((12,edge['from']),(678,edge['to'])):
-            n=nmap[key]
-            pieces.append(f'<rect x="{x}" y="{y}" width="310" height="94" rx="6" class="node {E(n.get("kind", "action"))}"/>')
-            pieces.append(f'<text x="{x+14}" y="{y+22}" class="node-id">{E(key)}</text>')
-            for j,line in enumerate(chunks(n['label'])):
-                pieces.append(f'<text x="{x+14}" y="{y+47+j*22}" class="node-label">{E(line)}</text>')
-            if n.get('status'):pieces.append(f'<text x="{x+14}" y="{y+85}" class="node-id">{E(n["status"])}</text>')
-        pieces.append(f'<path d="M 328 {y+64} H 664" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrow)"/>')
-        for j,line in enumerate(chunks(edge.get('label',''),21)):
-            pieces.append(f'<text x="496" y="{y+20+j*20}" text-anchor="middle" class="edge-label">{E(line)}</text>')
-        if edge.get('status'):pieces.append(f'<text x="496" y="{y+88}" text-anchor="middle" class="node-id">{E(edge["status"])}</text>')
-    pieces.append('</svg>')
-    return '<div class="diagram-scroll" tabindex="0" role="region" aria-label="'+E(title)+'。狭い画面では横スクロール">'+''.join(pieces)+'</div>'
 
 
 def overview_map(model):
@@ -132,7 +104,7 @@ def overview_map(model):
     def edge(start,end,path,label=None,lx=0,ly=0,reverse=False):
         o=routes.get((start,end))
         if not o:return
-        dash=' stroke-dasharray="7 4"' if o['status']=='提案' else ''
+        dash=' stroke-dasharray="7 4"' if o['status']=='提案' or start.startswith('EXT-') or end.startswith('EXT-') else ''
         back=' marker-start="url(#overview-arrow)"' if reverse and (end,start) in routes else ''
         parts.append(f'<path d="{path}" fill="none" stroke="#0f6cbd" stroke-width="2" marker-end="url(#overview-arrow)"{back}{dash} data-operation-id="{E(o["id"])}"/>')
         if label:parts.append(f'<text x="{lx}" y="{ly}" class="map-note" text-anchor="middle">{E(label)}</text>')
@@ -142,14 +114,15 @@ def overview_map(model):
         y=positions[sid][1]+45
         edge('SCR-001',sid,f'M 330 {y} H 374')
     edge('SCR-002','SCR-005','M 636 105 H 844','支給明細／戻る',740,86,True)
-    edge('SCR-002','EXT-COMMUTE','M 636 135 H 720 V 245 H 844','認定簿表示（別タブ）',786,223)
+    edge('SCR-002','EXT-COMMUTE','M 636 135 H 720 V 245 H 844','別タブ起動',786,223)
     parts.append('<text x="55" y="342" class="map-note">各画面名の操作で開く</text><text x="55" y="368" class="map-note">ホーム操作で戻る</text>')
     # Target home additions use an isolated lower bus; no current direct trial link.
     parts.append('<path d="M 40 270 H 8 V 770 H 975" fill="none" stroke="#597bb7" stroke-width="2"/>')
     for sid in ['FUT-IMPORT','FUT-JLINK','SCR-007']:
         x=positions[sid][0]+125
         edge('SCR-001',sid,f'M {x} 770 V 844')
-    edge('FUT-JLINK','EXT-JINKYU','M 550 942 V 1085 H 844','Excel出力 → 外部処理 → 給与簿CSV',656,1062,True)
+    edge('FUT-JLINK','EXT-JINKYU','M 550 942 V 1005 H 975 V 1034','利用者が人給へ切替・Excel取込',757,986)
+    edge('EXT-JINKYU','FUT-JLINK','M 844 1110 H 550 V 950','CSV保存後、利用者がアプリへ戻る',694,1140)
     for sid,(x,y) in positions.items():
         if sid not in screens:continue
         screen=screens[sid];external=sid.startswith('EXT-')
@@ -184,9 +157,9 @@ def generate(model):
     nodes=[dict(id=s['id'],label=s['name'],status=s['status'],kind='external' if s['id'].startswith('EXT-') else 'action') for s in screens]
     edges=[{'from':o['screen_id'],'to':o['destination_screen_id'],'label':o['title'],'status':o['status']} for o in navops]
     cur='navigation.html'
-    body='<p>矢印1本は方向と操作を持つ1経路です。同じ画面を複数のレーンに再掲し、交差・重なりを避けています。画面の縦の並びは連続遷移ではありません。</p><p class="callout">現行ホームは職員マスタ検索・勤務時間報告・期末勤勉支給率登録・メンテナンスの4入口。SCR-005へはSCR-002から進みます。将来の追加入口は確定改修要件として区別します。</p>'
-    body+='<h2>全体関係の概観</h2>'+overview_map(model)+'<p>塗りと文字で区分を示し、外部の枠線を破線にしています。画面を選ぶとワイヤーへ進めます。ホーム追加のうちSCR-007への入口は提案です。人給連携と勤務条件・勤怠の訂正往復、追給出力の受渡しは次の詳細経路で確認します。</p><h2>方向別の詳細経路</h2>'+svg_lanes(nodes,edges,'全体画面遷移と外部境界')
-    body+=table(['遷移ID／操作','遷移元 → 先','役割・条件','区分','詳細'],[[E(o['transition_id'])+'<br>'+E(o['title']),E(o['screen_id'])+' → '+E(o['destination_screen_id']),E('・'.join(o['roles']))+'<br>'+E(o['enabled']),tag(o['status']),link(op_target(o),'操作定義',cur)+' / '+link('wireframes/'+o['screen_id'].lower()+'.html','画面',cur)] for o in navops],'SVGと同一データの遷移表')
+    body='<p>遷移元を一つにまとめ、そこから複数の行先へ分かれる1対多の関係で示します。アプリ内の画面移動、認定簿の別タブ起動、利用者によるシステム切替とファイル受渡しを区別します。</p><p class="callout">現行ホームは職員マスタ検索・勤務時間報告・期末勤勉支給率登録・メンテナンスの4入口。SCR-005へはSCR-002から進みます。将来の追加入口は確定改修要件として区別します。</p>'
+    body+='<h2>全体関係の概観</h2>'+overview_map(model)+'<p>実線はアプリ内の画面移動、破線は提案または外部境界です。認定簿は表示ボタンから別タブ起動、人給は利用者が別システムを操作してファイルを受け渡します。システム間の自動画面遷移ではありません。画面を選ぶとワイヤーへ進めます。ホーム追加のうちSCR-007への入口は提案です。人給連携と勤務条件・勤怠の訂正往復、追給出力の受渡しは次の詳細経路で確認します。</p><h2>方向別の詳細経路（起点ごとの1対多）</h2>'+render_navigation_fanout(model,lambda oid:relative(op_target(om[oid]),cur),lambda sid:relative('wireframes/'+sid.lower()+'.html',cur))
+    body+=table(['遷移ID／操作','起点 → 行先・受渡先','関係の種類','役割・条件','区分','詳細'],[[E(o['transition_id'])+'<br>'+E(o['title']),E(o['screen_id'])+' → '+E(o['destination_screen_id']),E(navigation_kind(o)[1])+'<br>'+E(navigation_kind(o)[2]),E('・'.join(o['roles']))+'<br>'+E(o['enabled']),tag(o['status']),link(op_target(o),'操作定義',cur)+' / '+link('wireframes/'+o['screen_id'].lower()+'.html','画面',cur)] for o in navops],'1対多図と同一データの画面移動・境界受渡し表')
     body+='<h2>画面と入口</h2>'+table(['ID・画面','区分・境界','役割','関連資料'],[[f'<span id="{E(s["id"])}" data-screen-id="{E(s["id"])}">{E(s["id"])} {E(s["name"])}</span>',tag(s['status'])+'<br>'+E(s['summary']),E('・'.join(s['roles'])),link('operations/'+s['id'].lower()+'.html','操作',cur)+' / '+link('wireframes/'+s['id'].lower()+'.html','ワイヤー',cur)+'<br>'+sources_html(model,s['source_ids'],cur)] for s in screens],'画面一覧・正式ID未定は仮識別子')
     body+='<h2>未決事項</h2><p>人給連携・データ一括取込の正式画面ID、遡及差額の最終配置、認証と実効ロールの取得方式は未決。外部Microsoft認証はCanvas内部画面ではありません。別タブ認定簿はアプリ内戻りと区別し、元タブを維持します。</p>'
     results[cur]=page(model,cur,'① 全体画面遷移図',body,cur)
@@ -196,9 +169,12 @@ def generate(model):
     for flow in flows:
         cur='workflows/'+flow['id'].lower()+'.html'
         body=f'<p>{tag(flow["status"])} 担当：{E(flow["actor"])}</p><dl><dt>開始</dt><dd>{E(flow["start"])}</dd><dt>終了</dt><dd>{E(flow["end"])}</dd></dl>'+reqs(flow['requirements'])
-        body+=svg_lanes(flow['steps'],flow['edges'],flow['name'])
+        body+='<p class="lead workflow-summary">'+E(flow['diagram']['summary'])+'</p>'
+        body+='<div class="flow-legend"><span>○ 開始／◎ 確認区間の終了</span><span>角丸：作業</span><span>◇ ×：条件分岐</span><span>小さい◇：合流・結果分岐</span><span>茶線：訂正・再試行</span><span>破線：アプリ外との受渡し</span></div><p class="diagram-reading">上から下へ主な流れをたどります。工程は一度だけ配置し、矢印で分岐・合流・戻り先をつないでいます。BPMN風のレビュー表記であり、BPMN 2.0の実行可能な定義ではありません。工程を選ぶと定義へ、操作定義↗から操作の詳細へ進みます。</p>'
+        if flow['diagram']['notes']:body+='<ul class="flow-notes">'+''.join('<li>'+E(n)+'</li>' for n in flow['diagram']['notes'])+'</ul>'
+        body+=render_workflow(flow,cur,lambda oid:relative(op_target(om[oid]),cur))
         stepmap={x['id']:x for x in flow['steps']}
-        body+=table(['起点','条件／操作','到達点'],[[E(x['from'])+' '+E(stepmap[x['from']]['label']),E(x['label']),E(x['to'])+' '+E(stepmap[x['to']]['label'])] for x in flow['edges']],'SVGと同一データの分岐表')
+        body+=table(['経路ID','起点','条件／操作','到達点'],[[f'<span data-edge-reference="{flow["id"]}-edge-{i+1:02}">{flow["id"]}-edge-{i+1:02}</span>',E(x['from'])+' '+E(stepmap[x['from']]['label']),E(x['label']),E(x['to'])+' '+E(stepmap[x['to']]['label'])] for i,x in enumerate(flow['edges'])],'接続図と同一データの全経路（表示用の開始・終了・合流は業務操作に数えません）')
         rows=[]
         for step in flow['steps']:
             o=om.get(step.get('operation_id'))
