@@ -1,11 +1,19 @@
 # 現在の作業と読取り対象
 
+## 2026-10-10 DOT-002 追加・正式公開情報の選択反映（実動検証待ち）
+
+- 対象：既存PR #136・docs/requirements-html-20261010。PR #137のa05450bcから正式P/Hと必要な採取記録・状態文だけを選択反映。旧分割ポータル・短い要約・source_commit対応生成器・SCR005-UI-004／015参照と承認A本文を維持。
+- 読取り対象：両PR、AGENTS、運用方針、台帳、[採取根拠](../../records/changes/dot-001/38049776822/QA-REPORT.md)、正本DOT-001節、モデル・HTML生成／検査スクリプト。添付保険画像は今回対象外。
+- 正式P/H取得成功と採取run FAILを区別。過去の未取得記録は履歴として残す。選定E2E・最終照合・実ブラウザー・iPhone確認はNOT_RUN。
+- 補足20項目・53引用、画像・リンク・ID・配置・生成一致・静的検査・模擬JSを再検証し、records/changes/dot-002/manual-20261010-publication-refresh/へ記録。
+- アプリ・workflow・期待SHA・資格情報・権限変更、Actions手動起動、main統合、Web公開は行わない。
+
 ## 2026-10-10 DOT-002 HTML改善・DOT-001選択統合（UI検証待ち）
 
 - 対象：`docs/requirements-html-20261010`、[Draft PR #136](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/136)。baseは維持。PR #137全体を統合せず、DOT-001文書・表示入力・記録だけを選択反映する。
 - 読取り対象：[依頼台帳](../dot/request-list.md)、要件・画面・未決・基本／詳細設計・試験仕様のDOT-001節、両レビューREADME、HTML生成／検査スクリプト。Libraryの指定ZIPと追補を使用し重複時は追補優先。
 - 148上位見出し・173下位項目、分割HTMLの往復導線、短いモバイル要約を採用。最新正本を基準に生成一致・引用・SHA・リンク・ID・配置・模擬JSを再検証し、結果は`records/changes/dot-002/manual-20261010-integration/`へ記録する。
-- 実ブラウザー操作、375/390幅、実機iPhone/Safari/Quick Lookは実行証拠がなければNOT_RUN。静的PASSをUI完了・業務受入に読み替えない。DOT-001正式P/H・自動E2E・最終照合は未完了を維持。
+- 実ブラウザー操作、375/390幅、実機iPhone/Safari/Quick Lookは実行証拠がなければNOT_RUN。静的PASSをUI完了・業務受入に読み替えない。DOT-001正式P/Hは採取済み、旧v25 guardによるrun FAILを維持。選定自動E2E・最終照合は未完了。
 - アプリ・src・Dataverse・フロー・workflow・権限・main・公開版・Web配置は対象外。
 
 ## 2026-10-10 DOT-001 文書・HTML整合（検証継続）
@@ -13,7 +21,8 @@
 - 最新依頼：Work-prompt.txtに基づく台帳・文書・HTML・記録とDraft PR。アプリ・データ・フローは並行変更しない。開始10:22:53 UTC（19:22:53 JST）、60分期限11:22:53 UTC。
 - 読取り対象：[依頼台帳](../dot/request-list.md)、PAY-IMPLEMENT-001要求／選定、各文書DOT-001節、[今回記録](../../records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md)。
 - S‴保存、引継ぎLive38観測・公式Export比較・A承認を記録。下のr6未承認／Live36等は当時の履歴であり最新状態ではない。
-- 正式P/Hは未取得。GitHub Actions実行画面が未サインインでreadback未実施。最終照合も前提不足で未実施。偽P/H・PASSを作らない。
+- 正式P `2026-10-10T09:28:28.7479961Z`、独立PAC H `7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f`を[run 38049776822](../../records/changes/dot-001/38049776822/QA-REPORT.md)で取得。metadata Ready・固定App・前後一致、下書き<=P。旧v25画面SHA guard不一致でrunはFAIL。選定22path比較表／正式postpublish JSON未完成、選定E2E・最終照合は未実施。
+- 採取前の履歴：正式P/Hは未取得。GitHub Actions実行画面が未サインインでreadback未実施。最終照合も前提不足で未実施。偽P/H・PASSを作らない。
 - 関連テスト：文書・HTML静的検査。引継ぎの手動14 UI＋1ソース、ローカル94＋配置3、公開Player観測、名前付き自動15、PR選定19を別扱い。Issue #51・D-07・制度式・実効認可は残件。
 
 

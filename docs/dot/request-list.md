@@ -3,7 +3,7 @@
 | ID | 内容 | 対象 | 状態 | 関連ID |
 |---|---|---|---|---|
 | DOT-002 | 要件定義HTML改善・DOT-001文書選択統合 | docs/requirements-html-20261010／Draft PR #136 | HTML反映・検証記録は下記、実ブラウザー／iPhone検証待ち | PAY-REQ-HTML-REWORK-001 |
-| DOT-001 | 確定仕様・実装・文書の整合 | StaffMaster-Automation-Test／204a48dc-7f23-43dd-b934-4654a3cfa306 | 文書更新・Draft PR #137作成済み、P/H採取と最終照合は未実施 | PAY-IMPLEMENT-001／PAY-AUDIT-001 |
+| DOT-001 | 確定仕様・実装・文書の整合 | StaffMaster-Automation-Test／204a48dc-7f23-43dd-b934-4654a3cfa306 | 文書・Draft PR #137作成済み、P/H採取済み、旧guard FAIL・選定E2Eと最終照合未実施 | PAY-IMPLEMENT-001／PAY-AUDIT-001 |
 
 ## DOT-001
 
@@ -11,13 +11,13 @@
 
 完了条件：依頼ID衝突なし、事実に沿う差分をPRで確認でき、実測と未実施・残件・出典を区別する。アプリ全体の開発完了は別判定。
 
-質問と回答：小さい画面の表示方針は2026-10-10 07:37:54 UTCに「Aで」と承認。通常PCのサマリー固定、狭い・低い領域の全体スクロールを採用。再計算focusの見切れ、履歴AX差は残件。正式P/H・自動E2E・最終照合は未実施。
+質問と回答：小さい画面の表示方針は2026-10-10 07:37:54 UTCに「Aで」と承認。通常PCのサマリー固定、狭い・低い領域の全体スクロールを採用。再計算focusの見切れ、履歴AX差は残件。正式P/Hは採取済み（run 38049776822は旧v25 guard FAIL）。選定自動E2E・最終照合は未実施。
 
 依存：[PR #135](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/135) → [PR #136](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/136)。既存PRのbase・headは変更せず、実装S‴とPR136最新版を子ブランチに取り込む。
 
 [今回記録](../../records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md)／[作業状態](../handoff/STATUS.md)。
 
-[Draft PR #137](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/137)。文書更新・PR作成済み、正式P/H・最終照合は検証継続。
+[Draft PR #137](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/137)。文書更新・PR作成と正式P/H採取済み。[採取記録](../../records/changes/dot-001/38049776822/QA-REPORT.md)。旧v25 guard FAIL、選定22path比較表・postpublish JSON・最終照合は検証継続。
 
 ## DOT-002
 
@@ -27,4 +27,8 @@ DOT-001の必要な文書差分・表示入力・記録を選択統合し、旧1
 
 [統合検証記録](../../records/changes/dot-002/manual-20261010-integration/QA-REPORT.md)。生成一致、引用53件・参照SHA、リンク、ID、配置、静的検査、模擬JSの結果を記録する。実ブラウザー・375/390幅・iPhone/Safari/Quick Lookは別判定。実動証拠がそろうまでUI完了扱いにしない。
 
-DOT-001の承認A、Live38引継ぎ観測、外部手続の結果手動登録、xlsx出力、84データ列／71表示欄と撤去履歴を保持。正式P/H・選定自動E2E・最終照合は未完了。main統合・アプリ変更・Web公開・権限変更なし。
+DOT-001の承認A、Live38引継ぎ観測、外部手続の結果手動登録、xlsx出力、84データ列／71表示欄と撤去履歴を保持。正式P/H採取済み、採取runは旧v25 guard FAIL。選定自動E2E・最終照合は未完了。main統合・アプリ変更・Web公開・権限変更なし。
+
+### DOT-002 追加：正式公開情報の選択反映
+
+PR #137 head `a05450bc479a666cc73e8b265fbd7b3189d71d27`の必要文書・採取記録だけをPR #136へ選択反映。分割ポータル・短いモバイル要約・SCR005-UI-004／015と承認A本文を維持。P/H取得済みと旧v25照合FAILを区別し、過去の未取得は履歴として保持。[追加検証記録](../../records/changes/dot-002/manual-20261010-publication-refresh/QA-REPORT.md)。実ブラウザー・375/390幅・iPhoneはNOT_RUN。選定E2E・最終照合は別継続作業。

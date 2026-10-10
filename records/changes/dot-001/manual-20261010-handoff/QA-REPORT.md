@@ -49,3 +49,7 @@ Draft PR #137。文書編集前B=d74a4986a46f94fa93f474f7c35efd638e420098、文�
 - [選定CI](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/38045453051)：SUCCESS。実機E2E対象なし。
 - 要件HTMLの追加検査：467相対リンク・出典SHA一致PASS。
 - 作業開始は利用者時刻2026-10-10 19:22:53 JSTからUTC換算して記録。初稿の15:22 UTCは誤記であり訂正した。
+
+## 再開後の更新
+
+再開2026-10-10 11:30:14 UTC。上記未サインイン／P/H未取得は初回中断時点の履歴。[run 38049776822](../38049776822/QA-REPORT.md)で独立PAC P/Hを取得。旧v25 guard不一致はFAILで保持。全選定22pathの実比較表が未完成のためfull reconciliation／選定E2EはNOT_RUN、postpublish JSONは未作成。3試験ファイルとfull workflowを読み、永続書込みはないことを確認した。
