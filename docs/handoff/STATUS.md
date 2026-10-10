@@ -1,5 +1,13 @@
 # 現在の作業と読取り対象
 
+## 2026-10-10 DOT-002 HTML改善・DOT-001選択統合（UI検証待ち）
+
+- 対象：`docs/requirements-html-20261010`、[Draft PR #136](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/136)。baseは維持。PR #137全体を統合せず、DOT-001文書・表示入力・記録だけを選択反映する。
+- 読取り対象：[依頼台帳](../dot/request-list.md)、要件・画面・未決・基本／詳細設計・試験仕様のDOT-001節、両レビューREADME、HTML生成／検査スクリプト。Libraryの指定ZIPと追補を使用し重複時は追補優先。
+- 148上位見出し・173下位項目、分割HTMLの往復導線、短いモバイル要約を採用。最新正本を基準に生成一致・引用・SHA・リンク・ID・配置・模擬JSを再検証し、結果は`records/changes/dot-002/manual-20261010-integration/`へ記録する。
+- 実ブラウザー操作、375/390幅、実機iPhone/Safari/Quick Lookは実行証拠がなければNOT_RUN。静的PASSをUI完了・業務受入に読み替えない。DOT-001正式P/H・自動E2E・最終照合は未完了を維持。
+- アプリ・src・Dataverse・フロー・workflow・権限・main・公開版・Web配置は対象外。
+
 ## 2026-10-10 DOT-001 文書・HTML整合（検証継続）
 
 - 最新依頼：Work-prompt.txtに基づく台帳・文書・HTML・記録とDraft PR。アプリ・データ・フローは並行変更しない。開始10:22:53 UTC（19:22:53 JST）、60分期限11:22:53 UTC。
