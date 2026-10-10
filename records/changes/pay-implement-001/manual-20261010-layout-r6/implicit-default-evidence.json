@@ -1,0 +1,11 @@
+{
+  "source_package_sha256": "f3af186814e138f60fe8e2848ccecdafd7db4af6d1454a852be815ca5e33266c",
+  "r5_unchanged_control": "lblPayPrototype",
+  "selected_defaults": {
+    "FillPortions": "0",
+    "LayoutMinHeight": "40"
+  },
+  "AutoHeight": "false",
+  "Height": "40",
+  "scope": "Historical full-package default evidence; current r5 YAML is unchanged here. Does not replace current Studio runtime verification."
+}

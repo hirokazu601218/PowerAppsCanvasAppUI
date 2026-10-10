@@ -114,9 +114,11 @@
         "UT-STATE-SUMMARY-NARROW-001",
         "UT-HOME-001",
         "UT-STATE-SUMMARY-WIDE-001",
-        "UT-STATE-SUMMARY-REFLOW-001"
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
       ],
-      "expected_result": "既存summaryを固定したまま、本文の実scrollbarだけで最終貯金預入の名称/根拠/金額が祖先のhidden領域に切られず全文到達できる。1366/900/1920幅とCSS幅縮小を検査し、200%実ズームは別途現物観測する。"
+      "expected_result": "現行承認要件の参照（未承認r6例外の合格条件ではない）：既存summaryを固定したまま、本文の実scrollbarだけで最終貯金預入の名称/根拠/金額が祖先のhidden領域に切られず全文到達できる。1366/900/1920幅とCSS幅縮小を検査し、200%実ズームは別途現物観測する。",
+      "proposed_expected_result": "本人の例外承認後だけ適用：通常幅・十分な高さでは固定summary/本文scrollを維持。狭い又は短い場合はrootの正規縦横scrollで全情報/操作へ到達し、全24控除欄の文字clipなしを確認。実200%とTab/focusは別の必須ゲート。"
     },
     {
       "path": "src/screen-ui/v1.31/payroll-root.pa.yaml",
@@ -126,9 +128,11 @@
         "UT-STATE-SUMMARY-001",
         "UT-STATE-SUMMARY-NARROW-001",
         "UT-STATE-SUMMARY-WIDE-001",
-        "UT-STATE-SUMMARY-REFLOW-001"
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
       ],
-      "expected_result": "既存summaryを固定したまま、本文の実scrollbarだけで最終貯金預入の名称/根拠/金額が祖先のhidden領域に切られず全文到達できる。1366/900/1920幅とCSS幅縮小を検査し、200%実ズームは別途現物観測する。"
+      "expected_result": "現行承認要件の参照（未承認r6例外の合格条件ではない）：既存summaryを固定したまま、本文の実scrollbarだけで最終貯金預入の名称/根拠/金額が祖先のhidden領域に切られず全文到達できる。1366/900/1920幅とCSS幅縮小を検査し、200%実ズームは別途現物観測する。",
+      "proposed_expected_result": "本人の例外承認後だけ適用：通常幅・十分な高さでは固定summary/本文scrollを維持。狭い又は短い場合はrootの正規縦横scrollで全情報/操作へ到達し、全24控除欄の文字clipなしを確認。実200%とTab/focusは別の必須ゲート。"
     },
     {
       "path": "src/screen-ui/v1.31/payroll-root.paste.yaml",
@@ -138,9 +142,11 @@
         "UT-STATE-SUMMARY-001",
         "UT-STATE-SUMMARY-NARROW-001",
         "UT-STATE-SUMMARY-WIDE-001",
-        "UT-STATE-SUMMARY-REFLOW-001"
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
       ],
-      "expected_result": "既存summaryを固定したまま、本文の実scrollbarだけで最終貯金預入の名称/根拠/金額が祖先のhidden領域に切られず全文到達できる。1366/900/1920幅とCSS幅縮小を検査し、200%実ズームは別途現物観測する。"
+      "expected_result": "現行承認要件の参照（未承認r6例外の合格条件ではない）：既存summaryを固定したまま、本文の実scrollbarだけで最終貯金預入の名称/根拠/金額が祖先のhidden領域に切られず全文到達できる。1366/900/1920幅とCSS幅縮小を検査し、200%実ズームは別途現物観測する。",
+      "proposed_expected_result": "本人の例外承認後だけ適用：通常幅・十分な高さでは固定summary/本文scrollを維持。狭い又は短い場合はrootの正規縦横scrollで全情報/操作へ到達し、全24控除欄の文字clipなしを確認。実200%とTab/focusは別の必須ゲート。"
     },
     {
       "path": "src/screen-ui/v1.31/scrStaffMasterSearch.OnVisible.tail.fx",
@@ -168,6 +174,54 @@
         "UT-STATE-SUMMARY-REFLOW-001"
       ],
       "expected_result": "11子の実Height合計＋10gap＋上下paddingに一致。親と子の750幅判定を重複させず、728/1240の内容が切れない。固定summary/既存業務式は不変。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/conscrPayrollRoot.LayoutOverflowY.fx",
+      "component": "root deterministic proposed scroll mode",
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ],
+      "expected_result": "Owner-approved r6 proposal only: preserve ordinary fixed layout; narrow/short readable content reaches all fields and controls using genuine user scroll. Real200% remains a separate runtime gate."
+    },
+    {
+      "path": "src/screen-ui/v1.31/payroll-content.Width.fx",
+      "component": "four immediate content widths",
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ],
+      "expected_result": "Owner-approved r6 proposal only: preserve ordinary fixed layout; narrow/short readable content reaches all fields and controls using genuine user scroll. Real200% remains a separate runtime gate."
+    },
+    {
+      "path": "src/screen-ui/v1.31/conPayBody.Height.fx",
+      "component": "visible body intrinsic height in proposed root mode",
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ],
+      "expected_result": "Owner-approved r6 proposal only: preserve ordinary fixed layout; narrow/short readable content reaches all fields and controls using genuine user scroll. Real200% remains a separate runtime gate."
+    },
+    {
+      "path": "src/screen-ui/v1.31/conPayBody.LayoutOverflowY.fx",
+      "component": "single vertical scroll owner",
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ],
+      "expected_result": "Owner-approved r6 proposal only: preserve ordinary fixed layout; narrow/short readable content reaches all fields and controls using genuine user scroll. Real200% remains a separate runtime gate."
     }
   ],
   "integration": {
@@ -254,6 +308,12 @@
       "id": "UT-STATE-SUMMARY-REFLOW-001",
       "level": "unit",
       "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "UT-STATE-SUMMARY-SHORT-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/state-retention.test.ts"
     }
-  ]
+  ],
+  "proposal_status": "R6_UI_EXCEPTION_PENDING_OWNER_APPROVAL; selection is proposed and must not be dispatched before approval"
 }

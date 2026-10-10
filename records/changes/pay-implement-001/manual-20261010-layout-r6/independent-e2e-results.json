@@ -1,0 +1,16 @@
+{
+  "status": "PASS_SOURCE_AND_SYNTHETIC_HELPERS_ONLY",
+  "e2e_source": "e2e/current-app/state-retention.test.ts",
+  "e2e_sha256": "19aa1f2a076dbe9a0d76dee44538be9f88da1d6653f425ae794da287eb858287",
+  "registered_cases": 12,
+  "browser_cases_executed": 0,
+  "clipping_mock_fixtures": 13,
+  "root_port_mock_fixtures": 8,
+  "actual_browser_zoom": "NOT_RUN",
+  "keyboard_focus": "NOT_RUN",
+  "powerfx_compiler": "NOT_RUN",
+  "typescript_semantic_typecheck": "NOT_RUN",
+  "owner_approval": "PENDING",
+  "synthetic_results": "PASS",
+  "separate_directory_reproduction": "PASS"
+}

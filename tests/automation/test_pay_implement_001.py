@@ -32,7 +32,11 @@ class WaveOneTests(unittest.TestCase):
             if 'property' not in change:
                 continue
             if change['screen'] == 'scrPayroll':
-                wave1.control(payroll, change['control'])['Properties'][change['property']] = change['before']
+                props = wave1.control(payroll, change['control'])['Properties']
+                if change.get('before_absent'):
+                    props.pop(change['property'], None)
+                else:
+                    props[change['property']] = change['before']
             elif change.get('mode') == 'preserve_first_statement_replace_tail':
                 staff['Properties']['OnVisible'] = '=Set(varCommuteReportBase111,"https://example.invalid/verified-existing-report");' + change['before_tail']
             else:
@@ -76,6 +80,13 @@ class WaveOneTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Duplicate control name'):
             wave1.apply(baseline, self.manifest)
 
+    def test_new_property_guard_rejects_explicit_or_changed_previous_value(self):
+        for value in ['=LayoutOverflow.Hide', '=LayoutOverflow.Scroll']:
+            baseline = self.baseline()
+            wave1.control(baseline['scrPayroll'], 'conscrPayrollRoot')['Properties']['LayoutOverflowX'] = value
+            with self.assertRaisesRegex(ValueError, 'Expected absent baseline property'):
+                wave1.apply(baseline, self.manifest)
+
     def test_preserves_existing_report_destination(self):
         baseline = self.baseline()
         after = wave1.apply(baseline, self.manifest)
@@ -117,13 +128,14 @@ class WaveOneTests(unittest.TestCase):
                     if old[control].get(prop) != new[control].get(prop):
                         self.assertIn((control, prop), approved)
 
-    def test_payroll_summary_is_fixed_sibling_not_scrolling_child(self):
+    def test_payroll_summary_remains_sibling_with_proposed_narrow_exception(self):
         children = [next(iter(x)) for x in self.root['Children']]
         self.assertEqual(children, ['conscrPayrollHeader', 'conPayrollTargets', 'conPaySummary', 'conPayBody'])
         body = wave1.control(self.root, 'conPayBody')
         self.assertIsNone(wave1.control(body, 'conPaySummary'))
-        self.assertEqual(body['Properties']['Height'], '=Max(0,Parent.Height-conscrPayrollHeader.Height-conPayrollTargets.Height-conPaySummary.Height)')
-        self.assertEqual(body['Properties']['LayoutOverflowY'], '=LayoutOverflow.Scroll')
+        # r6 proposal keeps the ordinary fixed-layout branch; narrow/short approval is separate.
+        self.assertTrue(body['Properties']['Height'].endswith(',Max(0,Parent.Height-conscrPayrollHeader.Height-conPayrollTargets.Height-conPaySummary.Height))'))
+        self.assertEqual(body['Properties']['LayoutOverflowY'], '=If(Parent.LayoutOverflowY=LayoutOverflow.Scroll,LayoutOverflow.Hide,LayoutOverflow.Scroll)')
         self.assertIsNotNone(wave1.control(body, 'lblPayDeductionName7'))
 
     def test_all_eight_basis_labels_share_amount_validity_guard(self):

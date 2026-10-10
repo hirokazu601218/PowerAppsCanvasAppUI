@@ -1,0 +1,11 @@
+(node:6) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+combined_root_ports_translate_iframe_and_route_wheel: accepted
+combined_root_ports_reach_field_without_hidden_scroll: accepted
+split_root_ports_translate_iframe_and_route_wheel: accepted
+split_root_ports_reach_field_without_hidden_scroll: accepted
+hiddenY: rejected as expected
+badNested: rejected as expected
+textOverflow: rejected as expected
+outerScale: rejected as expected
+PASS: 8 root-port synthetic fixtures; 12 cases registered; no browser executed.

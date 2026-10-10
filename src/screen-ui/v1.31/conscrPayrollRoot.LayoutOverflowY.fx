@@ -1,0 +1,1 @@
+=If(Self.Width<750 || Self.Height-conscrPayrollHeader.Height-conPayrollTargets.Height-conPaySummary.Height<conPayBody.PaddingTop+conPayBody.PaddingBottom+128,LayoutOverflow.Scroll,LayoutOverflow.Hide)

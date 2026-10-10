@@ -30,5 +30,20 @@
     "SD-06の旧バッチ削除という契約説明を、現行フローどおり旧バッチ保持・不完全ステージング未活性化へ訂正する。ランタイムフローは変更しない。",
     "r5: 控除枠のHeightを11子の実Height＋10gap＋上下paddingで導出し、1366/900/1920幅で最終行3欄の全文が本文scrollで到達する。200%実ブラウザズームは幅縮小モデルと区別して観測する。"
   ],
-  "implementation_status": "r4のS422256dbe14cbbcf8cde1b6334f7924a7483c5ccは同試験アプリdraft37へ適用、2画面読戻し一致/Checker0、状態保持選定6/9PASS。本文末尾の見切れを検出したため公開前停止。r5の1プロパティ修正候補はローカルのみで未適用。S-prime固定と全選定再検証が必要。"
+  "implementation_status": "r5 is saved draft37 with normal-width passes; actual200% and450 reflow failed. r6 is a local unapproved UI-exception proposal, not current accepted requirements.",
+  "r6_proposal": {
+    "approval": "PENDING_OWNER",
+    "record": "records/changes/pay-implement-001/manual-20261010-layout-r6/PROPOSAL.md",
+    "exceptions": [
+      "When outer content width is below750, or ordinary residual body height is below body padding plus128, header/targets/summary scroll with the root instead of staying fixed.",
+      "Content minimum width750 and deliberate horizontal panning replace compression at the narrowest widths."
+    ],
+    "unchanged": "Current approved acceptance_criteria and requirements remain in force until explicit owner approval; no claim they are satisfied by this exception.",
+    "proposed_acceptance": [
+      "Ordinary900/1366/1920 retains fixed summary and body-only scrolling.",
+      "Narrow450/683, real200%, and wide-short viewports preserve all information and actions, with user-operable root scrolling and no internal text clipping.",
+      "100%→200%→100% and collapse/expand retain data state, restore normal fixed layout and reset unneeded scroll offsets through correct geometry.",
+      "All14 prior named cases and added short-layout case are rerun against the approved source; actual zoom is never inferred from a CSS-width model."
+    ]
+  }
 }

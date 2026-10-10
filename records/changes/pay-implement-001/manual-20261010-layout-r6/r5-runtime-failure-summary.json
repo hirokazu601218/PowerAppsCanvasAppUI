@@ -1,0 +1,86 @@
+{
+  "source_commit": "4f7b5c8df63a198e6d4c121d7135f3305f36f8f1",
+  "saved_version": 37,
+  "live_version": 36,
+  "published": false,
+  "checker_errors": 0,
+  "two_screen_source_equal": true,
+  "tests": [
+    {
+      "id": "UT-STATE-SEARCH-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "IT-STATE-RETURN-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "UT-STATE-HISTORY-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "IT-STATE-HISTORY-TABS-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "UT-STATE-HISTORY-EMPTY-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "UT-STATE-PAYROLL-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "IT-STATE-PAGE-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "UT-HOME-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "IT-HOME-DETAIL-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "UT-STATE-SUMMARY-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "UT-STATE-SUMMARY-NARROW-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "UT-STATE-SUMMARY-WIDE-001",
+      "result": "PASS_MANUAL_STUDIO_EQUIVALENT"
+    },
+    {
+      "id": "UT-STATE-SUMMARY-REFLOW-001",
+      "result": "FAIL"
+    },
+    {
+      "id": "UT-SCR003-CONTRACT-001",
+      "result": "PASS_SOURCE_ONLY_PYTHON_EQUIVALENT"
+    }
+  ],
+  "actual_200_percent": {
+    "status": "FAIL",
+    "native_browser_zoom": "200% verified",
+    "viewport_width": 590,
+    "viewport_height": 378,
+    "device_pixel_ratio": 2,
+    "root_height": 277.328125,
+    "body_height": 1.328125,
+    "summary_height": 104,
+    "summary_top": 248.078125
+  },
+  "reflow450": {
+    "status": "FAIL",
+    "basis_width_approx": 36.6,
+    "field_height": 128,
+    "text_height": 160,
+    "inner_scroll_height": 148
+  },
+  "reflow683_and960": "No nested text overflow observed for24 deduction labels in zero and September mock states; this is r5 history, not r6 acceptance.",
+  "privacy": "Only dimensions, case IDs and statuses retained. Raw images/readbacks excluded."
+}

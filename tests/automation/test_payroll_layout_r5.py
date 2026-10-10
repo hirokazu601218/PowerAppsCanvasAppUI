@@ -59,11 +59,11 @@ class LayoutR5(unittest.TestCase):
   for child in self.box['Children']:
    name,obj=next(iter(child.items()));height=obj['Properties']['Height']
    self.assertNotIn('Parent.Height',height,name);self.assertNotIn('conPayDeductions.Height',height,name);self.assertNotIn('FillPortions: =1',str(obj))
- def test_summary_and_existing_scroll_properties_unchanged(self):
+ def test_r5_deduction_and_summary_structure_survive_r6_proposal(self):
   names=[next(iter(c)) for c in self.root['Children']];self.assertLess(names.index('conPaySummary'),names.index('conPayBody'))
   body=find(self.root,'conPayBody');self.assertIsNone(find(body,'conPaySummary'))
-  self.assertEqual(body['Properties']['Height'],'=Max(0,Parent.Height-conscrPayrollHeader.Height-conPayrollTargets.Height-conPaySummary.Height)')
-  self.assertEqual(body['Properties']['LayoutOverflowY'],'=LayoutOverflow.Scroll');self.assertNotIn('LayoutOverflowY',self.box['Properties'])
+  self.assertTrue(body['Properties']['Height'].endswith(',Max(0,Parent.Height-conscrPayrollHeader.Height-conPayrollTargets.Height-conPaySummary.Height))'))
+  self.assertEqual(body['Properties']['LayoutOverflowY'],'=If(Parent.LayoutOverflowY=LayoutOverflow.Scroll,LayoutOverflow.Hide,LayoutOverflow.Scroll)');self.assertNotIn('LayoutOverflowY',self.box['Properties'])
  def test_manifest_and_standalone_formula_match(self):
   m=json.loads((SRC/'manifest.json').read_text());entries=[x for x in m['changes'] if x['control']=='conPayDeductions'];self.assertEqual(len(entries),1)
   self.assertEqual(entries[0]['before'],OLD);self.assertEqual((SRC/entries[0]['after_file']).read_text().strip(),self.formula)

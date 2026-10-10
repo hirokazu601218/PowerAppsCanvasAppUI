@@ -1,0 +1,16 @@
+(node:160) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+old_wide scale=1: rejected as expected
+old_narrow scale=1: rejected as expected
+new_wide scale=1: accepted as expected
+new_narrow scale=1: accepted as expected
+old_wide scale=0.681: rejected as expected
+old_narrow scale=0.681: rejected as expected
+new_wide scale=0.681: accepted as expected
+new_narrow scale=0.681: accepted as expected
+internal_text_horizontal: rejected as expected
+internal_text_vertical: rejected as expected
+internal_text_missing: rejected as expected
+geometry_changed_then_stable: accepted after 4 polls
+geometry_missing: rejected
+PASS: 13 helper mock fixtures; 12 tests registered; no browser executed.

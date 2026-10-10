@@ -1,0 +1,25 @@
+{
+  "status": "PASS_SOURCE_MODEL_ONLY",
+  "tests_run": 11,
+  "failures": 0,
+  "errors": 0,
+  "approval": "PROPOSAL_NOT_APPROVED",
+  "runtime": "NOT_RUN",
+  "readback_verification": "FROZEN_SEMANTIC_HASH_ONLY; original reviewer separately checked complete r5 readback",
+  "official_powerfx_compiler": "NOT_RUN",
+  "base_source_commit": "4f7b5c8df63a198e6d4c121d7135f3305f36f8f1",
+  "source_sha256": {
+    "src/screen-ui/v1.31/payroll-root.pa.yaml": "a8030ea709c78d108ede6bcc272c83a497cdd4e70e130b85e02734ef07652bf9",
+    "src/screen-ui/v1.31/payroll-root.paste.yaml": "4f202f405b6d6554132ca1706cfdf9abf3e50faeb60756220edbcb2ae0b52b19",
+    "src/screen-ui/v1.31/conscrPayrollRoot.LayoutOverflowY.fx": "b230ad0d1ea0250969f0425abb135d855d7784aece163fc7285f3984bb5a3549",
+    "src/screen-ui/v1.31/payroll-content.Width.fx": "223599991200f062399addab286975b88ffff5078e39af647090d01f6dd1ab09",
+    "src/screen-ui/v1.31/conPayBody.Height.fx": "cb8f01bd5e0c135b1e8002079d284f270e8b5e6b521426929f5b26018ab1bc4f",
+    "src/screen-ui/v1.31/conPayBody.LayoutOverflowY.fx": "7505d70259ed9e1d25efafd25c6441c0f3a903a9d4736c54d4d51d42e21da972"
+  },
+  "review_test_sha256": "9a6cada73038057f1e3d7074b3999eaa898b959266c9db238be298023fed9e5c",
+  "limitations": [
+    "Geometry is a model, not the Canvas layout engine.",
+    "Native200%, text clipping, real scroll ownership and keyboard/focus remain unverified.",
+    "The fixed-summary and narrow-reflow exceptions require user approval."
+  ]
+}

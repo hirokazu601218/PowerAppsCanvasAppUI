@@ -8,11 +8,13 @@ Screens:
           DropShadow: =DropShadow.None
           Fill: =UiTheme.Background
           Height: =Parent.Height*UiOuterHeight
-          LayoutAlignItems: =LayoutAlignItems.Stretch
+          LayoutAlignItems: =LayoutAlignItems.Start
           LayoutDirection: =LayoutDirection.Vertical
           Width: =Parent.Width*UiOuterWidth
           X: =Parent.Width*UiOuterX
           Y: =Parent.Height*UiOuterY
+          LayoutOverflowX: =LayoutOverflow.Scroll
+          LayoutOverflowY: =If(Self.Width<750 || Self.Height-conscrPayrollHeader.Height-conPayrollTargets.Height-conPaySummary.Height<conPayBody.PaddingTop+conPayBody.PaddingBottom+128,LayoutOverflow.Scroll,LayoutOverflow.Hide)
         Children:
         - conscrPayrollHeader:
             Control: GroupContainer@1.5.0
@@ -29,7 +31,7 @@ Screens:
               LayoutMinWidth: =0
               PaddingLeft: =16
               PaddingRight: =16
-              Width: =Parent.Width
+              Width: =Max(750,Parent.Width)
             Children:
             - lblscrPayrollTitle:
                 Control: Label@2.5.1
@@ -95,7 +97,7 @@ Screens:
               PaddingLeft: =16
               PaddingRight: =16
               PaddingTop: =8
-              Width: =Parent.Width
+              Width: =Max(750,Parent.Width)
             Children:
             - lblPayrollMonth:
                 Control: Label@2.5.1
@@ -172,7 +174,7 @@ Screens:
               LayoutMinWidth: =0
               PaddingLeft: =16
               PaddingRight: =16
-              Width: =Parent.Width
+              Width: =Max(750,Parent.Width)
             Children:
             - conPaySummaryGross:
                 Control: GroupContainer@1.5.0
@@ -345,18 +347,18 @@ Screens:
             Properties:
               DropShadow: =DropShadow.None
               FillPortions: =0
-              Height: =Max(0,Parent.Height-conscrPayrollHeader.Height-conPayrollTargets.Height-conPaySummary.Height)
+              Height: =If(Parent.LayoutOverflowY=LayoutOverflow.Scroll,With({rows:Table({H:lblPayPrototype.Height,V:lblPayPrototype.Visible},{H:conPayActions.Height,V:conPayActions.Visible},{H:lblPayState.Height,V:lblPayState.Visible},{H:conPayGrossHeading.Height,V:conPayGrossHeading.Visible},{H:conPayEarnings.Height,V:conPayEarnings.Visible},{H:conPayDeductionHeading.Height,V:conPayDeductionHeading.Visible},{H:conPayDeductions.Height,V:conPayDeductions.Visible})},Self.PaddingTop+Self.PaddingBottom+Sum(Filter(rows,V),H)+Max(0,CountRows(Filter(rows,V))-1)*Self.LayoutGap),Max(0,Parent.Height-conscrPayrollHeader.Height-conPayrollTargets.Height-conPaySummary.Height))
               LayoutAlignItems: =LayoutAlignItems.Stretch
               LayoutDirection: =LayoutDirection.Vertical
               LayoutGap: =12
               LayoutMinHeight: =0
               LayoutMinWidth: =0
-              LayoutOverflowY: =LayoutOverflow.Scroll
+              LayoutOverflowY: =If(Parent.LayoutOverflowY=LayoutOverflow.Scroll,LayoutOverflow.Hide,LayoutOverflow.Scroll)
               PaddingBottom: =20
               PaddingLeft: =20
               PaddingRight: =20
               PaddingTop: =12
-              Width: =Parent.Width
+              Width: =Max(750,Parent.Width)
             Children:
             - lblPayPrototype:
                 Control: Label@2.5.1

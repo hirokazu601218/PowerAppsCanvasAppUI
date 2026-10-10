@@ -1,0 +1,9 @@
+{
+  "status": "PASS_LOCAL_ONLY",
+  "verified_baseline_source_files": 10,
+  "generated_screen_count": 2,
+  "generated_payroll_children_equal_candidate": true,
+  "control_count": 351,
+  "scope": "Whole-readback raw hashes and baseline root hash guard before offline generation; no save/import/publish. Current r5 incremental application separately requires the exact nine-property delta and full-root check.",
+  "runtime_compiler": "NOT_RUN"
+}

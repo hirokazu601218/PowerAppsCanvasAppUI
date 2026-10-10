@@ -1,0 +1,13 @@
+test_01_helper_only_adds_four_guard_lines (__main__.HelperReview.test_01_helper_only_adds_four_guard_lines) ... ok
+test_02_only_expected_two_absent_properties_declared (__main__.HelperReview.test_02_only_expected_two_absent_properties_declared) ... ok
+test_03_absent_guard_rejects_all_explicit_values_in_both_axes (__main__.HelperReview.test_03_absent_guard_rejects_all_explicit_values_in_both_axes) ... ok
+test_04_absent_success_adds_exact_properties_and_preserves_input (__main__.HelperReview.test_04_absent_success_adds_exact_properties_and_preserves_input) ... ok
+test_05_whole_root_guard_rejects_unrelated_drift (__main__.HelperReview.test_05_whole_root_guard_rejects_unrelated_drift) ... ok
+test_06_existing_formula_and_duplicate_guards_remain (__main__.HelperReview.test_06_existing_formula_and_duplicate_guards_remain) ... ok
+test_07_full_ten_file_set_and_content_guards_remain (__main__.HelperReview.test_07_full_ten_file_set_and_content_guards_remain) ... ok
+test_08_existing_destination_and_after_scope_guards_remain (__main__.HelperReview.test_08_existing_destination_and_after_scope_guards_remain) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.523s
+
+OK

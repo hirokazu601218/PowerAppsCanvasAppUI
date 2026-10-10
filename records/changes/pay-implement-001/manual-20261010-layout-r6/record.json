@@ -1,0 +1,40 @@
+{
+  "change_id": "pay-implement-001",
+  "run_id": "manual-20261010-layout-r6",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "BLOCKED",
+  "observed_at": "2026-10-10T07:13:00Z",
+  "source_commit": "4f7b5c8df63a198e6d4c121d7135f3305f36f8f1",
+  "version": "r5 saved37 / Live36; r6 local proposal, owner UI-exception approval pending",
+  "checks": {
+    "r5_latest_two_screen_readback": "MATCHES S-prime; Checker0",
+    "r5_ordinary_layout": "900/1366/1920 manual Studio checks PASS",
+    "r5_actual_200_percent": "FAIL: body1.328px and summary clipped",
+    "r5_reflow450": "FAIL: basis36.6px wide, text160px in128px box",
+    "r6_local_automation": "85 PASS including20 new layout cases and1 absent-property guard",
+    "r6_independent_source_model": "11 PASS",
+    "r6_studio_compiler": "NOT_RUN",
+    "r6_player": "NOT_RUN",
+    "r6_actual_200_percent": "NOT_RUN",
+    "r6_UI_exception_approval": "PENDING"
+  },
+  "scope": "Nine layout properties only. No added controls, business formulas, data writes, auth or permission changes.",
+  "publication_gate": "Owner must approve this exact exception and package before external save/apply. All declared actual runtime gates must pass before publication.",
+  "manual_acceptance_gates": [
+    {
+      "id": "MAN-R6-CHROME-200",
+      "status": "NOT_RUN",
+      "required": "Native browser100→200→100, effective viewport and all text/action reachability"
+    },
+    {
+      "id": "MAN-R6-KEYBOARD-001",
+      "status": "NOT_RUN",
+      "required": "Real Tab/Shift+Tab traversal, each focus visible/unclipped, no hidden-ancestor scrolling; pointer E2E does not cover this"
+    },
+    {
+      "id": "MAN-R6-STUDIO-PLAYER",
+      "status": "NOT_RUN",
+      "required": "Studio outer-preview scrolling separated from in-app root; repeat in published Player"
+    }
+  ]
+}

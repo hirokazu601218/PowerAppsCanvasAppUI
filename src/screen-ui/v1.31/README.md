@@ -1,28 +1,22 @@
-# v1.31 PAY-IMPLEMENT-001: 確定済みUI契約の修正候補
+# v1.31 PAY-IMPLEMENT-001: r6 未承認レスポンシブ提案
 
-状態：公開v36を基準にしたr4（source S: `422256dbe14cbbcf8cde1b6334f7924a7483c5cc`）は同試験アプリの保存draft37へ適用され、2画面全量読戻し一致・Checker0を確認。選定状態保持ケースはr4で6/9PASSだが、給与の末尾見切れを検出したため公開前停止。ここにあるr5はローカル候補で未適用・未公開。S′の固定、現式照合、Checker、選定全件とPlayerの再検証が必要。計算式、支給／控除の仮額、実データ、接続・共有・権限は変更しない。
+**r6は未承認提案。適用・公開しない。** r5は保存37/Live36、通常900/1366/1920は末尾到達PASSだが実200%と450幅の文字切れはFAIL。現行要件が対象・summaryの固定を明記するため、狭い／短い画面だけrootスクロールへ退避する例外は本人確認待ち。通常幅の固定と業務式は維持する。詳細は[提案記録](../../../records/changes/pay-implement-001/manual-20261010-layout-r6/PROPOSAL.md)。
 
-- SCR-002の検索入力と検索確定値を分離。再入場では同じ所属・確定条件で取得し直し、対象が有効なら職員・結果・ページを維持する。所属変更、取得失敗、0件は旧結果を残さない。
-- 履歴選択は区分別のローカルコレクションへ保存。同じ職員のタブ／画面往復は現在の履歴内に存在するキーだけを復元し、職員変更・空選択で破棄する。
-- SCR-005の控除根拠8件を既存`UiReady`と同じ条件で表示。未登録・再計算前の数値根拠は「算定根拠 —」。登録済み0円の表示は維持する。
-- r5では`conPayDeductions.Height`だけを11子の実Height合計＋10gap＋上下paddingへ変更する。固定698/1210は30px不足し、900幅では外側/内側の750閾値差により542px不足した。728/1240を新たな定数として埋め込まず、実子寸法に追従させる。
-- 既存`conPaySummary`を`conPayBody`から同じ`conscrPayrollRoot`の直下へ移し、本文だけを残りの高さでスクロールする。新規部品・計算・業務状態は追加しない。
+## r6候補の9プロパティ
 
-## 適用条件と順序
+- root: AlignItems Start、OverflowX Scroll、幅750未満または残り本文高が上下余白＋128未満の時だけOverflowY Scroll。
+- header/targets/summary/body: Width Max(750,Parent.Width)。外枠の共通比率は変更しない。
+- body: root-scroll時は可視7子の高さ＋可視間隔＋上下余白、通常時は従来の残り高さ。root-scroll時はOverflowY Hide、通常時Scroll。
+- 750は対象欄の必要幅から導出。128は既存控除行の最大Height。任意の見切れ補償値ではなく、ソース定数が変われば静的guardで再設計を要求する。
 
-1. 対象環境・App IDをmanifestと照合し、現在の保存版全ソース、公開版と版履歴、接続、変更前の対象部品を取得する。2026-10-07の復元資料を現在版と推定して上書きしない。
-2. `scripts/implementation/apply_pay_implement_001.py --readback <現在版Src> --output <新規ローカルパス>`は候補生成専用。前値が不一致なら停止して差分をレビューする。アプリを保存・公開する機能はない。出力は環境固有値を含み得るため未加工でGitHubに追加しない。
-3. 履歴の`galHistory111.OnSelect`、`btnDetailTab111.OnSelect`、`btnLoadDetails111.OnSelect`、検索`btnSearch111.OnSelect`を対応するfxへ変更する。親・名称は変えない。
-4. `scrStaffMasterSearch.OnVisible.tail.fx`は先頭の既存認定簿URL設定の**後だけ**を置換する。先頭URL設定を保持し、tailファイルをプロパティ全体へ貼らない。ヘルパーの2画面出力はこの保存を行う。
-5. r4を適用済みのdraft37では、全量読戻しがSと一致することを再確認し、`conPayDeductions.Height.fx`の1式だけを変更する。summaryの移動や根拠guardを再適用しない。r5承認/S′固定前には適用しない。
-6. 公開v36から全体を生成する場合のSCR-005は`payroll-root.paste.yaml`と同じ構造にする。最小共通親がrootのため完全なroot subtreeを用意した。コード貼付は上書きではなく追加なので、旧rootを残した重ね貼りや自動改名を許さない。可能なら既存summaryの移動＋本文高さ＋控除コンテナHeight＋8つのText式だけを変更し、全プロパティ差分を照合する。
-7. Studio Checkerと選定単体／結合を実行。同じ試験アプリだけを保存・公開し、公開版読戻し・Player・文書更新・再照合を別々に記録する。
+## 生成・復旧・検証
 
-## 試験・復旧
+- `apply_pay_implement_001.py`は公開v36の全10原本ファイルと全rootをguardして候補2画面をローカル生成するだけ。新規2overflowプロパティは元の不存在を厳密検証する。外部保存機能はない。
+- r5適用済み版へはroot再配置や全体貼付を繰り返さない。承認後、proposal-delta.jsonの正確な前値とroot基準を照合し9プロパティだけ変更して、全量読戻しの唯一差分を検査する。
+- 復旧は同試験アプリで9プロパティの前値／不存在を戻す。新たな表・アプリ・権限・フローは作成しない。r5の既知200%/450不具合が戻ることを隠さない。
+- ローカル試験はPower Fxコンパイラ／Studio／Playerではない。現物Checker、通常3幅、450/683/960、実Chrome200%、全24控除欄の文字、対象職員、全ボタン、Tab/focus、折り畳みと100→200→100を別々に確認する。
+- 狭い/短い時はsummary等もスクロールする。通常幅・十分な高さではこれを許さない。テストはhidden祖先を強制スクロールして成功に見せず、rootの正規の操作可能な縦横移動で確認する。Studio外側previewの既存スクロールはアプリ内の根拠へ混同しない。
 
-- `tests/automation/test_payroll_layout_r5.py`は11子/gap/padding、750幅の前後、900/1366/1920、200%相当の幅、scrollbar差を検査する。幾何モデルであって実レイアウトエンジンではない。
-- `tests/automation/test_pay_implement_001.py`は構造・差分・失効guard・before-state拒否の静的検査。Power Fxコンパイルや実アプリPASSではない。
-- `e2e/current-app/state-retention.test.ts`は既存の架空011／004と9～11月仮例のみ。予期しない接続同意が出たらBLOCKED。保存ボタン、取込、設定変更や書込みフローを呼ばない。
-- 複数履歴の確定fixture：011の税固定控除「履歴 過去 2026/09/01 #9963」。住民税6項目へ勝手に戻らず税表区分等9項目を保つ。
-- 通信障害、削除・権限変更、登録版更新、再取得中に件数が減った場合のページ再調整、200%は追加の独立観測が必要。r4の実機PASSはr5へ転記しない。E2Eは1366/900/1920幅で本文の実scrollbarだけを動かし、最終行の名称/根拠/金額が全祖先のclipに収まることを検査する。scrollIntoViewによるhidden枠の強制スクロールは使わない。450/683/960のCSS幅縮小ケースは高さ768を維持するreflow検査であり、実ブラウザ200%ズームを代替しない。実ズーム時の画面高、折返し、末尾到達は別観測が必要。
-- 復旧は取得した同じ現在版の変更前部品／式だけを戻し、同じApp IDで再読戻し・Playerを確認する。旧App IDのActions、全パッケージimport、元テーブル変更を流用しない。
+## r4/r5の履歴
+
+過去の候補・前値・レビュー・部分実機結果はrecords/changes/pay-implement-001/に残す。r5 intrinsic deduction Height、検索確定状態、履歴保持、根拠8件の失効guardは本提案でも不変。r4/r5のPASSはr6へ転記しない。

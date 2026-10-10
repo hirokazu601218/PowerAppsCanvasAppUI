@@ -6,7 +6,7 @@
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
   },
-  "status": "r5_local_candidate_not_applied",
+  "status": "PROPOSED_UI_EXCEPTION_NOT_APPROVED",
   "baseline": {
     "git_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
     "snapshot": "2026-10-10 official Export of published v36; all 10 Src files byte-identical to reviewed v35/r4 baseline",
@@ -267,14 +267,20 @@
       "control": "conPayBody",
       "property": "Height",
       "before": "=Max(0,Parent.Height-64-If(Parent.Width<900,108,60))\n",
-      "after": "=Max(0,Parent.Height-conscrPayrollHeader.Height-conPayrollTargets.Height-conPaySummary.Height)",
       "requirement_ids": [
         "SCR005-UI-004",
-        "SCR005-UI-015"
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
       ],
       "unit_case_ids": [
-        "UT-STATE-SUMMARY-001"
-      ]
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ],
+      "after_file": "conPayBody.Height.fx",
+      "proposal_only": true
     },
     {
       "screen": "scrPayroll",
@@ -293,11 +299,177 @@
         "UT-STATE-SUMMARY-WIDE-001",
         "UT-STATE-SUMMARY-REFLOW-001"
       ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conscrPayrollRoot",
+      "property": "LayoutAlignItems",
+      "before": "=LayoutAlignItems.Stretch",
+      "before_sha256": "e86280e5ed302b450b671747629e59f09e37b378e356023068cd07c6aaea98f6",
+      "after": "=LayoutAlignItems.Start",
+      "proposal_only": true,
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conscrPayrollRoot",
+      "property": "LayoutOverflowX",
+      "before_absent": true,
+      "after": "=LayoutOverflow.Scroll",
+      "proposal_only": true,
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conscrPayrollRoot",
+      "property": "LayoutOverflowY",
+      "before_absent": true,
+      "after_file": "conscrPayrollRoot.LayoutOverflowY.fx",
+      "proposal_only": true,
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conscrPayrollHeader",
+      "property": "Width",
+      "before": "=Parent.Width",
+      "before_sha256": "bfc2831f2235eba4901cc85c60c8ebadbab461dbc5996655b9769d206d73c28b",
+      "after_file": "payroll-content.Width.fx",
+      "proposal_only": true,
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conPayrollTargets",
+      "property": "Width",
+      "before": "=Parent.Width",
+      "before_sha256": "bfc2831f2235eba4901cc85c60c8ebadbab461dbc5996655b9769d206d73c28b",
+      "after_file": "payroll-content.Width.fx",
+      "proposal_only": true,
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conPaySummary",
+      "property": "Width",
+      "before": "=Parent.Width",
+      "before_sha256": "bfc2831f2235eba4901cc85c60c8ebadbab461dbc5996655b9769d206d73c28b",
+      "after_file": "payroll-content.Width.fx",
+      "proposal_only": true,
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conPayBody",
+      "property": "Width",
+      "before": "=Parent.Width",
+      "before_sha256": "bfc2831f2235eba4901cc85c60c8ebadbab461dbc5996655b9769d206d73c28b",
+      "after_file": "payroll-content.Width.fx",
+      "proposal_only": true,
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conPayBody",
+      "property": "LayoutOverflowY",
+      "before": "=LayoutOverflow.Scroll",
+      "before_sha256": "83fb935797c8d300a57bf21c89504a6dbdba6a2fdf18400a563efec44ef56c29",
+      "after_file": "conPayBody.LayoutOverflowY.fx",
+      "proposal_only": true,
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
     }
   ],
-  "runtime_tests": "NOT_RUN",
+  "runtime_tests": "NOT_RUN_R6",
   "rollback": "Capture current exact control properties and structure before editing. On failure restore only changed controls/properties in this same App ID, then save/read back and recheck Player. Never use legacy app deployment or import workflows.",
-  "candidate_revision": "r5_intrinsic_deduction_height",
+  "candidate_revision": "r6_narrow_or_low_height_scroll_proposal",
   "prepublication_r4_evidence": {
     "source_commit": "422256dbe14cbbcf8cde1b6334f7924a7483c5cc",
     "saved_draft_version": "37",
@@ -306,5 +478,13 @@
     "selected_state_cases": "6/9 PASS at r4; layout final-row reachability failed; repeat after r5",
     "geometry_summary": "Wide child content728 in698; narrow content1240 in698 due nested width predicates",
     "r5_applied": false
+  },
+  "proposal": {
+    "approval_status": "PENDING_OWNER_UI_EXCEPTION_AND_EXACT_PACKAGE",
+    "base_source_commit": "4f7b5c8df63a198e6d4c121d7135f3305f36f8f1",
+    "exception": "Only when content width<750 or residual body height<32+128, summary/targets/header scroll with the root; horizontal panning preserves a minimum readable content width. Current approved fixed-summary requirements remain unchanged pending explicit approval.",
+    "properties_changed_from_r5": 9,
+    "business_formula_changes": 0,
+    "new_controls": 0
   }
 }

@@ -115,6 +115,10 @@ def apply(screens, manifest):
         if 'property' not in entry:
             continue
         owner = property_owner(screen, entry['screen'], entry['control'])
+        if entry.get('before_absent'):
+            if entry['property'] in owner.get('Properties', {}):
+                raise ValueError(f"Expected absent baseline property: {entry['control']}.{entry['property']}")
+            continue
         current = owner['Properties'][entry['property']]
         if entry.get('mode') == 'preserve_first_statement_replace_tail':
             prefix, sep, tail = current.partition(';')

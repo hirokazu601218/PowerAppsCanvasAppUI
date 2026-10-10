@@ -1,0 +1,20 @@
+{
+  "src/screen-ui/v1.31/payroll-root.pa.yaml": "a8030ea709c78d108ede6bcc272c83a497cdd4e70e130b85e02734ef07652bf9",
+  "src/screen-ui/v1.31/payroll-root.paste.yaml": "4f202f405b6d6554132ca1706cfdf9abf3e50faeb60756220edbcb2ae0b52b19",
+  "src/screen-ui/v1.31/manifest.json": "b230ed72ab97afe9a568e939594b921150476443d07ee2a733ff0f973b174c29",
+  "src/screen-ui/v1.31/README.md": "3510e47c0e9a3b93f59004a31bb525b64c110c04c6f023c994cb28cdd710fc08",
+  "src/screen-ui/v1.31/conscrPayrollRoot.LayoutOverflowY.fx": "b230ad0d1ea0250969f0425abb135d855d7784aece163fc7285f3984bb5a3549",
+  "src/screen-ui/v1.31/payroll-content.Width.fx": "223599991200f062399addab286975b88ffff5078e39af647090d01f6dd1ab09",
+  "src/screen-ui/v1.31/conPayBody.Height.fx": "cb8f01bd5e0c135b1e8002079d284f270e8b5e6b521426929f5b26018ab1bc4f",
+  "src/screen-ui/v1.31/conPayBody.LayoutOverflowY.fx": "7505d70259ed9e1d25efafd25c6441c0f3a903a9d4736c54d4d51d42e21da972",
+  "scripts/implementation/apply_pay_implement_001.py": "1b9d3eabe7a955ef41e2a66e07dc4cd29faa77c0b03dc5eacd8b4a39211f00db",
+  "tests/automation/test_pay_implement_001.py": "5922d33b1d6da77c810f1c370fd7e9eca2e509a434d09e6396712c89eb2d05a5",
+  "tests/automation/test_payroll_layout_r5.py": "4b50b22565988de5f564080113f41b988cce5fb95c68bc0e45735a2c9c2cc7f7",
+  "tests/automation/test_payroll_layout_r6.py": "fafce889580d60466f2e4061ff8195f8b6c0ea457f32def398904d6cfad65428",
+  "e2e/current-app/state-retention.test.ts": "19aa1f2a076dbe9a0d76dee44538be9f88da1d6653f425ae794da287eb858287",
+  "docs/changes/requests/pay-implement-001.json": "1333ad4970f0e6851ee9426bd60e6b365e62fc3d1340113e86db086b5adf1e83",
+  "docs/testing/change-records/pay-implement-001.json": "cb4cb2d4f4c0c6a067d9841b929e6d857a41fe9d22c08c4587f39ec888ca66ea",
+  "records/changes/pay-implement-001/manual-20261010-layout-r6/proposal-delta.json": "2b89e562bc8ee63f1d737b35c202c246ff07ded100ceeccfe64b5f55530469dc",
+  "records/changes/pay-implement-001/manual-20261010-layout-r6/PROPOSAL.md": "81366e9fa04a972e1659fddf05dcde57ab5bae34010e518302689abdcca00d9c",
+  "records/changes/pay-implement-001/manual-20261010-layout-r6/record.json": "b0c4cebb773011ab8bd96a96594b0b1652cbed00dfcc863344df0993a8f0b4a4"
+}

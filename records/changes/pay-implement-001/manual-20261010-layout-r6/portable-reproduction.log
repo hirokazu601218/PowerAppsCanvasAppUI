@@ -1,0 +1,61 @@
+RUN python review/portable-reproduction/test_independent_r6_layout.py
+test_01_exact_nine_properties_and_no_tree_changes (__main__.IndependentR6.test_01_exact_nine_properties_and_no_tree_changes) ... ok
+test_02_frozen_r5_semantic_baseline_and_paste_screen_parity (__main__.IndependentR6.test_02_frozen_r5_semantic_baseline_and_paste_screen_parity) ... ok
+test_03_manifest_before_after_and_standalone_formulas (__main__.IndependentR6.test_03_manifest_before_after_and_standalone_formulas) ... ok
+test_04_source_derived_750_contract (__main__.IndependentR6.test_04_source_derived_750_contract) ... ok
+test_05_128_contract_and_deterministic_mode (__main__.IndependentR6.test_05_128_contract_and_deterministic_mode) ... ok
+test_06_intrinsic_table_has_each_child_once_and_exact_gap_sum (__main__.IndependentR6.test_06_intrinsic_table_has_each_child_once_and_exact_gap_sum) ... ok
+test_07_all_visibility_patterns_and_intrinsic_perturbations (__main__.IndependentR6.test_07_all_visibility_patterns_and_intrinsic_perturbations) ... ok
+test_08_no_layout_dependency_cycle_or_parent_height_child (__main__.IndependentR6.test_08_no_layout_dependency_cycle_or_parent_height_child) ... ok
+test_09_requested_viewports_and_low_height_modes (__main__.IndependentR6.test_09_requested_viewports_and_low_height_modes) ... ok
+test_10_minimum_content_prevents_known_button_and_basis_compression (__main__.IndependentR6.test_10_minimum_content_prevents_known_button_and_basis_compression) ... ok
+test_11_reproduces_real200_failure_without_claiming_runtime_fix (__main__.IndependentR6.test_11_reproduces_real200_failure_without_claiming_runtime_fix) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.118s
+
+OK
+RUN python review/portable-reproduction/test_independent_helper_review.py
+test_01_helper_only_adds_four_guard_lines (__main__.HelperReview.test_01_helper_only_adds_four_guard_lines) ... ok
+test_02_only_expected_two_absent_properties_declared (__main__.HelperReview.test_02_only_expected_two_absent_properties_declared) ... ok
+test_03_absent_guard_rejects_all_explicit_values_in_both_axes (__main__.HelperReview.test_03_absent_guard_rejects_all_explicit_values_in_both_axes) ... ok
+test_04_absent_success_adds_exact_properties_and_preserves_input (__main__.HelperReview.test_04_absent_success_adds_exact_properties_and_preserves_input) ... ok
+test_05_whole_root_guard_rejects_unrelated_drift (__main__.HelperReview.test_05_whole_root_guard_rejects_unrelated_drift) ... ok
+test_06_existing_formula_and_duplicate_guards_remain (__main__.HelperReview.test_06_existing_formula_and_duplicate_guards_remain) ... ok
+test_07_full_ten_file_set_and_content_guards_remain (__main__.HelperReview.test_07_full_ten_file_set_and_content_guards_remain) ... ok
+test_08_existing_destination_and_after_scope_guards_remain (__main__.HelperReview.test_08_existing_destination_and_after_scope_guards_remain) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.549s
+
+OK
+RUN node review/portable-reproduction/test_e2e_clipping_mock.cjs
+(node:8) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+old_wide scale=1: rejected as expected
+old_narrow scale=1: rejected as expected
+new_wide scale=1: accepted as expected
+new_narrow scale=1: accepted as expected
+old_wide scale=0.681: rejected as expected
+old_narrow scale=0.681: rejected as expected
+new_wide scale=0.681: accepted as expected
+new_narrow scale=0.681: accepted as expected
+internal_text_horizontal: rejected as expected
+internal_text_vertical: rejected as expected
+internal_text_missing: rejected as expected
+geometry_changed_then_stable: accepted after 4 polls
+geometry_missing: rejected
+PASS: 13 helper mock fixtures; 12 tests registered; no browser executed.
+RUN node review/portable-reproduction/test_e2e_root_ports_mock.cjs
+(node:16) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+combined_root_ports_translate_iframe_and_route_wheel: accepted
+combined_root_ports_reach_field_without_hidden_scroll: accepted
+split_root_ports_translate_iframe_and_route_wheel: accepted
+split_root_ports_reach_field_without_hidden_scroll: accepted
+hiddenY: rejected as expected
+badNested: rejected as expected
+textOverflow: rejected as expected
+outerScale: rejected as expected
+PASS: 8 root-port synthetic fixtures; 12 cases registered; no browser executed.
+PASS: portable scripts rerun from a separate review directory. No browser or application executed.

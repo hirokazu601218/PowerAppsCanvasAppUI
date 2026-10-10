@@ -1,0 +1,22 @@
+{
+  "REPRODUCE.md": "9400090d6bb13d8a1a0fb0fe33f7857616f3c439c93175fcc3e92dcd01f66d6a",
+  "e2e-clipping-mock.log": "ce2effedc5fac7de4ea117ca41c2cde6398982a151ca9d5495f705b739496aaa",
+  "e2e-root-ports-mock.log": "7fe4eff5b57508c89673190c597f5dd153333370e7d6897ebb68df89262fa468",
+  "e2e-source-review.md": "f46835ebf79fc1c7d6c3280697138228c739a442a4cfc5b9886978e9ef20fe0d",
+  "helper-and-static-test-review.md": "33240ca6d97f864bf589fab2fd796f758de4ffec97f0e6fab6d6cce69c499291",
+  "independent-e2e-results.json": "e850dea776f4d8391886390bcf2f027395eaeee8474e10f67f78af7b424a0293",
+  "independent-helper-results.json": "351ab59fe18d941a70e9bde01c79432e55042ff74791d29c9a83b7ce4717cbc8",
+  "independent-helper-test.log": "220c5102d4d6c84fa1a173eea09a55641a2738773795bdbc5a674eb79b54cdc8",
+  "independent-r6-results.json": "ef0456c4f864a4fb43edb74f95ea677b66466765160387b43b60a0540a1a45b5",
+  "independent-r6-review.md": "98bc2a2e598e14e97d7d1fedd26fdca3b2da466107ac76a84fb8a936a88439f4",
+  "independent-r6-test.log": "70f4436e4d3d2e3f107dd9519e4d6adf7cc089f23d8f988a3a2e42d19861837e",
+  "portable-reproduction.log": "2e2c0c7531fe619d122bd265e69e7a27a8d0f5ca5cd676ef8c8b92dfab852f71",
+  "proposal-status-review.md": "6d26c6aa5284f93866608a18db1a4eadc0f2c744f95ed646a83b1ce8650da765",
+  "reviewed-automation-suite.log": "a5349ee3fce66062173fa9f052710af1f0e0d47d66950af61c64fede3bb0bcb6",
+  "reviewed-r6-suite.log": "cb9fad1af774391778c2de3cd3ef1c8ca8eff76b6b3c68072948ab64f3e8e4f3",
+  "reviewed-source-test-hashes.json": "08483fe6099f4b9a94898deb2b2fa0dcbaefb3070f77e257a00fb5e0fd1b4d46",
+  "test_e2e_clipping_mock.cjs": "b58739f897c64187eb54f3ba9e3680b6e2d4ef3fbf9e1bdfab7a992ee8776eba",
+  "test_e2e_root_ports_mock.cjs": "a62b025dfbe788e3d4787df8d43a2caa87e563f7aadb8f23acabd27ebf766f7f",
+  "test_independent_helper_review.py": "47279fd73ccf560722df29f0ad1a09f78e0c1275b88489130c433315c08ed2c6",
+  "test_independent_r6_layout.py": "9a6cada73038057f1e3d7074b3999eaa898b959266c9db238be298023fed9e5c"
+}

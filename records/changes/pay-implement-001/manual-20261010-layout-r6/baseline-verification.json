@@ -1,0 +1,8 @@
+{
+  "source_S_prime": "4f7b5c8df63a198e6d4c121d7135f3305f36f8f1",
+  "tree_sha": "46b3a9911ed53a49218abc3a6622ea59935d985b",
+  "remote_verification": "Existing release coordinator verified all31 changed blobs and816 unchanged leaves; this local check matches their identities. No new external fetch performed.",
+  "verified_local_leaf_count": 847,
+  "missing": [],
+  "mismatched": []
+}

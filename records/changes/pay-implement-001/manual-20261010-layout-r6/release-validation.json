@@ -1,0 +1,88 @@
+{
+  "status": "PASS_LOCAL_CHECKS_ONLY_PROPOSAL_NOT_APPROVED",
+  "base_source_S_prime": "4f7b5c8df63a198e6d4c121d7135f3305f36f8f1",
+  "r5_verified_unchanged_leaves": 847,
+  "r6_changed_paths": 50,
+  "combined_PR_paths": 128,
+  "named_case_count": 15,
+  "PR_case_count": 19,
+  "app_source_path_count": 22,
+  "placement": {
+    "current": 3,
+    "record": 90,
+    "other": 0,
+    "code": 35
+  },
+  "reviewed_source_test_hashes": 18,
+  "privacy_added_lines_findings": [],
+  "new_whitespace_findings": [],
+  "automation_tests": 85,
+  "governance_tests": 3,
+  "independent_source_model_tests": 11,
+  "independent_guard_tests": 8,
+  "independent_helper_mock_outcomes": 21,
+  "typescript_syntax": "PASS; Node type stripping only",
+  "runtime": "NOT_RUN",
+  "actual_200_percent_zoom": "NOT_RUN",
+  "Tab_focus": "NOT_RUN_MANDATORY_SEPARATE_GATE",
+  "approval": "PENDING_OWNER_UI_EXCEPTION_AND_EXACT_PACKAGE",
+  "PR_selection": {
+    "source_paths": [
+      "config/dataverse/scr003-attendance-columns.json",
+      "src/screen-ui/v1.31/btnDetailTab111.OnSelect.fx",
+      "src/screen-ui/v1.31/btnLoadDetails111.OnSelect.fx",
+      "src/screen-ui/v1.31/btnSearch111.OnSelect.fx",
+      "src/screen-ui/v1.31/conPayBody.Height.fx",
+      "src/screen-ui/v1.31/conPayBody.LayoutOverflowY.fx",
+      "src/screen-ui/v1.31/conPayDeductions.Height.fx",
+      "src/screen-ui/v1.31/conscrPayrollRoot.LayoutOverflowY.fx",
+      "src/screen-ui/v1.31/galHistory111.OnSelect.fx",
+      "src/screen-ui/v1.31/lblPayDeductionBasis0.Text.fx",
+      "src/screen-ui/v1.31/lblPayDeductionBasis1.Text.fx",
+      "src/screen-ui/v1.31/lblPayDeductionBasis2.Text.fx",
+      "src/screen-ui/v1.31/lblPayDeductionBasis3.Text.fx",
+      "src/screen-ui/v1.31/lblPayDeductionBasis4.Text.fx",
+      "src/screen-ui/v1.31/lblPayDeductionBasis5.Text.fx",
+      "src/screen-ui/v1.31/lblPayDeductionBasis6.Text.fx",
+      "src/screen-ui/v1.31/lblPayDeductionBasis7.Text.fx",
+      "src/screen-ui/v1.31/manifest.json",
+      "src/screen-ui/v1.31/payroll-content.Width.fx",
+      "src/screen-ui/v1.31/payroll-root.pa.yaml",
+      "src/screen-ui/v1.31/payroll-root.paste.yaml",
+      "src/screen-ui/v1.31/scrStaffMasterSearch.OnVisible.tail.fx"
+    ],
+    "record_paths": [
+      "docs/testing/change-records/pay-implement-001.json"
+    ],
+    "request_paths": [
+      "docs/changes/requests/pay-implement-001.json"
+    ],
+    "test_files": [
+      "e2e/current-app/attendance-contract.test.ts",
+      "e2e/current-app/attendance-ui.test.ts",
+      "e2e/current-app/navigation.test.ts",
+      "e2e/current-app/state-retention.test.ts"
+    ],
+    "case_ids": [
+      "IT-HOME-DETAIL-001",
+      "IT-SCR003-READBACK-001",
+      "IT-STATE-HISTORY-TABS-001",
+      "IT-STATE-PAGE-001",
+      "IT-STATE-RETURN-001",
+      "UT-HOME-001",
+      "UT-SCR003-CONTRACT-001",
+      "UT-SCR003-INLINE-001",
+      "UT-SCR003-VIEW-001",
+      "UT-SCR006-MONTH-001",
+      "UT-STATE-HISTORY-001",
+      "UT-STATE-HISTORY-EMPTY-001",
+      "UT-STATE-PAYROLL-001",
+      "UT-STATE-SEARCH-001",
+      "UT-STATE-SUMMARY-001",
+      "UT-STATE-SUMMARY-NARROW-001",
+      "UT-STATE-SUMMARY-REFLOW-001",
+      "UT-STATE-SUMMARY-SHORT-001",
+      "UT-STATE-SUMMARY-WIDE-001"
+    ]
+  }
+}
