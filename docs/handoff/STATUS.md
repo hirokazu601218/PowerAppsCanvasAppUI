@@ -5,7 +5,7 @@
 - 最新依頼：Work-prompt.txtに基づく台帳・文書・HTML・記録とDraft PR。アプリ・データ・フローは並行変更しない。開始10:22:53 UTC（19:22:53 JST）、60分期限11:22:53 UTC。
 - 読取り対象：[依頼台帳](../dot/request-list.md)、PAY-IMPLEMENT-001要求／選定、各文書DOT-001節、[今回記録](../../records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md)。
 - S‴保存、引継ぎLive38観測・公式Export比較・A承認を記録。下のr6未承認／Live36等は当時の履歴であり最新状態ではない。
-- 正式P/Hは未取得。GitHub Actions実行画面が未サインインでreadback未実施。最終照合も前提不足で未実施。偽P/H・PASSを作らない。
+- 再開11:30:14 UTC（20:30:14 JST）、期限12:30:14 UTC。正式P `2026-10-10T09:28:28.7479961Z`、独立PAC H `7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f`を[run 38049776822](../../records/changes/dot-001/38049776822/QA-REPORT.md)で取得。metadata Ready・固定App・前後一致、下書き<=P。旧v25画面guard不一致はFAILとして保持。全選定22path比較表／postpublish JSON未完成につき最終照合・選定E2Eは未実施。偽MATCH・PASSを作らない。
 - 関連テスト：文書・HTML静的検査。引継ぎの手動14 UI＋1ソース、ローカル94＋配置3、公開Player観測、名前付き自動15、PR選定19を別扱い。Issue #51・D-07・制度式・実効認可は残件。
 
 ## 2026-10-10 r6a 子配置の読戻し整合

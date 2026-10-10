@@ -2,7 +2,7 @@
 
 | ID | 内容 | 対象 | 状態 | 関連ID |
 |---|---|---|---|---|
-| DOT-001 | 確定仕様・実装・文書の整合 | StaffMaster-Automation-Test／204a48dc-7f23-43dd-b934-4654a3cfa306 | 文書更新・Draft PR準備、P/H採取と最終照合は未実施 | PAY-IMPLEMENT-001／PAY-AUDIT-001 |
+| DOT-001 | 確定仕様・実装・文書の整合 | StaffMaster-Automation-Test／204a48dc-7f23-43dd-b934-4654a3cfa306 | 文書・Draft PR作成済み、P/H実測済み、旧guard FAIL・最終照合は検証継続 | PAY-IMPLEMENT-001／PAY-AUDIT-001 |
 
 ## DOT-001
 
@@ -10,10 +10,10 @@
 
 完了条件：依頼ID衝突なし、事実に沿う差分をPRで確認でき、実測と未実施・残件・出典を区別する。アプリ全体の開発完了は別判定。
 
-質問と回答：小さい画面の表示方針は2026-10-10 07:37:54 UTCに「Aで」と承認。通常PCのサマリー固定、狭い・低い領域の全体スクロールを採用。再計算focusの見切れ、履歴AX差は残件。正式P/H・自動E2E・最終照合は未実施。
+質問と回答：小さい画面の表示方針は2026-10-10 07:37:54 UTCに「Aで」と承認。通常PCのサマリー固定、狭い・低い領域の全体スクロールを採用。再計算focusの見切れ、履歴AX差は残件。正式P/Hは採取済み。旧guard FAIL、自動E2E・最終照合は未実施。
 
 依存：[PR #135](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/135) → [PR #136](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/136)。既存PRのbase・headは変更せず、実装S‴とPR136最新版を子ブランチに取り込む。
 
 [今回記録](../../records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md)／[作業状態](../handoff/STATUS.md)。
 
-[Draft PR #137](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/137)。文書更新・PR作成済み、正式P/H・最終照合は検証継続。
+[Draft PR #137](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/137)。文書更新・PR作成と正式P/H採取済み。[読戻し記録](../../records/changes/dot-001/38049776822/QA-REPORT.md)。旧guard FAILを保持し、選定22path比較表・postpublish JSON・最終照合は検証継続。
