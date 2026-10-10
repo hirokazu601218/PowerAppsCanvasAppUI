@@ -51,7 +51,8 @@
     "^docs/verification/postpublish/[a-z0-9][a-z0-9-]*\\.json$",
     "^docs/review/pay-html-001/(?:[a-z0-9-]+/)*[A-Za-z0-9_.-]+\\.(?:html|css|js|json|md)$",
     "^docs/requirements/standard-template/(?:sources/)?[A-Za-z0-9_.-]+\\.(?:html|json|md)$",
-    "^docs/requirements/standard-template/(?:(?:assets|sources|sections|template-sections|requirements|operations|screens|workflows)/)?[A-Za-z0-9_.-]+\\.(?:html|json|md|css|js|png)$"
+    "^docs/requirements/standard-template/(?:(?:assets|sources|sections|template-sections|requirements|operations|screens|workflows)/)?[A-Za-z0-9_.-]+\\.(?:html|json|md|css|js|png)$",
+    "^docs/requirements/standard-template/assets/source-readback-summary\\.jpg$"
   ],
   "legacy_migration_map": "records/operations/migration/source-map.csv",
   "record_index_paths": [

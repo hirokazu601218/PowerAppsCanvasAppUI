@@ -1,0 +1,648 @@
+{
+  "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+  "previous_pr136": "c6d1c7edb2999a08c96d29343dfd9f4385cecd5b",
+  "source_pr137": "a05450bc479a666cc73e8b265fbd7b3189d71d27",
+  "note": "Selected updated canonical inputs frozen before HTML regeneration. Older validation records and manifests remain history.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "0de49709b2c1f0d48f1a2ee687af75bd2b369609000309ba15cf59f3ff010aaf"
+    },
+    {
+      "path": "README.md",
+      "sha256": "a8a789c9543b62640178e06639349b3348f0bf933a6eececb7226a370ea276c2"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "3a5d2ea83b15392d538d6669cf73b46063f2042afa69aa04e6e919745e00ae7e"
+    },
+    {
+      "path": "docs/acceptance/user-acceptance.md",
+      "sha256": "49e437c0066f0004e502a79227f20cd3e5905d4af7e3d62e28bce8160bd513b8"
+    },
+    {
+      "path": "docs/changes/commute-official-design-candidate.md",
+      "sha256": "5d77108fd43530035277e3ac3d2cf01e0332003e49fe45e598e9cabe9e63e896"
+    },
+    {
+      "path": "docs/changes/payroll-markdown-change-list-20261007.md",
+      "sha256": "42249e787e55d78510e4f50d9635f57538366b699379225157391c224acec96a"
+    },
+    {
+      "path": "docs/changes/requests/README.md",
+      "sha256": "869e41b04b7ea989b747fcfdd61112bdc0c1162c942b7f24060ee97b81692dcb"
+    },
+    {
+      "path": "docs/changes/scr003-attendance-import-design-candidate.md",
+      "sha256": "f6e59bfc85be5e0a9e77b7b51e6bb836adc7a6bd9cb47d88f1cd46c066f88b68"
+    },
+    {
+      "path": "docs/design/README.md",
+      "sha256": "69861acaae480fd17061d95fc2495de8bc7c6e2d148bd81afd20b467a1586e28"
+    },
+    {
+      "path": "docs/design/basic/README.md",
+      "sha256": "b1225583ba1b29da4af6495bfb8383121c2c625736ee8b3d6d34bb5a45c27ca6"
+    },
+    {
+      "path": "docs/design/basic/basic-design.md",
+      "sha256": "c375fa576cff3e7ad25bf9af03f38452a3f4d93bac6951dfe367a770e4cfb668"
+    },
+    {
+      "path": "docs/design/basic/data-model.md",
+      "sha256": "bca14fc642bebbe57f04b7cb4e54577ae81508d25d04c2178dae0129ae5747cd"
+    },
+    {
+      "path": "docs/design/basic/design-system.md",
+      "sha256": "62a13bd642f102c46f00a00d4b8eb8679b10029fe0902b37d7288ed3e69c9465"
+    },
+    {
+      "path": "docs/design/detailed/README.md",
+      "sha256": "7edb8ef1ae6581cd0edb8e0028f9ee4e7de20e34fb965968e05726e0c8bb1fbc"
+    },
+    {
+      "path": "docs/design/detailed/detailed-design.md",
+      "sha256": "38bcd2579034f566996182493176122967a3345605f082c53e4fd8efba8b43fb"
+    },
+    {
+      "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+      "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b"
+    },
+    {
+      "path": "docs/dot/request-list.md",
+      "sha256": "b523b8f289dc23c8cc8b52f3d28eac92ab4e2a49433d98acf85412e936a00b33"
+    },
+    {
+      "path": "docs/handoff/STATUS.md",
+      "sha256": "493345754a20d6b8a40e21068b00924b44b806840c9aa9481a5ba96c6c5df302"
+    },
+    {
+      "path": "docs/operations/control-diff-policy.md",
+      "sha256": "d7eb1ca3410ecc1094c1308660025d018909768677ce476ec1b371119530d3d3"
+    },
+    {
+      "path": "docs/operations/current-app-request-to-release.md",
+      "sha256": "8a894cd5a894b713807b9a92aad49e280cfaa21978dcb1802df2fb6162699fc2"
+    },
+    {
+      "path": "docs/operations/document-organization.md",
+      "sha256": "bb1775f54487fe358f20e421b769906f8bd1a618de1f4b52aa0048654e218f08"
+    },
+    {
+      "path": "docs/operations/library-materials-index.md",
+      "sha256": "67456cb434bb1320e954d8e221e8c6ddd4944ebccf62772f517e8f759e0d3bcb"
+    },
+    {
+      "path": "docs/operations/single-app-workflow.md",
+      "sha256": "d3f0f63827b07773ccc092edce9d70d2012475068bb5dfa705d9e7545620f415"
+    },
+    {
+      "path": "docs/operations/work-policy.md",
+      "sha256": "8edd820eb7dfdfcdf88c9ad66488b2f513e933a25805a7c9de37db603662629e"
+    },
+    {
+      "path": "docs/requirements/README.md",
+      "sha256": "8319053c5f905bef090699f20a5b4f93323f3fb5f67f27b21713bf2261005515"
+    },
+    {
+      "path": "docs/requirements/business-requirements.md",
+      "sha256": "707f695e40f7fa165e598ff2940eed0ec8bc06134d7f7e035200c116c044fe65"
+    },
+    {
+      "path": "docs/requirements/non-functional-requirements.md",
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "path": "docs/requirements/open-decisions.md",
+      "sha256": "0fa75fc2ca5c4bf18a4f9988864098116d8463b80ee399147e17f92d58236e52"
+    },
+    {
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+      "sha256": "11dcc8ce3cb8b4ada1cb5b5e6f0da83707ddf0254de5c3b95ea31c9dc164b913"
+    },
+    {
+      "path": "docs/requirements/requirements.md",
+      "sha256": "5973fec2e6c1c34dfd6734cf73f40bfaac1ef31ceddeaef2869692fdd4b534d8"
+    },
+    {
+      "path": "docs/requirements/screen-requirements.md",
+      "sha256": "52ae4f29d73310c99783b902f50f9bc8fb297ed58c260f6818f35563ae314fea"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements-data.json",
+      "sha256": "81e9882e5ed460c9eadbd3c4dccf64e6e6c9c458538d2c2e57a1ba73419ea4ee"
+    },
+    {
+      "path": "docs/requirements/traceability-matrix.md",
+      "sha256": "ddb84071fff5a5260fd60307e45b3cabb689107e287284e795ac1f366c053b74"
+    },
+    {
+      "path": "docs/review/pay-html-001/data/model.json",
+      "sha256": "a986f1886a15e1292c795bb96ba22021a0b634fa0ccba53c771bc91290e6ae76"
+    },
+    {
+      "path": "docs/testing/change-records/README.md",
+      "sha256": "d100b94b1114a56c1a558ad8125c6f9e3f3ab6dad946b1d1cda5872c1eadc294"
+    },
+    {
+      "path": "docs/testing/current-app-e2e.md",
+      "sha256": "c9b50b7da47409369ef7308c9cbc9cb67502cbabac61bce2150decc0523555df"
+    },
+    {
+      "path": "docs/testing/integration-test-plan.md",
+      "sha256": "5b1c269b1a6ee9ced074565e6a5ab814b06da0110add967c1fe093454ce923da"
+    },
+    {
+      "path": "docs/testing/system-test-plan.md",
+      "sha256": "8fdaff8f377dd9d91ea3b960bb422aa36d17e08997ee9a98a850239f95ca58e6"
+    },
+    {
+      "path": "docs/testing/templates/test-execution-record.md",
+      "sha256": "483cda963739f60c5a92a93e11725cf1c998da005b7ce9b2b9b12e6bd3091ac0"
+    },
+    {
+      "path": "docs/testing/test-policy.md",
+      "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
+    },
+    {
+      "path": "docs/testing/test-specification.md",
+      "sha256": "f7e529a678d78f091d0b21940835e0d0e4b756685628c04d593ed043efc8f6f3"
+    },
+    {
+      "path": "docs/testing/unit-test-plan.md",
+      "sha256": "244414c7d19b0149ad26e159366f3c25725411c2d893bbedaf4c40c01fcb715a"
+    },
+    {
+      "path": "other/README.md",
+      "sha256": "61bed3530c0fee237d8c42474c7a2d0202c3eb1f4004005c713d5a2d7870db1e"
+    },
+    {
+      "path": "other/docs/README.md",
+      "sha256": "e7424512a449de06b5382106de9389c6ff244e8f9bdb18f2ea59e0df98455941"
+    },
+    {
+      "path": "other/docs/poc/html-report-launch-poc.md",
+      "sha256": "8e4e3600a62144d1c551c0f670b8c959c927d878240695d55cd5d10355c933e0"
+    },
+    {
+      "path": "other/docs/prototypes/attendance-payroll-prototype.md",
+      "sha256": "43f8b1bacc1b1d7137cde9b348d3d52caac3f447d94c92268f21024561a5b88c"
+    },
+    {
+      "path": "other/docs/reference/DADS_PowerApps_デザイン基準_v1.01.md",
+      "sha256": "4fe20c43342d640bf9f7afd6fbe9bb981139b83c1cff1c0561d22e29b6041647"
+    },
+    {
+      "path": "other/docs/reference/HTML_v0.808_UI評価と改良提案_v1.01.md",
+      "sha256": "2267183e34dc9509032056dd84f044bb74d14787b121f1e9b351cd03b3b99f29"
+    },
+    {
+      "path": "other/docs/reference/README.md",
+      "sha256": "1e2a04501048e8ee5524a50aca8b470e17a5f4821b900918d3a139fe3e584fdb"
+    },
+    {
+      "path": "other/docs/reference/html-v0.807-basic.md",
+      "sha256": "3783635a5f24755734511ad69b44850b84266ac99b14ec4ea386a4661cb7aa75"
+    },
+    {
+      "path": "other/docs/reference/html-v0.807-detailed.md",
+      "sha256": "39b885a4e24e6c2252d292826a9b6f0326a6078c42c5a0be4d4c3e9889811ddc"
+    },
+    {
+      "path": "other/e2e/README.md",
+      "sha256": "cd6a770a2e73a72a74ad88d5d1e3b85137f385c22a49b8ff08eaa6e7a62ed94c"
+    },
+    {
+      "path": "other/src/README.md",
+      "sha256": "4b8fd8a3acdb641d0b0e5170e0861ad2f7232fb67ea23603cc2ea6e7b440d7f2"
+    },
+    {
+      "path": "other/src/reference/README.md",
+      "sha256": "9b3f242722fb98c86042bd7661cebf2cba6f8c847f3e0edcffb8886bed11e979"
+    },
+    {
+      "path": "other/src/staff-master/candidates/commute-html-v1.00/docs/implementation-status.md",
+      "sha256": "78c385be545625b42ef0325497f0653a47d82c8b58eb0a3d533652065fcb93d8"
+    },
+    {
+      "path": "other/src/staff-master/candidates/commute-html-v1.01/README.md",
+      "sha256": "9948e9be500b560892bdcd0f01fe28486a04bacb06a3ddd885fecfdecd2fcab2"
+    },
+    {
+      "path": "other/src/staff-master/candidates/commute-html-v1.01/docs/release-1.01.md",
+      "sha256": "5530d09ee8bb750320249594a2a5aa485c7c1001fbcc71babeee94a13c990fcb"
+    },
+    {
+      "path": "other/src/staff-master/candidates/commute-html-v1.01/docs/requirements.md",
+      "sha256": "b5d82dff9791e6807e64d9fed277e5e77e646a263c69dfa613d80f3018f43cf9"
+    },
+    {
+      "path": "records/README-before-migration.md",
+      "sha256": "be426063c081e5d537811209f2670ffce8947da8d582b57ea146223a1cfde9f7"
+    },
+    {
+      "path": "records/README.md",
+      "sha256": "030b0c3bc28bc164d8a5937ded29584c26cdd66a8ad646581b9ca2093b291fb6"
+    },
+    {
+      "path": "records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md",
+      "sha256": "876aa1b29de671b93bfc16afe83334be1fa8f192927694523274a348c02f64c7"
+    },
+    {
+      "path": "records/changes/change-20261001-scr001-003-ui/manual-20261001-acceptance/acceptance.md",
+      "sha256": "f248c7a6a52c3b63532674a9320e2be0c62003b3e908201f6df03cdf52ecf3a1"
+    },
+    {
+      "path": "records/changes/change-20261001-scr001-003-ui/manual-20261001-completion/completion.md",
+      "sha256": "152907a4700de2ab46b87addd269b77e788fa8f754332b2a46d9d8ac5c81a0e6"
+    },
+    {
+      "path": "records/changes/change-20261003-commute-official/manual-20261003-local-candidate/result.md",
+      "sha256": "35c206523af4e19b3d832407044ec2a096a262e0f57f0519b8546ee399a6a32f"
+    },
+    {
+      "path": "records/changes/change-20261003-commute-official/manual-20261004-deployment/completion.md",
+      "sha256": "53ff0f08bc4c9ac754440f0dbb96ddfb6f8870949ab164e5bcd7d96109dd54f4"
+    },
+    {
+      "path": "records/changes/change-20261007-commute-cutover/manual-20261007-acceptance/acceptance.md",
+      "sha256": "5f81084b182669b01ae82e2c1091a05079ef7d13806beaa6ef00a1110e087746"
+    },
+    {
+      "path": "records/changes/change-20261007-commute-cutover/manual-20261007-cutover/result.md",
+      "sha256": "a7d0764ca2aa3bc51337370c23769af1aa706277c9af7ba4576422da856a0aaa"
+    },
+    {
+      "path": "records/changes/dot-001/38049776822/QA-REPORT.md",
+      "sha256": "a7f371474ed9e4c92cc388ff17da410bfed32eedece5d19bf767a804cc2dd57b"
+    },
+    {
+      "path": "records/changes/dot-001/38049776822/readback-summary.jpg",
+      "sha256": "9329f61901b1fe7fbd7cc979b315e86a83a6d45ff83efe436f7c17eefadcf269"
+    },
+    {
+      "path": "records/changes/dot-001/38049776822/record.json",
+      "sha256": "09239d80cfcb9cb898dac5842ba1c5ef8f2f0bea4587e2e51b0d17a68bb822b1"
+    },
+    {
+      "path": "records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md",
+      "sha256": "1447bc9d5f7b7a1238b5902686f729461908ce88ce76a22f6889daf663db7a00"
+    },
+    {
+      "path": "records/changes/pay-html-001/manual-20261009-html-review/QA-REPORT.md",
+      "sha256": "e945631329344dbc65930f971ce993d78e9924954cae2df5ea0e06d01def3c01"
+    },
+    {
+      "path": "records/changes/pay-html-002/manual-20261009-connected-flow/QA-REPORT.md",
+      "sha256": "6818b5e6ce30cd9b12a9c2c1aa7c4183acdad86016e3880d70f184cf6f332596"
+    },
+    {
+      "path": "records/changes/pay-html-002/manual-20261009-connected-flow/browser-QA-REPORT.md",
+      "sha256": "aab60d58dacb1f97771bef517522c7c65a5256d4bca13ae24369a17a637cbaca"
+    },
+    {
+      "path": "records/changes/pay-html-002/manual-20261009-connected-flow/ci-placement-correction.md",
+      "sha256": "cc5727704747062d03e913f8772a6fce693344f43fb8f25b31b5ffbdce2ee1ef"
+    },
+    {
+      "path": "records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md",
+      "sha256": "06e6b595519f897e3238e9426496f5771a073b1eb79c0a5a0e4f030aae26f790"
+    },
+    {
+      "path": "records/changes/requirements-html-20261010/manual-20261010-document/QA-REPORT.md",
+      "sha256": "5f38a85693b6182e122bea0db0490c5112a8cf84564a58b184b1c4608f6cd457"
+    },
+    {
+      "path": "records/changes/requirements-html-20261010/manual-20261010-iphone/QA-REPORT.md",
+      "sha256": "3b3c00c546026ec0b6d037533d380bc643e618cc6b8030d6a2c67dbbf9e9466e"
+    },
+    {
+      "path": "records/docs/README-before-migration.md",
+      "sha256": "3f6d968521eeae29f411f0b518ba82a7013999c3d6c56a671fcd141b7bd8c421"
+    },
+    {
+      "path": "records/docs/design/basic-design-before-consolidation.md",
+      "sha256": "90207042028cc6ad4c1fe07f6dc1e4eac9d4f792f2f20e875fff5a97620c6a73"
+    },
+    {
+      "path": "records/docs/design/commute-app-migration-plan.md",
+      "sha256": "682755ea5a97d9cdd6bd9b73a692e240c0e910abb7f2145130210a37cf4d5518"
+    },
+    {
+      "path": "records/docs/design/dataverse-commute-before-consolidation.md",
+      "sha256": "b795cf860f0963bf16aa2eb6bf16f95e520b3b15a2b30b63008993ef399aa4c2"
+    },
+    {
+      "path": "records/docs/design/dataverse-connection-review.md",
+      "sha256": "a0861686b53162bb8ab5d5e5a0eaa66dab66dc0dfa1e951805dbd2ba89b47f49"
+    },
+    {
+      "path": "records/docs/design/dataverse-history-readiness.md",
+      "sha256": "50e41a1a6b0deffd969c35de7b921628eba51c897e4ceeef6a6d6c03e7e695a5"
+    },
+    {
+      "path": "records/docs/design/dataverse-payrollledger-before-consolidation.md",
+      "sha256": "3328be09cb0cc18a7c8c4561c4c5bc1f1cb8c89e79cbb2c3a330c960d6001861"
+    },
+    {
+      "path": "records/docs/design/dataverse-staff-basic-before-consolidation.md",
+      "sha256": "2a32c8db0bcfbd21561908290284e670a808a30fe0eeea7dc4cf9908d80146d6"
+    },
+    {
+      "path": "records/docs/design/dataverse-v1.15-migration.md",
+      "sha256": "0e3b792278ae6c00551c4ad2d8db2e0857b7dda074cdb1f9f2c8b18c7b8899ab"
+    },
+    {
+      "path": "records/docs/design/detailed-design-before-consolidation.md",
+      "sha256": "8ba6dcda55496e3c638d89f6bda794a199acb4edcbd4ba8851fb196085c2b1df"
+    },
+    {
+      "path": "records/docs/design/hybrid-test-data.md",
+      "sha256": "23e80144e7f5bbdc639a1a66c1dd3cd4991d2466a8bb086c88e2e5d7cf687ca2"
+    },
+    {
+      "path": "records/docs/design/ledger-v1.17.md",
+      "sha256": "ebd2764fb405296637199feabbad65ff5a27f64a016ebd5ac15bc6197167522a"
+    },
+    {
+      "path": "records/docs/handoff/CHANGELOG.md",
+      "sha256": "20311811f94898687b6f7b6ee6f2de99f952e60ec8458268158bace106de0c89"
+    },
+    {
+      "path": "records/docs/handoff/STATUS-history.md",
+      "sha256": "6535ad5718d05220c1584c3bc43e1c8a920826dc3968dcd9aa2d64d84d7366c1"
+    },
+    {
+      "path": "records/docs/handoff/install-v1.08.md",
+      "sha256": "db729b0737737b01fe54b51c3b3c2ed47a7b73614d82fbda76bb24ad74cd514c"
+    },
+    {
+      "path": "records/docs/handoff/install-v1.11.md",
+      "sha256": "05673b595643b436f00c30b9249ef097dceef9a6c138906c1dc5ea8e50e79779"
+    },
+    {
+      "path": "records/docs/implementation/lightweight-20260924-preflight.md",
+      "sha256": "990162d0489a00b07c632ffce3d117975b97384854886a5ed297ee949790ff36"
+    },
+    {
+      "path": "records/docs/operations/staff-master-unattended-runbook.md",
+      "sha256": "8c7de264106a7ff7451b301c74b7de8ede4fbc1c39b84c905f22b9d966f62738"
+    },
+    {
+      "path": "records/docs/operations/templates/powerapps-baseline-diff-template.md",
+      "sha256": "eaa26dd506d4b37657faff8c274b25345332c27093ddb708cfa094a0d86fafde"
+    },
+    {
+      "path": "records/docs/operations/three-app-release-flow.md",
+      "sha256": "74a869f06f431160a8d7f27c59c22171795e67924c420df9b6a39ef49fca6e94"
+    },
+    {
+      "path": "records/docs/operations/unattended-development-implementation-plan.md",
+      "sha256": "fb413ea61d3236e2725b6f4b478ca45340e08cb10f16422acf91f1693b3c2e23"
+    },
+    {
+      "path": "records/docs/operations/unattended-development-phase1-5-execution-plan.md",
+      "sha256": "bbaa027ba02611311992edd9396f25849380692d830a11ef3da224d8dba5e739"
+    },
+    {
+      "path": "records/docs/operations/unattended-development-phase1-5-execution-record.md",
+      "sha256": "bde2acaeff3fa9f2de1b71b2413c55569f41147274ecc02e7f34b9213892b333"
+    },
+    {
+      "path": "records/docs/operations/unattended-development-phase1-baseline.md",
+      "sha256": "afcdf6ec0f6c33835e213918492fba10b353c9989c7354d432f0acd64568977e"
+    },
+    {
+      "path": "records/docs/operations/unattended-development-step6-source-reconstruction.md",
+      "sha256": "555535ad2b6589454717b2b5a5cbccf9507ae431a243835498dc51ff6cf33086"
+    },
+    {
+      "path": "records/docs/operations/unattended-development-step7-automatic-source-deployment.md",
+      "sha256": "6b2992560ef159a589f525379d062a1fa8c80862ebfc0244cba6a0da5142121c"
+    },
+    {
+      "path": "records/docs/operations/unattended-development-step8-9-acceptance.md",
+      "sha256": "fa8858342be9e4f1ca1849bf927efdc5a495628cfda83bef59513c93024b1ad4"
+    },
+    {
+      "path": "records/docs/releases/2026-09-17-ui-pdf-comparison.md",
+      "sha256": "0f2afa914234aeaf80dc43797029de8f990f198ce893073d33ae7e92491741a4"
+    },
+    {
+      "path": "records/docs/releases/2026-09-18-regression-v1.23.md",
+      "sha256": "73449fb69603707b627de6dacf69b265375450ce588dbc4ecbb55ff408998c6f"
+    },
+    {
+      "path": "records/docs/releases/2026-09-18-screens-v1.22.md",
+      "sha256": "3940dc79a78ef33d576e0a01093e255d84edb1aa7699464b1c906506570976f0"
+    },
+    {
+      "path": "records/docs/requirements/requirement-relations-before-consolidation.md",
+      "sha256": "caf8dca85c54bb9620b681d3da1ca9928f6b0a2f514d093d2eb3bee0199a418d"
+    },
+    {
+      "path": "records/docs/requirements/requirements-before-consolidation.md",
+      "sha256": "faa51637ef17ca194a67927abbeeb3b2b2f56d5d8e88d5dbe30145477767b354"
+    },
+    {
+      "path": "records/docs/requirements/ui-v1.20.md",
+      "sha256": "f06a0e9bfc54aac0f80701a667d9ba1119d9c74dfd6bc4660672a690257b83f0"
+    },
+    {
+      "path": "records/docs/requirements/unattended-development-requirements.md",
+      "sha256": "667f9d94da13670feaa99c5fce15657fc1a99e9877d3db6834bf3045c0c3684f"
+    },
+    {
+      "path": "records/docs/testing/RESULTS.md",
+      "sha256": "0c0ec01cbd976a46f389be98660b664e7df8dbcd1f902240ba23d82878a04b3d"
+    },
+    {
+      "path": "records/docs/testing/acceptance.md",
+      "sha256": "ecf48c8006e3464ed8d327798d1cc09646a43d222e5820c4fcb37298acec0470"
+    },
+    {
+      "path": "records/docs/testing/archive/test-policy-v1.00.md",
+      "sha256": "f8c9ef12962bad497308252388bf2c2b337587edabb38c9a4e4a9d22e00c35fa"
+    },
+    {
+      "path": "records/docs/testing/automatable-20260919/README.md",
+      "sha256": "4634b1e2c226af7ec483283aa86b199e7bce7b5b3cd2b25ec4ffeec34e694dcc"
+    },
+    {
+      "path": "records/docs/testing/commute-dataverse-results.md",
+      "sha256": "dbcc07cbca65d81247fc575721a7fb9161b5a085c70d91e197a074a0a177b91c"
+    },
+    {
+      "path": "records/docs/testing/commute-v1.18-results.md",
+      "sha256": "a126b74b967b12e082d5cf0f5e21ab05d7b88f39e1768b3c88f8088690101a25"
+    },
+    {
+      "path": "records/docs/testing/commute-v118-preparation.md",
+      "sha256": "5a11941bb015e68d69ed3ea553b95aecb7aa1ecb10f62980f323f1daf5831797"
+    },
+    {
+      "path": "records/docs/testing/current-app-search-observation.md",
+      "sha256": "2b32206271855bec5781af916e159bf0d90938dedf75129ddfa4cf93d32e2b7f"
+    },
+    {
+      "path": "records/docs/testing/current-v126-20260919/profile.md",
+      "sha256": "fd0cefac3a3fcbbca5db581152a0ffa9d41c214b632a479e9228ba0f7ed4cf45"
+    },
+    {
+      "path": "records/docs/testing/current-v126-20260919/results.md",
+      "sha256": "0a6bb5a956e37ae421e3e58d0c8fddca411d1fa8dd4494222880ab9d36c7c29a"
+    },
+    {
+      "path": "records/docs/testing/dataverse-remaining-results.md",
+      "sha256": "04d754431eaf6a918c31b87018d07741a1cb1d3bdd41924dea266c83737d544f"
+    },
+    {
+      "path": "records/docs/testing/hybrid-v1.16-results.md",
+      "sha256": "98ace4e5dcf4fa92444297f003cf5e3f880fbf60cc78cdcbde13f341efe0a5a2"
+    },
+    {
+      "path": "records/docs/testing/ledger-v1.17-results.md",
+      "sha256": "c8f321bd430ff844cb7b66319b305aa50598fd07fd46c407970ba5506f9f6e82"
+    },
+    {
+      "path": "records/docs/testing/override-20260918/results.md",
+      "sha256": "81078704570e0e36d448c38ab5024d906ce243ec4e37f31a854676b104f66208"
+    },
+    {
+      "path": "records/docs/testing/payroll-v1.19-results.md",
+      "sha256": "de7404fd2fc7366f9c4e25bcda004595e5fdb3b12734707d7ef2165760cae34e"
+    },
+    {
+      "path": "records/docs/testing/payrollledger-dataverse-results.md",
+      "sha256": "b6a6e8eea8b60211706d73df6c17b5131407126f94a22a079f62c5c3eb0130b0"
+    },
+    {
+      "path": "records/docs/testing/published-copy-20260918/remaining-profile-proposal.md",
+      "sha256": "bfc131648772a60af3151e8cad0f52422feb7824e55b87b53d200f70168b2f0d"
+    },
+    {
+      "path": "records/docs/testing/published-copy-20260918/results.md",
+      "sha256": "8ab1a622dcbcf68aefff0f6238764ae40281ec00104c9822173aab8d6510931a"
+    },
+    {
+      "path": "records/docs/testing/regression-v122/plan.md",
+      "sha256": "1466fcbdd876e40fc0bbba36725490a9b41a612e6f5d5d7ee5bdaafb940446e0"
+    },
+    {
+      "path": "records/docs/testing/regression-v122/results.md",
+      "sha256": "193c7b923fbd9258e47e525f988d7d4938735fb0817bdc69c131069ad595725d"
+    },
+    {
+      "path": "records/docs/testing/regression-v122/spec-case-audit.md",
+      "sha256": "73cc836f066cc03a440dc9c67d163037dfc40c93650170efd8ea0f8480e8e9df"
+    },
+    {
+      "path": "records/docs/testing/regression-v123-remaining/results.md",
+      "sha256": "5e410abeb678eb9e82fd4d4d06d3c37e29a21321f2592b4933ecb93e9b645b84"
+    },
+    {
+      "path": "records/docs/testing/regression-v123-remaining/spec-case-audit.md",
+      "sha256": "6c8a62a0345ab10f2480ed3038f3be289565ce15d03d27be694ed15d177a16bf"
+    },
+    {
+      "path": "records/docs/testing/regression-v124/results.md",
+      "sha256": "68f7ebec93ce948cb233c0f506f9aca7e0dc4638fd719257745cf8889752ecc6"
+    },
+    {
+      "path": "records/docs/testing/regression-v124/spec-case-audit.md",
+      "sha256": "0fafedefd67c544d652676be1f4d9233ae4823ba239b6e7e355fea5c3b97b8a9"
+    },
+    {
+      "path": "records/docs/testing/regression-v125-review/results.md",
+      "sha256": "f2a81863ac7ad6e398964b5ec7f8f9b9396e6ba496c4ed3e27bce7bc6d4acef5"
+    },
+    {
+      "path": "records/docs/testing/regression-v125-review/spec-case-audit.md",
+      "sha256": "249ac40854e528acaa1c9eb97e41667d8e1b0a35718c63f6f3d69d0cc82844e7"
+    },
+    {
+      "path": "records/docs/testing/remaining-30-20260918/results.md",
+      "sha256": "e674b410815762fc4a85a03cff9e62ca70084d65a5bc895d4eeb347c8cac0619"
+    },
+    {
+      "path": "records/docs/testing/remaining-all-20260918/results.md",
+      "sha256": "132e89ac68c133de95cc36ec3a9f1f5a7cb98a4f45b95006da7950dfa4856fdd"
+    },
+    {
+      "path": "records/docs/testing/remaining14-20260919/results.md",
+      "sha256": "59d27d8751e32d39cd1a6bbfd1b4a15d9178ec2f45826aa0644ad328a08234ab"
+    },
+    {
+      "path": "records/docs/testing/resume-20260918-v126-followup/results.md",
+      "sha256": "affdced329dc4006e00e5cfe8513dbc9b8fd57610979915bf29ef41b49bcb18a"
+    },
+    {
+      "path": "records/docs/testing/resume-20260918-v126-followup/spec-case-audit.md",
+      "sha256": "9255b002efef553f9e546ca93b998fa31f79087a05da72ef545e5ff55f4ce86f"
+    },
+    {
+      "path": "records/docs/testing/resume-20260918-v126/results.md",
+      "sha256": "9d5dd3b1667fa3ff823d74c0e378787c6207ebe4bd37bc87c2bc13ec20ad736c"
+    },
+    {
+      "path": "records/docs/testing/resume-20260918-v126/spec-case-audit.md",
+      "sha256": "8d9bc975e9bdfa184d320d3ba76d050d212f5f9aaa507a92561409b79f816111"
+    },
+    {
+      "path": "records/docs/testing/screens-v1.22-results.md",
+      "sha256": "5fb2431e235405f7441fa8350a3332d41067094c32e65189cbfaf1d5da3ff8f8"
+    },
+    {
+      "path": "records/docs/testing/unattended-e2e-setup.md",
+      "sha256": "82a5f248a04ecd8624b47418f8d6fdc5330b0e40b28512a68b0ed42b7a83911e"
+    },
+    {
+      "path": "records/docs/verification/current-app-player-20260926.md",
+      "sha256": "4717188ab437cdab36275091cdc6bec5de9e78ac4e822ff3a61d67fcea767b0d"
+    },
+    {
+      "path": "records/powerapps/dataverse-v1.16/README.md",
+      "sha256": "13f27f1de49fc37000eb56a887030b9a5711a46e9eaedb5a824fa05221ee937a"
+    },
+    {
+      "path": "records/src/screen-ui/v1.22/README.md",
+      "sha256": "b17955f26cf45b68c08e99c46a560a1795ffa1332da9ff2d36412a5e5b4f3eb7"
+    },
+    {
+      "path": "records/src/staff-master/patches/README.md",
+      "sha256": "4ab12b1168207daeac73b41c88d819d02643fa67aadc9a09501653d739e4791f"
+    },
+    {
+      "path": "records/src/staff-master/patches/v1.18-candidate/INSTALL.md",
+      "sha256": "e457bf9ebc81a68a75f8715f1bdf04be6d5600f5057e1c4452c20b08db1c04b9"
+    },
+    {
+      "path": "records/src/staff-master/patches/v1.18/INSTALL.md",
+      "sha256": "b7905b64020baae6a841f32519a44ab48c19bb7fc7e330aaacb8e5756a1e07d3"
+    },
+    {
+      "path": "src/commute-ledger/v1.02/README.md",
+      "sha256": "5a764d356258cce95e763bdb4db7140df7d0c3d938d1f0390e1afe1b0b1167b2"
+    },
+    {
+      "path": "src/commute-ledger/v1.03/README.md",
+      "sha256": "846af398a4a47373a397c3913c2b1c53a241d33a4a77492f6ac475a1ae6d84cc"
+    },
+    {
+      "path": "src/screen-ui/v1.24/README.md",
+      "sha256": "01d38cc46770cde2775808ab94f75cf4bd001c4813ae369393128d819e4464bb"
+    },
+    {
+      "path": "src/screen-ui/v1.28/README.md",
+      "sha256": "f9d5ce40f835935af9cd5a6964926dfd724168f131c2244a88d2f2960bee11fe"
+    },
+    {
+      "path": "src/screen-ui/v1.30/README.md",
+      "sha256": "e6b129fb49610fd7212b17fc97a1b3b724dd685827bdde6694a8f87b73ba15b5"
+    }
+  ]
+}

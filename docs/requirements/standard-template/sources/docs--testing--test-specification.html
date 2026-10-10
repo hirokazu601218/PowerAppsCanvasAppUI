@@ -48,7 +48,7 @@
 <p class="meta">docs/testing/test-specification.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
 <p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
 <p>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/test-specification.md">この版のGitHub原文</a> / SHA-256: <code>ed9e93db8a4506897a7af77bc6f8899fa0d7278f2ea0e0a59731d8c630be5ca9</code>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/test-specification.md">この版のGitHub原文</a> / SHA-256: <code>f7e529a678d78f091d0b21940835e0d0e4b756685628c04d593ed043efc8f6f3</code>
 </p>
 <details>
 <summary>この資料を参照している要件・節</summary>
@@ -80,11 +80,11 @@
 </section>
 <section id="L7" data-source-start="7" data-source-end="12">
 <ul>
-<li>対象は <code>StaffMaster-Automation-Test</code>、App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。<code>_STUDIO</code>隔離テーブルと隔離HTMLを使用する。<a href="docs--testing--test-policy.html" data-keep-context>全体テスト計画</a>に従い、改修部品の単体試験を必ず実施。他部品への影響があれば結合試験も実施し、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/README.md">選定記録</a>で理由・ケースIDを示す。</li>
-<li>現行アプリの単体 <code>UT-HOME-001</code>：ホームの職員マスタ検索ボタンで03会計課の架空職員7名の一覧を開く。結合 <code>IT-HOME-DETAIL-001</code>：一覧の011を選択して詳細の番号・所属へ反映する。実装は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/e2e/current-app/navigation.test.ts">e2e/current-app/navigation.test.ts</a>。</li>
-<li>検索の単体 <code>UT-SRCH-001</code>（同姓同名の1件絞り込み）と結合 <code>IT-SRCH-DETAIL-001</code>（絞り込みから詳細への受渡し）は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/testing/current-app-search-observation.md">実施記録</a>で単体FAIL／結合BLOCKED。今回の安定ゲートに実装したケースには含めず、検索部品を改修するときにコードと期待値を整える。合格済みとは扱わない。</li>
+<li>対象は <code>StaffMaster-Automation-Test</code>、App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。<code>_STUDIO</code>隔離テーブルと隔離HTMLを使用する。<a href="docs--testing--test-policy.html" data-keep-context>全体テスト計画</a>に従い、改修部品の単体試験を必ず実施。他部品への影響があれば結合試験も実施し、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/change-records/README.md">選定記録</a>で理由・ケースIDを示す。</li>
+<li>現行アプリの単体 <code>UT-HOME-001</code>：ホームの職員マスタ検索ボタンで03会計課の架空職員7名の一覧を開く。結合 <code>IT-HOME-DETAIL-001</code>：一覧の011を選択して詳細の番号・所属へ反映する。実装は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/e2e/current-app/navigation.test.ts">e2e/current-app/navigation.test.ts</a>。</li>
+<li>検索の単体 <code>UT-SRCH-001</code>（同姓同名の1件絞り込み）と結合 <code>IT-SRCH-DETAIL-001</code>（絞り込みから詳細への受渡し）は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">実施記録</a>で単体FAIL／結合BLOCKED。今回の安定ゲートに実装したケースには含めず、検索部品を改修するときにコードと期待値を整える。合格済みとは扱わない。</li>
 <li>実装済みの2ケースは全改修部品の単体テストを代替しない。対象部品に対応するケースがなければ追加する。改修ごとにテストコードを無条件で新規作成する必要はない。GitHub候補を公開版へ反映したことの照合は別に行う。</li>
-<li>以下のv1.11由来の25名・11桁番号等の記述は<strong>当時の基準と試験履歴</strong>であり、現行アプリの全ケースに一律適用しない。後続追記のSCR-002等も各記載の適用版を確認する。総合テストのシナリオと実施時期は未確定。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/testing/acceptance.md">旧受入基準</a>をユーザーの業務受入完了と扱わない。</li>
+<li>以下のv1.11由来の25名・11桁番号等の記述は<strong>当時の基準と試験履歴</strong>であり、現行アプリの全ケースに一律適用しない。後続追記のSCR-002等も各記載の適用版を確認する。総合テストのシナリオと実施時期は未確定。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/acceptance.md">旧受入基準</a>をユーザーの業務受入完了と扱わない。</li>
 <li>現行の要件IDごとの設計・試験対応、未設計・未ケース化の範囲は<a href="docs--requirements--traceability-matrix.html" data-keep-context>要件・設計・試験対応表</a>を参照する。下記<code>LT-*</code>は試験計画上のケースであり、現行App IDで自動実行可能な<code>UT-*</code>／<code>IT-*</code>ケースや実施済み結果と区別する。</li>
 </ul>
 </section>
@@ -92,7 +92,7 @@
 <h3 id="01-change-20260927-scr002-ui-の単体結合ケース">0.1 CHANGE-20260927-SCR002-UI の単体・結合ケース</h3>
 </section>
 <section id="L16" data-source-start="16" data-source-end="16">
-<p>対象は同一App IDのSCR-002画面変更。公開v22のメタデータ時刻は<code>2026-09-27T03:01:06.626618Z</code>。実行選定は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/change-20260927-scr002-ui.json">変更記録</a>、コードは<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/e2e/current-app/scr002-layout.test.ts">scr002-layout.test.ts</a>。隔離職員011（03会計課）を所有者の手動確認と専用利用者の自動試験で用いる。SCR-005の職員ラベルでは全角空白も許容して番号と氏名を照合する。認定IDなど機微の実値は試験結果で伏せる。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/verification/postpublish/change-20260927-scr002-ui.json">公開後照合記録</a>は画面定義SHAとパッケージSHAを区別する。</p>
+<p>対象は同一App IDのSCR-002画面変更。公開v22のメタデータ時刻は<code>2026-09-27T03:01:06.626618Z</code>。実行選定は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/change-records/change-20260927-scr002-ui.json">変更記録</a>、コードは<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/e2e/current-app/scr002-layout.test.ts">scr002-layout.test.ts</a>。隔離職員011（03会計課）を所有者の手動確認と専用利用者の自動試験で用いる。SCR-005の職員ラベルでは全角空白も許容して番号と氏名を照合する。認定IDなど機微の実値は試験結果で伏せる。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/verification/postpublish/change-20260927-scr002-ui.json">公開後照合記録</a>は画面定義SHAとパッケージSHAを区別する。</p>
 </section>
 <section id="block-L18" data-source-start="18" data-source-end="26">
 <div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
@@ -147,7 +147,7 @@
 <h2 id="公開v25-scr-002履歴4定義の結合ケースchange-20260928-scr002-history">公開v25 SCR-002履歴4定義の結合ケース（CHANGE-20260928-SCR002-HISTORY）</h2>
 </section>
 <section id="L30" data-source-start="30" data-source-end="30">
-<p>公開メタデータ時刻<code>2026-09-28T05:00:02.0455229Z</code>。対象は隔離架空職員<code>009900000011</code>と別職員<code>009900000004</code>、公開Playerの固定App ID。入力と期待値の正本は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/config/dataverse/scr002-history-columns.json">列契約</a>と<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/powerapps/test-data/">隔離fixture</a>で、表示自身を期待値にしない。</p>
+<p>公開メタデータ時刻<code>2026-09-28T05:00:02.0455229Z</code>。対象は隔離架空職員<code>009900000011</code>と別職員<code>009900000004</code>、公開Playerの固定App ID。入力と期待値の正本は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/config/dataverse/scr002-history-columns.json">列契約</a>と<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/powerapps/test-data/">隔離fixture</a>で、表示自身を期待値にしない。</p>
 </section>
 <section id="block-L32" data-source-start="32" data-source-end="37">
 <div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
@@ -180,7 +180,7 @@
 </section>
 <section id="L37" data-source-start="37" data-source-end="37">
 <p>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/change-20260928-scr002-history.json">単体4件と結合2件の選定記録</a>を実行する。権限の他所属拒否、実データ、編集・保存、給与計算、総合テストはこのケースの合格範囲外。</p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/change-records/change-20260928-scr002-history.json">単体4件と結合2件の選定記録</a>を実行する。権限の他所属拒否、実データ、編集・保存、給与計算、総合テストはこのケースの合格範囲外。</p>
 </section>
 <section id="L39" data-source-start="39" data-source-end="39">
 <hr>
@@ -203,9 +203,9 @@
 <li>
 <a href="docs--design--basic--basic-design.html" data-keep-context>基本設計v1.04</a>、<a href="docs--design--detailed--detailed-design.html" data-keep-context>詳細設計v1.04</a>、<a href="docs--design--basic--design-system.html" data-keep-context>B案デザイン基準</a>。</li>
 <li>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/other/src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml">v1.11貼付版</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/other/src/staff-master/scrStaffMasterSearch_v1.11.pa.yaml">管理版</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/handoff/install-v1.11.md">導入手順</a>。</li>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/other/src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml">v1.11貼付版</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/other/src/staff-master/scrStaffMasterSearch_v1.11.pa.yaml">管理版</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/handoff/install-v1.11.md">導入手順</a>。</li>
 <li>作成時のmain：<code>2197fd5608fc673ec53db1f30791b50f5c6af91e</code>。貼付版Git blob：<code>0951813e229c017007b42cf70cff0d1042550433</code>。これはGit blob IDであり、SHA-256ではない。</li>
-<li>既存<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/testing/acceptance.md">T01～T14</a>を本書で細分化する。旧ローカル検査結果を本書のPASSへ転記しない。</li>
+<li>既存<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/acceptance.md">T01～T14</a>を本書で細分化する。旧ローカル検査結果を本書のPASSへ転記しない。</li>
 </ul>
 </section>
 <section id="L56" data-source-start="56" data-source-end="58">
@@ -2571,19 +2571,22 @@ blocked_reason: null
 <h2 id="dot-001公開38の引継ぎ観測と未照合2026-10-10">DOT-001：公開38の引継ぎ観測と未照合（2026-10-10）</h2>
 </section>
 <section id="L690" data-source-start="690" data-source-end="690">
-<p>対象はStaffMaster-Automation-TestのApp ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。ソースS‴は <code>fba65fdaefcf3b70821d7831ce86a4262ea4a214</code>。引継ぎ資料の09:44:53 UTCまでの観測でLive38・新draft39なし、公式Exportの対象2画面対応と公開Playerを確認。今回Workでの実機再試験ではない。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md">DOT-001検証記録</a>で証拠と限界を分離する。</p>
+<p>対象はStaffMaster-Automation-TestのApp ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。ソースS‴は <code>fba65fdaefcf3b70821d7831ce86a4262ea4a214</code>。引継ぎ資料の09:44:53 UTCまでの観測でLive38・新draft39なし、公式Exportの対象2画面対応と公開Playerを確認。今回Workでの実機再試験ではない。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md">DOT-001検証記録</a>で証拠と限界を分離する。</p>
 </section>
 <section id="L692" data-source-start="692" data-source-end="692">
 <p>2026-10-10 07:37:54 UTCのA承認により、通常PCではサマリー固定、狭い・低い表示領域では項目を省略せず全体を縦横スクロールしサマリーも移動する。公開Player38では100%・実Chrome200%の5ボタンTab到達、2か月の各24項目の通常スクロール到達、100→200→100の固定表示・選択復帰を観測。再計算フォーカスの完全表示には横スクロールが必要で、履歴のAX表示がitem1となる差も残る。全アクセシビリティPASSではない。</p>
 </section>
-<section id="L694" data-source-start="694" data-source-end="695">
-<p>正式metadataの公開時刻P、安定PACパッケージSHA-256 H、選定自動E2E、文書保存後の最終照合は未取得・未実施（検証継続）。保存日時 <code>2026-10-10T09:27:24Z</code> とMaker Export hashをP/Hへ代用しない。全要件の実装・業務受入完了を示さない。</p>
+<section id="L694" data-source-start="694" data-source-end="694">
+<p>PAY-IMPLEMENT-001の正式Pは <code>2026-10-10T09:28:28.7479961Z</code>、独立実測の安定PAC Hは <code>7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f</code>（<a href="records--changes--dot-001--38049776822--QA-REPORT.html" data-keep-context>読戻し記録</a>）。保存日時 <code>2026-10-10T09:27:24Z</code> はP以前。metadata Ready・固定App・前後一致を確認したが、旧v25画面SHA guard不一致によりrunはFAIL。選定22pathの比較証拠と正式postpublish記録が未完成で、選定自動E2E・文書保存後の最終照合は未実施（検証継続）。全要件の実装・業務受入完了を示さない。</p>
+</section>
+<section id="L696" data-source-start="696" data-source-end="697">
+<p>採取前の履歴（2026-10-10、run 38049776822実行前）：正式metadataの公開時刻P、安定PACパッケージSHA-256 H、選定自動E2E、文書保存後の最終照合は未取得・未実施（検証継続）。保存日時 <code>2026-10-10T09:27:24Z</code> とMaker Export hashをP/Hへ代用しない。全要件の実装・業務受入完了を示さない。</p>
 </section>
 </article>
 </div>
 </main>
 <footer>
-<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
 </div>
 </footer>
 </body>

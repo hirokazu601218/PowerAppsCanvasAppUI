@@ -1,0 +1,107 @@
+{
+  "checked_at": "2026-10-10T13:46:04.680331+00:00",
+  "result": "PASS",
+  "method": "Static and simulated tests, no actual browser or app E2E",
+  "tests": [
+    {
+      "command": [
+        "python",
+        "scripts/review/generate_payroll_review.py",
+        "--check"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "46 HTML pages verified\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "scripts/review/generate_requirements_html.mjs",
+        "--check"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "452 files verified; 139 requirement IDs, 140 legacy headings, 0 unresolved source references.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "scripts/review/package_requirements_mobile.py",
+        "--check"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "452 files verified; 139 requirement IDs, 140 legacy headings, 0 unresolved source references.\nPurpose-built static reading sheet: 27699 bytes\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "scripts/review/validate_payroll_review.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS\", \"screens\": 12, \"operations\": 100, \"workflows\": 15, \"html_pages\": 46, \"relative_links_checked\": 2834}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "scripts/review/requirements_portal/test_portal_logic.mjs"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "✔ SIMULATED: all requirement and operation cards display initially (4.232923ms)\n✔ SIMULATED: I12 query finds the requirement and related operation text (2.992823ms)\n✔ SIMULATED: search normalizes full-width text and case (2.451888ms)\n✔ SIMULATED: operation filter excludes requirement cards (1.904372ms)\n✔ SIMULATED: empty result, reset, and focus callback (1.664751ms)\n✔ SIMULATED: unset filter includes both unset and partial-unset items (1.122453ms)\n✔ SIMULATED: text and state filters combine and reset together (1.343546ms)\n✔ SIMULATED: section context returns to its exact section anchor (0.946778ms)\n✔ SIMULATED: requirement, workflow, screen, and official-template context allowlist (2.365978ms)\n✔ SIMULATED: external redirect context is not accepted (0.726486ms)\n✔ SIMULATED: SVG zoom bounds, reset, and keyboard-scroll callbacks (0.768619ms)\nℹ tests 11\nℹ suites 0\nℹ pass 11\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 156.003987\n",
+      "stderr": ""
+    },
+    {
+      "name": "Model structure, 139 IDs and SCR-005 references preserved; only status/provenance updated",
+      "status": "PASS"
+    },
+    {
+      "name": "Mobile packaging and portal CSS/JS retained exactly",
+      "status": "PASS"
+    },
+    {
+      "name": "All 20 supplemental summaries and unknowns, and all 53 quoted texts unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Isolated quote change correctly rejected",
+      "status": "PASS",
+      "expected_error": "Supplement source changed"
+    },
+    {
+      "name": "Isolated hash change correctly rejected",
+      "status": "PASS",
+      "expected_error": "Supplement source changed"
+    },
+    {
+      "name": "Isolated publication change correctly rejected",
+      "status": "PASS",
+      "expected_error": "Publication record changed"
+    },
+    {
+      "name": "Prior P/H-unavailable records and all earlier DOT-002 evidence preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "All three capture records match PR137 byte-for-byte",
+      "status": "PASS"
+    },
+    {
+      "name": "Changed-file scope and routing",
+      "status": "PASS",
+      "files": 519,
+      "counts": {
+        "current": 505,
+        "record": 8,
+        "other": 0,
+        "code": 6
+      }
+    }
+  ]
+}

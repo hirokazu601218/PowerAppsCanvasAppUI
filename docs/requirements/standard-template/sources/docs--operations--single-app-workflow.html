@@ -48,7 +48,7 @@
 <p class="meta">docs/operations/single-app-workflow.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
 <p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
 <p>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/operations/single-app-workflow.md">この版のGitHub原文</a> / SHA-256: <code>d3f0f63827b07773ccc092edce9d70d2012475068bb5dfa705d9e7545620f415</code>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/operations/single-app-workflow.md">この版のGitHub原文</a> / SHA-256: <code>d3f0f63827b07773ccc092edce9d70d2012475068bb5dfa705d9e7545620f415</code>
 </p>
 <details>
 <summary>この資料を参照している要件・節</summary>
@@ -72,7 +72,7 @@
 </section>
 <section id="L3" data-source-start="3" data-source-end="3">
 <blockquote>
-<p>現行方針。2026-09-25の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/operations/three-app-release-flow.md">3アプリ運用案</a>を廃止する。過去の配布試験と失敗・復旧の記録は履歴として残す。</p>
+<p>現行方針。2026-09-25の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/operations/three-app-release-flow.md">3アプリ運用案</a>を廃止する。過去の配布試験と失敗・復旧の記録は履歴として残す。</p>
 </blockquote>
 </section>
 <section id="L5" data-source-start="5" data-source-end="7">
@@ -110,10 +110,10 @@
 <h2 id="改修確認公開">改修・確認・公開</h2>
 </section>
 <section id="L17" data-source-start="17" data-source-end="17">
-<p>改修の試験選定は<a href="docs--testing--test-policy.html" data-keep-context>全体テスト計画</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/README.md">改修ごとの選定記録</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/current-app-e2e.md">現行アプリE2E</a>を参照する。公開Playerの試験結果とGitHub候補ソースの同一性を別に確認する。</p>
+<p>改修の試験選定は<a href="docs--testing--test-policy.html" data-keep-context>全体テスト計画</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/change-records/README.md">改修ごとの選定記録</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/current-app-e2e.md">現行アプリE2E</a>を参照する。公開Playerの試験結果とGitHub候補ソースの同一性を別に確認する。</p>
 </section>
 <section id="L19" data-source-start="19" data-source-end="19">
-<p>修正・機能追加の指示を変更要求として記録し、実行指示後に構築・試験・公開・公開版照合・文書反映を一つの作業として扱う場合は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/operations/current-app-request-to-release.md">現行の変更要求から公開・文書反映まで</a>を適用する。旧App ID向け配布Actionsを現行IDへ無検証で流用しない。</p>
+<p>修正・機能追加の指示を変更要求として記録し、実行指示後に構築・試験・公開・公開版照合・文書反映を一つの作業として扱う場合は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/operations/current-app-request-to-release.md">現行の変更要求から公開・文書反映まで</a>を適用する。旧App ID向け配布Actionsを現行IDへ無検証で流用しない。</p>
 </section>
 <section id="L21" data-source-start="21" data-source-end="25">
 <ol>
@@ -122,7 +122,7 @@
 <li>
 <strong>Codex</strong>は保存版と公開版を区別して記録し、対象のアプリ1件へ公開する。公開Playerの変更内容、検索・詳細・帳票など影響範囲、専用ユーザーの必要な回帰を確認し、失敗したら元内容の復旧とPlayerを確認する。公開すると共有先に変更が見えるため、事前に対象と影響を把握する。</li>
 <li>
-<strong>Codex</strong>は公開版と変更要求・候補ソースを照合し、要件定義書・基本設計書・詳細設計書と影響する結合ケース仕様を更新する。公開後の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/.github/workflows/current-app-postpublish-docs.yml">照合Actions</a>で版・読戻し・選定ケース・文書差分を確認する。</li>
+<strong>Codex</strong>は公開版と変更要求・候補ソースを照合し、要件定義書・基本設計書・詳細設計書と影響する結合ケース仕様を更新する。公開後の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/.github/workflows/current-app-postpublish-docs.yml">照合Actions</a>で版・読戻し・選定ケース・文書差分を確認する。</li>
 <li>
 <strong>ユーザー</strong>は同じアプリの公開Playerで画面・業務動作を確認し、修正指示または受入判断を伝える。修正指示ならCodexが同じアプリで修正・再試験し、文書も再照合する。別アプリへの移送工程は設けない。</li>
 <li>
@@ -155,7 +155,7 @@
 </div>
 </main>
 <footer>
-<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
 </div>
 </footer>
 </body>

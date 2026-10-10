@@ -17,6 +17,16 @@ dir='docs/requirements/standard-template',
 review='docs/review/pay-html-001';
 const baselineData=JSON.parse(fs.readFileSync(`${dir}/requirements-data.json`, 'utf8'));
 const sectionSupplements=JSON.parse(fs.readFileSync(`${dir}/section-supplements.json`, 'utf8'));
+const publication=baselineData.metadata.publication;
+if(publication){
+  const raw=fs.readFileSync(publication.record_path);
+  const captured=JSON.parse(raw);
+  if(crypto.createHash('sha256').update(raw).digest('hex')!==publication.record_sha256
+     ||captured.publication.lastPublishTime!==publication.lastPublishTime
+     ||captured.publication.download_sha256!==publication.download_sha256
+     ||captured.status!==publication.run_status)throw Error('Publication record changed: re-review capture status and digest');
+}
+
 const templateSupplements=new Map((sectionSupplements.template_sections||[]).map(item=>[item.id,item]));
 // Supplemental summaries are tied to quoted canonical lines. Fail visibly if a
 // later Work rebase changes those lines; do not silently reuse an old approval.
@@ -505,7 +515,7 @@ body,
 <footer>
 <div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 ${HEAD.slice(0,
   12)}。レビューの業務・画面モデル: ${model.metadata.source_sha.slice(0,
-  12)} / ${model.metadata.updated}。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 ${A('sources.html',
+  12)} / ${model.metadata.updated}。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 ${A('sources.html',
   '出典と版',
   current)} · ${A('reading-guide.html',
   '閲覧方法',
@@ -1079,7 +1089,7 @@ if(s.text)body+=panel('現在の要件',
       cur,
       '',
       'class="button"')}</div>
-<div class="notice">「現行実装」は古い資料にある区分です。DOT-001の引継ぎLive38観測と承認Aを反映したモデルです。今回の実機再試験ではなく、正式P/H・選定自動E2E・最終照合は未完了です。</div>`;
+<div class="notice">「現行実装」は古い資料にある区分です。DOT-001の引継ぎLive38観測と承認Aを反映したモデルです。今回の実機再試験ではなく、正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。</div>`;
       for(const [title,
       screenIds]of [['アプリ内の画面',
       ['SCR-001',
@@ -1447,7 +1457,7 @@ body+='</ul>'+panel('実装・検証の残件は、別の根拠で確認する',
                       return include;
                     }
                     );
-                    selectionNote='DOT-001・DOT-002最新状態と関連する過去4節の計6節だけの選択抜粋。全履歴はGitHub原文で確認してください。';
+                    selectionNote='DOT-001・DOT-002最新状態と関連する過去4節の計7節だけの選択抜粋。全履歴はGitHub原文で確認してください。';
                   }
                   let content='';
                   const selectedRanges=[];
@@ -1550,8 +1560,8 @@ body+='</ul>'+panel('実装・検証の残件は、別の根拠で確認する',
 <dd>${model.metadata.source_sha} / ${model.metadata.updated}</dd>
 <dt>優先する確定要件</dt>
 <dd>2026-10-07給与要件 / 2026-10-08人給決定</dd>
-<dt>DOT-001の反映範囲と限界</dt>
-<dd>承認A・Live38引継ぎ観測・記録を選択反映。正式P/H・選定自動E2E・最終照合は未完了。今回のアプリ実装・実機再試験ではありません。</dd>
+<dt>正式公開日時 P（採取済み）</dt><dd>${E(publication.lastPublishTime)}</dd><dt>独立PACアプリ本体SHA-256 H（採取済み）</dt><dd><code>${E(publication.download_sha256)}</code></dd><dt>採取run／後続試験</dt><dd>38049776822：旧v25画面SHA guard不一致でFAIL。選定E2E・最終照合はNOT_RUN。${A(sourceUrl(publication.record_path),"採取記録",cur)}</dd><dt>DOT-001の反映範囲と限界</dt>
+<dd>承認A・Live38引継ぎ観測・記録を選択反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施。今回のアプリ実装・実機再試験ではありません。</dd>
 </dl>`)}`;
                   body+=table(['資料',
                   'HTML表示範囲',
@@ -1736,7 +1746,7 @@ body+='</ul>'+panel('実装・検証の残件は、別の根拠で確認する',
                   `<p>業務要件／機能要件／非機能要件の3章。既存140見出しを維持し、原本の別スタイルで見つかった8見出しと、下位記入項目を補完しています。</p>
 <p>本文対象109項目: 記載済み${counts.documented}、一部設定${counts.partial}、要件未設定${counts.unset}。既存正本にある${sectionSupplements.sections.length}節の確定事項を補足した後の件数です。この数字は実装率・検証率ではありません。</p>`)}${panel('詳細版の閲覧方法',
                   `<p>PCでは配布ZIPを展開し、viewer/docs/requirements/standard-template/index.htmlを通常ブラウザーで開きます。リポジトリではdocs/requirements/standard-template/index.htmlです。iPhoneでは閲覧を許可したWeb置場のURLをSafariで開く方式が適しています。</p>
-<p>今回の資料は未公開です。Web配置と閲覧範囲の決定は別途必要です。Quick Lookの機能やiPhone実機動作を確認済みとはしていません。</p>`)}<p class="source-info">正本: GitHub Markdown。基準: PR136 ${HEAD}。モデル: ${model.metadata.source_sha} / ${model.metadata.updated}。2026-10-07給与確定要件・2026-10-08人給決定を優先。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了。非正本・確認用。</p>
+<p>今回の資料は未公開です。Web配置と閲覧範囲の決定は別途必要です。Quick Lookの機能やiPhone実機動作を確認済みとはしていません。</p>`)}<p class="source-info">正本: GitHub Markdown。基準: PR136 ${HEAD}。モデル: ${model.metadata.source_sha} / ${model.metadata.updated}。2026-10-07給与確定要件・2026-10-08人給決定を優先。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施。非正本・確認用。</p>
 </main>`;
                   outputs.set(`${dir}/${cur}`,
                   `<!doctype html>
@@ -1754,13 +1764,14 @@ body+='</ul>'+panel('実装・検証の残件は、別の根拠で確認する',
                   metadata:{
                     request_id:'DOT-002',
                     task_id:'PAY-REQ-HTML-REWORK-001',
-                    version:'0.2-review',
+                    version:baselineData.metadata.version,
                     date:DATE,
                     source_commit:HEAD,
+                    app_publication:publication,
                     review_model_commit:model.metadata.source_sha,
                     review_model_date:model.metadata.updated,
-                    canonical:'Existing Markdown (unchanged)',
-                    live38_included:true, live38_scope:"DOT-001 handoff observation only; formal P/H and E2E not complete",
+                    canonical:'Selected current Markdown; prior P/H-unavailable state retained as history',
+                    live38_included:true, live38_scope:"DOT-001 handoff observation only; formal P/H captured, legacy v25 guard failed, E2E and reconciliation NOT_RUN",
                     publication:'Not published'
                   }
                   ,

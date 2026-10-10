@@ -242,7 +242,7 @@ def main():
               for name in approval_pages),
           'Approval A full body is visible from both requirements and SCR-005')
     status_text = pages[(PORTAL / 'sources/docs--handoff--STATUS.html').resolve()].text_content()
-    check('DOT-001 文書・HTML整合' in status_text and '6節' in status_text,
+    check('DOT-001 文書・HTML整合' in status_text and '7節' in status_text,
           'Selected STATUS includes latest DOT-001 and declares its scope')
     input_hash_errors = [source['path'] for source in sections['metadata']['sources']
                          if digest(ROOT / source['path']) != source['sha256']]
@@ -255,12 +255,27 @@ def main():
           and portal['metadata']['source_commit'] == model['metadata']['source_sha'],
           'DOT-001 observation provenance agrees with paired display model')
 
-    preservation_file = ROOT / 'records/changes/dot-002/manual-20261010-integration/canonical-preservation-baseline.json'
+    preservation_file = ROOT / sections['metadata'].get('preservation_manifest', 'records/changes/dot-002/manual-20261010-integration/canonical-preservation-baseline.json')
+    check(preservation_file.is_file(), 'Declared canonical preservation baseline exists')
     if preservation_file.is_file():
         frozen = json.loads(preservation_file.read_text())
         preservation_errors = [item['path'] for item in frozen['files']
                                if digest(ROOT / item['path']) != item['sha256']]
         check(not preservation_errors, 'All frozen canonical and historical inputs preserved', preservation_errors)
+
+    publication = sections['metadata'].get('publication')
+    if publication:
+        capture = json.loads((ROOT / publication['record_path']).read_text())
+        source_text = pages[(PORTAL / 'sources.html').resolve()].text_content()
+        check(digest(ROOT / publication['record_path']) == publication['record_sha256']
+              and publication['lastPublishTime'] == capture['publication']['lastPublishTime']
+              and publication['download_sha256'] == capture['publication']['download_sha256']
+              and publication['run_status'] == capture['status'] == 'FAIL'
+              and publication == model['metadata']['publication'] == portal['metadata']['app_publication']
+              and publication['lastPublishTime'] in source_text
+              and publication['download_sha256'] in source_text
+              and '旧v25画面SHA guard不一致でFAIL' in source_text,
+              'P/H capture succeeds independently of failed legacy guard; model, source, and record agree')
 
     changed_files = []
     if args.baseline:

@@ -48,7 +48,7 @@
 <p class="meta">docs/requirements/requirements.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
 <p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
 <p>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/requirements.md">この版のGitHub原文</a> / SHA-256: <code>74ea62a804391cc29a9471dfac08923af5f38456ec51c3d93e47a05ad5029fa8</code>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/requirements.md">この版のGitHub原文</a> / SHA-256: <code>5973fec2e6c1c34dfd6734cf73f40bfaac1ef31ceddeaef2869692fdd4b534d8</code>
 </p>
 <details>
 <summary>この資料を参照している要件・節</summary>
@@ -90,7 +90,7 @@
 <p>App ID 204a48dc-7f23-43dd-b934-4654a3cfa306 の現行改修で使用するR15～R23と、将来の非常勤給与アプリ向け機能要件FR-*を分けて索引する。<a href="docs--requirements--screen-requirements.html" data-keep-context>画面要件</a>は画面・操作、<a href="docs--requirements--non-functional-requirements.html" data-keep-context>非機能要件</a>は品質条件、<a href="docs--requirements--traceability-matrix.html" data-keep-context>要件対応表</a>は設計・試験・要件間関係の索引である。未実装・実装差分・判断待ち・未照合は<a href="docs--requirements--open-decisions.html" data-keep-context>未決一覧</a>に集約する。</p>
 </section>
 <section id="L7" data-source-start="7" data-source-end="7">
-<p>旧R01～R14、HYB、COM-DVと旧版の受入・配布方法は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/requirements/requirements-before-consolidation.md">移行前の要件書</a>に保存した。元のT_通勤のCOM-DV-001～003は現行_STUDIOテーブルの実装証拠ではない。</p>
+<p>旧R01～R14、HYB、COM-DVと旧版の受入・配布方法は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/requirements/requirements-before-consolidation.md">移行前の要件書</a>に保存した。元のT_通勤のCOM-DV-001～003は現行_STUDIOテーブルの実装証拠ではない。</p>
 </section>
 <section id="L9" data-source-start="9" data-source-end="11">
 <h2 id="目的適用範囲">目的・適用範囲</h2>
@@ -160,20 +160,20 @@
 </section>
 <section id="L31" data-source-start="31" data-source-end="31">
 <p>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/changes/requests/change-20260927-scr002-ui.json">CHANGE-20260927-SCR002-UI</a>を適用する。4区分の認定ID・期間・状態の長文履歴カードは削除し、複数履歴だけ短い選択行で過去レコードへ切り替え可能にする。給与簿の件数と先頭行を近接させ、項目名青・値白の一組の表で表示する。単体・結合の選定と公開版確認は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/change-20260927-scr002-ui.json">試験記録</a>および<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md">実施記録</a>に紐づける。</p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/changes/requests/change-20260927-scr002-ui.json">CHANGE-20260927-SCR002-UI</a>を適用する。4区分の認定ID・期間・状態の長文履歴カードは削除し、複数履歴だけ短い選択行で過去レコードへ切り替え可能にする。給与簿の件数と先頭行を近接させ、項目名青・値白の一組の表で表示する。単体・結合の選定と公開版確認は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/change-records/change-20260927-scr002-ui.json">試験記録</a>および<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md">実施記録</a>に紐づける。</p>
 </section>
 <section id="L33" data-source-start="33" data-source-end="33">
-<p>公開v22（公開メタデータ時刻<code>2026-09-27T03:01:06.626618Z</code>）の所有者Playerで指定した表示とSCR-005往復を観察し、専用利用者の選定E2E 5件がPASSした。PAC読戻しでSCR-002画面定義のSHA-256は保存画面定義と一致し、パッケージのSHA-256も取得した（<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/verification/postpublish/change-20260927-scr002-ui.json">公開後照合記録</a>）。この一致はSCR-002画面定義に限る。全画面・接続・複数履歴・給与簿163項目末尾・他所属権限は未照合であり、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md">実施記録</a>で区別する。</p>
+<p>公開v22（公開メタデータ時刻<code>2026-09-27T03:01:06.626618Z</code>）の所有者Playerで指定した表示とSCR-005往復を観察し、専用利用者の選定E2E 5件がPASSした。PAC読戻しでSCR-002画面定義のSHA-256は保存画面定義と一致し、パッケージのSHA-256も取得した（<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/verification/postpublish/change-20260927-scr002-ui.json">公開後照合記録</a>）。この一致はSCR-002画面定義に限る。全画面・接続・複数履歴・給与簿163項目末尾・他所属権限は未照合であり、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md">実施記録</a>で区別する。</p>
 </section>
 <section id="L35" data-source-start="35" data-source-end="37">
 <h2 id="2026-09-28-scr-002履歴4定義公開v25">2026-09-28 SCR-002履歴4定義（公開v25）</h2>
 </section>
 <section id="L37" data-source-start="37" data-source-end="37">
 <p>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/changes/requests/change-20260928-scr002-history.json">CHANGE-20260928-SCR002-HISTORY</a>について、添付の勤務条件15・社会保険26・税固定控除9・住民税6項目を<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/config/dataverse/scr002-history-columns.json">列契約</a>として正式4表と隔離<code>_STUDIO</code>4表に作成した。各表は親職員の必須Lookupを持ち、正式表に職員行は投入していない。SCR-002の勤務条件、社会保険、税固定控除（住民税履歴を含む）で選択した隔離履歴の全項目を定義順に表示する。12桁職員番号と親Lookupの一致を読込条件とし、職員切替・0件・取得失敗で旧値を消す。NULLは空欄、数値0は0と表示する。これは読取り表示の範囲であり、入力・保存列と実効権限は未決である。</p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/changes/requests/change-20260928-scr002-history.json">CHANGE-20260928-SCR002-HISTORY</a>について、添付の勤務条件15・社会保険26・税固定控除9・住民税6項目を<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/config/dataverse/scr002-history-columns.json">列契約</a>として正式4表と隔離<code>_STUDIO</code>4表に作成した。各表は親職員の必須Lookupを持ち、正式表に職員行は投入していない。SCR-002の勤務条件、社会保険、税固定控除（住民税履歴を含む）で選択した隔離履歴の全項目を定義順に表示する。12桁職員番号と親Lookupの一致を読込条件とし、職員切替・0件・取得失敗で旧値を消す。NULLは空欄、数値0は0と表示する。これは読取り表示の範囲であり、入力・保存列と実効権限は未決である。</p>
 </section>
 <section id="L39" data-source-start="39" data-source-end="39">
-<p>同じApp IDの公開v25（公開メタデータ時刻<code>2026-09-28T05:00:02.0455229Z</code>）で所有者Playerの勤務条件15項目を観察した。隔離4表の列型と関係の照合は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36363649180">構築Action</a>。公開後の選定ケース、他タブとPAC照合は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/verification/postpublish/change-20260928-scr002-history.json">公開後記録</a>に結果と範囲を記す。</p>
+<p>同じApp IDの公開v25（公開メタデータ時刻<code>2026-09-28T05:00:02.0455229Z</code>）で所有者Playerの勤務条件15項目を観察した。隔離4表の列型と関係の照合は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36363649180">構築Action</a>。公開後の選定ケース、他タブとPAC照合は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/verification/postpublish/change-20260928-scr002-history.json">公開後記録</a>に結果と範囲を記す。</p>
 </section>
 <section id="L41" data-source-start="41" data-source-end="43">
 <h2 id="将来の非常勤給与アプリ向け機能要件fr-">将来の非常勤給与アプリ向け機能要件（FR-*）</h2>
@@ -487,7 +487,7 @@
 <p>2026-10-01 11:55 JST、ユーザーから「受け入れテスト完了。okです。」の申告を受領し、今回のSCR001～003 UI変更の業務受入をPASSとして記録した。受入項目別の操作ログは提供されていないため、本申告を個別ケースの実測証跡へ読み替えない。総合試験D-07・実データ運用・業務認可・境界／同時操作／障害は別判定。</p>
 </section>
 <section id="L155" data-source-start="155" data-source-end="155">
-<p>受入と文書照合の記録：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/change-20261001-scr001-003-ui/manual-20261001-acceptance/acceptance.md">実施記録</a>。</p>
+<p>受入と文書照合の記録：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/change-20261001-scr001-003-ui/manual-20261001-acceptance/acceptance.md">実施記録</a>。</p>
 </section>
 <section id="L158" data-source-start="158" data-source-end="160">
 <h2 id="change-20261003-commute-official通勤認定簿公式様式-v102業務受入完了">CHANGE-20261003-COMMUTE-OFFICIAL／通勤認定簿公式様式 v1.02（業務受入完了）</h2>
@@ -546,19 +546,22 @@
 <h2 id="dot-001公開38の引継ぎ観測と未照合2026-10-10">DOT-001：公開38の引継ぎ観測と未照合（2026-10-10）</h2>
 </section>
 <section id="L196" data-source-start="196" data-source-end="196">
-<p>対象はStaffMaster-Automation-TestのApp ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。ソースS‴は <code>fba65fdaefcf3b70821d7831ce86a4262ea4a214</code>。引継ぎ資料の09:44:53 UTCまでの観測でLive38・新draft39なし、公式Exportの対象2画面対応と公開Playerを確認。今回Workでの実機再試験ではない。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md">DOT-001検証記録</a>で証拠と限界を分離する。</p>
+<p>対象はStaffMaster-Automation-TestのApp ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。ソースS‴は <code>fba65fdaefcf3b70821d7831ce86a4262ea4a214</code>。引継ぎ資料の09:44:53 UTCまでの観測でLive38・新draft39なし、公式Exportの対象2画面対応と公開Playerを確認。今回Workでの実機再試験ではない。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md">DOT-001検証記録</a>で証拠と限界を分離する。</p>
 </section>
 <section id="L198" data-source-start="198" data-source-end="198">
 <p>2026-10-10 07:37:54 UTCのA承認により、通常PCではサマリー固定、狭い・低い表示領域では項目を省略せず全体を縦横スクロールしサマリーも移動する。公開Player38では100%・実Chrome200%の5ボタンTab到達、2か月の各24項目の通常スクロール到達、100→200→100の固定表示・選択復帰を観測。再計算フォーカスの完全表示には横スクロールが必要で、履歴のAX表示がitem1となる差も残る。全アクセシビリティPASSではない。</p>
 </section>
-<section id="L200" data-source-start="200" data-source-end="201">
-<p>正式metadataの公開時刻P、安定PACパッケージSHA-256 H、選定自動E2E、文書保存後の最終照合は未取得・未実施（検証継続）。保存日時 <code>2026-10-10T09:27:24Z</code> とMaker Export hashをP/Hへ代用しない。全要件の実装・業務受入完了を示さない。</p>
+<section id="L200" data-source-start="200" data-source-end="200">
+<p>PAY-IMPLEMENT-001の正式Pは <code>2026-10-10T09:28:28.7479961Z</code>、独立実測の安定PAC Hは <code>7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f</code>（<a href="records--changes--dot-001--38049776822--QA-REPORT.html" data-keep-context>読戻し記録</a>）。保存日時 <code>2026-10-10T09:27:24Z</code> はP以前。metadata Ready・固定App・前後一致を確認したが、旧v25画面SHA guard不一致によりrunはFAIL。選定22pathの比較証拠と正式postpublish記録が未完成で、選定自動E2E・文書保存後の最終照合は未実施（検証継続）。全要件の実装・業務受入完了を示さない。</p>
+</section>
+<section id="L202" data-source-start="202" data-source-end="203">
+<p>採取前の履歴（2026-10-10、run 38049776822実行前）：正式metadataの公開時刻P、安定PACパッケージSHA-256 H、選定自動E2E、文書保存後の最終照合は未取得・未実施（検証継続）。保存日時 <code>2026-10-10T09:27:24Z</code> とMaker Export hashをP/Hへ代用しない。全要件の実装・業務受入完了を示さない。</p>
 </section>
 </article>
 </div>
 </main>
 <footer>
-<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
 </div>
 </footer>
 </body>

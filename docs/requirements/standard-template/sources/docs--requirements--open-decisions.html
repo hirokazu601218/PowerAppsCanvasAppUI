@@ -48,7 +48,7 @@
 <p class="meta">docs/requirements/open-decisions.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
 <p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
 <p>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/open-decisions.md">この版のGitHub原文</a> / SHA-256: <code>0fa75fc2ca5c4bf18a4f9988864098116d8463b80ee399147e17f92d58236e52</code>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/open-decisions.md">この版のGitHub原文</a> / SHA-256: <code>0fa75fc2ca5c4bf18a4f9988864098116d8463b80ee399147e17f92d58236e52</code>
 </p>
 <details>
 <summary>この資料を参照している要件・節</summary>
@@ -82,7 +82,7 @@
 <p>現行のApp ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code> の判断待ち、公開Playerで確かめた実装差分、資料・試験が足りず実装を判定できない条件を別々に管理する。<strong>判断待ちの案は承認済み要件ではない。実装差分は既に確定した要件の未達であり、要件を取り消した意味ではない。未照合は未実装と断定しない。</strong> 変更・実測後は該当の要件、基本・詳細設計、<a href="docs--requirements--traceability-matrix.html#r15r23%E3%82%A2%E3%83%97%E3%83%AA%E8%A6%81%E4%BB%B6" data-keep-context>対応表の各行の判定</a>、試験記録と本表を同時に更新する。対応表の86行には観察条件・証拠を記入し、ここでは差分の処理単位を追う。</p>
 </section>
 <section id="L5" data-source-start="5" data-source-end="5">
-<p>2026-09-28に同じApp IDへSCR-002履歴4定義のv25を公開した。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/verification/postpublish/change-20260928-scr002-history.json">公開後記録</a>では隔離4表の56項目表示と職員切替を選定6ケースでPASSとし、公開パッケージのSHAを照合した。mainへの統合後も<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36382050499">Action 36382050499</a>で選定ケースがPASS。旧v20・v22の観察はその時点の履歴として保持する。編集・保存、他所属の実効権限、実データ、業務受入と総合テストはこの結果から合格と推定しない。</p>
+<p>2026-09-28に同じApp IDへSCR-002履歴4定義のv25を公開した。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/verification/postpublish/change-20260928-scr002-history.json">公開後記録</a>では隔離4表の56項目表示と職員切替を選定6ケースでPASSとし、公開パッケージのSHAを照合した。mainへの統合後も<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36382050499">Action 36382050499</a>で選定ケースがPASS。旧v20・v22の観察はその時点の履歴として保持する。編集・保存、他所属の実効権限、実データ、業務受入と総合テストはこの結果から合格と推定しない。</p>
 </section>
 <section id="L7" data-source-start="7" data-source-end="9">
 <h2 id="実装差分未実装の残件">実装差分・未実装の残件</h2>
@@ -105,7 +105,7 @@
 </td>
 <td>表示名の実装差分</td>
 <td>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">公開v20再照合</a> V27-05：内部名 <code>scrStaffMasterSearch</code>、画面表示「非常勤職員マスタ検索 &#124; SCR-002」は要件の「SCR-002 職員マスタ検索・詳細」と一致しない</td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">公開v20再照合</a> V27-05：内部名 <code>scrStaffMasterSearch</code>、画面表示「非常勤職員マスタ検索 &#124; SCR-002」は要件の「SCR-002 職員マスタ検索・詳細」と一致しない</td>
 <td>表示文言を修正し、公開版で再読戻し</td>
 </tr>
 <tr id="L12">
@@ -114,7 +114,7 @@
 </td>
 <td>検索結果保持の実装差分</td>
 <td>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27-04</a>：側欄開閉では1件保持。SCR-002→005→002の往復では検索語・選択職員・月を保持するが、一覧は1件から初期7件へ戻る。専用利用者の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/testing/current-app-search-observation.md">検索FAIL／BLOCKED</a>は別条件</td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27-04</a>：側欄開閉では1件保持。SCR-002→005→002の往復では検索語・選択職員・月を保持するが、一覧は1件から初期7件へ戻る。専用利用者の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">検索FAIL／BLOCKED</a>は別条件</td>
 <td>入力・結果・選択・ページの同時保持を修正し、所有者・専用利用者で再試験</td>
 </tr>
 <tr id="L13">
@@ -123,7 +123,7 @@
 </td>
 <td>専用利用者の検索ケース実測FAIL（原因未確定）</td>
 <td>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/testing/current-app-search-observation.md">検索試験記録</a>：<code>UT-SRCH-001</code>は検索実行後30秒でも初期7件でFAIL、<code>IT-SRCH-DETAIL-001</code>は前提不成立でBLOCKED。所有者の1件検索とは別の利用者・時点</td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">検索試験記録</a>：<code>UT-SRCH-001</code>は検索実行後30秒でも初期7件でFAIL、<code>IT-SRCH-DETAIL-001</code>は前提不成立でBLOCKED。所有者の1件検索とは別の利用者・時点</td>
 <td>認可・取得データ・公開版との対応を切り分け、単体と結合を同条件で再実行</td>
 </tr>
 <tr id="L14">
@@ -132,7 +132,7 @@
 </td>
 <td>固定サマリーの実装差分</td>
 <td>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27-09</a>：本文スクロールで金額サマリーも画面外へ流れた。対象月・操作は残り、末尾の貯金預入に到達</td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27-09</a>：本文スクロールで金額サマリーも画面外へ流れた。対象月・操作は残り、末尾の貯金預入に到達</td>
 <td>サマリーと内訳のスクロール領域を直し、最終行到達と両立を再試験</td>
 </tr>
 <tr id="L15">
@@ -141,7 +141,7 @@
 </td>
 <td>旧金額の説明文残留の実装差分</td>
 <td>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27-10</a>：合成011の2026/09→未登録の2026/10で合計は「—」、不足理由も表示されたが、前月の月額200,000円・被課税金額165,550円等の算定根拠文が残った。未登録の部分条件だけの差分で、通信失敗・別職員・登録済み0円は未試験</td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27-10</a>：合成011の2026/09→未登録の2026/10で合計は「—」、不足理由も表示されたが、前月の月額200,000円・被課税金額165,550円等の算定根拠文が残った。未登録の部分条件だけの差分で、通信失敗・別職員・登録済み0円は未試験</td>
 <td>対象・入力版変更時に説明文も失効させ、未登録・障害・0円を独立再試験</td>
 </tr>
 <tr id="L16">
@@ -164,7 +164,7 @@
 </div>
 </section>
 <section id="L19" data-source-start="19" data-source-end="19">
-<p>上の観察は2026-09-26の公開Playerと、2026-09-27にMaker版履歴で<strong>ライブv20</strong>を確認した所有者の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">隔離データによる読取り・操作記録</a>に限定する。保存、登録、権限変更、アプリ公開は行っていない。画面内表示の「v1.27」はMakerの版番号ではない。未達の修正完了をこの文書だけで判断しない。</p>
+<p>上の観察は2026-09-26の公開Playerと、2026-09-27にMaker版履歴で<strong>ライブv20</strong>を確認した所有者の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">隔離データによる読取り・操作記録</a>に限定する。保存、登録、権限変更、アプリ公開は行っていない。画面内表示の「v1.27」はMakerの版番号ではない。未達の修正完了をこの文書だけで判断しない。</p>
 </section>
 <section id="L21" data-source-start="21" data-source-end="23">
 <h2 id="実装の有無を判定するための照合残件">実装の有無を判定するための照合残件</h2>
@@ -186,14 +186,14 @@
 </td>
 <td>v25の公開メタデータとPACパッケージSHA、SCR-002画面SHAは取得済み。保存式候補のPower Fxファイルとのバイト単位一致、全画面・接続の同一性、および旧v20・v21の全ソース一致は未照合</td>
 <td>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/verification/postpublish/change-20260928-scr002-history.json">v25公開後記録</a>の比較範囲を超える部分は、同じApp IDから取得した公開パッケージ内の接続・画面式と保存候補を別途照合。旧v20の86行をv25の全件合格に転用しない</td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/verification/postpublish/change-20260928-scr002-history.json">v25公開後記録</a>の比較範囲を超える部分は、同じApp IDから取得した公開パッケージ内の接続・画面式と保存候補を別途照合。旧v20の86行をv25の全件合格に転用しない</td>
 </tr>
 <tr id="L26">
 <td>
 <code>R17 / SCR002-LT-004～006</code>
 </td>
 <td>v25では勤務条件15・社会保険26・税固定控除9・住民税6項目の隔離行と職員切替を確認。基本情報・通勤を含む5区分の全項目・長文、履歴0/1/複数行の網羅、保存式との厳密一致は未照合</td>
-<td>公開版と保存版の部品・項目台帳、履歴0/1/複数行のPlayer試験。v25の6ケースの範囲は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/change-20260928-scr002-history.json">選定記録</a>で確認</td>
+<td>公開版と保存版の部品・項目台帳、履歴0/1/複数行のPlayer試験。v25の6ケースの範囲は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/change-records/change-20260928-scr002-history.json">選定記録</a>で確認</td>
 </tr>
 <tr id="L27">
 <td>
@@ -325,7 +325,7 @@
 <td>
 <strong>総合テスト仕様</strong>：対象の業務シナリオ、開始・終了条件、組合せる画面・データ、独立期待値、非機能観点、実施時期・担当、自動化する範囲</td>
 <td>
-<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/system-test-plan.md">総合テスト計画</a>は策定待ち。改修時の単体・影響に応じた結合、公開後の再実行は進めるが、総合テストを毎回実施した／合格したとは扱わない</td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/system-test-plan.md">総合テスト計画</a>は策定待ち。改修時の単体・影響に応じた結合、公開後の再実行は進めるが、総合テストを毎回実施した／合格したとは扱わない</td>
 <td>
 <code>NFR-M</code>、<a href="docs--testing--test-policy.html" data-keep-context>全体テスト計画</a>
 </td>
@@ -607,7 +607,7 @@
 </div>
 </main>
 <footer>
-<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
 </div>
 </footer>
 </body>

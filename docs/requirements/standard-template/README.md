@@ -58,7 +58,7 @@ Safariで閲覧可能なURLを開く方式を主な閲覧先とします。今�
 
 記載充足、要件判断、実装、実機検証を別に表示します。I12の確定を、関連する個別確定操作の未決へ読み替えません。I8は表示要件確定と取得方式未設定を併記します。操作・配置の提案を業務要件そのものの提案へ読み替えません。
 
-Work統合版ではDOT-001の承認A・Live38引継ぎ観測を先に選択反映し、最新正本から再生成しました。正式P/H・選定自動E2E・最終照合は未完了。受領時点の生成HTMLで正本や最新観測を上書きしません。
+Work統合版ではDOT-001の承認A・Live38引継ぎ観測と、後続run 38049776822で採取済みの正式P/Hを選択反映して再生成しました。採取runは旧v25 guard FAIL。選定自動E2E・最終照合は未実施。受領時点の生成HTMLで正本や最新観測を上書きしません。
 
 ## ファイル構成
 
@@ -108,10 +108,16 @@ python scripts/governance/validate_document_placement.py --base <比較元コミ
 
 [公共データ利用規約 第1.0版](https://www.digital.go.jp/resources/open_data/public_data_license_v1.0)、[著作権・利用条件](https://www.digital.go.jp/copyright-policy)を参照。原本Word、第三者図版、ロゴは再配布しません。
 
-## DOT-001 更新
+## DOT-001 更新（採取前の履歴）
 
 正本文書出典：`6064ca820553511e1d52b19f896a063213eb88c8`。10月10日承認A・引継ぎ公開38観測を反映。元main・既存PRのSHAは作成時点の履歴。生成HTML・出典ハッシュを再生成し、正式P/H未取得・focus／AX制限を維持する。アプリ・業務仕様の新規確定・全要件合格を意味しない。
 
-## DOT-002 Work統合版
+## DOT-002 Work初回統合版（採取前の履歴）
 
 統合文書出典：`b5e5d460fe19169252de05bb02bafc9461120540`。PR #137の文書差分だけを選択統合して再生成。承認A・Live38引継ぎ観測を含み、正式P/H・選定自動E2E・最終照合は未完了。旧DOT-002 ZIPの静的結果は受領時点の証拠として保持し、今回の結果は`records/changes/dot-002/manual-20261010-integration/`を参照。実ブラウザー・iPhone検証待ち。
+
+## DOT-002 追加・正式公開情報の選択反映（現在状態）
+
+最新の統合文書出典：`4928decc67fdc6baa0f3f83300eca2c3760669cf`。正式P `2026-10-10T09:28:28.7479961Z`、独立PAC H `7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f`を採取済み。run 38049776822全体は旧v25画面SHA guard不一致でFAIL。選定E2E・最終照合はNOT_RUN、実ブラウザー・375/390幅・iPhone確認もNOT_RUN。過去の未取得は上記履歴として保持。
+
+分割ポータル、短いモバイル要約、source_commit対応生成器、SCR005-UI-004／015と承認A本文を保持。追加検証記録：`records/changes/dot-002/manual-20261010-publication-refresh/QA-REPORT.md`。

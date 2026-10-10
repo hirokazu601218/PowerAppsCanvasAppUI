@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>record.json | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">record.json</span>
+</nav>
+<a class="context-return" data-context-return href="../sources.html">← 出典一覧へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>record.json</h1>
+<p class="meta">records/changes/dot-001/38049776822/record.json<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/dot-001/38049776822/record.json">この版のGitHub原文</a> / SHA-256: <code>09239d80cfcb9cb898dac5842ba1c5ef8f2f0bea4587e2e51b0d17a68bb822b1</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+</div>
+<div class="chips">
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L1" data-source-start="1" data-source-end="80">
+<pre>
+<code>{
+  &quot;change_id&quot;: &quot;dot-001&quot;,
+  &quot;request_id&quot;: &quot;DOT-001&quot;,
+  &quot;related_change_id&quot;: &quot;PAY-IMPLEMENT-001&quot;,
+  &quot;run_id&quot;: &quot;38049776822&quot;,
+  &quot;app_id&quot;: &quot;204a48dc-7f23-43dd-b934-4654a3cfa306&quot;,
+  &quot;status&quot;: &quot;FAIL&quot;,
+  &quot;observed_at&quot;: &quot;2026-10-10T11:50:48Z&quot;,
+  &quot;source_commit&quot;: &quot;fba65fdaefcf3b70821d7831ce86a4262ea4a214&quot;,
+  &quot;workflow_head&quot;: &quot;949a0b5f2445be273504975c938480da7b09719a&quot;,
+  &quot;run_url&quot;: &quot;https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/38049776822&quot;,
+  &quot;readback_only&quot;: true,
+  &quot;publication&quot;: {
+    &quot;lastPublishTime&quot;: &quot;2026-10-10T09:28:28.7479961Z&quot;,
+    &quot;lastDraftVersion&quot;: &quot;2026-10-10T09:27:24Z&quot;,
+    &quot;download_sha256&quot;: &quot;7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f&quot;,
+    &quot;scr002_sha256&quot;: &quot;80ae540f22bbdb8661c8eece398401e4f0ea391eda3e1ed9b0350814731ae2f4&quot;
+  },
+  &quot;metadata_assertions&quot;: {
+    &quot;status_ready&quot;: true,
+    &quot;fixed_app_uri&quot;: true,
+    &quot;before_equals_after&quot;: true,
+    &quot;evidence&quot;: &quot;Workflow emitted the complete summary after these assertions; raw appOpenUri omitted.&quot;,
+    &quot;draft_not_newer_than_publication&quot;: true
+  },
+  &quot;old_v25_guard&quot;: {
+    &quot;expected_sha256&quot;: &quot;498029d25c9191a3cf3157f8a294690afd90b4cbb4a4d3c0845cc27b2ea08e6d&quot;,
+    &quot;match&quot;: false,
+    &quot;result&quot;: &quot;FAIL&quot;
+  },
+  &quot;maker_package_sha_equals_pac&quot;: true,
+  &quot;package_identity_scope&quot;: &quot;PAC H measured independently. It equals the handoff Maker msapp hash; no Maker hash substituted for H.&quot;,
+  &quot;steps&quot;: [
+    {
+      &quot;number&quot;: 1,
+      &quot;name&quot;: &quot;Set up job&quot;,
+      &quot;result&quot;: &quot;PASS&quot;
+    },
+    {
+      &quot;number&quot;: 2,
+      &quot;name&quot;: &quot;actions/checkout@v5&quot;,
+      &quot;result&quot;: &quot;PASS&quot;
+    },
+    {
+      &quot;number&quot;: 3,
+      &quot;name&quot;: &quot;actions/setup-dotnet@v4&quot;,
+      &quot;result&quot;: &quot;PASS&quot;
+    },
+    {
+      &quot;number&quot;: 4,
+      &quot;name&quot;: &quot;Download current package and check the saved screen definition&quot;,
+      &quot;result&quot;: &quot;FAIL&quot;
+    },
+    {
+      &quot;number&quot;: 5,
+      &quot;name&quot;: &quot;Report capture failure without changing app sharing&quot;,
+      &quot;result&quot;: &quot;PASS&quot;
+    },
+    {
+      &quot;number&quot;: 9,
+      &quot;name&quot;: &quot;Post actions/setup-dotnet@v4&quot;,
+      &quot;result&quot;: &quot;SKIP&quot;
+    },
+    {
+      &quot;number&quot;: 10,
+      &quot;name&quot;: &quot;Post actions/checkout@v5&quot;,
+      &quot;result&quot;: &quot;PASS&quot;
+    },
+    {
+      &quot;number&quot;: 11,
+      &quot;name&quot;: &quot;Complete job&quot;,
+      &quot;result&quot;: &quot;PASS&quot;
+    }
+  ],
+  &quot;other_jobs&quot;: &quot;SKIPPED by readback_only=true: document-diff, readback, selected-e2e, completed&quot;,
+  &quot;full_reconciliation&quot;: &quot;NOT_RUN: per-path selected22 evidence not yet assembled; no invented MATCH/Player overall PASS&quot;,
+  &quot;privacy&quot;: &quot;No raw package, credentials, full logs or environment-specific URL included.&quot;,
+  &quot;version&quot;: &quot;2026-10-10T09:28:28.7479961Z&quot;
+}
+</code>
+</pre>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

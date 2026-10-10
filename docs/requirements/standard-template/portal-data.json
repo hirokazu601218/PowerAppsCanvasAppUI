@@ -2,14 +2,26 @@
   "metadata": {
     "request_id": "DOT-002",
     "task_id": "PAY-REQ-HTML-REWORK-001",
-    "version": "0.2-review",
+    "version": "0.4-review",
     "date": "2026-10-10",
-    "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
-    "review_model_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+    "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+    "app_publication": {
+      "lastPublishTime": "2026-10-10T09:28:28.7479961Z",
+      "lastDraftVersion": "2026-10-10T09:27:24Z",
+      "download_sha256": "7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f",
+      "scr002_sha256": "80ae540f22bbdb8661c8eece398401e4f0ea391eda3e1ed9b0350814731ae2f4",
+      "run_id": "38049776822",
+      "run_status": "FAIL",
+      "record_path": "records/changes/dot-001/38049776822/record.json",
+      "record_sha256": "09239d80cfcb9cb898dac5842ba1c5ef8f2f0bea4587e2e51b0d17a68bb822b1",
+      "selected_e2e": "NOT_RUN",
+      "full_reconciliation": "NOT_RUN"
+    },
+    "review_model_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
     "review_model_date": "2026-10-10",
-    "canonical": "Existing Markdown (unchanged)",
+    "canonical": "Selected current Markdown; prior P/H-unavailable state retained as history",
     "live38_included": true,
-    "live38_scope": "DOT-001 handoff observation only; formal P/H and E2E not complete",
+    "live38_scope": "DOT-001 handoff observation only; formal P/H captured, legacy v25 guard failed, E2E and reconciliation NOT_RUN",
     "publication": "Not published"
   },
   "coverage": {
@@ -61,10 +73,10 @@
             "R15"
           ],
           "quote": "| R15 | A | 局担当は自局の勤務・申請・支給明細と必要な共通職員基本情報のみ。他局分・全局集計は給与班。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L111-L111",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L111-L111",
           "label": "R15 · 111行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/payroll-confirmed-20261007.md",
@@ -75,10 +87,10 @@
             "R21"
           ],
           "quote": "| R21 | A | 業務マスタ管理者とアプリ／Dataverseのシステム管理権限を分ける。同じ人物の兼務は可能。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L117-L117",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L117-L117",
           "label": "R21 · 117行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/business-requirements.md",
@@ -92,10 +104,10 @@
             "AUTH-04"
           ],
           "quote": "| AUTH-01 | 会計課給与班は、所属部署を問わず全対象職員について、同班が担当する情報の修正・確定、通勤認定、外部機関の決定結果確認を行える。 |\n| AUTH-02 | 局担当者は自局の勤務・申請・支給明細と必要な共通職員基本情報を扱う。他局分・全局集計は給与班。確定・認定は給与班。組織は階層なし一覧とし、部署略称の文字一致だけを認可根拠としない（Q9・R15）。 |\n| AUTH-03 | 本人向け利用は将来追加とする。追加時は自己分に限定。初回は給与班・局担当・業務管理者を対象とし、本人機能を要求しない（Q54）。 |\n| AUTH-04 | 業務マスタ管理者が給与単価・区分等を管理する。給与班と兼務可能。システム管理権限は別とし、同一人の兼務も可能（Q55・R21）。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/business-requirements.md#L245-L248",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/business-requirements.md#L245-L248",
           "label": "AUTH-01 / AUTH-02 / AUTH-03 / AUTH-04 · 245行目",
           "sha256": "707f695e40f7fa165e598ff2940eed0ec8bc06134d7f7e035200c116c044fe65",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         }
       ],
       "href": "template-sections/3.12.1.html"
@@ -114,10 +126,10 @@
             "Q3"
           ],
           "quote": "| Q2 | A | 職員番号は全体で一意。職員基本は一人一行。再雇用や条件変更は履歴で扱う。 |\n| Q3 | A | GUID主キーを参照するLookupと職員番号を両方保持する。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L33-L34",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L33-L34",
           "label": "Q2 / Q3 · 33行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/payroll-confirmed-20261007.md",
@@ -128,10 +140,10 @@
             "Q7"
           ],
           "quote": "| Q7 | A | 職員番号は半角数字12桁の文字列。先頭ゼロを保持・不足桁をゼロ埋め。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L38-L38",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L38-L38",
           "label": "Q7 · 38行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/design/detailed/payroll-jinkyu-interface.md",
@@ -144,10 +156,10 @@
             "IF-04"
           ],
           "quote": "| IF-02 | 列構成 | 237列、A～IC。順序・見出しを既存サンプルに合わせる | VBAの237列とサンプルの見出しが一致 |\n| IF-03 | 行構成 | 固定見出し１行目、データ２行目以降 | 利用者が貼付開始２行目を正常と確認 |\n| IF-04 | セル表示形式 | 人給仕様に従い文字列とする | 添付仕様の「セルの表示形式は文字列」に基づく。金額等の文字列の詳細な整形は未入力 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/design/detailed/payroll-jinkyu-interface.md#L12-L14",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/detailed/payroll-jinkyu-interface.md#L12-L14",
           "label": "IF-02 / IF-03 / IF-04 · 12行目",
           "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/design/detailed/payroll-jinkyu-interface.md",
@@ -156,10 +168,10 @@
           "heading": "2. 確定済みの入出力仕様",
           "requirement_ids": [],
           "quote": "Excelの「文字列の表示形式」と「実際に文字列型で値を保存すること」は実装時に揃える。先頭ゼロを落とさず、日付は`yyyy/mm/dd`の固定桁数で出力する。CSV出力の文字コード・区切り・BOMは対象外。給与簿CSVの読み取り設定とは混同しない。",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/design/detailed/payroll-jinkyu-interface.md#L24-L24",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/detailed/payroll-jinkyu-interface.md#L24-L24",
           "label": "2. 確定済みの入出力仕様 · 24行目",
           "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         }
       ],
       "href": "template-sections/3.12.2.html"
@@ -177,10 +189,10 @@
             "NFR-O"
           ],
           "quote": "| NFR-O | 引継ぎ | 一部既定 | GitHubの要件・設計・ソースと[STATUS](../handoff/STATUS.md)で履歴を追う。担当変更時の引継ぎ項目と承認主体は未決。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/non-functional-requirements.md#L48-L48",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L48-L48",
           "label": "NFR-O · 48行目",
           "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/design/basic/data-model.md",
@@ -189,10 +201,10 @@
           "heading": "SCR-002の4履歴テーブル（2026-09-28）",
           "requirement_ids": [],
           "quote": "添付4定義書の列名・型・制約を[機械可読の列契約](../../../config/dataverse/scr002-history-columns.json)に転記した。正式4表と隔離4表のメタデータ、親子関係は[構築Action](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36363649180)で読戻し済み。公開v25の隔離4表の全列表示は専用利用者の選定6ケース（Action 36380881898）で検証した。編集保存・他所属の権限と実データは未判定。",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/design/basic/data-model.md#L30-L30",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/basic/data-model.md#L30-L30",
           "label": "SCR-002の4履歴テーブル（2026-09-28） · 30行目",
           "sha256": "bca14fc642bebbe57f04b7cb4e54577ae81508d25d04c2178dae0129ae5747cd",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/design/basic/data-model.md",
@@ -201,10 +213,10 @@
           "heading": "2026-10-07の変更後論理モデル（物理設計未確定）",
           "requirement_ids": [],
           "quote": "[確定要件](../../requirements/payroll-confirmed-20261007.md)と[添付２文書の変更対応](../../changes/payroll-markdown-change-list-20261007.md)に基づく。以下の名称は論理的な管理単位の仮称であり、既存_STUDIO表の正式な置換物理名・列名・実装済み関係ではない。物理テーブル数、制約の実装方法、削除連鎖等は未入力。親参照はGUID Lookup、職員番号も保持する。",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/design/basic/data-model.md#L50-L50",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/basic/data-model.md#L50-L50",
           "label": "2026-10-07の変更後論理モデル（物理設計未確定） · 50行目",
           "sha256": "bca14fc642bebbe57f04b7cb4e54577ae81508d25d04c2178dae0129ae5747cd",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         }
       ],
       "href": "template-sections/3.12.3.html"
@@ -222,10 +234,10 @@
             "R8"
           ],
           "quote": "| R8 | 補足指定 | Excel／CSVファイル自体は継続保存不要。計算版・取込回・照合結果は処理回ごとに残す。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L104-L104",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L104-L104",
           "label": "R8 · 104行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/payroll-confirmed-20261007.md",
@@ -236,10 +248,10 @@
             "R17"
           ],
           "quote": "| R17 | A | 各照合処理回で日時・実行者・件数・状態に加え、不一致職員・項目・双方金額・差額を保存。中間版削除後も参照可能。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L113-L113",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L113-L113",
           "label": "R17 · 113行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/non-functional-requirements.md",
@@ -250,10 +262,10 @@
             "NFR-L"
           ],
           "quote": "| NFR-L | 支払済不訂正。最終結果・最終計算根拠・給与簿・支払実績・照合回ごとの不一致双方額を保持。中間版は支払確定後に削除可能。CSV自体は継続保存不要（R3・R7・R8・R16・R17） | 保存期間、削除方式・権限、バックアップ／復元、参照整合 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/non-functional-requirements.md#L71-L71",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L71-L71",
           "label": "NFR-L · 71行目",
           "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         }
       ],
       "href": "template-sections/3.12.5.html"
@@ -271,10 +283,10 @@
             "R15"
           ],
           "quote": "| R15 | A | 局担当は自局の勤務・申請・支給明細と必要な共通職員基本情報のみ。他局分・全局集計は給与班。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L111-L111",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L111-L111",
           "label": "R15 · 111行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/payroll-confirmed-20261007.md",
@@ -285,10 +297,10 @@
             "R21"
           ],
           "quote": "| R21 | A | 業務マスタ管理者とアプリ／Dataverseのシステム管理権限を分ける。同じ人物の兼務は可能。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L117-L117",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L117-L117",
           "label": "R21 · 117行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/non-functional-requirements.md",
@@ -299,10 +311,10 @@
             "NFR-J"
           ],
           "quote": "| NFR-J | [画面要件5章](screen-requirements.md#5-権限制御)：所属制限・管理者限定遷移・職員番号直指定による迂回防止を、異なる権限の隔離アカウントで検査。 | 画面要件の範囲のみ。認証・所属／管理者属性の取得元、権限設計と監査・保管期間は未決であり、UI上の非表示だけでアクセス制御完了としない。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/non-functional-requirements.md#L27-L27",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L27-L27",
           "label": "NFR-J · 27行目",
           "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/non-functional-requirements.md",
@@ -313,10 +325,10 @@
             "NFR-J"
           ],
           "quote": "| NFR-J | 給与班全局／局担当自局記録、必要な共通基本、複数ロール兼務、業務／システム管理分離（R15・R21） | 権威ある属性取得、Dataverse物理ロール、フロー経路の認可、監査期間 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/non-functional-requirements.md#L70-L70",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L70-L70",
           "label": "NFR-J · 70行目",
           "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         }
       ],
       "href": "template-sections/3.12.6.html"
@@ -334,10 +346,10 @@
             "R5"
           ],
           "quote": "| R5 | A | 職員・支給回ごとに支給／控除項目・合計を照合し、欠落・余分・重複も確認。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L101-L101",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L101-L101",
           "label": "R5 · 101行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/payroll-confirmed-20261007.md",
@@ -348,10 +360,10 @@
             "R11"
           ],
           "quote": "| R11 | A | 元データ訂正後は該当の再確認・再提出を行い、影響する未払い支給回を再計算・再照合する。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L107-L107",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L107-L107",
           "label": "R11 · 107行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/payroll-confirmed-20261007.md",
@@ -362,10 +374,10 @@
             "R14"
           ],
           "quote": "| R14 | A | 対象報告の取込中は編集・提出停止。全件検証後に反映。途中失敗は計算から除外して復旧／再実行。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L110-L110",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L110-L110",
           "label": "R14 · 110行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         }
       ],
       "href": "template-sections/3.12.7.html"
@@ -383,10 +395,10 @@
             "Q59"
           ],
           "quote": "| Q59 | A | 架空データで検証し、実データ移行は後段。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md#L90-L90",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L90-L90",
           "label": "Q59 · 90行目",
           "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/non-functional-requirements.md",
@@ -397,10 +409,10 @@
             "NFR-N"
           ],
           "quote": "| NFR-N | 移行 | 今回対象外 | 隔離`_STUDIO`から実データ・本番環境への移行を今回の文書整理に含めない。必要時に件数照合、差戻し、期間を新規に定める。 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/non-functional-requirements.md#L47-L47",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L47-L47",
           "label": "NFR-N · 47行目",
           "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         },
         {
           "path": "docs/requirements/non-functional-requirements.md",
@@ -412,10 +424,10 @@
             "NFR-N"
           ],
           "quote": "| NFR-M・N | 架空データで検証し、実データ移行は後段。設計・式・単体結合・データ権限・既存維持を受入前提（Q59・Q60） | 総合シナリオD-07、性能値、実データ移行の具体的基準 |",
-          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/non-functional-requirements.md#L72-L72",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L72-L72",
           "label": "NFR-M / NFR-N · 72行目",
           "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
-          "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
         }
       ],
       "href": "template-sections/3.14.1.html"
@@ -6567,7 +6579,7 @@
       "path": "config/dataverse/payrollledger-columns.json",
       "sha256": "a4aafc9b4beae1559c65dd7c0f830b5421024bad67a04a2ee34bd4e1e9c905ab",
       "bytes": 69841,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 2117,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -6581,7 +6593,7 @@
       "path": "docs/acceptance/user-acceptance.md",
       "sha256": "49e437c0066f0004e502a79227f20cd3e5905d4af7e3d62e28bce8160bd513b8",
       "bytes": 7438,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 68,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -6693,10 +6705,10 @@
     },
     {
       "path": "docs/design/basic/basic-design.md",
-      "sha256": "248acb8c8cea78e57e720e3f3e546f4baab342f492d7e574a901a1aaf20cc462",
-      "bytes": 39151,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
-      "lines": 251,
+      "sha256": "c375fa576cff3e7ad25bf9af03f38452a3f4d93bac6951dfe367a770e4cfb668",
+      "bytes": 39834,
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+      "lines": 253,
       "scope": "Complete source content",
       "rendered_line_ranges": [
         [
@@ -7049,7 +7061,11 @@
         ],
         [
           250,
-          251
+          250
+        ],
+        [
+          252,
+          253
         ]
       ]
     },
@@ -7057,7 +7073,7 @@
       "path": "docs/design/basic/data-model.md",
       "sha256": "bca14fc642bebbe57f04b7cb4e54577ae81508d25d04c2178dae0129ae5747cd",
       "bytes": 10758,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 93,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -7171,7 +7187,7 @@
       "path": "docs/design/basic/design-system.md",
       "sha256": "62a13bd642f102c46f00a00d4b8eb8679b10029fe0902b37d7288ed3e69c9465",
       "bytes": 7201,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 89,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -7271,10 +7287,10 @@
     },
     {
       "path": "docs/design/detailed/detailed-design.md",
-      "sha256": "d3a32f6d3f591fedec5f310c0e75511754f6d8c3ee5ca682d193a30b659a2ae0",
-      "bytes": 52672,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
-      "lines": 347,
+      "sha256": "38bcd2579034f566996182493176122967a3345605f082c53e4fd8efba8b43fb",
+      "bytes": 53355,
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+      "lines": 349,
       "scope": "Complete source content",
       "rendered_line_ranges": [
         [
@@ -7759,7 +7775,11 @@
         ],
         [
           346,
-          347
+          346
+        ],
+        [
+          348,
+          349
         ]
       ]
     },
@@ -7767,7 +7787,7 @@
       "path": "docs/design/detailed/payroll-jinkyu-interface.md",
       "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
       "bytes": 31869,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 365,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -7939,10 +7959,10 @@
     },
     {
       "path": "docs/handoff/STATUS.md",
-      "sha256": "9ccf20b9def5b34913e4a83277c1b85425352289bee4dd80f47f5627d9c33892",
-      "bytes": 38190,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
-      "lines": 214,
+      "sha256": "493345754a20d6b8a40e21068b00924b44b806840c9aa9481a5ba96c6c5df302",
+      "bytes": 39788,
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+      "lines": 223,
       "scope": "Selected named current/history sections, line ranges listed in generated HTML",
       "rendered_line_ranges": [
         [
@@ -7962,36 +7982,44 @@
           17
         ],
         [
-          37,
-          39
+          19,
+          21
         ],
         [
-          39,
-          43
+          21,
+          26
         ],
         [
-          45,
-          47
+          46,
+          48
         ],
         [
-          47,
+          48,
           52
         ],
         [
-          75,
-          77
+          54,
+          56
         ],
         [
-          77,
-          84
+          56,
+          61
         ],
         [
-          102,
-          104
+          84,
+          86
         ],
         [
-          104,
-          112
+          86,
+          93
+        ],
+        [
+          111,
+          113
+        ],
+        [
+          113,
+          121
         ]
       ]
     },
@@ -7999,7 +8027,7 @@
       "path": "docs/operations/single-app-workflow.md",
       "sha256": "d3f0f63827b07773ccc092edce9d70d2012475068bb5dfa705d9e7545620f415",
       "bytes": 6339,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 40,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -8077,7 +8105,7 @@
       "path": "docs/requirements/business-requirements.md",
       "sha256": "707f695e40f7fa165e598ff2940eed0ec8bc06134d7f7e035200c116c044fe65",
       "bytes": 34285,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 300,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -8399,7 +8427,7 @@
       "path": "docs/requirements/non-functional-requirements.md",
       "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
       "bytes": 11285,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 75,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -8485,7 +8513,7 @@
       "path": "docs/requirements/open-decisions.md",
       "sha256": "0fa75fc2ca5c4bf18a4f9988864098116d8463b80ee399147e17f92d58236e52",
       "bytes": 20690,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 124,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -8611,7 +8639,7 @@
       "path": "docs/requirements/payroll-confirmed-20261007.md",
       "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
       "bytes": 17256,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 146,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -8709,7 +8737,7 @@
       "path": "docs/requirements/payroll-interface-decisions-20261008.md",
       "sha256": "11dcc8ce3cb8b4ada1cb5b5e6f0da83707ddf0254de5c3b95ea31c9dc164b913",
       "bytes": 5668,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 60,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -8765,10 +8793,10 @@
     },
     {
       "path": "docs/requirements/requirements.md",
-      "sha256": "74ea62a804391cc29a9471dfac08923af5f38456ec51c3d93e47a05ad5029fa8",
-      "bytes": 29521,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
-      "lines": 201,
+      "sha256": "5973fec2e6c1c34dfd6734cf73f40bfaac1ef31ceddeaef2869692fdd4b534d8",
+      "bytes": 30201,
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+      "lines": 203,
       "scope": "Complete source content",
       "rendered_line_ranges": [
         [
@@ -9069,7 +9097,11 @@
         ],
         [
           200,
-          201
+          200
+        ],
+        [
+          202,
+          203
         ]
       ]
     },
@@ -9077,7 +9109,7 @@
       "path": "docs/requirements/screen-requirements.md",
       "sha256": "52ae4f29d73310c99783b902f50f9bc8fb297ed58c260f6818f35563ae314fea",
       "bytes": 62108,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 521,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -9591,7 +9623,7 @@
       "path": "docs/requirements/traceability-matrix.md",
       "sha256": "ddb84071fff5a5260fd60307e45b3cabb689107e287284e795ac1f366c053b74",
       "bytes": 70531,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 399,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -9885,7 +9917,7 @@
       "path": "docs/testing/test-policy.md",
       "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5",
       "bytes": 7695,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 61,
       "scope": "Complete source content",
       "rendered_line_ranges": [
@@ -9985,10 +10017,10 @@
     },
     {
       "path": "docs/testing/test-specification.md",
-      "sha256": "ed9e93db8a4506897a7af77bc6f8899fa0d7278f2ea0e0a59731d8c630be5ca9",
-      "bytes": 80616,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
-      "lines": 695,
+      "sha256": "f7e529a678d78f091d0b21940835e0d0e4b756685628c04d593ed043efc8f6f3",
+      "bytes": 81296,
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+      "lines": 697,
       "scope": "Complete source content",
       "rendered_line_ranges": [
         [
@@ -10621,7 +10653,63 @@
         ],
         [
           694,
-          695
+          694
+        ],
+        [
+          696,
+          697
+        ]
+      ]
+    },
+    {
+      "path": "records/changes/dot-001/38049776822/QA-REPORT.md",
+      "sha256": "a7f371474ed9e4c92cc388ff17da410bfed32eedece5d19bf767a804cc2dd57b",
+      "bytes": 2944,
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+      "lines": 24,
+      "scope": "Complete source content",
+      "rendered_line_ranges": [
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          14,
+          14
+        ],
+        [
+          16,
+          18
+        ],
+        [
+          18,
+          24
+        ]
+      ]
+    },
+    {
+      "path": "records/changes/dot-001/38049776822/record.json",
+      "sha256": "09239d80cfcb9cb898dac5842ba1c5ef8f2f0bea4587e2e51b0d17a68bb822b1",
+      "bytes": 2585,
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+      "lines": 80,
+      "scope": "Complete source content",
+      "rendered_line_ranges": [
+        [
+          1,
+          80
         ]
       ]
     },
@@ -10629,7 +10717,7 @@
       "path": "src/screen-ui/v1.30/home.paste.yaml",
       "sha256": "3c7e8bec503fb1b01d70ca4d4f3d0a2134034ae5a18515a3e9d768ca4505cd1b",
       "bytes": 10748,
-      "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+      "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
       "lines": 294,
       "scope": "Complete source content",
       "rendered_line_ranges": [

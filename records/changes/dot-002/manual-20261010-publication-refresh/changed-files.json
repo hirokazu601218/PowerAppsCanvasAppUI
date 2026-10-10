@@ -1,0 +1,2099 @@
+{
+  "before": "c6d1c7edb2999a08c96d29343dfd9f4385cecd5b",
+  "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+  "note": "Changed paths before this manifest itself; no deletes.",
+  "files": [
+    {
+      "path": "config/document-routing.json",
+      "sha256": "bd0447245c8cf06ee47d39a5dda2231d81908e3514389c1ecbf52aaf010aa913"
+    },
+    {
+      "path": "docs/design/basic/basic-design.md",
+      "sha256": "c375fa576cff3e7ad25bf9af03f38452a3f4d93bac6951dfe367a770e4cfb668"
+    },
+    {
+      "path": "docs/design/detailed/detailed-design.md",
+      "sha256": "38bcd2579034f566996182493176122967a3345605f082c53e4fd8efba8b43fb"
+    },
+    {
+      "path": "docs/dot/request-list.md",
+      "sha256": "b523b8f289dc23c8cc8b52f3d28eac92ab4e2a49433d98acf85412e936a00b33"
+    },
+    {
+      "path": "docs/handoff/STATUS.md",
+      "sha256": "493345754a20d6b8a40e21068b00924b44b806840c9aa9481a5ba96c6c5df302"
+    },
+    {
+      "path": "docs/requirements/requirements.md",
+      "sha256": "5973fec2e6c1c34dfd6734cf73f40bfaac1ef31ceddeaef2869692fdd4b534d8"
+    },
+    {
+      "path": "docs/requirements/standard-template/README.md",
+      "sha256": "86776878e1e2e6c84bdea49821ffe77b65515b17052d2eb9db3ebc5737b2349e"
+    },
+    {
+      "path": "docs/requirements/standard-template/assets/source-readback-summary.jpg",
+      "sha256": "9329f61901b1fe7fbd7cc979b315e86a83a6d45ff83efe436f7c17eefadcf269"
+    },
+    {
+      "path": "docs/requirements/standard-template/chapters.html",
+      "sha256": "dff40ef40b052486a11f3b01f0d04813692648380deb922a8c48fee3769f328b"
+    },
+    {
+      "path": "docs/requirements/standard-template/index-mobile.html",
+      "sha256": "ef70e706e6ca8efa8c2f9552c17961f69ef6b47a81a5677bc6e6f5fe1704108d"
+    },
+    {
+      "path": "docs/requirements/standard-template/index.html",
+      "sha256": "3ccda8efc76793e307a64aad41051361e1dc668d5aaa01488bcc1f45a5bb20ec"
+    },
+    {
+      "path": "docs/requirements/standard-template/journeys.html",
+      "sha256": "7b81f37f46efee12596464abd6eb64e7b3019b544590a25906a1c8e2beb9af46"
+    },
+    {
+      "path": "docs/requirements/standard-template/open-items.html",
+      "sha256": "b6f00834de069c185cb20adf71c9a87212eb5ac8f57a74dd98d3f87c20095ed5"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-001-ATTENDANCE.html",
+      "sha256": "14193990baf07501878125e9143e324773dcab84e7c3f5ddd8f1e128f051a4a8"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-001-DIFF.html",
+      "sha256": "a5f0f8a795c2736a81d754c5668dafe8573d43c92e0c882eede47394570371d2"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-001-IMPORT.html",
+      "sha256": "dacd2d7f82cb286f39dcd6a61599f0be40ef0e514e51d911cba392d91878f952"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-001-JLINK.html",
+      "sha256": "89335a3c02dd283f7b9d6a030db769b3b0ac68927f9d4d96cd574825d5a4d3ae"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-001-MAINTENANCE.html",
+      "sha256": "da5a43acf3329be8bb2916777dce95eb0142da0aae7ffb9c8972b775c160f0ac"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-001-POC.html",
+      "sha256": "e7347743436008c6927f33c014fccea5238a93fbe76a4052114159811758f61c"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-001-RATES.html",
+      "sha256": "e33ca853db484554698eda701c2921d72dd1ef47a44c548264c2ee3323ede8ea"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-001-STAFF.html",
+      "sha256": "942769e7667dc5c24988d59347db08afe081cb64698b46dcc4453e6f4fec1683"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-CANCEL.html",
+      "sha256": "3d77ea5d16e2cc046a8aa54ac89578c275cb1fb7965d6e6fb76089c81477ad32"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-CLEAR.html",
+      "sha256": "11bd48b69af824290925a451be7ab18ce5abb1a4c5eed692c2cee7e9f11997b2"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-DISCARD.html",
+      "sha256": "367ce94aab77d2a4f4df1f37f9d95f58113207e3254bf28b59489c44ad94d635"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-EDIT.html",
+      "sha256": "24d23f3592d6b55fc873b57cbf09188ca3f0d0fc419b33a5b002186b05986b8f"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-FONT.html",
+      "sha256": "41ffb81964804850e2b47fb3f5710bbaf47b8ead9345c9fcf23375fca9361ced"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-HISTORY.html",
+      "sha256": "e9249d75d4ed88fe0075a2993a5b2488bf30e8e96e2b7191492a49afc76bad2c"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-HOME.html",
+      "sha256": "d24fb2ef4552a38ddfc6b4d0fdc1cd7819beb06b32a46e0a7ea45221b2a0ee0b"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-LEDGER.html",
+      "sha256": "7ae6f3a280b839843771c6574d644109a07a7e3282623f1461fd538bd5926f90"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-PAYDETAIL.html",
+      "sha256": "dbf74df46bb7146c0bc099de690f9a8d031d9fc7c47742cf04d11cb8efc4558f"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-READMODE.html",
+      "sha256": "c5b85da37a4ac1dba472005d029e131249640d3c2b6b9313cbba33079ccad42c"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-SAVE.html",
+      "sha256": "842f46dff2095aaf1eda28bedaeeac29954610b4256cf47e5e9b7bf55d715f73"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-SEARCH.html",
+      "sha256": "99d549ea6c75963bbe69389ee0c9e20311460cb3d5d636388cff1e0acf3922fc"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-SELECT.html",
+      "sha256": "06c5e6976755b5b5cad55111710c37e5a18d3b6ac7cc9a0deadf3a79c2819eb7"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-SIDEBAR.html",
+      "sha256": "da44827ddae81413f69f62fb7469b3761e0299d4328374122513149b3aa687f7"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-002-TABS.html",
+      "sha256": "817f5b2bf4a6ba11d3d3f8ca1138c28b8375cb9c3959db847fe88f4095434b08"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-EDIT.html",
+      "sha256": "92fc0c7d16e65f4cf1ea65b00911ebac2aa02b9c86da1ad9ed47cf94e09c7bce"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-HOME.html",
+      "sha256": "970a7455f0264d0449020c1942c81cb21758d4cb2c236facc5e80970b9741e15"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-IMPORT-CURRENT.html",
+      "sha256": "5b92b142d4c01407ef1d8908c1e5aed0c7df1ae14bec510ff5fffc1fad7a2169"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-IMPORT.html",
+      "sha256": "0d9fca1275e6c36ee315ebec4995d2ea1e3aad507693dcedc3040a89ee3e63e6"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-READMODE.html",
+      "sha256": "b5e6cee045a8605f3f2375625fdc65af06fb496a53b278b1d4bcd545ec23f2b0"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-RECOVER.html",
+      "sha256": "5eba14efdf5e27ff3da4726160e5ed846de8b601b3326a779035c12c6c9ec546"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-REPORT.html",
+      "sha256": "be0005d50eef7baac54bc4714ba2ef6caceb3523ba3d8e8da8943a37ad09d2ce"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-RETURN.html",
+      "sha256": "aa1df38f06f1ac7a67a23cceb96a18e60677bd366e02e15009be40a2520ddacf"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-ROWEDIT.html",
+      "sha256": "0b3074924556f2d569bdd965adf5e941892d30d41c80b0590fa232aa62dfa99a"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-SAVE.html",
+      "sha256": "69e4e28e0492dd7f98d38fa013574cdf0fb43f24201c5356b40da5ec9d2dbc4f"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-003-SELECT.html",
+      "sha256": "5f86f6c63fd7e2f01f7dbd1a0e709f23d22b6a224f1dca31531ea7dd66de26a1"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-004-HOME.html",
+      "sha256": "d8b8b26fdb3f7be49d6c52c03fa1f2027de971a66f9264c5372d3a82ed0b22ba"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-004-RATES.html",
+      "sha256": "fc4648215bc0b67c91cfbb18cd7c2c289f4cdb44e1f728e33efe2c51a3df43a5"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-005-DETAILS.html",
+      "sha256": "5b816e9b26cc7730a1fc7b9258ac45ef960aa38bb2c023c77eab40b95d836b4e"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-005-HOME.html",
+      "sha256": "5c2c10b3d7788672ee749fccf7e712a64fa5bd598d88eac86adea30a602e0eac"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-005-MONTH.html",
+      "sha256": "34fd917dd0cc8694102c03220a9fa234924306d82adda3060c077651211cfc4a"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-005-RECALC.html",
+      "sha256": "6b09de65b34907c046a07427e942159c4978ab6394f2188a65cf35b09378373c"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-005-RETURN.html",
+      "sha256": "2eed1bf1bfb24cfbb30733815f714671c8d4988bea152f83762f8099d9e3f6a4"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-006-END.html",
+      "sha256": "b28df60b89960d806a3b172ee9d2b679ef39edc1f70da6c85b9ef99a94b8b7e8"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-006-HOME.html",
+      "sha256": "5ba335413e919cd719044493b8e8a3e5b07babce1953bc237346149af5665a36"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-006-MONTH.html",
+      "sha256": "66d113697f09eb7443b5ae8a29ca670bbe5de76327e9259913334a340a83622e"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-006-RULE.html",
+      "sha256": "7c095c7461bad9be628cac4c3aca8fa8f83ac77889db7e375337aebd9357e83a"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-007-HOME.html",
+      "sha256": "e1430861145ca3b5d3bdace786b2f0f54aedc950e208f96a315e8bb479f7bda5"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-AD-CANCEL.html",
+      "sha256": "7c7a6a09f26f9e2ef7177b6c9c5798e9175870d038e0aaf1292c9ce8154f889b"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-AD-CANDIDATE.html",
+      "sha256": "e977c3f95c283afc7b3b46e1476dcfe8090d76a28b300fff5f432c8b7b0ea500"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-AD-CHANGE.html",
+      "sha256": "39c3f3c05a906e9298eaee84e2ea1f515cc002459e02a7337a0641b725b0a7f5"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-AD-NUMBER.html",
+      "sha256": "6b2813f182bb5737727b81f47b84a8aa0187fab17a64d072d2a5114286363d1a"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-E-CONFIRM.html",
+      "sha256": "765d3ef9a586a09e6d66f638d1467c2e0d18459863288dbfaef6afd072d36945"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-E-CORRECT.html",
+      "sha256": "42ab583b2dcefda59937e1ee58d8792655645ce4a20aa03e0d2c0ab56ad3ca9d"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-E-HISTORY.html",
+      "sha256": "0dc86c2e0d29a829312c3f82c9acfea2e081b7b512370bc91846e673e2e0b8dd"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-E-PENDING.html",
+      "sha256": "99be1b8f9f085ee6715e4519bd27386105a9d3f3f66326557ac1a1e425719741"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-E-RETURN.html",
+      "sha256": "fc86ced34de8ce37a19f652af2b5893bbfad216e3ff2b1b91c0a6a6cdb6e2ff0"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-E-SUBMIT.html",
+      "sha256": "a7ffba091a0fae858d72d28e6a34409e86e578a68ce3a2f68471c78d7cfd793c"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-F-CERTIFY.html",
+      "sha256": "856744d5e345ad6dd5c82f2e2e31cf2eccad5e0625e823455157b091657310fa"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-F-CHANGE.html",
+      "sha256": "03dafd000aa1feb3bc9fbbb18f4b1fbd2457af31f2d425c7900334ba275c30b8"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-F-EDIT.html",
+      "sha256": "7ed59b504f4a2e382fb50be0a305391db9b90184b83f7a436819d1741445d0e3"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-F-END.html",
+      "sha256": "08a59ac4cbb5e02e5170f170877100ec3ed971d96a1659c6f1ac3414972117d0"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-F-HTML.html",
+      "sha256": "42ea130ec648ddffad8f8c40569ce44f9212850dbde0abe2fde47c8744fa4efa"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-F-NOPAY.html",
+      "sha256": "4cb53d7f4bfc800b38573c8cf177223d4912cb1e854b2f7af542e6f715e2d9ff"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-F-PDF.html",
+      "sha256": "f6d7f959e9636288ca22602caed16fa4addb02b5ab6d308e4a9194a4fdba5e9d"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-F-RETURN-HTML.html",
+      "sha256": "59ac8f24057608d955ffcae1f9cb40d622cc9b7d6b4a29180bc312859391a1aa"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-F-RETURN.html",
+      "sha256": "8c57af1cf326a4a949ff402006a957093db4372694d616926fada74b7f515631"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-F-SUBMIT.html",
+      "sha256": "64db079b190896fdf8db2760f6bd5a0b3cef857f2bb71e98404882601c467ea3"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-G-CONFIRM.html",
+      "sha256": "75ee80b125190852d772eba7148f5d49a9e9be9b9091c73dbc7723ca0e30648d"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-G-REGISTER.html",
+      "sha256": "e9f71a95d3750919d9f803455c2a694eb63b3500ee8ecffa35a536dfb3a84e57"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-IMPORT-APPLY.html",
+      "sha256": "5bb7bebb52fd17f7c6d93f979bf50ed1d4921fad0de59b53c698a01741c8cf31"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-IMPORT-HOME.html",
+      "sha256": "1cbf1d8f418d9bba629b130560ca9e9202b2efdbff2e794638ca1b4af6f092e3"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-IMPORT-RETURN.html",
+      "sha256": "7972f34357ab7c6308f2f0538abe64dc63c0d05f0f025f8a1ab0370e901e94c6"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-IMPORT-VALIDATE.html",
+      "sha256": "c2e17aea8bf85580aeea3c5a6a43b7d091f06a0bc69e8e6d087091919ae012d8"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JINKYU-PROCESS.html",
+      "sha256": "628698bc0ff92027aa6228cb4f778939c7100e7d09ac616c540a60028aa47419"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-AM.html",
+      "sha256": "9e4eaa72e600f4a7adc77d310d5107712a451599f2174233caeca658a51cbe81"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-CONFIRM.html",
+      "sha256": "618324a324b3fa0736c14933c7bc045113a0f7e7df1815776deae6b30e54f1ee"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-CORRECT-ATT.html",
+      "sha256": "d64122cec5362169f997b77086973b138a132d7cf173d9960ca241adfc81874a"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-CORRECT.html",
+      "sha256": "3c4bd4607216c4d1eddb943eb16a66c5c81e962641d88e5a3016019116a6a5c8"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-ERROR.html",
+      "sha256": "29dd88a558fc4eedf8fec2d982584c50ba7825fd232b9ef50f87dbc10c0ba5db"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-EXPORT.html",
+      "sha256": "93b9e424803b65d17d20a251be5284510094124778abc2239ffd0384bf6896a9"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-FILTER.html",
+      "sha256": "b5b63fa19e1e7ea644c5cd682263182c1b5c9e47defccd099f27c5e20d605f99"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-HISTORY.html",
+      "sha256": "b4637300e60af47d9115fb87a8fac758a5f74f34c2074e421eb36657331fca55"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-HOME.html",
+      "sha256": "397294c11cb3b7831aa904711e0b965e59944aba57272eb6805c13887bf847cf"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-IMPORT.html",
+      "sha256": "0f3b3856c43e5b4b1e022398b2e0cea1cbabbac944d210a8a10d94e2179f0d62"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-RECONCILE.html",
+      "sha256": "013e3bf5fbe30d7b705d51fe11863c6d47e1366195f04ba40ba2e9c471c898ff"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-REEXPORT.html",
+      "sha256": "20316c52bcfdc084e3aeb4293b075c3eaf0a05d51263053d5e87371ef52bedd5"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-RETURN-ATT.html",
+      "sha256": "ff7d178df7d36857dcf3eb77ec74a5a9e3892712656070b36b659a2097ac4ed3"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-RETURN.html",
+      "sha256": "fd22a8f020e724a96635f9ea6eeb00a2018f99d32a43513a147879632cff0f00"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-SELECT.html",
+      "sha256": "b34a14c18d55a21ed5b361763d2279de7e9a46fc704ebac8ed283a2eedbd5701"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-JLINK-TARGET.html",
+      "sha256": "36f347e53dbc597fef05378e060756fe6d6b6b6890df82e0730334521cf4834a"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-PAY-ADJUST.html",
+      "sha256": "eb5d7f60bf541c950a33661bc88f494ccac10cf3289939bd6d66ab9d60321899"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-PAY-CALCULATE.html",
+      "sha256": "84900fc4c1e8f8af61ce2903412e7074cc49dbf05294b1132d259dfe9372bd4d"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-PAY-INDIVIDUAL.html",
+      "sha256": "1b87f04c5bdcedc83e2275613428ed2c53bbc445a139e4b71c8d2a95e5e52a27"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-PAY-PAID.html",
+      "sha256": "7496122699a79bd954c03eb0feb27e263f36010d6df9c8da2d98a8a9d44edfcc"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-PAY-PERIOD.html",
+      "sha256": "9d4a58774096615114d392cf92e959dda5435caa4751251c0fd07bcdffd59d31"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-POC-HOME.html",
+      "sha256": "fd803d52f1b64d09298248a96d0b503ebb663e61d3444f3da838f8d6a464f05a"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-REPAY-METHOD.html",
+      "sha256": "f41467c9ff0c7fe3433b20a12246bff4962b99e842e8e7bc9f73231ef2150348"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-REPAY-RECORD.html",
+      "sha256": "f9213b6d31a469ed13b28427289ac78eb77ffe48d795ed5006c351802776c281"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-RETRO-CALCULATE.html",
+      "sha256": "0294401cf34576397bc5b8da1bef7ea35ad02d3d32acd251acccef151160bbe2"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-RETRO-CONFIRM.html",
+      "sha256": "e69822b45c75ef4c6b2fbece2fa7bb0a487366dad4455a09737f0bcc1a7f2130"
+    },
+    {
+      "path": "docs/requirements/standard-template/operations/OP-RETRO-EXPORT.html",
+      "sha256": "51010625dde88fd72dcbfb2dbf2a2ba86bd9f043628bf5d6b3b6cae934fd3104"
+    },
+    {
+      "path": "docs/requirements/standard-template/portal-data.json",
+      "sha256": "46dadabefb568ec531c738cea5dc3bed9e97ae226941e6fd0d1f9f7a7ae11d31"
+    },
+    {
+      "path": "docs/requirements/standard-template/reading-guide.html",
+      "sha256": "7717976edfdc8b6fef3d90280fe1233a10fd6e0466f178a6573ad2b5226d5c9c"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements-data.json",
+      "sha256": "81e9882e5ed460c9eadbd3c4dccf64e6e6c9c458538d2c2e57a1ba73419ea4ee"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/AD-01.html",
+      "sha256": "1adec4361eade72dac6333f180c33485170c0fde703f856a032e67b60feb5e4c"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/AD-02.html",
+      "sha256": "5effbb14fd1d1b09b0db7215858b69a2f47689ca547a2ebdf710f63eeb13147c"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/AD-03.html",
+      "sha256": "908d708fdee60d2401a7b641bdf960c7fa76ce4ef131b5e1d93f4c05c2d51643"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/AD-04.html",
+      "sha256": "1741a3a910e8d39e36200bb6f4a64f8e59281726b820f87a30f4965264e77f80"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/AD-05.html",
+      "sha256": "257a3836f72c57016dba162b3f7f6130a15c7aa0c09642ad21f168541a6091ac"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/AD-06.html",
+      "sha256": "0bcf09caf4f2a5dcb6b3cb5f94f4872677f1fde9924ea1d3587c036b55501210"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/AD-07.html",
+      "sha256": "a8d1fa07230935b584a0e2396941d9f33f67c1f66afb25ee3c67451cbcd1e66e"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/AD-08.html",
+      "sha256": "47a172f9936e0f370d40e54feb433dd5f0e0b2b775cca0440e45a4a5d2fc7919"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/AD-09.html",
+      "sha256": "53aafe72275a1e804f57df4f5ce2b275d5e0572fb179f56f9285e022e26ebe3f"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/AUTH-04.html",
+      "sha256": "aa3bea2789dc233f6c520065d44348d72ac217689e0390f49c5a3e4eec664443"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/COMMON-AUTH-002.html",
+      "sha256": "477ddeae0dbfd7fafde6001118ddfb63053a62bd7bba9dca8fb7f0a11ac46296"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/COMMON-CONTEXT-001.html",
+      "sha256": "d138a1c9ae57012c24bc55d8f26a687dca23baba15e42bfeceb47b5c6f084f2e"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/COMMON-CONTEXT-002.html",
+      "sha256": "f64b495e54e469163d2b8850de48d79172bbe79287d0f8174c2db11629c0ac5f"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/COMMON-NAV-001.html",
+      "sha256": "8ea013ef119f59fea86923acdd8b0245f57c9f17181c46d52e7787cf48ea5101"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/COMMON-NAV-002.html",
+      "sha256": "9b566cf518bd7876720de450e16d2ce240995a00c89e36aac2491322a76eee56"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/COMMON-NAV-003.html",
+      "sha256": "3aa68f9681ef18586e0dc83fd2a346aa3b5c00d859f39a6cf3ef710ff3627152"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/COMMON-SCREEN-001.html",
+      "sha256": "c718579e50dd6572d4fb96583927f9c3106783b260314fa3cc263bdc640d24c7"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-02.html",
+      "sha256": "40a243daba97122b17c95eb3f1c9630c0cc15ab1e18bbddef502bd485a55d0c5"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-03.html",
+      "sha256": "a7647340c594f4e5700d844c68e4a778b7d46b656cc0f51070a3f8cc7a22d5d1"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-04.html",
+      "sha256": "802ef73b29aa5d36c95c7a80327563688ba67824c1edae683700d4aaf5624ce1"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-05.html",
+      "sha256": "610dc2dcedae9283c416689195e33bb9e8d3f663db5c41ff2989845717ed27b6"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-06.html",
+      "sha256": "5cb1cef3b8f23f63b08a6e22c86541bec267b7d6eb6fde7d3919b2f998883d0a"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-07.html",
+      "sha256": "212b30353ad15bd8175b5bb9a33c9edc2de2b90bf40d30132d5fc1c1efdb0d4a"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-08.html",
+      "sha256": "09ed102ac4a127d426479f7759ed5d84e86cbf286e9a3cb3d15ecb33caeaa5d7"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-09.html",
+      "sha256": "cd93c55223237e71fcbfa3e48d87a6af0182f34c48f63484d5310f993ab438cb"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-10.html",
+      "sha256": "8d65dfbcdfe838a260a18a5f5a53d6e1442474e38ece5310ee777c78fe28d2a4"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-11.html",
+      "sha256": "2d028c684fdc06e7e1e12b67ccecc5714f29a4fc6b18f7a3350b19777b0a2a5b"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/E-12.html",
+      "sha256": "367acb6b8e59b2f96183b991ab989bd0f613441fb3762bbb913a7c3442739edc"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/F-01.html",
+      "sha256": "1bd858ef8ed168f6b2fcf3579dce75813dbeb099873f7b251ad66f2287016156"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/F-02.html",
+      "sha256": "4308a834e18572d0a5b73b5a1f9fb27798d7beb6217dc75cb1c5014c9a723d9f"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/F-03.html",
+      "sha256": "7692c864c2ae34157ba660d1a0f9f148293192ce4ccc049b76fa643425cf5c91"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/F-04.html",
+      "sha256": "b91de9b7f6c6bc45357fa8308d2bd5183d964a0dfe274b526b467389177e65dc"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/F-05.html",
+      "sha256": "d0c0e1d5bd526fcc8102a982b5780e22a643ed06c374fa4a1ead0f12c0530897"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/F-07.html",
+      "sha256": "2fd1db2e2f3c9bebcbb0cbbf7980eddcb341770aa22f1fd0ec0597d2730c4229"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/F-08.html",
+      "sha256": "c963ad3831be88d7ede29f4072e8a2203f4ddc5c634df2204f4684af06c05d79"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FR-AD-01.html",
+      "sha256": "26349eb88df35dd99e51d2df361553ca345eef16449ca60d94c8c666df026fc3"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FR-AD-02.html",
+      "sha256": "7f53286740fe832e86664658c2de4da9d9a2efd634a318075d2a9e48d70a9848"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FR-AD-03.html",
+      "sha256": "2265e6bd884cd2f9ff77b500c3c3e48ae6c3962722a7975278f96c44257636b5"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FR-AD-04.html",
+      "sha256": "783d68a9a0e126d7fbe5c6ba811bc372d284fa24abc24abf45e5aa16e9fdbc65"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FR-E-01.html",
+      "sha256": "8feaf415ea6bdffe87246057ad33c78d5bb636a40b7ee2ba43ac4c4fb7bceb17"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FR-E-03.html",
+      "sha256": "cfa69868262cffe0e8afd8b273bd1ca6ffadb6cd72b326ad674556499992bc30"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FR-F-03.html",
+      "sha256": "8b7c19658755963766458401ae353866bd056a045fe4180c8d595e6c21449200"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FR-F-04.html",
+      "sha256": "8ec80a9b1cd724802c461b48ee94d9968703c2e71735fd884e1f156d6d87ddc1"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FR-PAY-01.html",
+      "sha256": "32ab4cfd989cd9a6fc0a393e38aaecc4aa63133b4fe584777fbc79f4ae49b1f7"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FUT-IMPORT-001.html",
+      "sha256": "2e24e3e44d9ea43056aa40fdafe93fd931ea66ba42c9787826e21d4a0fd4c6d1"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FUT-STATE-E.html",
+      "sha256": "073cf27e860717859c89cd0fb751abb2beb81c55f1c189f74e35efeb9d28eaf4"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FUT-STATE-F.html",
+      "sha256": "ec89c6c0fcd9442b9b636ee058d2a443adfe3548fff6132f797c824566a5631d"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/FUT-STATE-PAY.html",
+      "sha256": "2880ad0bf511ae3f8d06c50cf6b4bd057d03d02f85b4da139f62e6eb304410d8"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/G-01.html",
+      "sha256": "2b7860e22564af2b0ac3d6b911fed4c5675b75fd80a33a66d4fddd688a61c254"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/G-02.html",
+      "sha256": "779934d07fc085e12802eb880f31bfc96e5535042d3af58c82c3235546ec7a21"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/G-04.html",
+      "sha256": "3193b6fb250ed6b61e582627da12c9acb9b662196b71bdd379cee8f3570a17d7"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/G-05.html",
+      "sha256": "fa08849f9eb8ee90f1e704c9cc42c05ec3bb0e2f430567fc59b8bc9ad81c2420"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/G-06.html",
+      "sha256": "c801700a7215de1a725ee070a70d4bd19d351564c54e006b365d053eaf3547c2"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I1.html",
+      "sha256": "2246dfba6ab82b87864f1391060c00fec32e289616bd9eadf3313cd2f63c8ba2"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I10.html",
+      "sha256": "a76c77ecf1d5cee2f069c0e35e1049ca210d6c140e7f7d90eb701521b8970b5e"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I11.html",
+      "sha256": "2482690b39eb8ac25c0f9fe398a949e4e67d72e805e6d9c04be4108fe50e343f"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I12.html",
+      "sha256": "00ec834727c163d63c272e30cc06663f5b79b0d8e51652954588b7eb3a4abfae"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I2.html",
+      "sha256": "1e873883c79db57796f7aa24f892794b56dbc6f2ee6fc6eea4069a673733db37"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I3.html",
+      "sha256": "3c7c44bdd8fc02048027b83604e37818eb94f61737d376836244856c8a6323a2"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I4.html",
+      "sha256": "ec05cbdce51b5bbf3536374ab65cea273df708290883891992029a55e6c7de32"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I5.html",
+      "sha256": "77466835348ac4fb4580bc87745e6fb39375208fea4025cfbeea66718d48f448"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I6.html",
+      "sha256": "3c5cbebf3cba44951a5595427c5c4cc1899ad359eacbed0991c8a33f5266b6be"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I7.html",
+      "sha256": "8a338614d6318dbfb11af09ae394353f2cdd6960278081cbb1635348e9401117"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I8.html",
+      "sha256": "9829075cee19e60ac9a03415e59781ba84b8e0981f9ac003b636d4cb9e0acf5c"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/I9.html",
+      "sha256": "ec7daf461bbd161486f9ec462cb31bad7716a61773e5451e8dfff1d6bbfb3997"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-01.html",
+      "sha256": "fd9035f4c4895923cef67b82ce6f1a87970ea33784b2292ace9e08c0d58aa2f2"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-02.html",
+      "sha256": "ea38ec7ff7179478f36223e5263c434e5a8205121f7eee59d6300aceb9606c07"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-03.html",
+      "sha256": "98f484d07c6e2b1a5e993c4e5726d21f81685b91838a069074851bd8f67c5442"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-04.html",
+      "sha256": "a33a3fb002891fdbba58479ac6fc6cc4dc3a915952b7fa060b987683b432da95"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-05.html",
+      "sha256": "ff6e036ade2211d1f311bf6e1ec2f9adeba821e78607a7fe35ac01eaa4e121cc"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-06.html",
+      "sha256": "76e5495329c54aad937400e7b641e0124d86858b8b3439bbe460bf716e86547c"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-07.html",
+      "sha256": "af27bdf79d41276d8f9cf6c0fb1190ccbc80706d415e6115748731d3af8eb166"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-08.html",
+      "sha256": "c3f54a3f87eebc4bee4c3d80805635c5b66167f64946646eb7d8f4e14f8adb0e"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-09.html",
+      "sha256": "7d532979e78e531839bdc587c3a2b502f14ce311c7690354134ba96e627a0676"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-10.html",
+      "sha256": "bdeaa87a12cd401d2fe2c4e8f5f4804925f81e544f5fd6effe63059871d3d455"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-11.html",
+      "sha256": "944e0b1391972892ef11e7052718a08d00cdecf1c05143366e39e379f36c6e7d"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/IF-12.html",
+      "sha256": "49b5f816c4cde811c6991f07ad9387c3b026c989a8ca40ca9b0078f454641f8a"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-01.html",
+      "sha256": "ef4d422d923fd95dffb2c393fe3040f55cdb732a21b639bb0dc63c5d286ee8da"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-02.html",
+      "sha256": "21106e38a9373f91e38b17a3c7526574381bf18442e0ac2781aaede48ad01bc2"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-03.html",
+      "sha256": "1301efc3797e990012be98203ee83cdec89e90a006c12369e7884626cbae5dea"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-04.html",
+      "sha256": "646bf157cbfd7d03288e40be426beefe3891612dc1abbb77d33fad0bc5ecd692"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-05.html",
+      "sha256": "bb2f4dd175f873fcb15e4784e6fbdd003fafd807c777d3005698b459de60c123"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-06.html",
+      "sha256": "35135317c7a4737b1f5c5b6fe48bdb10aba96ccb5d72d50fe523f645e95212e1"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-07.html",
+      "sha256": "838d95f2f34d590f55b316d23da248eb9155ed5e50e62614b06c9690289e74d7"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-08.html",
+      "sha256": "c927f65bff1873874b5c72f36e64f379124e3bee7fb6c8a8271b138b4f351001"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-09.html",
+      "sha256": "e8a06aff26794ee9f800dd30783df9dd8370b41fc900ff83a974f61985d15518"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-10.html",
+      "sha256": "b73e729a5fa838d8b7a5cdc682bd5fe248609c084e8602c1bd9d17b158c6bcc7"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/JLINK-UI-11.html",
+      "sha256": "af58abfff812a66a845e7fd2e7241692a8adee8cd0d66bde556cfc3c5f1db747"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAY-01.html",
+      "sha256": "1f91ce7426b866a271417483704be447b8927a7e78388f4607983f87fa975edf"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAY-02.html",
+      "sha256": "4dadb3db476dc8d43385f3423198d81c074740470569c7136f80c80d85dda312"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAY-03.html",
+      "sha256": "399b00b9f1e6753634437b1adfe644b7bcbd169135da453d4d7bb198918df263"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAY-04.html",
+      "sha256": "7c874dac8f6401fc4773ac8dc47032845b351fa842ff6ef6ff228ddc43462666"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAY-05.html",
+      "sha256": "f72020900a0a4f00135f6f843c008c09e1b6a99597f3aa982879014ba6c5901d"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAYREQ-01.html",
+      "sha256": "4fe5eeb4ba2448e952fb2e1ce4eae50bb0ffcb9adc7ddb7bce34332704becd98"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAYREQ-02.html",
+      "sha256": "77347b08c1a915e993a7029aee9c524f74d6dab8a59400c0c6f2efa82f44bc00"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAYREQ-03.html",
+      "sha256": "7174d63357a579cdb29e19e60617d8816b64ed803cbfb2d9eefd9c9543567d43"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAYREQ-04.html",
+      "sha256": "0315fd3f4a8d7f03cd82461a60b778b1d90f9f324e00b8d1cdbe03c493eca3de"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAYREQ-05.html",
+      "sha256": "23bb54927ecc7abad87ae085718893865fdd0098a42b16b6cce811aa193fbc3c"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAYREQ-06.html",
+      "sha256": "ab1a25d3206f24c13424f1c0d6ccd68a74490e7b51ca471591f5690599e9a678"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAYREQ-07.html",
+      "sha256": "360d30645e498e171e7ee550ccae45ae11f879ee42da4df12991fa153f21814d"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAYREQ-08.html",
+      "sha256": "7ef6f3b61c4f66e3d532214090da5b0ecfcb5fdc2c0c90d67d6094b7194cc938"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAYREQ-09.html",
+      "sha256": "e29e511a6dba1048e27d11079ffb663e82643c95eab67a2e16bbab03e54e7b39"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PAYREQ-10.html",
+      "sha256": "9cb7588535699595dfc21e50697d1191bd795018f30ebbe105cd1e0131ee4e49"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PERIOD-01.html",
+      "sha256": "ef50b45b524c23acf163694ad262523ab1dae5b4862b1ce4171282341bd643e1"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PERIOD-02.html",
+      "sha256": "e2e891bb548247322bb3a09b63ddb426522cbbd49adfb0f7090343e6548148d4"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PERIOD-04.html",
+      "sha256": "e23c287d79399f254743b6714b93f6d895dca397639651c81b7886a188d8d580"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/PERIOD-05.html",
+      "sha256": "eda7acbe58eee7a7a99956db2700a5836ab4c9630082e96989ff3844877211d4"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR001-UI-001.html",
+      "sha256": "b0d594be0369940136f4ce8f1e503d07d2f46975276f7e70ab4114b69fd4de29"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-COM-003.html",
+      "sha256": "7458b06988cd45fe338ee2e59ae4d9bdac1b68429148432692f8c6dcd65e989f"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-E-001.html",
+      "sha256": "dcaf3382485257ab5cf6d8b3cfd3da767c4221ec0cd5f0e787c8070035b7ed86"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-EDIT-001.html",
+      "sha256": "e23cb88c3b24a17052aca53a9f45e4a7a879a2ab38b692cc73fece4d1a4cfef8"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-EDIT-002.html",
+      "sha256": "d0fd52891927c5410d3aaa02c56b4f81f6387c72d4b9a77554269b5898fc498f"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-EDIT-003.html",
+      "sha256": "5a10e176a5fbe771407532c1e947281c6bb21a8a8fbc63e7be4c82dac0f0a813"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-EDIT-004.html",
+      "sha256": "3cc40b9b5c5966a0c20f579ad97c8b571b099964a60b745582c8dcc67daa92ce"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-F-001.html",
+      "sha256": "a24804c0fb6b98dfff63b3f1f39fc36409d022d090aa998c12fce56745bca58f"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-G-001.html",
+      "sha256": "13650839fe5bdc8ff2f4f2e4553a3ca858d8caa3ef3132132e50a3fd09a56920"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-G-002.html",
+      "sha256": "ba94e2a611f4d9365c0b3855afea08f077e2b56b7ec8926705ba11d5dde52a1b"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-G-004.html",
+      "sha256": "1f1dd120bce1ecdfbbaef8ef2d0438b838d3b7155832caaed707f16e6d145c7d"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-LT-002.html",
+      "sha256": "3ce3e2b1bf65f1ce8cb4afe8dd2b43b60abc35f248d5b932c9500f6ed0a67d32"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-LT-003.html",
+      "sha256": "2eb4b4c45b8239c4f93a59e7049b28a64a79e79d24d06758f49c0f3be753acf4"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-LT-004.html",
+      "sha256": "09a48dce2257fb1222691572bd20d242974bc5c9980c3b15b6760401f10d5313"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-LT-007.html",
+      "sha256": "e34551f25e908f65dbf61c6c528d1c26b3c3be42fbf5b0d7b8c4f892e04e1259"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-PAY-005.html",
+      "sha256": "da1f38aeb03e7a7c21030b7e942b11ffd46d0d71995bbbe5323e19ff6b4a911f"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-PAY-006.html",
+      "sha256": "faac377ad8b0b7cfe7eacc24aad43a023bed494708733f97179fb8a91c617225"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-PAY-008.html",
+      "sha256": "211d70277b61170b3e73ac6f3511d94af5f01727810bf62e5b78cca1bbe22965"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-UI-003.html",
+      "sha256": "addc89ce78e35c5de57497f56e410cf7c4e00e98a2759992ce9a96e919c13af9"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR002-UI-004.html",
+      "sha256": "3288516b97f3a6b5ff46744d7642d482d4872c36bdfe47a01af61f799bbceaa6"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR005-ACT-001.html",
+      "sha256": "702d2196a19d104b3644a75d74350e3f1dacf93c40e3ae88090aa909e1550f5d"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR005-ACT-002.html",
+      "sha256": "26f1c47921a6090dcd970b7470104ee0a4968bd60eea78359468bf957b6ceaa1"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR005-ACT-003.html",
+      "sha256": "24384187f0c4ed5c910306aefe5b4576a4a2bd738d77db7d9dd9a5d2a4ac6cf7"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR005-ACT-004.html",
+      "sha256": "72092ced0f9f1511f29516959fbec4f61afdf7b1809de894146478a976d5b69c"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR005-ACT-005.html",
+      "sha256": "1155a12e899e1d0192351de1e938089fc44e386f67ce3f3b58406b59665afde5"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR005-ACT-006.html",
+      "sha256": "d03313a96fe2f263d5076409b32c595ce4bde0076eaab66de5e5825ad905f265"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR005-ACT-007.html",
+      "sha256": "7bfb625ad52590ec47695c07c3c6f5823633048e6c4b9ed665b4c3b640863efb"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR005-CALC-008.html",
+      "sha256": "78f0ae6a71a4efb5c19d88b8c141a3ac4710801f923c12d71b82914d50b6ea67"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR005-UI-004.html",
+      "sha256": "c04a17f66cb8607a162604bea4156969e293b71de6dcf1fc436505c6a768e6d5"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR005-UI-015.html",
+      "sha256": "08cfd301c1950ac69a4f693aa0b2c98411daad3b3e30e7a2aa28fdaf6f1316bf"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR006-RULE-001.html",
+      "sha256": "034e5c263b0fcd4cca69d24477a897d1ce9e14c9d597107fe604da049c0dc35c"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/SCR007-DIFF-001.html",
+      "sha256": "14a7b25b3ad5aaebf9032196e5ad2219ca4e5dffadd0903abda7c22a6bf81824"
+    },
+    {
+      "path": "docs/requirements/standard-template/requirements/index.html",
+      "sha256": "8d4ac7e618ef15e52e0001605f5d8b0aa2dfaed5992a3e9d857f7afaa9624c33"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/CUR-IMPORT-POC.html",
+      "sha256": "809d99a71a73ff5e034902588766f73692d9df2b70f989cab234f3da3b10611b"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/EXT-COMMUTE.html",
+      "sha256": "505f86d1daa58e5e43f166752e3bfeef622a6cc15e9ad19901949ec7db724a5c"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/EXT-JINKYU.html",
+      "sha256": "c2eae8f766dde38d3f3ef651b2c3b47bc1f5ec0751334e42e2857104929f687e"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/FUT-IMPORT.html",
+      "sha256": "c66544e3b20e77205e78c7d48283cef84d7ec60687ab452b6943b565fabcfcb9"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/FUT-JLINK.html",
+      "sha256": "7b2433b3b0d85604d3b11f6394acc7516c92a0ac9f01b7d3730bef7a709fbc61"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/SCR-001.html",
+      "sha256": "b298dc9d84a4d46df4611f50a01aad5d459a0d1576b93684a5bc3f7480fca0ac"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/SCR-002.html",
+      "sha256": "e25154057ff99a17a25614a56172a4d03391fd10806498b03c81e5c28a160a67"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/SCR-003.html",
+      "sha256": "2cc9bb17c84d7709232fbf11e053d7a222082581466f22f8bfab1af3faa99f00"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/SCR-004.html",
+      "sha256": "4e8c0d252bb06c2fd2a106bd78373b6c36c931c9630d1187f5894d645925338f"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/SCR-005.html",
+      "sha256": "849d133227825ed5c5912f789837122fbb3a73090469f8666454cc8761e19694"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/SCR-006.html",
+      "sha256": "43e60726d545f36391f389e6f9e1c70c99c74f09c4e96e57ad325e0b90874e57"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/SCR-007.html",
+      "sha256": "883ed819d71830c24c84fef3bc442625a7bbd96c37eff207ee65047925b33efd"
+    },
+    {
+      "path": "docs/requirements/standard-template/screens/index.html",
+      "sha256": "685d61d62557b1572edff3cbdfe2728cb288380b9233aa59ea43372f6e588799"
+    },
+    {
+      "path": "docs/requirements/standard-template/section-supplements.json",
+      "sha256": "d2cd49bb64e8d2be3651f601e36fab408300f6a8a371ed6bc7130e3f02070d49"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.1.1.html",
+      "sha256": "6169155f925739ccca13f0879b0cd4c078e79a6a84b08cf199cfd49de5a8b828"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.1.2.html",
+      "sha256": "672722fe2b90166c40c55ca4bf3b23cdbd594369151b829a37360639e2128734"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.1.3.html",
+      "sha256": "07c3e51b002869070f5b4af91123fbe0fad220262cfe24bd443030fe92600330"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.1.4.html",
+      "sha256": "ac2c5b09ebd83b3b7be7a3209d23d1e97eb447c0b1ec2d5877b68ca107a3f0ee"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.1.5.html",
+      "sha256": "5f8716ca6d8afe609e2b93c12cf3405e6a1cc7125958b352ddf730c81b6a2ee4"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.1.html",
+      "sha256": "6e74b30db819b245782a2265be1956cdf88d6611552c9468372ebc0ca2adbeee"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.2.1.html",
+      "sha256": "ce14b5cad733e9a36c337341e5f3148eff42c8281a9c91effd52bb4ac7242c84"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.2.2.html",
+      "sha256": "6e8af27db8259a4dee3ed00574db93563e881797a937712609aa06908e99bfda"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.2.html",
+      "sha256": "661599ca5ba29879972aea625905edd65923ebf7a3cbf25721c77c5691d398ee"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.3.1.html",
+      "sha256": "cb3e23237f7ad35e4fe8981b9fae3de3e45cc5775fbdef79c678478f0bc1d993"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.3.2.html",
+      "sha256": "b36da4cddd25e0fb011a401e902451d8a0c8a7057b09fa587861ed37584f9869"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.3.3.html",
+      "sha256": "91d7d18568ebd0cc6d3fc5831517ac46891cb167dde1494bc07858fe5cfadaf6"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.3.html",
+      "sha256": "20c34f103a080bb4bd830a7b4ece9f0b77bc7bade4ab73b1e4ab5d417a8afbfb"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.4.html",
+      "sha256": "b23adb7ece8a3a99f9dce48511b32e50893990906a37f144e5393168d8f0a385"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.5.html",
+      "sha256": "9136b391d93457b384985cee82e6319296d153663a6aa3033de7bdbbf26571b6"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.6.1.html",
+      "sha256": "40b89ce1c467285d1b27eed7c5da580d14d89217d641b855467f47ca9350d0ea"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.6.html",
+      "sha256": "e2f735b152bdfda6428918cd34bdd775e72a82b2e010c870de2b1ce4c64d1e74"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.7.1.html",
+      "sha256": "2c1b3aab316a9a4d9512562ecf5cc4fb4bbf893062136f9eab80894f04033e22"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.7.html",
+      "sha256": "812db31a5b5c08d4ab0080b0674e46982001942b4ea276ce9c7c4d26c14bbf7c"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.8.1.html",
+      "sha256": "530d583f9b93707bbc50286cceec67d513c762259800aa9b2b22cf9f64c6ae1b"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.8.html",
+      "sha256": "e42126f4886f4456a2847016e431e7ffb766f72703ab81fa4f34dc8ac3772ca8"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/1.html",
+      "sha256": "eec21715154f19bb235296231d4441e606cb9c32286d4e71c23a2f33c60a3bf1"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.1.1.html",
+      "sha256": "5f69de41dd128c6ebd208400e6653acc75a9f0d8f7ce62cbcafab46ab18366f8"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.1.2.html",
+      "sha256": "fbce68e189efb96df71de306f2079a7fb6fe14b0bf4df873da7c1af26912d974"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.1.3.html",
+      "sha256": "b5f814148b17e77ccfb2e079fb1bef57186d0c058c01f8e3f4d1d40f6ecbe2d9"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.1.4.html",
+      "sha256": "5810ed2e6d5f137be76e71bc4be3a0333c3f4241a94ed5392b848edc0b41e4ca"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.1.5.html",
+      "sha256": "ccbda3280a9b7c54440682f0c018d1c4cd77c6c4e9cee1cf6473c89c27832aa5"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.1.html",
+      "sha256": "7c46ad58579769c3b25fedc20ea6df041d43c50a11655ca16adf211681d30a81"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.2.1.html",
+      "sha256": "9e0943ada620f5702c48a3875b66eb91b2d49796381526925a862dc7a0f4b6e7"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.2.2.html",
+      "sha256": "688241bf575f3ed146373e40d1ff555df07afacfe97952dbc2bc40adef42a818"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.2.3.html",
+      "sha256": "a3a09286bc9504d5e22af70252cdcb05cfca357d324ae587597e485a05321656"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.2.4.html",
+      "sha256": "851bcbf6ab1a9803a9412f79c91b9638b522221867c9b79d86c0e505b5d69454"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.2.html",
+      "sha256": "984b1dab65842c0d3d6f02064e105aaad532fb83978db5ed4ec3c23345ff4f2f"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.3.1.html",
+      "sha256": "0593aad77594c3a67a1d19ac6e0619d22cc6cacaccf326cf9900972e588384e9"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.3.2.html",
+      "sha256": "c45fc33bf87b3679e524218357ba90b7967113cd8571e2f4e6219fbe5e1125a3"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.3.html",
+      "sha256": "04819d4b6c1f84715d3ad05d554fc1e3a2b3763a58fcf3f3fb9a550c419c3916"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.4.1.html",
+      "sha256": "b272f4b0b5829a4331d76e4a3cd61465262b3f744cbab3ade8a3afc34e38b637"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.4.2.html",
+      "sha256": "81b86c46f5caac77738e2def5b4e29ab0e63ba22b0f3a321977830266e9b8d8d"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.4.3.html",
+      "sha256": "b2b45b1737b1358fb20931235e43b061bc376b758f21d07521313466010a34e1"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.4.4.html",
+      "sha256": "c568e85f56b7eca270c0330d1e29eca34314a96708685bc80efbd698c2308325"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.4.5.html",
+      "sha256": "8b0e9d3f39230006c844a1f72d8ef88e0c94ed857cbb910e5f39b1e3b8554e10"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.4.6.html",
+      "sha256": "76785bbc43b5e53ef63cbf2edc5d02eac4cc28be721ffe2c8571593d64e3a387"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.4.7.html",
+      "sha256": "f5f16a79fd2ffb324c74af24e3163872e5c0e9f3b3bc42d84765e189ac3e8138"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.4.8.html",
+      "sha256": "543d62004804579fd6dd6d7dfa0ad5aec7abe6b87fdccd9123be195c025f4c6f"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.4.html",
+      "sha256": "56a5a02ba3029c390b9c2f9105bf5241e41e490a9729c57c5a97f9f636a1383c"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.5.1.html",
+      "sha256": "2898a9dddbbb5c778226827c9e91a93dbac385ee28fb1ffbe4bb2ac516c198c1"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.5.html",
+      "sha256": "4b3190cf01f3e710da10b2db86215c216f1f3be7d28050042b90d1a9fd759ca2"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/2.html",
+      "sha256": "00dc51b1dbe1bbec6d4d77cc6fd5ad5ef0e3cdf2c04fdeeca3c956f607a4b64f"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.1.1.html",
+      "sha256": "ac85728fd18c309dc27d9e724c043992ea347253c136af2b59153428046c89e2"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.1.2.html",
+      "sha256": "071624b9a0eb48140e5a8b0c18fbd5e449cb36fb831f8f7450cce6a0b0a6147b"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.1.3.html",
+      "sha256": "8d712e919e83f8af8705ec7120191eb6675a863ca5173fcd1336dfec8416103b"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.1.html",
+      "sha256": "e1aba350e482ac7033f206612f28f988172bcc0e0d09e9e73e5c27d6df2d87ae"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.10.1.html",
+      "sha256": "28923ee524a4f41db3f8269b9aaca07b0586f2cc02d603fbd28b0e586028f9e4"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.10.2.html",
+      "sha256": "22f43b57b6109870d09a639091eed307a7a6194b5649d67890a78f6e366ca043"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.10.html",
+      "sha256": "cb0815ba732fffbc5901b5d59fd4b31989d517b9236f2199cef0ff008c5d6fbe"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.11.1.html",
+      "sha256": "6ee92e3e318175742623b0d295ede62ddf865b9ad20bcfb4894eb499cc8beeee"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.11.2.html",
+      "sha256": "c701fd455392b176cc7ca1b3a44532b9adf19220701cec6ca40759eed33000dd"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.11.3.html",
+      "sha256": "e8929e45fbeacc230aa90a030a04727d786cde2011ff474436279922bbcb22c7"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.11.4.html",
+      "sha256": "9067987d9acb59b7d3cf9af2423f4a535007b20a34b0c5cf02525d326e83ffbf"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.11.5.html",
+      "sha256": "6a9ffeea4746b188e2fbfc0d17fb511932fcb38c0e7bdc4e95d4320168463c45"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.11.6.html",
+      "sha256": "3a424dd653569d4d573e8bf24b839fc352b1115d7118257a6ca723f77b92f26d"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.11.7.html",
+      "sha256": "1238d748c8c7c409ab62ec915f998412fabeae1e73f61a0ff3975cda9ba0fdfa"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.11.html",
+      "sha256": "6a6e160928fd80d1b8d7dac24ca878a6af663a5f235f827ded679d44c85bbafe"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.12.html",
+      "sha256": "8e7845fd536439e1e59b1e06ca578ab0abc835ec93a142da9bb8295fbd4b9599"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.13.1.html",
+      "sha256": "b929c7e190e7dcfdc2d984e247f211c3e0714f0784e4f9b012043143ea63079c"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.13.2.html",
+      "sha256": "cc1c6426de980041ae330622ab7a1d42e5b1a0c7cfa5fddc4cdf5826ebee1bad"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.13.3.html",
+      "sha256": "b029ef3b87103701b87e70fe00c8c53daf20534976f5016c17fbf90293296c26"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.13.4.html",
+      "sha256": "87eebc49975e698aa0e2ac71bc3bca79027aa680568e69484a1b570a642907ba"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.13.html",
+      "sha256": "d63fa1e9af5c9b6440ef880c2fbe5d2a3a77c94c51d298ecf8acb05a594ffb3b"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.1.html",
+      "sha256": "0a030cc1e40d7e5f9c4e15e705d88ef3e5b7cb974510cacca8329dccd4d8bb34"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.10.html",
+      "sha256": "f1e6569c1875ab7b13e24228e46301e8083d77e520b2e3b1421fce52a6bddfb0"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.11.html",
+      "sha256": "77cf38a3a10369ca15b578020ba7b66c1651553413e210a9197797bd5c7090a4"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.2.html",
+      "sha256": "fdc290a2dbc80a851285d6d18b495a80cd9f3689db4ff2c911fe833ebe3837bc"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.3.html",
+      "sha256": "7ca6123b3e28f2042aaceadf7cc0f172d8ae8ff31f2b8b5938c888d5d52f9822"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.4.html",
+      "sha256": "99565a55a0836754a3bd1f61ad77ae4d46340f3ea3180ee2cbba223672314e83"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.5.html",
+      "sha256": "4c179721be1e24636783062d65d8cf2bf31a6b8efbe704176efc451108ea9efa"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.6.html",
+      "sha256": "6c0ea6854f1a37c30889c84d7beef184036b7977a1562d3bb21ae263b7245796"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.7.html",
+      "sha256": "8d64c3af58e53aa1a6ee5b302ae1dfeba0ce225e5bd0f5777364d111c04c08be"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.8.html",
+      "sha256": "08552f2b255b1509b58e63903985ab525695721ee1aa0afdbfde66013f11c0f3"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.9.html",
+      "sha256": "8e8776f028778dd1d0c0203d6a00825c5049be1bb13055e2bb120c70bb13b8dd"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.14.html",
+      "sha256": "b1431182706a3fd32db32cb47bc72bb1aa72284fbf38954963ac50713d9f1952"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.15.1.html",
+      "sha256": "9891986d4a8c7ced30d5cff763e3cf0c26dd89584a45e739f9bbc08467d01c92"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.15.2.html",
+      "sha256": "fde0b36e077bbfa9366cea89f2af98e9f182cf4ec3f6101ecd7a0dfdf3858029"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.15.3.html",
+      "sha256": "6f52985f1e8ab53237a8106c07d2ef7f554a2cbad66a92579e5513cb9ef2c602"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.15.4.html",
+      "sha256": "a0c4ca79075cf9c17ce5cd3abd9e277c6dcb60cb4fe05b0cdff352b5d822e1d9"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.15.5.html",
+      "sha256": "8f93d92adf7bbefc0c3dc9fc74b911643244086ee026b6a641dd99fcd5c4d63a"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.15.6.html",
+      "sha256": "81a08fd3a9a450ed36814b076ce32bd592ee706f615ff4ac32a93858f525a7f8"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.15.html",
+      "sha256": "348e914f1c6bc657ca9983a35ea90dd9fbe57c30f1c497e3e3d59eab6f24d217"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.16.1.html",
+      "sha256": "2d642788c88f80df95b9515bba302a998eeb75a8a7463724c5e03e68f7e90046"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.16.2.html",
+      "sha256": "42a1b3896bad1a21ca140a79736ef9ece31e70c917bc4f12fb18146ad0e2458d"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.16.3.html",
+      "sha256": "643a7d74cd0228e126b9bc981b06c9c61f9c7b1dd8dc35ca430375d8fb9cd096"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.16.4.html",
+      "sha256": "9e9ef09d59e591a47c37ba3a22ec60a6b7c8443d9f145b42707b05a3506a76ba"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.16.5.html",
+      "sha256": "d059d18fa12e800f089fd26a37c7a7cab06de8fc67b770a7ce48a96d1361df94"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.16.6.html",
+      "sha256": "13c305c79ff79fbc358302077fecfddfaec2d192a8d3bebd28765c9b353570df"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.16.html",
+      "sha256": "6c01b3c442b92b6d020e97a01a23247aef7dbc5b5e76a48c323672b242d32d53"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.17.1.html",
+      "sha256": "7a36263232a32163fb4f6999d393479e1d083d6c72e604c7924ce68335de2531"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.17.2.html",
+      "sha256": "c39a413abf78f606c545e6e1045f85942fa1f82beacb804ba54b4496aec8c61b"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.17.3.html",
+      "sha256": "0538bc9072fe560052933fe1c4f81b02de4c767ec973faaca8ff48af607d2edd"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.17.4.html",
+      "sha256": "394d76d15fb503a08ee1f1f7843f67f78586a592de75bc7ee964cb4dead93a0f"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.17.5.html",
+      "sha256": "00f5473b3dfcdd53afe50ed1f72555b178fd7b4a5e62883d15a5241f2e2fd068"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.17.html",
+      "sha256": "2df0da896c2869b57c6175163df6d5743fb43475b03959c578f0d886b14ff9bc"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.18.1.html",
+      "sha256": "28f9bf1fef459a7ba70a284ffa2bd9c000ff2ab0448c57d5cd912ee418957478"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.18.2.html",
+      "sha256": "6a97468de41e5171646c96bae580f54a1f04476ef4778585f172a0b332762636"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.18.3.html",
+      "sha256": "a2836cd1b9f1ca73bd7a448195049437fc995fa78c11657705cfc727dbd17a97"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.18.4.html",
+      "sha256": "1a5e11152a7315b34ed695f54373f629e4f9f565f5f8c265f04e8dd44698823e"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.18.5.html",
+      "sha256": "186089b247dcac36a994c5b8ee0cd1e71f28f5b952a60a25df744165399ba757"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.18.6.html",
+      "sha256": "2a5c1a0327160cbf6584c43a0cd0380708f177520f81fdf5f3b4e66eed110e2c"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.18.7.html",
+      "sha256": "1c708c8aaf9f855ec5c674769659e5569521ebc94764899a43af27028cfa11b9"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.18.8.html",
+      "sha256": "7d6629ed9b19ce60754408f7ef27dbff1f2979531a78a609d3908f7fb42928ec"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.18.html",
+      "sha256": "f9fbeb6212fe81e85fc0342ad79ffdece90e8771986109c8bd5da8adafe13a69"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.2.1.html",
+      "sha256": "25ef9a30d6edb4eb91b37bc7d8f4f49dac08efef1c9056cd2f04234d7fc207c6"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.2.2.html",
+      "sha256": "328cf8b557a3178d4954159e3575bdcace0c71a8fc058770ffb5c4273dbe0ffe"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.2.3.html",
+      "sha256": "d787b679b775c582a64a95b2a15d2d5bb19e44b2613e295dc255b1d750823a82"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.2.4.html",
+      "sha256": "8fdf520d520e5205bfaeab48bad421989f891414199610b845e13b2ffb812f19"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.2.5.html",
+      "sha256": "7be6cc270c4c2904b694b9002c104605e41ac08ac2f94471873da5838dcca36d"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.2.html",
+      "sha256": "a96d0e5c6dd28426f017c53dfccee9f016683b3718538c15a85119f9e8d5a853"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.3.1.html",
+      "sha256": "f929616da3e6bb4fafa0aff30d7c29f91157cc47c94c19b9b33f6536de0b0e18"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.3.2.html",
+      "sha256": "656fdd0abd94e18ef7ff0b35381e24a253b24346af4a9bb2f4e78905334802da"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.3.3.html",
+      "sha256": "915ea46e54735789b2ea97ec9e3d90c3cacb1eed8a9174be5b41cd209a78ce8e"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.3.4.html",
+      "sha256": "140689ad9bae07ad3c6c1bb6de49a9d859c30225d193d317c3a88c06bd5c34c5"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.3.5.html",
+      "sha256": "104d3b6def657f9b66f162bea7f1f1329ef1ceabaf9c029863480dd99b848bee"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.3.html",
+      "sha256": "b8ced88eca857fd87bdc246bc051bb1494f40dc4599775112f7710ed3eb8e9eb"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.4.1.html",
+      "sha256": "e4f3ffe8836938c2caf1bf0ca0746a8ad2b8e29febed3109b402618b3520ca95"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.4.2.html",
+      "sha256": "5cf85fbcbd3ff627cf620342e90f2cfcea7faa8b5c2a8a170217c93303dd9a18"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.4.3.html",
+      "sha256": "8930b812dda32145a506189ebcb912f91af291e8e06b8c9a2b43711b0fa7850c"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.4.html",
+      "sha256": "890c68efccc07d29be02c0687cfa8137aadff19bd414581ee6a86868a89fd41c"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.5.1.html",
+      "sha256": "f5ae27394012324bbcccdc9a55a37866bf09eb729008d3536e65bad4f3943a04"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.5.2.html",
+      "sha256": "f1805d590f6921ae804667dac935c2bc2742178e82bf1035e793b0ab30ac3b1f"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.5.html",
+      "sha256": "733ff300170ec71056db775384ef0a9c5a5b68994acdafc781278b55898d9d0d"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.6.1.html",
+      "sha256": "6ac042e1d71e0c76892b9cf02cc2f6c271bb3a8f75e2c4cc588adcf3bf5d578f"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.6.html",
+      "sha256": "2575d6d2f2559c688c733dc66566166154e8000b34a1199023f8420c02a0e085"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.7.1.html",
+      "sha256": "90882719ebf22108772649214cee65570100947433618737bae853e788c9f6e8"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.7.2.html",
+      "sha256": "d8f91a2899ad8a5367f817e679cc0c64672ce8c78e2c205db6a2c4c9b3f842a7"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.7.html",
+      "sha256": "dac0fed46189b897918fda56018c711ab1a60ccfca161c3a2c57b1c44136c69c"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.8.1.html",
+      "sha256": "cdf0378826f1952a6ff2244cfa85cd1dce63bcc63e4ea001b04ca6241e465ac9"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.8.html",
+      "sha256": "d0994e133997aa153c4cd6cb5fb278e422fbe07869e74f9ad7fc7f8fd800e44e"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.9.1.html",
+      "sha256": "1c84c8ece78022d181f2dbc41edf00723b74dd614ef31ce0e5d35cadff2469f1"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.9.2.html",
+      "sha256": "5f988d2048e23487d72f897e8f1e3a9fc7c2bc89bcb51bce2df0ea554eab2949"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.9.html",
+      "sha256": "231c319e7cb2e761e61951f68081611360a56b85c0b67bbcc7020d2f2dd8092d"
+    },
+    {
+      "path": "docs/requirements/standard-template/sections/3.html",
+      "sha256": "4423b45ba70e798db37053d17322149b11ca3c4f7a400311b8253cc6138058e7"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources.html",
+      "sha256": "0efdeba9a33ea7d23965089f40c083f429424e22a65ff132cf8a168156c8471e"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/config--dataverse--payrollledger-columns.json.html",
+      "sha256": "2bd98a84c500fac0b9b7063c91f6a8de7c1550096f58e43881985fd70268f681"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--acceptance--user-acceptance.html",
+      "sha256": "c63dd551f44d459e960f76b484c9a917c902fb9168d0e1458c9f9d6d562fb1dc"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--design--basic--basic-design.html",
+      "sha256": "2ce1df23614d01c4d21a4908d51e69f9d335095517550ecf246c1e389c16bf0e"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--design--basic--data-model.html",
+      "sha256": "951d58cd203dc8a81eff93c1187252506963d336dacdc36b9f9c6cb3d1de509f"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--design--basic--design-system.html",
+      "sha256": "1b2a2a1c80c9be277a9b11589a507327b7c00ef149073f6c875760f4f2c87dbf"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--design--detailed--detailed-design.html",
+      "sha256": "fef3be0e9ced8407a8e3b84e147b3a0e38155124600e7d9c8529af53ad9a1a5c"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--design--detailed--payroll-jinkyu-interface.html",
+      "sha256": "a7436309b3931cebfcb220f9b00b6e89c87cb178479c23bf100366dfc542041b"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--handoff--STATUS.html",
+      "sha256": "41aa4d877aca45dd0b329831bc79c4288d48c200146b3353d9cc9a212b20facb"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--operations--single-app-workflow.html",
+      "sha256": "2dcb96154322a4a4146f43d284b78fd9ec56c62f13d61087ddca532b8fbee684"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--requirements--business-requirements.html",
+      "sha256": "102bb4d7919d52828c71686d0e11bad45c773f47f014b98b33b99d69838fb536"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--requirements--non-functional-requirements.html",
+      "sha256": "a229e66128eb66454953a54284a15daa998fef1c8401e67d47f9eb74266f8789"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--requirements--open-decisions.html",
+      "sha256": "f32bbc83ccce6592c31a9e17e90bc448e1ab478ac457fd51cc7609d11bdff37b"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--requirements--payroll-confirmed-20261007.html",
+      "sha256": "570d2d5b2c6adf4753bd0064d25f8c5bb5ec55519ec22046890bc0606136d1ce"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--requirements--payroll-interface-decisions-20261008.html",
+      "sha256": "d741b0e0c874a1c6de2bdebd7726e30ea5983d3e6782d9507bfcdc753d7129e6"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--requirements--requirements.html",
+      "sha256": "654dc3c97583c1bc3c4f14780284ee5e3397a44d48b8935d4da4d54e0104c995"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--requirements--screen-requirements.html",
+      "sha256": "f59ee9d9aa8bb5287982ae6ac660dbc5f95dfb9f80e3156b614510d4abb16274"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--requirements--traceability-matrix.html",
+      "sha256": "3c579f22b58275f9ded6a07a88e99ce58c22278cdb9902bba3d7883dcb91375e"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--testing--test-policy.html",
+      "sha256": "9a78a733d1a935b4821ec467402444ba789703114d6c058b5494fc406b924759"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/docs--testing--test-specification.html",
+      "sha256": "852a8b988f76a3fd1a42bdc0591f68978052e23eb8c1752c917ade3d77ee22af"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/records--changes--dot-001--38049776822--QA-REPORT.html",
+      "sha256": "0127c0c55eb96dd57a3763010ce83f262c25ec5c54d8384613643801ef1bf63e"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/records--changes--dot-001--38049776822--record.json.html",
+      "sha256": "bc8dca55e5fe82d1d78e3488c00ada421be0dcd871bea7502e06293b28c23f8e"
+    },
+    {
+      "path": "docs/requirements/standard-template/sources/src--screen-ui--v1.30--home.paste.yaml.html",
+      "sha256": "7a8a150f187e6cf3237089ef16875978378e3f275b3c4ea90f8dfc74cc620f4c"
+    },
+    {
+      "path": "docs/requirements/standard-template/template-details.html",
+      "sha256": "b262e6be8e717dcc3b77d916793ab2b84a8d9914ef475971bb1cb6d4b40ca50d"
+    },
+    {
+      "path": "docs/requirements/standard-template/template-sections/3.12.1.html",
+      "sha256": "a0745a7bd49b512561756b925714dc659ded74ba497a8937d11ed144264060fa"
+    },
+    {
+      "path": "docs/requirements/standard-template/template-sections/3.12.2.html",
+      "sha256": "0b54e61a6951c506a485ab82f876d520dafb49acc60391bc48769e1a65cb57bf"
+    },
+    {
+      "path": "docs/requirements/standard-template/template-sections/3.12.3.html",
+      "sha256": "b248028cd27e86e679b383837fa6e868b433bbcff30428c3418edf7dbc21598b"
+    },
+    {
+      "path": "docs/requirements/standard-template/template-sections/3.12.4.html",
+      "sha256": "20f5d19abfd46567f430d89dfb539ca647966fd3755742e829935fc27273c5ab"
+    },
+    {
+      "path": "docs/requirements/standard-template/template-sections/3.12.5.html",
+      "sha256": "6b5468ba8dbd4cb43bbb2831b39792a1887ac65534bf9f0bc11a68b3cf259fe7"
+    },
+    {
+      "path": "docs/requirements/standard-template/template-sections/3.12.6.html",
+      "sha256": "b95311b4fbbb114e6f082009d509d38e0f9c91d969b2c11c64be4563e308b016"
+    },
+    {
+      "path": "docs/requirements/standard-template/template-sections/3.12.7.html",
+      "sha256": "51480b288b61bb2a61f3292a8086519132c26f8e2a4db96fa32b8c3ea7e0d1d7"
+    },
+    {
+      "path": "docs/requirements/standard-template/template-sections/3.14.1.html",
+      "sha256": "3a461781b32db238599b78ec5dab14927ee75c7460f6dc24223d828f905af010"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-01.html",
+      "sha256": "889b8559198a9a77e178f22fc0c2de6713c6e3350d2fa3895b1c589679eb276c"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-02.html",
+      "sha256": "4b8f8c1d93e6cf37e63d8b1f68076cd8f3b7833236daf72c800231c2e4bb969c"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-03.html",
+      "sha256": "705761c33a076fd54fd5c8cb54d2ade2ca257f770f6c9a50f8156160d10c9e12"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-04.html",
+      "sha256": "f56f7d4f53fbf62b81143dfeca6a58f66171cf7d3c8223d3f5ba4fb365dc69a8"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-05.html",
+      "sha256": "7cff056f3620409270010f1f483de7edc7b517d7014050979c15d0d868b8c2be"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-06.html",
+      "sha256": "2c01b13359ec23a27cdffa4834b3624c79893eccccc7b1c641914d1d36a664f4"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-07.html",
+      "sha256": "62401465dbb966841baf69773a1aee02a5ab3d90d874970e470947b22e0a81b5"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-08.html",
+      "sha256": "f7648a296aa89d1d77516556c35e7198edebd7034108da87927b47d2b0cd975c"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-09.html",
+      "sha256": "cf98a9b5ebef017b925b181a93452f7e40f6a7484becc2859376ef23798c9a51"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-10.html",
+      "sha256": "2ca1a4cb884684d2c309e3c779c19a6da7c64472f41d05e0396e5cb25ef73085"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-11.html",
+      "sha256": "2149b3d78d7adfaa84d51ef94593aff8c08ffad38e83f5245d670687c1d2d7d3"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-12.html",
+      "sha256": "7277f50c77f95feadcdf000c184d75a62faa41f7478912af52d5f3f3c73591c7"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-13.html",
+      "sha256": "8c5f64b38c5305aa6a7062be77da96d23315934aa47af81c4088619d12781fd4"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-14.html",
+      "sha256": "3964b49d3a477d39f41147ddca2f872d1801f52d975e6f3f16c4d96d40df564c"
+    },
+    {
+      "path": "docs/requirements/standard-template/workflows/WF-15.html",
+      "sha256": "2c33b887e4aeb57404f700b8c420c26c90067bb3445edc71ccb3f6825cc67c4f"
+    },
+    {
+      "path": "docs/review/pay-html-001/README.md",
+      "sha256": "0dac80502caa439a45bc2f84b587cd3edac44a72047756d5a2417c00d108e246"
+    },
+    {
+      "path": "docs/review/pay-html-001/coverage.html",
+      "sha256": "3a957229658c5f84528aa7928701cd6d3fe27637afe4ef2fcd0ef9517a9274e9"
+    },
+    {
+      "path": "docs/review/pay-html-001/data/model.json",
+      "sha256": "a986f1886a15e1292c795bb96ba22021a0b634fa0ccba53c771bc91290e6ae76"
+    },
+    {
+      "path": "docs/review/pay-html-001/design-notes.html",
+      "sha256": "c6dd1e14a2429ee54137697db92b78bce9fea56c12ddcb80322f10a509bd7f5c"
+    },
+    {
+      "path": "docs/review/pay-html-001/index.html",
+      "sha256": "30e3feebfbaa84501ee719a9c703c8a5b5be9a7feab2a1281a1cd970767bc87a"
+    },
+    {
+      "path": "docs/review/pay-html-001/navigation.html",
+      "sha256": "2477f3d972a3b8a512977654af271db8d333dd871ebeabf4c0c6cfeefe3199e1"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/cur-import-poc.html",
+      "sha256": "cd290758a184e184b94f2467db9f4d9d34ad083d8b39d1364473d53b307d9190"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/ext-commute.html",
+      "sha256": "77d413bbbe901b2481c659db09101a340e8fa67d25eb5763c27a66225cf264a6"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/ext-jinkyu.html",
+      "sha256": "a01721e18b927bcdb53d79e00cb5c7d92408e2bc0467ceea1a06fc0397b73462"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/fut-import.html",
+      "sha256": "c766cafe02607796130cf49852e0a18683678a84c1309f450da897b23b19a3f9"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/fut-jlink.html",
+      "sha256": "965ae028d63bb4aa5e90d4fc675a6edb5f4d1bde3e7fd87369540b9ca2ffd9d2"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/index.html",
+      "sha256": "6a95cb93ed24bc4ff90f2b39af466816e37e20261d5248731df56bfc4aeb2d35"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/scr-001.html",
+      "sha256": "02c29d4e5accde1d2aa67063071a8bdec8a2fd39ebf0a3e7e38129287420fa63"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/scr-002.html",
+      "sha256": "1b234ccac18bff596f7036f728055651573a3a9e7cb31d04f2c2ba20fc6dc45e"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/scr-003.html",
+      "sha256": "079bf24dc18f61a288006353cd1de03286117d349ab65a265f8caaf0c4a553f2"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/scr-004.html",
+      "sha256": "ecc3aac9e1e2dbc5d90b7b15d6ba4350c6fa0d4226c292f43ad706bb7005cd63"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/scr-005.html",
+      "sha256": "f5e76ff06b3087610f76e1e3f6158f458be81b2d80f7acb8a4a805bcdc351c2a"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/scr-006.html",
+      "sha256": "8d9ca6babf97516d82b51550a3f83a25a0bc0e531e9a3f5544ace357b745b890"
+    },
+    {
+      "path": "docs/review/pay-html-001/operations/scr-007.html",
+      "sha256": "d02e67d2c44da9877e9f9e548d0e50c34beea6f56dd1f9ef73b69fefaa5a443d"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/cur-import-poc.html",
+      "sha256": "1fe1ab1acfacb74f4f7b5572b18ce4a054fd739c9df18ac3951d4f2b0149bf38"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/ext-commute.html",
+      "sha256": "43a74a7e00f6c9e1ba74d5d1af0821efb573c9206d60c069e40c37e5060fec1a"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/ext-jinkyu.html",
+      "sha256": "0fed872bb1a4ad39da974b1d667eacde9a19e594cd2cccf80167b180aa947f03"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/fut-import.html",
+      "sha256": "69e2e595c91198c85495e7b17b8725878ba9b0151473ca8b3fdb016b43f0b3d6"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/fut-jlink.html",
+      "sha256": "3a301c7160f2428fcd8f68c75c6286aa38c294b603777812ca7c11b7b48a9c00"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/index.html",
+      "sha256": "5c59c487c230beece9913c1b733ad5f2397f06ed66fb30de4b51fa1dffa81706"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/scr-001.html",
+      "sha256": "b88566f42cd0fbcdbe545a3c22cde5139470a86ad5546f7e195d7a299691b0c5"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/scr-002.html",
+      "sha256": "da26bd3ffa22b7f8baaa0813918fe14863f1d36c791be881cef9fed4f1808fc5"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/scr-003.html",
+      "sha256": "2e89adee76c12a86013af0ee4f0ffe27b039a0e38bc2964e90f6288f001df68d"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/scr-004.html",
+      "sha256": "62aabc2cb53ca2ec0ad5d1624418a99aacf53ed543d82a33cd5c311c5406d340"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/scr-005.html",
+      "sha256": "2c1fa6b18e39ca66e640d15862371a74f1e6a435e01324ad5871e9506be8f89b"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/scr-006.html",
+      "sha256": "3e6498aec808ea01ccb8c84650d07a797c94ab402c3d173c7286e87d0beab294"
+    },
+    {
+      "path": "docs/review/pay-html-001/wireframes/scr-007.html",
+      "sha256": "d01014ec9721b519f73d657657ec4e14df850d674bc42307a417f6fe3cbfb967"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/index.html",
+      "sha256": "02d610e0177b63eb950aec6e68b373afc19cef45ace4a95667b36c027bf4a849"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-01.html",
+      "sha256": "3ed219ad0a8e2bbe2e6d01fc1bc154391b546c28d4c741c1b3ae54810d09fbce"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-02.html",
+      "sha256": "9f67cfa05841540573c3bb4ed1d9b6043be4a60a92fb9d606b8d7db4b99d8f51"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-03.html",
+      "sha256": "1f7eb1237e87dec06cd9fc66b1cd8debbf90f9e9b4469c3fe8f222069b6591c3"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-04.html",
+      "sha256": "355035b15e19009e1dc5cacb880a32d1e5e2b5c63577f838c51d1783c7508a16"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-05.html",
+      "sha256": "81e8f9b3b554b3d4415bcce94a5dc8cd1664e8d61f7f8c195f44759f0f939c89"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-06.html",
+      "sha256": "0762ffe820c06204737f6f2e6f987208420f2cb5e958ea2a9941016162369e0b"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-07.html",
+      "sha256": "cc230e2b94eea14643bbbc9fe30b073f03d18b5ca41f4307c24e47cbfec5e70b"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-08.html",
+      "sha256": "ec16f512ae486404f08d1f8dd8cbfade9720c46597f2d170c21aad42ddb9e85a"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-09.html",
+      "sha256": "ee9ca9c54fbe2aabe67a3fdaaf9f28c4dc5375f62a365e1f72ae6f77a5094cc8"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-10.html",
+      "sha256": "390b429f8724fe79dc0f3abf08a9e9a7710729269421997c53945e31cb57dbc5"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-11.html",
+      "sha256": "37a507b75439f0e354a8c30f7e179fcd0822ff96b09d1e159346c74f3a1e6f04"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-12.html",
+      "sha256": "43ce2503a19e950e92d42693e1b97742a1818afd07dd6476a400255a98c190ea"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-13.html",
+      "sha256": "d4048d5dc7be7ac3da0137bfc807a879057ed6479c579b03344ddb62772462e6"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-14.html",
+      "sha256": "75cfc73600a639895df0a6e80c3ea7e8b9553e53463595a837e5996abe00779d"
+    },
+    {
+      "path": "docs/review/pay-html-001/workflows/wf-15.html",
+      "sha256": "af1837a7b82a71b3eda1a70aeca98105dea213c6f1e318b1c129a1a024e79806"
+    },
+    {
+      "path": "docs/testing/test-specification.md",
+      "sha256": "f7e529a678d78f091d0b21940835e0d0e4b756685628c04d593ed043efc8f6f3"
+    },
+    {
+      "path": "records/changes/dot-001/38049776822/QA-REPORT.md",
+      "sha256": "a7f371474ed9e4c92cc388ff17da410bfed32eedece5d19bf767a804cc2dd57b"
+    },
+    {
+      "path": "records/changes/dot-001/38049776822/readback-summary.jpg",
+      "sha256": "9329f61901b1fe7fbd7cc979b315e86a83a6d45ff83efe436f7c17eefadcf269"
+    },
+    {
+      "path": "records/changes/dot-001/38049776822/record.json",
+      "sha256": "09239d80cfcb9cb898dac5842ba1c5ef8f2f0bea4587e2e51b0d17a68bb822b1"
+    },
+    {
+      "path": "records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md",
+      "sha256": "1447bc9d5f7b7a1238b5902686f729461908ce88ce76a22f6889daf663db7a00"
+    },
+    {
+      "path": "records/changes/dot-002/manual-20261010-publication-refresh/QA-REPORT.md",
+      "sha256": "265e32198631f15cfcc1dadcd57e34e258475b3f9d44c13cd8e072d6992cbffc"
+    },
+    {
+      "path": "records/changes/dot-002/manual-20261010-publication-refresh/browser-environment.json",
+      "sha256": "a534dc52a42b8c8e7ec9e956baf55848c903b2392fedd5494d44f12d2fa823e1"
+    },
+    {
+      "path": "records/changes/dot-002/manual-20261010-publication-refresh/canonical-preservation-baseline.json",
+      "sha256": "26665602e5e21a3a6d2c4c8c98b79c4897b992ce69a6472a6645c93667a0cd9f"
+    },
+    {
+      "path": "records/changes/dot-002/manual-20261010-publication-refresh/placement-validation.json",
+      "sha256": "2a0b9cf0c0c621b8b3e6ea43e495458fd88c90bb0a5b533ad854e9f632da2a19"
+    },
+    {
+      "path": "records/changes/dot-002/manual-20261010-publication-refresh/record.json",
+      "sha256": "0c9d8df051788b38f9c888fb760d624cf877106184a91c3fcacae9f509f5cf1b"
+    },
+    {
+      "path": "records/changes/dot-002/manual-20261010-publication-refresh/static-validation.json",
+      "sha256": "700d829d3dc33d6532149eb6b32f495e6b53124d1cb04dd7b53206de85ce23e4"
+    },
+    {
+      "path": "records/changes/dot-002/manual-20261010-publication-refresh/supplement-audit.json",
+      "sha256": "3e20892018210badf666fdd9bb6bc4d21bdd95b99975255854f4364c0a6a6cd4"
+    },
+    {
+      "path": "records/changes/dot-002/manual-20261010-publication-refresh/test-results.json",
+      "sha256": "159497c21a3b2529aaafe7b726abd1097498ebb696c0a9384e5480533c06f917"
+    },
+    {
+      "path": "scripts/review/build_payroll_model.py",
+      "sha256": "20fe1e818e3b0abec63a36d074dc8549e3dc0bd95d88348b74fba9a18175091c"
+    },
+    {
+      "path": "scripts/review/generate_payroll_review.py",
+      "sha256": "f38d5941201d219541f6084d881c0c4d6b013e475a639c4a66b59cbe1f258fc3"
+    },
+    {
+      "path": "scripts/review/generate_requirements_html.mjs",
+      "sha256": "a106406af54b31892db559dced58d2b45145a6d6f5dd40d6502851d36f730d82"
+    },
+    {
+      "path": "scripts/review/payroll_wireframes.py",
+      "sha256": "1c590ab05edb1e7c182455d686844bdb2157a44a5c3f43266200f4aa971fa0a0"
+    },
+    {
+      "path": "scripts/review/validate_requirements_portal.py",
+      "sha256": "0b1570838f271bf46b7c4d5fecd595d1ddb50f476d4b9184c31f0043cf479418"
+    }
+  ]
+}

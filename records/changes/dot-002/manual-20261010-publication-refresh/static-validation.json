@@ -1,0 +1,165 @@
+{
+  "method": "Static HTML/source checks only. NOT browser or iPhone validation.",
+  "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+  "pages": 492,
+  "relative_links": 15855,
+  "checks": [
+    {
+      "name": "All relative files and anchors resolve",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "HTML IDs are unique per page",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "No external runtime assets or CDN",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "All 140 legacy IDs retained",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Coverage includes thirteen evidence-backed corrections, without counting template examples",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "All effective section body and remaining-unknown text retained",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "All 20 supplements retain body/unknowns and exact canonical quotes",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "Full official effective outline has 321 paragraphs",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "148 official core headings and 8 supplemental heading pages",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Supplemental headings are visible and linked",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "additional_details: all 166 items have visible content",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "table_schemas: all 56 items have visible content",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "illustrations: all 11 items have visible content",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "authoring_guidance: all 132 items have visible content",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "Legacy migration-plan ID retains its meaning and shows official position",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Old index hash remains available",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "All 100 operation contracts retain every field",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "All 15 connected workflow diagrams and textual paths retained",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "Source hashes and 253 exact excerpt anchors resolve",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "Canonical decision and layout categories remain independent",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "All 46 original review pages link back to requirements",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Quick Look fallback is a bounded, dependency-free reading sheet",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Browser and iPhone verification limits are explicit",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Approval A full body is visible from both requirements and SCR-005",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Selected STATUS includes latest DOT-001 and declares its scope",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "All requirements-data canonical file hashes match",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "All four DOT-001 handoff records retained",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "DOT-001 observation provenance agrees with paired display model",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Declared canonical preservation baseline exists",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "All frozen canonical and historical inputs preserved",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "P/H capture succeeds independently of failed legacy guard; model, source, and record agree",
+      "status": "PASS",
+      "details": null
+    }
+  ],
+  "changed_files": [],
+  "result": "PASS_STATIC"
+}
