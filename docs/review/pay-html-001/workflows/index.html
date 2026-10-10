@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+  <title>② 業務フロー一覧 | 非常勤給与レビュー</title>
+  <link rel="stylesheet" href="../assets/review.css">
+  <script src="../assets/review.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
+<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<a href="../navigation.html" >① 画面遷移</a>
+<a href="index.html" aria-current="page">② 業務フロー</a>
+<a href="../operations/index.html" >③ 操作定義</a>
+<a href="../wireframes/index.html" >④ ワイヤー</a>
+<a href="../coverage.html" >対応表</a>
+<a href="../design-notes.html" >設計注記</a></nav>
+<main id="main">
+<div class="document-meta"><span>0.2-review / 2026-10-10</span><strong>提案・レビュー用（未承認）</strong><span>文書出典：<code>6d203bf29887598555e9eb17383cb433c5228691</code></span></div>
+<h1>② 業務フロー一覧</h1>
+<p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
+<p>業務を独立した図に分割しています。各図の番号から操作定義・画面例へ進めます。実線は業務上の流れを示し、実装済みの証明ではありません。</p><div class="table-scroll" tabindex="0" role="region" aria-label="業務フロー一覧">
+<table ><caption>業務フロー一覧</caption>
+<thead><tr><th scope="col">業務ID・名称</th><th scope="col">担当／開始→終了</th><th scope="col">画面</th><th scope="col">区分</th></tr></thead>
+<tbody>
+<tr><td><a href="wf-01.html" >WF-01 職員検索・編集・画面往復</a></td><td>ログイン利用者<br>ホームから職員検索 → 保存済み読取り、または移動取消</td><td>SCR-001 / SCR-002 / SCR-005</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-02.html" >WF-02 A～D 採用候補の受渡し</a></td><td>秘書課・前工程担当・給与班<br>通常職員の初任給確定、または調査員のC開始 → 同じ候補に発行番号を反映</td><td>FUT-IMPORT / SCR-002 / SCR-006</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-03.html" >WF-03 A～D 決裁後変更・採用取消</a></td><td>秘書課・給与班<br>前工程で変更または取消 → 再確定、または履歴を残して計算除外</td><td>SCR-002</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-04.html" >WF-04 E Excel一括取込と行別判断</a></td><td>会計課給与班<br>ホームのデータ一括取込み → 確認待ち候補と行別結果</td><td>SCR-001 / FUT-IMPORT / SCR-002</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-05.html" >WF-05 E 条件・控除の確認と訂正</a></td><td>局担当者・給与班<br>新規・実際変更・誤登録訂正 → 給与班確定後の未払い再計算</td><td>SCR-002 / FUT-JLINK</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-06.html" >WF-06 F 通勤届の提出・差戻し・認定</a></td><td>局担当者・給与班<br>局担当の通勤届入力 → 認定済み情報を計算が直接参照</td><td>SCR-002</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-07.html" >WF-07 F 変更認定・不支給・期間終了</a></td><td>局担当者・給与班<br>通勤認定後の事情変更 → 新認定、一時不支給または期間終了</td><td>SCR-002 / SCR-007</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-08.html" >WF-08 F 通勤認定簿・別タブPDF</a></td><td>給与班・局担当者<br>通勤タブで認定を選択 → A4横2ページを1PDFとして保存</td><td>SCR-002 / EXT-COMMUTE</td><td><span class="badge current">現行実装</span></td></tr>
+<tr><td><a href="wf-09.html" >WF-09 G 外部機関の決定結果登録</a></td><td>担当局・給与班・外部機関<br>外部で手続きし決定結果を受領 → 確定した決定結果を管理・計算へ利用</td><td>SCR-002</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-10.html" >WF-10 勤務時間報告・取込とロック</a></td><td>局担当者・給与班<br>所属×勤務月の入力中報告 → 報告済み、または不完全隔離から復旧</td><td>SCR-003 / SCR-006</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-11.html" >WF-11 期末・勤勉率の登録</a></td><td>会計課給与班（配置案）<br>職員と支給対象期間を選択 → 別々の率を計算根拠へ</td><td>SCR-001 / SCR-004 / FUT-JLINK</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-12.html" >WF-12 給与計算から確定・支払記録</a></td><td>会計課給与班<br>確認済み元データと支給回 → 最新差分ゼロ確定・支払い済み記録</td><td>SCR-002 / SCR-003 / SCR-004 / FUT-JLINK / EXT-JINKYU / SCR-007</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-13.html" >WF-13 人給出力・照合・差分再出力</a></td><td>会計課給与班<br>人給連携の支給回選択 → 差分訂正ループまたは支給回確定</td><td>FUT-JLINK / EXT-JINKYU / SCR-002 / SCR-003</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-14.html" >WF-14 遡及差額・追給・分割返納</a></td><td>給与班・業務マスタ管理者<br>過去支払い後の誤り・遡及改定 → 別追給または回収実績・残額管理</td><td>SCR-006 / SCR-007 / FUT-JLINK</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+<tr><td><a href="wf-15.html" >WF-15 業務マスタ・権限と有効期間</a></td><td>業務マスタ管理者<br>管理権限と改定対象を確認 → 旧版保持・新期間適用・必要なら差額へ</td><td>SCR-001 / SCR-006 / SCR-007</td><td><span class="badge accepted">確定改修要件</span></td></tr>
+</tbody></table></div>
+
+</main>
+<footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+</body>
+</html>

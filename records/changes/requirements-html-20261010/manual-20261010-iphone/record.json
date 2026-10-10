@@ -1,0 +1,9 @@
+{
+  "change_id": "requirements-html-20261010",
+  "run_id": "manual-20261010-iphone",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T08:02:48.186961+00:00",
+  "source_commit": "5ac065a70dfc81d85269d41ff5d0caecf62e690e",
+  "version": "0.1-review-iphone"
+}

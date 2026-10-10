@@ -1,0 +1,284 @@
+{
+  "pages": [
+    {
+      "path": "coverage.html",
+      "title": "網羅性・相互参照対応表 | 非常勤給与レビュー",
+      "body_chars": 3640,
+      "scripts": 1
+    },
+    {
+      "path": "design-notes.html",
+      "title": "設計注記・未決・制約 | 非常勤給与レビュー",
+      "body_chars": 2695,
+      "scripts": 1
+    },
+    {
+      "path": "index.html",
+      "title": "非常勤給与アプリ レビュー資料 | 非常勤給与レビュー",
+      "body_chars": 2116,
+      "scripts": 1
+    },
+    {
+      "path": "navigation.html",
+      "title": "① 全体画面遷移図 | 非常勤給与レビュー",
+      "body_chars": 8252,
+      "scripts": 1
+    },
+    {
+      "path": "operations/cur-import-poc.html",
+      "title": "③ CUR-IMPORT-POC PoCデータ一括取込（現行）の操作定義 | 非常勤給与レビュー",
+      "body_chars": 1416,
+      "scripts": 1
+    },
+    {
+      "path": "operations/ext-commute.html",
+      "title": "③ EXT-COMMUTE 通勤認定簿HTML（別タブ）の操作定義 | 非常勤給与レビュー",
+      "body_chars": 2150,
+      "scripts": 1
+    },
+    {
+      "path": "operations/ext-jinkyu.html",
+      "title": "③ EXT-JINKYU 人給システム（外部）の操作定義 | 非常勤給与レビュー",
+      "body_chars": 1424,
+      "scripts": 1
+    },
+    {
+      "path": "operations/fut-import.html",
+      "title": "③ FUT-IMPORT データ一括取込みの操作定義 | 非常勤給与レビュー",
+      "body_chars": 4621,
+      "scripts": 1
+    },
+    {
+      "path": "operations/fut-jlink.html",
+      "title": "③ FUT-JLINK 人給連携の操作定義 | 非常勤給与レビュー",
+      "body_chars": 18186,
+      "scripts": 1
+    },
+    {
+      "path": "operations/index.html",
+      "title": "③ 操作定義 索引 | 非常勤給与レビュー",
+      "body_chars": 6140,
+      "scripts": 1
+    },
+    {
+      "path": "operations/scr-001.html",
+      "title": "③ SCR-001 ログイン画面＆ホーム画面の操作定義 | 非常勤給与レビュー",
+      "body_chars": 6838,
+      "scripts": 1
+    },
+    {
+      "path": "operations/scr-002.html",
+      "title": "③ SCR-002 職員マスタ検索・詳細の操作定義 | 非常勤給与レビュー",
+      "body_chars": 28687,
+      "scripts": 1
+    },
+    {
+      "path": "operations/scr-003.html",
+      "title": "③ SCR-003 勤務時間報告画面の操作定義 | 非常勤給与レビュー",
+      "body_chars": 10499,
+      "scripts": 1
+    },
+    {
+      "path": "operations/scr-004.html",
+      "title": "③ SCR-004 期末勤勉支給率登録画面の操作定義 | 非常勤給与レビュー",
+      "body_chars": 2212,
+      "scripts": 1
+    },
+    {
+      "path": "operations/scr-005.html",
+      "title": "③ SCR-005 支給明細画面の操作定義 | 非常勤給与レビュー",
+      "body_chars": 4444,
+      "scripts": 1
+    },
+    {
+      "path": "operations/scr-006.html",
+      "title": "③ SCR-006 メンテナンス画面の操作定義 | 非常勤給与レビュー",
+      "body_chars": 3785,
+      "scripts": 1
+    },
+    {
+      "path": "operations/scr-007.html",
+      "title": "③ SCR-007 遡及差額の確認（仮）の操作定義 | 非常勤給与レビュー",
+      "body_chars": 5832,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/cur-import-poc.html",
+      "title": "④ CUR-IMPORT-POC PoCデータ一括取込（現行） | 非常勤給与レビュー",
+      "body_chars": 1858,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/ext-commute.html",
+      "title": "④ EXT-COMMUTE 通勤認定簿HTML（別タブ） | 非常勤給与レビュー",
+      "body_chars": 1923,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/ext-jinkyu.html",
+      "title": "④ EXT-JINKYU 人給システム（外部） | 非常勤給与レビュー",
+      "body_chars": 1625,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/fut-import.html",
+      "title": "④ FUT-IMPORT データ一括取込み | 非常勤給与レビュー",
+      "body_chars": 1986,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/fut-jlink.html",
+      "title": "④ FUT-JLINK 人給連携 | 非常勤給与レビュー",
+      "body_chars": 3442,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/index.html",
+      "title": "④ ワイヤーフレーム一覧 | 非常勤給与レビュー",
+      "body_chars": 1298,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/scr-001.html",
+      "title": "④ SCR-001 ログイン画面＆ホーム画面 | 非常勤給与レビュー",
+      "body_chars": 1970,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/scr-002.html",
+      "title": "④ SCR-002 職員マスタ検索・詳細 | 非常勤給与レビュー",
+      "body_chars": 24802,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/scr-003.html",
+      "title": "④ SCR-003 勤務時間報告画面 | 非常勤給与レビュー",
+      "body_chars": 3232,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/scr-004.html",
+      "title": "④ SCR-004 期末勤勉支給率登録画面 | 非常勤給与レビュー",
+      "body_chars": 2229,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/scr-005.html",
+      "title": "④ SCR-005 支給明細画面 | 非常勤給与レビュー",
+      "body_chars": 2355,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/scr-006.html",
+      "title": "④ SCR-006 メンテナンス画面 | 非常勤給与レビュー",
+      "body_chars": 2355,
+      "scripts": 1
+    },
+    {
+      "path": "wireframes/scr-007.html",
+      "title": "④ SCR-007 遡及差額の確認（仮） | 非常勤給与レビュー",
+      "body_chars": 2697,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/index.html",
+      "title": "② 業務フロー一覧 | 非常勤給与レビュー",
+      "body_chars": 1859,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-01.html",
+      "title": "② 職員検索・編集・画面往復 | 非常勤給与レビュー",
+      "body_chars": 2228,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-02.html",
+      "title": "② A～D 採用候補の受渡し | 非常勤給与レビュー",
+      "body_chars": 1963,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-03.html",
+      "title": "② A～D 決裁後変更・採用取消 | 非常勤給与レビュー",
+      "body_chars": 1715,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-04.html",
+      "title": "② E Excel一括取込と行別判断 | 非常勤給与レビュー",
+      "body_chars": 1784,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-05.html",
+      "title": "② E 条件・控除の確認と訂正 | 非常勤給与レビュー",
+      "body_chars": 1950,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-06.html",
+      "title": "② F 通勤届の提出・差戻し・認定 | 非常勤給与レビュー",
+      "body_chars": 1650,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-07.html",
+      "title": "② F 変更認定・不支給・期間終了 | 非常勤給与レビュー",
+      "body_chars": 1690,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-08.html",
+      "title": "② F 通勤認定簿・別タブPDF | 非常勤給与レビュー",
+      "body_chars": 1787,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-09.html",
+      "title": "② G 外部機関の決定結果登録 | 非常勤給与レビュー",
+      "body_chars": 1894,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-10.html",
+      "title": "② 勤務時間報告・取込とロック | 非常勤給与レビュー",
+      "body_chars": 2559,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-11.html",
+      "title": "② 期末・勤勉率の登録 | 非常勤給与レビュー",
+      "body_chars": 1522,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-12.html",
+      "title": "② 給与計算から確定・支払記録 | 非常勤給与レビュー",
+      "body_chars": 2695,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-13.html",
+      "title": "② 人給出力・照合・差分再出力 | 非常勤給与レビュー",
+      "body_chars": 2640,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-14.html",
+      "title": "② 遡及差額・追給・分割返納 | 非常勤給与レビュー",
+      "body_chars": 2293,
+      "scripts": 1
+    },
+    {
+      "path": "workflows/wf-15.html",
+      "title": "② 業務マスタ・権限と有効期間 | 非常勤給与レビュー",
+      "body_chars": 1799,
+      "scripts": 1
+    }
+  ],
+  "broken_links": [],
+  "duplicate_ids": [],
+  "external_resources": [],
+  "browser": []
+}

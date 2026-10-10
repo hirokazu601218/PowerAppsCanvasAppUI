@@ -42,12 +42,15 @@
     "docs/requirements/payroll-confirmed-20261007.md",
     "docs/changes/payroll-markdown-change-list-20261007.md",
     "docs/design/detailed/payroll-jinkyu-interface.md",
-    "docs/requirements/payroll-interface-decisions-20261008.md"
+    "docs/requirements/payroll-interface-decisions-20261008.md",
+    "docs/dot/request-list.md"
   ],
   "current_dynamic_patterns": [
     "^docs/changes/requests/[a-z0-9][a-z0-9-]*\\.json$",
     "^docs/testing/change-records/[a-z0-9][a-z0-9-]*\\.json$",
-    "^docs/verification/postpublish/[a-z0-9][a-z0-9-]*\\.json$"
+    "^docs/verification/postpublish/[a-z0-9][a-z0-9-]*\\.json$",
+    "^docs/review/pay-html-001/(?:[a-z0-9-]+/)*[A-Za-z0-9_.-]+\\.(?:html|css|js|json|md)$",
+    "^docs/requirements/standard-template/(?:sources/)?[A-Za-z0-9_.-]+\\.(?:html|json|md)$"
   ],
   "legacy_migration_map": "records/operations/migration/source-map.csv",
   "record_index_paths": [

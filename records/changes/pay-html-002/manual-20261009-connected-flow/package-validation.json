@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "version": "0.2-review",
+  "files": 75,
+  "bytes": 554236,
+  "sha256": "6c024638bca1479cbac6363275942a17d2154a4686ff2b4fa94540f16c813866",
+  "manifest_hashes_verified": 73,
+  "screenshots_or_binary_originals": false,
+  "library_storage_metadata_omitted": true,
+  "status_history_replaced_with_reference": true
+}

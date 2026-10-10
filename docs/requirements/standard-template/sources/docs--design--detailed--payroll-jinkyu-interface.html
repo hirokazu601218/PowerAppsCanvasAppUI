@@ -1,0 +1,1703 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>docs/design/detailed/payroll-jinkyu-interface.md</title><style>:root{font-family:system-ui,'Noto Sans JP',sans-serif;color:#172c45;background:#f4f7fb;line-height:1.8}*{box-sizing:border-box}body{margin:0}a{color:#0759a8;text-underline-offset:4px}a:hover{color:#002f67}button,input,select{font:inherit}button,.link{display:inline-block;background:white;border:1px solid #aabed0;border-radius:7px;padding:9px 14px;cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #d58b00;outline-offset:3px}header{background:#102d4e;color:white;padding:32px max(24px,calc((100vw - 1250px)/2))}header p{margin:6px 0;color:#dce8f4}h1{font-size:clamp(25px,4vw,37px);line-height:1.4;margin:12px 0}h2{font-size:25px}h3{font-size:21px}h4{font-size:18px}h2,h3,h4{scroll-margin-top:20px}main{max-width:1300px;margin:0 auto;padding:28px;min-width:0}.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px}.sidebar{position:sticky;top:12px;align-self:start;max-height:94vh;overflow:auto;background:white;border:1px solid #dce4ed;border-radius:10px;padding:16px}.sidebar a{display:block;padding:5px;font-size:14px}.sidebar strong{display:block;margin-top:12px}.intro,.chapter{background:white;border:1px solid #dce4ed;border-radius:12px;padding:25px;margin-bottom:24px}.item{border-top:1px solid #dce4ed;padding:18px 0;overflow-wrap:anywhere}.item p{margin:10px 0}.badge{display:inline-block;background:#e7eef7;color:#294c70;border-radius:5px;padding:2px 9px;font-size:12px;font-weight:700}.missing{background:#fff4da;border-left:4px solid #bc7800;padding:12px;color:#643e00}.refs{font-size:13px}.refs a{margin-right:14px}.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0}.toolbar input{min-width:0;width:260px;padding:10px;border:1px solid #aabed0;border-radius:7px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.cards a{display:block;padding:17px;border:1px solid #b9cde0;border-radius:8px;text-decoration:none;background:#f6faff}.cards a small{display:block;color:#47627d}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #d5dee8;padding:10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#eaf0f7}.table-wrap{overflow:auto}details{margin:12px 0}summary{cursor:pointer;font-weight:700}pre{overflow:auto;background:#f0f3f7;padding:14px;white-space:pre-wrap}code{overflow-wrap:anywhere}dialog{width:min(1300px,96vw);height:94vh;border:1px solid #b8c7d8;border-radius:12px;padding:0}dialog::backdrop{background:#102d4e99}.dialog-bar{display:flex;align-items:center;gap:15px;padding:12px;flex-wrap:wrap}.dialog-bar strong{flex:1}iframe{width:100%;height:calc(100% - 100px);border:0}.skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;background:white;padding:10px}.source main{max-width:1100px;background:white}.source h1{font-size:27px}.source img{max-width:100%}[hidden]{display:none!important}footer{padding:24px;color:#456}@media(max-width:800px){main{padding:14px}.layout{display:block}.sidebar{position:static;max-height:230px;margin-bottom:18px}.intro,.chapter{padding:18px}.toolbar{align-items:stretch}.toolbar input{width:100%}table{min-width:580px}}@media print{.sidebar,.toolbar,.cards,dialog,.preview-button{display:none!important}.layout{display:block}header{background:white;color:black;padding:10px}header p{color:black}.chapter,.intro{border:0;padding:0}.item{break-inside:avoid}main{padding:0}[hidden]{display:block!important}a{color:black}}</style></head><body class="source"><header><p>出典資料のHTML表示 · 元の記述・状態を保持</p><h1>payroll-jinkyu-interface.md</h1><p>2026-10-10取得。新旧記述が併記されています。2026-10-07確定要件・10-08人給決定を優先してください。</p></header><main><p><a href="../index.html">← 要件定義書へ戻る</a> · <a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/docs/design/detailed/payroll-jinkyu-interface.md">GitHub原文</a></p><p>Mermaidコードは原文として表示します。描画済み業務・画面図は要件定義書の関連資料から開けます。</p><h1 id="人給excel出力給与簿csv取込仕様">人給Excel出力・給与簿CSV取込仕様</h1>
+<p>更新：2026-10-08。GitHub正本。業務仕様確定・実装未検証。計算式精査は利用者指示で保留。</p>
+<p>根拠：利用者回答、現行VBA・Excel、人給キー仕様とコード表。元Excelの個別データは掲載しない。</p>
+<h2 id="2-確定済みの入出力仕様">2. 確定済みの入出力仕様</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>項目</th>
+<th>確定内容</th>
+<th>根拠・理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IF-01</td>
+<td>人給インポート用出力</td>
+<td>Excel（.xlsx）</td>
+<td>利用者がCSVとの誤認を訂正。VBAもxlsx保存</td>
+</tr>
+<tr>
+<td>IF-02</td>
+<td>列構成</td>
+<td>237列、A～IC。順序・見出しを既存サンプルに合わせる</td>
+<td>VBAの237列とサンプルの見出しが一致</td>
+</tr>
+<tr>
+<td>IF-03</td>
+<td>行構成</td>
+<td>固定見出し１行目、データ２行目以降</td>
+<td>利用者が貼付開始２行目を正常と確認</td>
+</tr>
+<tr>
+<td>IF-04</td>
+<td>セル表示形式</td>
+<td>人給仕様に従い文字列とする</td>
+<td>添付仕様の「セルの表示形式は文字列」に基づく。金額等の文字列の詳細な整形は未入力</td>
+</tr>
+<tr>
+<td>IF-05</td>
+<td>更新区分</td>
+<td>職員が判断。初回A（新規）、不一致の修正はM（更新）</td>
+<td>利用者の業務フロー。自動判定しない</td>
+</tr>
+<tr>
+<td>IF-06</td>
+<td>空欄</td>
+<td>人給へのインポートで自動的に0へ置換</td>
+<td>利用者による仕様確認済み。空欄を既存値保持の指定として使用しない</td>
+</tr>
+<tr>
+<td>IF-07</td>
+<td>更新対象のキー</td>
+<td>添付仕様の☆付き11項目の組合せ</td>
+<td>画像が「データを一意に特定」と説明</td>
+</tr>
+<tr>
+<td>IF-08</td>
+<td>人給の名称等の列</td>
+<td>網掛け項目は値を入力してもインポートされない</td>
+<td>添付仕様。237列の見出しから削除する意味ではない</td>
+</tr>
+<tr>
+<td>IF-09</td>
+<td>給与簿の戻り</td>
+<td>人給出力の給与簿CSVをアプリへ取り込む</td>
+<td>出力xlsxの変更は給与簿CSVには適用しない</td>
+</tr>
+<tr>
+<td>IF-10</td>
+<td>給与簿の編集</td>
+<td>アプリ内は読み取り専用</td>
+<td>R4の合意。差分原因に応じ元データまたは人給を訂正</td>
+</tr>
+<tr>
+<td>IF-11</td>
+<td>エラー表示</td>
+<td>エラー行はアプリでも分かるようにする</td>
+<td>利用者の追加指定。人給の結果を受け取る具体方式は未入力</td>
+</tr>
+<tr>
+<td>IF-12</td>
+<td>規模</td>
+<td>通常約800レコードを想定</td>
+<td>利用者説明。件数上限・処理時間の基準は未入力</td>
+</tr>
+</tbody></table>
+<p>Excelの「文字列の表示形式」と「実際に文字列型で値を保存すること」は実装時に揃える。先頭ゼロを落とさず、日付は<code>yyyy/mm/dd</code>の固定桁数で出力する。CSV出力の文字コード・区切り・BOMは対象外。給与簿CSVの読み取り設定とは混同しない。</p>
+<p>現行の空欄／0の設定を踏襲する方針とする。空文字・未設定セル・数値0・文字列0が元Excelに混在していた事実は、各列で全ての入力型を受け付けることや、必須キーが空欄でもよいことを意味しない。新たな型変換ルールや必須エラー条件は未入力のまま残す。</p>
+<h2 id="3-人給の11項目のキー">3. 人給の11項目のキー</h2>
+<table>
+<thead>
+<tr>
+<th align="right">No.</th>
+<th>Excel列</th>
+<th>画像の項目名</th>
+<th>仕様画像の文字数／形式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">2</td>
+<td>B</td>
+<td>職員番号</td>
+<td>半角12桁</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>D</td>
+<td>支給年月日</td>
+<td>yyyy/mm/dd</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>E</td>
+<td>対象年月日</td>
+<td>yyyy/mm/dd</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>F</td>
+<td>業務区分</td>
+<td>半角2桁</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>H</td>
+<td>併任区分</td>
+<td>半角1桁</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>J</td>
+<td>組織コード</td>
+<td>半角30桁</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td>M</td>
+<td>非常勤支出科目コード</td>
+<td>半角16桁</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>Q</td>
+<td>判別区分</td>
+<td>半角2桁</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td>S</td>
+<td>短時間職員区分</td>
+<td>半角1桁</td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td>U</td>
+<td>支払処理区分</td>
+<td>半角2桁</td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td>W</td>
+<td>実績区分</td>
+<td>半角1桁</td>
+</tr>
+</tbody></table>
+<p>このキーは人給インポートでデータを特定する組合せ。Dataverseの職員Lookup・内部IDとは別である。給与簿CSVに同じ11項目が含まれ、そのまま照合に使えるとは確定していない。給与簿側との対応・多重行の集約を含む照合キーは未入力。</p>
+<p>画像と従来Excelには項目名の表記差がある（例：H列の併任区分／本務兼務区分、Q列の判別区分／判別グループ）。本書付録はサンプルの実見出しを保持する。人給の正式な見出し変更が必要かは未入力であり、画像の語に合わせて無断で改名しない。</p>
+<h2 id="4-支払処理区分">4. 支払処理区分</h2>
+<p>コード仕様ID：JC0063CD（添付コード一覧）。</p>
+<table>
+<thead>
+<tr>
+<th>コード</th>
+<th>名称</th>
+<th>今回確定した適用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>月次給与・当月分</td>
+<td>実績明細（D1）</td>
+</tr>
+<tr>
+<td>11</td>
+<td>月次給与・差額分</td>
+<td>本俸差額（D2）、実績差額（D3）。月次について確定</td>
+</tr>
+<tr>
+<td>20</td>
+<td>期末勤勉・当月分</td>
+<td>コードの意味を確認済み。具体的な明細割当ては未入力</td>
+</tr>
+<tr>
+<td>30</td>
+<td>法改正差額・当月分</td>
+<td>コードの意味を確認済み。具体的な明細割当ては未入力</td>
+</tr>
+<tr>
+<td>31</td>
+<td>法改正差額・差額分</td>
+<td>コードの意味を確認済み。具体的な明細割当ては未入力</td>
+</tr>
+</tbody></table>
+<p>F列の業務区分とU列の支払処理区分を別々に管理する。本俸U6が支給日マスタの業務区分を参照する現行式は、全支給種類に正しいことを確認済みとはしない。画像はD（削除）も人給側の有効な更新区分と説明するが、アプリでDを出力する要件は確定していない。</p>
+<h2 id="5-対象期間通常分差額分">5. 対象期間・通常分・差額分</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>確定事項</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PERIOD-01</td>
+<td>月末締め、翌月支給。本俸の対象は前月期間（D4=B）</td>
+<td>利用者の業務説明</td>
+</tr>
+<tr>
+<td>PERIOD-02</td>
+<td>本俸の対象年月日は、D4の比較では１か月前とする</td>
+<td>D4回答。ただし期間内の具体的な日・採用日との境界は別途精査</td>
+</tr>
+<tr>
+<td>PERIOD-03</td>
+<td>今回の支給対象月の欠勤は通常分から差し引く</td>
+<td>D5・D6の補足</td>
+</tr>
+<tr>
+<td>PERIOD-04</td>
+<td>今回の対象月より前の支払済み対象月に生じた差額は差額明細で処理する</td>
+<td>支払済み給与を訂正しない既存方針とD5・D6の補足</td>
+</tr>
+<tr>
+<td>PERIOD-05</td>
+<td>本俸差額・実績差額の対象年月日は差額が発生した対象期間の日付（D7・D8）</td>
+<td>一律に前月とすると、過去月差額の対象を表せない</td>
+</tr>
+</tbody></table>
+<p>D5・D6の「差額を差し引く」理由は欠勤分であり、「過去月差額を通常分から分離するため」とは説明しない。現行の計算項目名「差額」と、欠勤による今回対象月の減額・過去月の差額を区別する。確定した業務上の意味を、未検証の符号・丸め・算定式へ置き換えない。</p>
+<p>複数過去月追給を人給の追給行へ集約するR10の既存合意と、対象期間を設定するD7・D8との両立は未確認。過去月別に出力行を分ける、代表日を使う、対象日を削除する等の新ルールは採用しない。月別内訳と出力行の対応を保持する既存要件は維持する。</p>
+<h2 id="6-業務フローと状態">6. 業務フローと状態</h2>
+<ol>
+<li>確認済み元データから計算版を作る。</li>
+<li>職員が更新区分を判断し、人給インポート用Excelを出力する。初回はA。</li>
+<li>人給へ取り込み、人給の計算処理を実行する。現行Excelのメインには控除額の手修正が必要との記載がある。どの控除をどう修正するかの新アプリ手順は未入力。</li>
+<li>人給から給与簿CSVを出力し、アプリへ読み取り専用で取り込む。</li>
+<li>最新版のアプリ計算結果と給与簿の項目・合計・欠落・余分・重複等を照合する。</li>
+<li>不一致原因に応じ元データまたは人給を訂正する。アプリ出力で人給の既存明細を修正する場合は職員がMを指定し、再取込・再計算・再照合する。</li>
+<li>差分ゼロを確認して給与班が確定し、支払い済みを記録する。支払済み結果は更新しない。</li>
+</ol>
+<p>状態は既存合意の「計算済み → 照合中 → 差分ゼロ確認 → 給与班確定 → 支払い済み」を維持する。未払いの入力・結果が変われば必要な再確認・再計算・再照合を行う。アプリが支払処理自体を実行する要件は追加しない。</p>
+<p>保存は計算版・取込回・照合結果を処理回ごとに残す。差分ゼロで支払い確定後は中間版・中間根拠を削除可能とする既存方針を維持し、最終結果・最終根拠・給与簿・支払実績・照合履歴は残す。Excel／CSVファイル自体の継続保存は必須にしない。保存期間・削除権限等の詳細は未入力。</p>
+<p>給与簿CSVは既存合意に従い、１～５行目を固定領域、６行目以降を明細領域とし、行数が変動する<code>【合計情報】</code>を境界として扱う。合計情報のチェック・保存は不要。未知職員は行を保持して表示し確定を止める、取込失敗時は前回成功分を維持する、数値比較では空欄を0と扱い元の空欄を保持する、という合意を維持する。人給インポート側の空欄0化と、給与簿原値の保存は別の処理である。</p>
+<h2 id="7-承認済み画面の処理契約i1i12">7. 承認済み画面の処理契約（I1～I12）</h2>
+<p><a href="docs--requirements--screen-requirements.html">画面要件</a>のJLINK-UI-01～11、<a href="docs--requirements--payroll-interface-decisions-20261008.html">決定台帳</a>のI1～I12を適用する。画面はホーム→人給連携、同一画面内の支給回の状況／出力／取込・照合。正式画面ID・Canvasコントロール名・Power Fx・フロー名・物理列名は未入力。モック承認は実装・公開の合格を意味しない。</p>
+<h3 id="71-出力と再出力">7.1 出力と再出力</h3>
+<p>支給回選択を共通コンテキストとする。初回は全職員が既定で、職員の絞込みができる。A/Mは職員による一括指定と明細ごとの変更を保持し、出力前に支給回・人数・明細数・A/M件数を確認する。出力データはその時点の最新版の計算結果から作り、出力時の計算版・対象明細・指定A/Mを処理履歴と関連付ける。</p>
+<p>再出力では差分に対応する出力明細行だけを初期選択し、職員が変更できる（I9）。差分一覧の一行をそのままExcel一行として出力しない。給与簿行・比較項目・出力明細の対応と多重行集約は未入力であり、人給の11キーを給与簿の照合キーと自動的にみなさない。対応を特定できない場合の操作も詳細化が必要。再出力でA/Mを自動変更しない。</p>
+<h3 id="72-最新版との照合">7.2 最新版との照合</h3>
+<p>給与簿CSVの取込成功分と、選択支給回の最新版のアプリ計算結果を照合する（I5）。利用者が照合対象の計算版を選ぶ操作は設けない。計算版は出力・取込・照合の追跡情報として残し、古い出力版へ戻して一致を作る基準にはしない。</p>
+<p>出力後に結果が変わっても最新版を比較し、「出力後に計算結果が変更されています」を表示する（I7）。照合は対象支給回・使用した最新結果の識別情報・給与簿取込回と関連付ける。照合開始後または完了後に計算結果が変われば、その照合の差分ゼロを現行の確定根拠として使わず再照合する。版・更新の識別、同時更新の検出と確定時の再検証の物理方式は未入力。</p>
+<p>人給の取込成功／一部失敗／失敗を手入力しない（I10）。給与簿との比較でデータの一致を確認するが、照合結果から人給の取込処理の実行ログや成功状態を創作しない。初期表示は差分のみ、全件へ切替可能。差分列は職員・対象期間・項目・アプリ値・給与簿値・差額（I6・I11）。差額の表示符号・非数値差分の表現は未入力。</p>
+<h3 id="73-訂正エラー確定">7.3 訂正・エラー・確定</h3>
+<p>差分から原因に応じた勤務条件・勤怠・通勤等の入力画面へ遷移し、戻るとき支給回・職員を保持する。元データ訂正後は再計算し、人給側の修正が必要なら職員指定でExcel再出力→人給→給与簿再取込→再照合を繰り返す。支払済み給与は更新しない。</p>
+<p>I8=Cのため、人給エラー行のアプリ表示は要件として残すが、エラーファイル形式・取出し方法・行対応は未入力。人給への直接接続、自動エラー取込、手入力方式のいずれも決定済みにしない。給与簿取込エラーと人給インポートのエラーは区別する。</p>
+<p>給与班確定は確認ダイアログなしの確定ボタンで行う（I12）。権限、支給回全体の最新照合、差分ゼロ、未解決行の不存在を確定時に検証する。職員や差分の表示フィルターで判定を限定しない。計算更新で古くなった差分ゼロを使わない。確定と支払い済みの記録は既存の別状態を維持する。</p>
+<h2 id="付録-出力237列の見出し台帳">付録. 出力237列の見出し台帳</h2>
+<p>従来サンプルと一致した支払明細１行目の実見出しを列順で記載。取得元・計算式の全確定を意味しない。キー以外の一般項目も、計算式が未確定なら値設定は未入力。画像で確認できる網掛け項目は別記し、未提示の範囲について網掛けを推定しない。</p>
+<table>
+<thead>
+<tr>
+<th align="right">No.</th>
+<th>Excel列</th>
+<th>実見出し</th>
+<th>状態・注記</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td>A</td>
+<td>更新区分</td>
+<td>職員判断A／M</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>B</td>
+<td>職員番号</td>
+<td>人給キー</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>C</td>
+<td>職員氏名</td>
+<td>画像の網掛け：インポートされない</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>D</td>
+<td>支給年月日</td>
+<td>人給キー／支給日 yyyy/mm/dd</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>E</td>
+<td>対象年月日</td>
+<td>人給キー／本俸は前月、差額は発生対象期間。具体日は未入力</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>F</td>
+<td>業務区分</td>
+<td>人給キー</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>G</td>
+<td>業務区分（名称）</td>
+<td>画像の網掛け：インポートされない</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>H</td>
+<td>併任区分</td>
+<td>人給キー</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>I</td>
+<td>併任区分（名称）</td>
+<td>画像の網掛け：インポートされない</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>J</td>
+<td>組織コード</td>
+<td>人給キー</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>K</td>
+<td>組織コード（名称）</td>
+<td>画像の網掛け：インポートされない</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>L</td>
+<td>組織名称</td>
+<td>画像仕様：全角90文字</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td>M</td>
+<td>非常勤支出科目コード</td>
+<td>人給キー</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>N</td>
+<td>非常勤支出科目コード（名称）</td>
+<td>画像の網掛け：インポートされない</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>O</td>
+<td>職級コード</td>
+<td>画像仕様：半角3桁</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>P</td>
+<td>職級コード（名称）</td>
+<td>画像の網掛け：インポートされない</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>Q</td>
+<td>判別区分</td>
+<td>人給キー</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>R</td>
+<td>判別区分（名称）</td>
+<td>画像の網掛け：インポートされない</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td>S</td>
+<td>短時間職員区分</td>
+<td>人給キー</td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td>T</td>
+<td>短時間職員区分（名称）</td>
+<td>画像の網掛け：インポートされない</td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td>U</td>
+<td>支払処理区分</td>
+<td>人給キー／D1～D3確定、他支給種類は未入力</td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td>V</td>
+<td>支払処理区分（名称）</td>
+<td>画像の網掛け：インポートされない</td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td>W</td>
+<td>実績区分</td>
+<td>人給キー</td>
+</tr>
+<tr>
+<td align="right">24</td>
+<td>X</td>
+<td>実績区分（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td>Y</td>
+<td>変動区分</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">26</td>
+<td>Z</td>
+<td>変動区分（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td>AA</td>
+<td>支給変動区分コード</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">28</td>
+<td>AB</td>
+<td>支給変動区分コード（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">29</td>
+<td>AC</td>
+<td>控除変動区分コード</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">30</td>
+<td>AD</td>
+<td>控除変動区分コード（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td>AE</td>
+<td>外務省振込方法区分コード</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">32</td>
+<td>AF</td>
+<td>外務省振込方法区分コード（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">33</td>
+<td>AG</td>
+<td>給与支払グループ</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">34</td>
+<td>AH</td>
+<td>給与支払グループ（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td>AI</td>
+<td>俸給表コード</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">36</td>
+<td>AJ</td>
+<td>俸給表コード（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">37</td>
+<td>AK</td>
+<td>級コード</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">38</td>
+<td>AL</td>
+<td>号コード</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">39</td>
+<td>AM</td>
+<td>欄外適用有無コード</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">40</td>
+<td>AN</td>
+<td>欄外適用有無コード（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">41</td>
+<td>AO</td>
+<td>要勤務日数・分子</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">42</td>
+<td>AP</td>
+<td>要勤務日数・分母</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">43</td>
+<td>AQ</td>
+<td>減額時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">44</td>
+<td>AR</td>
+<td>減額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">45</td>
+<td>AS</td>
+<td>減額(俸給支給額分)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">46</td>
+<td>AT</td>
+<td>減額(地域手当分)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">47</td>
+<td>AU</td>
+<td>減額(広域異動手当分)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">48</td>
+<td>AV</td>
+<td>特定給与(俸給支給額分)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">49</td>
+<td>AW</td>
+<td>特定給与（地域手当分）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">50</td>
+<td>AX</td>
+<td>特定給与（広域異動手当分）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">51</td>
+<td>AY</td>
+<td>減給額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">52</td>
+<td>AZ</td>
+<td>俸給支給額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">53</td>
+<td>BA</td>
+<td>扶養手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">54</td>
+<td>BB</td>
+<td>地域手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">55</td>
+<td>BC</td>
+<td>広域異動手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">56</td>
+<td>BD</td>
+<td>俸給の特別調整額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">57</td>
+<td>BE</td>
+<td>本府省業務調整手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">58</td>
+<td>BF</td>
+<td>住居手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">59</td>
+<td>BG</td>
+<td>単身赴任手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">60</td>
+<td>BH</td>
+<td>在宅勤務等手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">61</td>
+<td>BI</td>
+<td>超勤１２５時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">62</td>
+<td>BJ</td>
+<td>超勤１５０時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">63</td>
+<td>BK</td>
+<td>超勤１３５時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">64</td>
+<td>BL</td>
+<td>超勤１６０時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">65</td>
+<td>BM</td>
+<td>割増１５０時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">66</td>
+<td>BN</td>
+<td>割増１７５時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">67</td>
+<td>BO</td>
+<td>休日１３５時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">68</td>
+<td>BP</td>
+<td>夜勤２５時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">69</td>
+<td>BQ</td>
+<td>超勤１００時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">70</td>
+<td>BR</td>
+<td>超勤金額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">71</td>
+<td>BS</td>
+<td>代休２５時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">72</td>
+<td>BT</td>
+<td>代休１５時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">73</td>
+<td>BU</td>
+<td>代休５０時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>BV</td>
+<td>代休勤務２５時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">75</td>
+<td>BW</td>
+<td>代休勤務１５時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">76</td>
+<td>BX</td>
+<td>代休勤務５０時間数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">77</td>
+<td>BY</td>
+<td>超過勤務手当等</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">78</td>
+<td>BZ</td>
+<td>併任先超過勤務手当等</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">79</td>
+<td>CA</td>
+<td>管理職員特別勤務手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">80</td>
+<td>CB</td>
+<td>特地勤務手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">81</td>
+<td>CC</td>
+<td>特地勤務手当に準ずる手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">82</td>
+<td>CD</td>
+<td>特殊勤務手当（課税）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">83</td>
+<td>CE</td>
+<td>特殊勤務手当（非課税）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">84</td>
+<td>CF</td>
+<td>研究員調整手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">85</td>
+<td>CG</td>
+<td>初任給調整手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">86</td>
+<td>CH</td>
+<td>専門スタッフ職調整手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">87</td>
+<td>CI</td>
+<td>期末手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">88</td>
+<td>CJ</td>
+<td>業績手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">89</td>
+<td>CK</td>
+<td>勤勉手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">90</td>
+<td>CL</td>
+<td>寒冷地手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">91</td>
+<td>CM</td>
+<td>宿日直手当（課税）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">92</td>
+<td>CN</td>
+<td>宿日直手当（非課税）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">93</td>
+<td>CO</td>
+<td>通勤手当（課税）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">94</td>
+<td>CP</td>
+<td>通勤手当（非課税）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">95</td>
+<td>CQ</td>
+<td>イラク人道復興支援等手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">96</td>
+<td>CR</td>
+<td>国際平和協力手当</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">97</td>
+<td>CS</td>
+<td>支給総額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">98</td>
+<td>CT</td>
+<td>標準報酬等級（短期）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">99</td>
+<td>CU</td>
+<td>標準報酬月額（短期）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">100</td>
+<td>CV</td>
+<td>標準報酬等級（厚生年金）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">101</td>
+<td>CW</td>
+<td>標準報酬月額（厚生年金）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">102</td>
+<td>CX</td>
+<td>標準報酬等級（退職等年金給付）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">103</td>
+<td>CY</td>
+<td>標準報酬月額（退職等年金給付）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">104</td>
+<td>CZ</td>
+<td>共済短期掛金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">105</td>
+<td>DA</td>
+<td>介護掛金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">106</td>
+<td>DB</td>
+<td>子ども・子育て支援掛金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">107</td>
+<td>DC</td>
+<td>共済長期掛金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">108</td>
+<td>DD</td>
+<td>退職等年金掛金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">109</td>
+<td>DE</td>
+<td>厚生年金保険料（組合員）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">110</td>
+<td>DF</td>
+<td>健康保険</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">111</td>
+<td>DG</td>
+<td>介護保険</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">112</td>
+<td>DH</td>
+<td>子ども・子育て支援金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">113</td>
+<td>DI</td>
+<td>厚生年金保険</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">114</td>
+<td>DJ</td>
+<td>雇用保険</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">115</td>
+<td>DK</td>
+<td>共済短期負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">116</td>
+<td>DL</td>
+<td>介護負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">117</td>
+<td>DM</td>
+<td>子ども・子育て支援負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">118</td>
+<td>DN</td>
+<td>共済長期負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">119</td>
+<td>DO</td>
+<td>退職等年金負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">120</td>
+<td>DP</td>
+<td>厚生年金保険料（組合員）負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">121</td>
+<td>DQ</td>
+<td>健康保険料事業主負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">122</td>
+<td>DR</td>
+<td>介護保険料事業主負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">123</td>
+<td>DS</td>
+<td>子ども・子育て支援事業主負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">124</td>
+<td>DT</td>
+<td>厚生年金保険料事業主負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">125</td>
+<td>DU</td>
+<td>雇用保険料事業主負担金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">126</td>
+<td>DV</td>
+<td>確定拠出年金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">127</td>
+<td>DW</td>
+<td>被課税金額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">128</td>
+<td>DX</td>
+<td>併任先給与被課税金額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">129</td>
+<td>DY</td>
+<td>所得税(前年)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">130</td>
+<td>DZ</td>
+<td>所得税(当年)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">131</td>
+<td>EA</td>
+<td>宿舎費1</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">132</td>
+<td>EB</td>
+<td>宿舎費2</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">133</td>
+<td>EC</td>
+<td>駐車場代1</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">134</td>
+<td>ED</td>
+<td>駐車場代2</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">135</td>
+<td>EE</td>
+<td>駐車場代3</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">136</td>
+<td>EF</td>
+<td>駐車場代4</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">137</td>
+<td>EG</td>
+<td>都道府県コード(住民税)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">138</td>
+<td>EH</td>
+<td>都道府県コード(住民税)（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">139</td>
+<td>EI</td>
+<td>市区町村コード(住民税)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">140</td>
+<td>EJ</td>
+<td>住民税</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">141</td>
+<td>EK</td>
+<td>保険</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">142</td>
+<td>EL</td>
+<td>貯金</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">143</td>
+<td>EM</td>
+<td>種類コード(財形貯蓄)1</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">144</td>
+<td>EN</td>
+<td>種類コード(財形貯蓄)1（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">145</td>
+<td>EO</td>
+<td>取扱金融機関コード(財形貯蓄)1</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">146</td>
+<td>EP</td>
+<td>取扱金融機関コード(財形貯蓄)1（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">147</td>
+<td>EQ</td>
+<td>財形貯蓄1</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">148</td>
+<td>ER</td>
+<td>種類コード(財形貯蓄)2</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">149</td>
+<td>ES</td>
+<td>種類コード(財形貯蓄)2（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">150</td>
+<td>ET</td>
+<td>取扱金融機関コード(財形貯蓄)2</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">151</td>
+<td>EU</td>
+<td>取扱金融機関コード(財形貯蓄)2（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">152</td>
+<td>EV</td>
+<td>財形貯蓄2</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">153</td>
+<td>EW</td>
+<td>種類コード(財形貯蓄)3</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">154</td>
+<td>EX</td>
+<td>種類コード(財形貯蓄)3（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">155</td>
+<td>EY</td>
+<td>取扱金融機関コード(財形貯蓄)3</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">156</td>
+<td>EZ</td>
+<td>取扱金融機関コード(財形貯蓄)3（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">157</td>
+<td>FA</td>
+<td>財形貯蓄3</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">158</td>
+<td>FB</td>
+<td>種類コード(財形貯蓄)4</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">159</td>
+<td>FC</td>
+<td>種類コード(財形貯蓄)4（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">160</td>
+<td>FD</td>
+<td>取扱金融機関コード(財形貯蓄)4</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">161</td>
+<td>FE</td>
+<td>取扱金融機関コード(財形貯蓄)4（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">162</td>
+<td>FF</td>
+<td>財形貯蓄4</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">163</td>
+<td>FG</td>
+<td>種類コード(財形貯蓄)5</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">164</td>
+<td>FH</td>
+<td>種類コード(財形貯蓄)5（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">165</td>
+<td>FI</td>
+<td>取扱金融機関コード(財形貯蓄)5</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">166</td>
+<td>FJ</td>
+<td>取扱金融機関コード(財形貯蓄)5（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">167</td>
+<td>FK</td>
+<td>財形貯蓄5</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">168</td>
+<td>FL</td>
+<td>種類コード(財形貯蓄)6</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">169</td>
+<td>FM</td>
+<td>種類コード(財形貯蓄)6（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">170</td>
+<td>FN</td>
+<td>取扱金融機関コード(財形貯蓄)6</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">171</td>
+<td>FO</td>
+<td>取扱金融機関コード(財形貯蓄)6（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">172</td>
+<td>FP</td>
+<td>財形貯蓄6</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">173</td>
+<td>FQ</td>
+<td>種類コード(財形貯蓄)7</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">174</td>
+<td>FR</td>
+<td>種類コード(財形貯蓄)7（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">175</td>
+<td>FS</td>
+<td>取扱金融機関コード(財形貯蓄)7</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">176</td>
+<td>FT</td>
+<td>取扱金融機関コード(財形貯蓄)7（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">177</td>
+<td>FU</td>
+<td>財形貯蓄7</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">178</td>
+<td>FV</td>
+<td>種類コード(財形貯蓄)8</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">179</td>
+<td>FW</td>
+<td>種類コード(財形貯蓄)8（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">180</td>
+<td>FX</td>
+<td>取扱金融機関コード(財形貯蓄)8</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">181</td>
+<td>FY</td>
+<td>取扱金融機関コード(財形貯蓄)8（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">182</td>
+<td>FZ</td>
+<td>財形貯蓄8</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">183</td>
+<td>GA</td>
+<td>種類コード(財形貯蓄)9</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">184</td>
+<td>GB</td>
+<td>種類コード(財形貯蓄)9（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">185</td>
+<td>GC</td>
+<td>取扱金融機関コード(財形貯蓄)9</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">186</td>
+<td>GD</td>
+<td>取扱金融機関コード(財形貯蓄)9（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">187</td>
+<td>GE</td>
+<td>財形貯蓄9</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">188</td>
+<td>GF</td>
+<td>種類コード(財形貯蓄)10</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">189</td>
+<td>GG</td>
+<td>種類コード(財形貯蓄)10（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">190</td>
+<td>GH</td>
+<td>取扱金融機関コード(財形貯蓄)10</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">191</td>
+<td>GI</td>
+<td>取扱金融機関コード(財形貯蓄)10（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">192</td>
+<td>GJ</td>
+<td>財形貯蓄10</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">193</td>
+<td>GK</td>
+<td>共済貸付</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">194</td>
+<td>GL</td>
+<td>共済財形貸付</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">195</td>
+<td>GM</td>
+<td>その他1</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">196</td>
+<td>GN</td>
+<td>その他2</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">197</td>
+<td>GO</td>
+<td>その他3</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">198</td>
+<td>GP</td>
+<td>その他4</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">199</td>
+<td>GQ</td>
+<td>その他（診療報酬）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">200</td>
+<td>GR</td>
+<td>控除総額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">201</td>
+<td>GS</td>
+<td>差引支給額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">202</td>
+<td>GT</td>
+<td>振込額1</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">203</td>
+<td>GU</td>
+<td>振込額2</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">204</td>
+<td>GV</td>
+<td>振込額3</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">205</td>
+<td>GW</td>
+<td>手渡額</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">206</td>
+<td>GX</td>
+<td>備考1</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">207</td>
+<td>GY</td>
+<td>備考2</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">208</td>
+<td>GZ</td>
+<td>調整数</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">209</td>
+<td>HA</td>
+<td>退職年月日</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">210</td>
+<td>HB</td>
+<td>退職死亡区分</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">211</td>
+<td>HC</td>
+<td>退職死亡区分（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">212</td>
+<td>HD</td>
+<td>年末調整計算済フラグ</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">213</td>
+<td>HE</td>
+<td>年末調整計算済フラグ（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">214</td>
+<td>HF</td>
+<td>給与支給明細書出力フラグ</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">215</td>
+<td>HG</td>
+<td>給与支給明細書出力フラグ（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">216</td>
+<td>HH</td>
+<td>変動根拠フラグ(住民税)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">217</td>
+<td>HI</td>
+<td>変動根拠フラグ(住民税)（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">218</td>
+<td>HJ</td>
+<td>変動根拠フラグ(保険)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">219</td>
+<td>HK</td>
+<td>変動根拠フラグ(保険)（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">220</td>
+<td>HL</td>
+<td>変動根拠フラグ(貯金)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">221</td>
+<td>HM</td>
+<td>変動根拠フラグ(貯金)（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">222</td>
+<td>HN</td>
+<td>変動根拠フラグ(財形)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">223</td>
+<td>HO</td>
+<td>変動根拠フラグ(財形)（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">224</td>
+<td>HP</td>
+<td>変動根拠フラグ(貸付)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">225</td>
+<td>HQ</td>
+<td>変動根拠フラグ(貸付)（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">226</td>
+<td>HR</td>
+<td>変動根拠フラグ(財形貸付)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">227</td>
+<td>HS</td>
+<td>変動根拠フラグ(財形貸付)（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">228</td>
+<td>HT</td>
+<td>変動根拠フラグ(その他控除)</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">229</td>
+<td>HU</td>
+<td>変動根拠フラグ(その他控除)（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">230</td>
+<td>HV</td>
+<td>外部精算区分</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">231</td>
+<td>HW</td>
+<td>外部精算区分（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">232</td>
+<td>HX</td>
+<td>強制修正有無フラグ</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">233</td>
+<td>HY</td>
+<td>強制修正有無フラグ（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">234</td>
+<td>HZ</td>
+<td>控除不能有無フラグ</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">235</td>
+<td>IA</td>
+<td>控除不能有無フラグ（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">236</td>
+<td>IB</td>
+<td>積上げ済フラグ</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+<tr>
+<td align="right">237</td>
+<td>IC</td>
+<td>積上げ済フラグ（名称）</td>
+<td>見出し確定、値設定は個別確認</td>
+</tr>
+</tbody></table>
+<p>質問の確定・保留と残件は<a href="docs--requirements--payroll-interface-decisions-20261008.html">決定台帳</a>。</p>
+</main></body></html>

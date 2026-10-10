@@ -1,0 +1,221 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>docs/requirements/non-functional-requirements.md</title><style>:root{font-family:system-ui,'Noto Sans JP',sans-serif;color:#172c45;background:#f4f7fb;line-height:1.8}*{box-sizing:border-box}body{margin:0}a{color:#0759a8;text-underline-offset:4px}a:hover{color:#002f67}button,input,select{font:inherit}button,.link{display:inline-block;background:white;border:1px solid #aabed0;border-radius:7px;padding:9px 14px;cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #d58b00;outline-offset:3px}header{background:#102d4e;color:white;padding:32px max(24px,calc((100vw - 1250px)/2))}header p{margin:6px 0;color:#dce8f4}h1{font-size:clamp(25px,4vw,37px);line-height:1.4;margin:12px 0}h2{font-size:25px}h3{font-size:21px}h4{font-size:18px}h2,h3,h4{scroll-margin-top:20px}main{max-width:1300px;margin:0 auto;padding:28px;min-width:0}.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px}.sidebar{position:sticky;top:12px;align-self:start;max-height:94vh;overflow:auto;background:white;border:1px solid #dce4ed;border-radius:10px;padding:16px}.sidebar a{display:block;padding:5px;font-size:14px}.sidebar strong{display:block;margin-top:12px}.intro,.chapter{background:white;border:1px solid #dce4ed;border-radius:12px;padding:25px;margin-bottom:24px}.item{border-top:1px solid #dce4ed;padding:18px 0;overflow-wrap:anywhere}.item p{margin:10px 0}.badge{display:inline-block;background:#e7eef7;color:#294c70;border-radius:5px;padding:2px 9px;font-size:12px;font-weight:700}.missing{background:#fff4da;border-left:4px solid #bc7800;padding:12px;color:#643e00}.refs{font-size:13px}.refs a{margin-right:14px}.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0}.toolbar input{min-width:0;width:260px;padding:10px;border:1px solid #aabed0;border-radius:7px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.cards a{display:block;padding:17px;border:1px solid #b9cde0;border-radius:8px;text-decoration:none;background:#f6faff}.cards a small{display:block;color:#47627d}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #d5dee8;padding:10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#eaf0f7}.table-wrap{overflow:auto}details{margin:12px 0}summary{cursor:pointer;font-weight:700}pre{overflow:auto;background:#f0f3f7;padding:14px;white-space:pre-wrap}code{overflow-wrap:anywhere}dialog{width:min(1300px,96vw);height:94vh;border:1px solid #b8c7d8;border-radius:12px;padding:0}dialog::backdrop{background:#102d4e99}.dialog-bar{display:flex;align-items:center;gap:15px;padding:12px;flex-wrap:wrap}.dialog-bar strong{flex:1}iframe{width:100%;height:calc(100% - 100px);border:0}.skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;background:white;padding:10px}.source main{max-width:1100px;background:white}.source h1{font-size:27px}.source img{max-width:100%}[hidden]{display:none!important}footer{padding:24px;color:#456}@media(max-width:800px){main{padding:14px}.layout{display:block}.sidebar{position:static;max-height:230px;margin-bottom:18px}.intro,.chapter{padding:18px}.toolbar{align-items:stretch}.toolbar input{width:100%}table{min-width:580px}}@media print{.sidebar,.toolbar,.cards,dialog,.preview-button{display:none!important}.layout{display:block}header{background:white;color:black;padding:10px}header p{color:black}.chapter,.intro{border:0;padding:0}.item{break-inside:avoid}main{padding:0}[hidden]{display:block!important}a{color:black}}</style></head><body class="source"><header><p>出典資料のHTML表示 · 元の記述・状態を保持</p><h1>non-functional-requirements.md</h1><p>2026-10-10取得。新旧記述が併記されています。2026-10-07確定要件・10-08人給決定を優先してください。</p></header><main><p><a href="../index.html">← 要件定義書へ戻る</a> · <a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/docs/requirements/non-functional-requirements.md">GitHub原文</a></p><p>Mermaidコードは原文として表示します。描画済み業務・画面図は要件定義書の関連資料から開けます。</p><h1 id="非機能要件判定基準整理-v012026-09-26">非機能要件・判定基準整理 v0.1（2026-09-26）</h1>
+<blockquote>
+<p><strong>2026-10-07の改修仕様</strong>：<a href="docs--requirements--payroll-confirmed-20261007.html">確定要件</a>を適用する。下記の公開版・実測記録は当時の状態として保持し、今回の要件確定だけでアプリ／Dataverseを変更済みとは扱わない。競合する今後の業務仕様は新しい確定要件を優先する。</p>
+</blockquote>
+<p>画面・機能要件との接点は<a href="docs--requirements--traceability-matrix.html">要件間マトリクス</a>、未確定の目標値と判断点の一覧は<a href="docs--requirements--open-decisions.html">未決事項一覧</a>を参照する。各項目の既定部分と未決部分の正本は本書の表とする。</p>
+<blockquote>
+<p>対象：単一の検証用Canvas App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。本番運用のSLAや情報セキュリティ承認を確定する文書ではない。</p>
+</blockquote>
+<h2 id="位置づけと判定ルール">位置づけと判定ルール</h2>
+<p><a href="docs--requirements--requirements.html">要件定義書</a>の非機能面を、<a href="https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/0af5ce68/20260715_resources_standard_guidelines_guideline_05.pdf">デジタル庁 DS-120 実践ガイドブック第5章</a>に沿って整理する。分類は同章の目次にあるA～R（保守を含む）を点検する。同章本文には「17項目（A～Q）」という記述もあるが、目次のR「保守」を漏らさないためA～Rを掲載する。ガイドの分類を列挙しただけでは、各項目が承認済み要件になるわけではない。</p>
+<ul>
+<li><code>既定</code>：引用した現行の要件・運用文書に期待結果が明記されている。対象版・条件で実測し、証跡を残した場合にだけ合否を判定する。</li>
+<li><code>一部既定</code>：実行条件や期待する振る舞いはあるが、負荷、時間、責任分担などの値が未決。既定部分だけを判定し、全領域を合格としない。</li>
+<li><code>未決</code>：目標値・適用範囲・判定方法等を業務側と確定するまで、任意の数値を合格基準にしない。</li>
+<li><code>今回対象外</code>：現在の隔離アプリでは実施しない。将来の本番移行時に適用可否を再判断し、恒久的な非該当とはしない。</li>
+</ul>
+<p>以下の<code>NFR-*</code>は<strong>整理用ID</strong>であり、未決の数値や運用条件にユーザーが同意したことを意味しない。実機テスト・公開版の照合・ユーザー受入は別工程。<a href="docs--requirements--traceability-matrix.html">要件・設計・試験対応表</a>には設計との接点と未試験の状態を追記する。</p>
+<h2 id="現行文書から引き継げる検査条件">現行文書から引き継げる検査条件</h2>
+<table>
+<thead>
+<tr>
+<th>整理ID</th>
+<th>現行の根拠と測定・確認方法</th>
+<th>合否として使える範囲／未決の線引き</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NFR-A</td>
+<td><a href="docs--requirements--screen-requirements.html#95-%E5%85%A8%E7%94%BB%E9%9D%A2%E5%85%B1%E9%80%9A%E3%81%AE%E7%94%BB%E9%9D%A2%E9%A0%98%E5%9F%9F%E6%AF%94%E7%8E%87">画面要件9.5・9.8</a>：SCR-001～006を幅900・1100・1366・1600・1920、200%拡大、標準／大きな文字で観察し、操作への到達、欠け・重なりを記録。Tab・フォーカス・読み上げは<a href="docs--requirements--screen-requirements.html#87-yaml%E6%A7%8B%E6%88%90%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E5%8F%97%E5%85%A5%E6%9D%A1%E4%BB%B6">SCR-005 8.7</a>の対象。</td>
+<td>現行要件で指定された表示条件の不適合を判定できる。対象端末・支援技術の組合せと業務上の可読性判定は未決／人の確認が必要。旧版E2EのPASSを転記しない。</td>
+</tr>
+<tr>
+<td>NFR-D</td>
+<td><a href="docs--requirements--screen-requirements.html#96-%E8%BB%BD%E9%87%8F%E5%8C%96%E3%81%AE%E5%8F%97%E5%85%A5%E6%9D%A1%E4%BB%B6">画面要件9.6</a>：起動・検索・職員切替・タブ・履歴・HTML・給与表示を、改修前後で同じ環境・データ・操作として計時し、App checkerと画面別・型別部品数も記録。</td>
+<td>比較値と悪化箇所は示せるが、許容秒数・同時利用数・計測回数・達成率は未決。SCR-002の150～210部品は設計目標であり、それだけでは合否を決めない。</td>
+</tr>
+<tr>
+<td>NFR-E</td>
+<td><a href="docs--requirements--screen-requirements.html#92-%E7%94%BB%E9%9D%A2%E6%A7%8B%E6%88%90">SCR002-LT-007</a>、<a href="docs--requirements--screen-requirements.html#922-scr-002-%E7%94%BB%E9%9D%A2%E9%85%8D%E7%BD%AE%E3%81%A8%E6%93%8D%E4%BD%9C">SCR002-UI-007</a>：0件・職員切替・失敗時に旧職員の値と取得時刻が新しい対象の値として残らないことを、隔離レコードで確認。</td>
+<td>振る舞いの合否は判定できる。稼働率、復旧時間、障害時の業務継続水準は未決。現行検索の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/records/docs/testing/current-app-search-observation.md">FAIL／BLOCKED</a>を合格に読み替えない。</td>
+</tr>
+<tr>
+<td>NFR-J</td>
+<td><a href="docs--requirements--screen-requirements.html#5-%E6%A8%A9%E9%99%90%E5%88%B6%E5%BE%A1">画面要件5章</a>：所属制限・管理者限定遷移・職員番号直指定による迂回防止を、異なる権限の隔離アカウントで検査。</td>
+<td>画面要件の範囲のみ。認証・所属／管理者属性の取得元、権限設計と監査・保管期間は未決であり、UI上の非表示だけでアクセス制御完了としない。</td>
+</tr>
+<tr>
+<td>NFR-M</td>
+<td><a href="docs--testing--test-policy.html">全体テスト計画</a>：改修部品の単体を必須とし、他部品へ影響するときは結合も選び、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/docs/testing/change-records/README.md">選定記録</a>と実測を残す。</td>
+<td>選定ルールは既定。総合テストの業務シナリオ・時期、非機能の負荷試験・受入主体は未決。Markdownの記載だけでActionsがケースを生成・実行しない。</td>
+</tr>
+</tbody></table>
+<h2 id="ガイド分類ごとの適用未決台帳">ガイド分類ごとの適用・未決台帳</h2>
+<table>
+<thead>
+<tr>
+<th>整理ID</th>
+<th>領域</th>
+<th>状態</th>
+<th>今回確認した範囲と、次に確定すべきこと</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NFR-A</td>
+<td>ユーザビリティ・アクセシビリティ</td>
+<td>一部既定</td>
+<td>上表の画面条件を引継ぐ。スマホの対象機種、支援技術、可読性の評価者・判定を決める。</td>
+</tr>
+<tr>
+<td>NFR-B</td>
+<td>システム方式</td>
+<td>一部既定</td>
+<td><a href="docs--operations--single-app-workflow.html">単一アプリ運用</a>と<a href="docs--design--basic--basic-design.html#%E7%8F%BE%E8%A1%8C%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E5%85%A8%E4%BD%93%E6%A7%8B%E6%88%90">基本設計</a>で隔離アプリ／Dataverse／HTMLを整理。将来の本番接続方式は今回対象外。</td>
+</tr>
+<tr>
+<td>NFR-C</td>
+<td>規模</td>
+<td>未決</td>
+<td>利用者数、同時利用数、データ件数・増加率、帳票量、保存期間を確定する。試験用25名・163項目を本番規模としない。</td>
+</tr>
+<tr>
+<td>NFR-D</td>
+<td>性能</td>
+<td>一部既定</td>
+<td>改修前後の計時項目は上表どおり。秒数・負荷条件・百分位の合格値は未決。</td>
+</tr>
+<tr>
+<td>NFR-E</td>
+<td>信頼性</td>
+<td>一部既定</td>
+<td>表示失敗・旧職員データ残留の防止は既定。可用性と復旧目標は未決。</td>
+</tr>
+<tr>
+<td>NFR-F</td>
+<td>拡張性</td>
+<td>未決</td>
+<td>履歴増加・同月複数給与・項目追加時の規模と再設計条件を定める。現行の動的表示方式は<a href="docs--design--basic--basic-design.html#%E8%BB%BD%E9%87%8F%E5%8C%96%E5%BE%8C%E3%81%AE%E6%A7%8B%E6%88%90">基本設計</a>を参照。</td>
+</tr>
+<tr>
+<td>NFR-G</td>
+<td>上位互換性</td>
+<td>未決</td>
+<td>Power Apps／Dataverse／ブラウザーの更新対象、版上げ後の回帰範囲と期限を決める。</td>
+</tr>
+<tr>
+<td>NFR-H</td>
+<td>中立性</td>
+<td>未決</td>
+<td>データの抽出・移行可能性と製品固有方式を採る理由・代替策を整理する。</td>
+</tr>
+<tr>
+<td>NFR-I</td>
+<td>継続性</td>
+<td>未決</td>
+<td>障害・災害時の業務代替、復旧手順、復旧時間・復旧時点を業務側で決める。</td>
+</tr>
+<tr>
+<td>NFR-J</td>
+<td>情報セキュリティ</td>
+<td>一部既定</td>
+<td>所属／管理者の画面要件と隔離データの境界は既定。実運用の権限主体、ログ、脆弱性対応・機微情報の扱いは未決。</td>
+</tr>
+<tr>
+<td>NFR-K</td>
+<td>稼働環境</td>
+<td>一部既定</td>
+<td><a href="docs--operations--single-app-workflow.html#%E5%AF%BE%E8%B1%A1">単一アプリ運用</a>に環境・App IDがある。対象ブラウザー・端末、サポート版、環境障害時の責任範囲を決める。</td>
+</tr>
+<tr>
+<td>NFR-L</td>
+<td>データマネジメント</td>
+<td>一部既定</td>
+<td>職員番号12桁、親子GUID、NULLと0の区別は既存設計にある。保存・消去・バックアップ・復元、データ品質の責任者は未決。</td>
+</tr>
+<tr>
+<td>NFR-M</td>
+<td>テスト</td>
+<td>一部既定</td>
+<td>上表の改修単位の単体／結合を適用。総合・負荷・人の受入の条件と時期は未決。</td>
+</tr>
+<tr>
+<td>NFR-N</td>
+<td>移行</td>
+<td>今回対象外</td>
+<td>隔離<code>_STUDIO</code>から実データ・本番環境への移行を今回の文書整理に含めない。必要時に件数照合、差戻し、期間を新規に定める。</td>
+</tr>
+<tr>
+<td>NFR-O</td>
+<td>引継ぎ</td>
+<td>一部既定</td>
+<td>GitHubの要件・設計・ソースと<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/docs/handoff/STATUS.md">STATUS</a>で履歴を追う。担当変更時の引継ぎ項目と承認主体は未決。</td>
+</tr>
+<tr>
+<td>NFR-P</td>
+<td>教育</td>
+<td>未決</td>
+<td>対象職員、教材、操作訓練、受講・習熟の確認方法を決める。</td>
+</tr>
+<tr>
+<td>NFR-Q</td>
+<td>運用</td>
+<td>一部既定</td>
+<td>検証アプリの<a href="docs--operations--single-app-workflow.html">単一アプリ運用</a>を適用。障害連絡・監視・日常点検・受付時間は未決。</td>
+</tr>
+<tr>
+<td>NFR-R</td>
+<td>保守</td>
+<td>一部既定</td>
+<td>改修時の<a href="docs--testing--test-policy.html">試験選定</a>と版管理は既定。依存更新、担当、保守期間・修正期限は未決。</td>
+</tr>
+</tbody></table>
+<h2 id="次の意思決定と記録">次の意思決定と記録</h2>
+<ol>
+<li>業務責任者・利用者と、本番想定人数／ピーク同時利用／データ増加、対象端末・支援技術、応答時間の許容値を定める。現時点では決め打ちしない。</li>
+<li>可用性・復旧・監査・保管・アクセス権と運用／保守／教育の責任分担を、隔離試作か本番かに分けて確定する。承認者・期日を作業記録に残す。</li>
+<li>確定した項目だけ受入条件へ昇格し、測定環境、試行回数、期待値、結果、版、担当を試験記録に紐付ける。未決項目・未実施項目をPASSとしない。</li>
+</ol>
+<p>本書の追加は試験コード・Actionsの実行条件・Power Appsの公開版を変更しない。設計上の対応は<a href="docs--design--basic--basic-design.html#%E7%8F%BE%E8%A1%8C%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E5%85%A8%E4%BD%93%E6%A7%8B%E6%88%90">基本設計</a>を、要件IDと試験の未対応は<a href="docs--requirements--traceability-matrix.html">対応表</a>を参照する。</p>
+<h2 id="2026-10-07に確定した方式データ権限制約">2026-10-07に確定した方式・データ・権限制約</h2>
+<p><a href="docs--requirements--payroll-confirmed-20261007.html">確定要件</a>を適用する。</p>
+<table>
+<thead>
+<tr>
+<th>関連ID</th>
+<th>確定した条件</th>
+<th>残る検証・詳細</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NFR-B</td>
+<td>Canvas＋Dataverse標準＋Power Automateのローコードのみ（R1）</td>
+<td>処理配置、実行上限、件数での性能</td>
+</tr>
+<tr>
+<td>NFR-E・I</td>
+<td>取込全件検証、取込中の対象編集／提出停止、不完全結果の計算利用禁止（R14）</td>
+<td>排他・復旧・再実行、RTO/RPO</td>
+</tr>
+<tr>
+<td>NFR-F</td>
+<td>本人機能は初回対象外だが将来追加可能とする（Q54）</td>
+<td>将来本人照合・件数の拡張条件</td>
+</tr>
+<tr>
+<td>NFR-J</td>
+<td>給与班全局／局担当自局記録、必要な共通基本、複数ロール兼務、業務／システム管理分離（R15・R21）</td>
+<td>権威ある属性取得、Dataverse物理ロール、フロー経路の認可、監査期間</td>
+</tr>
+<tr>
+<td>NFR-L</td>
+<td>支払済不訂正。最終結果・最終計算根拠・給与簿・支払実績・照合回ごとの不一致双方額を保持。中間版は支払確定後に削除可能。CSV自体は継続保存不要（R3・R7・R8・R16・R17）</td>
+<td>保存期間、削除方式・権限、バックアップ／復元、参照整合</td>
+</tr>
+<tr>
+<td>NFR-M・N</td>
+<td>架空データで検証し、実データ移行は後段。設計・式・単体結合・データ権限・既存維持を受入前提（Q59・Q60）</td>
+<td>総合シナリオD-07、性能値、実データ移行の具体的基準</td>
+</tr>
+</tbody></table>
+<p>給与簿と計算結果の差分ゼロは業務確定条件であり、システム性能や全業務受入の合格を示すものではない。未決の数値目標を今回推測で補わない。</p>
+</main></body></html>

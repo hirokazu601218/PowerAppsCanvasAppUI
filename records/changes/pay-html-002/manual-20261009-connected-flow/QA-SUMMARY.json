@@ -1,0 +1,187 @@
+{
+  "task": "PAY-HTML-002",
+  "status": "PASS_HTML_REVIEW_SCOPE",
+  "checked_at_utc": "2026-10-09T14:12:00Z",
+  "scope": "Connected review diagrams and navigation only. This is not approval of Power Apps, payroll rules, real data, business acceptance or production deployment.",
+  "build": {
+    "files": 50,
+    "manifest_sha256": "3ba6f81bdccf90b7acbfbef5070bbd82231d7139a887fe61feec4d07bb63aa45",
+    "sha256": {
+      "docs/review/pay-html-001/README.md": "1e4401425d023a0f8fb6863545d9c188b761889bb0117acd62cc8cc699cca4b0",
+      "docs/review/pay-html-001/assets/review.css": "d6fc527844674838afe11b126bce32856477037c54ffc089f2a47a249195848e",
+      "docs/review/pay-html-001/assets/review.js": "b9b0736f45fe99ccb763c07b7136ab310a7ee0f908bb7ea5d61fab24c5a875fc",
+      "docs/review/pay-html-001/coverage.html": "af587aaaae110f25ad730dcec500e894a1f92f29a0a86333866e3aa8b67fec75",
+      "docs/review/pay-html-001/data/model.json": "4d111d31e772c5f4058e2bbcd2dfdb1f504d89bb83740f8e0736bb6bf5c70444",
+      "docs/review/pay-html-001/design-notes.html": "bd61a1da81d00d063b09d91425e615f298681f62641846c6590a19534d649765",
+      "docs/review/pay-html-001/index.html": "d7bf7533e936ee621529de4294ba39ccb82aac23ddececdfa7f9b40187c360c2",
+      "docs/review/pay-html-001/navigation.html": "1c73f06fc027093d917d3503b1755b9a796ac0106530a278930ed6a4e0798ca8",
+      "docs/review/pay-html-001/operations/cur-import-poc.html": "eb652c8908c1a4917b7e6327dfbfe48bfaf781b0bdbf052901428d6332e5081f",
+      "docs/review/pay-html-001/operations/ext-commute.html": "adf49ce43472555753ff2c19cec47ea4b0afe2fe3f5d9becc1f7ab4ab749f47f",
+      "docs/review/pay-html-001/operations/ext-jinkyu.html": "1aa7d6f4af5f4fba4c79515d0305e06a5f2e193771bd2ea41d0117699b8e2856",
+      "docs/review/pay-html-001/operations/fut-import.html": "bdfaa4c052a3f6bf512733d6fa78ca90586cbbbd24c67dfc7ed1888a3a24e0ba",
+      "docs/review/pay-html-001/operations/fut-jlink.html": "beb5df25a3ab631a0498b22a56cb5141e81e995aaee425abe65578bb6f052e7d",
+      "docs/review/pay-html-001/operations/index.html": "5b1f2c7235dc906545bbf11e48e37668f7f8489b55f8f3f10f73b2908047f0f4",
+      "docs/review/pay-html-001/operations/scr-001.html": "69e0699e9d312f55782faa675508d067cecb3d7c79221a7fced6fe183d1beb5d",
+      "docs/review/pay-html-001/operations/scr-002.html": "77e4e2876c7f8250a9f2b758218c816c4b98125c863fd4dd26b5c48ebd97b412",
+      "docs/review/pay-html-001/operations/scr-003.html": "d614e64b2154511a34150f32786cb4e905c3e65164b88237d078b3ce2fe41741",
+      "docs/review/pay-html-001/operations/scr-004.html": "fb15ac0879a493725f9b0549e0056216465f22cb4b623ba29a4921dd31593582",
+      "docs/review/pay-html-001/operations/scr-005.html": "3560e28acce9b0b373cdc5b62e01f7f60898cc3310e9de47a452d64f803ffa7c",
+      "docs/review/pay-html-001/operations/scr-006.html": "ddef01965045176f75656cf17dbbda253121c61a89432ffef5c572f1b44adb68",
+      "docs/review/pay-html-001/operations/scr-007.html": "d4f6d538d7546de9cf68cc83ab2936473e622e1f5c52bebe4e2c51cc6a888187",
+      "docs/review/pay-html-001/wireframes/cur-import-poc.html": "42ba20e1e434d61be4ca41b1867280580443a50e0607706e0e82c4b221a60e9e",
+      "docs/review/pay-html-001/wireframes/ext-commute.html": "f7afb07a05a7fcffd250b856bc16c97adeb8fd79a1349387ad62dd69a3e9347c",
+      "docs/review/pay-html-001/wireframes/ext-jinkyu.html": "e74b78ffaf0bcd1e7d6120e875f6fcdc961ccf4875b739e4d50afd1764fb79e0",
+      "docs/review/pay-html-001/wireframes/fut-import.html": "5a8d4d0d4f3c59078d7745a5f741afe3c635fdaa1861c2b2fe5f897c489aff79",
+      "docs/review/pay-html-001/wireframes/fut-jlink.html": "bd81355b5bff506c5a6648578b110ca7c8ce98f5df5c19853654ff8a0a69048a",
+      "docs/review/pay-html-001/wireframes/index.html": "254f1aa48a3fc1db5c50e940eed765ecf8d26565fce7153259ea1be57afdb610",
+      "docs/review/pay-html-001/wireframes/scr-001.html": "89eb2e8c405b9abbabcdcc823542c9031d6a33991384dc03e0627fecd6026035",
+      "docs/review/pay-html-001/wireframes/scr-002.html": "6b50b4b02f607ff7b74b280d00c5d810177ede91ac93c73711268f630551aab1",
+      "docs/review/pay-html-001/wireframes/scr-003.html": "519e4ce1ad2e109e96ea46a0db4399a267dcecf9ec3e430136fef87259401547",
+      "docs/review/pay-html-001/wireframes/scr-004.html": "6f683af4474ebf1fbebffd0a118e5fe2b20fb3bb26833182b5bbc2b6723a9bde",
+      "docs/review/pay-html-001/wireframes/scr-005.html": "6255fc896984c25b7ed5b8b55c188fa5d0f986b29bf9bb592c73407b04f70664",
+      "docs/review/pay-html-001/wireframes/scr-006.html": "a5510593cbef37e87e9f2c99b707015fb36083886ab96de2d14316694c4e98cd",
+      "docs/review/pay-html-001/wireframes/scr-007.html": "64aada9339cfe9ead79bed73e56ef5f2142af7b4b45c07b5ceffc437a57082c4",
+      "docs/review/pay-html-001/workflows/index.html": "af96599760cdb25cff84584383bcae6c34f14747dc90123c6864dd492edf0ed7",
+      "docs/review/pay-html-001/workflows/wf-01.html": "f41bf1ab28412b41e2edd2b0debec8bfec006a123192873479dfbfc3b5b9275f",
+      "docs/review/pay-html-001/workflows/wf-02.html": "26983e7423337f4c068a0dd530c252def26246296b3ba79d89eb42395ed03580",
+      "docs/review/pay-html-001/workflows/wf-03.html": "2536835e78f2bf7e400fd824b2c9a5d0bb7b6f7a6b2e9ea5db444ce34d6571df",
+      "docs/review/pay-html-001/workflows/wf-04.html": "6dd5b30a932e1083afd40864cfb7e74220545aa641db1058dedb48df0b66741d",
+      "docs/review/pay-html-001/workflows/wf-05.html": "cada0dcc7effe42a0cb40e557fb6f409d699cd7b290d2d62e791078e432ecddd",
+      "docs/review/pay-html-001/workflows/wf-06.html": "1d55987f1570970f25e1e07ff50357361f2a16a76c14aca83c18c127566534fa",
+      "docs/review/pay-html-001/workflows/wf-07.html": "5ba456f8e5b20844e5d47e4795cc32b6f05e4b45356a1d89fa415f158042c9f9",
+      "docs/review/pay-html-001/workflows/wf-08.html": "5b21638e9b30a628235c3a5a9094b4141edf4643bde7494e155aebbfb66696c3",
+      "docs/review/pay-html-001/workflows/wf-09.html": "bf777eb9deb493735226b2e12efbe80207c9ce985f292da36270da8ee498d49d",
+      "docs/review/pay-html-001/workflows/wf-10.html": "2eb11e274b51c6fc30384263600e85294ee6d1dd20118257c484af11d0eae448",
+      "docs/review/pay-html-001/workflows/wf-11.html": "0d65679eeb2eb75a1a3fb2d7c0f271ed5cc523e6b49d9ea99ba7e57cd30e2845",
+      "docs/review/pay-html-001/workflows/wf-12.html": "ca67e9539f47690e3fd08850cc9a2344fe5fd5bb379b1598f0295b0f92eed632",
+      "docs/review/pay-html-001/workflows/wf-13.html": "f97828c49ea7ddcf3fea1ff226f4020862dabb90394260bf68bcd4c16d3098cf",
+      "docs/review/pay-html-001/workflows/wf-14.html": "026ff60909ecab12394a4db43bddaaf6dca08c94776386f0aa26f7404581769f",
+      "docs/review/pay-html-001/workflows/wf-15.html": "86f176d1c37c86044fbaed9b27c5a44fc66514653787ba61f05158764415d2c9"
+    }
+  },
+  "static": {
+    "html_pages": 46,
+    "broken_links": 0,
+    "duplicate_html_ids": 0,
+    "external_resource_loads_in_source": 0,
+    "review_unit_tests": 15,
+    "governance_unit_tests": 3,
+    "generator_check": "PASS",
+    "model_validator": "PASS",
+    "javascript_syntax": "PASS"
+  },
+  "workflow_geometry": {
+    "diagrams": 15,
+    "business_nodes": 135,
+    "business_edges": 154,
+    "rendered_nodes_with_view_elements": 216,
+    "matching_edge_table_rows": 154,
+    "failures": {},
+    "checks": [
+      "one rendered semantic node per step",
+      "shared directed endpoints and attached orthogonal connectors",
+      "starts and review endpoints reachable",
+      "node collisions",
+      "unrelated edge-node intersection",
+      "edge-text and edge-label intersection",
+      "text containment in rectangles and diamonds",
+      "node-label and label-label collisions",
+      "canvas bounds",
+      "page overflow"
+    ]
+  },
+  "navigation": {
+    "source_groups": 12,
+    "source_instances": 12,
+    "operation_count": 30,
+    "model_mismatches": [],
+    "label_overflow": [],
+    "page_overflow": false,
+    "external_classification": {
+      "OP-F-HTML": "new-tab",
+      "OP-AD-CANDIDATE": "information",
+      "OP-F-RETURN-HTML": "tab-return",
+      "OP-JLINK-EXPORT": "file-handoff",
+      "OP-JINKYU-PROCESS": "file-handoff",
+      "OP-RETRO-EXPORT": "information"
+    }
+  },
+  "desktop": {
+    "viewport": [
+      1180,
+      757
+    ],
+    "content_width": 1165,
+    "pages": 46,
+    "page_overflow": 0,
+    "diagnosed_text_clipping": 0
+  },
+  "mobile": {
+    "method": "Actual Chromium 390x844 CSS iframe, 375px document content width",
+    "workflow_pages": 15,
+    "normal_and_script_disabled_frames": 30,
+    "page_overflow": 0,
+    "all_model_nodes_and_edge_rows_present": true,
+    "no_script_toolbar_hidden": true,
+    "navigation_groups": 12,
+    "navigation_operations": 30,
+    "navigation_page_overflow": 0,
+    "wf13_100percent_scroll_reaches_right_bottom": {
+      "client_width": 330,
+      "scroll_width": 1160,
+      "right": 830,
+      "client_height": 626,
+      "scroll_height": 1990,
+      "bottom": 1364
+    }
+  },
+  "interaction": {
+    "wf13_controls": [
+      "whole view",
+      "100%",
+      "115% zoom in",
+      "zoom out to 100%",
+      "fit width 94%"
+    ],
+    "step_anchor": "WF-13#c",
+    "operation_anchor": "operations/fut-jlink.html#OP-JLINK-AM",
+    "browser_back": "PASS",
+    "existing_mock_smoke": [
+      "output tab and 2 people / 3 details / A3 M0 confirmation",
+      "cancel closes dialog",
+      "whole latest-zero enables payroll confirmation",
+      "confirmation changes mock state without dialog"
+    ],
+    "original_mock_javascript_exact_prefix_preserved": true
+  },
+  "semantic_delta": {
+    "operations_screens_requirements_sources": "unchanged",
+    "workflow_core": "Only WF-15 adds h and e→h for normal new-period application, grounded in existing PAY-02 / AD-10. No new payroll decision; pending physical methods and formulas remain pending.",
+    "presentation": "Parallel WF-02 and row-wise WF-04 branch meaning, responsibility lanes, return loops and external handoff distinctions were reviewed."
+  },
+  "visual_inspection": [
+    "complete natural-size SVG/CSS renders WF-06, WF-10, WF-13, WF-14",
+    "original-page WF-13 whole-view and 100% branch detail",
+    "navigation home 1:N",
+    "navigation external user-switch/file handoff",
+    "final navigation overview including separate-tab label",
+    "390px diagram local scroll"
+  ],
+  "resolved_findings": [
+    "gateway text crossed diamond edges",
+    "small gateway symbols exceeded diamond bounds",
+    "start/end labels intersected connectors",
+    "WF06/WF07/WF10 responsibility-lane corrections",
+    "distant condition labels moved beside own connector",
+    "navigation overview separate-tab label overlap"
+  ],
+  "limits": [
+    "Cloud Chromium only; no physical mobile device, Safari, touch acceptance or screen-reader audit.",
+    "390px uses CSS iframes, not device emulation.",
+    "All geometry checked programmatically; representative full diagrams inspected as pixels, not every pixel of all 15.",
+    "Natural-size full-diagram screenshots use exact extracted SVG/CSS in a local QA-only page so scroll-clipped content can be inspected.",
+    "Full 100-operation end-to-end behavior was not rerun; unchanged existing mock code plus representative smoke checks were used.",
+    "No real Power Apps, Dataverse, Power Automate, external payroll system, money movement, production data or production release was tested.",
+    "Screenshots remain outside the public repository. Browser extension messages are excluded from application findings."
+  ]
+}

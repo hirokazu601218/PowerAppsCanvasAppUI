@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+  <title>④ EXT-JINKYU 人給システム（外部） | 非常勤給与レビュー</title>
+  <link rel="stylesheet" href="../assets/review.css">
+  <script src="../assets/review.js" defer></script>
+</head>
+<body data-screen-id="EXT-JINKYU">
+<a class="skip" href="#main">本文へ移動</a>
+<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
+<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<a href="../navigation.html" >① 画面遷移</a>
+<a href="../workflows/index.html" >② 業務フロー</a>
+<a href="../operations/index.html" >③ 操作定義</a>
+<a href="index.html" aria-current="page">④ ワイヤー</a>
+<a href="../coverage.html" >対応表</a>
+<a href="../design-notes.html" >設計注記</a></nav>
+<main id="main">
+<div class="document-meta"><span>0.2-review / 2026-10-10</span><strong>提案・レビュー用（未承認）</strong><span>文書出典：<code>6d203bf29887598555e9eb17383cb433c5228691</code></span></div>
+<h1>④ EXT-JINKYU 人給システム（外部）</h1>
+<p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
+<p><span class="badge accepted">確定改修要件</span> 職員がExcelを取り込み、人給で必要な処理を行い給与簿CSVを出力する外部境界。</p><p><a href="../operations/ext-jinkyu.html" >この画面の操作定義</a> / <a href="../design-notes.html#mock-design" >設計・状態の注記</a></p><section class="review-controls" aria-label="レビュー用の条件切替"><p>レビュー用の条件切替（業務画面外）。権限変更・実データ更新は行いません。操作で現れる文言・モーダル配置は提案です。</p><label>役割<select data-review-role><option value="payroll">給与班</option><option value="bureau">局担当者</option><option value="master">業務マスタ管理者</option><option value="system">システム管理者</option><option value="self">職員本人（将来）</option></select></label><label>状態<select data-review-state><option value="normal">通常</option><option value="initial">初期・未選択</option><option value="zero">検索・履歴0件</option><option value="loading">処理中</option><option value="error">エラー</option><option value="readonly">報告済み・読み取り</option><option value="difference">照合差分あり</option><option value="clean">全体差分ゼロ</option><option value="stale">計算更新後</option><option value="unknown">未知職員あり</option><option value="paid">支払い済み</option></select></label><label>次の模擬保存<select data-save-result><option value="success">成功</option><option value="failure">失敗</option></select></label><button type="button" data-review-reset>初期化</button></section><section class="mock-boundary" aria-label="PC業務画面例"><div class="mock-caption">PCレイアウトの画面例 · 架空データ · 実処理は行いません · 狭い画面はこの枠内を横スクロール</div><div class="mock-app" data-mock-screen="EXT-JINKYU"><header class="mock-header"><div><h2>人給システム（外部）</h2><span class="context-name">架空総務局 · 架空担当者</span></div><div class="header-actions"><a href="fut-jlink.html" data-operation-id="OP-JINKYU-PROCESS" data-mock-nav  data-entry-roles="payroll">人給連携へ戻る</a><span>画面例</span></div></header><p class="mock-status mock-warning" data-role-warning hidden>この業務は給与班が担当します。現在の役割では対象データを表示しません。</p><div class="mock-body" data-business-content><h3>アプリ外で行う作業</h3><p>人給へのExcel取込 → 人給の計算処理 → 給与簿CSVの出力。</p><p>このHTMLから人給へ接続したり、取込成功を記録することはありません。</p><a href="fut-jlink.html" data-operation-id="OP-JINKYU-PROCESS" data-mock-nav  data-entry-roles="payroll">給与簿の取込・照合へ戻る</a><div class="mock-status" role="status" aria-live="polite" data-mock-status>表示内容は架空の例です。</div></div></div></section><dialog class="mock-dialog" data-mock-dialog aria-labelledby="dialog-title"><h3 id="dialog-title" data-dialog-title>操作の確認</h3><div data-dialog-body></div><div class="mock-actions"><button type="button" data-dialog-cancel>キャンセル</button><button type="button" class="primary" data-dialog-confirm>続行</button></div></dialog><noscript><p class="no-js-message">JavaScriptは無効です。全タブと仕様本文をそのまま表示しています。モックの保存・確認操作は動きません。</p></noscript><section class="static-states"><h2>状態と操作の静的定義</h2><ul><li>初期・未選択：対象を選ぶ案内を表示し、旧職員・旧履歴・旧金額を残しません。</li><li>0件：対象がない旨を表示。以前の詳細・認定ID・金額を利用しません。</li><li>処理中：重複実行・編集・提出を停止。完了または失敗の通知を待ちます。</li><li>エラー：原因と再試行への案内を表示。失敗時は成功したように扱いません。編集中の入力は維持します。</li><li>未保存：SCR-002のタブ変更では保持。別職員／画面／読み取りへの変更時に「変更を破棄して移動しますか」。続行だけ破棄、キャンセルは現状保持。その他画面への共通適用は提案です。</li><li>役割：給与班の全対象・局担当の自局・将来本人の自己分と、業務マスタ／システム管理を区別します。確認用の役割切替は実際の認可ではありません。</li><li>人給連携：出力前確認には支給回・人数・明細数・A/M件数。給与班確定はダイアログなし。選択支給回の全対象について最新照合が差分ゼロで未解決行がない場合だけ確定できます。表示フィルターで判定を狭めません。</li></ul></section><h2>操作と仕様の対応</h2><div class="table-scroll" tabindex="0" role="region" aria-label="この画面の操作対応（業務画面外）">
+<table ><caption>この画面の操作対応（業務画面外）</caption>
+<thead><tr><th scope="col">操作ID</th><th scope="col">業務操作</th><th scope="col">区分</th><th scope="col">定義</th></tr></thead>
+<tbody>
+<tr><td>OP-JINKYU-PROCESS</td><td>人給取込・給与簿出力</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/ext-jinkyu.html#OP-JINKYU-PROCESS" >条件・例外を読む</a></td></tr>
+</tbody></table></div>
+<p>出典：<a href="../../../design/detailed/payroll-jinkyu-interface.md">人給Excel・給与簿CSV仕様 2～6章、IF-01～12、PERIOD-01～05、11キー</a> / <a href="../../../design/detailed/payroll-jinkyu-interface.md">承認画面の処理契約 7.1 出力／7.2 最新版照合／7.3 訂正・エラー・確定</a></p><h2>未決・実装上の注記</h2><ul><li>非常勤給与アプリ内の新画面ではない。</li><li>人給への直接接続・自動操作・エラー自動取得は確定していない。</li></ul>
+</main>
+<footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+name: Payroll review documents
+
+on:
+  pull_request:
+    paths:
+      - 'docs/review/pay-html-001/**'
+      - 'scripts/review/**'
+      - 'tests/review/**'
+      - '.github/workflows/payroll-review-docs.yml'
+      - 'config/dataverse/payrollledger-columns.json'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/review/pay-html-001/**'
+      - 'scripts/review/**'
+      - 'tests/review/**'
+      - '.github/workflows/payroll-review-docs.yml'
+      - 'config/dataverse/payrollledger-columns.json'
+
+permissions:
+  contents: read
+
+jobs:
+  static-review:
+    name: Payroll review static validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify deterministic model
+        run: |
+          python3 scripts/review/build_payroll_model.py
+          git diff --exit-code -- docs/review/pay-html-001/data/model.json
+      - name: Verify generated HTML and static contracts
+        run: |
+          python3 scripts/review/generate_payroll_review.py --check
+          python3 scripts/review/validate_payroll_review.py
+          python3 -m unittest discover -s tests/review -v
+          node --check docs/review/pay-html-001/assets/review.js

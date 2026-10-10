@@ -1,0 +1,139 @@
+{
+  "purpose": "Sanitized official Maker exported-source comparison; not PAC readback and not a complete postpublication gate result",
+  "observed_at_utc": "2026-10-10T09:43:00Z",
+  "versions_rechecked_at_utc": "2026-10-10T09:44:53.176Z",
+  "source_commit": "fba65fdaefcf3b70821d7831ce86a4262ea4a214",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "live_version": 38,
+  "new_draft39_observed": false,
+  "route": "Maker app details > Export package > supported download event handle",
+  "evidence_sources": [
+    {
+      "filename": "v38-published-source-comparison.json",
+      "sha256": "7932405ae24f8fcdb6c4f82632a4fe08e18593dd8281a6d735a5864575bc1976",
+      "bytes": 18633,
+      "raw_file_included": false
+    },
+    {
+      "filename": "v38-after-export-versions.json",
+      "sha256": "2d9af243ba10407bf51dd9a316a6d73919ab324bd5380dcdfb34aaa39a5ba0b1",
+      "bytes": 478,
+      "raw_file_included": false
+    }
+  ],
+  "maker_package_sha256": {
+    "zip": "bf8a39b88c71d8e8d8ba6b96cb9d3ee4b37d8d31b8df143b4fc44e7ff0c30206",
+    "msapp": "7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f"
+  },
+  "raw_package_included": false,
+  "pac_H_is_maker_hash": false,
+  "exact_lastPublishTime_P": "NOT_COLLECTED",
+  "pac_H": "NOT_COLLECTED",
+  "source_comparison": {
+    "payroll": {
+      "status": "PASS",
+      "normalized": [
+        "conscrPayrollRoot.LayoutAlignItems: omitted -> =LayoutAlignItems.Start"
+      ],
+      "other_differences": 0,
+      "expected_sha256": "92f657a8483bc617e20c497e1da74a1b56407ed9ec0171b7c49b35ce87868740",
+      "actual_sha256": "bfb79dc4c25a77b03e8f3bf8c28f62f8c996ed3aa065073889aa2f4b1d0f6f73"
+    },
+    "staff": {
+      "semanticMatch": true,
+      "actualSha256": "80ae540f22bbdb8661c8eece398401e4f0ea391eda3e1ed9b0350814731ae2f4",
+      "expectedSha256": "25d2c1a753cc15a436d689d34f69aaf2ec03ca7d651e2a20f7b0735baaa300f3"
+    },
+    "unchangedOtherScreensAndApp": [
+      "Src/App.pa.yaml",
+      "Src/scrAttendance.pa.yaml",
+      "Src/scrAttendanceFormal.pa.yaml",
+      "Src/scrBonus.pa.yaml",
+      "Src/scrExcelImportPoc.pa.yaml",
+      "Src/scrHome.pa.yaml",
+      "Src/scrMaintenance.pa.yaml"
+    ]
+  },
+  "controls_preserved": {
+    "control_document_count": 9,
+    "all_name_sets_and_counts_unchanged": true,
+    "parent_move": "conPaySummary: conPayBody -> conscrPayrollRoot",
+    "payroll_invariant_script_change_count": 20,
+    "staff_invariant_script_change_count": 5,
+    "explicit_child_alignment_controls": [
+      "conPayBody",
+      "conPaySummary",
+      "conPayrollTargets",
+      "conscrPayrollHeader"
+    ],
+    "scope_note": "Script counts include Studio-generated ZIndex changes. These are not a new business-requirement count."
+  },
+  "datasources": {
+    "decodedRawDifferenceCount": 504,
+    "semanticDifferenceCountAfterMetadataIdSort": 0,
+    "paths": [],
+    "normalization": "Repeated JSON-string decoding; dictionary key order ignored; arrays sorted only when every object has a non-null globally unique MetadataId, SchemaName, or LogicalName. Array elements and attribute values are not removed or ignored."
+  },
+  "flows_connections_api_maps": {
+    "compared_entries": 7,
+    "all_bytes_and_semantics_same": true
+  },
+  "metadata": {
+    "Header.json": {
+      "byteSame": false,
+      "semanticPaths": [
+        "/LastSavedDateTimeUTC"
+      ]
+    },
+    "Properties.json": {
+      "byteSame": false,
+      "semanticPaths": [
+        "/AnalysisLoadTime",
+        "/DeserializationLoadTime"
+      ]
+    },
+    "Src/_EditorState.pa.yaml": {
+      "byteSame": true,
+      "semanticSame": true
+    }
+  },
+  "saved_version_metadata": {
+    "appVersion": "2026-10-10T09:27:24Z",
+    "LastSavedDateTimeUTC": "10/10/2026 09:27:23",
+    "note": "Neither is exact publication P"
+  },
+  "checker": {
+    "rule_counts_before": {
+      "acc-AccessibleLabelNeeded": 53,
+      "acc-FocusBorderShouldBeVisible": 163,
+      "acc-TabIndexShouldBeDefinedForInteractiveControl": 173,
+      "app-UnusedVariables": 5,
+      "app-CollectingReadOnlyTable": 2,
+      "app-ForAllWithMutation": 5,
+      "app-CrossScreenEventDependencies": 2
+    },
+    "rule_counts_after": {
+      "acc-AccessibleLabelNeeded": 53,
+      "acc-FocusBorderShouldBeVisible": 163,
+      "acc-TabIndexShouldBeDefinedForInteractiveControl": 173,
+      "app-UnusedVariables": 5,
+      "app-CollectingReadOnlyTable": 1,
+      "app-ForAllWithMutation": 5,
+      "app-CrossScreenEventDependencies": 2
+    },
+    "diagnostic_count_before": 403,
+    "diagnostic_count_after": 402,
+    "source_of_path_changes": "16 diagnostic signatures relocated with approved summary parent move",
+    "new_signatures_after_that_path_normalization": 0,
+    "removed_signatures_after_that_path_normalization": 1,
+    "severity": "Not explicitly specified; do not infer warning/error severity or overall accessibility acceptance",
+    "formula_checker_ui_errors": 0
+  },
+  "limitations": [
+    "P exact lastPublishTime is absent from official export; saved appVersion is not P.",
+    "Maker msapp SHA is not PAC readback H.",
+    "No automated selected-e2e or full reconciliation workflow was run.",
+    "Player focus reveal at 200% requires horizontal pan for Recalculate; history AX selection announcement differs from correct visual/data selection."
+  ],
+  "interpretation": "The two target screens match S‴ as parsed source under the single stated payroll root normalization. Other six screens and App are unchanged from36. Different raw screen hashes are retained and are not called byte-identical. Formal P/H and automated reconciliation remain outstanding."
+}

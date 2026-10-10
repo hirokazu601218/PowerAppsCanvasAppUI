@@ -1,0 +1,16 @@
+{
+  "source_groups": 12,
+  "source_instances": 12,
+  "operation_count": 30,
+  "model_mismatches": [],
+  "label_overflow": [],
+  "page_overflow": false,
+  "external_classification": {
+    "OP-F-HTML": "new-tab",
+    "OP-AD-CANDIDATE": "information",
+    "OP-F-RETURN-HTML": "tab-return",
+    "OP-JLINK-EXPORT": "file-handoff",
+    "OP-JINKYU-PROCESS": "file-handoff",
+    "OP-RETRO-EXPORT": "information"
+  }
+}

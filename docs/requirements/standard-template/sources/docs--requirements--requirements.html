@@ -1,0 +1,287 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>docs/requirements/requirements.md</title><style>:root{font-family:system-ui,'Noto Sans JP',sans-serif;color:#172c45;background:#f4f7fb;line-height:1.8}*{box-sizing:border-box}body{margin:0}a{color:#0759a8;text-underline-offset:4px}a:hover{color:#002f67}button,input,select{font:inherit}button,.link{display:inline-block;background:white;border:1px solid #aabed0;border-radius:7px;padding:9px 14px;cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #d58b00;outline-offset:3px}header{background:#102d4e;color:white;padding:32px max(24px,calc((100vw - 1250px)/2))}header p{margin:6px 0;color:#dce8f4}h1{font-size:clamp(25px,4vw,37px);line-height:1.4;margin:12px 0}h2{font-size:25px}h3{font-size:21px}h4{font-size:18px}h2,h3,h4{scroll-margin-top:20px}main{max-width:1300px;margin:0 auto;padding:28px;min-width:0}.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px}.sidebar{position:sticky;top:12px;align-self:start;max-height:94vh;overflow:auto;background:white;border:1px solid #dce4ed;border-radius:10px;padding:16px}.sidebar a{display:block;padding:5px;font-size:14px}.sidebar strong{display:block;margin-top:12px}.intro,.chapter{background:white;border:1px solid #dce4ed;border-radius:12px;padding:25px;margin-bottom:24px}.item{border-top:1px solid #dce4ed;padding:18px 0;overflow-wrap:anywhere}.item p{margin:10px 0}.badge{display:inline-block;background:#e7eef7;color:#294c70;border-radius:5px;padding:2px 9px;font-size:12px;font-weight:700}.missing{background:#fff4da;border-left:4px solid #bc7800;padding:12px;color:#643e00}.refs{font-size:13px}.refs a{margin-right:14px}.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0}.toolbar input{min-width:0;width:260px;padding:10px;border:1px solid #aabed0;border-radius:7px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.cards a{display:block;padding:17px;border:1px solid #b9cde0;border-radius:8px;text-decoration:none;background:#f6faff}.cards a small{display:block;color:#47627d}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #d5dee8;padding:10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#eaf0f7}.table-wrap{overflow:auto}details{margin:12px 0}summary{cursor:pointer;font-weight:700}pre{overflow:auto;background:#f0f3f7;padding:14px;white-space:pre-wrap}code{overflow-wrap:anywhere}dialog{width:min(1300px,96vw);height:94vh;border:1px solid #b8c7d8;border-radius:12px;padding:0}dialog::backdrop{background:#102d4e99}.dialog-bar{display:flex;align-items:center;gap:15px;padding:12px;flex-wrap:wrap}.dialog-bar strong{flex:1}iframe{width:100%;height:calc(100% - 100px);border:0}.skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;background:white;padding:10px}.source main{max-width:1100px;background:white}.source h1{font-size:27px}.source img{max-width:100%}[hidden]{display:none!important}footer{padding:24px;color:#456}@media(max-width:800px){main{padding:14px}.layout{display:block}.sidebar{position:static;max-height:230px;margin-bottom:18px}.intro,.chapter{padding:18px}.toolbar{align-items:stretch}.toolbar input{width:100%}table{min-width:580px}}@media print{.sidebar,.toolbar,.cards,dialog,.preview-button{display:none!important}.layout{display:block}header{background:white;color:black;padding:10px}header p{color:black}.chapter,.intro{border:0;padding:0}.item{break-inside:avoid}main{padding:0}[hidden]{display:block!important}a{color:black}}</style></head><body class="source"><header><p>出典資料のHTML表示 · 元の記述・状態を保持</p><h1>requirements.md</h1><p>2026-10-10取得。新旧記述が併記されています。2026-10-07確定要件・10-08人給決定を優先してください。</p></header><main><p><a href="../index.html">← 要件定義書へ戻る</a> · <a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/docs/requirements/requirements.md">GitHub原文</a></p><p>Mermaidコードは原文として表示します。描画済み業務・画面図は要件定義書の関連資料から開けます。</p><h1 id="要件定義書現行単一アプリ">要件定義書（現行単一アプリ）</h1>
+<blockquote>
+<p><strong>2026-10-07の改修仕様</strong>：<a href="docs--requirements--payroll-confirmed-20261007.html">確定要件</a>を適用する。下記の公開版・実測記録は当時の状態として保持し、今回の要件確定だけでアプリ／Dataverseを変更済みとは扱わない。競合する今後の業務仕様は新しい確定要件を優先する。</p>
+</blockquote>
+<p>App ID 204a48dc-7f23-43dd-b934-4654a3cfa306 の現行改修で使用するR15～R23と、将来の非常勤給与アプリ向け機能要件FR-*を分けて索引する。<a href="docs--requirements--screen-requirements.html">画面要件</a>は画面・操作、<a href="docs--requirements--non-functional-requirements.html">非機能要件</a>は品質条件、<a href="docs--requirements--traceability-matrix.html">要件対応表</a>は設計・試験・要件間関係の索引である。未実装・実装差分・判断待ち・未照合は<a href="docs--requirements--open-decisions.html">未決一覧</a>に集約する。</p>
+<p>旧R01～R14、HYB、COM-DVと旧版の受入・配布方法は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/records/docs/requirements/requirements-before-consolidation.md">移行前の要件書</a>に保存した。元のT_通勤のCOM-DV-001～003は現行_STUDIOテーブルの実装証拠ではない。</p>
+<h2 id="目的適用範囲">目的・適用範囲</h2>
+<p>非常勤職員の検索、基本情報・履歴・通勤認定簿・基準給与簿の確認を対象とする。SCR-005は内蔵仮例による試算であり、本番の給与計算・支払実行ではない。画面ID・画面間情報・所属制限は画面要件1～5章、詳細の優先条件は9章を参照する。相違があれば2026-09-27のSCR-002画面変更は<a href="docs--requirements--screen-requirements.html">画面要件9.2.2・9.4</a>を優先し、編集・保存の9.7・9.8は引き続き適用する。</p>
+<h2 id="現行の機能要件id">現行の機能要件ID</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>要件・受入条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>R15</td>
+<td><code>Screen1</code>を<code>scrStaffMasterSearch</code>へ変更し、表示名を「SCR-002 職員マスタ検索・詳細」とする。部品名末尾111は一括改名しない</td>
+</tr>
+<tr>
+<td>R16</td>
+<td>左の開閉式検索・一覧と右の職員詳細を同一スクリーンで維持し、右詳細を基本情報／勤務条件／通勤／社会保険／税固定控除／給与簿の6タブとする（2026-09-25の画面要件9.2に合わせた表示名）</td>
+</tr>
+<tr>
+<td>R17</td>
+<td>基本情報・勤務条件・通勤の選択レコード詳細・社会保険・税固定控除は共通詳細ギャラリーを使い回し、初版は長文を含む全項目を2列表示する</td>
+</tr>
+<tr>
+<td>R18</td>
+<td>基準給与簿は163項目を縦、選択した表示開始月～終了月内の登録済みレコードを横列として動的表示する。未登録月は列を作らず、同月の正常な複数レコードは別列で全件表示する。固定の163×12セルを作成しない。SCR-005支給明細とは別機能とする</td>
+</tr>
+<tr>
+<td>R19</td>
+<td>職員選択時に必要データを対象単位で取得し、ギャラリー行ごとの外部データ検索を避ける。0件・職員切替時に旧データを残さない</td>
+</tr>
+<tr>
+<td>R20</td>
+<td>同じ単一アプリの改修直前・直後について画面別・型別コントロール数、App checker、起動・検索・切替・帳票・給与表示時間を同条件で比較し、軽量化効果を記録する。旧版816／657部品は履歴上の参考値とし、改修直前の実測値に代用しない</td>
+</tr>
+<tr>
+<td>R21</td>
+<td>SCR-001の確認用所属をスマホで選択可能にし、画面遷移・権限・所属操作を上部へ集約する</td>
+</tr>
+<tr>
+<td>R22</td>
+<td>SCR-002はヘッダーを固定し、画面名・データ取得日時に加え右端に画面ID、左隣にホームを表示する。直下の操作ボタンと職員サマリー・基本情報・詳細を一緒に縦スクロールする。検索条件を縦一列、結果を氏名／番号・状態／部署略称の2段とし、状態は文字と色で区別する</td>
+</tr>
+<tr>
+<td>R23</td>
+<td>SCR-002の最新データ読込・検索結果TSV出力とヘッダー直下の独立した支給対象月選択を削除し、保存など存続する操作をヘッダー直下へ置く。給与簿タブ内の表示開始月・終了月は維持する。認定簿表示を通勤タブ右上へ移す。「変更を破棄」ボタンは置かず、未保存変更を失う操作では確認する。取得日時とF5後の再取得は画面要件9章に従う（2026-09-25の画面要件9.7を反映）</td>
+</tr>
+</tbody></table>
+<p>R15の表示名、R16の検索状態保持、R17のギャラリー構造、R18の同月複数行、R19の取得方式、R20の前後計測、R21のスマホ、R23の保存先・権限などは<a href="docs--requirements--open-decisions.html">未決一覧</a>の判定に従う。設計上の式だけでは公開版の実装証拠としない。</p>
+<h2 id="2026-09-27-scr-002画面変更要求">2026-09-27 SCR-002画面変更要求</h2>
+<p><a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/docs/changes/requests/change-20260927-scr002-ui.json">CHANGE-20260927-SCR002-UI</a>を適用する。4区分の認定ID・期間・状態の長文履歴カードは削除し、複数履歴だけ短い選択行で過去レコードへ切り替え可能にする。給与簿の件数と先頭行を近接させ、項目名青・値白の一組の表で表示する。単体・結合の選定と公開版確認は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/docs/testing/change-records/change-20260927-scr002-ui.json">試験記録</a>および<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md">実施記録</a>に紐づける。</p>
+<p>公開v22（公開メタデータ時刻<code>2026-09-27T03:01:06.626618Z</code>）の所有者Playerで指定した表示とSCR-005往復を観察し、専用利用者の選定E2E 5件がPASSした。PAC読戻しでSCR-002画面定義のSHA-256は保存画面定義と一致し、パッケージのSHA-256も取得した（<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/docs/verification/postpublish/change-20260927-scr002-ui.json">公開後照合記録</a>）。この一致はSCR-002画面定義に限る。全画面・接続・複数履歴・給与簿163項目末尾・他所属権限は未照合であり、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md">実施記録</a>で区別する。</p>
+<h2 id="2026-09-28-scr-002履歴4定義公開v25">2026-09-28 SCR-002履歴4定義（公開v25）</h2>
+<p><a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/docs/changes/requests/change-20260928-scr002-history.json">CHANGE-20260928-SCR002-HISTORY</a>について、添付の勤務条件15・社会保険26・税固定控除9・住民税6項目を<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/config/dataverse/scr002-history-columns.json">列契約</a>として正式4表と隔離<code>_STUDIO</code>4表に作成した。各表は親職員の必須Lookupを持ち、正式表に職員行は投入していない。SCR-002の勤務条件、社会保険、税固定控除（住民税履歴を含む）で選択した隔離履歴の全項目を定義順に表示する。12桁職員番号と親Lookupの一致を読込条件とし、職員切替・0件・取得失敗で旧値を消す。NULLは空欄、数値0は0と表示する。これは読取り表示の範囲であり、入力・保存列と実効権限は未決である。</p>
+<p>同じApp IDの公開v25（公開メタデータ時刻<code>2026-09-28T05:00:02.0455229Z</code>）で所有者Playerの勤務条件15項目を観察した。隔離4表の列型と関係の照合は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36363649180">構築Action</a>。公開後の選定ケース、他タブとPAC照合は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/docs/verification/postpublish/change-20260928-scr002-history.json">公開後記録</a>に結果と範囲を記す。</p>
+<h2 id="将来の非常勤給与アプリ向け機能要件fr-">将来の非常勤給与アプリ向け機能要件（FR-*）</h2>
+<p><a href="docs--requirements--business-requirements.html">業務要件書</a>のAD～G・PAYに基づく追加機能。R15～R23、画面要件の既存ID、現行86行の試験判定とは別枠とする。<strong>機能要件の記録は、現行アプリへの実装・公開・試験合格を意味しない。</strong> 異動情報アプリとの自動連携は実現可否待ちの目標機能であり、現時点の確約ではない。外部機関への電子申請・紙手続きはアプリ外で行い、決定結果を手動登録する（FR-G-01・03）。アプリ内申請や結果の自動取込は対象外。現行アプリの隔離データによる試作で実データ連携や支払が実現したとは判定しない。テーブル・入力項目の具体的な定義、計算規則は後続の設計で扱う。</p>
+<h3 id="ad前工程からの受渡し">A～D：前工程からの受渡し</h3>
+<table>
+<thead>
+<tr>
+<th>機能ID</th>
+<th>対応する業務要件</th>
+<th>機能と判定する振る舞い</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FR-AD-01</td>
+<td>AD-01～03、E-01</td>
+<td>通常職員は秘書課の初任給確定と採用起案決裁を前提とし、調査員はA・Bを経ず、いずれも異動情報アプリのC「発令情報登録完了」で給与情報の確認待ちデータを作る。決裁完了だけでは作らない。Cからの自動通知・自動作成は実現可否待ちの目標機能とする。</td>
+</tr>
+<tr>
+<td>FR-AD-02</td>
+<td>AD-04/05</td>
+<td>職員番号未発行でも採用ごとの識別子で候補を照合する。番号発行後に同じ候補へ自動反映することを目標とし、手動で候補を紐づけない。再採用には新しい識別子を用いる。</td>
+</tr>
+<tr>
+<td>FR-AD-03</td>
+<td>AD-06～08</td>
+<td>採用取消しはEの「確認待ち」「確定」のどちらからも「採用取消」へ移し、候補を消さず履歴を保持して給与計算から除外する。決裁後の変更は旧内容を保持し、確定済み情報にはFR-E-03の再確定を適用する。取消・変更の自動受領方法は未決。</td>
+</tr>
+<tr>
+<td>FR-AD-04</td>
+<td>AD-09/10、PAY-01</td>
+<td>業務マスタ管理者が管理する調査員の給与ルールから、採用日を基準に適用版を選んで初任給を候補へ自動設定する。改定前のルール・金額を上書きしない。</td>
+</tr>
+</tbody></table>
+<h3 id="e給与情報の登録">E：給与情報の登録</h3>
+<table>
+<thead>
+<tr>
+<th>機能ID</th>
+<th>対応する業務要件</th>
+<th>機能と判定する振る舞い</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FR-E-01</td>
+<td>E-02～04、E-11</td>
+<td>会計課給与班が異動情報アプリから出力したExcelで複数職員分を一括取込できる。取込結果を行ごとに表示し、重複は人の存在だけではなく人に紐づくデータの内容を照合して注意を示す。問題のない行を先に取り込み、不備や重複可能性のある行は給与班が取込可否を最終判断する。自動作成が可能でも手動取込を残す。</td>
+</tr>
+<tr>
+<td>FR-E-02</td>
+<td>E-05/06/12</td>
+<td>局担当者が自局の不足・不整合を修正し、給与班も必要時に直接修正できる。勤務条件・保険・税等は登録→確認待ち→給与班確定、必要時は差戻し。元データ訂正後は再確認し、影響する未払い支給回を再計算・再照合する（Q18・Q27・R11）。</td>
+</tr>
+<tr>
+<td>FR-E-03</td>
+<td>E-07～10</td>
+<td>「登録→確認待ち→給与班確定」とし、必要時は差戻しを行う。確定後の修正は変更履歴を残して確認待ちへ戻し、給与班の再確定まで計算に使用しない。異動情報アプリの変更値と給与班の修正値が食い違うときは自動上書きせず差異を示し、給与班が採用する値を決める。</td>
+</tr>
+</tbody></table>
+<h3 id="f通勤手当">F：通勤手当</h3>
+<table>
+<thead>
+<tr>
+<th>機能ID</th>
+<th>対応する業務要件</th>
+<th>機能と判定する振る舞い</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FR-F-01</td>
+<td>F-01～03、F-07</td>
+<td>初回は局担当者が自局分を提出し、給与班が認定する。提出⇄差戻し→認定。本人による自己分提出は将来追加とする。変更時は新認定を作り、旧認定を保持する（Q32～Q34・Q54）。</td>
+</tr>
+<tr>
+<td>FR-F-02</td>
+<td>F-04</td>
+<td>給与班が認定した情報だけを給与計算が直接参照する。給与情報へ認定額を重複登録することは求めない。</td>
+</tr>
+<tr>
+<td>FR-F-03</td>
+<td>F-08</td>
+<td>病気・欠勤期間中の通勤手当不支給と、受給要件喪失による認定期間の終了を区別する。後者は届出を受けて給与班が認定期間の終了を確定し、独立した「認定終了」状態は設けない。</td>
+</tr>
+<tr>
+<td>FR-F-04</td>
+<td>F-05/06</td>
+<td>初回の認定簿PDF出力は給与班・局担当者。給与班は全対象、局担当は自局分。本人による自己分出力は将来追加。別タブHTMLとブラウザー印刷を維持し、新様式受入まで旧様式を残す。</td>
+</tr>
+</tbody></table>
+<h3 id="g外部機関との手続き">G：外部機関との手続き</h3>
+<p><code>FR-G-02</code>は二重申請防止方針を追跡する保留IDであり、現時点でアプリの実装機能・受入条件を確定したものではない。</p>
+<table>
+<thead>
+<tr>
+<th>機能ID</th>
+<th>対応する業務要件</th>
+<th>機能と判定する振る舞い</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FR-G-01</td>
+<td>G-01/02</td>
+<td>社会保険、共済組合、ハローワーク、転職者の住民税の決定結果を扱う。局担当者または給与班の担当者が担当した手続きの決定結果を登録する。アプリ内の電子申請操作は設けず、担当範囲と権限の具体条件は未決。</td>
+</tr>
+<tr>
+<td>FR-G-02</td>
+<td>G-03</td>
+<td>二重申請を防ぐという業務上の方針を記録する。申請操作・申請進捗管理をアプリに設けないため、アプリによる自動停止機能は現時点で定義しない。アプリ外での防止方法は未決であり、機能としての実装対象・試験条件も未確定。</td>
+</tr>
+<tr>
+<td>FR-G-03</td>
+<td>G-04/06</td>
+<td>外部手続きの決定結果は紙・電子にかかわらず担当者がSCR-002の「社会保険」「税固定控除」タブに分けて登録・管理する。決定結果の自動取込、申請・受付状況の管理は設けない。</td>
+</tr>
+<tr>
+<td>FR-G-04</td>
+<td>G-05</td>
+<td>決定結果は担当者が「登録（確認待ち）」とし、給与班が内容と対象職員を確認して「確定」へ移す。給与計算に影響する内容は確定前に使用しない。外部機関の決定を正とし、申請内容との食い違いについて採否を決め直す工程は設けない。</td>
+</tr>
+</tbody></table>
+<h3 id="共通給与ルール改定と遡及">共通：給与ルール改定と遡及</h3>
+<table>
+<thead>
+<tr>
+<th>機能ID</th>
+<th>対応する業務要件</th>
+<th>機能と判定する振る舞い</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FR-PAY-01</td>
+<td>PAY-02/03、AD-10</td>
+<td>給与ルールの適用版・開始日・対象者を参照し、改定対象となる在職者に新ルールを適用する。旧ルールと既計算結果を保持したまま、過去に影響する期間の差額を計算する。</td>
+</tr>
+<tr>
+<td>FR-PAY-02</td>
+<td>PAY-04/05</td>
+<td>遡及差額は「計算結果の確認待ち→給与班の確定」とし、確定前に支給・返納へ反映しない。支給・返納の実施結果は差額の状態を増やさず別に記録する。返納方法は給与班が給与相殺または納入告知書による返納から判断する。</td>
+</tr>
+</tbody></table>
+<h3 id="将来機能の画面配置①の確定事項">将来機能の画面配置（①の確定事項）</h3>
+<p><a href="docs--requirements--screen-requirements.html">画面要件11章</a>に配置を定義する。EのExcel一括取込はホーム画面のボタンから専用画面で扱う。SCR-002の左検索領域で確認待ち候補を絞り込み、右詳細領域で修正・確定する。FはSCR-002の通勤タブ、Gの決定結果は同画面の社会保険・税固定控除タブに分ける。給与ルールマスタの登録・改定はSCR-006メンテナンス画面、遡及差額の確認・確定はまず将来の独立画面（仮ID <code>SCR-007</code>）に置き、画面作成後にSCR-002のタブとする可能性を再検討する。SCR-006の業務マスタ操作は業務管理者に許可し、給与班との兼務とシステム管理権限の分離を適用する。これらは画面配置の要件であり、現行アプリに実装された意味ではない。</p>
+<h3 id="共通役割別権限">共通：役割別権限</h3>
+<p>以下は将来機能の対象範囲。データを表示するだけの所属選択値では認可を変更せず、操作時にもログイン者の実効ロールと対象職員を検証する。</p>
+<table>
+<thead>
+<tr>
+<th>機能ID</th>
+<th>対応する業務要件</th>
+<th>機能と判定する振る舞い</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FR-AUTH-01</td>
+<td>AUTH-01、E-06～10、F-04～06、G-05</td>
+<td>会計課給与班は所属部署を問わず全対象職員について、同班が担当する修正・確定・通勤認定・決定結果確認を行える。</td>
+</tr>
+<tr>
+<td>FR-AUTH-02</td>
+<td>AUTH-02</td>
+<td>局担当者は自局の勤務・申請・支給明細と必要な共通職員基本情報のみ。他局分と全局集計、確定・認定は給与班。現在所属だけで他局履歴を開示しない（R15）。</td>
+</tr>
+<tr>
+<td>FR-AUTH-03</td>
+<td>AUTH-03</td>
+<td>本人機能は将来追加。実装時は自己分のみ。初回に本人提出・出力を実装済みと扱わない（Q54）。</td>
+</tr>
+<tr>
+<td>FR-AUTH-04</td>
+<td>AUTH-04</td>
+<td>業務マスタ管理者が給与単価・区分等のマスタを管理する。給与班との兼務可能。アプリ改修・Dataverse設定のシステム管理権限は別にし、兼務も可能（Q55・R21）。</td>
+</tr>
+</tbody></table>
+<p>役割をログイン者に割り当てる方法、部署略称による自局の判定、採用ごとの識別子と本人の対応、複数役割を持つ場合の優先順位は基本設計までに別途決める。現行<code>COMMON-AUTH-001/002</code>を実装済みの将来権限と混同しない。</p>
+<h3 id="現行機能要件との整合試作時の境界">現行機能要件との整合・試作時の境界</h3>
+<ul>
+<li><code>R15～R23</code>は検索・表示・軽量化等の現行要件として維持する。<code>R18</code>の基準給与簿表示は読取り専用であり、FR-E-02/03の修正・確定を給与簿の直接編集と同一視しない。</li>
+<li><code>R17</code>と<code>SCR002-EDIT-*</code>は画面表示・編集の関連候補であり、FR-E-03の確定状態やFR-F-01の本人提出が既に実装された証拠ではない。</li>
+<li><code>SCR005-CALC-*</code>は内蔵仮例による試算であり、FR-AD-03、FR-E-03、FR-F-02、FR-G-04、FR-PAY-01/02による実データの給与計算、支給・返納を実装済みと扱わない。</li>
+<li>現行の<code>COMMON-AUTH-001</code>は所属部署による制限を定める。FR-AUTH-01～04で将来の業務上の対象範囲は定めた。実効ロール・本人照合と、現行の所属部署制限との切替・共存は未設計である。所属選択の表示だけでは認可を変更しない。</li>
+<li><code>SCR002-COM-*</code>の認定簿表示・出力と、FR-F-01～04の届出・認定・不支給・終了・給与班／局担当のPDF出力（本人は将来）は別条件として追跡する。</li>
+<li>期末・勤勉の職員別期間別支給率、月別住民税、追給／返納と人給照合の管理要件はPAYREQ-04・07・08で確定した。計算式、年度更新手順、法定控除の随時改定・定時決定、年末調整の詳細は未入力。部分確定を各業務全体の実装・検証完了としない。</li>
+</ul>
+<h2 id="scr-003勤務時間報告scr-006対象月2026-09-29公開">SCR-003勤務時間報告・SCR-006対象月（2026-09-29公開）</h2>
+<p>変更ID：<code>CHANGE-20260929-SCR003-ATTENDANCE-IMPORT</code>。公開版識別時刻：<code>2026-09-29T09:11:07.0090418Z</code>。同一の現行アプリ、架空データのテスト環境を対象とする。</p>
+<p>対象要件は <code>D-04</code>、<code>SCR003-IMPORT-001</code>。<code>COMMON-AUTH-001</code> は今回実装済みにせず後工程とする。</p>
+<ul>
+<li>報告単位は局×勤務月。右上のExcel取込から.xlsxを1件添付し、テーブル <code>TestData</code> の20列を検証して取り込む。</li>
+<li>職員番号はASCII数字12桁（不足桁はゼロ埋め）、欠勤時間は0以上の整数、超過勤務は小数3桁まで。0は空欄にせず0を表示する。</li>
+<li>入力中はセル編集・再取込が可能。再取込はその報告の有効な明細全体を置き換える。報告済は変更・再取込を拒否し、確認後に入力中へ戻せる。</li>
+<li>勤務期間は勤務月の初日～末日。課室候補は取り込んだ明細から生成し、初期値は「すべて」。左側の報告状況を開閉できる。</li>
+<li>SCR-006で対象月を設定・解除する。解除月を取込候補から除外するが、保存済み報告を削除しない。</li>
+</ul>
+<p>権限判定・所属制限は利用者指示により後工程。局名を手入力し、ホームの管理者切替は既存の表示確認用UIであって実効権限ではない。999件境界、同時操作、途中障害、業務受入、総合試験は未判定。一時Excelの即時削除はExcelロックによる400で失敗し、所有者OneDriveに残る。これらを本番利用可能の判定へ読み替えない。</p>
+<p>公開Playerで架空10件、勤務期間、12桁番号、0、小数33.167、報告一覧開閉を確認。自動試験と未実施の範囲は公開後記録・試験仕様に分けて記録する。</p>
+<h3 id="専用テストユーザーの読取り前提2026-09-29-2030-jst">専用テストユーザーの読取り前提（2026-09-29 20:30 JST）</h3>
+<p>同公開版の表示検証用に、専用ユーザーだけが持つ既存 <code>StaffMaster Test Reader</code> ロールへ勤務時間報告・明細・対象月の3表の組織範囲Readのみを追加（利用者承認20:25、Action 36561770802）。他権限不変、3表および既存基本3表へのCreate/Write/Deleteなしを読戻した。個人用OneDriveの前提不備も修復済み。専用Playerで保存済み架空10件と勤務期間・0・小数・備考を確認した。これはテスト環境の表示試験用アクセスであり、給与班／自局／本人の業務認可の完成ではない。Canvasから所有者接続フローを呼ぶ更新経路の認可も別途必要で、DataverseのRead限定だけでアプリ全体が読取り専用になるとは扱わない。</p>
+<p>検証基準更新：<code>53cb5348a44a9da9deb438edfa05d410958f12d9</code> はテストのDOM要素選択のみの修正。公開Power Fxは変更せず、上記公開版の再照合を実施する。保存済み10件・勤務期間・数値・備考という期待値は不変。</p>
+<h2 id="scr001003-ui変更change-20261001-scr001-003-ui">SCR001～003 UI変更（CHANGE-20261001-SCR001-003-UI）</h2>
+<p>公開版識別時刻：<code>2026-10-01T00:26:01.1961006Z</code>。同一App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。以下は従来のホーム表示とSCR003明細編集方式に優先する。</p>
+<p>SCR001の操作名は「職員マスタ検索」「勤務時間報告」「期末勤勉支給率登録」「メンテナンス」。4個をキャンバス幅内で横一列の角丸正方形にし、白背景・青枠・青文字、文字サイズ14を維持する。管理者以外のメンテナンス非活性は維持する。「PoCデータ一括取込」は4個の下に置く。支給明細画面へのホーム直接導線を削除し、SCR002の支給明細画面ボタンから進む。</p>
+<p>SCR002はヘッダー内の横線とホーム左側の縦線をヘッダー背景色に合わせ、画面ID枠を削除する。ホームボタン枠は維持する。SCR003は画面IDをヘッダー右側へ配置し共通サイズ、ホーム白文字、共通外余白、通勤日数～欠勤時間の数値右寄せとする。</p>
+<p>SCR003は初期読み取り専用。同画面の「編集モード」で一覧内を編集し「保存」で既存保存フローへ送信する。成功後は再取得して読み取りへ戻る。明細クリックによる別編集画面を廃止する。失敗時は入力を保持し、未保存の読み取り切替は破棄確認する。入力中以外は編集できない。</p>
+<p>所有者公開Playerで配置・ヘッダー・架空10件・編集切替を確認。Studioで備考保存と再表示、元の空欄への復元を確認。この所有者確認だけでは専用利用者E2Eや業務受入の合格とは扱わない。最終E2Eとユーザー受入の結果は以下に記す。</p>
+<p>2026-10-01最終結果：初回E2Eは7/10 PASS・3/10 FAIL。試験コード修正後の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36797346142">最終照合36797346142</a>は公開版・パッケージ・文書差分・選定E2E・最終ゲートすべてPASS。アプリソースと公開版は維持した。PR #124・#125をmainへ統合済み。統合後の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36804181953">36804181953</a>は初回9/10 PASS・1/10起動待ち時間超過、失敗ジョブの再実行（attempt 2）で成功。</p>
+<p>2026-10-01 11:55 JST、ユーザーから「受け入れテスト完了。okです。」の申告を受領し、今回のSCR001～003 UI変更の業務受入をPASSとして記録した。受入項目別の操作ログは提供されていないため、本申告を個別ケースの実測証跡へ読み替えない。総合試験D-07・実データ運用・業務認可・境界／同時操作／障害は別判定。</p>
+<p>受入と文書照合の記録：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/records/changes/change-20261001-scr001-003-ui/manual-20261001-acceptance/acceptance.md">実施記録</a>。</p>
+<h2 id="change-20261003-commute-official通勤認定簿公式様式-v102業務受入完了">CHANGE-20261003-COMMUTE-OFFICIAL／通勤認定簿公式様式 v1.02（業務受入完了）</h2>
+<p>COMMUTE-OFFICIAL-001：人事院000015000.pdfの2ページを原寸ベクター様式として表示する。既存71表示値とDataverse読取処理、GUID引渡し、別タブ起動、ブラウザ印刷を維持する。新しい業務計算・入力欄追加は今回対象外。</p>
+<p>COMMUTE-PARALLEL-001：旧認定簿と通常ボタンを保持し、「新様式（受入テスト）」から独立した新Webリソースを開く。受入合格およびユーザーの切替指示までは通常経路を変更しない。</p>
+<p>公開Playerの選定E2E4件PASS（Actions37158642318）。業務受入は2026-10-07のユーザー申告によりPASS。</p>
+<p>対象公開版：<code>2026-10-03T18:31:30.4607518Z</code>。公開後読戻しActions37159201219で新旧WebリソースSHAと新旧ボタン全明示プロパティ一致。</p>
+<h2 id="2026-10-07の給与管理改修要件">2026-10-07の給与管理改修要件</h2>
+<p><a href="docs--requirements--payroll-confirmed-20261007.html">PAYREQ-01～10</a>を今後の実装に適用する。既存R15～R23、SCR-*の表示要件と実測結果は維持し、給与簿163列や旧履歴56列を新しいモデルの固定列数として採用しない。人給照合、最終根拠保存、返納回収、局別権限は業務要件確定・実装未検証として管理する。</p>
+<p>2026-09-29公開時のSCR-003の「全置換」は当時の実装記録である。変更後要件は職員行の追加更新・未掲載行保持・手修正上書き・空欄クリア・取込中停止（Q35、R12～R14）。現行フローを本作業で変更したとは扱わない。</p>
+<h3 id="2026-10-07-通勤新様式の受入結果">2026-10-07 通勤新様式の受入結果</h3>
+<p>2026-10-07（日本時間）、ユーザーから通勤認定簿の新様式の受入テスト完了の申告を受領し、CHANGE-20261003-COMMUTE-OFFICIALの業務受入をPASSとして記録した。対象は並行配置した公式様式v1.02（公開版 <code>2026-10-03T18:31:30.4607518Z</code>）。申告受領日を記録しており、実際の試験日時・確認レコード・項目別操作ログは未入力。個別の実機印刷設定や全データ組合せの実測証跡へ読み替えない。総合試験D-07と今後の給与モデル再構成の受入は別判定。旧様式の削除・通常ボタンの切替は今回実施しない。</p>
+<h2 id="change-20261007-commute-cutover通常入口への切替2026-10-07">CHANGE-20261007-COMMUTE-CUTOVER／通常入口への切替（2026-10-07）</h2>
+<p>同一App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>、公開版 <code>2026-10-07T01:17:13.7960236Z</code>。受入済み帳票v1.02を通常利用へ切替済み。通常の「認定簿表示」（btnCertificate111）を唯一の入口とし、btnCertificateOfficial102を撤去した。入口差分のソース版は <code>src/commute-ledger/v1.03/</code>。上記の旧新並行配置・切替未実施という記録は過去時点の履歴。</p>
+<p>旧Webリソース <code>crb3c_reports/commute-ledger-studio.html</code> は公開アプリから参照されない。2026-10-07 12:22頃 JST、ユーザーの操作時承認後に環境から当該1件を削除した。削除後Actions37566672250で不存在・新HTML SHA一致・通常ボタン全プロパティ一致を確認。別の <code>crb3c_reports/commute-ledger.html</code> は保持。削除後Playerで別タブ・TK-910003・71欄・2ページ・枠超過0を再確認した。</p>
+<p>COMMUTE-CUTOVER-001：認定GUID・職員／履歴照合・データ取得・別タブ起動・71欄・公式様式・A4横2ページPDFを維持する。無関係な画面、業務データ、フロー、権限を変更しない。新様式の受入PASSは従来記録を保持し、今回の技術検証は新規実施する。</p>
+<h2 id="2026-10-08-人給連携確定仕様">2026-10-08 人給連携確定仕様</h2>
+<p>IF-01～12、PERIOD-01～05を機能要件に追加する。職員指定A/M、空欄0化、11キー、237列・文字列形式、給与簿CSV読取専用、エラー行表示を適用。新機能の実装未検証を維持する。</p>
+<p><a href="docs--design--detailed--payroll-jinkyu-interface.html">出力仕様</a>、<a href="docs--requirements--payroll-interface-decisions-20261008.html">決定台帳</a>。</p>
+<h2 id="dot-001公開38の引継ぎ観測と未照合2026-10-10">DOT-001：公開38の引継ぎ観測と未照合（2026-10-10）</h2>
+<p>対象はStaffMaster-Automation-TestのApp ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。ソースS‴は <code>fba65fdaefcf3b70821d7831ce86a4262ea4a214</code>。引継ぎ資料の09:44:53 UTCまでの観測でLive38・新draft39なし、公式Exportの対象2画面対応と公開Playerを確認。今回Workでの実機再試験ではない。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md">DOT-001検証記録</a>で証拠と限界を分離する。</p>
+<p>2026-10-10 07:37:54 UTCのA承認により、通常PCではサマリー固定、狭い・低い表示領域では項目を省略せず全体を縦横スクロールしサマリーも移動する。公開Player38では100%・実Chrome200%の5ボタンTab到達、2か月の各24項目の通常スクロール到達、100→200→100の固定表示・選択復帰を観測。再計算フォーカスの完全表示には横スクロールが必要で、履歴のAX表示がitem1となる差も残る。全アクセシビリティPASSではない。</p>
+<p>PAY-IMPLEMENT-001の正式Pは <code>2026-10-10T09:28:28.7479961Z</code>、独立実測の安定PAC Hは <code>7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f</code>（<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6d203bf29887598555e9eb17383cb433c5228691/records/changes/dot-001/38049776822/QA-REPORT.md">読戻し記録</a>）。保存日時 <code>2026-10-10T09:27:24Z</code> はP以前。metadata Ready・固定App・前後一致を確認したが、旧v25画面SHA guard不一致によりrunはFAIL。選定22pathの比較証拠と正式postpublish記録が未完成で、選定自動E2E・文書保存後の最終照合は未実施（検証継続）。全要件の実装・業務受入完了を示さない。</p>
+</main></body></html>

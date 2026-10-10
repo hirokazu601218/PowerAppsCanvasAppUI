@@ -1,0 +1,28 @@
+test_all_fifteen_are_connected_and_reach_a_review_end (test_connected_workflows.ConnectedWorkflowTest.test_all_fifteen_are_connected_and_reach_a_review_end) ... ok
+test_branch_conditions_are_nonempty_and_distinct (test_connected_workflows.ConnectedWorkflowTest.test_branch_conditions_are_nonempty_and_distinct) ... ok
+test_business_edge_model_svg_and_table_are_identical (test_connected_workflows.ConnectedWorkflowTest.test_business_edge_model_svg_and_table_are_identical) ... ok
+test_confirmed_core_unchanged_except_documented_wf15_completion (test_connected_workflows.ConnectedWorkflowTest.test_confirmed_core_unchanged_except_documented_wf15_completion) ... ok
+test_edges_are_orthogonal_attached_and_avoid_unrelated_nodes (test_connected_workflows.ConnectedWorkflowTest.test_edges_are_orthogonal_attached_and_avoid_unrelated_nodes) ... ok
+test_every_business_step_is_drawn_once (test_connected_workflows.ConnectedWorkflowTest.test_every_business_step_is_drawn_once) ... ok
+test_external_routes_are_not_automatic_screen_navigation (test_connected_workflows.ConnectedWorkflowTest.test_external_routes_are_not_automatic_screen_navigation) ... ok
+test_labels_do_not_hide_nodes_edges_or_other_labels (test_connected_workflows.ConnectedWorkflowTest.test_labels_do_not_hide_nodes_edges_or_other_labels) ... ok
+test_navigation_has_one_source_and_one_node_per_destination_group (test_connected_workflows.ConnectedWorkflowTest.test_navigation_has_one_source_and_one_node_per_destination_group) ... ok
+test_parallel_and_rowwise_branches_are_not_exclusive (test_connected_workflows.ConnectedWorkflowTest.test_parallel_and_rowwise_branches_are_not_exclusive) ... ok
+test_static_controls_and_operation_links_exist (test_connected_workflows.ConnectedWorkflowTest.test_static_controls_and_operation_links_exist) ... ok
+test_svg_nodes_do_not_overlap_or_clip (test_connected_workflows.ConnectedWorkflowTest.test_svg_nodes_do_not_overlap_or_clip) ... ok
+test_approved_interface_and_deferred_formula (test_payroll_review.PayrollReviewTest.test_approved_interface_and_deferred_formula) ... ok
+test_generator_is_current (test_payroll_review.PayrollReviewTest.test_generator_is_current) ... ok
+test_static_contract (test_payroll_review.PayrollReviewTest.test_static_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 1.495s
+
+OK
+test_run_record_needs_matching_metadata (test_document_placement.RoutingTests.test_run_record_needs_matching_metadata) ... ok
+test_three_categories (test_document_placement.RoutingTests.test_three_categories) ... ok
+test_unknown_current_or_archive_is_rejected (test_document_placement.RoutingTests.test_unknown_current_or_archive_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK

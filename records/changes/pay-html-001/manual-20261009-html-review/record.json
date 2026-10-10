@@ -1,0 +1,24 @@
+{
+  "change_id": "pay-html-001",
+  "run_id": "manual-20261009-html-review",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PASS",
+  "observed_at": "2026-10-09T12:36:00Z",
+  "source_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+  "version": "PAY-HTML-001 0.1-review",
+  "scope": "Review HTML only. No application, Dataverse, Power Automate, production, or real-data operations.",
+  "static_result": "PASS: 38 repository/artifact tests, JS syntax, generated parity, IDs, relative links and source paths.",
+  "browser_result": "PASS for documented HTML scope: all 46 desktop pages, 15 workflow SVG diagrams/612 text elements, representative 8 mobile/no-JS pages, major mock interaction scenarios. See QA-REPORT.md for exact limits.",
+  "not_run": [
+    "Power Apps runtime",
+    "Dataverse authorization",
+    "Actual Excel generation or CSV processing",
+    "Payroll formula verification D9 onward",
+    "Business acceptance",
+    "System testing D-07",
+    "All 100 operations end-to-end",
+    "All 46 mobile/no-JS pages",
+    "Real mobile hardware/Safari/screen readers/200% acceptance"
+  ],
+  "tested_js_sha256": "7b2a2546e4de83666db42f59b95ccc9eae9d8b515cd2580903fc57d5e5dfa99f"
+}

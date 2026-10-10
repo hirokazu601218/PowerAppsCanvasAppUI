@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "scope": "working-tree changed files before connector commit",
+  "counts": {
+    "current": 54,
+    "record": 15,
+    "other": 0,
+    "code": 8
+  }
+}
