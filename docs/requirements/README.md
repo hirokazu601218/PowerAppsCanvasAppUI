@@ -21,3 +21,9 @@
 ## 2026-10-08 人給連携
 
 [人給Excel出力・給与簿CSV取込仕様](../design/detailed/payroll-jinkyu-interface.md)。出力形式・キー等は確定、計算式確認は保留。
+
+## 標準テンプレートHTML確認版（2026-10-10）
+
+[HTML要件定義書](standard-template/index.html)は、デジタル庁DS-120の公式「第5章 要件定義書標準テンプレート」（2026-07-15掲載）に沿う確認版。業務・機能・非機能の140見出しを保持し、根拠のある内容を記載。未確定条件は「要件未設定」と表示する。画面一覧・遷移図・業務フロー・操作一覧・ワイヤーをクリックで開ける。
+
+GitHubではソース表示となるため、ブランチを取得・展開し `docs/requirements/standard-template/index.html` をブラウザーで開く。関連HTMLと同じフォルダー構造を維持する。新規Web公開は行わない。Markdown正本と既存レビューHTMLは変更せず、業務要件の承認・実装完了とは扱わない。[出典・再生成](standard-template/README.md)。

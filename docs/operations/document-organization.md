@@ -19,3 +19,7 @@ GitHub Actions の `Document placement validation` はPRと`main`へのpushで�
 ## PAY-HTML-001限定のレビューHTML例外（2026-10-09）
 
 利用者の明示依頼により、`docs/review/pay-html-001/` に現在のMarkdown正本から生成する4種のレビュー用HTML、共通データ・CSS・JavaScript・READMEを配置する。現行改修の確認入力として①に分類し、機械判定はこのディレクトリに限定して登録する。HTMLは非正本・未承認の確認資料であり、Markdown正本を置換・削除しない。HTML原本をLibraryに置く通常方針の一般的な変更ではない。生成元・更新手順・元mainのSHAを併記し、実アプリ・Dataverse・Power Automate・公開版の変更やHTML代替アプリの運用には使用しない。検証結果は②へ分離する。
+
+## 要件定義書HTMLの限定配置（2026-10-10）
+
+利用者の明示依頼により `docs/requirements/standard-template/` に標準テンプレート対応HTML・構造データ・出典HTML表示・READMEを置く。現行要件の確認入力として①に分類する。Markdown正本は維持し、公式テンプレートの記載例やモックの動作を新たな確定要件にしない。元Word・テンプレートZIP・実データ・生バックアップは格納しない。検証は `records/changes/requirements-html-20261010/` に置く。
