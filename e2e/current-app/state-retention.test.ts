@@ -58,6 +58,88 @@ async function allBasis(app: FrameLocator, pattern: string | RegExp) {
   for (let i = 0; i < 8; i++) await expect(control(app, `lblPayDeductionBasis${i}`)).toHaveText(pattern);
 }
 
+async function waitForPayrollGeometry(app: FrameLocator) {
+  let previous = ''; let stable = 0;
+  await expect.poll(async () => {
+    const snapshot = await control(app, 'conscrPayrollRoot').evaluate(root =>
+      ['conPaySummary', 'conPayBody', 'conPayDeductions', 'conPayDeduction7'].map(name => {
+        const el = root.querySelector(`[data-control-name="${name}"]`) as HTMLElement | null;
+        if (!el) return null;
+        const rect = el.getBoundingClientRect();
+        return [name, rect.x, rect.y, rect.width, rect.height, el.scrollHeight];
+      }));
+    const signature = JSON.stringify(snapshot);
+    stable = snapshot.every(Boolean) && signature === previous ? stable + 1 : 0;
+    previous = signature;
+    return stable;
+  }, { timeout: 10_000, intervals: [100, 150, 250] }).toBeGreaterThanOrEqual(2);
+}
+
+// Only move the actual user-scrollable body. scrollIntoView can move overflow:hidden
+// ancestors and conceal the very container clipping this regression must detect.
+async function scrollPayrollBodyToEnd(app: FrameLocator) {
+  const result = await control(app, 'conPayBody').evaluate(body => {
+    const candidates = [body, ...Array.from(body.querySelectorAll('*'))] as HTMLElement[];
+    const scroller = candidates.find(el =>
+      el.closest('[data-control-name]') === body &&
+      ['auto', 'scroll'].includes(getComputedStyle(el).overflowY) &&
+      el.scrollHeight > el.clientHeight + 1);
+    if (!scroller) return null;
+    scroller.scrollTop = scroller.scrollHeight;
+    return { clientHeight: scroller.clientHeight, scrollHeight: scroller.scrollHeight,
+      scrollTop: scroller.scrollTop };
+  });
+  expect(result, 'a user-scrollable body exists').not.toBeNull();
+  expect(Math.abs(result!.scrollTop - (result!.scrollHeight - result!.clientHeight))).toBeLessThanOrEqual(1);
+}
+
+async function assertLastDeductionReachable(app: FrameLocator) {
+  await scrollPayrollBodyToEnd(app);
+  for (const name of ['lblPayDeductionName7', 'lblPayDeductionBasis7', 'lblPayDeductionAmount7']) {
+    const label = control(app, name);
+    await expect(label).toBeInViewport({ ratio: 0.99 });
+    const geometry = await label.evaluate(el => {
+      const rect = el.getBoundingClientRect();
+      const clippingViolations: string[] = [];
+      const check = (box: DOMRect, start: HTMLElement | null, kind: string) => {
+        for (let ancestor = start; ancestor; ancestor = ancestor.parentElement) {
+          const style = getComputedStyle(ancestor);
+          const bounds = ancestor.getBoundingClientRect();
+          const scaleX = ancestor.offsetWidth ? bounds.width / ancestor.offsetWidth : 1;
+          const scaleY = ancestor.offsetHeight ? bounds.height / ancestor.offsetHeight : 1;
+          const left = bounds.left + ancestor.clientLeft * scaleX;
+          const top = bounds.top + ancestor.clientTop * scaleY;
+          const right = left + ancestor.clientWidth * scaleX;
+          const bottom = top + ancestor.clientHeight * scaleY;
+          const owner = ancestor.getAttribute('data-control-name') || ancestor.tagName;
+          if (['auto', 'scroll', 'hidden', 'clip'].includes(style.overflowY) &&
+              (box.top < top - 1 || box.bottom > bottom + 1)) clippingViolations.push(`${kind}:${owner}:vertical`);
+          if (['auto', 'scroll', 'hidden', 'clip'].includes(style.overflowX) &&
+              (box.left < left - 1 || box.right > right + 1)) clippingViolations.push(`${kind}:${owner}:horizontal`);
+        }
+      };
+      check(rect, el.parentElement, 'field');
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      let textRects = 0;
+      while (walker.nextNode()) {
+        const node = walker.currentNode; const parent = node.parentElement;
+        if (!node.textContent?.trim() || !parent) continue;
+        const style = getComputedStyle(parent);
+        if (style.display === 'none' || style.visibility === 'hidden') continue;
+        const range = document.createRange(); range.selectNodeContents(node);
+        for (const textRect of Array.from(range.getClientRects())) {
+          if (textRect.width <= 0 || textRect.height <= 0) continue;
+          textRects += 1; check(textRect, parent, 'text');
+        }
+      }
+      return { clippingViolations, textRects, height: rect.height, width: rect.width };
+    });
+    expect(geometry.height).toBeGreaterThan(0); expect(geometry.width).toBeGreaterThan(0);
+    expect(geometry.textRects, `${name} has rendered text to inspect`).toBeGreaterThan(0);
+    expect(geometry.clippingViolations, `${name} must not be clipped by any ancestor`).toEqual([]);
+  }
+}
+
 test('UT-STATE-SEARCH-001 検索確定値と0件クリアを区別する', async ({ page }) => {
   const app = await open(page);
   await selectStaff(app);
@@ -160,14 +242,15 @@ test('UT-STATE-PAYROLL-001 未登録と再計算前は8根拠を失効し登録�
 
 test('UT-STATE-SUMMARY-001 最後の貯金預入までスクロールしてもサマリーを固定する', async ({ page }) => {
   const app = await open(page); await payroll(app);
+  await waitForPayrollGeometry(app);
   const summary = control(app, 'conPaySummary');
   const targets = control(app, 'conPayrollTargets');
+  await expect(summary).toBeInViewport({ ratio: 0.99 });
   const before = await summary.boundingBox();
   const targetBefore = await targets.boundingBox();
   expect(before).not.toBeNull(); expect(targetBefore).not.toBeNull();
-  await control(app, 'lblPayDeductionName7').scrollIntoViewIfNeeded();
-  await expect(control(app, 'lblPayDeductionName7')).toBeInViewport();
-  await expect(summary).toBeInViewport();
+  await assertLastDeductionReachable(app);
+  await expect(summary).toBeInViewport({ ratio: 0.99 });
   const after = await summary.boundingBox(); const targetAfter = await targets.boundingBox();
   expect(after).not.toBeNull(); expect(targetAfter).not.toBeNull();
   expect(Math.abs(after!.y - before!.y)).toBeLessThanOrEqual(1);
@@ -217,15 +300,45 @@ test('IT-STATE-PAGE-001 内蔵40件の2ページ目と職員選択を往復後�
 test('UT-STATE-SUMMARY-NARROW-001 幅900高さ600でも固定領域と末尾到達を両立する', async ({ page }) => {
   const app = await open(page); await payroll(app);
   await page.setViewportSize({ width: 900, height: 600 });
+  await waitForPayrollGeometry(app);
   const summary = control(app, 'conPaySummary');
-  await expect(summary).toBeInViewport();
+  await expect(summary).toBeInViewport({ ratio: 0.99 });
   const before = await summary.boundingBox(); expect(before).not.toBeNull();
-  await control(app, 'lblPayDeductionName7').scrollIntoViewIfNeeded();
-  await expect(control(app, 'lblPayDeductionName7')).toBeInViewport();
-  await expect(summary).toBeInViewport();
+  await assertLastDeductionReachable(app);
+  await expect(summary).toBeInViewport({ ratio: 0.99 });
   const after = await summary.boundingBox(); expect(after).not.toBeNull();
   expect(Math.abs(after!.y - before!.y)).toBeLessThanOrEqual(1);
   const body = await control(app, 'conPayBody').boundingBox(); expect(body).not.toBeNull();
   expect(body!.height).toBeGreaterThan(0);
   expect(body!.y).toBeGreaterThanOrEqual(after!.y + after!.height - 1);
+});
+
+
+test('UT-STATE-SUMMARY-WIDE-001 幅1920でも本文末尾全体と固定サマリーを確認する', async ({ page }) => {
+  const app = await open(page); await payroll(app);
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await waitForPayrollGeometry(app);
+  const summary = control(app, 'conPaySummary');
+  await expect(summary).toBeInViewport({ ratio: 0.99 });
+  const before = await summary.boundingBox();
+  expect(before).not.toBeNull(); await assertLastDeductionReachable(app);
+  await expect(summary).toBeInViewport({ ratio: 0.99 });
+  const after = await summary.boundingBox(); expect(after).not.toBeNull();
+  expect(Math.abs(after!.y - before!.y)).toBeLessThanOrEqual(1);
+});
+
+test('UT-STATE-SUMMARY-REFLOW-001 200%相当のCSS幅境界を検査する（実ズームは別観測）', async ({ page }) => {
+  const app = await open(page); await payroll(app);
+  // Horizontal reflow stress only: keeping height768 is NOT a browser 200% zoom test.
+  for (const width of [450, 683, 960]) {
+    await page.setViewportSize({ width, height: 768 });
+    await waitForPayrollGeometry(app);
+    const summary = control(app, 'conPaySummary');
+    await expect(summary).toBeInViewport({ ratio: 0.99 });
+    const before = await summary.boundingBox();
+    expect(before).not.toBeNull(); await assertLastDeductionReachable(app);
+    await expect(summary).toBeInViewport({ ratio: 0.99 });
+    const after = await summary.boundingBox(); expect(after).not.toBeNull();
+    expect(Math.abs(after!.y - before!.y)).toBeLessThanOrEqual(1);
+  }
 });

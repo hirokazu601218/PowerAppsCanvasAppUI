@@ -6,7 +6,7 @@
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
   },
-  "status": "local_candidate_not_applied",
+  "status": "r5_local_candidate_not_applied",
   "baseline": {
     "git_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
     "snapshot": "2026-10-10 official Export of published v36; all 10 Src files byte-identical to reviewed v35/r4 baseline",
@@ -275,8 +275,36 @@
       "unit_case_ids": [
         "UT-STATE-SUMMARY-001"
       ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conPayDeductions",
+      "property": "Height",
+      "before": "=If(Coalesce(varUiDeductionsOpen,true),If(Parent.Width<750,1210,698),0)",
+      "before_sha256": "1fa3b9360f5ce065dc6a4458fe0289a2a1b2de41bf56351c4fe8916f8e692f7a",
+      "after_file": "conPayDeductions.Height.fx",
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001"
+      ]
     }
   ],
   "runtime_tests": "NOT_RUN",
-  "rollback": "Capture current exact control properties and structure before editing. On failure restore only changed controls/properties in this same App ID, then save/read back and recheck Player. Never use legacy app deployment or import workflows."
+  "rollback": "Capture current exact control properties and structure before editing. On failure restore only changed controls/properties in this same App ID, then save/read back and recheck Player. Never use legacy app deployment or import workflows.",
+  "candidate_revision": "r5_intrinsic_deduction_height",
+  "prepublication_r4_evidence": {
+    "source_commit": "422256dbe14cbbcf8cde1b6334f7924a7483c5cc",
+    "saved_draft_version": "37",
+    "two_screen_full_readback": "MATCHED_R4",
+    "studio_checker_errors": 0,
+    "selected_state_cases": "6/9 PASS at r4; layout final-row reachability failed; repeat after r5",
+    "geometry_summary": "Wide child content728 in698; narrow content1240 in698 due nested width predicates",
+    "r5_applied": false
+  }
 }

@@ -1,0 +1,1 @@
+=If(Coalesce(varUiDeductionsOpen,true),Self.PaddingTop+Self.PaddingBottom+lblPaySocialHeading.Height+conPayDeduction0.Height+conPayDeduction1.Height+conPayDeduction2.Height+conPayDeduction3.Height+conPayDeduction4.Height+conPaySocialTotal.Height+lblPayTaxHeading.Height+conPayDeduction5.Height+conPayDeduction6.Height+conPayDeduction7.Height+10*Self.LayoutGap,0)

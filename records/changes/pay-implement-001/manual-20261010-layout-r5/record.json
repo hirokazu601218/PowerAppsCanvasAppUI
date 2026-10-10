@@ -1,0 +1,28 @@
+{
+  "change_id": "pay-implement-001",
+  "run_id": "manual-20261010-layout-r5",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T03:01:38Z",
+  "source_commit": "422256dbe14cbbcf8cde1b6334f7924a7483c5cc",
+  "version": "r4 saved draft37 observed; r5 local candidate not applied",
+  "checks": {
+    "r4_two_screen_full_readback": "MATCH",
+    "r4_checker_errors": 0,
+    "r4_selected_state_cases": "6/9PASS; not complete",
+    "r4_final_deduction_visibility": "FAIL",
+    "r5_property_delta_count": 1,
+    "r5_business_formula_changes": 0,
+    "r5_model_static_tests": "PASS: 64 automation tests (including 15 layout tests); 3 governance tests",
+    "r5_studio": "NOT_RUN",
+    "r5_player": "NOT_RUN",
+    "browser_200_percent": "NOT_RUN",
+    "r5_independent_source_model_tests": "PASS: 8",
+    "r5_independent_helper_mock_outcomes": "PASS: 13; not browser/E2E",
+    "r5_typescript_syntax": "PASS: Node type stripping only",
+    "named_selection": "PASS: 14 cases / 18 source paths; execution NOT_RUN",
+    "frozen_S_before_blobs": "PASS: 66/66 match recorded verified remote blob identities"
+  },
+  "guard": "Do not apply before independent review and S-prime freeze. Recheck current exact r4 Height/root before changing. Restore only this Height to the r4 value if rollback required.",
+  "privacy": "Raw source/readbacks/screenshots/connection metadata excluded."
+}

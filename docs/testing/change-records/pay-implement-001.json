@@ -112,9 +112,11 @@
         "UT-STATE-PAYROLL-001",
         "UT-STATE-SUMMARY-001",
         "UT-STATE-SUMMARY-NARROW-001",
-        "UT-HOME-001"
+        "UT-HOME-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001"
       ],
-      "expected_result": "同名部品の追加・消失なく、本文外サマリーと金額・根拠の同時失効を公開Playerで確認する。"
+      "expected_result": "既存summaryを固定したまま、本文の実scrollbarだけで最終貯金預入の名称/根拠/金額が祖先のhidden領域に切られず全文到達できる。1366/900/1920幅とCSS幅縮小を検査し、200%実ズームは別途現物観測する。"
     },
     {
       "path": "src/screen-ui/v1.31/payroll-root.pa.yaml",
@@ -122,9 +124,11 @@
       "unit_case_ids": [
         "UT-STATE-PAYROLL-001",
         "UT-STATE-SUMMARY-001",
-        "UT-STATE-SUMMARY-NARROW-001"
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001"
       ],
-      "expected_result": "同名部品の追加・消失なく、本文外サマリーと金額・根拠の同時失効を公開Playerで確認する。"
+      "expected_result": "既存summaryを固定したまま、本文の実scrollbarだけで最終貯金預入の名称/根拠/金額が祖先のhidden領域に切られず全文到達できる。1366/900/1920幅とCSS幅縮小を検査し、200%実ズームは別途現物観測する。"
     },
     {
       "path": "src/screen-ui/v1.31/payroll-root.paste.yaml",
@@ -132,9 +136,11 @@
       "unit_case_ids": [
         "UT-STATE-PAYROLL-001",
         "UT-STATE-SUMMARY-001",
-        "UT-STATE-SUMMARY-NARROW-001"
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001"
       ],
-      "expected_result": "同名部品の追加・消失なく、本文外サマリーと金額・根拠の同時失効を公開Playerで確認する。"
+      "expected_result": "既存summaryを固定したまま、本文の実scrollbarだけで最終貯金預入の名称/根拠/金額が祖先のhidden領域に切られず全文到達できる。1366/900/1920幅とCSS幅縮小を検査し、200%実ズームは別途現物観測する。"
     },
     {
       "path": "src/screen-ui/v1.31/scrStaffMasterSearch.OnVisible.tail.fx",
@@ -151,6 +157,17 @@
         "UT-SCR003-CONTRACT-001"
       ],
       "expected_result": "機械可読契約の説明文が既存フローの旧バッチ保持・不完全ステージング未活性化・一時Excel削除との区別に一致する。runtime flowの変更なし。既存test_scr003_flow.py静的10件と読取り契約ケースで確認する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/conPayDeductions.Height.fx",
+      "component": "conPayDeductions.Height: sum actual child heights, padding and10 gaps",
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001"
+      ],
+      "expected_result": "11子の実Height合計＋10gap＋上下paddingに一致。親と子の750幅判定を重複させず、728/1240の内容が切れない。固定summary/既存業務式は不変。"
     }
   ],
   "integration": {
@@ -227,6 +244,16 @@
       "id": "UT-SCR003-CONTRACT-001",
       "level": "unit",
       "test_file": "e2e/current-app/attendance-contract.test.ts"
+    },
+    {
+      "id": "UT-STATE-SUMMARY-WIDE-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "UT-STATE-SUMMARY-REFLOW-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/state-retention.test.ts"
     }
   ]
 }

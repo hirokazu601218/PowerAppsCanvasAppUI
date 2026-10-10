@@ -1,0 +1,14 @@
+{
+  "scope": "Sanitized archived review artifact identities; no application runtime claims",
+  "files": {
+    "REPRODUCE.md": "ff5c23175a2f9f796f3ab850645e07140c9ab92d0a3bfc7c7ee61e09edeed498",
+    "e2e-helper-mock.log": "bf249c037b94ce895b53f017e6db18695f907cf3dd319ed3e82773c96fd09a12",
+    "e2e-source-review.md": "1c68ddea8e8e7559e09549e8cd713a96d8ef54c11aa35584a2221c91ca759ef2",
+    "independent-review-results.json": "3b1483550fc227a7a08a7c2999882cdfe80320be17b33edcb4e8c03993013056",
+    "independent-review-test.log": "25cccb10c8b7e6e4bcb2c94e36f10fa7cf3f592a95b6fb1ab276523a79ea84f3",
+    "independent-review.md": "8cced313eb66b9e62f80de31b12c374e366f9bdeb918194dc2142fbc760c72dc",
+    "reviewed-source-test-hashes.json": "74aede89b1008b72fb2b15e066cb22be5a3e4e96a54fd585e6d7e4a519dabf4f",
+    "test_e2e_helpers_mock.cjs": "2c9d3019426e7f54abb5ef611cd0d4a11a199e154726f3760c7129a82140c8d1",
+    "test_independent_layout_review.py": "6d486e4cbe67b392a74d14a596eb62aa250fe4b5ca424e6a145da8f90a342aab"
+  }
+}

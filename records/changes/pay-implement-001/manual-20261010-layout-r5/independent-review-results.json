@@ -1,0 +1,89 @@
+{
+  "kind": "independent_static_source_and_geometry_model_review",
+  "official_power_fx_compiler": false,
+  "player_render_test": false,
+  "tests_run": 8,
+  "passed": true,
+  "formula": "=If(Coalesce(varUiDeductionsOpen,true),Self.PaddingTop+Self.PaddingBottom+lblPaySocialHeading.Height+conPayDeduction0.Height+conPayDeduction1.Height+conPayDeduction2.Height+conPayDeduction3.Height+conPayDeduction4.Height+conPaySocialTotal.Height+lblPayTaxHeading.Height+conPayDeduction5.Height+conPayDeduction6.Height+conPayDeduction7.Height+10*Self.LayoutGap,0)",
+  "source_sha256": "f68b14523392fc72f4985f1ab2f4424e4a047123765ef807d010db66c297ac23",
+  "matrix": [
+    {
+      "nominal_viewport_width": 900,
+      "zoom_model": 1,
+      "effective_width": 900.0,
+      "body_width": 787.5,
+      "deduction_width": 735.5,
+      "row_width": 711.5,
+      "model_assumption_scrollbar_px": 12,
+      "old_height": 698,
+      "new_height": 1240,
+      "old_clipped_height": 542,
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "nominal_viewport_width": 900,
+      "zoom_model": 2,
+      "effective_width": 450.0,
+      "body_width": 393.75,
+      "deduction_width": 341.75,
+      "row_width": 317.75,
+      "model_assumption_scrollbar_px": 12,
+      "old_height": 1210,
+      "new_height": 1240,
+      "old_clipped_height": 30,
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "nominal_viewport_width": 1366,
+      "zoom_model": 1,
+      "effective_width": 1366.0,
+      "body_width": 1195.25,
+      "deduction_width": 1143.25,
+      "row_width": 1119.25,
+      "model_assumption_scrollbar_px": 12,
+      "old_height": 698,
+      "new_height": 728,
+      "old_clipped_height": 30,
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "nominal_viewport_width": 1366,
+      "zoom_model": 2,
+      "effective_width": 683.0,
+      "body_width": 597.625,
+      "deduction_width": 545.625,
+      "row_width": 521.625,
+      "model_assumption_scrollbar_px": 12,
+      "old_height": 1210,
+      "new_height": 1240,
+      "old_clipped_height": 30,
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "nominal_viewport_width": 1920,
+      "zoom_model": 1,
+      "effective_width": 1920.0,
+      "body_width": 1680.0,
+      "deduction_width": 1628.0,
+      "row_width": 1604.0,
+      "model_assumption_scrollbar_px": 12,
+      "old_height": 698,
+      "new_height": 728,
+      "old_clipped_height": 30,
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "nominal_viewport_width": 1920,
+      "zoom_model": 2,
+      "effective_width": 960.0,
+      "body_width": 840.0,
+      "deduction_width": 788.0,
+      "row_width": 764.0,
+      "model_assumption_scrollbar_px": 12,
+      "old_height": 698,
+      "new_height": 728,
+      "old_clipped_height": 30,
+      "runtime_status": "NOT_RUN"
+    }
+  ]
+}

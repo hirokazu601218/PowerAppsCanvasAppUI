@@ -1,0 +1,15 @@
+{
+  "r4_readback_matches_S": true,
+  "named_controls": 86,
+  "r4_root_semantic_sha256": "f540a11b174403ad13652ce15509cf11fcb4ea9413761bbc5966375b0129c694",
+  "r5_root_semantic_sha256": "02fad9291e41752353cff590b37fcf03a1c6a229ed25e7701df83b006c43fe5b",
+  "changes": [
+    {
+      "control": "conPayDeductions",
+      "property": "Height",
+      "before": "=If(Coalesce(varUiDeductionsOpen,true),If(Parent.Width<750,1210,698),0)",
+      "after": "=If(Coalesce(varUiDeductionsOpen,true),Self.PaddingTop+Self.PaddingBottom+lblPaySocialHeading.Height+conPayDeduction0.Height+conPayDeduction1.Height+conPayDeduction2.Height+conPayDeduction3.Height+conPayDeduction4.Height+conPaySocialTotal.Height+lblPayTaxHeading.Height+conPayDeduction5.Height+conPayDeduction6.Height+conPayDeduction7.Height+10*Self.LayoutGap,0)"
+    }
+  ],
+  "structure_changes": 0
+}

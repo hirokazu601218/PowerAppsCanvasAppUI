@@ -744,7 +744,7 @@ Screens:
                   DropShadow: =DropShadow.None
                   Fill: =Color.White
                   FillPortions: =0
-                  Height: =If(Coalesce(varUiDeductionsOpen,true),If(Parent.Width<750,1210,698),0)
+                  Height: =If(Coalesce(varUiDeductionsOpen,true),Self.PaddingTop+Self.PaddingBottom+lblPaySocialHeading.Height+conPayDeduction0.Height+conPayDeduction1.Height+conPayDeduction2.Height+conPayDeduction3.Height+conPayDeduction4.Height+conPaySocialTotal.Height+lblPayTaxHeading.Height+conPayDeduction5.Height+conPayDeduction6.Height+conPayDeduction7.Height+10*Self.LayoutGap,0)
                   LayoutAlignItems: =LayoutAlignItems.Stretch
                   LayoutDirection: =LayoutDirection.Vertical
                   LayoutGap: =8

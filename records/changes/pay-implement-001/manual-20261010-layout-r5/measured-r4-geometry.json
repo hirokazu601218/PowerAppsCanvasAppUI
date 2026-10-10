@@ -1,0 +1,142 @@
+{
+  "source_commit": "422256dbe14cbbcf8cde1b6334f7924a7483c5cc",
+  "saved_draft_version": "37",
+  "measurements": [
+    {
+      "observed_utc": "2026-10-10T02:48:45Z",
+      "studio_device_preview": {
+        "width": 1366,
+        "height": 768
+      },
+      "body": {
+        "clientWidth": 1195,
+        "clientHeight": 438,
+        "scrolls": [
+          {
+            "h": 438,
+            "name": null,
+            "overflow": "auto",
+            "sh": 1317,
+            "st": 879
+          },
+          {
+            "h": 438,
+            "name": null,
+            "overflow": "visible",
+            "sh": 1317,
+            "st": 0
+          },
+          {
+            "h": 698,
+            "name": null,
+            "overflow": "hidden",
+            "sh": 728,
+            "st": 0
+          },
+          {
+            "h": 698,
+            "name": null,
+            "overflow": "visible",
+            "sh": 728,
+            "st": 0
+          }
+        ]
+      },
+      "deductions": {
+        "clientWidth": 1143,
+        "clientHeight": 698,
+        "scrolls": [
+          {
+            "h": 698,
+            "name": null,
+            "overflow": "hidden",
+            "sh": 728,
+            "st": 0
+          },
+          {
+            "h": 698,
+            "name": null,
+            "overflow": "visible",
+            "sh": 728,
+            "st": 0
+          }
+        ]
+      },
+      "last_row": {
+        "clientWidth": 1119,
+        "clientHeight": 64
+      },
+      "summary_fixed": "Observed by browser; not an r5 pass",
+      "r4_result": "FAIL_LAST_ROW_REACHABILITY"
+    },
+    {
+      "observed_utc": "2026-10-10T02:47:56Z",
+      "studio_device_preview": {
+        "width": 900,
+        "height": 600
+      },
+      "body": {
+        "clientWidth": 788,
+        "clientHeight": 244,
+        "scrolls": [
+          {
+            "h": 244,
+            "name": null,
+            "overflow": "auto",
+            "sh": 1317,
+            "st": 1073
+          },
+          {
+            "h": 244,
+            "name": null,
+            "overflow": "visible",
+            "sh": 1317,
+            "st": 0
+          },
+          {
+            "h": 698,
+            "name": null,
+            "overflow": "hidden",
+            "sh": 1240,
+            "st": 0
+          },
+          {
+            "h": 698,
+            "name": null,
+            "overflow": "visible",
+            "sh": 1240,
+            "st": 0
+          }
+        ]
+      },
+      "deductions": {
+        "clientWidth": 736,
+        "clientHeight": 698,
+        "scrolls": [
+          {
+            "h": 698,
+            "name": null,
+            "overflow": "hidden",
+            "sh": 1240,
+            "st": 0
+          },
+          {
+            "h": 698,
+            "name": null,
+            "overflow": "visible",
+            "sh": 1240,
+            "st": 0
+          }
+        ]
+      },
+      "last_row": {
+        "clientWidth": 712,
+        "clientHeight": 128
+      },
+      "summary_fixed": "Observed by browser; not an r5 pass",
+      "r4_result": "FAIL_LAST_ROW_REACHABILITY"
+    }
+  ],
+  "raw_screenshots_and_full_readback": "Private backup retained; excluded from public package",
+  "r5_runtime": "NOT_RUN"
+}

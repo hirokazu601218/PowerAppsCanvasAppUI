@@ -1,0 +1,13 @@
+test_boundary_matrix_including_nested_offsets (__main__.IndependentLayoutReview.test_boundary_matrix_including_nested_offsets) ... ok
+test_every_child_once_no_circular_height_dependency (__main__.IndependentLayoutReview.test_every_child_once_no_circular_height_dependency) ... ok
+test_exact_whitelist_and_no_structure_change (__main__.IndependentLayoutReview.test_exact_whitelist_and_no_structure_change) ... ok
+test_fixed_summary_and_existing_body_scrolling_preserved (__main__.IndependentLayoutReview.test_fixed_summary_and_existing_body_scrolling_preserved) ... ok
+test_frozen_readback_and_paste_equality (__main__.IndependentLayoutReview.test_frozen_readback_and_paste_equality) ... ok
+test_gap_padding_and_child_height_sensitivity (__main__.IndependentLayoutReview.test_gap_padding_and_child_height_sensitivity) ... ok
+test_reproduces_both_old_defects (__main__.IndependentLayoutReview.test_reproduces_both_old_defects) ... ok
+test_requested_viewports_and_200_percent_effective_widths (__main__.IndependentLayoutReview.test_requested_viewports_and_200_percent_effective_widths) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.136s
+
+OK

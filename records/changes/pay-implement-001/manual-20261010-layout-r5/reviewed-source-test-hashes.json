@@ -1,0 +1,106 @@
+{
+  "scope": "Independent review identity of local r5 source, generator, two static tests, E2E test, and selection record; paths are repository-relative",
+  "captured_utc": "2026-10-10T03:02:30.621298+00:00",
+  "root": ".",
+  "source_r4_commit": "422256dbe14cbbcf8cde1b6334f7924a7483c5cc",
+  "source_checks": "8/8 PASS",
+  "e2e_helper_mock_checks": "13/13 PASS",
+  "e2e_registered_cases": 11,
+  "actual_browser_e2e": "NOT_RUN",
+  "actual_200_percent_zoom": "NOT_RUN",
+  "files": {
+    "src/screen-ui/v1.31/README.md": {
+      "sha256": "393452d1b4b22148f31716ed0758656d9436fd5f6a5b880dc280507f2fd117f2",
+      "bytes": 5415
+    },
+    "src/screen-ui/v1.31/btnDetailTab111.OnSelect.fx": {
+      "sha256": "a1106433a56e0658ac1bc1e6c04b23340086512b45150fd39efcfae6016462c4",
+      "bytes": 338
+    },
+    "src/screen-ui/v1.31/btnLoadDetails111.OnSelect.fx": {
+      "sha256": "2b6ce71e42dc12c83812bfd70fe6688fc302b39c025dc66f993084e54e875b5a",
+      "bytes": 6080
+    },
+    "src/screen-ui/v1.31/btnSearch111.OnSelect.fx": {
+      "sha256": "0eec99f5a9df1685a3a4c209d920c1f2810700b472abd9ed75a1100025bcdcf7",
+      "bytes": 1331
+    },
+    "src/screen-ui/v1.31/conPayDeductions.Height.fx": {
+      "sha256": "1bab9111b52eb0eead58e0b2c7b328433fa7f5409b2d40f61a04019b24ff143c",
+      "bytes": 363
+    },
+    "src/screen-ui/v1.31/galHistory111.OnSelect.fx": {
+      "sha256": "4feed088f73e84969a9822a7f835f753564a10483d6341a702546a7188e1135d",
+      "bytes": 194
+    },
+    "src/screen-ui/v1.31/lblPayDeductionBasis0.Text.fx": {
+      "sha256": "6a2f632984056319c5e834399064a784811be1210a168469557f979b35e481ff",
+      "bytes": 118
+    },
+    "src/screen-ui/v1.31/lblPayDeductionBasis1.Text.fx": {
+      "sha256": "a0910bee920bd670e430504ff8b37f3e77fede1908fcbd70cbc778e94e4ffe96",
+      "bytes": 118
+    },
+    "src/screen-ui/v1.31/lblPayDeductionBasis2.Text.fx": {
+      "sha256": "1b4827a727b5d2db8da84e262889ae0f3fd0b4f3cdc416ca6b1fa1352a758e4c",
+      "bytes": 118
+    },
+    "src/screen-ui/v1.31/lblPayDeductionBasis3.Text.fx": {
+      "sha256": "61e3d70e9d79385efcfccbfa5600c89d7dfe5f72e1b01f7864277fba3992246a",
+      "bytes": 118
+    },
+    "src/screen-ui/v1.31/lblPayDeductionBasis4.Text.fx": {
+      "sha256": "ae45e5dbd22cf6a3f148c9b85222a8a4eff00e08eb9393cf042bf2ae72aef3cb",
+      "bytes": 118
+    },
+    "src/screen-ui/v1.31/lblPayDeductionBasis5.Text.fx": {
+      "sha256": "b739cf66c4be7cd0a132f3cf88b23ce40035ba70df05d73a55b62c0427c99e6d",
+      "bytes": 118
+    },
+    "src/screen-ui/v1.31/lblPayDeductionBasis6.Text.fx": {
+      "sha256": "9115b75685c181faa6f91e66744858eef7b2217bfb026d757ade22ebed36b2e0",
+      "bytes": 118
+    },
+    "src/screen-ui/v1.31/lblPayDeductionBasis7.Text.fx": {
+      "sha256": "5fa33a671d565911e392f8dd359671b115a6c27b9409ae132394b322e1009c5b",
+      "bytes": 118
+    },
+    "src/screen-ui/v1.31/manifest.json": {
+      "sha256": "911f17df2f200139a06235ea60e01a52fb0917bc75a754a8a6c8efdff03ed254",
+      "bytes": 20031
+    },
+    "src/screen-ui/v1.31/payroll-root.pa.yaml": {
+      "sha256": "f68b14523392fc72f4985f1ab2f4424e4a047123765ef807d010db66c297ac23",
+      "bytes": 61334
+    },
+    "src/screen-ui/v1.31/payroll-root.paste.yaml": {
+      "sha256": "97b43207104ec48b67b7fe82632ccc73bd1fbfbd5b8efe3211dc3f9bf9ed4bed",
+      "bytes": 55985
+    },
+    "src/screen-ui/v1.31/scrStaffMasterSearch.OnVisible.tail.fx": {
+      "sha256": "d4d1c23a9a776a219214975322806cfd0c4917326b6aeca7523014ae3a4cace5",
+      "bytes": 2822
+    },
+    "scripts/implementation/apply_pay_implement_001.py": {
+      "sha256": "852a0763ca6d38e5f4cb9842c1c1151feb416dc88e2bb61270e8c0172ca7a2f1",
+      "bytes": 9245
+    },
+    "tests/automation/test_pay_implement_001.py": {
+      "sha256": "090266dcf723534fe826362e768605a9441591f5a74e1817bcb924f1d6a96517",
+      "bytes": 11066
+    },
+    "e2e/current-app/state-retention.test.ts": {
+      "sha256": "4e4802a6e0e15ab60b08e9108c938051cfcc9c546e9870b4cdd79bc4cc2b9c90",
+      "bytes": 20379
+    },
+    "docs/testing/change-records/pay-implement-001.json": {
+      "sha256": "d58ae18972639dbacf148367e21914afc8a88330821f2d5d962bc9111d283aa3",
+      "bytes": 10877
+    },
+    "tests/automation/test_payroll_layout_r5.py": {
+      "sha256": "77c4cfee5d9dffcb5d602579d5a1fb8b7507ceec6f60fae7707b9245bef02b19",
+      "bytes": 5994
+    }
+  },
+  "revision_notes": "Final summary visibility assertions unified to ratio0.99 at1366/900 and duplicate removed; README application order includes deduction Height. Core formula unchanged. New r5 static test added to hash coverage."
+}

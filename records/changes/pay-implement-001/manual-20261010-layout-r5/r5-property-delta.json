@@ -1,0 +1,24 @@
+{
+  "control": "conPayDeductions",
+  "property": "Height",
+  "before": "=If(Coalesce(varUiDeductionsOpen,true),If(Parent.Width<750,1210,698),0)",
+  "after": "=If(Coalesce(varUiDeductionsOpen,true),Self.PaddingTop+Self.PaddingBottom+lblPaySocialHeading.Height+conPayDeduction0.Height+conPayDeduction1.Height+conPayDeduction2.Height+conPayDeduction3.Height+conPayDeduction4.Height+conPaySocialTotal.Height+lblPayTaxHeading.Height+conPayDeduction5.Height+conPayDeduction6.Height+conPayDeduction7.Height+10*Self.LayoutGap,0)",
+  "before_sha256": "1fa3b9360f5ce065dc6a4458fe0289a2a1b2de41bf56351c4fe8916f8e692f7a",
+  "after_sha256": "dd16b01d3d93c3f19a55f733f856c84bda7881fa2901ac95e68a71e908da7586",
+  "children": [
+    "lblPaySocialHeading",
+    "conPayDeduction0",
+    "conPayDeduction1",
+    "conPayDeduction2",
+    "conPayDeduction3",
+    "conPayDeduction4",
+    "conPaySocialTotal",
+    "lblPayTaxHeading",
+    "conPayDeduction5",
+    "conPayDeduction6",
+    "conPayDeduction7"
+  ],
+  "gap_count": 10,
+  "unchanged_properties": "All other control properties, structure and formulas",
+  "runtime_status": "NOT_APPLIED"
+}
