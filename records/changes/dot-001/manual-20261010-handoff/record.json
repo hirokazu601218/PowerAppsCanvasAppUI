@@ -1,9 +1,10 @@
 {
-  "change_id": "DOT-001",
+  "change_id": "dot-001",
   "run_id": "manual-20261010-handoff",
   "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
   "status": "PARTIAL",
   "observed_at": "2026-10-10T15:22:00Z",
   "source_commit": "fba65fdaefcf3b70821d7831ce86a4262ea4a214",
-  "version": "38 (handoff observation; formal P unavailable)"
+  "version": "38 (handoff observation; formal P unavailable)",
+  "request_id": "DOT-001"
 }

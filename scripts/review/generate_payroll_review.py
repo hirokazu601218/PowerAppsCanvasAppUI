@@ -77,7 +77,7 @@ def page(model, current, title, body, active='', screen=None):
 <header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
 <nav class="doc-nav" aria-label="資料ナビゲーション">{navhtml}</nav>
 <main id="main">
-<div class="document-meta"><span>{E(meta['version'])} / {E(meta['updated'])}</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>{E(meta['source_sha'])}</code></span></div>
+<div class="document-meta"><span>{E(meta['version'])} / {E(meta['updated'])}</span><strong>提案・レビュー用（未承認）</strong><span>文書出典：<code>{E(meta['source_sha'])}</code></span></div>
 <h1>{E(title)}</h1>
 <p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
 {body}

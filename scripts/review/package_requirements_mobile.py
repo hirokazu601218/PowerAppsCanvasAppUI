@@ -110,7 +110,7 @@ def build():
                         # Nonbundled material remains an explicitly external repository reference.
                         try: rel=target.relative_to(ROOT)
                         except ValueError: continue
-                        el.set(attr,'https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/'+str(rel)+(('#'+u.fragment) if u.fragment else ''))
+                        el.set(attr,'https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/6064ca820553511e1d52b19f896a063213eb88c8/'+str(rel)+(('#'+u.fragment) if u.fragment else ''))
         cls='review-doc' if p.is_relative_to(REVIEW) else 'requirements-doc'
         # Header is repeated only at document boundaries; all content remains readable without links.
         rendered=''.join(etree.tostring(c,encoding='unicode',method='html') for c in body)

@@ -4,7 +4,7 @@
 
 - main：252abe4aa5d3b1d99a584a30c97d9b48153c91f5。実装：fba65fdaefcf3b70821d7831ce86a4262ea4a214。
 - PR135 head：c1008452348fd27448742796069647584278dca6。PR136 head：38362c8cf7ded201b1d185eeaccf2892f40c5f51（引継ぎ後更新あり）。
-- 子ブランチに両依存を取り込み、STATUSの唯一の競合は両追記を保持して解消。既存head・main・PR baseを変更しない。文書編集前B：07d2309（完全SHAはgit履歴）。
+- 子ブランチに両依存を取り込み、STATUSの唯一の競合は両追記を保持して解消。既存head・main・PR baseを変更しない。文書編集前B：d74a4986a46f94fa93f474f7c35efd638e420098。
 - 候補パッチ2件・対象3文書：before SHA-256一致とgit apply --check PASS。FR-G-01/03とIF-01を確認し外部手続／xlsx表現を訂正。SD-06は再適用しない。
 
 ## 証拠区分
@@ -30,3 +30,12 @@ current-app-postpublish-docs.ymlのreadback_only=trueはmetadata前後読取り�
 ## 残課題
 
 正式P/H、公開後最終照合、選定E2E、focus完全表示・履歴AX、Issue #51、D-07、制度式・実効認可・外部保存契約を維持。文書更新の完了を開発全体の完了としない。表示の実描画・iPhone実機は今回未実施。
+
+## ローカル検査結果
+
+- レビューHTML：46ページ・2,316相対リンクPASS。生成一致PASS。
+- 要件HTML：16ファイル生成一致PASS。iPhone版62資料・2,098,237 bytes再生成一致・内部参照確認PASS。
+- 既存review単体15件、governance3件PASS。
+- 試験選定：source_paths/test_files/case_idsすべて空（文書差分）。実機E2Eは未実施。
+- 配置検査初回FAIL：record.jsonのchange_idがディレクトリ名dot-001と大文字小文字不一致。メタデータをdot-001に修正し、利用者依頼ID DOT-001をrequest_idとして保持。検査条件は変更しない。
+- 新規実描画、クリック実測、iPhone実機は未実施。
