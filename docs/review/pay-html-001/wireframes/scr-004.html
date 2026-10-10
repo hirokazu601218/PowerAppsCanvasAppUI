@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+  <title>④ SCR-004 期末勤勉支給率登録画面 | 非常勤給与レビュー</title>
+  <link rel="stylesheet" href="../assets/review.css">
+  <script src="../assets/review.js" defer></script>
+</head>
+<body data-screen-id="SCR-004">
+<a class="skip" href="#main">本文へ移動</a>
+<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
+<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<a href="../navigation.html" >① 画面遷移</a>
+<a href="../workflows/index.html" >② 業務フロー</a>
+<a href="../operations/index.html" >③ 操作定義</a>
+<a href="index.html" aria-current="page">④ ワイヤー</a>
+<a href="../coverage.html" >対応表</a>
+<a href="../design-notes.html" >設計注記</a></nav>
+<main id="main">
+<div class="document-meta"><span>0.2-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<h1>④ SCR-004 期末勤勉支給率登録画面</h1>
+<p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
+<p><span class="badge current">現行実装</span> 現行6画面の一つ。職員×支給対象期間の期末・勤勉別率は確定改修要件。</p><p><a href="../operations/scr-004.html" >この画面の操作定義</a> / <a href="../design-notes.html#mock-design" >設計・状態の注記</a></p><section class="review-controls" aria-label="レビュー用の条件切替"><p>レビュー用の条件切替（業務画面外）。権限変更・実データ更新は行いません。操作で現れる文言・モーダル配置は提案です。</p><label>役割<select data-review-role><option value="payroll">給与班</option><option value="bureau">局担当者</option><option value="master">業務マスタ管理者</option><option value="system">システム管理者</option><option value="self">職員本人（将来）</option></select></label><label>状態<select data-review-state><option value="normal">通常</option><option value="initial">初期・未選択</option><option value="zero">検索・履歴0件</option><option value="loading">処理中</option><option value="error">エラー</option><option value="readonly">報告済み・読み取り</option><option value="difference">照合差分あり</option><option value="clean">全体差分ゼロ</option><option value="stale">計算更新後</option><option value="unknown">未知職員あり</option><option value="paid">支払い済み</option></select></label><label>次の模擬保存<select data-save-result><option value="success">成功</option><option value="failure">失敗</option></select></label><button type="button" data-review-reset>初期化</button></section><section class="mock-boundary" aria-label="PC業務画面例"><div class="mock-caption">PCレイアウトの画面例 · 架空データ · 実処理は行いません · 狭い画面はこの枠内を横スクロール</div><div class="mock-app" data-mock-screen="SCR-004"><header class="mock-header"><div><h2>期末勤勉支給率登録画面</h2><span class="context-name">架空総務局 · 架空担当者</span></div><div class="header-actions"><a href="scr-001.html" data-operation-id="OP-004-HOME" data-mock-nav >ホーム</a><span>SCR-004</span></div></header><p class="mock-status mock-warning" data-role-warning hidden>この業務は給与班が担当します。現在の役割では対象データを表示しません。</p><div class="mock-body" data-business-content><div class="mock-context"><div><strong>選択職員</strong><br><span data-context-staff>009900009901 架空 花子</span></div><div><strong>対象勤務月</strong><br><span data-context-month>2026/09</span></div><div><strong>支給回</strong><br><span data-context-run>例示2026年10月通常</span></div><div><strong>状態</strong><br><span data-mode-label>読み取り</span></div></div><div class="mock-toolbar"><button type="button" data-operation-id="OP-004-RATES" data-allowed-roles="payroll" data-action="edit" class="secondary" >編集モード</button><button type="button" data-operation-id="OP-004-RATES" data-allowed-roles="payroll" data-action="save" class="primary" data-write-control disabled>保存</button><button type="button" data-operation-id="OP-004-RATES" data-allowed-roles="payroll" data-action="read" class="secondary" >読み取りモード</button></div><div class="mock-status" role="status" aria-live="polite" data-mock-status>表示内容は架空の例です。</div><div class="field-grid"><label class="field-cell" for="field-scr-004-0-0"><span>職員番号</span><input id="field-scr-004-0-0" type="text" value="009900009901" data-editable="false" readonly aria-describedby="field-scr-004-0-0-note"></label><label class="field-cell" for="field-scr-004-0-1"><span>対象期間開始</span><input id="field-scr-004-0-1" type="date" value="2026-04-01" data-editable="true" readonly aria-describedby="field-scr-004-0-1-note"></label><label class="field-cell" for="field-scr-004-0-2"><span>対象期間終了</span><input id="field-scr-004-0-2" type="date" value="2026-09-30" data-editable="true" readonly aria-describedby="field-scr-004-0-2-note"></label><label class="field-cell" for="field-scr-004-0-3"><span>期末支給率</span><input id="field-scr-004-0-3" type="text" value="1.000" data-editable="true" readonly aria-describedby="field-scr-004-0-3-note"></label><label class="field-cell" for="field-scr-004-0-4"><span>勤勉支給率</span><input id="field-scr-004-0-4" type="text" value="0.900" data-editable="true" readonly aria-describedby="field-scr-004-0-4-note"></label></div><p>期末と勤勉の率を別々に登録します。</p></div></div></section><dialog class="mock-dialog" data-mock-dialog aria-labelledby="dialog-title"><h3 id="dialog-title" data-dialog-title>操作の確認</h3><div data-dialog-body></div><div class="mock-actions"><button type="button" data-dialog-cancel>キャンセル</button><button type="button" class="primary" data-dialog-confirm>続行</button></div></dialog><noscript><p class="no-js-message">JavaScriptは無効です。全タブと仕様本文をそのまま表示しています。モックの保存・確認操作は動きません。</p></noscript><section class="static-states"><h2>状態と操作の静的定義</h2><ul><li>初期・未選択：対象を選ぶ案内を表示し、旧職員・旧履歴・旧金額を残しません。</li><li>0件：対象がない旨を表示。以前の詳細・認定ID・金額を利用しません。</li><li>処理中：重複実行・編集・提出を停止。完了または失敗の通知を待ちます。</li><li>エラー：原因と再試行への案内を表示。失敗時は成功したように扱いません。編集中の入力は維持します。</li><li>未保存：SCR-002のタブ変更では保持。別職員／画面／読み取りへの変更時に「変更を破棄して移動しますか」。続行だけ破棄、キャンセルは現状保持。その他画面への共通適用は提案です。</li><li>役割：給与班の全対象・局担当の自局・将来本人の自己分と、業務マスタ／システム管理を区別します。確認用の役割切替は実際の認可ではありません。</li><li>人給連携：出力前確認には支給回・人数・明細数・A/M件数。給与班確定はダイアログなし。選択支給回の全対象について最新照合が差分ゼロで未解決行がない場合だけ確定できます。表示フィルターで判定を狭めません。</li></ul></section><h2>確認・モーダルの静的仕様</h2><div class="table-scroll" tabindex="0" role="region" aria-label="JavaScriptなしで読める確認仕様">
+<table ><caption>JavaScriptなしで読める確認仕様</caption>
+<thead><tr><th scope="col">名称</th><th scope="col">表示内容・前提</th><th scope="col">選択肢と結果</th><th scope="col">区分・境界</th></tr></thead>
+<tbody>
+<tr><td>変更を破棄して移動しますか</td><td>職員・画面・読取への移動で未保存入力が失われる場合。SCR-002タブ移動では出さず保持。</td><td>キャンセル：現在の入力を保持／破棄して続行：入力を復元して移動</td><td>SCR-002の業務条件は確定。その他への共通適用は提案</td></tr>
+</tbody></table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="項目・入力部品のレビュー台帳">
+<table ><caption>項目・入力部品のレビュー台帳</caption>
+<thead><tr><th scope="col">区分</th><th scope="col">項目</th><th scope="col">型</th><th scope="col">必須性</th><th scope="col">編集可否</th><th scope="col">根拠・未決</th></tr></thead>
+<tbody>
+<tr><td>支給率</td><td><span id="field-scr-004-0-0-note">職員番号</span></td><td>文字列12桁（UI例。物理型未決）</td><td>必須</td><td>参照</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>支給率</td><td><span id="field-scr-004-0-1-note">対象期間開始</span></td><td>日付（UI例。物理型未決）</td><td>必須</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>支給率</td><td><span id="field-scr-004-0-2-note">対象期間終了</span></td><td>日付（UI例。物理型未決）</td><td>必須</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>支給率</td><td><span id="field-scr-004-0-3-note">期末支給率</span></td><td>数値（UI例。物理型未決）</td><td>別々に登録／精度未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>支給率</td><td><span id="field-scr-004-0-4-note">勤勉支給率</span></td><td>数値（UI例。物理型未決）</td><td>別々に登録／精度未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+</tbody></table></div>
+<h2>操作と仕様の対応</h2><div class="table-scroll" tabindex="0" role="region" aria-label="この画面の操作対応（業務画面外）">
+<table ><caption>この画面の操作対応（業務画面外）</caption>
+<thead><tr><th scope="col">操作ID</th><th scope="col">業務操作</th><th scope="col">区分</th><th scope="col">定義</th></tr></thead>
+<tbody>
+<tr><td>OP-004-HOME</td><td>ホームへ戻る</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-004.html#OP-004-HOME" >条件・例外を読む</a></td></tr>
+<tr><td>OP-004-RATES</td><td>期末・勤勉率を登録</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-004.html#OP-004-RATES" >条件・例外を読む</a></td></tr>
+</tbody></table></div>
+<p>出典：<a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a> / <a href="../../../requirements/open-decisions.md">未決・未照合 D-01～08、PD-01～09、2026-10-08モック・I決定反映後残件</a></p><h2>未決・実装上の注記</h2><ul><li>内部の正式項目、保存部品、率の入力範囲、基礎額・式・端数は未入力。</li><li>画面の存在を別率登録の実装・受入完了としない。</li><li>年末調整、法定控除の随時改定・定時決定は業務要件未確定。住民税年度更新手順も未入力。実行可能な業務フローは創作しない。</li></ul>
+</main>
+<footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+</body>
+</html>

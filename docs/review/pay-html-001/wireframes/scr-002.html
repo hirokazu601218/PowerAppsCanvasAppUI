@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+  <title>④ SCR-002 職員マスタ検索・詳細 | 非常勤給与レビュー</title>
+  <link rel="stylesheet" href="../assets/review.css">
+  <script src="../assets/review.js" defer></script>
+</head>
+<body data-screen-id="SCR-002">
+<a class="skip" href="#main">本文へ移動</a>
+<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
+<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<a href="../navigation.html" >① 画面遷移</a>
+<a href="../workflows/index.html" >② 業務フロー</a>
+<a href="../operations/index.html" >③ 操作定義</a>
+<a href="index.html" aria-current="page">④ ワイヤー</a>
+<a href="../coverage.html" >対応表</a>
+<a href="../design-notes.html" >設計注記</a></nav>
+<main id="main">
+<div class="document-meta"><span>0.2-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<h1>④ SCR-002 職員マスタ検索・詳細</h1>
+<p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
+<p><span class="badge current">現行実装</span> 検索・履歴・6タブ表示の現行画面。E・F・Gの将来業務を既存タブに追加する。</p><p><a href="../operations/scr-002.html" >この画面の操作定義</a> / <a href="../design-notes.html#mock-design" >設計・状態の注記</a></p><section class="review-controls" aria-label="レビュー用の条件切替"><p>レビュー用の条件切替（業務画面外）。権限変更・実データ更新は行いません。操作で現れる文言・モーダル配置は提案です。</p><label>役割<select data-review-role><option value="payroll">給与班</option><option value="bureau">局担当者</option><option value="master">業務マスタ管理者</option><option value="system">システム管理者</option><option value="self">職員本人（将来）</option></select></label><label>状態<select data-review-state><option value="normal">通常</option><option value="initial">初期・未選択</option><option value="zero">検索・履歴0件</option><option value="loading">処理中</option><option value="error">エラー</option><option value="readonly">報告済み・読み取り</option><option value="difference">照合差分あり</option><option value="clean">全体差分ゼロ</option><option value="stale">計算更新後</option><option value="unknown">未知職員あり</option><option value="paid">支払い済み</option></select></label><label>次の模擬保存<select data-save-result><option value="success">成功</option><option value="failure">失敗</option></select></label><button type="button" data-review-reset>初期化</button></section><section class="mock-boundary" aria-label="PC業務画面例"><div class="mock-caption">PCレイアウトの画面例 · 架空データ · 実処理は行いません · 狭い画面はこの枠内を横スクロール</div><div class="mock-app" data-mock-screen="SCR-002"><header class="mock-header"><div><h2>職員マスタ検索・詳細</h2><span class="context-name">架空総務局 · 架空担当者</span></div><div class="header-actions"><a href="scr-001.html" data-operation-id="OP-002-HOME" data-mock-nav >ホーム</a><span data-acquired-time>取得日時：2026/10/09 09:00（表示例）</span><span>SCR-002</span></div></header><p class="mock-status mock-warning" data-role-warning hidden>この業務は給与班が担当します。現在の役割では対象データを表示しません。</p><div class="mock-body" data-business-content><a href="fut-jlink.html" data-operation-id="OP-JLINK-RETURN" data-mock-nav data-return-jlink data-entry-roles="payroll">人給連携へ戻る</a><div class="mock-toolbar"><button type="button" data-operation-id="OP-002-EDIT" data-allowed-roles="bureau payroll" data-action="edit" class="secondary" >編集モード</button><button type="button" data-operation-id="OP-002-SAVE" data-allowed-roles="bureau payroll" data-action="save" class="primary" data-write-control disabled>保存</button><button type="button" data-operation-id="OP-002-READMODE" data-allowed-roles="bureau payroll" data-action="read" class="secondary" >読み取りモード</button></div><div class="mock-status" role="status" aria-live="polite" data-mock-status>表示内容は架空の例です。</div><div class="mock-toolbar"><a href="scr-005.html" data-operation-id="OP-002-PAYDETAIL" data-mock-nav >支給明細画面</a> <button type="button" data-operation-id="OP-002-FONT" data-allowed-roles="bureau payroll" data-action="font" class="secondary" >文字を大きく</button> <button type="button" data-operation-id="OP-002-SIDEBAR" data-allowed-roles="bureau payroll" data-action="sidebar" class="secondary" >検索を閉じる</button></div><div class="mock-layout"><aside class="search-sidebar" aria-label="職員検索"><label>職員を検索<input type="search" data-operation-id="OP-002-SEARCH" data-staff-search placeholder="氏名・職員番号"></label><label>給与情報の確認<select data-pending-filter data-operation-id="OP-E-PENDING"><option>すべて</option><option>確認待ち</option></select></label><button type="button" data-operation-id="OP-002-SEARCH" data-allowed-roles="bureau payroll" data-action="search" class="primary" >検索</button><button type="button" data-operation-id="OP-002-CLEAR" data-allowed-roles="bureau payroll" data-action="clear" class="secondary" >クリア</button><p data-search-count>3件</p><div data-staff-results><button type="button" class="staff-row" data-action="staff" data-staff="009900009901" data-bureau="own" data-name="架空 花子" aria-pressed="true" data-operation-id="OP-002-SEARCH">架空 花子<small>009900009901　<span>在籍</span></small><small>架空総務局</small></button><button type="button" class="staff-row" data-action="staff" data-staff="009900009902" data-bureau="own" data-name="架空 太郎" aria-pressed="false" data-operation-id="OP-002-SEARCH">架空 太郎<small>009900009902　<span>在籍</span></small><small>架空総務局</small></button><button type="button" class="staff-row" data-action="staff" data-staff="009900009903" data-bureau="other" data-name="架空 他局子" aria-pressed="false" data-operation-id="OP-002-SEARCH">架空 他局子<small>009900009903　<span>在籍</span></small><small>架空他局</small></button></div></aside><div data-staff-detail><div class="mock-context"><div><strong>選択職員</strong><br><span data-context-staff>009900009901 架空 花子</span></div><div><strong>対象勤務月</strong><br><span data-context-month>2026/09</span></div><div><strong>支給回</strong><br><span data-context-run>例示2026年10月通常</span></div><div><strong>状態</strong><br><span data-mode-label>読み取り</span></div></div><div class="tabs" role="tablist" aria-label="職員情報"><button role="tab" type="button" id="tab-0" aria-controls="panel-0" aria-selected="true" data-tab="panel-0" data-operation-id="OP-002-TABS">基本情報</button><button role="tab" type="button" id="tab-1" aria-controls="panel-1" aria-selected="false" data-tab="panel-1" data-operation-id="OP-002-TABS">勤務条件</button><button role="tab" type="button" id="tab-2" aria-controls="panel-2" aria-selected="false" data-tab="panel-2" data-operation-id="OP-002-TABS">通勤</button><button role="tab" type="button" id="tab-3" aria-controls="panel-3" aria-selected="false" data-tab="panel-3" data-operation-id="OP-002-TABS">社会保険</button><button role="tab" type="button" id="tab-4" aria-controls="panel-4" aria-selected="false" data-tab="panel-4" data-operation-id="OP-002-TABS">税固定控除</button><button role="tab" type="button" id="tab-5" aria-controls="panel-5" aria-selected="false" data-tab="panel-5" data-operation-id="OP-002-TABS">給与簿</button></div><section class="mock-panel" id="panel-0" role="tabpanel" aria-labelledby="tab-0"><h3>基本情報</h3><div class="field-grid"><label class="field-cell" for="field-scr-002-0-0"><span>職員番号</span><input id="field-scr-002-0-0" type="text" value="009900009901" data-editable="false" readonly aria-describedby="field-scr-002-0-0-note"></label><label class="field-cell" for="field-scr-002-0-1"><span>氏名</span><input id="field-scr-002-0-1" type="text" value="架空 花子" data-editable="true" readonly aria-describedby="field-scr-002-0-1-note"></label><label class="field-cell" for="field-scr-002-0-2"><span>氏名カナ</span><input id="field-scr-002-0-2" type="text" value="カクウ ハナコ" data-editable="true" readonly aria-describedby="field-scr-002-0-2-note"></label><label class="field-cell" for="field-scr-002-0-3"><span>所属</span><input id="field-scr-002-0-3" type="text" value="架空総務局" data-editable="true" readonly aria-describedby="field-scr-002-0-3-note"></label><label class="field-cell" for="field-scr-002-0-4"><span>住所</span><input id="field-scr-002-0-4" type="text" value="架空市例示町1-2-3" data-editable="true" readonly aria-describedby="field-scr-002-0-4-note"></label><label class="field-cell" for="field-scr-002-0-5"><span>採用日</span><input id="field-scr-002-0-5" type="date" value="2026-04-01" data-editable="true" readonly aria-describedby="field-scr-002-0-5-note"></label><label class="field-cell" for="field-scr-002-0-6"><span>在籍状態</span><input id="field-scr-002-0-6" type="text" value="在籍" data-editable="false" readonly aria-describedby="field-scr-002-0-6-note"></label><label class="field-cell" for="field-scr-002-0-7"><span>給与支払グループ</span><input id="field-scr-002-0-7" type="text" value="架空総務局" data-editable="false" readonly aria-describedby="field-scr-002-0-7-note"></label></div><div class="mock-actions"><button type="button" data-operation-id="OP-E-CONFIRM" data-allowed-roles="payroll" data-action="staff-confirm" class="secondary" data-payroll-only>給与情報を確定</button><button type="button" data-operation-id="OP-E-RETURN" data-allowed-roles="payroll" data-action="return" class="secondary" >差戻し</button></div><p>採用前候補の番号発行・採用取消は前工程の情報を受け取って反映します。手動で紐付ける操作は置きません。</p><button type="button" data-operation-id="OP-AD-CHANGE" data-allowed-roles="payroll" data-action="upstream-change" class="secondary" >前工程の変更を確認</button></section><section class="mock-panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1"><h3>勤務条件</h3><label>履歴を選択<select data-history data-operation-id="OP-002-HISTORY"><option>現行 2026/04/01〜2027/03/31</option><option>過去 2025/04/01〜2026/03/31</option><option>予定 2027/04/01〜</option><option>登録なし</option></select></label><div class="field-grid"><label class="field-cell" for="field-scr-002-1-0"><span>適用開始日</span><input id="field-scr-002-1-0" type="date" value="2026-04-01" data-editable="true" readonly aria-describedby="field-scr-002-1-0-note"></label><label class="field-cell" for="field-scr-002-1-1"><span>適用終了日</span><input id="field-scr-002-1-1" type="date" value="2027-03-31" data-editable="true" readonly aria-describedby="field-scr-002-1-1-note"></label><label class="field-cell" for="field-scr-002-1-2"><span>発令事由</span><input id="field-scr-002-1-2" type="text" value="任期更新" data-editable="true" readonly aria-describedby="field-scr-002-1-2-note"></label><label class="field-cell" for="field-scr-002-1-3"><span>給与区分</span><input id="field-scr-002-1-3" type="text" value="日額" data-editable="true" readonly aria-describedby="field-scr-002-1-3-note"></label><label class="field-cell" for="field-scr-002-1-4"><span>単価</span><input id="field-scr-002-1-4" type="text" value="9750" data-editable="true" readonly aria-describedby="field-scr-002-1-4-note"></label><label class="field-cell" for="field-scr-002-1-5"><span>一日当たり勤務時間</span><input id="field-scr-002-1-5" type="text" value="7.75" data-editable="true" readonly aria-describedby="field-scr-002-1-5-note"></label><label class="field-cell" for="field-scr-002-1-6"><span>個別予算</span><input id="field-scr-002-1-6" type="text" value="架空予算A" data-editable="true" readonly aria-describedby="field-scr-002-1-6-note"></label><label class="field-cell" for="field-scr-002-1-7"><span>確認状態</span><input id="field-scr-002-1-7" type="text" value="確認待ち" data-editable="false" readonly aria-describedby="field-scr-002-1-7-note"></label></div><div class="mock-actions"><button type="button" data-operation-id="OP-E-CONFIRM" data-allowed-roles="payroll" data-action="staff-confirm" class="secondary" data-payroll-only>給与情報を確定</button><button type="button" data-operation-id="OP-E-RETURN" data-allowed-roles="payroll" data-action="return" class="secondary" >差戻し</button></div><div class="mock-actions"><button type="button" data-operation-id="OP-E-HISTORY" data-allowed-roles="bureau payroll" data-action="new-history" class="secondary" >新しい条件履歴を追加</button><button type="button" data-operation-id="OP-E-CORRECT" data-allowed-roles="bureau payroll" data-action="correct-history" class="secondary" >誤登録を訂正</button><button type="button" data-operation-id="OP-E-SUBMIT" data-allowed-roles="bureau payroll" data-action="pending" class="secondary" >確認待ちにする</button></div></section><section class="mock-panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2"><h3>通勤</h3><label>履歴を選択<select data-history data-operation-id="OP-002-HISTORY"><option>現行 2026/04/01〜2027/03/31</option><option>過去 2025/04/01〜2026/03/31</option><option>予定 2027/04/01〜</option><option>登録なし</option></select></label><div class="field-grid"><label class="field-cell" for="field-scr-002-2-0"><span>認定ID</span><input id="field-scr-002-2-0" type="text" value="TK-990001" data-editable="false" readonly aria-describedby="field-scr-002-2-0-note"></label><label class="field-cell" for="field-scr-002-2-1"><span>認定期間開始</span><input id="field-scr-002-2-1" type="date" value="2026-04-01" data-editable="true" readonly aria-describedby="field-scr-002-2-1-note"></label><label class="field-cell" for="field-scr-002-2-2"><span>認定期間終了</span><input id="field-scr-002-2-2" type="date" value="2026-09-30" data-editable="true" readonly aria-describedby="field-scr-002-2-2-note"></label><label class="field-cell" for="field-scr-002-2-3"><span>状態</span><input id="field-scr-002-2-3" type="text" value="認定" data-editable="false" readonly aria-describedby="field-scr-002-2-3-note"></label><label class="field-cell" for="field-scr-002-2-4"><span>経路番号</span><input id="field-scr-002-2-4" type="text" value="1" data-editable="false" readonly aria-describedby="field-scr-002-2-4-note"></label><label class="field-cell" for="field-scr-002-2-5"><span>経路</span><input id="field-scr-002-2-5" type="text" value="架空駅A → 架空駅B" data-editable="true" readonly aria-describedby="field-scr-002-2-5-note"></label><label class="field-cell" for="field-scr-002-2-6"><span>支給方式</span><input id="field-scr-002-2-6" type="text" value="定期券前払い" data-editable="true" readonly aria-describedby="field-scr-002-2-6-note"></label><label class="field-cell" for="field-scr-002-2-7"><span>定期額・IC運賃</span><input id="field-scr-002-2-7" type="text" value="6250" data-editable="true" readonly aria-describedby="field-scr-002-2-7-note"></label></div><div class="mock-actions"><button type="button" data-operation-id="OP-F-SUBMIT" data-allowed-roles="bureau" data-action="submit" class="secondary" >提出</button><button type="button" data-operation-id="OP-F-RETURN" data-allowed-roles="payroll" data-action="return" class="secondary" >差戻し</button><button type="button" data-operation-id="OP-F-CERTIFY" data-allowed-roles="payroll" data-action="certify" class="secondary" data-payroll-only>認定</button><a href="ext-commute.html" data-operation-id="OP-F-HTML" data-mock-nav target="_blank" rel="noopener" data-new-tab>認定簿表示（別タブ）</a></div><div class="mock-actions"><button type="button" data-operation-id="OP-F-CHANGE" data-allowed-roles="bureau" data-action="commute-change" class="secondary" >変更届を作成</button><button type="button" data-operation-id="OP-F-END" data-allowed-roles="payroll" data-action="commute-end" class="secondary" >認定期間の終了を確認</button><button type="button" data-operation-id="OP-F-NOPAY" data-allowed-roles="bureau payroll" data-action="commute-nopay" class="secondary" >一時不支給を確認</button></div></section><section class="mock-panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3"><h3>社会保険</h3><label>履歴を選択<select data-history data-operation-id="OP-002-HISTORY"><option>現行 2026/04/01〜2027/03/31</option><option>過去 2025/04/01〜2026/03/31</option><option>予定 2027/04/01〜</option><option>登録なし</option></select></label><div class="field-grid"><label class="field-cell" for="field-scr-002-3-0"><span>保険区分</span><input id="field-scr-002-3-0" type="text" value="健康保険" data-editable="true" readonly aria-describedby="field-scr-002-3-0-note"></label><label class="field-cell" for="field-scr-002-3-1"><span>加入状況</span><input id="field-scr-002-3-1" type="text" value="加入" data-editable="true" readonly aria-describedby="field-scr-002-3-1-note"></label><label class="field-cell" for="field-scr-002-3-2"><span>資格取得日</span><input id="field-scr-002-3-2" type="date" value="2026-04-01" data-editable="true" readonly aria-describedby="field-scr-002-3-2-note"></label><label class="field-cell" for="field-scr-002-3-3"><span>資格喪失日</span><input id="field-scr-002-3-3" type="date" value="" data-editable="true" readonly aria-describedby="field-scr-002-3-3-note"></label><label class="field-cell" for="field-scr-002-3-4"><span>控除開始</span><input id="field-scr-002-3-4" type="month" value="2026-04" data-editable="true" readonly aria-describedby="field-scr-002-3-4-note"></label><label class="field-cell" for="field-scr-002-3-5"><span>控除終了</span><input id="field-scr-002-3-5" type="month" value="" data-editable="true" readonly aria-describedby="field-scr-002-3-5-note"></label><label class="field-cell" for="field-scr-002-3-6"><span>等級</span><input id="field-scr-002-3-6" type="text" value="例示等級" data-editable="true" readonly aria-describedby="field-scr-002-3-6-note"></label><label class="field-cell" for="field-scr-002-3-7"><span>標準報酬月額</span><input id="field-scr-002-3-7" type="text" value="200000" data-editable="true" readonly aria-describedby="field-scr-002-3-7-note"></label><label class="field-cell" for="field-scr-002-3-8"><span>登録控除額</span><input id="field-scr-002-3-8" type="text" value="10000" data-editable="true" readonly aria-describedby="field-scr-002-3-8-note"></label><label class="field-cell" for="field-scr-002-3-9"><span>決定結果確認</span><input id="field-scr-002-3-9" type="text" value="確認待ち" data-editable="false" readonly aria-describedby="field-scr-002-3-9-note"></label></div><div class="mock-actions"><button type="button" data-operation-id="OP-E-CONFIRM" data-allowed-roles="payroll" data-action="staff-confirm" class="secondary" data-payroll-only>給与情報を確定</button><button type="button" data-operation-id="OP-E-RETURN" data-allowed-roles="payroll" data-action="return" class="secondary" >差戻し</button></div><div class="mock-actions"><button type="button" data-operation-id="OP-E-HISTORY" data-allowed-roles="bureau payroll" data-action="new-history" class="secondary" >新しい条件履歴を追加</button><button type="button" data-operation-id="OP-E-CORRECT" data-allowed-roles="bureau payroll" data-action="correct-history" class="secondary" >誤登録を訂正</button><button type="button" data-operation-id="OP-E-SUBMIT" data-allowed-roles="bureau payroll" data-action="pending" class="secondary" >確認待ちにする</button></div><p>外部機関の手続きはアプリ外で行います。</p><button type="button" data-operation-id="OP-G-REGISTER" data-allowed-roles="bureau payroll" data-action="decision-register" class="secondary" >決定結果を登録</button><button type="button" data-operation-id="OP-G-CONFIRM" data-allowed-roles="payroll" data-action="decision-confirm" class="secondary" data-payroll-only>決定結果を確定</button></section><section class="mock-panel" id="panel-4" role="tabpanel" aria-labelledby="tab-4"><h3>税固定控除</h3><label>履歴を選択<select data-history data-operation-id="OP-002-HISTORY"><option>現行 2026/04/01〜2027/03/31</option><option>過去 2025/04/01〜2026/03/31</option><option>予定 2027/04/01〜</option><option>登録なし</option></select></label><div class="field-grid"><label class="field-cell" for="field-scr-002-4-0"><span>所得税区分</span><input id="field-scr-002-4-0" type="text" value="甲欄" data-editable="true" readonly aria-describedby="field-scr-002-4-0-note"></label><label class="field-cell" for="field-scr-002-4-1"><span>扶養控除人数</span><input id="field-scr-002-4-1" type="text" value="0" data-editable="true" readonly aria-describedby="field-scr-002-4-1-note"></label><label class="field-cell" for="field-scr-002-4-2"><span>適用開始日</span><input id="field-scr-002-4-2" type="date" value="2026-04-01" data-editable="true" readonly aria-describedby="field-scr-002-4-2-note"></label><label class="field-cell" for="field-scr-002-4-3"><span>適用終了日</span><input id="field-scr-002-4-3" type="date" value="2027-03-31" data-editable="true" readonly aria-describedby="field-scr-002-4-3-note"></label><label class="field-cell" for="field-scr-002-4-4"><span>固定控除項目</span><input id="field-scr-002-4-4" type="text" value="例示控除" data-editable="true" readonly aria-describedby="field-scr-002-4-4-note"></label><label class="field-cell" for="field-scr-002-4-5"><span>固定控除額</span><input id="field-scr-002-4-5" type="text" value="1000" data-editable="true" readonly aria-describedby="field-scr-002-4-5-note"></label><label class="field-cell" for="field-scr-002-4-6"><span>住民税控除年月</span><input id="field-scr-002-4-6" type="month" value="2026-09" data-editable="true" readonly aria-describedby="field-scr-002-4-6-note"></label><label class="field-cell" for="field-scr-002-4-7"><span>住民税額</span><input id="field-scr-002-4-7" type="text" value="5000" data-editable="true" readonly aria-describedby="field-scr-002-4-7-note"></label><label class="field-cell" for="field-scr-002-4-8"><span>確認状態</span><input id="field-scr-002-4-8" type="text" value="確認待ち" data-editable="false" readonly aria-describedby="field-scr-002-4-8-note"></label></div><div class="mock-actions"><button type="button" data-operation-id="OP-E-CONFIRM" data-allowed-roles="payroll" data-action="staff-confirm" class="secondary" data-payroll-only>給与情報を確定</button><button type="button" data-operation-id="OP-E-RETURN" data-allowed-roles="payroll" data-action="return" class="secondary" >差戻し</button></div><div class="mock-actions"><button type="button" data-operation-id="OP-E-HISTORY" data-allowed-roles="bureau payroll" data-action="new-history" class="secondary" >新しい条件履歴を追加</button><button type="button" data-operation-id="OP-E-CORRECT" data-allowed-roles="bureau payroll" data-action="correct-history" class="secondary" >誤登録を訂正</button><button type="button" data-operation-id="OP-E-SUBMIT" data-allowed-roles="bureau payroll" data-action="pending" class="secondary" >確認待ちにする</button></div><p>外部機関の手続きはアプリ外で行います。</p><button type="button" data-operation-id="OP-G-REGISTER" data-allowed-roles="bureau payroll" data-action="decision-register" class="secondary" >決定結果を登録</button><button type="button" data-operation-id="OP-G-CONFIRM" data-allowed-roles="payroll" data-action="decision-confirm" class="secondary" data-payroll-only>決定結果を確定</button></section><section class="mock-panel" id="panel-5" role="tabpanel" aria-labelledby="tab-5"><h3>給与簿</h3><p>給与簿は常に読み取り専用です。</p><div class="mock-toolbar"><label>表示開始月<input type="month" value="2026-08" data-ledger-from></label><label>表示終了月<input type="month" value="2026-10" data-ledger-to></label><button type="button" data-operation-id="OP-002-LEDGER" data-allowed-roles="bureau payroll" data-action="ledger-range" class="secondary" >期間を適用</button></div><div class="table-scroll" tabindex="0" role="region" aria-label="架空給与簿：同月複数行・0・負数・空欄を保持">
+<table data-ledger-table><caption>架空給与簿：同月複数行・0・負数・空欄を保持</caption>
+<thead><tr><th scope="col">項目</th><th scope="col">2026/08/25 通常（例示L1）</th><th scope="col">2026/09/25 通常（例示L2）</th><th scope="col">2026/09/30 追給（例示L3）</th></tr></thead>
+<tbody>
+<tr><td>給与期間対象年</td><td>令和08年</td><td>令和08年</td><td>令和08年</td></tr>
+<tr><td>給与期間開始月日</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>給与期間終了月日</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>支給年月日</td><td>2026/08/25</td><td>2026/09/25</td><td>2026/09/30</td></tr>
+<tr><td>組織・所属</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>番号</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>職員番号</td><td>009900009901</td><td>009900009901</td><td>009900009901</td></tr>
+<tr><td>氏名</td><td>架空値</td><td>架空値</td><td>架空値</td></tr>
+<tr><td>俸給表</td><td>架空値</td><td>架空値</td><td>架空値</td></tr>
+<tr><td>級</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>号俸</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>俸給支給額・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>俸給支給額・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>俸給の特別調整額・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>俸給の特別調整額・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>本府省業務調整手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>本府省業務調整手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>初任給調整手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>初任給調整手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>扶養手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>扶養手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>地域手当等・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>地域手当等・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>広域異動手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>広域異動手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>住居手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>住居手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>通勤手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>通勤手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>単身赴任手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>単身赴任手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>在宅勤務等手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>在宅勤務等手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>特殊勤務手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>特殊勤務手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>特地勤務手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>特地勤務手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>特地勤務手当に準ずる手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>特地勤務手当に準ずる手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務手当等・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務手当等・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>宿日直手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>宿日直手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>管理職員特別勤務手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>管理職員特別勤務手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>期末手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>期末手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>勤勉手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>勤勉手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>寒冷地手当・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>寒冷地手当・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>その他・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>その他・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>給与支給総額</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>課税額計</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>非課税額計</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>共済短期掛金・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>共済短期掛金・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>介護掛金・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>介護掛金・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>子ども・子育て支援掛金・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>子ども・子育て支援掛金・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>退職等年金掛金・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>退職等年金掛金・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>厚生年金保険料・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>厚生年金保険料・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>健康保険料・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>健康保険料・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>介護保険料・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>介護保険料・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>子ども・子育て支援金・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>子ども・子育て支援金・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>雇用保険料・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>雇用保険料・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>社会保険料計・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>社会保険料計・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>所得税・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>所得税・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>住民税・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>住民税・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>宿舎・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>宿舎・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>駐車場・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>駐車場・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>診療報酬一部負担金・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>診療報酬一部負担金・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>貯金預入・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>貯金預入・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>保険貯金保険料・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>保険貯金保険料・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>貸付金返済・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>貸付金返済・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>財形住宅貸付金償還・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>財形住宅貸付金償還・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>財形貯蓄・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>財形貯蓄・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>控除額１・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>控除額１・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>控除額２・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>控除額２・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>控除額３・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>控除額３・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>控除額４・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>控除額４・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>個人型確定拠出年金掛金・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>個人型確定拠出年金掛金・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>控除額計・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>控除額計・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>現金支給額</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>振込額１</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>振込額２</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>手渡額</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>減額・時間・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>減額・時間・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>減額・額・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>減額・額・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>減給・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>減給・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(夜勤２５)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(夜勤２５)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(休日１３５)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(休日１３５)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１００)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１００)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１２５)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１２５)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１３５)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１３５)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１５０)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１５０)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１６０)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１６０)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１７５)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(超勤１７５)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務手当等金額・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務手当等金額・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休５０)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休５０)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休２５)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休２５)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休１５)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休１５)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休勤務５０)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休勤務５０)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休勤務２５)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休勤務２５)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休勤務１５)・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務(代休勤務１５)・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務手当等加減額・当給与期間分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>超過勤務手当等加減額・返納・追給分</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>短期・等級</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>短期・月額</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>厚生年金・等級</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>厚生年金・月額</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>退職等年金給付・等級</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>退職等年金給付・月額</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>被課税金額</td><td>0</td><td>-100</td><td></td></tr>
+<tr><td>備考</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>対象年月日</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>業務区分</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>併任区分</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>支出科目</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>判別区分</td><td>—</td><td>—</td><td>—</td></tr>
+</tbody></table></div>
+</section></div></div></div></div></section><dialog class="mock-dialog" data-mock-dialog aria-labelledby="dialog-title"><h3 id="dialog-title" data-dialog-title>操作の確認</h3><div data-dialog-body></div><div class="mock-actions"><button type="button" data-dialog-cancel>キャンセル</button><button type="button" class="primary" data-dialog-confirm>続行</button></div></dialog><noscript><p class="no-js-message">JavaScriptは無効です。全タブと仕様本文をそのまま表示しています。モックの保存・確認操作は動きません。</p></noscript><section class="static-states"><h2>状態と操作の静的定義</h2><ul><li>初期・未選択：対象を選ぶ案内を表示し、旧職員・旧履歴・旧金額を残しません。</li><li>0件：対象がない旨を表示。以前の詳細・認定ID・金額を利用しません。</li><li>処理中：重複実行・編集・提出を停止。完了または失敗の通知を待ちます。</li><li>エラー：原因と再試行への案内を表示。失敗時は成功したように扱いません。編集中の入力は維持します。</li><li>未保存：SCR-002のタブ変更では保持。別職員／画面／読み取りへの変更時に「変更を破棄して移動しますか」。続行だけ破棄、キャンセルは現状保持。その他画面への共通適用は提案です。</li><li>役割：給与班の全対象・局担当の自局・将来本人の自己分と、業務マスタ／システム管理を区別します。確認用の役割切替は実際の認可ではありません。</li><li>人給連携：出力前確認には支給回・人数・明細数・A/M件数。給与班確定はダイアログなし。選択支給回の全対象について最新照合が差分ゼロで未解決行がない場合だけ確定できます。表示フィルターで判定を狭めません。</li></ul></section><h2>確認・モーダルの静的仕様</h2><div class="table-scroll" tabindex="0" role="region" aria-label="JavaScriptなしで読める確認仕様">
+<table ><caption>JavaScriptなしで読める確認仕様</caption>
+<thead><tr><th scope="col">名称</th><th scope="col">表示内容・前提</th><th scope="col">選択肢と結果</th><th scope="col">区分・境界</th></tr></thead>
+<tbody>
+<tr><td>変更を破棄して移動しますか</td><td>職員・画面・読取への移動で未保存入力が失われる場合。SCR-002タブ移動では出さず保持。</td><td>キャンセル：現在の入力を保持／破棄して続行：入力を復元して移動</td><td>SCR-002の業務条件は確定。その他への共通適用は提案</td></tr>
+</tbody></table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="項目・入力部品のレビュー台帳">
+<table ><caption>項目・入力部品のレビュー台帳</caption>
+<thead><tr><th scope="col">区分</th><th scope="col">項目</th><th scope="col">型</th><th scope="col">必須性</th><th scope="col">編集可否</th><th scope="col">根拠・未決</th></tr></thead>
+<tbody>
+<tr><td>基本情報</td><td><span id="field-scr-002-0-0-note">職員番号</span></td><td>文字列12桁（UI例。物理型未決）</td><td>給与対象時必須</td><td>参照</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>基本情報</td><td><span id="field-scr-002-0-1-note">氏名</span></td><td>文字列（UI例。物理型未決）</td><td>詳細検証未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>基本情報</td><td><span id="field-scr-002-0-2-note">氏名カナ</span></td><td>文字列（UI例。物理型未決）</td><td>未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>基本情報</td><td><span id="field-scr-002-0-3-note">所属</span></td><td>候補選択（UI例。物理型未決）</td><td>給与対象時必要</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>基本情報</td><td><span id="field-scr-002-0-4-note">住所</span></td><td>文字列（UI例。物理型未決）</td><td>未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>基本情報</td><td><span id="field-scr-002-0-5-note">採用日</span></td><td>日付（UI例。物理型未決）</td><td>採用前空欄可／計算対象時必須</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>基本情報</td><td><span id="field-scr-002-0-6-note">在籍状態</span></td><td>候補選択（UI例。物理型未決）</td><td>未決</td><td>参照</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>基本情報</td><td><span id="field-scr-002-0-7-note">給与支払グループ</span></td><td>文字列（UI例。物理型未決）</td><td>所属から決定</td><td>参照</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>勤務条件</td><td><span id="field-scr-002-1-0-note">適用開始日</span></td><td>日付（UI例。物理型未決）</td><td>有効期間に必要</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>勤務条件</td><td><span id="field-scr-002-1-1-note">適用終了日</span></td><td>日付（UI例。物理型未決）</td><td>終了未定時の検証未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>勤務条件</td><td><span id="field-scr-002-1-2-note">発令事由</span></td><td>候補選択（UI例。物理型未決）</td><td>未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>勤務条件</td><td><span id="field-scr-002-1-3-note">給与区分</span></td><td>候補選択（UI例。物理型未決）</td><td>日額／時間額</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>勤務条件</td><td><span id="field-scr-002-1-4-note">単価</span></td><td>数値（UI例。物理型未決）</td><td>給与計算に必要</td><td>マスタから選択</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>勤務条件</td><td><span id="field-scr-002-1-5-note">一日当たり勤務時間</span></td><td>数値（UI例。物理型未決）</td><td>給与計算に必要／型精度未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>勤務条件</td><td><span id="field-scr-002-1-6-note">個別予算</span></td><td>候補選択（UI例。物理型未決）</td><td>任意：所属既定を上書き</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>勤務条件</td><td><span id="field-scr-002-1-7-note">確認状態</span></td><td>候補選択（UI例。物理型未決）</td><td>確認前は給与確定不可</td><td>参照</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>通勤</td><td><span id="field-scr-002-2-0-note">認定ID</span></td><td>文字列（UI例。物理型未決）</td><td>選択時必要</td><td>参照</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>通勤</td><td><span id="field-scr-002-2-1-note">認定期間開始</span></td><td>日付（UI例。物理型未決）</td><td>認定期間に必要</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>通勤</td><td><span id="field-scr-002-2-2-note">認定期間終了</span></td><td>日付（UI例。物理型未決）</td><td>期間で終了を管理</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>通勤</td><td><span id="field-scr-002-2-3-note">状態</span></td><td>候補選択（UI例。物理型未決）</td><td>提出／差戻し／認定</td><td>参照</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>通勤</td><td><span id="field-scr-002-2-4-note">経路番号</span></td><td>整数（UI例。物理型未決）</td><td>経路の識別</td><td>参照</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>通勤</td><td><span id="field-scr-002-2-5-note">経路</span></td><td>文字列（UI例。物理型未決）</td><td>詳細検証未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>通勤</td><td><span id="field-scr-002-2-6-note">支給方式</span></td><td>候補選択（UI例。物理型未決）</td><td>経路ごと：定期／IC</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>通勤</td><td><span id="field-scr-002-2-7-note">定期額・IC運賃</span></td><td>数値（UI例。物理型未決）</td><td>方式による／精度未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>社会保険</td><td><span id="field-scr-002-3-0-note">保険区分</span></td><td>候補選択（UI例。物理型未決）</td><td>保険ごとの登録</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>社会保険</td><td><span id="field-scr-002-3-1-note">加入状況</span></td><td>候補選択（UI例。物理型未決）</td><td>未確認／加入／非加入</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>社会保険</td><td><span id="field-scr-002-3-2-note">資格取得日</span></td><td>日付（UI例。物理型未決）</td><td>資格に応じて必要</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>社会保険</td><td><span id="field-scr-002-3-3-note">資格喪失日</span></td><td>日付（UI例。物理型未決）</td><td>終了条件は未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>社会保険</td><td><span id="field-scr-002-3-4-note">控除開始</span></td><td>年月（UI例。物理型未決）</td><td>資格日と区別</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>社会保険</td><td><span id="field-scr-002-3-5-note">控除終了</span></td><td>年月（UI例。物理型未決）</td><td>資格日と区別</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>社会保険</td><td><span id="field-scr-002-3-6-note">等級</span></td><td>文字列（UI例。物理型未決）</td><td>詳細検証未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>社会保険</td><td><span id="field-scr-002-3-7-note">標準報酬月額</span></td><td>数値（UI例。物理型未決）</td><td>詳細検証未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>社会保険</td><td><span id="field-scr-002-3-8-note">登録控除額</span></td><td>数値（UI例。物理型未決）</td><td>未確認時は確定不可</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>社会保険</td><td><span id="field-scr-002-3-9-note">決定結果確認</span></td><td>文字列（UI例。物理型未決）</td><td>給与影響前に給与班確認</td><td>参照</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>税固定控除</td><td><span id="field-scr-002-4-0-note">所得税区分</span></td><td>候補選択（UI例。物理型未決）</td><td>詳細検証未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>税固定控除</td><td><span id="field-scr-002-4-1-note">扶養控除人数</span></td><td>整数（UI例。物理型未決）</td><td>家族個別情報は対象外</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>税固定控除</td><td><span id="field-scr-002-4-2-note">適用開始日</span></td><td>日付（UI例。物理型未決）</td><td>履歴期間</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>税固定控除</td><td><span id="field-scr-002-4-3-note">適用終了日</span></td><td>日付（UI例。物理型未決）</td><td>検証未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>税固定控除</td><td><span id="field-scr-002-4-4-note">固定控除項目</span></td><td>候補選択（UI例。物理型未決）</td><td>項目別の行</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>税固定控除</td><td><span id="field-scr-002-4-5-note">固定控除額</span></td><td>数値（UI例。物理型未決）</td><td>精度・特殊月未決</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>税固定控除</td><td><span id="field-scr-002-4-6-note">住民税控除年月</span></td><td>年月（UI例。物理型未決）</td><td>職員×月の行</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>税固定控除</td><td><span id="field-scr-002-4-7-note">住民税額</span></td><td>数値（UI例。物理型未決）</td><td>未確認時は確定不可</td><td>編集候補</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>税固定控除</td><td><span id="field-scr-002-4-8-note">確認状態</span></td><td>文字列（UI例。物理型未決）</td><td>給与班確認前は使用不可</td><td>参照</td><td><span class="badge proposed">提案</span> 項目名は確定要件参照。個別制約は未決</td></tr>
+<tr><td>給与簿</td><td>給与期間対象年</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>給与期間開始月日</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>給与期間終了月日</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>支給年月日</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>組織・所属</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>番号</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>職員番号</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>氏名</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>俸給表</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>級</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>号俸</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>俸給支給額・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>俸給支給額・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>俸給の特別調整額・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>俸給の特別調整額・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>本府省業務調整手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>本府省業務調整手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>初任給調整手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>初任給調整手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>扶養手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>扶養手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>地域手当等・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>地域手当等・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>広域異動手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>広域異動手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>住居手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>住居手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>通勤手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>通勤手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>単身赴任手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>単身赴任手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>在宅勤務等手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>在宅勤務等手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>特殊勤務手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>特殊勤務手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>特地勤務手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>特地勤務手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>特地勤務手当に準ずる手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>特地勤務手当に準ずる手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務手当等・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務手当等・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>宿日直手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>宿日直手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>管理職員特別勤務手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>管理職員特別勤務手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>期末手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>期末手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>勤勉手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>勤勉手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>寒冷地手当・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>寒冷地手当・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>その他・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>その他・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>給与支給総額</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>課税額計</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>非課税額計</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>共済短期掛金・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>共済短期掛金・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>介護掛金・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>介護掛金・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>子ども・子育て支援掛金・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>子ども・子育て支援掛金・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>退職等年金掛金・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>退職等年金掛金・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>厚生年金保険料・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>厚生年金保険料・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>健康保険料・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>健康保険料・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>介護保険料・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>介護保険料・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>子ども・子育て支援金・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>子ども・子育て支援金・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>雇用保険料・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>雇用保険料・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>社会保険料計・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>社会保険料計・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>所得税・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>所得税・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>住民税・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>住民税・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>宿舎・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>宿舎・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>駐車場・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>駐車場・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>診療報酬一部負担金・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>診療報酬一部負担金・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>貯金預入・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>貯金預入・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>保険貯金保険料・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>保険貯金保険料・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>貸付金返済・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>貸付金返済・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>財形住宅貸付金償還・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>財形住宅貸付金償還・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>財形貯蓄・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>財形貯蓄・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>控除額１・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>控除額１・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>控除額２・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>控除額２・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>控除額３・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>控除額３・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>控除額４・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>控除額４・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>個人型確定拠出年金掛金・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>個人型確定拠出年金掛金・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>控除額計・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>控除額計・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>現金支給額</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>振込額１</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>振込額２</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>手渡額</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>減額・時間・当給与期間分</td><td>decimal（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>減額・時間・返納・追給分</td><td>decimal（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>減額・額・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>減額・額・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>減給・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>減給・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(夜勤２５)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(夜勤２５)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(休日１３５)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(休日１３５)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１００)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１００)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１２５)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１２５)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１３５)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１３５)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１５０)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１５０)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１６０)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１６０)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１７５)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(超勤１７５)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務手当等金額・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務手当等金額・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休５０)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休５０)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休２５)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休２５)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休１５)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休１５)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休勤務５０)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休勤務５０)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休勤務２５)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休勤務２５)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休勤務１５)・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務(代休勤務１５)・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務手当等加減額・当給与期間分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>超過勤務手当等加減額・返納・追給分</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>短期・等級</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>短期・月額</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>厚生年金・等級</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>厚生年金・月額</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>退職等年金給付・等級</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>退職等年金給付・月額</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>被課税金額</td><td>integer（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>備考</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>対象年月日</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>業務区分</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>併任区分</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>支出科目</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+<tr><td>給与簿</td><td>判別区分</td><td>text（既存表示定義）</td><td>任意</td><td>常に読み取り専用</td><td><a href="../../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>。変更後CSVの物理設計は別途。</td></tr>
+</tbody></table></div>
+<h2>操作と仕様の対応</h2><div class="table-scroll" tabindex="0" role="region" aria-label="この画面の操作対応（業務画面外）">
+<table ><caption>この画面の操作対応（業務画面外）</caption>
+<thead><tr><th scope="col">操作ID</th><th scope="col">業務操作</th><th scope="col">区分</th><th scope="col">定義</th></tr></thead>
+<tbody>
+<tr><td>OP-002-SEARCH</td><td>職員を検索</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-SEARCH" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-SELECT</td><td>職員を選択</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-SELECT" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-SIDEBAR</td><td>検索欄を開閉</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-SIDEBAR" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-TABS</td><td>詳細タブを切替</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-TABS" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-HISTORY</td><td>履歴を選択</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-HISTORY" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-EDIT</td><td>編集モードへ</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-EDIT" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-SAVE</td><td>変更を保存</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-002-SAVE" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-READMODE</td><td>読取りモードへ</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-READMODE" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-CANCEL</td><td>破棄確認を取消</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-CANCEL" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-DISCARD</td><td>破棄して続行</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-DISCARD" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-LEDGER</td><td>給与簿の月範囲変更</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-LEDGER" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-PAYDETAIL</td><td>支給明細へ</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-PAYDETAIL" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-HOME</td><td>ホームへ戻る</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-HOME" >条件・例外を読む</a></td></tr>
+<tr><td>OP-AD-NUMBER</td><td>発行職員番号を反映</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-AD-NUMBER" >条件・例外を読む</a></td></tr>
+<tr><td>OP-AD-CHANGE</td><td>前工程変更の差異確認</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-AD-CHANGE" >条件・例外を読む</a></td></tr>
+<tr><td>OP-AD-CANCEL</td><td>採用取消を反映</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-AD-CANCEL" >条件・例外を読む</a></td></tr>
+<tr><td>OP-E-PENDING</td><td>確認待ちで絞り込む</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-E-PENDING" >条件・例外を読む</a></td></tr>
+<tr><td>OP-E-HISTORY</td><td>実際の条件変更を登録</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-E-HISTORY" >条件・例外を読む</a></td></tr>
+<tr><td>OP-E-CORRECT</td><td>誤登録を訂正</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-E-CORRECT" >条件・例外を読む</a></td></tr>
+<tr><td>OP-E-SUBMIT</td><td>内容を確認待ちにする</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-E-SUBMIT" >条件・例外を読む</a></td></tr>
+<tr><td>OP-E-RETURN</td><td>給与情報を差し戻す</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-E-RETURN" >条件・例外を読む</a></td></tr>
+<tr><td>OP-E-CONFIRM</td><td>給与情報を確定・再確定</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-E-CONFIRM" >条件・例外を読む</a></td></tr>
+<tr><td>OP-F-EDIT</td><td>通勤届を入力</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-F-EDIT" >条件・例外を読む</a></td></tr>
+<tr><td>OP-F-SUBMIT</td><td>通勤届を提出・再提出</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-F-SUBMIT" >条件・例外を読む</a></td></tr>
+<tr><td>OP-F-RETURN</td><td>通勤届を差し戻す</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-F-RETURN" >条件・例外を読む</a></td></tr>
+<tr><td>OP-F-CERTIFY</td><td>通勤手当を認定</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-F-CERTIFY" >条件・例外を読む</a></td></tr>
+<tr><td>OP-F-CHANGE</td><td>変更届から新認定へ</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-F-CHANGE" >条件・例外を読む</a></td></tr>
+<tr><td>OP-F-NOPAY</td><td>一時不支給期間を確認</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-F-NOPAY" >条件・例外を読む</a></td></tr>
+<tr><td>OP-F-END</td><td>認定期間の終了を確定</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-F-END" >条件・例外を読む</a></td></tr>
+<tr><td>OP-F-HTML</td><td>認定簿を表示</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-F-HTML" >条件・例外を読む</a></td></tr>
+<tr><td>OP-G-REGISTER</td><td>外部決定結果を登録</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-G-REGISTER" >条件・例外を読む</a></td></tr>
+<tr><td>OP-G-CONFIRM</td><td>外部決定結果を確認確定</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-G-CONFIRM" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-CLEAR</td><td>検索条件をクリア</td><td><span class="badge proposed">提案</span></td><td><a href="../operations/scr-002.html#OP-002-CLEAR" >条件・例外を読む</a></td></tr>
+<tr><td>OP-002-FONT</td><td>文字サイズを切替</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/scr-002.html#OP-002-FONT" >条件・例外を読む</a></td></tr>
+<tr><td>OP-JLINK-RETURN</td><td>人給連携へ戻る</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../operations/scr-002.html#OP-JLINK-RETURN" >条件・例外を読む</a></td></tr>
+</tbody></table></div>
+<p>出典：<a href="../../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a> / <a href="../../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></p><h2>未決・実装上の注記</h2><ul><li>住民税は税固定控除タブ内。外部手続きタブを新設しない。</li><li>給与簿は常時読取り専用。既存56項目の読取検証は新モデルの編集・保存合格を意味しない。</li><li>給与簿163項目表示と人給出力237列は別契約。</li><li>勤務条件・保険等の確認状態は改修先。現行実装へ読み替えない。</li></ul>
+</main>
+<footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+</body>
+</html>

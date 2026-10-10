@@ -47,7 +47,9 @@
   "current_dynamic_patterns": [
     "^docs/changes/requests/[a-z0-9][a-z0-9-]*\\.json$",
     "^docs/testing/change-records/[a-z0-9][a-z0-9-]*\\.json$",
-    "^docs/verification/postpublish/[a-z0-9][a-z0-9-]*\\.json$"
+    "^docs/verification/postpublish/[a-z0-9][a-z0-9-]*\\.json$",
+    "^docs/review/pay-html-001/(?:[a-z0-9-]+/)*[A-Za-z0-9_.-]+\\.(?:html|css|js|json|md)$",
+    "^docs/requirements/standard-template/(?:sources/)?[A-Za-z0-9_.-]+\\.(?:html|json|md)$"
   ],
   "legacy_migration_map": "records/operations/migration/source-map.csv",
   "record_index_paths": [

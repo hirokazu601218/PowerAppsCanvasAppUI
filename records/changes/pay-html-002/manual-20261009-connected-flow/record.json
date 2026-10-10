@@ -1,0 +1,16 @@
+{
+  "change_id": "pay-html-002",
+  "run_id": "manual-20261009-connected-flow",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PASS",
+  "observed_at": "2026-10-09T14:14:00Z",
+  "source_commit": "ad433fe322010c5771173a7b7f5857141a9456ed",
+  "version": "0.2-review",
+  "scope": "レビューHTML・生成コード・文書のみ。実アプリは変更せず、テストしていない。",
+  "static_validation": "PASS",
+  "browser_validation": "PASS: Chromium review scope; see QA-SUMMARY.json",
+  "github_update": "PENDING (parent task)",
+  "private_site_update": "PENDING (existing Site owner task)",
+  "status_mismatch": "STATUSの先頭は前回の人給文書更新。最新のPAY-HTML-002依頼を優先し、履歴とLibrary索引は変更していない。",
+  "semantic_validation": "PASS: confirmed requirements preserved; WF-15 normal future application supplemented from PAY-02/AD-10"
+}
