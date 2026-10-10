@@ -1,11 +1,11 @@
 {
   "metadata": {
     "title": "非常勤給与アプリ 要件定義書",
-    "version": "0.1-review",
+    "version": "0.2-review",
     "date": "2026-10-10",
     "status": "確認待ち・非正本",
-    "base_main": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
-    "review_commit": "c1008452348fd27448742796069647584278dca6",
+    "base_main": "6064ca820553511e1d52b19f896a063213eb88c8",
+    "review_commit": "6064ca820553511e1d52b19f896a063213eb88c8",
     "template_url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/9117f22a/20260715_resources_standard_guidelines_guideline_07.zip",
     "template_entry": "５章/要件定義書標準テンプレート.docx",
     "template_sha256": "29f34fc98729f2d1ea3e4136b09c7abbc2254a6b23c9aff3fa2817eb238781c2",
@@ -17,7 +17,7 @@
       },
       {
         "path": "docs/design/basic/basic-design.md",
-        "sha256": "dcdc35736ae71de2621ff0886867269a7e680f32ba1201191f37e83ad5d66822"
+        "sha256": "248acb8c8cea78e57e720e3f3e546f4baab342f492d7e574a901a1aaf20cc462"
       },
       {
         "path": "docs/design/basic/data-model.md",
@@ -25,7 +25,7 @@
       },
       {
         "path": "docs/design/detailed/detailed-design.md",
-        "sha256": "3714fa50efde620137056a922654972c52a94c6d1d887e0e8b0b696bb62e2b70"
+        "sha256": "d3a32f6d3f591fedec5f310c0e75511754f6d8c3ee5ca682d193a30b659a2ae0"
       },
       {
         "path": "docs/design/detailed/payroll-jinkyu-interface.md",
@@ -45,7 +45,7 @@
       },
       {
         "path": "docs/requirements/open-decisions.md",
-        "sha256": "d6471f619ab5c2f2e5f7fa8e4bf87bb32d072e4026f0b7c9f9752d8c29c4231b"
+        "sha256": "0fa75fc2ca5c4bf18a4f9988864098116d8463b80ee399147e17f92d58236e52"
       },
       {
         "path": "docs/requirements/payroll-confirmed-20261007.md",
@@ -57,11 +57,11 @@
       },
       {
         "path": "docs/requirements/requirements.md",
-        "sha256": "b43b2ecd69b9d7d759617d8fb44be1babcd39876a1ba49b7175ea5e0752fe1b5"
+        "sha256": "74ea62a804391cc29a9471dfac08923af5f38456ec51c3d93e47a05ad5029fa8"
       },
       {
         "path": "docs/requirements/screen-requirements.md",
-        "sha256": "d2e036336bc9d92376ce63ad33f524ace0a5cc1a8b9b1b91b093c5072edcefbc"
+        "sha256": "52ae4f29d73310c99783b902f50f9bc8fb297ed58c260f6818f35563ae314fea"
       },
       {
         "path": "docs/requirements/traceability-matrix.md",
@@ -71,7 +71,8 @@
         "path": "docs/testing/test-policy.md",
         "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
       }
-    ]
+    ],
+    "original_main": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5"
   },
   "sections": [
     {
