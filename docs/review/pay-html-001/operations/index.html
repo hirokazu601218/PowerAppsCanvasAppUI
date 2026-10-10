@@ -1,130 +1,1444 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
-  <title>③ 操作定義 索引 | 非常勤給与レビュー</title>
-  <link rel="stylesheet" href="../assets/review.css">
-  <script src="../assets/review.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+<title>③ 操作定義 索引 | 非常勤給与レビュー</title>
+<link rel="stylesheet" href="../assets/review.css">
+<script src="../assets/review.js" defer>
+</script>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
-<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
-<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<header class="doc-header">
+<div>
+<strong>非常勤給与アプリ</strong>
+<span>画面・業務レビュー</span>
+</div>
+<p>PAY-HTML-001 / PAY-HTML-002改訂</p>
+</header>
+<nav class="doc-nav" aria-label="資料ナビゲーション">
+<a href="../index.html" >入口</a>
 <a href="../navigation.html" >① 画面遷移</a>
 <a href="../workflows/index.html" >② 業務フロー</a>
 <a href="index.html" aria-current="page">③ 操作定義</a>
 <a href="../wireframes/index.html" >④ ワイヤー</a>
 <a href="../coverage.html" >対応表</a>
-<a href="../design-notes.html" >設計注記</a></nav>
+<a href="../design-notes.html" >設計注記</a>
+</nav>
 <main id="main">
-<div class="document-meta"><span>0.2-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<div class="document-meta">
+<span>0.2-review / 2026-10-10</span>
+<strong>提案・レビュー用（未承認）</strong>
+<span>統合文書出典：<code>b5e5d460fe19169252de05bb02bafc9461120540</code>
+</span>
+</div>
 <h1>③ 操作定義 索引</h1>
 <p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
-<p>短い索引から画面別の詳細定義へ進みます。業務ルール、例外、保持情報の詳細はここへ集約しています。フィルターは閲覧補助であり、権限・確定判定の範囲を変更しません。</p><div class="filters" data-filter-panel><label>画面<select data-filter="screen"><option value="">すべて</option><option>SCR-001</option><option>SCR-002</option><option>SCR-003</option><option>SCR-004</option><option>SCR-005</option><option>SCR-006</option><option>FUT-IMPORT</option><option>FUT-JLINK</option><option>SCR-007</option><option>EXT-JINKYU</option><option>EXT-COMMUTE</option><option>CUR-IMPORT-POC</option></select></label><label>業務<select data-filter="business"><option value="">すべて</option><option>A～D</option><option>A～D取消</option><option>A～D変更</option><option>D</option><option>E</option><option>E・元データ訂正</option><option>F</option><option>F・帳票</option><option>G</option><option>人給外部処理</option><option>人給連携</option><option>共通ナビゲーション</option><option>共通取消</option><option>勤務条件・控除</option><option>勤怠</option><option>勤怠（改修先）</option><option>勤怠（現行）</option><option>対象月管理</option><option>支払実績</option><option>支給明細参照</option><option>期末勤勉</option><option>現行PoC境界</option><option>現行試算</option><option>給与ルール</option><option>給与確定</option><option>給与簿参照</option><option>給与計算</option><option>職員検索</option><option>職員詳細</option><option>表示調整</option><option>返納</option><option>追給</option><option>遡及差額</option></select></label><label>役割<select data-filter="role"><option value="">すべて</option><option>ログイン利用者</option><option>会計課給与班</option><option>局担当者</option><option>業務マスタ管理者</option><option>現行管理者</option></select></label><label>区分<select data-filter="status"><option value="">すべて</option><option>現行実装</option><option>確定改修要件</option><option>提案</option><option>未決</option></select></label><label>操作名・ID<input data-filter="text" type="search" placeholder="例：照合、保存"></label><button type="button" data-reset-filters>解除</button></div><p data-result-count role="status">全操作を表示</p><div class="table-scroll" tabindex="0" role="region" aria-label="操作索引"><table><caption>全操作の短い索引</caption><thead><tr><th>操作ID・操作</th><th>画面／業務</th><th>役割</th><th>区分</th><th>画面例</th></tr></thead><tbody>
-<tr data-operation-row data-screen="SCR-001" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装"><td><a href="scr-001.html#OP-001-STAFF" >OP-001-STAFF 職員マスタ検索</a></td><td>SCR-001 / 共通ナビゲーション</td><td>ログイン利用者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-001.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-001" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装"><td><a href="scr-001.html#OP-001-ATTENDANCE" >OP-001-ATTENDANCE 勤務時間報告</a></td><td>SCR-001 / 共通ナビゲーション</td><td>ログイン利用者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-001.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-001" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装"><td><a href="scr-001.html#OP-001-RATES" >OP-001-RATES 期末勤勉支給率登録</a></td><td>SCR-001 / 共通ナビゲーション</td><td>ログイン利用者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-001.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-001" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装"><td><a href="scr-001.html#OP-001-MAINTENANCE" >OP-001-MAINTENANCE メンテナンス</a></td><td>SCR-001 / 共通ナビゲーション</td><td>ログイン利用者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-001.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-001" data-business="E" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-001.html#OP-001-IMPORT" >OP-001-IMPORT データ一括取込み</a></td><td>SCR-001 / E</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-001.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-001" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-001.html#OP-001-JLINK" >OP-001-JLINK 人給連携</a></td><td>SCR-001 / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-001.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="職員検索" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-SEARCH" >OP-002-SEARCH 職員を検索</a></td><td>SCR-002 / 職員検索</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="職員検索" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-SELECT" >OP-002-SELECT 職員を選択</a></td><td>SCR-002 / 職員検索</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="職員検索" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-SIDEBAR" >OP-002-SIDEBAR 検索欄を開閉</a></td><td>SCR-002 / 職員検索</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="職員詳細" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-TABS" >OP-002-TABS 詳細タブを切替</a></td><td>SCR-002 / 職員詳細</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="職員詳細" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-HISTORY" >OP-002-HISTORY 履歴を選択</a></td><td>SCR-002 / 職員詳細</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="職員詳細" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-EDIT" >OP-002-EDIT 編集モードへ</a></td><td>SCR-002 / 職員詳細</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="職員詳細" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-002-SAVE" >OP-002-SAVE 変更を保存</a></td><td>SCR-002 / 職員詳細</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="職員詳細" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-READMODE" >OP-002-READMODE 読取りモードへ</a></td><td>SCR-002 / 職員詳細</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="共通取消" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-CANCEL" >OP-002-CANCEL 破棄確認を取消</a></td><td>SCR-002 / 共通取消</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="共通取消" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-DISCARD" >OP-002-DISCARD 破棄して続行</a></td><td>SCR-002 / 共通取消</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="給与簿参照" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-LEDGER" >OP-002-LEDGER 給与簿の月範囲変更</a></td><td>SCR-002 / 給与簿参照</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="支給明細参照" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-PAYDETAIL" >OP-002-PAYDETAIL 支給明細へ</a></td><td>SCR-002 / 支給明細参照</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装"><td><a href="scr-002.html#OP-002-HOME" >OP-002-HOME ホームへ戻る</a></td><td>SCR-002 / 共通ナビゲーション</td><td>ログイン利用者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装"><td><a href="scr-003.html#OP-003-HOME" >OP-003-HOME ホームへ戻る</a></td><td>SCR-003 / 共通ナビゲーション</td><td>ログイン利用者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-004" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装"><td><a href="scr-004.html#OP-004-HOME" >OP-004-HOME ホームへ戻る</a></td><td>SCR-004 / 共通ナビゲーション</td><td>ログイン利用者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-004.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-005" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装"><td><a href="scr-005.html#OP-005-HOME" >OP-005-HOME ホームへ戻る</a></td><td>SCR-005 / 共通ナビゲーション</td><td>ログイン利用者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-005.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-006" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装"><td><a href="scr-006.html#OP-006-HOME" >OP-006-HOME ホームへ戻る</a></td><td>SCR-006 / 共通ナビゲーション</td><td>ログイン利用者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-006.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-003.html#OP-003-SELECT" >OP-003-SELECT 局・月・報告を選択</a></td><td>SCR-003 / 勤怠</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-003.html#OP-003-EDIT" >OP-003-EDIT 勤務実績を一覧編集</a></td><td>SCR-003 / 勤怠</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-003.html#OP-003-SAVE" >OP-003-SAVE 勤務実績を保存</a></td><td>SCR-003 / 勤怠</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-003.html#OP-003-READMODE" >OP-003-READMODE 勤怠編集を取り消す</a></td><td>SCR-003 / 勤怠</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="勤怠（現行）" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-003.html#OP-003-IMPORT-CURRENT" >OP-003-IMPORT-CURRENT 現行Excel全置換取込</a></td><td>SCR-003 / 勤怠（現行）</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="勤怠（改修先）" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-003.html#OP-003-IMPORT" >OP-003-IMPORT 勤務実績を追加更新取込</a></td><td>SCR-003 / 勤怠（改修先）</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-003.html#OP-003-RECOVER" >OP-003-RECOVER 取込失敗を復旧・再実行</a></td><td>SCR-003 / 勤怠</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-003.html#OP-003-ROWEDIT" >OP-003-ROWEDIT 職員行を追加・削除</a></td><td>SCR-003 / 勤怠</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-003.html#OP-003-REPORT" >OP-003-REPORT 勤務時間を報告</a></td><td>SCR-003 / 勤怠</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-003.html#OP-003-RETURN" >OP-003-RETURN 報告を差し戻す</a></td><td>SCR-003 / 勤怠</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-004" data-business="期末勤勉" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-004.html#OP-004-RATES" >OP-004-RATES 期末・勤勉率を登録</a></td><td>SCR-004 / 期末勤勉</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-004.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-005" data-business="現行試算" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-005.html#OP-005-MONTH" >OP-005-MONTH 試算対象月を変更</a></td><td>SCR-005 / 現行試算</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-005.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-005" data-business="現行試算" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-005.html#OP-005-RECALC" >OP-005-RECALC 内蔵仮例を再計算</a></td><td>SCR-005 / 現行試算</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-005.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-005" data-business="現行試算" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-005.html#OP-005-DETAILS" >OP-005-DETAILS 支給・控除内訳を開閉</a></td><td>SCR-005 / 現行試算</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-005.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-005" data-business="支給明細参照" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-005.html#OP-005-RETURN" >OP-005-RETURN 職員詳細へ戻る</a></td><td>SCR-005 / 支給明細参照</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-005.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-006" data-business="対象月管理" data-role="現行管理者" data-status="現行実装"><td><a href="scr-006.html#OP-006-MONTH" >OP-006-MONTH 勤務報告対象月を設定</a></td><td>SCR-006 / 対象月管理</td><td>現行管理者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-006.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-006" data-business="給与ルール" data-role="業務マスタ管理者" data-status="確定改修要件"><td><a href="scr-006.html#OP-006-RULE" >OP-006-RULE 業務マスタを登録・改定</a></td><td>SCR-006 / 給与ルール</td><td>業務マスタ管理者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-006.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-006" data-business="給与ルール" data-role="業務マスタ管理者" data-status="確定改修要件"><td><a href="scr-006.html#OP-006-END" >OP-006-END マスタを使用停止</a></td><td>SCR-006 / 給与ルール</td><td>業務マスタ管理者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-006.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-IMPORT" data-business="A～D" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-import.html#OP-AD-CANDIDATE" >OP-AD-CANDIDATE 発令情報から候補作成</a></td><td>FUT-IMPORT / A～D</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-import.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="D" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-AD-NUMBER" >OP-AD-NUMBER 発行職員番号を反映</a></td><td>SCR-002 / D</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="A～D変更" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-002.html#OP-AD-CHANGE" >OP-AD-CHANGE 前工程変更の差異確認</a></td><td>SCR-002 / A～D変更</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="A～D取消" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-002.html#OP-AD-CANCEL" >OP-AD-CANCEL 採用取消を反映</a></td><td>SCR-002 / A～D取消</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-IMPORT" data-business="E" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-import.html#OP-IMPORT-VALIDATE" >OP-IMPORT-VALIDATE Excelの行を検証</a></td><td>FUT-IMPORT / E</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-import.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-IMPORT" data-business="E" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-import.html#OP-IMPORT-APPLY" >OP-IMPORT-APPLY 行別に取込を判断</a></td><td>FUT-IMPORT / E</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-import.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-IMPORT" data-business="E" data-role="会計課給与班" data-status="提案"><td><a href="fut-import.html#OP-IMPORT-RETURN" >OP-IMPORT-RETURN 確認待ち候補を開く</a></td><td>FUT-IMPORT / E</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/fut-import.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="E" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-E-PENDING" >OP-E-PENDING 確認待ちで絞り込む</a></td><td>SCR-002 / E</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="勤務条件・控除" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-E-HISTORY" >OP-E-HISTORY 実際の条件変更を登録</a></td><td>SCR-002 / 勤務条件・控除</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="E・元データ訂正" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-E-CORRECT" >OP-E-CORRECT 誤登録を訂正</a></td><td>SCR-002 / E・元データ訂正</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="E" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-E-SUBMIT" >OP-E-SUBMIT 内容を確認待ちにする</a></td><td>SCR-002 / E</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="E" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-002.html#OP-E-RETURN" >OP-E-RETURN 給与情報を差し戻す</a></td><td>SCR-002 / E</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="E" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-002.html#OP-E-CONFIRM" >OP-E-CONFIRM 給与情報を確定・再確定</a></td><td>SCR-002 / E</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-F-EDIT" >OP-F-EDIT 通勤届を入力</a></td><td>SCR-002 / F</td><td>局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-F-SUBMIT" >OP-F-SUBMIT 通勤届を提出・再提出</a></td><td>SCR-002 / F</td><td>局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-002.html#OP-F-RETURN" >OP-F-RETURN 通勤届を差し戻す</a></td><td>SCR-002 / F</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-002.html#OP-F-CERTIFY" >OP-F-CERTIFY 通勤手当を認定</a></td><td>SCR-002 / F</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-F-CHANGE" >OP-F-CHANGE 変更届から新認定へ</a></td><td>SCR-002 / F</td><td>局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-F-NOPAY" >OP-F-NOPAY 一時不支給期間を確認</a></td><td>SCR-002 / F</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-002.html#OP-F-END" >OP-F-END 認定期間の終了を確定</a></td><td>SCR-002 / F</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="F・帳票" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-F-HTML" >OP-F-HTML 認定簿を表示</a></td><td>SCR-002 / F・帳票</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="EXT-COMMUTE" data-business="F・帳票" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="ext-commute.html#OP-F-PDF" >OP-F-PDF ブラウザー印刷でPDF保存</a></td><td>EXT-COMMUTE / F・帳票</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/ext-commute.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="EXT-COMMUTE" data-business="F・帳票" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="ext-commute.html#OP-F-RETURN-HTML" >OP-F-RETURN-HTML 元の通勤タブへ戻る</a></td><td>EXT-COMMUTE / F・帳票</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/ext-commute.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="G" data-role="会計課給与班|局担当者" data-status="確定改修要件"><td><a href="scr-002.html#OP-G-REGISTER" >OP-G-REGISTER 外部決定結果を登録</a></td><td>SCR-002 / G</td><td>会計課給与班・局担当者</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="G" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-002.html#OP-G-CONFIRM" >OP-G-CONFIRM 外部決定結果を確認確定</a></td><td>SCR-002 / G</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="給与計算" data-role="会計課給与班" data-status="提案"><td><a href="fut-jlink.html#OP-PAY-PERIOD" >OP-PAY-PERIOD 支給回・対象期間を設定</a></td><td>FUT-JLINK / 給与計算</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="給与計算" data-role="会計課給与班" data-status="提案"><td><a href="fut-jlink.html#OP-PAY-CALCULATE" >OP-PAY-CALCULATE 給与を計算・再計算</a></td><td>FUT-JLINK / 給与計算</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="給与計算" data-role="会計課給与班" data-status="提案"><td><a href="fut-jlink.html#OP-PAY-ADJUST" >OP-PAY-ADJUST 例外調整を記録</a></td><td>FUT-JLINK / 給与計算</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="給与確定" data-role="会計課給与班" data-status="未決"><td><a href="fut-jlink.html#OP-PAY-INDIVIDUAL" >OP-PAY-INDIVIDUAL 個別・所属一括確定の境界</a></td><td>FUT-JLINK / 給与確定</td><td>会計課給与班</td><td><span class="badge open">未決</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="支払実績" data-role="会計課給与班" data-status="提案"><td><a href="fut-jlink.html#OP-PAY-PAID" >OP-PAY-PAID 支払い済みを記録</a></td><td>FUT-JLINK / 支払実績</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-SELECT" >OP-JLINK-SELECT 支給回・タブを選択</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-TARGET" >OP-JLINK-TARGET 出力対象を選択</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-AM" >OP-JLINK-AM A/Mを指定</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-EXPORT" >OP-JLINK-EXPORT 確認してExcel出力</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="EXT-JINKYU" data-business="人給外部処理" data-role="会計課給与班" data-status="確定改修要件"><td><a href="ext-jinkyu.html#OP-JINKYU-PROCESS" >OP-JINKYU-PROCESS 人給取込・給与簿出力</a></td><td>EXT-JINKYU / 人給外部処理</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/ext-jinkyu.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-IMPORT" >OP-JLINK-IMPORT 給与簿CSVを取り込む</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-RECONCILE" >OP-JLINK-RECONCILE 最新版と照合</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-FILTER" >OP-JLINK-FILTER 差分・全件表示を切替</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-CORRECT" >OP-JLINK-CORRECT 差分原因の入力画面へ</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-REEXPORT" >OP-JLINK-REEXPORT 差分対応明細を再出力</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-ERROR" >OP-JLINK-ERROR 人給エラー行を確認</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-CONFIRM" >OP-JLINK-CONFIRM 給与班が支給回を確定</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-HISTORY" >OP-JLINK-HISTORY 処理回の履歴を確認</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="提案"><td><a href="fut-jlink.html#OP-JLINK-HOME" >OP-JLINK-HOME ホームへ戻る</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-007" data-business="遡及差額" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-007.html#OP-RETRO-CALCULATE" >OP-RETRO-CALCULATE 過去月との差額を計算</a></td><td>SCR-007 / 遡及差額</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-007.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-007" data-business="遡及差額" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-007.html#OP-RETRO-CONFIRM" >OP-RETRO-CONFIRM 差額内訳を確認・確定</a></td><td>SCR-007 / 遡及差額</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-007.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-007" data-business="追給" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-007.html#OP-RETRO-EXPORT" >OP-RETRO-EXPORT 追給を人給出力へ渡す</a></td><td>SCR-007 / 追給</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-007.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-007" data-business="返納" data-role="会計課給与班" data-status="提案"><td><a href="scr-007.html#OP-REPAY-METHOD" >OP-REPAY-METHOD 返納方法を決定</a></td><td>SCR-007 / 返納</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/scr-007.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-007" data-business="返納" data-role="会計課給与班" data-status="提案"><td><a href="scr-007.html#OP-REPAY-RECORD" >OP-REPAY-RECORD 回収実績と残額を記録</a></td><td>SCR-007 / 返納</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/scr-007.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="職員検索" data-role="会計課給与班|局担当者" data-status="提案"><td><a href="scr-002.html#OP-002-CLEAR" >OP-002-CLEAR 検索条件をクリア</a></td><td>SCR-002 / 職員検索</td><td>会計課給与班・局担当者</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="表示調整" data-role="会計課給与班|局担当者" data-status="現行実装"><td><a href="scr-002.html#OP-002-FONT" >OP-002-FONT 文字サイズを切替</a></td><td>SCR-002 / 表示調整</td><td>会計課給与班・局担当者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-IMPORT" data-business="E" data-role="会計課給与班" data-status="提案"><td><a href="fut-import.html#OP-IMPORT-HOME" >OP-IMPORT-HOME ホームへ戻る</a></td><td>FUT-IMPORT / E</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/fut-import.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-001" data-business="遡及差額" data-role="会計課給与班" data-status="提案"><td><a href="scr-001.html#OP-001-DIFF" >OP-001-DIFF 遡及差額を開く</a></td><td>SCR-001 / 遡及差額</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/scr-001.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-007" data-business="遡及差額" data-role="会計課給与班" data-status="提案"><td><a href="scr-007.html#OP-007-HOME" >OP-007-HOME ホームへ戻る</a></td><td>SCR-007 / 遡及差額</td><td>会計課給与班</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/scr-007.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="fut-jlink.html#OP-JLINK-CORRECT-ATT" >OP-JLINK-CORRECT-ATT 勤怠の差分訂正へ</a></td><td>FUT-JLINK / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/fut-jlink.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-002" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-002.html#OP-JLINK-RETURN" >OP-JLINK-RETURN 人給連携へ戻る</a></td><td>SCR-002 / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-002.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-003" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件"><td><a href="scr-003.html#OP-JLINK-RETURN-ATT" >OP-JLINK-RETURN-ATT 人給連携へ戻る</a></td><td>SCR-003 / 人給連携</td><td>会計課給与班</td><td><span class="badge accepted">確定改修要件</span></td><td><a href="../wireframes/scr-003.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="SCR-001" data-business="現行PoC境界" data-role="ログイン利用者" data-status="現行実装"><td><a href="scr-001.html#OP-001-POC" >OP-001-POC PoCデータ一括取込</a></td><td>SCR-001 / 現行PoC境界</td><td>ログイン利用者</td><td><span class="badge current">現行実装</span></td><td><a href="../wireframes/scr-001.html" >開く</a></td></tr>
-<tr data-operation-row data-screen="CUR-IMPORT-POC" data-business="現行PoC境界" data-role="ログイン利用者" data-status="提案"><td><a href="cur-import-poc.html#OP-POC-HOME" >OP-POC-HOME ホームへ戻る</a></td><td>CUR-IMPORT-POC / 現行PoC境界</td><td>ログイン利用者</td><td><span class="badge proposed">提案</span></td><td><a href="../wireframes/cur-import-poc.html" >開く</a></td></tr>
-</tbody></table></div>
+<aside class="portal-context" style="padding:16px;background:#edf5ff;border:1px solid #93b7db;margin:16px 0">
+<strong>要件定義から読む</strong>
+<p>
+<a data-context-return href="../../../requirements/standard-template/sections/2.1.1.html#section-2.1.1">関連する標準要件 2.1.1 へ戻る</a> · <a href="../../../requirements/standard-template/index.html">要件定義の入口</a> · <a href="../../../requirements/standard-template/requirements/index.html">要件IDで探す</a>
+</p>
+<p>このレビュー図・画面例の根拠は b5e5d460fe19、2026-10-10 時点の資料です。DOT-001承認A・Live38引継ぎ観測を反映。正式P/H・自動E2E・最終照合は未完了です。</p>
+</aside>
+<p>短い索引から画面別の詳細定義へ進みます。業務ルール、例外、保持情報の詳細はここへ集約しています。フィルターは閲覧補助であり、権限・確定判定の範囲を変更しません。</p>
+<div class="filters" data-filter-panel>
+<label>画面<select data-filter="screen">
+<option value="">すべて</option>
+<option>SCR-001</option>
+<option>SCR-002</option>
+<option>SCR-003</option>
+<option>SCR-004</option>
+<option>SCR-005</option>
+<option>SCR-006</option>
+<option>FUT-IMPORT</option>
+<option>FUT-JLINK</option>
+<option>SCR-007</option>
+<option>EXT-JINKYU</option>
+<option>EXT-COMMUTE</option>
+<option>CUR-IMPORT-POC</option>
+</select>
+</label>
+<label>業務<select data-filter="business">
+<option value="">すべて</option>
+<option>A～D</option>
+<option>A～D取消</option>
+<option>A～D変更</option>
+<option>D</option>
+<option>E</option>
+<option>E・元データ訂正</option>
+<option>F</option>
+<option>F・帳票</option>
+<option>G</option>
+<option>人給外部処理</option>
+<option>人給連携</option>
+<option>共通ナビゲーション</option>
+<option>共通取消</option>
+<option>勤務条件・控除</option>
+<option>勤怠</option>
+<option>勤怠（改修先）</option>
+<option>勤怠（現行）</option>
+<option>対象月管理</option>
+<option>支払実績</option>
+<option>支給明細参照</option>
+<option>期末勤勉</option>
+<option>現行PoC境界</option>
+<option>現行試算</option>
+<option>給与ルール</option>
+<option>給与確定</option>
+<option>給与簿参照</option>
+<option>給与計算</option>
+<option>職員検索</option>
+<option>職員詳細</option>
+<option>表示調整</option>
+<option>返納</option>
+<option>追給</option>
+<option>遡及差額</option>
+</select>
+</label>
+<label>役割<select data-filter="role">
+<option value="">すべて</option>
+<option>ログイン利用者</option>
+<option>会計課給与班</option>
+<option>局担当者</option>
+<option>業務マスタ管理者</option>
+<option>現行管理者</option>
+</select>
+</label>
+<label>区分<select data-filter="status">
+<option value="">すべて</option>
+<option>現行実装</option>
+<option>確定改修要件</option>
+<option>提案</option>
+<option>未決</option>
+</select>
+</label>
+<label>操作名・ID<input data-filter="text" type="search" placeholder="例：照合、保存">
+</label>
+<button type="button" data-reset-filters>解除</button>
+</div>
+<p data-result-count role="status">全操作を表示</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="操作索引">
+<table>
+<caption>全操作の短い索引</caption>
+<thead>
+<tr>
+<th>操作ID・操作</th>
+<th>画面／業務</th>
+<th>役割</th>
+<th>区分</th>
+<th>画面例</th>
+</tr>
+</thead>
+<tbody>
+<tr data-operation-row data-screen="SCR-001" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装">
+<td>
+<a href="scr-001.html#OP-001-STAFF" >OP-001-STAFF 職員マスタ検索</a>
+</td>
+<td>SCR-001 / 共通ナビゲーション</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-001.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-001" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装">
+<td>
+<a href="scr-001.html#OP-001-ATTENDANCE" >OP-001-ATTENDANCE 勤務時間報告</a>
+</td>
+<td>SCR-001 / 共通ナビゲーション</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-001.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-001" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装">
+<td>
+<a href="scr-001.html#OP-001-RATES" >OP-001-RATES 期末勤勉支給率登録</a>
+</td>
+<td>SCR-001 / 共通ナビゲーション</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-001.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-001" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装">
+<td>
+<a href="scr-001.html#OP-001-MAINTENANCE" >OP-001-MAINTENANCE メンテナンス</a>
+</td>
+<td>SCR-001 / 共通ナビゲーション</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-001.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-001" data-business="E" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-001.html#OP-001-IMPORT" >OP-001-IMPORT データ一括取込み</a>
+</td>
+<td>SCR-001 / E</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-001.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-001" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-001.html#OP-001-JLINK" >OP-001-JLINK 人給連携</a>
+</td>
+<td>SCR-001 / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-001.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="職員検索" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-SEARCH" >OP-002-SEARCH 職員を検索</a>
+</td>
+<td>SCR-002 / 職員検索</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="職員検索" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-SELECT" >OP-002-SELECT 職員を選択</a>
+</td>
+<td>SCR-002 / 職員検索</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="職員検索" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-SIDEBAR" >OP-002-SIDEBAR 検索欄を開閉</a>
+</td>
+<td>SCR-002 / 職員検索</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="職員詳細" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-TABS" >OP-002-TABS 詳細タブを切替</a>
+</td>
+<td>SCR-002 / 職員詳細</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="職員詳細" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-HISTORY" >OP-002-HISTORY 履歴を選択</a>
+</td>
+<td>SCR-002 / 職員詳細</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="職員詳細" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-EDIT" >OP-002-EDIT 編集モードへ</a>
+</td>
+<td>SCR-002 / 職員詳細</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="職員詳細" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-002-SAVE" >OP-002-SAVE 変更を保存</a>
+</td>
+<td>SCR-002 / 職員詳細</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="職員詳細" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-READMODE" >OP-002-READMODE 読取りモードへ</a>
+</td>
+<td>SCR-002 / 職員詳細</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="共通取消" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-CANCEL" >OP-002-CANCEL 破棄確認を取消</a>
+</td>
+<td>SCR-002 / 共通取消</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="共通取消" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-DISCARD" >OP-002-DISCARD 破棄して続行</a>
+</td>
+<td>SCR-002 / 共通取消</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="給与簿参照" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-LEDGER" >OP-002-LEDGER 給与簿の月範囲変更</a>
+</td>
+<td>SCR-002 / 給与簿参照</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="支給明細参照" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-PAYDETAIL" >OP-002-PAYDETAIL 支給明細へ</a>
+</td>
+<td>SCR-002 / 支給明細参照</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-HOME" >OP-002-HOME ホームへ戻る</a>
+</td>
+<td>SCR-002 / 共通ナビゲーション</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装">
+<td>
+<a href="scr-003.html#OP-003-HOME" >OP-003-HOME ホームへ戻る</a>
+</td>
+<td>SCR-003 / 共通ナビゲーション</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-004" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装">
+<td>
+<a href="scr-004.html#OP-004-HOME" >OP-004-HOME ホームへ戻る</a>
+</td>
+<td>SCR-004 / 共通ナビゲーション</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-004.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-005" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装">
+<td>
+<a href="scr-005.html#OP-005-HOME" >OP-005-HOME ホームへ戻る</a>
+</td>
+<td>SCR-005 / 共通ナビゲーション</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-005.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-006" data-business="共通ナビゲーション" data-role="ログイン利用者" data-status="現行実装">
+<td>
+<a href="scr-006.html#OP-006-HOME" >OP-006-HOME ホームへ戻る</a>
+</td>
+<td>SCR-006 / 共通ナビゲーション</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-006.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-003.html#OP-003-SELECT" >OP-003-SELECT 局・月・報告を選択</a>
+</td>
+<td>SCR-003 / 勤怠</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-003.html#OP-003-EDIT" >OP-003-EDIT 勤務実績を一覧編集</a>
+</td>
+<td>SCR-003 / 勤怠</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-003.html#OP-003-SAVE" >OP-003-SAVE 勤務実績を保存</a>
+</td>
+<td>SCR-003 / 勤怠</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-003.html#OP-003-READMODE" >OP-003-READMODE 勤怠編集を取り消す</a>
+</td>
+<td>SCR-003 / 勤怠</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="勤怠（現行）" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-003.html#OP-003-IMPORT-CURRENT" >OP-003-IMPORT-CURRENT 現行Excel全置換取込</a>
+</td>
+<td>SCR-003 / 勤怠（現行）</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="勤怠（改修先）" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-003.html#OP-003-IMPORT" >OP-003-IMPORT 勤務実績を追加更新取込</a>
+</td>
+<td>SCR-003 / 勤怠（改修先）</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-003.html#OP-003-RECOVER" >OP-003-RECOVER 取込失敗を復旧・再実行</a>
+</td>
+<td>SCR-003 / 勤怠</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-003.html#OP-003-ROWEDIT" >OP-003-ROWEDIT 職員行を追加・削除</a>
+</td>
+<td>SCR-003 / 勤怠</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-003.html#OP-003-REPORT" >OP-003-REPORT 勤務時間を報告</a>
+</td>
+<td>SCR-003 / 勤怠</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="勤怠" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-003.html#OP-003-RETURN" >OP-003-RETURN 報告を差し戻す</a>
+</td>
+<td>SCR-003 / 勤怠</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-004" data-business="期末勤勉" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-004.html#OP-004-RATES" >OP-004-RATES 期末・勤勉率を登録</a>
+</td>
+<td>SCR-004 / 期末勤勉</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-004.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-005" data-business="現行試算" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-005.html#OP-005-MONTH" >OP-005-MONTH 試算対象月を変更</a>
+</td>
+<td>SCR-005 / 現行試算</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-005.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-005" data-business="現行試算" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-005.html#OP-005-RECALC" >OP-005-RECALC 内蔵仮例を再計算</a>
+</td>
+<td>SCR-005 / 現行試算</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-005.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-005" data-business="現行試算" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-005.html#OP-005-DETAILS" >OP-005-DETAILS 支給・控除内訳を開閉</a>
+</td>
+<td>SCR-005 / 現行試算</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-005.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-005" data-business="支給明細参照" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-005.html#OP-005-RETURN" >OP-005-RETURN 職員詳細へ戻る</a>
+</td>
+<td>SCR-005 / 支給明細参照</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-005.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-006" data-business="対象月管理" data-role="現行管理者" data-status="現行実装">
+<td>
+<a href="scr-006.html#OP-006-MONTH" >OP-006-MONTH 勤務報告対象月を設定</a>
+</td>
+<td>SCR-006 / 対象月管理</td>
+<td>現行管理者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-006.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-006" data-business="給与ルール" data-role="業務マスタ管理者" data-status="確定改修要件">
+<td>
+<a href="scr-006.html#OP-006-RULE" >OP-006-RULE 業務マスタを登録・改定</a>
+</td>
+<td>SCR-006 / 給与ルール</td>
+<td>業務マスタ管理者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-006.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-006" data-business="給与ルール" data-role="業務マスタ管理者" data-status="確定改修要件">
+<td>
+<a href="scr-006.html#OP-006-END" >OP-006-END マスタを使用停止</a>
+</td>
+<td>SCR-006 / 給与ルール</td>
+<td>業務マスタ管理者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-006.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-IMPORT" data-business="A～D" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-import.html#OP-AD-CANDIDATE" >OP-AD-CANDIDATE 発令情報から候補作成</a>
+</td>
+<td>FUT-IMPORT / A～D</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-import.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="D" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-AD-NUMBER" >OP-AD-NUMBER 発行職員番号を反映</a>
+</td>
+<td>SCR-002 / D</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="A～D変更" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-AD-CHANGE" >OP-AD-CHANGE 前工程変更の差異確認</a>
+</td>
+<td>SCR-002 / A～D変更</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="A～D取消" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-AD-CANCEL" >OP-AD-CANCEL 採用取消を反映</a>
+</td>
+<td>SCR-002 / A～D取消</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-IMPORT" data-business="E" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-import.html#OP-IMPORT-VALIDATE" >OP-IMPORT-VALIDATE Excelの行を検証</a>
+</td>
+<td>FUT-IMPORT / E</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-import.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-IMPORT" data-business="E" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-import.html#OP-IMPORT-APPLY" >OP-IMPORT-APPLY 行別に取込を判断</a>
+</td>
+<td>FUT-IMPORT / E</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-import.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-IMPORT" data-business="E" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="fut-import.html#OP-IMPORT-RETURN" >OP-IMPORT-RETURN 確認待ち候補を開く</a>
+</td>
+<td>FUT-IMPORT / E</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/fut-import.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="E" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-E-PENDING" >OP-E-PENDING 確認待ちで絞り込む</a>
+</td>
+<td>SCR-002 / E</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="勤務条件・控除" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-E-HISTORY" >OP-E-HISTORY 実際の条件変更を登録</a>
+</td>
+<td>SCR-002 / 勤務条件・控除</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="E・元データ訂正" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-E-CORRECT" >OP-E-CORRECT 誤登録を訂正</a>
+</td>
+<td>SCR-002 / E・元データ訂正</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="E" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-E-SUBMIT" >OP-E-SUBMIT 内容を確認待ちにする</a>
+</td>
+<td>SCR-002 / E</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="E" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-E-RETURN" >OP-E-RETURN 給与情報を差し戻す</a>
+</td>
+<td>SCR-002 / E</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="E" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-E-CONFIRM" >OP-E-CONFIRM 給与情報を確定・再確定</a>
+</td>
+<td>SCR-002 / E</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-F-EDIT" >OP-F-EDIT 通勤届を入力</a>
+</td>
+<td>SCR-002 / F</td>
+<td>局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-F-SUBMIT" >OP-F-SUBMIT 通勤届を提出・再提出</a>
+</td>
+<td>SCR-002 / F</td>
+<td>局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-F-RETURN" >OP-F-RETURN 通勤届を差し戻す</a>
+</td>
+<td>SCR-002 / F</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-F-CERTIFY" >OP-F-CERTIFY 通勤手当を認定</a>
+</td>
+<td>SCR-002 / F</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-F-CHANGE" >OP-F-CHANGE 変更届から新認定へ</a>
+</td>
+<td>SCR-002 / F</td>
+<td>局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-F-NOPAY" >OP-F-NOPAY 一時不支給期間を確認</a>
+</td>
+<td>SCR-002 / F</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="F" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-F-END" >OP-F-END 認定期間の終了を確定</a>
+</td>
+<td>SCR-002 / F</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="F・帳票" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-F-HTML" >OP-F-HTML 認定簿を表示</a>
+</td>
+<td>SCR-002 / F・帳票</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="EXT-COMMUTE" data-business="F・帳票" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="ext-commute.html#OP-F-PDF" >OP-F-PDF ブラウザー印刷でPDF保存</a>
+</td>
+<td>EXT-COMMUTE / F・帳票</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/ext-commute.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="EXT-COMMUTE" data-business="F・帳票" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="ext-commute.html#OP-F-RETURN-HTML" >OP-F-RETURN-HTML 元の通勤タブへ戻る</a>
+</td>
+<td>EXT-COMMUTE / F・帳票</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/ext-commute.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="G" data-role="会計課給与班|局担当者" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-G-REGISTER" >OP-G-REGISTER 外部決定結果を登録</a>
+</td>
+<td>SCR-002 / G</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="G" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-G-CONFIRM" >OP-G-CONFIRM 外部決定結果を確認確定</a>
+</td>
+<td>SCR-002 / G</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="給与計算" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="fut-jlink.html#OP-PAY-PERIOD" >OP-PAY-PERIOD 支給回・対象期間を設定</a>
+</td>
+<td>FUT-JLINK / 給与計算</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="給与計算" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="fut-jlink.html#OP-PAY-CALCULATE" >OP-PAY-CALCULATE 給与を計算・再計算</a>
+</td>
+<td>FUT-JLINK / 給与計算</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="給与計算" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="fut-jlink.html#OP-PAY-ADJUST" >OP-PAY-ADJUST 例外調整を記録</a>
+</td>
+<td>FUT-JLINK / 給与計算</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="給与確定" data-role="会計課給与班" data-status="未決">
+<td>
+<a href="fut-jlink.html#OP-PAY-INDIVIDUAL" >OP-PAY-INDIVIDUAL 個別・所属一括確定の境界</a>
+</td>
+<td>FUT-JLINK / 給与確定</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge open">未決</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="支払実績" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="fut-jlink.html#OP-PAY-PAID" >OP-PAY-PAID 支払い済みを記録</a>
+</td>
+<td>FUT-JLINK / 支払実績</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-SELECT" >OP-JLINK-SELECT 支給回・タブを選択</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-TARGET" >OP-JLINK-TARGET 出力対象を選択</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-AM" >OP-JLINK-AM A/Mを指定</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-EXPORT" >OP-JLINK-EXPORT 確認してExcel出力</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="EXT-JINKYU" data-business="人給外部処理" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="ext-jinkyu.html#OP-JINKYU-PROCESS" >OP-JINKYU-PROCESS 人給取込・給与簿出力</a>
+</td>
+<td>EXT-JINKYU / 人給外部処理</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/ext-jinkyu.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-IMPORT" >OP-JLINK-IMPORT 給与簿CSVを取り込む</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-RECONCILE" >OP-JLINK-RECONCILE 最新版と照合</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-FILTER" >OP-JLINK-FILTER 差分・全件表示を切替</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-CORRECT" >OP-JLINK-CORRECT 差分原因の入力画面へ</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-REEXPORT" >OP-JLINK-REEXPORT 差分対応明細を再出力</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-ERROR" >OP-JLINK-ERROR 人給エラー行を確認</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-CONFIRM" >OP-JLINK-CONFIRM 給与班が支給回を確定</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-HISTORY" >OP-JLINK-HISTORY 処理回の履歴を確認</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="fut-jlink.html#OP-JLINK-HOME" >OP-JLINK-HOME ホームへ戻る</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-007" data-business="遡及差額" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-007.html#OP-RETRO-CALCULATE" >OP-RETRO-CALCULATE 過去月との差額を計算</a>
+</td>
+<td>SCR-007 / 遡及差額</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-007.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-007" data-business="遡及差額" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-007.html#OP-RETRO-CONFIRM" >OP-RETRO-CONFIRM 差額内訳を確認・確定</a>
+</td>
+<td>SCR-007 / 遡及差額</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-007.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-007" data-business="追給" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-007.html#OP-RETRO-EXPORT" >OP-RETRO-EXPORT 追給を人給出力へ渡す</a>
+</td>
+<td>SCR-007 / 追給</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-007.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-007" data-business="返納" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="scr-007.html#OP-REPAY-METHOD" >OP-REPAY-METHOD 返納方法を決定</a>
+</td>
+<td>SCR-007 / 返納</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/scr-007.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-007" data-business="返納" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="scr-007.html#OP-REPAY-RECORD" >OP-REPAY-RECORD 回収実績と残額を記録</a>
+</td>
+<td>SCR-007 / 返納</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/scr-007.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="職員検索" data-role="会計課給与班|局担当者" data-status="提案">
+<td>
+<a href="scr-002.html#OP-002-CLEAR" >OP-002-CLEAR 検索条件をクリア</a>
+</td>
+<td>SCR-002 / 職員検索</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="表示調整" data-role="会計課給与班|局担当者" data-status="現行実装">
+<td>
+<a href="scr-002.html#OP-002-FONT" >OP-002-FONT 文字サイズを切替</a>
+</td>
+<td>SCR-002 / 表示調整</td>
+<td>会計課給与班・局担当者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-IMPORT" data-business="E" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="fut-import.html#OP-IMPORT-HOME" >OP-IMPORT-HOME ホームへ戻る</a>
+</td>
+<td>FUT-IMPORT / E</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/fut-import.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-001" data-business="遡及差額" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="scr-001.html#OP-001-DIFF" >OP-001-DIFF 遡及差額を開く</a>
+</td>
+<td>SCR-001 / 遡及差額</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/scr-001.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-007" data-business="遡及差額" data-role="会計課給与班" data-status="提案">
+<td>
+<a href="scr-007.html#OP-007-HOME" >OP-007-HOME ホームへ戻る</a>
+</td>
+<td>SCR-007 / 遡及差額</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/scr-007.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="FUT-JLINK" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="fut-jlink.html#OP-JLINK-CORRECT-ATT" >OP-JLINK-CORRECT-ATT 勤怠の差分訂正へ</a>
+</td>
+<td>FUT-JLINK / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/fut-jlink.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-002" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-002.html#OP-JLINK-RETURN" >OP-JLINK-RETURN 人給連携へ戻る</a>
+</td>
+<td>SCR-002 / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-002.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-003" data-business="人給連携" data-role="会計課給与班" data-status="確定改修要件">
+<td>
+<a href="scr-003.html#OP-JLINK-RETURN-ATT" >OP-JLINK-RETURN-ATT 人給連携へ戻る</a>
+</td>
+<td>SCR-003 / 人給連携</td>
+<td>会計課給与班</td>
+<td>
+<span class="badge accepted">確定改修要件</span>
+</td>
+<td>
+<a href="../wireframes/scr-003.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="SCR-001" data-business="現行PoC境界" data-role="ログイン利用者" data-status="現行実装">
+<td>
+<a href="scr-001.html#OP-001-POC" >OP-001-POC PoCデータ一括取込</a>
+</td>
+<td>SCR-001 / 現行PoC境界</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../wireframes/scr-001.html" >開く</a>
+</td>
+</tr>
+<tr data-operation-row data-screen="CUR-IMPORT-POC" data-business="現行PoC境界" data-role="ログイン利用者" data-status="提案">
+<td>
+<a href="cur-import-poc.html#OP-POC-HOME" >OP-POC-HOME ホームへ戻る</a>
+</td>
+<td>CUR-IMPORT-POC / 現行PoC境界</td>
+<td>ログイン利用者</td>
+<td>
+<span class="badge proposed">提案</span>
+</td>
+<td>
+<a href="../wireframes/cur-import-poc.html" >開く</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </main>
 <footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+<script src="../../../requirements/standard-template/assets/context.js" data-portal-root="../../../requirements/standard-template" defer>
+</script>
 </body>
 </html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>2.4.3 データ定義 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="2.4.html#section-2.4" >2.4 データに関する事項</a>
+</span>
+<span aria-current="page">2.4.3 データ定義</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 2.4.3</span>
+<h1 id="section-2.4.3">2.4.3 データ定義</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>一部設定・要件未設定あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>個別出典を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>現在の要件</h2>
+<p class="lead">職員番号は半角数字12桁の文字列、先頭ゼロ保持・不足ゼロ埋め。基本情報は最新値、給与条件等は期間履歴。保険資格日と控除期間を分離し、固定控除は職員×項目×期間×額、住民税は職員×控除年月で管理。</p>
+</section>
+<section class="panel" >
+<h2>要件未設定・判断が必要な内容</h2>
+<p class="notice">正式列型・精度・初期値・保存経路（PD-01）。</p>
+<p class="meta">具体的な条件・対象範囲・判定基準を未設定のまま表示しています。レイアウト案やテンプレートの例から補いません。</p>
+</section>
+<section class="panel" >
+<h2>操作条件まで確認する</h2>
+<p class="meta">関連する既存操作モデルの具体内容です。下位仕様や画面配置が提案の場合は、その区分を維持しています。</p>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-E-HISTORY · SCR-002</span>
+<h3>
+<a href="../operations/OP-E-HISTORY.html?context=section-2.4.3#OP-E-HISTORY" >実際の条件変更を登録</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>実際の条件変更は月途中を含む新しい有効期間履歴として登録。発令は勤務条件へ統合し、所属既定予算を個別予算で上書き可能。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-G-REGISTER · SCR-002</span>
+<h3>
+<a href="../operations/OP-G-REGISTER.html?context=section-2.4.3#OP-G-REGISTER" >外部決定結果を登録</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>紙・電子で受領した外部機関の決定結果を担当局または給与班が手入力する。住民税は税固定控除、共済・保険・ハローワークは社会保険。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+</div>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-19">
+<h4>表 19　データ定義</h4>
+<p>データID / データ名 / データ分類 / 上位概念 / 用途 / データの単位 / No. / データ項目名 / データタイプ / データ概要 / 主キー / 参照キー / データ型 / 桁数 / 標準化レベル / 機密性レベル / 暗号化有無 / 履歴管理 / 備考</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+<section class="panel" >
+<h2>根拠資料と、この節への戻り</h2>
+<p class="meta">資料は読みやすい別ページで開きます。冒頭の「元の要件へ戻る」でこの節へ戻れます。JavaScriptなしでも資料側の参照元一覧から戻れます。</p>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=section-2.4.3" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+<li>
+<a href="../sources/docs--design--basic--data-model.html?context=section-2.4.3" data-keep-context>data-model.md</a>
+<div class="meta">docs/design/basic/data-model.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

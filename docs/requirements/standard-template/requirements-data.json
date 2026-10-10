@@ -1,11 +1,11 @@
 {
   "metadata": {
     "title": "非常勤給与アプリ 要件定義書",
-    "version": "0.2-review",
+    "version": "0.3-review",
     "date": "2026-10-10",
     "status": "確認待ち・非正本",
-    "base_main": "6064ca820553511e1d52b19f896a063213eb88c8",
-    "review_commit": "6064ca820553511e1d52b19f896a063213eb88c8",
+    "base_main": "b5e5d460fe19169252de05bb02bafc9461120540",
+    "review_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
     "template_url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/9117f22a/20260715_resources_standard_guidelines_guideline_07.zip",
     "template_entry": "５章/要件定義書標準テンプレート.docx",
     "template_sha256": "29f34fc98729f2d1ea3e4136b09c7abbc2254a6b23c9aff3fa2817eb238781c2",
@@ -72,7 +72,10 @@
         "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
       }
     ],
-    "original_main": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5"
+    "original_main": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+    "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+    "dot001_document_commit": "6064ca820553511e1d52b19f896a063213eb88c8",
+    "original_pr136": "38362c8cf7ded201b1d185eeaccf2892f40c5f51"
   },
   "sections": [
     {

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>2.3.1 帳票一覧 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="2.3.html#section-2.3" >2.3 帳票に関する事項</a>
+</span>
+<span aria-current="page">2.3.1 帳票一覧</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 2.3.1</span>
+<h1 id="section-2.3.1">2.3.1 帳票一覧</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>一部設定・要件未設定あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>個別出典を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>現在の要件</h2>
+<p class="lead">通勤手当認定簿は別タブHTML・ブラウザー印刷によるA4横2ページ。人給連携のxlsx出力は外部インタフェースとして管理する。</p>
+</section>
+<section class="panel" >
+<h2>要件未設定・判断が必要な内容</h2>
+<p class="notice">その他帳票の正式一覧、出力権限・配布条件の残る詳細。</p>
+<p class="meta">具体的な条件・対象範囲・判定基準を未設定のまま表示しています。レイアウト案やテンプレートの例から補いません。</p>
+</section>
+<section class="panel" >
+<h2>操作条件まで確認する</h2>
+<p class="meta">関連する既存操作モデルの具体内容です。下位仕様や画面配置が提案の場合は、その区分を維持しています。</p>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-F-HTML · SCR-002</span>
+<h3>
+<a href="../operations/OP-F-HTML.html?context=section-2.3.1#OP-F-HTML" >認定簿を表示</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>選択認定GUIDだけを別タブHTMLへ渡し、HTML側で親職員と認定を再取得。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-F-PDF · EXT-COMMUTE</span>
+<h3>
+<a href="../operations/OP-F-PDF.html?context=section-2.3.1#OP-F-PDF" >ブラウザー印刷でPDF保存</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>A4横2ページを1つのPDFとして保存する。枠超過なら印刷停止・警告。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>関連する業務の流れ</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">WF-08</span>
+<h3>
+<a href="../workflows/WF-08.html?context=section-2.3.1#WF-08" >F 通勤認定簿・別タブPDF</a>
+</h3>
+<p>通勤タブで認定を選択 → A4横2ページを1PDFとして保存</p>
+<div class="meta">給与班・局担当者</div>
+<span class="tag ">現行実装</span>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>画面・外部境界</h2>
+<ul class="list">
+<li>
+<h3>
+<a href="../screens/EXT-COMMUTE.html?context=section-2.3.1#EXT-COMMUTE" >EXT-COMMUTE 通勤認定簿HTML（別タブ）</a>
+</h3>
+<p>認定GUIDで再取得する公式様式。ブラウザー印刷からA4横2ページの1PDFを保存。</p>
+<span class="tag ">現行実装</span>
+<span class="meta">会計課給与班 / 局担当者</span>
+</li>
+</ul>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-16">
+<h4>表 16　帳票一覧</h4>
+<p>項番 / 帳票ID / 帳票概要 / 入出力形式 / 該当機能 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+帳票ID：帳票を一意に識別するためのID
+帳票概要：帳票の用途、出力場所等
+入出力形式：帳票を入出力する形式（出力帳票がPDF形式の場合はデータ集計できない等のデメリットがあるため、利用者に配慮した形式を検討してください。）
+該当機能：当該帳票と紐付く機能ID
+</li>
+<li>帳票一覧には必要に応じて以下の項目も加えることができます。
+帳票名：帳票の内容を表す名称
+入出力の区分：入力帳票、出力帳票等
+帳票入出力要件：入力方法（ＯＣＲ等）及び出力方法（モノクロ印刷、カラー印刷、事前印刷用紙（プレプリント用紙）使用、ラベル印刷等）等
+帳票設計要件：帳票設計に求める要件
+利用者区分：当該帳票を利用する利用者区分</li>
+<li>可能な限り各帳票に対して業務や機能との紐づけが分かるように記入してください。</li>
+</ul>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+<section class="panel" >
+<h2>根拠資料と、この節への戻り</h2>
+<p class="meta">資料は読みやすい別ページで開きます。冒頭の「元の要件へ戻る」でこの節へ戻れます。JavaScriptなしでも資料側の参照元一覧から戻れます。</p>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=section-2.3.1" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--design--detailed--payroll-jinkyu-interface.html?context=section-2.3.1" data-keep-context>payroll-jinkyu-interface.md</a>
+<div class="meta">docs/design/detailed/payroll-jinkyu-interface.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

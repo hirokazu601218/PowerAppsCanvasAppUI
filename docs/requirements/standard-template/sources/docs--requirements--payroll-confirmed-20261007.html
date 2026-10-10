@@ -1,506 +1,664 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>docs/requirements/payroll-confirmed-20261007.md</title><style>:root{font-family:system-ui,'Noto Sans JP',sans-serif;color:#172c45;background:#f4f7fb;line-height:1.8}*{box-sizing:border-box}body{margin:0}a{color:#0759a8;text-underline-offset:4px}a:hover{color:#002f67}button,input,select{font:inherit}button,.link{display:inline-block;background:white;border:1px solid #aabed0;border-radius:7px;padding:9px 14px;cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #d58b00;outline-offset:3px}header{background:#102d4e;color:white;padding:32px max(24px,calc((100vw - 1250px)/2))}header p{margin:6px 0;color:#dce8f4}h1{font-size:clamp(25px,4vw,37px);line-height:1.4;margin:12px 0}h2{font-size:25px}h3{font-size:21px}h4{font-size:18px}h2,h3,h4{scroll-margin-top:20px}main{max-width:1300px;margin:0 auto;padding:28px;min-width:0}.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px}.sidebar{position:sticky;top:12px;align-self:start;max-height:94vh;overflow:auto;background:white;border:1px solid #dce4ed;border-radius:10px;padding:16px}.sidebar a{display:block;padding:5px;font-size:14px}.sidebar strong{display:block;margin-top:12px}.intro,.chapter{background:white;border:1px solid #dce4ed;border-radius:12px;padding:25px;margin-bottom:24px}.item{border-top:1px solid #dce4ed;padding:18px 0;overflow-wrap:anywhere}.item p{margin:10px 0}.badge{display:inline-block;background:#e7eef7;color:#294c70;border-radius:5px;padding:2px 9px;font-size:12px;font-weight:700}.missing{background:#fff4da;border-left:4px solid #bc7800;padding:12px;color:#643e00}.refs{font-size:13px}.refs a{margin-right:14px}.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0}.toolbar input{min-width:0;width:260px;padding:10px;border:1px solid #aabed0;border-radius:7px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.cards a{display:block;padding:17px;border:1px solid #b9cde0;border-radius:8px;text-decoration:none;background:#f6faff}.cards a small{display:block;color:#47627d}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #d5dee8;padding:10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#eaf0f7}.table-wrap{overflow:auto}details{margin:12px 0}summary{cursor:pointer;font-weight:700}pre{overflow:auto;background:#f0f3f7;padding:14px;white-space:pre-wrap}code{overflow-wrap:anywhere}dialog{width:min(1300px,96vw);height:94vh;border:1px solid #b8c7d8;border-radius:12px;padding:0}dialog::backdrop{background:#102d4e99}.dialog-bar{display:flex;align-items:center;gap:15px;padding:12px;flex-wrap:wrap}.dialog-bar strong{flex:1}iframe{width:100%;height:calc(100% - 100px);border:0}.skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;background:white;padding:10px}.source main{max-width:1100px;background:white}.source h1{font-size:27px}.source img{max-width:100%}[hidden]{display:none!important}footer{padding:24px;color:#456}@media(max-width:800px){main{padding:14px}.layout{display:block}.sidebar{position:static;max-height:230px;margin-bottom:18px}.intro,.chapter{padding:18px}.toolbar{align-items:stretch}.toolbar input{width:100%}table{min-width:580px}}@media print{.sidebar,.toolbar,.cards,dialog,.preview-button{display:none!important}.layout{display:block}header{background:white;color:black;padding:10px}header p{color:black}.chapter,.intro{border:0;padding:0}.item{break-inside:avoid}main{padding:0}[hidden]{display:block!important}a{color:black}}</style></head><body class="source"><header><p>出典資料のHTML表示 · 元の記述・状態を保持</p><h1>payroll-confirmed-20261007.md</h1><p>2026-10-10取得。新旧記述が併記されています。2026-10-07確定要件・10-08人給決定を優先してください。</p></header><main><p><a href="../index.html">← 要件定義書へ戻る</a> · <a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md">GitHub原文</a></p><p>Mermaidコードは原文として表示します。描画済み業務・画面図は要件定義書の関連資料から開けます。</p><h1 id="非常勤給与アプリ確定要件2026-10-07">非常勤給与アプリ：確定要件（2026-10-07）</h1>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>payroll-confirmed-20261007.md | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">payroll-confirmed-20261007.md</span>
+</nav>
+<a class="context-return" data-context-return href="../sections/1.1.1.html#section-1.1.1">← 関連する要件 1.1.1 へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>payroll-confirmed-20261007.md</h1>
+<p class="meta">docs/requirements/payroll-confirmed-20261007.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/payroll-confirmed-20261007.md">この版のGitHub原文</a> / SHA-256: <code>05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+<a href="../sections/1.1.1.html#section-1.1.1" >1.1.1</a>
+<a href="../sections/1.1.2.html#section-1.1.2" >1.1.2</a>
+<a href="../sections/1.1.3.html#section-1.1.3" >1.1.3</a>
+<a href="../sections/1.1.4.html#section-1.1.4" >1.1.4</a>
+<a href="../sections/1.1.5.html#section-1.1.5" >1.1.5</a>
+<a href="../sections/1.3.1.html#section-1.3.1" >1.3.1</a>
+<a href="../sections/1.5.html#section-1.5" >1.5</a>
+<a href="../sections/1.6.1.html#section-1.6.1" >1.6.1</a>
+<a href="../sections/1.8.1.html#section-1.8.1" >1.8.1</a>
+<a href="../sections/2.1.1.html#section-2.1.1" >2.1.1</a>
+<a href="../sections/2.1.3.html#section-2.1.3" >2.1.3</a>
+<a href="../sections/2.1.4.html#section-2.1.4" >2.1.4</a>
+<a href="../sections/2.2.1.html#section-2.2.1" >2.2.1</a>
+<a href="../sections/2.4.1.html#section-2.4.1" >2.4.1</a>
+<a href="../sections/2.4.3.html#section-2.4.3" >2.4.3</a>
+<a href="../sections/2.4.4.html#section-2.4.4" >2.4.4</a>
+<a href="../sections/2.4.5.html#section-2.4.5" >2.4.5</a>
+<a href="../sections/2.4.6.html#section-2.4.6" >2.4.6</a>
+<a href="../sections/2.4.8.html#section-2.4.8" >2.4.8</a>
+<a href="../sections/2.5.1.html#section-2.5.1" >2.5.1</a>
+<a href="../sections/3.1.1.html#section-3.1.1" >3.1.1</a>
+<a href="../sections/3.2.1.html#section-3.2.1" >3.2.1</a>
+<a href="../sections/3.2.2.html#section-3.2.2" >3.2.2</a>
+<a href="../sections/3.2.3.html#section-3.2.3" >3.2.3</a>
+<a href="../sections/3.3.5.html#section-3.3.5" >3.3.5</a>
+<a href="../sections/3.5.2.html#section-3.5.2" >3.5.2</a>
+<a href="../sections/3.6.1.html#section-3.6.1" >3.6.1</a>
+<a href="../sections/3.9.2.html#section-3.9.2" >3.9.2</a>
+<a href="../sections/3.10.1.html#section-3.10.1" >3.10.1</a>
+<a href="../sections/3.11.2.html#section-3.11.2" >3.11.2</a>
+<a href="../sections/3.11.4.html#section-3.11.4" >3.11.4</a>
+<a href="../sections/3.12.html#section-3.12" >3.12</a>
+<a href="../sections/3.13.1.html#section-3.13.1" >3.13.1</a>
+<a href="../sections/3.13.2.html#section-3.13.2" >3.13.2</a>
+<a href="../sections/3.13.4.html#section-3.13.4" >3.13.4</a>
+<a href="../sections/3.14.2.html#section-3.14.2" >3.14.2</a>
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+<a href="../requirements/PAYREQ-01.html#requirement-PAYREQ-01" >PAYREQ-01</a>
+<a href="../requirements/PAYREQ-02.html#requirement-PAYREQ-02" >PAYREQ-02</a>
+<a href="../requirements/PAYREQ-03.html#requirement-PAYREQ-03" >PAYREQ-03</a>
+<a href="../requirements/PAYREQ-04.html#requirement-PAYREQ-04" >PAYREQ-04</a>
+<a href="../requirements/PAYREQ-05.html#requirement-PAYREQ-05" >PAYREQ-05</a>
+<a href="../requirements/PAYREQ-06.html#requirement-PAYREQ-06" >PAYREQ-06</a>
+<a href="../requirements/PAYREQ-07.html#requirement-PAYREQ-07" >PAYREQ-07</a>
+<a href="../requirements/PAYREQ-08.html#requirement-PAYREQ-08" >PAYREQ-08</a>
+<a href="../requirements/PAYREQ-09.html#requirement-PAYREQ-09" >PAYREQ-09</a>
+<a href="../requirements/PAYREQ-10.html#requirement-PAYREQ-10" >PAYREQ-10</a>
+</div>
+<div class="chips">
+<a href="../template-sections/3.12.1.html#template-3.12.1" >原本 3.12.1 データ管理体制の明確化</a>
+<a href="../template-sections/3.12.2.html#template-3.12.2" >原本 3.12.2 データの標準化</a>
+<a href="../template-sections/3.12.5.html#template-3.12.5" >原本 3.12.5 データに関する運用情報の管理</a>
+<a href="../template-sections/3.12.6.html#template-3.12.6" >原本 3.12.6 データの機密性定義に応じた設計</a>
+<a href="../template-sections/3.12.7.html#template-3.12.7" >原本 3.12.7 データ品質の継続的改善</a>
+<a href="../template-sections/3.14.1.html#template-3.14.1" >原本 3.14.1 移行に関する前提条件</a>
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L1" data-source-start="1" data-source-end="3">
+<h1 id="非常勤給与アプリ確定要件2026-10-07">非常勤給与アプリ：確定要件（2026-10-07）</h1>
+</section>
+<section id="L3" data-source-start="3" data-source-end="5">
 <h2 id="適用範囲と優先順位">適用範囲と優先順位</h2>
+</section>
+<section id="L5" data-source-start="5" data-source-end="5">
 <p>添付の概念データモデル図・テーブル定義書（作成中-260930）との比較から行ったQ1～Q60と、実現難易度の追加確認R1～R21を、GitHubの改修仕様として記録する。これは業務要件の確定であり、公開アプリ・Dataverseの改修、実データ運用、業務受入、性能検証を完了した意味ではない。</p>
+</section>
+<section id="L7" data-source-start="7" data-source-end="7">
 <p>従来文書と競合する今後の仕様は本書を優先する。過去の公開・試験結果は当時の観測として保持する。Q48・Q50・Q51・Q46の当初整理は後続R回答で更新した。採用前工程の自動連携目標は既存業務要件として残すが、本書の番号確定職員の給与管理と同一構造に無検証で統合しない。番号未発行候補との統合方式は未入力。</p>
+</section>
+<section id="L9" data-source-start="9" data-source-end="9">
 <p>会話番号Q／Rは質問の識別子であり、既存アプリ要件R15～R23や添付モデルのR-01～R-17とは別物。本書では作業グループの追跡IDをPAYREQ-01～10とする。正式な物理テーブル名・列名・状態コード・式は、根拠がない場合「未入力」とする。理由を会話から説明できない技術補正も「未入力」とし、推測で確定しない。</p>
-<p>関連文書：<a href="docs--requirements--business-requirements.html">業務要件</a>、<a href="docs--requirements--screen-requirements.html">画面要件</a>、<a href="docs--requirements--non-functional-requirements.html">非機能要件</a>、<a href="docs--requirements--open-decisions.html">未決一覧</a>、<a href="docs--design--basic--basic-design.html">基本設計</a>、<a href="docs--design--basic--data-model.html">データ設計</a>、<a href="docs--design--detailed--detailed-design.html">詳細設計</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/changes/payroll-markdown-change-list-20261007.md">添付２文書の変更対応</a>。</p>
+</section>
+<section id="L11" data-source-start="11" data-source-end="11">
+<p>関連文書：<a href="docs--requirements--business-requirements.html" data-keep-context>業務要件</a>、<a href="docs--requirements--screen-requirements.html" data-keep-context>画面要件</a>、<a href="docs--requirements--non-functional-requirements.html" data-keep-context>非機能要件</a>、<a href="docs--requirements--open-decisions.html" data-keep-context>未決一覧</a>、<a href="docs--design--basic--basic-design.html" data-keep-context>基本設計</a>、<a href="docs--design--basic--data-model.html" data-keep-context>データ設計</a>、<a href="docs--design--detailed--detailed-design.html" data-keep-context>詳細設計</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/changes/payroll-markdown-change-list-20261007.md">添付２文書の変更対応</a>。</p>
+</section>
+<section id="L13" data-source-start="13" data-source-end="15">
 <h2 id="グループと追跡id">グループと追跡ID</h2>
+</section>
+<section id="block-L15" data-source-start="15" data-source-end="28">
+<div class="table-wrap" role="region" tabindex="0" aria-label="payroll-confirmed-20261007.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L15">
 <th>ID</th>
 <th>作業グループ</th>
 <th>会話根拠</th>
 <th>確定内容</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L17">
 <td>PAYREQ-01</td>
 <td>全体構造・キー・履歴</td>
 <td>Q1～Q6</td>
 <td>GUID Lookup＋職員番号、有効期間履歴、業務単位のヘッダー／明細。</td>
 </tr>
-<tr>
+<tr id="L18">
 <td>PAYREQ-02</td>
 <td>職員基本・組織・予算</td>
 <td>Q7～Q12</td>
 <td>12桁一意職員番号、住所、階層なし所属、所属既定／職員個別予算。</td>
 </tr>
-<tr>
+<tr id="L19">
 <td>PAYREQ-03</td>
 <td>勤務条件・発令</td>
 <td>Q13～Q18、R11</td>
 <td>発令統合、日額／時間額、期間履歴と訂正の区別、給与班確認。</td>
 </tr>
-<tr>
+<tr id="L20">
 <td>PAYREQ-04</td>
 <td>保険・税・固定控除・住民税</td>
 <td>Q19～Q27、R19</td>
 <td>未確認を区別、保険資格日／控除期間、登録額、項目別控除、月別住民税。</td>
 </tr>
-<tr>
+<tr id="L21">
 <td>PAYREQ-05</td>
 <td>通勤</td>
 <td>Q28～Q33</td>
 <td>ヘッダー／経路、定期／IC、変更認定、認定済み参照、別タブHTML印刷維持。</td>
 </tr>
-<tr>
+<tr id="L22">
 <td>PAYREQ-06</td>
 <td>勤務時間報告・取込</td>
 <td>Q34～Q39、R12～R15</td>
 <td>所属×月、職員別集計、追加更新、手修正上書き、空欄クリア、提出後ロック、失敗時隔離。</td>
 </tr>
-<tr>
+<tr id="L23">
 <td>PAYREQ-07</td>
 <td>給与計算・確定</td>
 <td>Q40～Q47、R2～R6・R11・R16・R20</td>
 <td>対象期間／支給日、期末勤勉別率、元データ訂正、調整記録、版、差分ゼロ確定。</td>
 </tr>
-<tr>
+<tr id="L24">
 <td>PAYREQ-08</td>
 <td>人給給与簿・照合・追給・返納</td>
 <td>Q48～Q53、R2～R10・R16～R18</td>
 <td>人給CSV読み取り専用、行列対応、照合履歴、支払済不訂正、追給集約、返納分割併用。</td>
 </tr>
-<tr>
+<tr id="L25">
 <td>PAYREQ-09</td>
 <td>役割・マスタ・初回対象</td>
 <td>Q54～Q57、R15・R21</td>
 <td>本人は将来、給与班と管理者兼務、自局範囲、業務／システム管理分離、SKDB・家族・メモ対象外。</td>
 </tr>
-<tr>
+<tr id="L26">
 <td>PAYREQ-10</td>
 <td>構築・保存・検証前提</td>
 <td>Q58～Q60、R1・R7・R8・R14・R16・R17・R20</td>
 <td>ローコード、架空データ、最終根拠／照合履歴保存、詳細未入力と未実施の明示。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L28" data-source-start="28" data-source-end="30">
 <h2 id="q1q60の最終整理">Q1～Q60の最終整理</h2>
+</section>
+<section id="block-L30" data-source-start="30" data-source-end="93">
+<div class="table-wrap" role="region" tabindex="0" aria-label="payroll-confirmed-20261007.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L30">
 <th>会話番号</th>
 <th>回答</th>
 <th>採用する要件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L32">
 <td>Q1</td>
 <td>C</td>
 <td>添付・GitHubの両方を見直し、既存16テーブルを固定条件にしない。</td>
 </tr>
-<tr>
+<tr id="L33">
 <td>Q2</td>
 <td>A</td>
 <td>職員番号は全体で一意。職員基本は一人一行。再雇用や条件変更は履歴で扱う。</td>
 </tr>
-<tr>
+<tr id="L34">
 <td>Q3</td>
 <td>A</td>
 <td>GUID主キーを参照するLookupと職員番号を両方保持する。</td>
 </tr>
-<tr>
+<tr id="L35">
 <td>Q4</td>
 <td>A</td>
 <td>給与支払グループは秘書課・会計課・製造局等の組織単位。</td>
 </tr>
-<tr>
+<tr id="L36">
 <td>Q5</td>
 <td>A</td>
 <td>ヘッダーと明細を必要な業務単位で分け、Lookupで関連付ける。</td>
 </tr>
-<tr>
+<tr id="L37">
 <td>Q6</td>
 <td>A</td>
 <td>基本情報は最新値。給与に影響する条件・所属・通勤・控除は有効期間履歴。</td>
 </tr>
-<tr>
+<tr id="L38">
 <td>Q7</td>
 <td>A</td>
 <td>職員番号は半角数字12桁の文字列。先頭ゼロを保持・不足桁をゼロ埋め。</td>
 </tr>
-<tr>
+<tr id="L39">
 <td>Q8</td>
 <td>A</td>
 <td>所属から給与支払グループを決定し、独立して二重入力しない。</td>
 </tr>
-<tr>
+<tr id="L40">
 <td>Q9</td>
 <td>B</td>
 <td>組織は階層なしの一覧で管理。</td>
 </tr>
-<tr>
+<tr id="L41">
 <td>Q10</td>
 <td>A＋住所</td>
 <td>職員基本と住所を管理。銀行・債主・マイナンバーは初回対象外。</td>
 </tr>
-<tr>
+<tr id="L42">
 <td>Q11</td>
 <td>A</td>
 <td>採用前登録は採用日未入力可。給与計算対象に含める時点では必須。</td>
 </tr>
-<tr>
+<tr id="L43">
 <td>Q12</td>
 <td>B</td>
 <td>所属の既定予算を、職員の勤務条件履歴の個別予算で上書き可能。</td>
 </tr>
-<tr>
+<tr id="L44">
 <td>Q13</td>
 <td>B</td>
 <td>発令情報を勤務条件履歴と同じテーブルで管理。</td>
 </tr>
-<tr>
+<tr id="L45">
 <td>Q14</td>
 <td>B</td>
 <td>基本給与は日額・時間額。月額給与は初回対象外。</td>
 </tr>
-<tr>
+<tr id="L46">
 <td>Q15</td>
 <td>A</td>
 <td>実際の条件変更は月途中を含め有効期間を指定した新履歴。</td>
 </tr>
-<tr>
+<tr id="L47">
 <td>Q16</td>
 <td>A</td>
 <td>一日当たりの勤務時間を管理。始終業・休憩・週時間は入力対象にしない。</td>
 </tr>
-<tr>
+<tr id="L48">
 <td>Q17</td>
 <td>B</td>
 <td>誤登録は確定済み履歴も直接訂正でき、訂正前後を記録。実際の変更とは区別。</td>
 </tr>
-<tr>
+<tr id="L49">
 <td>Q18</td>
 <td>A</td>
 <td>勤務条件は登録→確認待ち→給与班確定。必要時は差戻し。</td>
 </tr>
-<tr>
+<tr id="L50">
 <td>Q19</td>
 <td>A</td>
 <td>保険・税／固定控除・住民税は用途別に期間履歴を管理。</td>
 </tr>
-<tr>
+<tr id="L51">
 <td>Q20</td>
 <td>A</td>
 <td>保険は未確認・加入・非加入を区別。必要情報の未確認は支給確定を止める。</td>
 </tr>
-<tr>
+<tr id="L52">
 <td>Q21</td>
 <td>A</td>
 <td>保険ごとの資格取得・喪失日と控除開始・終了を分ける。</td>
 </tr>
-<tr>
+<tr id="L53">
 <td>Q22</td>
 <td>C</td>
 <td>等級・標準報酬月額・控除額を直接登録。保険の料率自動計算を前提にしない。</td>
 </tr>
-<tr>
+<tr id="L54">
 <td>Q23</td>
 <td>A</td>
 <td>固定控除は職員×項目×有効期間×金額の行。項目マスタを用意。</td>
 </tr>
-<tr>
+<tr id="L55">
 <td>Q24</td>
 <td>B</td>
 <td>住民税は職員×控除年月ごとの行。</td>
 </tr>
-<tr>
+<tr id="L56">
 <td>Q25</td>
 <td>A</td>
 <td>所得税区分・扶養控除人数を有効期間履歴で管理。</td>
 </tr>
-<tr>
+<tr id="L57">
 <td>Q26</td>
 <td>A</td>
 <td>家族個別情報は対象外。扶養控除人数を管理。</td>
 </tr>
-<tr>
+<tr id="L58">
 <td>Q27</td>
 <td>A</td>
 <td>保険・税・固定控除・住民税は登録→確認待ち→給与班確定。必要情報未確定は支給確定不可。</td>
 </tr>
-<tr>
+<tr id="L59">
 <td>Q28</td>
 <td>A</td>
 <td>認定の初回対象は通勤のみ。</td>
 </tr>
-<tr>
+<tr id="L60">
 <td>Q29</td>
 <td>A</td>
 <td>通勤は認定ヘッダーと経路ごとの明細。</td>
 </tr>
-<tr>
+<tr id="L61">
 <td>Q30</td>
 <td>AとB</td>
 <td>定期券前払いとIC運賃×実際の通勤日数。質問時のC・Dは初回対象外。</td>
 </tr>
-<tr>
+<tr id="L62">
 <td>Q31</td>
 <td>A</td>
 <td>経路ごとに支給方式を選び、混在可能。</td>
 </tr>
-<tr>
+<tr id="L63">
 <td>Q32</td>
 <td>A</td>
 <td>通勤変更は新認定。旧認定を残し、精算・追給・返納と関連付ける。</td>
 </tr>
-<tr>
+<tr id="L64">
 <td>Q33</td>
 <td>A</td>
 <td>提出⇄差戻し→給与班認定。確定計算に使う通勤は認定済み。認定ヘッダーIDで帳票用経路を取得。</td>
 </tr>
-<tr>
+<tr id="L65">
 <td>Q34</td>
 <td>A</td>
 <td>勤務時間報告は所属／支払グループ×勤務月のヘッダー。</td>
 </tr>
-<tr>
+<tr id="L66">
 <td>Q35</td>
 <td>B</td>
 <td>再取込は対象報告内の職員行を追加／更新。ファイルにない既存行は残す。</td>
 </tr>
-<tr>
+<tr id="L67">
 <td>Q36</td>
 <td>B</td>
 <td>日数・時間・備考の画面編集と職員行追加／削除を許可。</td>
 </tr>
-<tr>
+<tr id="L68">
 <td>Q37</td>
 <td>C</td>
 <td>超勤は小数時間で小数3桁、欠勤は整数時間。</td>
 </tr>
-<tr>
+<tr id="L69">
 <td>Q38</td>
 <td>A</td>
 <td>報告済みは編集・取込不可。給与班が差戻し後に訂正・再提出。</td>
 </tr>
-<tr>
+<tr id="L70">
 <td>Q39</td>
 <td>A</td>
 <td>所属ごとに勤務実績を入力し、給与班が職員単位に集計。</td>
 </tr>
-<tr>
+<tr id="L71">
 <td>Q40</td>
 <td>B</td>
 <td>勤務条件でマスタの日額／時間額単価を選択。</td>
 </tr>
-<tr>
+<tr id="L72">
 <td>Q41</td>
 <td>B</td>
 <td>給与対象期間と支給日を別管理。通常既定値と例外変更に対応。</td>
 </tr>
-<tr>
+<tr id="L73">
 <td>Q42</td>
 <td>A</td>
 <td>給与班が計算・再計算を実行し、確認・確定。</td>
 </tr>
-<tr>
+<tr id="L74">
 <td>Q43</td>
 <td>A＋補足</td>
 <td>誤りは勤務条件・勤怠等を訂正して再計算するのが基本。例外・追給・返納は理由・処理者を持つ別調整記録。</td>
 </tr>
-<tr>
+<tr id="L75">
 <td>Q44</td>
 <td>C</td>
 <td>職員×支給対象期間で期末・勤勉の支給率を別々に登録。</td>
 </tr>
-<tr>
+<tr id="L76">
 <td>Q45</td>
 <td>A</td>
 <td>現行Excelと業務資料で式・端数処理を確認。不明点を明示。</td>
 </tr>
-<tr>
+<tr id="L77">
 <td>Q46</td>
 <td>A（保存範囲はRで更新）</td>
 <td>計算版ごとに結果・入力・条件・単価・率等の根拠を保存。最終保存範囲はR7・R16・R17に従う。</td>
 </tr>
-<tr>
+<tr id="L78">
 <td>Q47</td>
 <td>B</td>
 <td>職員×支給回の個別確定と所属単位の一括確定。</td>
 </tr>
-<tr>
+<tr id="L79">
 <td>Q48</td>
 <td>B（R2・R4で更新）</td>
 <td>給与簿と計算結果を別に管理。最終方針は人給CSV取込・アプリ内読み取り専用。</td>
 </tr>
-<tr>
+<tr id="L80">
 <td>Q49</td>
 <td>A</td>
 <td>過去の確定結果と訂正後再計算との差額を給与班が確認・確定。</td>
 </tr>
-<tr>
+<tr id="L81">
 <td>Q50</td>
 <td>B（R3で限定）</td>
 <td>訂正・再確定は未払いに限る。支払い済み給与は訂正しない。</td>
 </tr>
-<tr>
+<tr id="L82">
 <td>Q51</td>
 <td>B（R2・R4で更新）</td>
 <td>最終方針は人給給与簿CSVの取込。アプリで給与簿を手修正しない。</td>
 </tr>
-<tr>
+<tr id="L83">
 <td>Q52</td>
 <td>A</td>
 <td>同月でも支給回を分け、支給日・支給種別で表示上区別。</td>
 </tr>
-<tr>
+<tr id="L84">
 <td>Q53</td>
 <td>C</td>
 <td>返納方法は給与相殺／納入告知書。方法・額・状態を管理。分割併用はR18。</td>
 </tr>
-<tr>
+<tr id="L85">
 <td>Q54</td>
 <td>B、将来Aもあり得る</td>
 <td>初回は給与班・局担当中心。本人参照・通勤申請の将来追加に拡張性を持たせる。</td>
 </tr>
-<tr>
+<tr id="L86">
 <td>Q55</td>
 <td>C＋兼務</td>
 <td>業務マスタ管理者を設け、給与班との兼務可能。システム管理者との区別はR21。</td>
 </tr>
-<tr>
+<tr id="L87">
 <td>Q56</td>
 <td>A</td>
 <td>使用停止／終了で履歴を残す。誤登録の物理削除条件は未入力。</td>
 </tr>
-<tr>
+<tr id="L88">
 <td>Q57</td>
 <td>説明後どちらもA、メモ不要</td>
 <td>SKDBは初回対象外。区分マスタは管理者が可変候補を管理。メモ機能は不要。</td>
 </tr>
-<tr>
+<tr id="L89">
 <td>Q58</td>
 <td>A</td>
 <td>確定要件・変更一覧を整理→モデル／定義書改訂→段階的なアプリ／DB構築。</td>
 </tr>
-<tr>
+<tr id="L90">
 <td>Q59</td>
 <td>A</td>
 <td>架空データで検証し、実データ移行は後段。</td>
 </tr>
-<tr>
+<tr id="L91">
 <td>Q60</td>
 <td>A</td>
 <td>設計・式の確認、単体・結合、データ整合・権限・既存動作の維持を受入前提にする。未確定・対象外を明示。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L93" data-source-start="93" data-source-end="95">
 <h2 id="r1r21の追加確定">R1～R21の追加確定</h2>
+</section>
+<section id="block-L95" data-source-start="95" data-source-end="119">
+<div class="table-wrap" role="region" tabindex="0" aria-label="payroll-confirmed-20261007.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L95">
 <th>会話番号</th>
 <th>回答</th>
 <th>採用する要件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L97">
 <td>R1</td>
 <td>B</td>
 <td>Canvas＋Dataverse標準＋Power Automateのローコードのみ。独自API・プラグイン等のコード実装を前提にしない。</td>
 </tr>
-<tr>
+<tr id="L98">
 <td>R2</td>
 <td>C＋補足</td>
 <td>計算結果Excel（.xlsx）→人給取込→人給給与簿CSV→アプリ取込→差分照合を反復し、最終的に給与簿と計算結果を一致させる。</td>
 </tr>
-<tr>
+<tr id="L99">
 <td>R3</td>
 <td>補足指定</td>
 <td>支払い済み給与は訂正しない。過去誤りは別の追給／返納へ。</td>
 </tr>
-<tr>
+<tr id="L100">
 <td>R4</td>
 <td>A＋補足</td>
 <td>差分原因に応じ元データまたは人給を訂正し再取込。給与簿はアプリ内読み取り専用。</td>
 </tr>
-<tr>
+<tr id="L101">
 <td>R5</td>
 <td>A</td>
 <td>職員・支給回ごとに支給／控除項目・合計を照合し、欠落・余分・重複も確認。</td>
 </tr>
-<tr>
+<tr id="L102">
 <td>R6</td>
 <td>A</td>
 <td>計算済み→照合中→差分ゼロ確認→給与班確定→支払い済み。差分がある間は確定不可。</td>
 </tr>
-<tr>
+<tr id="L103">
 <td>R7</td>
 <td>条件付きA、補足整理を承認</td>
 <td>処理中は各計算版・根拠を保持。差分ゼロで支払い確定後は中間版・中間根拠を削除可能。最終結果と給与簿・支払実績は残す。</td>
 </tr>
-<tr>
+<tr id="L104">
 <td>R8</td>
 <td>補足指定</td>
 <td>Excel／CSVファイル自体は継続保存不要。計算版・取込回・照合結果は処理回ごとに残す。</td>
 </tr>
-<tr>
+<tr id="L105">
 <td>R9</td>
 <td>人給連携仕様の補足</td>
 <td>人給出力Excelは通常分・追給分・各控除の列があり、通常分と追給分で行も分かれる。出力237列と人給11キーは2026-10-08確定。給与簿側の照合キー・行対応は未入力。</td>
 </tr>
-<tr>
+<tr id="L106">
 <td>R10</td>
 <td>B</td>
 <td>複数過去月の追給を人給の追給行へ集約。アプリ内では月別差額内訳と集約結果の対応を保持。</td>
 </tr>
-<tr>
+<tr id="L107">
 <td>R11</td>
 <td>A</td>
 <td>元データ訂正後は該当の再確認・再提出を行い、影響する未払い支給回を再計算・再照合する。</td>
 </tr>
-<tr>
+<tr id="L108">
 <td>R12</td>
 <td>B</td>
 <td>勤怠再取込に含まれる行は手修正済みでもファイル値を優先。ファイルにない行は残す。</td>
 </tr>
-<tr>
+<tr id="L109">
 <td>R13</td>
 <td>A</td>
 <td>再取込の空欄は既存値を消去。0とは区別。</td>
 </tr>
-<tr>
+<tr id="L110">
 <td>R14</td>
 <td>A</td>
 <td>対象報告の取込中は編集・提出停止。全件検証後に反映。途中失敗は計算から除外して復旧／再実行。</td>
 </tr>
-<tr>
+<tr id="L111">
 <td>R15</td>
 <td>A</td>
 <td>局担当は自局の勤務・申請・支給明細と必要な共通職員基本情報のみ。他局分・全局集計は給与班。</td>
 </tr>
-<tr>
+<tr id="L112">
 <td>R16</td>
 <td>A</td>
 <td>最終版の勤務条件・勤怠・単価等の計算根拠を支払い確定後も保存。</td>
 </tr>
-<tr>
+<tr id="L113">
 <td>R17</td>
 <td>A</td>
 <td>各照合処理回で日時・実行者・件数・状態に加え、不一致職員・項目・双方金額・差額を保存。中間版削除後も参照可能。</td>
 </tr>
-<tr>
+<tr id="L114">
 <td>R18</td>
 <td>A</td>
 <td>返納は分割回収と給与相殺／納入告知書の併用に対応。案件に複数回収実績を関連付け回収済額・残額を管理。</td>
 </tr>
-<tr>
+<tr id="L115">
 <td>R19</td>
 <td>A</td>
 <td>給与班が保険の控除額・適用期間を確認・登録。アプリは登録内容を使い、矛盾・未確定を検査。制度判定の自動化は初回に求めない。</td>
 </tr>
-<tr>
+<tr id="L116">
 <td>R20</td>
 <td>A</td>
 <td>現行Excelと業務資料を照合し、項目別に式・端数処理・適用時期・期待結果を確認して確定。不明点は未入力。</td>
 </tr>
-<tr>
+<tr id="L117">
 <td>R21</td>
 <td>A</td>
 <td>業務マスタ管理者とアプリ／Dataverseのシステム管理権限を分ける。同じ人物の兼務は可能。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L119" data-source-start="119" data-source-end="121">
 <h2 id="人給連携確定の業務条件">人給連携・確定の業務条件</h2>
+</section>
+<section id="L121" data-source-start="121" data-source-end="126">
 <ol>
 <li>給与班が確認済みの元データで計算版を作成し、計算結果Excel（.xlsx）を出力する。</li>
 <li>人給システムへExcelを取り込み、人給から給与簿CSVを出力する。</li>
@@ -509,17 +667,42 @@
 <li>差分ゼロの確認後に給与班が確定し、支払い済みを記録する。未払いの内容が変わった場合は影響する結果を再計算・再照合する。</li>
 <li>支払い済み結果は訂正しない。過去の誤りは別の追給／返納案件で扱う。支払い確定後も最終根拠と処理回ごとの照合履歴を保持する。</li>
 </ol>
+</section>
+<section id="L128" data-source-start="128" data-source-end="128">
 <p>人給出力Excelに通常分・追給分・控除の列があり、通常／追給は行も分かれる。複数過去月の追給は人給の追給行へ集約するが、職員ごとに常に2行だけである、<code>sg</code>列が追給を意味する、既存GUIDが人給との一致キーになる、とは断定しない。</p>
+</section>
+<section id="L130" data-source-start="130" data-source-end="132">
 <h2 id="初回対象と詳細未確定">初回対象と詳細未確定</h2>
+</section>
+<section id="L132" data-source-start="132" data-source-end="135">
 <ul>
 <li>初回対象外：本人向け利用、家族個別情報、SKDB、独立メモ、銀行・債主・マイナンバー、月額基本給与、通勤の質問時C・D方式。本人機能は将来追加に備える。</li>
 <li>帳票：既存の別タブHTML→ブラウザー印刷PDFを維持。通勤新様式の業務受入合格まで旧様式・通常入口を残す。今回のデータ再構成を反映した帳票連携は未実装。</li>
-<li>未入力：給与簿CSVの照合キー・行対応、出力行と複数過去月の対応、計算式／端数、固定控除特殊月、通勤精算式、一般項目の型／初期値／正式名、権限の物理方式、取込復旧、保存期間、返納取消等。<a href="docs--requirements--open-decisions.html">PD-01～09</a>で追跡する。</li>
+<li>未入力：給与簿CSVの照合キー・行対応、出力行と複数過去月の対応、計算式／端数、固定控除特殊月、通勤精算式、一般項目の型／初期値／正式名、権限の物理方式、取込復旧、保存期間、返納取消等。<a href="docs--requirements--open-decisions.html" data-keep-context>PD-01～09</a>で追跡する。</li>
 <li>業務判断は今回確定した範囲で完了。資料確認・設計・検証の残件を、新たな回答済み要件や実装合格として扱わない。</li>
 </ul>
+</section>
+<section id="L137" data-source-start="137" data-source-end="139">
 <h2 id="既存通勤新様式の受入結果">既存通勤新様式の受入結果</h2>
+</section>
+<section id="L139" data-source-start="139" data-source-end="139">
 <p>2026-10-07（日本時間）、ユーザーから通勤認定簿の新様式の受入テスト完了の申告を受領し、CHANGE-20261003-COMMUTE-OFFICIALの業務受入をPASSとして記録した。対象は並行配置した公式様式v1.02（公開版 <code>2026-10-03T18:31:30.4607518Z</code>）。申告受領日を記録しており、実際の試験日時・確認レコード・項目別操作ログは未入力。個別の実機印刷設定や全データ組合せの実測証跡へ読み替えない。総合試験D-07と今後の給与モデル再構成の受入は別判定。旧様式の削除・通常ボタンの切替は今回実施しない。</p>
-<p>受入結果の正本：<a href="docs--acceptance--user-acceptance.html">受入テスト計画と結果</a>。今回確定した変更後データモデルとの帳票連携を受入済みと扱わない。</p>
+</section>
+<section id="L141" data-source-start="141" data-source-end="141">
+<p>受入結果の正本：<a href="docs--acceptance--user-acceptance.html" data-keep-context>受入テスト計画と結果</a>。今回確定した変更後データモデルとの帳票連携を受入済みと扱わない。</p>
+</section>
+<section id="L143" data-source-start="143" data-source-end="145">
 <h2 id="2026-10-08-人給インターフェース追補">2026-10-08 人給インターフェース追補</h2>
-<p>人給へ出力はExcel（.xlsx）、戻り給与簿はCSV。237列・見出し１行目・データ２行目、文字列形式、職員判断A/M、空欄0化、11キーを確定。<a href="docs--design--detailed--payroll-jinkyu-interface.html">出力仕様</a>のIF-01～12、PERIOD-01～05を適用する。D1～D8確定、D9～D12未回答・保留。今回対象月欠勤は通常分、過去支払済み月の差額は差額明細、対象日は差額発生対象期間とする。<a href="docs--requirements--payroll-interface-decisions-20261008.html">決定台帳</a>を参照。R10の複数過去月集約との両立は未入力。アプリ・Dataverse・式・人給往復の実装／受入は未検証。</p>
-</main></body></html>
+</section>
+<section id="L145" data-source-start="145" data-source-end="146">
+<p>人給へ出力はExcel（.xlsx）、戻り給与簿はCSV。237列・見出し１行目・データ２行目、文字列形式、職員判断A/M、空欄0化、11キーを確定。<a href="docs--design--detailed--payroll-jinkyu-interface.html" data-keep-context>出力仕様</a>のIF-01～12、PERIOD-01～05を適用する。D1～D8確定、D9～D12未回答・保留。今回対象月欠勤は通常分、過去支払済み月の差額は差額明細、対象日は差額発生対象期間とする。<a href="docs--requirements--payroll-interface-decisions-20261008.html" data-keep-context>決定台帳</a>を参照。R10の複数過去月集約との両立は未入力。アプリ・Dataverse・式・人給往復の実装／受入は未検証。</p>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

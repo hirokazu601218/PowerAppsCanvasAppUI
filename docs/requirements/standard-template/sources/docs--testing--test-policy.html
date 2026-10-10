@@ -1,110 +1,252 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>docs/testing/test-policy.md</title><style>:root{font-family:system-ui,'Noto Sans JP',sans-serif;color:#172c45;background:#f4f7fb;line-height:1.8}*{box-sizing:border-box}body{margin:0}a{color:#0759a8;text-underline-offset:4px}a:hover{color:#002f67}button,input,select{font:inherit}button,.link{display:inline-block;background:white;border:1px solid #aabed0;border-radius:7px;padding:9px 14px;cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #d58b00;outline-offset:3px}header{background:#102d4e;color:white;padding:32px max(24px,calc((100vw - 1250px)/2))}header p{margin:6px 0;color:#dce8f4}h1{font-size:clamp(25px,4vw,37px);line-height:1.4;margin:12px 0}h2{font-size:25px}h3{font-size:21px}h4{font-size:18px}h2,h3,h4{scroll-margin-top:20px}main{max-width:1300px;margin:0 auto;padding:28px;min-width:0}.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px}.sidebar{position:sticky;top:12px;align-self:start;max-height:94vh;overflow:auto;background:white;border:1px solid #dce4ed;border-radius:10px;padding:16px}.sidebar a{display:block;padding:5px;font-size:14px}.sidebar strong{display:block;margin-top:12px}.intro,.chapter{background:white;border:1px solid #dce4ed;border-radius:12px;padding:25px;margin-bottom:24px}.item{border-top:1px solid #dce4ed;padding:18px 0;overflow-wrap:anywhere}.item p{margin:10px 0}.badge{display:inline-block;background:#e7eef7;color:#294c70;border-radius:5px;padding:2px 9px;font-size:12px;font-weight:700}.missing{background:#fff4da;border-left:4px solid #bc7800;padding:12px;color:#643e00}.refs{font-size:13px}.refs a{margin-right:14px}.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0}.toolbar input{min-width:0;width:260px;padding:10px;border:1px solid #aabed0;border-radius:7px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.cards a{display:block;padding:17px;border:1px solid #b9cde0;border-radius:8px;text-decoration:none;background:#f6faff}.cards a small{display:block;color:#47627d}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #d5dee8;padding:10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#eaf0f7}.table-wrap{overflow:auto}details{margin:12px 0}summary{cursor:pointer;font-weight:700}pre{overflow:auto;background:#f0f3f7;padding:14px;white-space:pre-wrap}code{overflow-wrap:anywhere}dialog{width:min(1300px,96vw);height:94vh;border:1px solid #b8c7d8;border-radius:12px;padding:0}dialog::backdrop{background:#102d4e99}.dialog-bar{display:flex;align-items:center;gap:15px;padding:12px;flex-wrap:wrap}.dialog-bar strong{flex:1}iframe{width:100%;height:calc(100% - 100px);border:0}.skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;background:white;padding:10px}.source main{max-width:1100px;background:white}.source h1{font-size:27px}.source img{max-width:100%}[hidden]{display:none!important}footer{padding:24px;color:#456}@media(max-width:800px){main{padding:14px}.layout{display:block}.sidebar{position:static;max-height:230px;margin-bottom:18px}.intro,.chapter{padding:18px}.toolbar{align-items:stretch}.toolbar input{width:100%}table{min-width:580px}}@media print{.sidebar,.toolbar,.cards,dialog,.preview-button{display:none!important}.layout{display:block}header{background:white;color:black;padding:10px}header p{color:black}.chapter,.intro{border:0;padding:0}.item{break-inside:avoid}main{padding:0}[hidden]{display:block!important}a{color:black}}</style></head><body class="source"><header><p>出典資料のHTML表示 · 元の記述・状態を保持</p><h1>test-policy.md</h1><p>2026-10-10取得。新旧記述が併記されています。2026-10-07確定要件・10-08人給決定を優先してください。</p></header><main><p><a href="../index.html">← 要件定義書へ戻る</a> · <a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/test-policy.md">GitHub原文</a></p><p>Mermaidコードは原文として表示します。描画済み業務・画面図は要件定義書の関連資料から開けます。</p><h1 id="全体テスト計画">全体テスト計画</h1>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>test-policy.md | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">test-policy.md</span>
+</nav>
+<a class="context-return" data-context-return href="../sections/3.13.1.html#section-3.13.1">← 関連する要件 3.13.1 へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>test-policy.md</h1>
+<p class="meta">docs/testing/test-policy.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/test-policy.md">この版のGitHub原文</a> / SHA-256: <code>7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+<a href="../sections/3.13.1.html#section-3.13.1" >3.13.1</a>
+<a href="../sections/3.13.2.html#section-3.13.2" >3.13.2</a>
+<a href="../sections/3.13.3.html#section-3.13.3" >3.13.3</a>
+<a href="../sections/3.18.1.html#section-3.18.1" >3.18.1</a>
+<a href="../sections/3.18.3.html#section-3.18.3" >3.18.3</a>
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+</div>
+<div class="chips">
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L1" data-source-start="1" data-source-end="3">
+<h1 id="全体テスト計画">全体テスト計画</h1>
+</section>
+<section id="L3" data-source-start="3" data-source-end="3">
 <blockquote>
 <p>対象：職員マスタ検索の現行単一アプリ／文書版 v2.00（2026-09-26）</p>
 </blockquote>
+</section>
+<section id="L5" data-source-start="5" data-source-end="7">
 <h2 id="1-位置付け対象">1. 位置付け・対象</h2>
-<p>本書は試験の対象、工程、選び方、役割、判定を定める正本。工程別の詳細は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/unit-test-plan.md">単体テスト計画</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/integration-test-plan.md">結合テスト計画</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/system-test-plan.md">総合テスト計画</a>を参照する。ケースの操作と期待値は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/test-specification.md">テスト実施要領</a>を参照する。改修ごとの選定は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/change-records/README.md">試験選定記録</a>、業務受入は<a href="docs--acceptance--user-acceptance.html">受入テスト計画</a>、自動実行設定は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/current-app-e2e.md">現行アプリE2E運用</a>に分ける。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/records/docs/testing/archive/test-policy-v1.00.md">旧テスト方針v1.00</a>は作成当時の記録。</p>
-<p>対象環境は StaffMaster-Automation-Test（<code>68e00049-b7e5-eda6-9888-9a3cc493c5be</code>）、対象App IDは <strong><code>204a48dc-7f23-43dd-b934-4654a3cfa306</code></strong>。アプリの表示名は「自動開発_職員マスタ検索」。職員基本・通勤・基準給与簿の<code>_STUDIO</code>隔離テーブルと隔離HTMLを使用する。<a href="docs--operations--single-app-workflow.html">単一アプリ運用</a>を優先する。旧App ID <code>362ac991-eead-4f07-8373-afdb3ebfdba1</code> 向けのpack/import/publish/restoreと旧テストの合格は現行アプリの証跡に転用しない。</p>
+</section>
+<section id="L7" data-source-start="7" data-source-end="7">
+<p>本書は試験の対象、工程、選び方、役割、判定を定める正本。工程別の詳細は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/unit-test-plan.md">単体テスト計画</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/integration-test-plan.md">結合テスト計画</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/system-test-plan.md">総合テスト計画</a>を参照する。ケースの操作と期待値は<a href="docs--testing--test-specification.html" data-keep-context>テスト実施要領</a>を参照する。改修ごとの選定は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/README.md">試験選定記録</a>、業務受入は<a href="docs--acceptance--user-acceptance.html" data-keep-context>受入テスト計画</a>、自動実行設定は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/current-app-e2e.md">現行アプリE2E運用</a>に分ける。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/testing/archive/test-policy-v1.00.md">旧テスト方針v1.00</a>は作成当時の記録。</p>
+</section>
+<section id="L9" data-source-start="9" data-source-end="9">
+<p>対象環境は StaffMaster-Automation-Test（<code>68e00049-b7e5-eda6-9888-9a3cc493c5be</code>）、対象App IDは <strong>
+<code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>
+</strong>。アプリの表示名は「自動開発_職員マスタ検索」。職員基本・通勤・基準給与簿の<code>_STUDIO</code>隔離テーブルと隔離HTMLを使用する。<a href="docs--operations--single-app-workflow.html" data-keep-context>単一アプリ運用</a>を優先する。旧App ID <code>362ac991-eead-4f07-8373-afdb3ebfdba1</code> 向けのpack/import/publish/restoreと旧テストの合格は現行アプリの証跡に転用しない。</p>
+</section>
+<section id="L11" data-source-start="11" data-source-end="11">
 <p>参考：デジタル庁 <a href="https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/0af5ce68/20260715_resources_standard_guidelines_guideline_05.pdf">DS-120 デジタル・ガバメント推進標準ガイドライン実践ガイドブック</a>、第3編第7章 Step.3-3「テストの計画を立てる」（2026年7月15日掲載）。DS-120は参考文書。工程の区分を本プロジェクトのPower Apps改修に合わせて適用する。</p>
+</section>
+<section id="L13" data-source-start="13" data-source-end="15">
 <h2 id="2-リスクと重点">2. リスクと重点</h2>
+</section>
+<section id="block-L15" data-source-start="15" data-source-end="22">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-policy.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L15">
 <th>リスク</th>
 <th>優先して確認する結果</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L17">
 <td>職員の取り違え</td>
 <td>検索結果から選択した番号・氏名が詳細、履歴、帳票で一致</td>
 </tr>
-<tr>
+<tr id="L18">
 <td>隔離外への書込み・旧App IDの誤操作</td>
 <td>接続先、実行App ID、読取り専用試験、変更対象を照合</td>
 </tr>
-<tr>
+<tr id="L19">
 <td>認定簿の誤差込・保存漏れ</td>
 <td>2ページの内容と出力ファイルの実体、失敗時の復帰を照合</td>
 </tr>
-<tr>
+<tr id="L20">
 <td>表示の欠落・操作不能</td>
 <td>対象画面と変更した部品を実画面で操作し、可視値を確認</td>
 </tr>
-</tbody></table>
-<p>変更内容によってテスト範囲と証跡の濃淡を決め、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/change-records/README.md">選定記録</a>に理由を残す。重大なリスクへの影響を理由なく省かない。静的検査やコードレビューは実画面の結果の代わりにならない。</p>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L22" data-source-start="22" data-source-end="22">
+<p>変更内容によってテスト範囲と証跡の濃淡を決め、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/README.md">選定記録</a>に理由を残す。重大なリスクへの影響を理由なく省かない。静的検査やコードレビューは実画面の結果の代わりにならない。</p>
+</section>
+<section id="L24" data-source-start="24" data-source-end="26">
 <h2 id="3-テスト工程の選び方">3. テスト工程の選び方</h2>
+</section>
+<section id="block-L26" data-source-start="26" data-source-end="33">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-policy.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L26">
 <th>工程</th>
 <th>対象と開始条件</th>
 <th>合格に必要な観測</th>
 <th>実施タイミング</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L28">
 <td>単体テスト</td>
-<td><strong>改修した部品・数式は必ず対象</strong>。対象App IDと隔離データ、期待値を確定</td>
+<td>
+<strong>改修した部品・数式は必ず対象</strong>。対象App IDと隔離データ、期待値を確定</td>
 <td>公開Playerでその部品を実際に操作し、当該部品の入力から結果まで照合。直接操作できない部品は最小限の画面操作で結果を確認</td>
 <td>改修ごと</td>
 </tr>
-<tr>
+<tr id="L29">
 <td>結合テスト</td>
 <td>改修部品が他部品、複数部品、画面、データ、帳票、外部連携へ影響する場合</td>
 <td>間の受渡し、状態、異常時動作と結果の整合を確認</td>
 <td>影響がある改修ごと。影響なしの判断理由も記録</td>
 </tr>
-<tr>
+<tr id="L30">
 <td>総合テスト</td>
 <td>複数機能を通す業務シナリオと開始・終了条件が定義されてから</td>
 <td>業務の一連の結果と必要な非機能要件</td>
 <td>シナリオと実施時期は後続で策定。一括PASSにしない</td>
 </tr>
-<tr>
+<tr id="L31">
 <td>受入テスト</td>
 <td>対象機能の試験結果・残件が提示された後</td>
 <td>ユーザーが業務目的、操作性、期待値を自身で確認</td>
-<td><a href="docs--acceptance--user-acceptance.html">別計画</a>に従う</td>
+<td>
+<a href="docs--acceptance--user-acceptance.html" data-keep-context>別計画</a>に従う</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L33" data-source-start="33" data-source-end="33">
 <p>従来のL0～L4は<strong>確認手段の区分</strong>であり、単体・結合・総合という工程と一対一に対応しない。ソース静的検査、Studioの式エラー確認、公開版照合、Playwrightの操作を工程に応じて組み合わせる。公開直後の起動確認を実施しても総合テスト完了とは扱わない。</p>
+</section>
+<section id="L35" data-source-start="35" data-source-end="37">
 <h2 id="4-設計成果物と観点の対応">4. 設計成果物と観点の対応</h2>
+</section>
+<section id="block-L37" data-source-start="37" data-source-end="44">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-policy.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L37">
 <th>工程</th>
 <th>主な入力</th>
 <th>観点と記録先</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L39">
 <td>単体</td>
 <td>変更したPower Fx・YAML、部品仕様、詳細設計</td>
 <td>入力・分岐・結果、エラー。変更部品と単体ケースIDを記録</td>
 </tr>
-<tr>
+<tr id="L40">
 <td>結合</td>
 <td>詳細設計、部品間参照、画面遷移・データ契約</td>
 <td>関連部品への反映、例外、隔離接続。影響判定と結合ケースIDを記録</td>
 </tr>
-<tr>
+<tr id="L41">
 <td>総合</td>
 <td>基本設計、業務フロー、機能・帳票一覧</td>
 <td>業務シナリオの組合せと非機能。対象シナリオは後続で策定</td>
 </tr>
-<tr>
+<tr id="L42">
 <td>受入</td>
 <td>要件定義、業務要件、ユーザーが期待する操作</td>
-<td>業務遂行の可否、操作性、未解決事項。<a href="docs--acceptance--user-acceptance.html">受入計画</a>に記録</td>
+<td>業務遂行の可否、操作性、未解決事項。<a href="docs--acceptance--user-acceptance.html" data-keep-context>受入計画</a>に記録</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L44" data-source-start="44" data-source-end="44">
 <p>既存コードが選定ケースを十分検証できるなら再利用する。新しい分岐、期待値、連携が漏れる場合は追加・更新する。失敗回避のために期待値を緩めない。公開版とGitHub候補ソースの一致が照合できない場合は「公開Playerの現状試験」と記録する。</p>
+</section>
+<section id="L46" data-source-start="46" data-source-end="48">
 <h2 id="5-担当環境証跡">5. 担当、環境、証跡</h2>
+</section>
+<section id="L48" data-source-start="48" data-source-end="48">
 <p>Codexは影響分析、ケース選定、テストコードの保守、実行と一次評価を担当。GitHub Actionsは選定記録の形式・差分・ケース参照を検査し、選定された自動ケースを実行する。ユーザーは業務上の期待値と受入可否を判断する。Actionsの静的チェックは影響分析の漏れを意味的に検証できない。</p>
-<p>各改修では変更パス・部品、対象App ID、影響先、単体ケース、必要な結合ケース、総合テストの扱いを<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/change-records/README.md">選定記録</a>に記録する。実行後は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/templates/test-execution-record.md">実施記録の様式</a>にrun URL、コミット、公開版の照合状況、日時、環境、ケースID、期待値、実測値、PASS/FAIL/BLOCKED/NOT_RUN、残件を残す。GitHubには架空データだけを置き、資格情報、認証状態、機密を含むtraceは保存しない。画面やPDFの証跡はリスクに応じて選ぶ。</p>
+</section>
+<section id="L50" data-source-start="50" data-source-end="50">
+<p>各改修では変更パス・部品、対象App ID、影響先、単体ケース、必要な結合ケース、総合テストの扱いを<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/README.md">選定記録</a>に記録する。実行後は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/templates/test-execution-record.md">実施記録の様式</a>にrun URL、コミット、公開版の照合状況、日時、環境、ケースID、期待値、実測値、PASS/FAIL/BLOCKED/NOT_RUN、残件を残す。GitHubには架空データだけを置き、資格情報、認証状態、機密を含むtraceは保存しない。画面やPDFの証跡はリスクに応じて選ぶ。</p>
+</section>
+<section id="L52" data-source-start="52" data-source-end="54">
 <h2 id="6-合否中断再開">6. 合否、中断・再開</h2>
+</section>
+<section id="L54" data-source-start="54" data-source-end="54">
 <p>PASSは指定アプリ・公開版で期待値と必要証跡を確認した状態。FAILは期待値と不一致、BLOCKEDは認証・環境・データ等で判定不能、NOT_RUNは未実施。再実行成功だけで不安定な試験を完了扱いしない。</p>
+</section>
+<section id="L56" data-source-start="56" data-source-end="56">
 <p>認証失敗、App ID不一致、隔離データの不明な変更、ケース設計の多数の誤り、共通部品の不具合の影響範囲不明があれば対象試験を中断する。原因、修正内容、影響範囲、再テスト対象、環境を確認して再開する。改修部品の単体ケース、必要な結合ケースが未実施なら改修完了としない。総合テストと業務受入はそれぞれ独立して判定する。</p>
+</section>
+<section id="L58" data-source-start="58" data-source-end="60">
 <h2 id="7-現時点の実装境界">7. 現時点の実装境界</h2>
-<p>現行アプリ向け<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/current-app-e2e.md">新しいActionsとE2E</a>は、実環境で認証・操作・結果を確認してから稼働済みと記録する。既存の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/records/docs/testing/unattended-e2e-setup.md">ハンドメイド版無人E2E</a>と<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/testing/test-specification.md">旧95項目の設計・履歴</a>は現行アプリ全件自動化済みの証拠にならない。総合テストのシナリオ・実施時期は未決。自動配布や本番データへの切替は本計画の対象外。</p>
-</main></body></html>
+</section>
+<section id="L60" data-source-start="60" data-source-end="61">
+<p>現行アプリ向け<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/current-app-e2e.md">新しいActionsとE2E</a>は、実環境で認証・操作・結果を確認してから稼働済みと記録する。既存の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/testing/unattended-e2e-setup.md">ハンドメイド版無人E2E</a>と<a href="docs--testing--test-specification.html" data-keep-context>旧95項目の設計・履歴</a>は現行アプリ全件自動化済みの証拠にならない。総合テストのシナリオ・実施時期は未決。自動配布や本番データへの切替は本計画の対象外。</p>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

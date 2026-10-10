@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>SCR-004 期末勤勉支給率登録画面 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="index.html" aria-current="page">画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >画面一覧</a>
+</span>
+<span aria-current="page">SCR-004 期末勤勉支給率登録画面</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 画面一覧へ戻る</a>
+<div>
+<span class="eyebrow">SCREEN / SCR-004</span>
+<h1 id="SCR-004">期末勤勉支給率登録画面</h1>
+<p class="lead">現行6画面の一つ。職員×支給対象期間の期末・勤勉別率は確定改修要件。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>既存記録</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>既存区分・出典時点限定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>画面で何をするか</h2>
+<dl class="contract">
+<dt>利用する人</dt>
+<dd>会計課給与班</dd>
+<dt>どこから開く</dt>
+<dd>
+<a href="../operations/OP-001-RATES.html?context=screen-SCR-004#OP-001-RATES" >SCR-001: 期末勤勉支給率登録</a>
+</dd>
+<dt>表示する領域</dt>
+<dd>各操作に対応する一覧・内容。具体的な領域は画面例と操作定義で確認。</dd>
+<dt>入力・確認</dt>
+<dd>期末・勤勉率を登録</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>画面構成を確認する</h2>
+<div class="screen-layout">
+<div class="mock-pane">
+<strong>SCR-004</strong>
+<p>会計課給与班</p>
+<p>対象を選び、内容を確認</p>
+</div>
+<div class="mock-pane">
+<div class="mock-tabs">
+<span>業務の内容</span>
+</div>
+<strong>期末勤勉支給率登録画面</strong>
+<p>現行6画面の一つ。職員×支給対象期間の期末・勤勉別率は確定改修要件。</p>
+<p class="meta">構造を説明する略図です。入力項目・配置の確定度は各操作に従います。</p>
+</div>
+</div>
+<div class="actions">
+<a href="../../../review/pay-html-001/wireframes/scr-004.html?context=screen-SCR-004" class="button primary">詳しい画面イメージを開く</a>
+<a href="../../../review/pay-html-001/operations/scr-004.html?context=screen-SCR-004" class="button">画面内の操作をまとめて読む</a>
+</div>
+<p class="meta">画面イメージは架空データのHTMLモックです。Power Appsでの実装・アクセシビリティ・保存・認可を検証済みとは扱いません。</p>
+</section>
+<section class="panel" >
+<h2>この画面の操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-004-HOME · SCR-004</span>
+<h3>
+<a href="../operations/OP-004-HOME.html?context=screen-SCR-004#OP-004-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-004-RATES · SCR-004</span>
+<h3>
+<a href="../operations/OP-004-RATES.html?context=screen-SCR-004#OP-004-RATES" >期末・勤勉率を登録</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>職員×支給対象期間に期末と勤勉の支給率を別々に登録する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>境界・未決・注記</h2>
+<ul>
+<li>内部の正式項目、保存部品、率の入力範囲、基礎額・式・端数は未入力。</li>
+<li>画面の存在を別率登録の実装・受入完了としない。</li>
+<li>年末調整、法定控除の随時改定・定時決定は業務要件未確定。住民税年度更新手順も未入力。実行可能な業務フローは創作しない。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>この画面を使う業務</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">WF-11</span>
+<h3>
+<a href="../workflows/WF-11.html?context=screen-SCR-004#WF-11" >期末・勤勉率の登録</a>
+</h3>
+<p>職員と支給対象期間を選択 → 別々の率を計算根拠へ</p>
+<div class="meta">会計課給与班（配置案）</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-12</span>
+<h3>
+<a href="../workflows/WF-12.html?context=screen-SCR-004#WF-12" >給与計算から確定・支払記録</a>
+</h3>
+<p>確認済み元データと支給回 → 最新差分ゼロ確定・支払い済み記録</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>要件と出典</h2>
+<div class="chips">
+<a href="../sections/2.2.1.html#section-2.2.1" >2.2.1</a>
+<a href="../sections/2.2.2.html#section-2.2.2" >2.2.2</a>
+<a href="../sections/2.2.3.html#section-2.2.3" >2.2.3</a>
+</div>
+<h3 style="margin-top:18px">関連要件</h3>
+<div class="chips">
+<a href="../requirements/COMMON-SCREEN-001.html?context=screen-SCR-004#requirement-COMMON-SCREEN-001" >COMMON-SCREEN-001</a>
+<a href="../requirements/PAYREQ-07.html?context=screen-SCR-004#requirement-PAYREQ-07" >PAYREQ-07</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=screen-SCR-004" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=screen-SCR-004" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--open-decisions.html?context=screen-SCR-004" data-keep-context>open-decisions.md</a>
+<div class="meta">docs/requirements/open-decisions.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

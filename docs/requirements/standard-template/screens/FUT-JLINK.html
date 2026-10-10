@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>FUT-JLINK 人給連携 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="index.html" aria-current="page">画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >画面一覧</a>
+</span>
+<span aria-current="page">FUT-JLINK 人給連携</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 画面一覧へ戻る</a>
+<div>
+<span class="eyebrow">SCREEN / FUT-JLINK</span>
+<h1 id="FUT-JLINK">人給連携</h1>
+<p class="lead">支給回ごとに出力・給与簿取込・最新照合・給与班確定を行う承認済み構成。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>確定</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>画面で何をするか</h2>
+<dl class="contract">
+<dt>利用する人</dt>
+<dd>会計課給与班</dd>
+<dt>どこから開く</dt>
+<dd>
+<a href="../operations/OP-001-JLINK.html?context=screen-FUT-JLINK#OP-001-JLINK" >SCR-001: 人給連携</a>
+<br>
+<a href="../operations/OP-JINKYU-PROCESS.html?context=screen-FUT-JLINK#OP-JINKYU-PROCESS" >EXT-JINKYU: 人給取込・給与簿出力</a>
+<br>
+<a href="../operations/OP-RETRO-EXPORT.html?context=screen-FUT-JLINK#OP-RETRO-EXPORT" >SCR-007: 追給を人給出力へ渡す</a>
+<br>
+<a href="../operations/OP-JLINK-RETURN.html?context=screen-FUT-JLINK#OP-JLINK-RETURN" >SCR-002: 人給連携へ戻る</a>
+<br>
+<a href="../operations/OP-JLINK-RETURN-ATT.html?context=screen-FUT-JLINK#OP-JLINK-RETURN-ATT" >SCR-003: 人給連携へ戻る</a>
+</dd>
+<dt>表示する領域</dt>
+<dd>支給回の状況 / 出力 / 取込・照合</dd>
+<dt>入力・確認</dt>
+<dd>支給回・対象期間を設定 / 給与を計算・再計算 / 例外調整を記録 / 支払い済みを記録 / 出力対象を選択 / A/Mを指定 / 確認してExcel出力 / 給与簿CSVを取り込む / 最新版と照合 / 差分・全件表示を切替 / 差分対応明細を再出力 / 給与班が支給回を確定</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>画面構成を確認する</h2>
+<div class="screen-layout">
+<div class="mock-pane">
+<strong>FUT-JLINK</strong>
+<p>会計課給与班</p>
+<p>対象を選び、内容を確認</p>
+</div>
+<div class="mock-pane">
+<div class="mock-tabs">
+<span>支給回の状況</span>
+<span>出力</span>
+<span>取込・照合</span>
+</div>
+<strong>人給連携</strong>
+<p>支給回ごとに出力・給与簿取込・最新照合・給与班確定を行う承認済み構成。</p>
+<p class="meta">構造を説明する略図です。入力項目・配置の確定度は各操作に従います。</p>
+</div>
+</div>
+<div class="actions">
+<a href="../../../review/pay-html-001/wireframes/fut-jlink.html?context=screen-FUT-JLINK" class="button primary">詳しい画面イメージを開く</a>
+<a href="../../../review/pay-html-001/operations/fut-jlink.html?context=screen-FUT-JLINK" class="button">画面内の操作をまとめて読む</a>
+</div>
+<p class="meta">画面イメージは架空データのHTMLモックです。Power Appsでの実装・アクセシビリティ・保存・認可を検証済みとは扱いません。</p>
+</section>
+<section class="panel" >
+<h2>この画面の操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-PAY-PERIOD · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-PAY-PERIOD.html?context=screen-FUT-JLINK#OP-PAY-PERIOD" >支給回・対象期間を設定</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>支給対象期間と支給日を別管理し、通常既定と例外変更を扱う。月末締め翌月支給。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-PAY-CALCULATE · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-PAY-CALCULATE.html?context=screen-FUT-JLINK#OP-PAY-CALCULATE" >給与を計算・再計算</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>給与班が計算版を実行。複数所属の実績は職員ごとに集計し、結果と使用条件・単価・率・入力値を版別に保持する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-PAY-ADJUST · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-PAY-ADJUST.html?context=screen-FUT-JLINK#OP-PAY-ADJUST" >例外調整を記録</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>例外・追給・返納は計算額と別の調整記録に対象・項目・額・理由・処理者を保存する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-PAY-INDIVIDUAL · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-PAY-INDIVIDUAL.html?context=screen-FUT-JLINK#OP-PAY-INDIVIDUAL" >個別・所属一括確定の境界</a>
+</h3>
+<span class="tag amber">未決</span>
+<p>職員×支給回の個別確定と所属単位一括確定の業務要件は維持する。I12の支給回全体最新ゼロ判定との操作分担は詳細未入力。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-PAY-PAID · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-PAY-PAID.html?context=screen-FUT-JLINK#OP-PAY-PAID" >支払い済みを記録</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>給与班確定とは別に支払い済みを記録する。アプリが銀行送金など実際の支払いを実行する要件はない。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-SELECT · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-SELECT.html?context=screen-FUT-JLINK#OP-JLINK-SELECT" >支給回・タブを選択</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>選択支給回の支給日・対象期間・状態を共通表示し3タブを切替える。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-TARGET · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-TARGET.html?context=screen-FUT-JLINK#OP-JLINK-TARGET" >出力対象を選択</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>初回は支給回の全職員を既定対象にし、職員で絞れる。差分再出力では対応明細のみを初期選択し変更可能。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-AM · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-AM.html?context=screen-FUT-JLINK#OP-JLINK-AM" >A/Mを指定</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>職員がA/Mを一括指定し、明細ごとに変更する。初回A・不一致修正Mは人が判断する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-EXPORT · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-EXPORT.html?context=screen-FUT-JLINK#OP-JLINK-EXPORT" >確認してExcel出力</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>その時点の最新版計算結果からxlsxを生成し、計算版・対象明細・指定A/Mを処理履歴に結ぶ。職員が外部人給へ渡す。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-IMPORT · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-IMPORT.html?context=screen-FUT-JLINK#OP-JLINK-IMPORT" >給与簿CSVを取り込む</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>1～5行を固定領域、6行目以降を明細とし、可変位置の【合計情報】を境界に明細を取り込む。合計情報のチェック・保存は不要。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-RECONCILE · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-RECONCILE.html?context=screen-FUT-JLINK#OP-JLINK-RECONCILE" >最新版と照合</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>成功取込給与簿と支給回の最新版計算結果を職員・支給回の項目・合計・欠落・余分・重複まで照合。日時・実行者・件数・双方額・差額を処理回別に保存。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-FILTER · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-FILTER.html?context=screen-FUT-JLINK#OP-JLINK-FILTER" >差分・全件表示を切替</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>初期は差分のみ。全件表示へ切替え可能。6列：職員・対象期間・項目・アプリ値・給与簿値・差額。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-CORRECT · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-CORRECT.html?context=screen-FUT-JLINK#OP-JLINK-CORRECT" >差分原因の入力画面へ</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>勤務条件・通勤・控除ならSCR-002、勤怠ならSCR-003へ。元データ訂正→再確認／再提出→再計算を経て戻る。人給原因は外部人給で訂正。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-REEXPORT · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-REEXPORT.html?context=screen-FUT-JLINK#OP-JLINK-REEXPORT" >差分対応明細を再出力</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>差分に対応する出力明細のみを初期選択し、利用者が対象・A/Mを変更して、出力前確認からExcelを再生成する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-ERROR · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-ERROR.html?context=screen-FUT-JLINK#OP-JLINK-ERROR" >人給エラー行を確認</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>人給のエラー対象行をアプリで分かるようにする。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-CONFIRM · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-CONFIRM.html?context=screen-FUT-JLINK#OP-JLINK-CONFIRM" >給与班が支給回を確定</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>給与班が確定ボタンで確定する。確認ダイアログは出さない。ゼロだけで自動確定しない。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-HISTORY · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-HISTORY.html?context=screen-FUT-JLINK#OP-JLINK-HISTORY" >処理回の履歴を確認</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>計算版・出力・取込回・照合の履歴と不一致明細を参照する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-HOME · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-HOME.html?context=screen-FUT-JLINK#OP-JLINK-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>ホームへ戻る。未実行出力対象やA/Mの保存・破棄方法は詳細未決。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-CORRECT-ATT · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-CORRECT-ATT.html?context=screen-FUT-JLINK#OP-JLINK-CORRECT-ATT" >勤怠の差分訂正へ</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>差分原因が勤怠なら勤務時間報告へ進む。報告済みは給与班が差戻してから訂正・再提出する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>境界・未決・注記</h2>
+<ul>
+<li>仮ID。正式画面ID・物理実装未入力。モック承認を実装合格と扱わない。</li>
+<li>I1～I3はモック承認根拠。架空の人数・金額・日付は仕様に採用しない。</li>
+<li>計算版選択、人給取込成否の手入力、確定確認ダイアログは設けない。</li>
+<li>出力前確認は行う。D9～D12等の式精査は保留。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>この画面を使う業務</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">WF-05</span>
+<h3>
+<a href="../workflows/WF-05.html?context=screen-FUT-JLINK#WF-05" >E 条件・控除の確認と訂正</a>
+</h3>
+<p>新規・実際変更・誤登録訂正 → 給与班確定後の未払い再計算</p>
+<div class="meta">局担当者・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-11</span>
+<h3>
+<a href="../workflows/WF-11.html?context=screen-FUT-JLINK#WF-11" >期末・勤勉率の登録</a>
+</h3>
+<p>職員と支給対象期間を選択 → 別々の率を計算根拠へ</p>
+<div class="meta">会計課給与班（配置案）</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-12</span>
+<h3>
+<a href="../workflows/WF-12.html?context=screen-FUT-JLINK#WF-12" >給与計算から確定・支払記録</a>
+</h3>
+<p>確認済み元データと支給回 → 最新差分ゼロ確定・支払い済み記録</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-13</span>
+<h3>
+<a href="../workflows/WF-13.html?context=screen-FUT-JLINK#WF-13" >人給出力・照合・差分再出力</a>
+</h3>
+<p>人給連携の支給回選択 → 差分訂正ループまたは支給回確定</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-14</span>
+<h3>
+<a href="../workflows/WF-14.html?context=screen-FUT-JLINK#WF-14" >遡及差額・追給・分割返納</a>
+</h3>
+<p>過去支払い後の誤り・遡及改定 → 別追給または回収実績・残額管理</p>
+<div class="meta">給与班・業務マスタ管理者</div>
+<span class="tag ">確定改修要件</span>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>要件と出典</h2>
+<div class="chips">
+<a href="../sections/2.2.1.html#section-2.2.1" >2.2.1</a>
+<a href="../sections/2.2.2.html#section-2.2.2" >2.2.2</a>
+<a href="../sections/2.2.3.html#section-2.2.3" >2.2.3</a>
+</div>
+<h3 style="margin-top:18px">関連要件</h3>
+<div class="chips">
+<a href="../requirements/JLINK-UI-01.html?context=screen-FUT-JLINK#requirement-JLINK-UI-01" >JLINK-UI-01</a>
+<a href="../requirements/JLINK-UI-02.html?context=screen-FUT-JLINK#requirement-JLINK-UI-02" >JLINK-UI-02</a>
+<a href="../requirements/JLINK-UI-11.html?context=screen-FUT-JLINK#requirement-JLINK-UI-11" >JLINK-UI-11</a>
+<a href="../requirements/PAYREQ-08.html?context=screen-FUT-JLINK#requirement-PAYREQ-08" >PAYREQ-08</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=screen-FUT-JLINK" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--payroll-interface-decisions-20261008.html?context=screen-FUT-JLINK" data-keep-context>payroll-interface-decisions-20261008.md</a>
+<div class="meta">docs/requirements/payroll-interface-decisions-20261008.md</div>
+</li>
+<li>
+<a href="../sources/docs--design--detailed--payroll-jinkyu-interface.html?context=screen-FUT-JLINK" data-keep-context>payroll-jinkyu-interface.md</a>
+<div class="meta">docs/design/detailed/payroll-jinkyu-interface.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

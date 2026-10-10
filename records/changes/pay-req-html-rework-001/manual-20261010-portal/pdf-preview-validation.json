@@ -1,0 +1,26 @@
+{
+  "artifact": "requirements-structure-preview.pdf",
+  "pages": 4,
+  "method": "PyMuPDF document layout with embedded Japanese Noto Sans CJK. Not browser rendering.",
+  "source_pages": [
+    "docs/requirements/standard-template/index.html",
+    "docs/requirements/standard-template/sections/2.5.1.html",
+    "docs/requirements/standard-template/workflows/WF-13.html",
+    "docs/requirements/standard-template/operations/OP-JLINK-CONFIRM.html",
+    "docs/requirements/standard-template/open-items.html"
+  ],
+  "sha256": "a9445ef228a541c815e05947b8d39c624744ada9105f8b6c9eb0408447cefe87",
+  "font_resources": [
+    [
+      "otf",
+      "Noto Sans CJK JP Regular"
+    ]
+  ],
+  "visual_review": {
+    "result": "PASS_DOCUMENT_LAYOUT_ONLY",
+    "reviewed_at": "2026-10-10T10:56:39Z",
+    "pages_reviewed": 4,
+    "rendering": "pdftoppm at 110 dpi, each page visually inspected",
+    "findings": "Japanese legible; no observed clipping, overlap or missing glyphs. Not browser/Safari verification."
+  }
+}

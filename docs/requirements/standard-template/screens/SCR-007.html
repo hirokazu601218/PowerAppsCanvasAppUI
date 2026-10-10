@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>SCR-007 遡及差額の確認（仮） | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="index.html" aria-current="page">画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >画面一覧</a>
+</span>
+<span aria-current="page">SCR-007 遡及差額の確認（仮）</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 画面一覧へ戻る</a>
+<div>
+<span class="eyebrow">SCREEN / SCR-007</span>
+<h1 id="SCR-007">遡及差額の確認（仮）</h1>
+<p class="lead">先行して独立画面で差額結果の確認・確定を扱う。返納操作配置は提案。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>確定</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>画面で何をするか</h2>
+<dl class="contract">
+<dt>利用する人</dt>
+<dd>会計課給与班</dd>
+<dt>どこから開く</dt>
+<dd>
+<a href="../operations/OP-001-DIFF.html?context=screen-SCR-007#OP-001-DIFF" >SCR-001: 遡及差額を開く</a>
+</dd>
+<dt>表示する領域</dt>
+<dd>各操作に対応する一覧・内容。具体的な領域は画面例と操作定義で確認。</dd>
+<dt>入力・確認</dt>
+<dd>過去月との差額を計算 / 差額内訳を確認・確定 / 追給を人給出力へ渡す / 返納方法を決定 / 回収実績と残額を記録</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>画面構成を確認する</h2>
+<div class="screen-layout">
+<div class="mock-pane">
+<strong>SCR-007</strong>
+<p>会計課給与班</p>
+<p>対象を選び、内容を確認</p>
+</div>
+<div class="mock-pane">
+<div class="mock-tabs">
+<span>業務の内容</span>
+</div>
+<strong>遡及差額の確認（仮）</strong>
+<p>先行して独立画面で差額結果の確認・確定を扱う。返納操作配置は提案。</p>
+<p class="meta">構造を説明する略図です。入力項目・配置の確定度は各操作に従います。</p>
+</div>
+</div>
+<div class="actions">
+<a href="../../../review/pay-html-001/wireframes/scr-007.html?context=screen-SCR-007" class="button primary">詳しい画面イメージを開く</a>
+<a href="../../../review/pay-html-001/operations/scr-007.html?context=screen-SCR-007" class="button">画面内の操作をまとめて読む</a>
+</div>
+<p class="meta">画面イメージは架空データのHTMLモックです。Power Appsでの実装・アクセシビリティ・保存・認可を検証済みとは扱いません。</p>
+</section>
+<section class="panel" >
+<h2>この画面の操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-RETRO-CALCULATE · SCR-007</span>
+<h3>
+<a href="../operations/OP-RETRO-CALCULATE.html?context=screen-SCR-007#OP-RETRO-CALCULATE" >過去月との差額を計算</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>既確定・支払済み結果を保持し、改定ルールまたは訂正後の再計算との差額を月別・項目別に作る。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-RETRO-CONFIRM · SCR-007</span>
+<h3>
+<a href="../operations/OP-RETRO-CONFIRM.html?context=screen-SCR-007#OP-RETRO-CONFIRM" >差額内訳を確認・確定</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>対象職員の計算結果を一覧選択し、月別・項目別の旧結果／訂正後／差額を確認して給与班が確定する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-RETRO-EXPORT · SCR-007</span>
+<h3>
+<a href="../operations/OP-RETRO-EXPORT.html?context=screen-SCR-007#OP-RETRO-EXPORT" >追給を人給出力へ渡す</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>複数過去月追給を人給の追給行へ集約し、アプリ内に月別差額と出力行の対応を保持する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-REPAY-METHOD · SCR-007</span>
+<h3>
+<a href="../operations/OP-REPAY-METHOD.html?context=screen-SCR-007#OP-REPAY-METHOD" >返納方法を決定</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>給与班が給与相殺・納入告知書を選ぶ。分割回収と両方法併用を認め、元支払と返納案件を関連付ける。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-REPAY-RECORD · SCR-007</span>
+<h3>
+<a href="../operations/OP-REPAY-RECORD.html?context=screen-SCR-007#OP-REPAY-RECORD" >回収実績と残額を記録</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>案件に複数の回収実績を結び、回収済額と残額を確認する。支払済み給与を訂正しない。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-007-HOME · SCR-007</span>
+<h3>
+<a href="../operations/OP-007-HOME.html?context=screen-SCR-007#OP-007-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>レビュー用のホームへの復路。差額確定・回収実績を書き換えない。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>境界・未決・注記</h2>
+<ul>
+<li>仮ID。完成後のSCR-002タブ統合の要否はD-08。入口・返納操作の詳細配置は未決。</li>
+<li>確認待ち→確定の2状態。支給・回収実績は別記録。</li>
+<li>支払済み結果を変更しない。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>この画面を使う業務</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">WF-07</span>
+<h3>
+<a href="../workflows/WF-07.html?context=screen-SCR-007#WF-07" >F 変更認定・不支給・期間終了</a>
+</h3>
+<p>通勤認定後の事情変更 → 新認定、一時不支給または期間終了</p>
+<div class="meta">局担当者・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-12</span>
+<h3>
+<a href="../workflows/WF-12.html?context=screen-SCR-007#WF-12" >給与計算から確定・支払記録</a>
+</h3>
+<p>確認済み元データと支給回 → 最新差分ゼロ確定・支払い済み記録</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-14</span>
+<h3>
+<a href="../workflows/WF-14.html?context=screen-SCR-007#WF-14" >遡及差額・追給・分割返納</a>
+</h3>
+<p>過去支払い後の誤り・遡及改定 → 別追給または回収実績・残額管理</p>
+<div class="meta">給与班・業務マスタ管理者</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-15</span>
+<h3>
+<a href="../workflows/WF-15.html?context=screen-SCR-007#WF-15" >業務マスタ・権限と有効期間</a>
+</h3>
+<p>管理権限と改定対象を確認 → 旧版保持・新期間適用・必要なら差額へ</p>
+<div class="meta">業務マスタ管理者</div>
+<span class="tag ">確定改修要件</span>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>要件と出典</h2>
+<div class="chips">
+<a href="../sections/2.2.1.html#section-2.2.1" >2.2.1</a>
+<a href="../sections/2.2.2.html#section-2.2.2" >2.2.2</a>
+<a href="../sections/2.2.3.html#section-2.2.3" >2.2.3</a>
+</div>
+<h3 style="margin-top:18px">関連要件</h3>
+<div class="chips">
+<a href="../requirements/SCR007-DIFF-001.html?context=screen-SCR-007#requirement-SCR007-DIFF-001" >SCR007-DIFF-001</a>
+<a href="../requirements/FUT-STATE-PAY.html?context=screen-SCR-007#requirement-FUT-STATE-PAY" >FUT-STATE-PAY</a>
+<a href="../requirements/PAYREQ-08.html?context=screen-SCR-007#requirement-PAYREQ-08" >PAYREQ-08</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=screen-SCR-007" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--business-requirements.html?context=screen-SCR-007" data-keep-context>business-requirements.md</a>
+<div class="meta">docs/requirements/business-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=screen-SCR-007" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--open-decisions.html?context=screen-SCR-007" data-keep-context>open-decisions.md</a>
+<div class="meta">docs/requirements/open-decisions.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

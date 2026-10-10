@@ -1,0 +1,2590 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>test-specification.md | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">test-specification.md</span>
+</nav>
+<a class="context-return" data-context-return href="../sources.html">← 出典一覧へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>test-specification.md</h1>
+<p class="meta">docs/testing/test-specification.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/test-specification.md">この版のGitHub原文</a> / SHA-256: <code>ed9e93db8a4506897a7af77bc6f8899fa0d7278f2ea0e0a59731d8c630be5ca9</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+<a href="../requirements/I1.html#requirement-I1" >I1</a>
+<a href="../requirements/I12.html#requirement-I12" >I12</a>
+</div>
+<div class="chips">
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L1" data-source-start="1" data-source-end="3">
+<h1 id="テスト実施要領ケース仕様">テスト実施要領・ケース仕様</h1>
+</section>
+<section id="L3" data-source-start="3" data-source-end="3">
+<blockquote>
+<p>現行アプリ向けの先頭プロファイルと、v1.11時点のケース設計・後続履歴を同じパスで保持する。旧見出しへのリンクとケースIDは維持する。</p>
+</blockquote>
+</section>
+<section id="L5" data-source-start="5" data-source-end="7">
+<h2 id="0-現行単一アプリの適用プロファイル2026-09-26">0. 現行単一アプリの適用プロファイル（2026-09-26）</h2>
+</section>
+<section id="L7" data-source-start="7" data-source-end="12">
+<ul>
+<li>対象は <code>StaffMaster-Automation-Test</code>、App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。<code>_STUDIO</code>隔離テーブルと隔離HTMLを使用する。<a href="docs--testing--test-policy.html" data-keep-context>全体テスト計画</a>に従い、改修部品の単体試験を必ず実施。他部品への影響があれば結合試験も実施し、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/README.md">選定記録</a>で理由・ケースIDを示す。</li>
+<li>現行アプリの単体 <code>UT-HOME-001</code>：ホームの職員マスタ検索ボタンで03会計課の架空職員7名の一覧を開く。結合 <code>IT-HOME-DETAIL-001</code>：一覧の011を選択して詳細の番号・所属へ反映する。実装は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/e2e/current-app/navigation.test.ts">e2e/current-app/navigation.test.ts</a>。</li>
+<li>検索の単体 <code>UT-SRCH-001</code>（同姓同名の1件絞り込み）と結合 <code>IT-SRCH-DETAIL-001</code>（絞り込みから詳細への受渡し）は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/testing/current-app-search-observation.md">実施記録</a>で単体FAIL／結合BLOCKED。今回の安定ゲートに実装したケースには含めず、検索部品を改修するときにコードと期待値を整える。合格済みとは扱わない。</li>
+<li>実装済みの2ケースは全改修部品の単体テストを代替しない。対象部品に対応するケースがなければ追加する。改修ごとにテストコードを無条件で新規作成する必要はない。GitHub候補を公開版へ反映したことの照合は別に行う。</li>
+<li>以下のv1.11由来の25名・11桁番号等の記述は<strong>当時の基準と試験履歴</strong>であり、現行アプリの全ケースに一律適用しない。後続追記のSCR-002等も各記載の適用版を確認する。総合テストのシナリオと実施時期は未確定。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/testing/acceptance.md">旧受入基準</a>をユーザーの業務受入完了と扱わない。</li>
+<li>現行の要件IDごとの設計・試験対応、未設計・未ケース化の範囲は<a href="docs--requirements--traceability-matrix.html" data-keep-context>要件・設計・試験対応表</a>を参照する。下記<code>LT-*</code>は試験計画上のケースであり、現行App IDで自動実行可能な<code>UT-*</code>／<code>IT-*</code>ケースや実施済み結果と区別する。</li>
+</ul>
+</section>
+<section id="L14" data-source-start="14" data-source-end="16">
+<h3 id="01-change-20260927-scr002-ui-の単体結合ケース">0.1 CHANGE-20260927-SCR002-UI の単体・結合ケース</h3>
+</section>
+<section id="L16" data-source-start="16" data-source-end="16">
+<p>対象は同一App IDのSCR-002画面変更。公開v22のメタデータ時刻は<code>2026-09-27T03:01:06.626618Z</code>。実行選定は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/change-20260927-scr002-ui.json">変更記録</a>、コードは<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/e2e/current-app/scr002-layout.test.ts">scr002-layout.test.ts</a>。隔離職員011（03会計課）を所有者の手動確認と専用利用者の自動試験で用いる。SCR-005の職員ラベルでは全角空白も許容して番号と氏名を照合する。認定IDなど機微の実値は試験結果で伏せる。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/verification/postpublish/change-20260927-scr002-ui.json">公開後照合記録</a>は画面定義SHAとパッケージSHAを区別する。</p>
+</section>
+<section id="block-L18" data-source-start="18" data-source-end="26">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L18">
+<th>ID</th>
+<th>区分</th>
+<th>操作</th>
+<th>独立期待値</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L20">
+<td>UT-SCR002-HEADER-001</td>
+<td>単体</td>
+<td>SCR-001からSCR-002を開く</td>
+<td>ホームはSCR-002の左、独立支給対象月欄はなし</td>
+</tr>
+<tr id="L21">
+<td>UT-SCR002-HISTORY-001</td>
+<td>単体</td>
+<td>011を選び勤務条件・通勤・社会保険・税固定控除を順に表示</td>
+<td>長文の履歴カードはなく職員011の詳細を表示。複数件の過去履歴選択は別の対象データで補足確認が必要</td>
+</tr>
+<tr id="L22">
+<td>UT-SCR002-PAYROLL-001</td>
+<td>単体</td>
+<td>011の給与簿を開く</td>
+<td>開始・終了月を維持し、1件表示時の件数の直下に給与期間対象年と次行。色は画像と定義差分でも照合</td>
+</tr>
+<tr id="L23">
+<td>IT-SCR002-NAV-001</td>
+<td>結合</td>
+<td>011の給与簿→SCR-005→SCR-002</td>
+<td>支給明細で011を表示し、戻った後も同一職員番号。給与期間の保持・権限の独立保証は別ケース</td>
+</tr>
+<tr id="L24">
+<td>IT-SCR002-HOME-001</td>
+<td>結合</td>
+<td>ヘッダーのホーム→SCR-001</td>
+<td>SCR-001と職員マスタ検索への入口を表示。未保存変更の確認は既存要件で別途確認</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L26" data-source-start="26" data-source-end="26">
+<p>総合試験シナリオ・タイミングは未決。上の操作は所有者1人・1件の範囲であり、他所属の権限、給与163行の末尾、複数履歴の切替を一律合格としない。</p>
+</section>
+<section id="L28" data-source-start="28" data-source-end="30">
+<h2 id="公開v25-scr-002履歴4定義の結合ケースchange-20260928-scr002-history">公開v25 SCR-002履歴4定義の結合ケース（CHANGE-20260928-SCR002-HISTORY）</h2>
+</section>
+<section id="L30" data-source-start="30" data-source-end="30">
+<p>公開メタデータ時刻<code>2026-09-28T05:00:02.0455229Z</code>。対象は隔離架空職員<code>009900000011</code>と別職員<code>009900000004</code>、公開Playerの固定App ID。入力と期待値の正本は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/config/dataverse/scr002-history-columns.json">列契約</a>と<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/powerapps/test-data/">隔離fixture</a>で、表示自身を期待値にしない。</p>
+</section>
+<section id="block-L32" data-source-start="32" data-source-end="37">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L32">
+<th>ケース</th>
+<th>操作</th>
+<th>独立期待値</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L34">
+<td>
+<code>IT-SCR002-HISTORY-TABS-001</code>
+</td>
+<td>011を選び勤務条件→社会保険→税固定控除の履歴を切り替え、税固定控除内で住民税履歴も選ぶ</td>
+<td>各選択行で15・26・9・6項目が定義順に表示される。税9項目と住民6項目を混在させず、0とNULL空欄を区別。既存の基本情報・通勤・給与簿タブを開いても選択職員を維持</td>
+</tr>
+<tr id="L35">
+<td>
+<code>IT-SCR002-HISTORY-SWITCH-001</code>
+</td>
+<td>011の4履歴を確認した後004へ切替、再度011へ戻す</td>
+<td>004に011の履歴値が残らず、011へ戻すとその行を再取得。親GUIDと12桁番号が一致しない行は表示しない。取得失敗や0件は個別の隔離条件で判定</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L37" data-source-start="37" data-source-end="37">
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/testing/change-records/change-20260928-scr002-history.json">単体4件と結合2件の選定記録</a>を実行する。権限の他所属拒否、実データ、編集・保存、給与計算、総合テストはこのケースの合格範囲外。</p>
+</section>
+<section id="L39" data-source-start="39" data-source-end="39">
+<hr>
+</section>
+<section id="L41" data-source-start="41" data-source-end="43">
+<h2 id="旧版のケース設計追記履歴以下の既存見出しとケースidを保持">旧版のケース設計・追記履歴（以下の既存見出しとケースIDを保持）</h2>
+</section>
+<section id="L43" data-source-start="43" data-source-end="46">
+<p>文書版：v1.04／作成日：2026-09-13／更新日：2026-09-16
+対象：職員マスタ検索v1.11を基準としたB案、検索サイドバー、通勤手当認定簿<br>上位文書：<a href="docs--testing--test-policy.html" data-keep-context>テスト方針</a>
+<br>状態：設計済み・試験未実施。ここに記載した期待値は今回の実機試験結果ではない。</p>
+</section>
+<section id="L48" data-source-start="48" data-source-end="50">
+<h2 id="1-基準資料試験対象">1. 基準資料・試験対象</h2>
+</section>
+<section id="L50" data-source-start="50" data-source-end="54">
+<ul>
+<li>
+<a href="docs--requirements--requirements.html" data-keep-context>要件定義v1.04</a>：R01～R14、Issue #23の追加受入条件。</li>
+<li>
+<a href="docs--design--basic--basic-design.html" data-keep-context>基本設計v1.04</a>、<a href="docs--design--detailed--detailed-design.html" data-keep-context>詳細設計v1.04</a>、<a href="docs--design--basic--design-system.html" data-keep-context>B案デザイン基準</a>。</li>
+<li>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/other/src/staff-master/scrStaffMasterSearch_v1.11.paste.yaml">v1.11貼付版</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/other/src/staff-master/scrStaffMasterSearch_v1.11.pa.yaml">管理版</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/handoff/install-v1.11.md">導入手順</a>。</li>
+<li>作成時のmain：<code>2197fd5608fc673ec53db1f30791b50f5c6af91e</code>。貼付版Git blob：<code>0951813e229c017007b42cf70cff0d1042550433</code>。これはGit blob IDであり、SHA-256ではない。</li>
+<li>既存<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/testing/acceptance.md">T01～T14</a>を本書で細分化する。旧ローカル検査結果を本書のPASSへ転記しない。</li>
+</ul>
+</section>
+<section id="L56" data-source-start="56" data-source-end="58">
+<h2 id="2-実行共通条件">2. 実行共通条件</h2>
+</section>
+<section id="L58" data-source-start="58" data-source-end="60">
+<h3 id="21-実行プロファイル">2.1 実行プロファイル</h3>
+</section>
+<section id="block-L60" data-source-start="60" data-source-end="68">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L60">
+<th>記号</th>
+<th>内容</th>
+<th>現時点</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L62">
+<td>S</td>
+<td>ソースの静的・限定モデル検査</td>
+<td>既存検査器あり。本書の追加ケースは未実装</td>
+</tr>
+<tr id="L63">
+<td>E</td>
+<td>公開Power Appsの実ブラウザE2E</td>
+<td>自動化環境未構築。未実施</td>
+</tr>
+<tr id="L64">
+<td>V</td>
+<td>Eに加え実画面の寸法・画像検査</td>
+<td>同上。近似描画を代用しない</td>
+</tr>
+<tr id="L65">
+<td>P</td>
+<td>PDF機能有効、実保存接続あり、出力ファイル取得可能</td>
+<td>接続・保存先の確定が必要</td>
+</tr>
+<tr id="L66">
+<td>H</td>
+<td>人による支援技術・見やすさ確認</td>
+<td>自動検査の補完。自動合格にしない</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L68" data-source-start="68" data-source-end="68">
+<p>優先度P0＝毎変更の最重要、P1＝対象機能のリリース必須、P2＝拡張fixture／基盤が必要な追加試験。P2を任意削除とは解釈しない。適用対象を宣言したリリースではP2も完了条件に含む。</p>
+</section>
+<section id="L70" data-source-start="70" data-source-end="72">
+<h3 id="22-初期化手順-c0">2.2 初期化手順 C0</h3>
+</section>
+<section id="L72" data-source-start="72" data-source-end="76">
+<ol>
+<li>テスト専用の承認済みアカウントを使用する。公開アプリURL、公開版、Git SHA、fixture版、ブラウザ版を記録。</li>
+<li>既存のアプリタブを閉じ、新規ブラウザコンテキストで対象アプリを開く。認証情報だけの再利用は可。</li>
+<li>D0の25名fixture、表示基準日2026/09/11、ja-JP、Asia/Tokyo、標準文字、検索サイドバー展開を前提とする。</li>
+<li>起動試験では「テスト表示に戻す」「検索」「クリア」を押さず、App.OnStart／OnVisibleを手動実行しない。テストコードによる内部変数・コレクション初期化は禁止。</li>
+<li>認証完了・アプリフレーム読み込み後から、初期状態を期限付きで待つ。エラーや空画面ならそのまま証跡を残す。</li>
+</ol>
+</section>
+<section id="L78" data-source-start="78" data-source-end="78">
+<p>各ケースは原則C0から独立開始。表内の「検索A」等はC0後に実際のUIでその操作を追加する。前ケースの状態へ依存しない。D1～D4は試験専用ビルド／fixture読込口で準備し、起動後に表示値だけを差し替えてはならない。</p>
+</section>
+<section id="L80" data-source-start="80" data-source-end="82">
+<h3 id="23-ブラウザ表示条件">2.3 ブラウザ・表示条件</h3>
+</section>
+<section id="L82" data-source-start="82" data-source-end="87">
+<ul>
+<li>自動化第1対象：Microsoft Edge／Chromium系の固定バージョン。正式環境決定時に実行OS・ブラウザ版を固定する。</li>
+<li>E標準：viewport 1366×768 CSS px、DPR=1、OS倍率100%、ブラウザ倍率100%。実際のPower Apps描画領域も測定し記録する。</li>
+<li>V全条件：1366×768、1920×1080 × 標準・大文字 × サイドバー展開・折りたたみ＝8条件。各条件は実アプリで設定する。</li>
+<li>200%はブラウザ拡大を別途試験する。アプリ内の「文字：大」やviewport縮小だけで置き換えない。</li>
+<li>画面外にある行・列は、該当ギャラリーや表をスクロールして確認する。仮想化されたギャラリーのDOM数を結果総数として使わない。</li>
+<li>iPhone上で業務アプリが完全動作することは本書の合格条件外。スマホから試験結果リンクを閲覧できることは確認対象。</li>
+</ul>
+</section>
+<section id="L89" data-source-start="89" data-source-end="91">
+<h3 id="24-待機測定値本プロジェクト初期基準">2.4 待機・測定値（本プロジェクト初期基準）</h3>
+</section>
+<section id="block-L91" data-source-start="91" data-source-end="100">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L91">
+<th>操作</th>
+<th align="right">機能試験タイムアウト</th>
+<th align="right">性能の暫定目標</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L93">
+<td>認証後の起動</td>
+<td align="right">60秒</td>
+<td align="right">30秒以内</td>
+</tr>
+<tr id="L94">
+<td>検索・クリア・職員選択・ページ</td>
+<td align="right">10秒</td>
+<td align="right">2秒以内</td>
+</tr>
+<tr id="L95">
+<td>サイドバー・文字切替</td>
+<td align="right">10秒</td>
+<td align="right">1秒以内</td>
+</tr>
+<tr id="L96">
+<td>認定簿表示</td>
+<td align="right">20秒</td>
+<td align="right">5秒以内</td>
+</tr>
+<tr id="L97">
+<td>PDF生成</td>
+<td align="right">90秒</td>
+<td align="right">30秒以内</td>
+</tr>
+<tr id="L98">
+<td>PDF保存</td>
+<td align="right">120秒</td>
+<td align="right">60秒以内</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L100" data-source-start="100" data-source-end="100">
+<p>タイムアウト内に期待状態が出なければ機能FAIL。性能目標超過は機能合否と別に性能FAILとして記録。環境障害なら根拠を記録してBLOCKEDに分類する。目標値はMicrosoft保証値ではなく、環境構築後の測定で承認改訂する。</p>
+</section>
+<section id="L102" data-source-start="102" data-source-end="104">
+<h3 id="25-証跡記号">2.5 証跡記号</h3>
+</section>
+<section id="block-L104" data-source-start="104" data-source-end="112">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L104">
+<th>記号</th>
+<th>必要証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L106">
+<td>EV-S</td>
+<td>対象SHA、静的検査ログ、不一致部品・式・位置</td>
+</tr>
+<tr id="L107">
+<td>EV-E</td>
+<td>クリック／入力列、期待JSON、実観測JSON、対象画面スクリーンショット</td>
+</tr>
+<tr id="L108">
+<td>EV-V</td>
+<td>全体・問題領域画像、viewport/DPR/倍率/フォント、可視要素矩形、差分画像</td>
+</tr>
+<tr id="L109">
+<td>EV-P</td>
+<td>生成／保存PDF、SHA-256、ページ数・用紙寸法、各ページPNG、差込照合、保存応答・取得結果</td>
+</tr>
+<tr id="L110">
+<td>EV-H</td>
+<td>確認者、端末・支援技術版、操作経路、判定理由</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L112" data-source-start="112" data-source-end="112">
+<p>「実観測」は公開アプリ上の表示、読み取り可能なアクセシビリティ情報、ダウンロード実体を指す。ソースの期待値をそのまま実値欄へコピーしない。</p>
+</section>
+<section id="L114" data-source-start="114" data-source-end="116">
+<h2 id="3-テストデータ独立期待値">3. テストデータ・独立期待値</h2>
+</section>
+<section id="L116" data-source-start="116" data-source-end="118">
+<h3 id="31-d0現行25名基本fixture-v1">3.1 D0：現行25名（基本fixture v1）</h3>
+</section>
+<section id="L118" data-source-start="118" data-source-end="118">
+<p>職員番号は11桁文字列。下表の番号順をD0の初期順序とする。短縮表記を画面や出力の正解に使わない。全件検索は25名、在籍22名、退職3名。</p>
+</section>
+<section id="block-L120" data-source-start="120" data-source-end="148">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L120">
+<th>職員番号</th>
+<th>氏名</th>
+<th>所属</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L122">
+<td>00990000001</td>
+<td>山田 太郎</td>
+<td>01秘書課</td>
+<td>在籍</td>
+</tr>
+<tr id="L123">
+<td>00990000002</td>
+<td>山田 花子</td>
+<td>02総務課</td>
+<td>在籍</td>
+</tr>
+<tr id="L124">
+<td>00990000003</td>
+<td>佐藤 一郎</td>
+<td>03会計課</td>
+<td>在籍</td>
+</tr>
+<tr id="L125">
+<td>00990000004</td>
+<td>鈴木 美咲</td>
+<td>01秘書課</td>
+<td>在籍</td>
+</tr>
+<tr id="L126">
+<td>00990000005</td>
+<td>高橋 次郎</td>
+<td>02総務課</td>
+<td>在籍</td>
+</tr>
+<tr id="L127">
+<td>00990000006</td>
+<td>田中 健太</td>
+<td>03会計課</td>
+<td>在籍</td>
+</tr>
+<tr id="L128">
+<td>00990000007</td>
+<td>伊藤 直美</td>
+<td>01秘書課</td>
+<td>退職</td>
+</tr>
+<tr id="L129">
+<td>00990000008</td>
+<td>渡辺 大輔</td>
+<td>02総務課</td>
+<td>在籍</td>
+</tr>
+<tr id="L130">
+<td>00990000009</td>
+<td>小林 由美</td>
+<td>03会計課</td>
+<td>在籍</td>
+</tr>
+<tr id="L131">
+<td>00990000010</td>
+<td>加藤 翔太</td>
+<td>01秘書課</td>
+<td>在籍</td>
+</tr>
+<tr id="L132">
+<td>00990000011</td>
+<td>吉田 恵</td>
+<td>02総務課</td>
+<td>在籍</td>
+</tr>
+<tr id="L133">
+<td>00990000012</td>
+<td>山本 拓海</td>
+<td>03会計課</td>
+<td>在籍</td>
+</tr>
+<tr id="L134">
+<td>00990000013</td>
+<td>中村 真理</td>
+<td>01秘書課</td>
+<td>在籍</td>
+</tr>
+<tr id="L135">
+<td>00990000014</td>
+<td>斎藤 和也</td>
+<td>02総務課</td>
+<td>退職</td>
+</tr>
+<tr id="L136">
+<td>00990000015</td>
+<td>松本 彩</td>
+<td>03会計課</td>
+<td>在籍</td>
+</tr>
+<tr id="L137">
+<td>00990000016</td>
+<td>井上 亮</td>
+<td>01秘書課</td>
+<td>在籍</td>
+</tr>
+<tr id="L138">
+<td>00990000017</td>
+<td>木村 奈々</td>
+<td>02総務課</td>
+<td>在籍</td>
+</tr>
+<tr id="L139">
+<td>00990000018</td>
+<td>林 誠</td>
+<td>03会計課</td>
+<td>在籍</td>
+</tr>
+<tr id="L140">
+<td>00990000019</td>
+<td>清水 愛</td>
+<td>01秘書課</td>
+<td>在籍</td>
+</tr>
+<tr id="L141">
+<td>00990000020</td>
+<td>山口 健一</td>
+<td>02総務課</td>
+<td>在籍</td>
+</tr>
+<tr id="L142">
+<td>00990000021</td>
+<td>森 遥</td>
+<td>03会計課</td>
+<td>退職</td>
+</tr>
+<tr id="L143">
+<td>00990000022</td>
+<td>池田 学</td>
+<td>01秘書課</td>
+<td>在籍</td>
+</tr>
+<tr id="L144">
+<td>00990000023</td>
+<td>橋本 由紀</td>
+<td>02総務課</td>
+<td>在籍</td>
+</tr>
+<tr id="L145">
+<td>00990000024</td>
+<td>阿部 翼</td>
+<td>03会計課</td>
+<td>在籍</td>
+</tr>
+<tr id="L146">
+<td>00990000025</td>
+<td>石川 美穂</td>
+<td>01秘書課</td>
+<td>在籍</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L148" data-source-start="148" data-source-end="148">
+<p>記号A＝00990000001、B＝00990000002、C＝00990000003、Z＝00990000025。</p>
+</section>
+<section id="L150" data-source-start="150" data-source-end="154">
+<ul>
+<li>01秘書課＝末尾01,04,07,10,13,16,19,22,25の9名。</li>
+<li>02総務課＝末尾02,05,08,11,14,17,20,23の8名。</li>
+<li>03会計課＝末尾03,06,09,12,15,18,21,24の8名。</li>
+<li>退職＝末尾07,14,21。在籍＝上記以外。</li>
+<li>ページ1＝末尾01～20、ページ2＝末尾21～25。25名に重複・欠番なし。</li>
+</ul>
+</section>
+<section id="L156" data-source-start="156" data-source-end="156">
+<p>現在のフリーワード対象：StaffId、Name、OrgFull、Org、Birth、Sex、Hire、Leave、Status、WorkReg、Daily、Hours、CommuteReg、Method、Pass、Fare、SocialReg、Health、Pension、ResidentReg、TaxMay、TaxJune、TaxJuly、FixedReg、TaxClass、Employment。大小文字を区別しない部分一致。キーワード前後の半角空白を除去。所属・状態フィルターとはAND。全角／半角の自動正規化は未要件化で、勝手に追加しない。</p>
+</section>
+<section id="L158" data-source-start="158" data-source-end="160">
+<h3 id="32-d0の詳細期待値">3.2 D0の詳細期待値</h3>
+</section>
+<section id="block-L160" data-source-start="160" data-source-end="170">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L160">
+<th>群</th>
+<th align="right">全体件数</th>
+<th>Aの期待値</th>
+<th>B/C/Z等の差分</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L162">
+<td>基本</td>
+<td align="right">25</td>
+<td>番号A、山田 太郎、総務部 秘書課、01秘書課、1971/02/17、男、2024/04/01、退職日空、在籍</td>
+<td>B＝総務部 総務課、1972/02/17、女。C＝管理部 会計課、1973/02/17、男</td>
+</tr>
+<tr id="L163">
+<td>Work</td>
+<td align="right">27</td>
+<td>Aは3件：現行・過去・予定。現行開始2026/04/01、終了2099/03/31、日額16,420、勤務8:00、終了16:45、1日7.75</td>
+<td>B/C/Zは各1件。現行日額B=16,430、C=16,440、Z=16,660</td>
+</tr>
+<tr id="L164">
+<td>Commute</td>
+<td align="right">24</td>
+<td>1件、半年定期、2026/04/01～2099/03/31、4月220,040、10月220,040</td>
+<td>B/C各1件、Zのみ0件</td>
+</tr>
+<tr id="L165">
+<td>Social</td>
+<td align="right">25</td>
+<td>1件、専門職員、1971/02/17、年齢55/56、介護全月該当、厚生年金免除・後期高齢全月該当なし、級12、月額220,000</td>
+<td>Bの年齢54/55、Cは53/54</td>
+</tr>
+<tr id="L166">
+<td>Resident</td>
+<td align="right">25</td>
+<td>1件、10,000、7月以降、2026/07/01～2027/05/31</td>
+<td>各職員1件</td>
+</tr>
+<tr id="L167">
+<td>Tax</td>
+<td align="right">25</td>
+<td>1件、甲欄、加入、貯金3,000、貸付0、扶養1、備考「テスト用。給与計算には使用しません。」</td>
+<td>各職員1件</td>
+</tr>
+<tr id="L168">
+<td>Payroll</td>
+<td align="right">25</td>
+<td>1件、2026年、2026/09/18、Base328,400、Commute8,400、Overtime12,500、Gross349,300、Deduct32,800、Net316,500。全調整額・Home・HomeAdjは0</td>
+<td>BはBase328,600/Gross349,500/Net316,700、Cは328,800/349,700/316,900</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L170" data-source-start="170" data-source-end="170">
+<p>Social等の数値は表示確認用の固定データで、法定計算の正解ではない。Workの期間重複等も含め、データ妥当性と表示忠実性を区別する。認定簿の共通月額10,480円はD0の表示回帰値に限り、Commuteとの整合性合格を意味しない。</p>
+</section>
+<section id="L172" data-source-start="172" data-source-end="174">
+<h3 id="33-追加fixture設計のみ今回未実装">3.3 追加fixture（設計のみ・今回未実装）</h3>
+</section>
+<section id="block-L174" data-source-start="174" data-source-end="181">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L174">
+<th>ID</th>
+<th>準備する具体的データ</th>
+<th>用途・期待値</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L176">
+<td>D1</td>
+<td>D0の先頭N件を利用しN=0,1,19,20,21,40にする。40件時は末尾26～40の架空職員を追加、番号重複なし</td>
+<td>空集合、ページ境界。ページ数は0件専用表示または操作不能状態、その他ceil(N/20)。最終件数Nが20の倍数なら20</td>
+</tr>
+<tr id="L177">
+<td>D2</td>
+<td>Cだけ氏名「佐藤・アレクサンダー 一郎」、正式所属「総務局給与厚生管理部非常勤職員給与・共済保険事務調整担当」、給与Noteを「長文確認用。」50回、BaseAdj=-12,345、Home=0、Leave空へ変更</td>
+<td>長文・負値・0・空値の欠損と混同を検出。他の給与合計値は独立計算してfixtureに明示</td>
+</tr>
+<tr id="L178">
+<td>D3</td>
+<td>AとBにそれぞれ別認定ID、別経路、別月額、別期間を付与。AのID=TK-TEST-001、月額10,480、BのID=TK-TEST-002、月額6,490。Aに旧認定TK-TEST-000を追加</td>
+<td>認定ID選択、A/B切替、過去と現行の選び分け。月別支給額は支給方式・認定期間と整合する値を別台帳で確定してから実行</td>
+</tr>
+<tr id="L179">
+<td>D4</td>
+<td>Bの表示名をAと同じ「山田 太郎」にし、番号とBの履歴は維持。BのWork日額16,430</td>
+<td>氏名一致ではなく職員番号で参照していることを確認</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L181" data-source-start="181" data-source-end="181">
+<p>独立fixtureファイルとexpected-resultsはテスト実装時に<code>tests/fixtures/</code>へ作る。D0は本表から作成し、実装のTableやFilterをそのまま正解生成器にしない。全項目の期待マップは項目名・型・値・表示を持ち、レビューしたハッシュで固定する。準備できないケースはBLOCKED。D3の未決値を推測して合格させない。</p>
+</section>
+<section id="L183" data-source-start="183" data-source-end="185">
+<h2 id="4-要件ケース対応">4. 要件・ケース対応</h2>
+</section>
+<section id="block-L185" data-source-start="185" data-source-end="202">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L185">
+<th>要件／旧試験</th>
+<th>本書ケース</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L187">
+<td>R01／T01</td>
+<td>INIT-01～04、DATA-01～02</td>
+</tr>
+<tr id="L188">
+<td>R02／T02</td>
+<td>SRCH-01～12</td>
+</tr>
+<tr id="L189">
+<td>R03／T03</td>
+<td>PAGE-01～05、SEL-01～04</td>
+</tr>
+<tr id="L190">
+<td>R04／T05</td>
+<td>DATA-03～05、DETAIL-01～06</td>
+</tr>
+<tr id="L191">
+<td>R05／T04</td>
+<td>ZERO-01～03</td>
+</tr>
+<tr id="L192">
+<td>R06／T06</td>
+<td>LED-01～06</td>
+</tr>
+<tr id="L193">
+<td>R07／T07</td>
+<td>PDF-01～07</td>
+</tr>
+<tr id="L194">
+<td>R08／T08</td>
+<td>OUT-01～06</td>
+</tr>
+<tr id="L195">
+<td>R09/R10／T09</td>
+<td>VIS-01～06</td>
+</tr>
+<tr id="L196">
+<td>R11／T10/T11</td>
+<td>ACC-01～06</td>
+</tr>
+<tr id="L197">
+<td>R12／T12</td>
+<td>SRC-01～05、DEP-01～03、OPS-01～02</td>
+</tr>
+<tr id="L198">
+<td>R13／T13</td>
+<td>SIDE-01～05</td>
+</tr>
+<tr id="L199">
+<td>R14／T14</td>
+<td>PATCH-01～04</td>
+</tr>
+<tr id="L200">
+<td>試験器の信頼性・性能</td>
+<td>HAR-01～04、PERF-01～02</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L202" data-source-start="202" data-source-end="204">
+<h2 id="5-詳細ケース">5. 詳細ケース</h2>
+</section>
+<section id="L204" data-source-start="204" data-source-end="204">
+<p>全表の「操作」は記載順で実施する。「期待結果」は全項目AND条件。証跡不足をPASSにしない。以下の結果欄はまだ設けず、実行時に第8章の記録を作る。</p>
+</section>
+<section id="L206" data-source-start="206" data-source-end="208">
+<h3 id="51-ソース導入">5.1 ソース・導入</h3>
+</section>
+<section id="block-L208" data-source-start="208" data-source-end="219">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L208">
+<th>ID／優先度／方式</th>
+<th>前提</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L210">
+<td>SRC-01／P0／S</td>
+<td>対象2形式</td>
+<td>YAMLを重複キー拒否で解析し全ノードを走査</td>
+<td>構文・重複キーエラー0。貼付配列と管理版Childrenが意味的に一致</td>
+<td>EV-S</td>
+</tr>
+<tr id="L211">
+<td>SRC-02／P0／S</td>
+<td>現行部品版台帳</td>
+<td>型・プロパティ・親子を台帳と比較</td>
+<td>Classic/Buttonの不正AccessibleLabelなし、PDFViewerはScreen直下。未対応版を無視しない</td>
+<td>EV-S</td>
+</tr>
+<tr id="L212">
+<td>SRC-03／P0／S</td>
+<td>ソース・Fx</td>
+<td>参照と外部依存を全件抽出</td>
+<td>未定義参照0。Text/Valueを対象部品仕様と照合。データ初期化がOnStart/OnVisible/タイマーだけに依存しない</td>
+<td>EV-S</td>
+</tr>
+<tr id="L213">
+<td>SRC-04／P1／S</td>
+<td>基準版・項目台帳</td>
+<td>基本・履歴・給与・帳票フィールドを集合比較</td>
+<td>基本9、6履歴、給与15、帳票69フィールドの脱落0。順序／改名差分は理由がある</td>
+<td>EV-S</td>
+</tr>
+<tr id="L214">
+<td>SRC-05／P0／S</td>
+<td>公開対象ファイル</td>
+<td>URL、資格情報、埋込画像、データを検査</td>
+<td>実個人情報・秘密・内部接続情報0。架空データである旨を表示。空様式画像に実職員情報なし</td>
+<td>EV-S</td>
+</tr>
+<tr id="L215">
+<td>DEP-01／P0／E</td>
+<td>承認済みテストアプリ複製</td>
+<td>新規空画面へ指定手順でpaste版を貼付し保存</td>
+<td>PA2108/PA2131等のエラー0。警告は件数・内容・採否記録。PDFViewerが画面直下</td>
+<td>EV-E＋導入ログ</td>
+</tr>
+<tr id="L216">
+<td>DEP-02／P0／E</td>
+<td>DEP-01完了</td>
+<td>App checker確認→公開→別セッションで起動</td>
+<td>対象版に関する式・参照エラー0。公開版とGit SHAの対応が一致</td>
+<td>EV-E＋公開記録</td>
+</tr>
+<tr id="L217">
+<td>DEP-03／P1／E</td>
+<td>既存動作版あり</td>
+<td>新候補版を別画面へ導入、双方を開く</td>
+<td>旧画面の部品を置換・破壊しない。どちらが試験対象か版表示で判別できる</td>
+<td>EV-E</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L219" data-source-start="219" data-source-end="219">
+<p>L2導入手段の自動化は後日選定。貼付版をソリューションZIPと同一視しない。GitHubへのコミットだけで公開済みとはみなさない。</p>
+</section>
+<section id="L221" data-source-start="221" data-source-end="223">
+<h3 id="52-初期表示データ">5.2 初期表示・データ</h3>
+</section>
+<section id="block-L223" data-source-start="223" data-source-end="235">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L223">
+<th>ID／優先度／方式</th>
+<th>前提</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L225">
+<td>INIT-01／P0／E</td>
+<td>C0・D0</td>
+<td>一切操作せず起動を待つ</td>
+<td>一覧25件、1/2ページ、1ページ20名、Aの氏名と番号、基本9項目、6履歴の内容が可視。白紙・読込無限なし</td>
+<td>EV-E</td>
+</tr>
+<tr id="L226">
+<td>INIT-02／P0／E</td>
+<td>C0後に山田検索・B選択</td>
+<td>アプリを閉じ、新規セッションで再起動</td>
+<td>ユーザー操作によるデータ復旧なしにINIT-01へ戻る。古い結果やPDFを持ち越さない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L227">
+<td>INIT-03／P1／E</td>
+<td>山田検索済み</td>
+<td>「テスト表示に戻す」を押す</td>
+<td>25名、ページ1、A選択、検索条件解除、旧モーダル・PDF解除。成功通知だけでは不足</td>
+<td>EV-E</td>
+</tr>
+<tr id="L228">
+<td>INIT-04／P1／E</td>
+<td>クリア済み</td>
+<td>リロードを3回、それぞれ読み込み完了を待つ</td>
+<td>毎回25名とA。遅延初期化による一時空表示から復帰しない等の不定動作なし</td>
+<td>EV-E</td>
+</tr>
+<tr id="L229">
+<td>DATA-01／P0／S＋E</td>
+<td>D0</td>
+<td>全ページの職員番号を集め、独立表と比較</td>
+<td>25番号が完全一致、先頭0保持、重複0。初期表示数と検索後の総数が一致</td>
+<td>EV-S/EV-E</td>
+</tr>
+<tr id="L230">
+<td>DATA-02／P1／S</td>
+<td>D0・全データ定義</td>
+<td>全Table複製と群別レコードを照合</td>
+<td>Staff25/Work27/Commute24/他各25。StaffId型文字列、参照先欠落0。同じ埋込群の複製間差分0</td>
+<td>EV-S</td>
+</tr>
+<tr id="L231">
+<td>DATA-03／P1／E</td>
+<td>D0</td>
+<td>A、B、C、Zを順に検索し6履歴を下まで確認</td>
+<td>各履歴は選択番号のみ。AはWork3・他各1、Zは通勤0・他各1。見えない最終列も到達可能</td>
+<td>EV-E</td>
+</tr>
+<tr id="L232">
+<td>DATA-04／P2／E</td>
+<td>D2準備済み</td>
+<td>Cの負値・0・空・長文を表示、全文確認</td>
+<td>-12,345と0と空を混同しない。本文を重ねない。省略される場合は全文へ到達できる</td>
+<td>EV-E＋EV-V</td>
+</tr>
+<tr id="L233">
+<td>DATA-05／P1／S＋E</td>
+<td>独立項目期待マップ</td>
+<td>全項目の見出し・値・型・表示順を台帳と照合</td>
+<td>フィールド存在だけでなく、値の取り違え0。サンプル外の本番列を網羅済みと報告しない</td>
+<td>EV-S/EV-E</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L235" data-source-start="235" data-source-end="237">
+<h3 id="53-検索">5.3 検索</h3>
+</section>
+<section id="L237" data-source-start="237" data-source-end="237">
+<p>検索ケースはC0のD0、他フィルター「すべて」を既定とする。検索結果の全番号集合・順序・件数と右サマリーを比較する。入力は実際のText Inputへの操作で、変数の直接Setは禁止。</p>
+</section>
+<section id="block-L239" data-source-start="239" data-source-end="254">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L239">
+<th>ID／優先度／方式</th>
+<th>前提・入力</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L241">
+<td>SRCH-01／P0／E</td>
+<td>キーワード空</td>
+<td>検索ボタンを1回クリック</td>
+<td>25名・1/2・A。少なくともAの番号と氏名が画面上に見える</td>
+<td>EV-E</td>
+</tr>
+<tr id="L242">
+<td>SRCH-02／P0／E</td>
+<td>山田</td>
+<td>入力直後、明示blurや追加待機を入れず検索クリック</td>
+<td>A/Bの2名・1/1・A選択。入力欄の最新値を使用</td>
+<td>EV-E</td>
+</tr>
+<tr id="L243">
+<td>SRCH-03／P0／E</td>
+<td>00990000003</td>
+<td>入力→検索</td>
+<td>Cのみ、佐藤 一郎・03会計課、Cの基本・履歴へ切替。番号先頭0保持</td>
+<td>EV-E</td>
+</tr>
+<tr id="L244">
+<td>SRCH-04／P1／E</td>
+<td>半角空白2個＋山田＋半角空白2個</td>
+<td>入力→検索</td>
+<td>A/Bの2名。前後空白により0件にしない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L245">
+<td>SRCH-05／P1／E</td>
+<td>半角空白3個</td>
+<td>入力→検索</td>
+<td>25名。空欄と同じ</td>
+<td>EV-E</td>
+</tr>
+<tr id="L246">
+<td>SRCH-06／P1／E</td>
+<td>所属を01秘書課→02総務課→03会計課</td>
+<td>各値を選び都度検索</td>
+<td>順に9/8/8名。第3.1節の番号集合と完全一致</td>
+<td>EV-E</td>
+</tr>
+<tr id="L247">
+<td>SRCH-07／P1／E</td>
+<td>状態を退職→在籍</td>
+<td>各値で検索</td>
+<td>退職3名＝07/14/21、在籍22名＝残り。部分表示だけで判定しない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L248">
+<td>SRCH-08／P0／E</td>
+<td>山田＋02総務課＋在籍</td>
+<td>3条件設定→検索</td>
+<td>Bのみ。OR検索にならない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L249">
+<td>SRCH-09／P1／E</td>
+<td>山田＋03会計課＋在籍</td>
+<td>3条件設定→検索</td>
+<td>0件。A/Bを返さない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L250">
+<td>SRCH-10／P1／E</td>
+<td>16,440のカンマなし文字列16440／管理部 会計課／半年定期</td>
+<td>C0から各語で検索</td>
+<td>順にCのみ／03会計課8名／25名。氏名・番号以外の対象項目も検索可能</td>
+<td>EV-E</td>
+</tr>
+<tr id="L251">
+<td>SRCH-11／P1／E</td>
+<td>山田検索後</td>
+<td>Cの番号を入力するだけ→結果観測→検索クリック</td>
+<td>クリック前はA/Bの確定結果、クリック後はC。入力中に選択職員を予期せず切り替えない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L252">
+<td>SRCH-12／P1／E</td>
+<td>山田</td>
+<td>検索を素早く2回→クリア→C番号検索</td>
+<td>重複行なし、最後はCだけ。旧山田結果が遅れて戻らない</td>
+<td>EV-E</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L254" data-source-start="254" data-source-end="254">
+<p>全角空白、かな漢字変換中、全角番号、記号「|」の厳密な検索仕様はQ4に記載。現行実装の文字連結境界を正しい検索ヒットと無条件に認定しない。</p>
+</section>
+<section id="L256" data-source-start="256" data-source-end="258">
+<h3 id="54-ページ選択0件">5.4 ページ・選択・0件</h3>
+</section>
+<section id="block-L258" data-source-start="258" data-source-end="273">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L258">
+<th>ID／優先度／方式</th>
+<th>前提</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L260">
+<td>PAGE-01／P0／E</td>
+<td>C0</td>
+<td>次へ→前へ</td>
+<td>次は末尾21～25の5名・2/2、前は01～20の20名・1/2。順序・重複・欠落なし</td>
+<td>EV-E</td>
+</tr>
+<tr id="L261">
+<td>PAGE-02／P1／E</td>
+<td>C0</td>
+<td>先頭の前へ、最終の次へを確認</td>
+<td>境界ボタン無効、ページ0/3等に移動しない。無効ボタンへ強制クリックしない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L262">
+<td>PAGE-03／P1／E</td>
+<td>全件ページ2</td>
+<td>山田で検索</td>
+<td>ページ1/1、A/Bだけ、A選択。ページ2のまま空一覧にならない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L263">
+<td>PAGE-04／P1／E</td>
+<td>ページ2・Z選択</td>
+<td>クリアをクリック</td>
+<td>検索入力空、フィルターすべて、25名、ページ1、A選択</td>
+<td>EV-E</td>
+</tr>
+<tr id="L264">
+<td>PAGE-05／P2／E</td>
+<td>D1の各N</td>
+<td>初期・最終ページ・前後を確認</td>
+<td>第3.3節の件数／ページ数と一致。0件では移動無効。20/40件で余計な空ページなし</td>
+<td>EV-E</td>
+</tr>
+<tr id="L265">
+<td>SEL-01／P0／E</td>
+<td>山田検索</td>
+<td>Bの氏名／行をクリック</td>
+<td>選択表示・サマリー・基本9項目・6履歴すべてB。左欄は開いたまま</td>
+<td>EV-E</td>
+</tr>
+<tr id="L266">
+<td>SEL-02／P1／E</td>
+<td>全件ページ2</td>
+<td>Zの行をクリック</td>
+<td>番号Z、石川 美穂、通勤0件。他履歴はZ。Aの通勤データを表示しない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L267">
+<td>SEL-03／P2／E</td>
+<td>D4</td>
+<td>同名A/Bを番号で選択</td>
+<td>A/Bを区別、日額16,420→16,430、番号で結合される</td>
+<td>EV-E</td>
+</tr>
+<tr id="L268">
+<td>SEL-04／P1／E</td>
+<td>Aの認定簿・PDFを開いた後に閉じる</td>
+<td>Bを選択→B認定簿を開く</td>
+<td>AのPDF／保存URLをBのものとして再利用しない。Bの新規表示または未生成状態</td>
+<td>EV-E＋EV-P（生成可能時）</td>
+</tr>
+<tr id="L269">
+<td>ZERO-01／P0／E</td>
+<td>Aの詳細表示済み</td>
+<td>存在しない職員999ZZZを検索</td>
+<td>0件案内、可視職員0、旧サマリー・基本・履歴なし、検索結果出力・帳票操作不可</td>
+<td>EV-E</td>
+</tr>
+<tr id="L270">
+<td>ZERO-02／P1／E</td>
+<td>Aの帳票を開いて閉じた状態</td>
+<td>0件検索→氏名・番号・PDF・保存URLの表示を確認</td>
+<td>旧帳票／Viewer／旧保存リンクが残らない。0件を初期25名へ戻さない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L271">
+<td>ZERO-03／P0／E</td>
+<td>ZERO-01状態</td>
+<td>クリアをクリック</td>
+<td>25名、ページ1、A、全6履歴復帰。再起動や初期化ボタン不要</td>
+<td>EV-E</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L273" data-source-start="273" data-source-end="275">
+<h3 id="55-職員検索サイドバー">5.5 職員検索サイドバー</h3>
+</section>
+<section id="block-L275" data-source-start="275" data-source-end="283">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L275">
+<th>ID／優先度／方式</th>
+<th>前提</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L277">
+<td>SIDE-01／P0／E＋V</td>
+<td>C0</td>
+<td>閉じる→開く</td>
+<td>360→48→360の設計幅。検索内部が消え、右詳細が328px相当拡張→復帰。スケール換算を記録</td>
+<td>EV-E/EV-V</td>
+</tr>
+<tr id="L278">
+<td>SIDE-02／P0／E</td>
+<td>山田検索・B選択</td>
+<td>閉じる→開く</td>
+<td>入力山田、結果A/B、選択B、ページ1を保持。自動再検索なし</td>
+<td>EV-E</td>
+</tr>
+<tr id="L279">
+<td>SIDE-03／P1／E</td>
+<td>全件ページ2・Z選択・未確定キーワード山田</td>
+<td>閉じる→開く</td>
+<td>ページ2とZ、確定全件25名、未確定山田入力をすべて保持。選択行が確認できる</td>
+<td>EV-E</td>
+</tr>
+<tr id="L280">
+<td>SIDE-04／P1／E＋V</td>
+<td>8表示条件</td>
+<td>閉→開を5回ずつ繰り返す</td>
+<td>幅の累積ずれ0。右の最終列、固定サマリー、スクロールが利用可能。不要な空白列なし</td>
+<td>EV-E/EV-V</td>
+</tr>
+<tr id="L281">
+<td>SIDE-05／P1／E</td>
+<td>認定簿／給与詳細／出力モーダルを個別に開く</td>
+<td>背面の開閉ボタンを通常操作で押そうとする</td>
+<td>無効または遮蔽により操作不可。モーダルと対象データが維持される</td>
+<td>EV-E</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L283" data-source-start="283" data-source-end="285">
+<h3 id="56-詳細履歴文字サイズ">5.6 詳細・履歴・文字サイズ</h3>
+</section>
+<section id="block-L285" data-source-start="285" data-source-end="294">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L285">
+<th>ID／優先度／方式</th>
+<th>前提</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L287">
+<td>DETAIL-01／P0／E</td>
+<td>A選択</td>
+<td>基本情報を全9項目確認</td>
+<td>第3.2節と一致。正式所属と略称、採用日と退職日が入れ替わらない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L288">
+<td>DETAIL-02／P1／E</td>
+<td>A選択</td>
+<td>右側を下へスクロール</td>
+<td>基本→勤務→通勤→社会保険→住民税→税控除→給与簿の順。氏名・番号・所属サマリーは固定</td>
+<td>EV-E</td>
+</tr>
+<tr id="L289">
+<td>DETAIL-03／P1／E</td>
+<td>AのWork表</td>
+<td>3行の適用状態と各期間を確認</td>
+<td>固定基準日2026/09/11で現行・過去・予定を文字表示。時刻が進んでも固定fixture結果不変</td>
+<td>EV-E</td>
+</tr>
+<tr id="L290">
+<td>DETAIL-04／P1／E＋V</td>
+<td>各6履歴</td>
+<td>表を左右端までスクロールし全セルを独立マップ照合</td>
+<td>全列到達可、見出しと値の列位置一致、最右列欠け0。セルごとの小さいスクロールバーなし</td>
+<td>EV-E/EV-V</td>
+</tr>
+<tr id="L291">
+<td>DETAIL-05／P1／E</td>
+<td>A→B</td>
+<td>給与簿詳細表示→全15項目確認→閉じる。Bで繰返し</td>
+<td>第3.2節のA/B金額・0・日付と一致。詳細と一覧の同じ項目が一致し閉じた後も選択保持</td>
+<td>EV-E</td>
+</tr>
+<tr id="L292">
+<td>DETAIL-06／P1／E＋V</td>
+<td>山田検索・B選択</td>
+<td>標準→大→標準</td>
+<td>内容・選択・ページ不変。本文14px相当→16px相当、行48→56、一覧72→80の設計。親高・列幅も調整、実文字校正記録あり</td>
+<td>EV-E/EV-V</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L294" data-source-start="294" data-source-end="296">
+<h3 id="57-認定簿">5.7 認定簿</h3>
+</section>
+<section id="block-L296" data-source-start="296" data-source-end="305">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L296">
+<th>ID／優先度／方式</th>
+<th>前提</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L298">
+<td>LED-01／P0／E＋V</td>
+<td>A選択</td>
+<td>認定簿を表示→下端へスクロール</td>
+<td>白い様式2枚が縦に並ぶ。Aの氏名・番号・所属。2枚目の最下段まで欠けず到達</td>
+<td>EV-E/EV-V</td>
+</tr>
+<tr id="L299">
+<td>LED-02／P1／E</td>
+<td>LED-01後に閉じ、B選択</td>
+<td>認定簿を表示</td>
+<td>Bの氏名・番号・所属。Aの差込残留0。69フィールドを独立帳票マップと照合</td>
+<td>EV-E</td>
+</tr>
+<tr id="L300">
+<td>LED-03／P1／E</td>
+<td>Z選択</td>
+<td>通勤欄と認定簿ボタンを確認</td>
+<td>通勤0件明示、認定簿ボタン無効。空帳票を対象ありとして表示しない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L301">
+<td>LED-04／P1／E＋V</td>
+<td>A認定簿</td>
+<td>150%表示→上下左右を移動→幅に合わせる</td>
+<td>切り替えても2枚・差込値不変。端へ到達可能。閉じる／PDF操作に戻れる</td>
+<td>EV-E/EV-V</td>
+</tr>
+<tr id="L302">
+<td>LED-05／P1／E</td>
+<td>認定簿を表示</td>
+<td>Tabで移動、背面クリック試行、閉じる</td>
+<td>背面検索・職員変更不能、閉じる後は認定簿起点へフォーカス、選択Aを保持</td>
+<td>EV-E</td>
+</tr>
+<tr id="L303">
+<td>LED-06／P1／E＋P</td>
+<td>D3・認定ID選択実装済み</td>
+<td>A現行→A旧→Bの認定を選択し表示／生成</td>
+<td>選択した認定ID・職員・期間・経路・月額・月別額が同じfixtureへ連動。D0共通金額で代用不可</td>
+<td>EV-E/EV-P</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L305" data-source-start="305" data-source-end="305">
+<p>LED-06は現行v1.11で認定ID選択未実装、D3未確定。実装有無の確認は未実装ギャップ、詳細実行はBLOCKEDとして別記する。</p>
+</section>
+<section id="L307" data-source-start="307" data-source-end="309">
+<h3 id="58-pdf生成保存">5.8 PDF生成・保存</h3>
+</section>
+<section id="L309" data-source-start="309" data-source-end="309">
+<p>PDF()が実験的機能であることを記録し、本番利用許可と試作合格を分離する。PDFViewer表示は保存成功ではない。PDF-02の紙サイズ確定までREPORTは未完了。</p>
+</section>
+<section id="block-L311" data-source-start="311" data-source-end="321">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L311">
+<th>ID／優先度／方式</th>
+<th>前提</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L313">
+<td>PDF-01／P0／E＋P</td>
+<td>A認定簿、PDF有効</td>
+<td>PDFを作成→生成物を取得</td>
+<td>有効なPDFバイト列、2ページ、空白ページなし、Viewerに新PDF。画面背面・操作ボタン・黒いViewer矩形が印刷されない</td>
+<td>EV-P</td>
+</tr>
+<tr id="L314">
+<td>PDF-02／P1／P＋V</td>
+<td>Q1用紙決定、承認済み空様式</td>
+<td>各PDFページのサイズと描画を比較</td>
+<td>承認用紙・向き・順序一致、欠け・余分なページ0。帳票枠と差込位置は第6章許容内</td>
+<td>EV-P/EV-V</td>
+</tr>
+<tr id="L315">
+<td>PDF-03／P0／P</td>
+<td>D3、保存フロー接続済み</td>
+<td>A認定簿を生成・保存→保存したPDFを開く</td>
+<td>保存先で実在、認可された取得が成功、有効PDF、A/認定ID一致。ファイル名は承認契約どおり。成功通知だけでは不可</td>
+<td>EV-P</td>
+</tr>
+<tr id="L316">
+<td>PDF-04／P1／E</td>
+<td>保存フロー未接続の構成</td>
+<td>PDF作成後、保存状態と案内を確認</td>
+<td>保存成功を表示しない。未接続の理由・必要設定が分かる。これのPASSと保存機能BLOCKEDを併記</td>
+<td>EV-E</td>
+</tr>
+<tr id="L317">
+<td>PDF-05／P1／P</td>
+<td>専用失敗注入設定</td>
+<td>保存に403、500、応答タイムアウトを個別注入→復旧→再試行</td>
+<td>成功扱い・旧URL再利用なし、理由と再試行案内。復旧後1件保存可能、UIが操作不能のままにならない</td>
+<td>EV-E/EV-P</td>
+</tr>
+<tr id="L318">
+<td>PDF-06／P1／P</td>
+<td>A認定簿</td>
+<td>生成／保存を素早く二重クリック</td>
+<td>進行中は重複処理を抑止。要求・保存の実数1、対象不変。フローログで確認</td>
+<td>EV-P</td>
+</tr>
+<tr id="L319">
+<td>PDF-07／P1／E＋P</td>
+<td>A生成処理を試験用に遅延</td>
+<td>処理中に閉じる操作→完了後Bへ切替</td>
+<td>閉じる無効なら明示して待機。閉じられるなら遅延結果で勝手に再表示しない。BへAの生成物を割り当てない</td>
+<td>EV-E/EV-P</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L321" data-source-start="321" data-source-end="321">
+<p>認証や組織制約を無効化して失敗注入を実現しない。独立した試験環境・スタブで行う。保存フロー契約はQ2、閉じる途中操作の採用方式は詳細設計に追記してからPDF-07を固定する。</p>
+</section>
+<section id="L323" data-source-start="323" data-source-end="325">
+<h3 id="59-出力ダイアログ給与出力">5.9 出力ダイアログ・給与出力</h3>
+</section>
+<section id="block-L325" data-source-start="325" data-source-end="334">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L325">
+<th>ID／優先度／方式</th>
+<th>前提</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L327">
+<td>OUT-01／P0／E</td>
+<td>全件ページ2</td>
+<td>検索結果を出力→Excel用にコピー</td>
+<td>TSVは見出し1＋25データ行。ページ2の5名だけに限定されない。25番号・氏名が独立表と一致</td>
+<td>EV-E＋TSV実取得</td>
+</tr>
+<tr id="L328">
+<td>OUT-02／P1／E</td>
+<td>山田検索</td>
+<td>出力→コピー</td>
+<td>見出し1＋A/Bの2行。Cや検索外データ混入0、先頭0を文字列として保持</td>
+<td>EV-E＋TSV</td>
+</tr>
+<tr id="L329">
+<td>OUT-03／P1／E</td>
+<td>コピー権限拒否の試験設定</td>
+<td>コピー実行→手動コピー案内を確認</td>
+<td>未コピーで成功表示しない。手動欄に全内容があり選択できる。許可復旧後にコピー可能</td>
+<td>EV-E</td>
+</tr>
+<tr id="L330">
+<td>OUT-04／P1／E</td>
+<td>A給与詳細</td>
+<td>給与項目を出力</td>
+<td>15項目＋見出し。Aの金額・日付・備考・0を照合。検索結果出力と混同しない</td>
+<td>EV-E＋TSV</td>
+</tr>
+<tr id="L331">
+<td>OUT-05／P1／E</td>
+<td>全件出力ダイアログ</td>
+<td>前頁／次頁、閉じる</td>
+<td>5行ずつ・5ページ、端ボタン無効。閉じると出力起点へフォーカス復帰、検索状態不変</td>
+<td>EV-E</td>
+</tr>
+<tr id="L332">
+<td>OUT-06／P1／E＋H</td>
+<td>出力ダイアログ2ページ目</td>
+<td>印刷／PDF保存を実行</td>
+<td>表示中5行の簡易印刷であると明記し実内容も一致。全25名XLSXや正式認定簿と称しない</td>
+<td>EV-E＋印刷物</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L334" data-source-start="334" data-source-end="334">
+<p>ブラウザのOS印刷ダイアログはE2Eから操作できない環境がある。OUT-06はその場合HまたはBLOCKED。ブラウザのHTML PDF化をPower AppsのPDF生成試験にすり替えない。</p>
+</section>
+<section id="L336" data-source-start="336" data-source-end="338">
+<h3 id="510-見た目アクセシビリティ">5.10 見た目・アクセシビリティ</h3>
+</section>
+<section id="block-L338" data-source-start="338" data-source-end="353">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L338">
+<th>ID／優先度／方式</th>
+<th>前提</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L340">
+<td>VIS-01／P0／V</td>
+<td>D0・8条件</td>
+<td>初期／右詳細最下段／表右端／各モーダルの画像を取得</td>
+<td>重要文字の重なり・欠け0、操作ボタンの遮蔽0。第6章の全基準を満たす</td>
+<td>EV-V</td>
+</tr>
+<tr id="L341">
+<td>VIS-02／P1／V</td>
+<td>D2・8条件</td>
+<td>長い氏名・所属・備考を表示</td>
+<td>内容を削らず判読可。省略の場合は全文表示操作があり到達。極小フォント化で対応しない</td>
+<td>EV-V</td>
+</tr>
+<tr id="L342">
+<td>VIS-03／P1／V</td>
+<td>山田検索／0件／保存エラー</td>
+<td>通知の表示から消去まで観察</td>
+<td>通知右枠と文末の欠け0、重要操作を恒久遮蔽しない、長文案内へ到達可</td>
+<td>EV-V</td>
+</tr>
+<tr id="L343">
+<td>VIS-04／P1／V</td>
+<td>8条件</td>
+<td>右詳細・横長表を全方向へ動かす</td>
+<td>意図したスクロール以外に細い多重バーなし。末尾の給与・備考・閉じるへ到達</td>
+<td>EV-V</td>
+</tr>
+<tr id="L344">
+<td>VIS-05／P1／V</td>
+<td>固定ブラウザ・フォント</td>
+<td>承認済みベースラインと画像比較</td>
+<td>未承認のレイアウト差分0。氏名・番号・金額領域をマスクして差分を隠さない</td>
+<td>EV-V</td>
+</tr>
+<tr id="L345">
+<td>VIS-06／P1／V＋H</td>
+<td>標準／大文字</td>
+<td>タイトル・表・補足の文字実寸を校正し目視</td>
+<td>B案の強弱・余白を保持、本文Normal、見出しSemibold。14px目標をSize=14固定値と誤解しない</td>
+<td>EV-V/EV-H</td>
+</tr>
+<tr id="L346">
+<td>ACC-01／P1／E</td>
+<td>C0</td>
+<td>Tab→入力→Tab→検索にEnter、職員行をキーボード選択</td>
+<td>マウスなしで検索・詳細表示可能、可視フォーカス、論理的Tab順</td>
+<td>EV-E</td>
+</tr>
+<tr id="L347">
+<td>ACC-02／P1／E</td>
+<td>Sidebar開状態</td>
+<td>キーボードで閉じる→Tab巡回→開く</td>
+<td>閉じた検索部品にフォーカスが入らない。常設ボタンに「開く／閉じる」の判別可能名</td>
+<td>EV-E</td>
+</tr>
+<tr id="L348">
+<td>ACC-03／P1／E</td>
+<td>各モーダルを個別表示</td>
+<td>Tab/Shift+Tabで全操作巡回→閉じる</td>
+<td>背面操作不可、フォーカスがモーダル内に留まり、閉じた後は正しい起点へ戻る</td>
+<td>EV-E</td>
+</tr>
+<tr id="L349">
+<td>ACC-04／P1／V</td>
+<td>1366×768・ブラウザ200%</td>
+<td>検索→選択→開閉→各モーダル</td>
+<td>文字・操作の欠損なし。表は二方向スクロール可、検索・閉じる操作は到達可能</td>
+<td>EV-V</td>
+</tr>
+<tr id="L350">
+<td>ACC-05／P1／S＋V</td>
+<td>通常・選択・エラー・大文字</td>
+<td>実色コントラスト測定、色を除いて状態確認</td>
+<td>通常文字4.5:1以上、状態は文字等でも識別。境界・フォーカスは該当WCAG要件を確認</td>
+<td>EV-S/EV-V</td>
+</tr>
+<tr id="L351">
+<td>ACC-06／P1／H</td>
+<td>支援技術・実ブラウザ</td>
+<td>氏名入力、件数通知、職員選択、モーダル操作を読み上げ確認</td>
+<td>名前・状態・結果が理解でき、意味のない部品名連呼や読み順逆転なし</td>
+<td>EV-H</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L353" data-source-start="353" data-source-end="355">
+<h3 id="511-差分配布性能運用検査器">5.11 差分配布・性能・運用・検査器</h3>
+</section>
+<section id="block-L355" data-source-start="355" data-source-end="370">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L355">
+<th>ID／優先度／方式</th>
+<th>前提</th>
+<th>操作</th>
+<th>期待結果</th>
+<th>証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L357">
+<td>PATCH-01／P0／S</td>
+<td>v1.12以降のパッチ</td>
+<td>manifest・基準版・親・対象ID・依存式・順序・復元先を検査</td>
+<td>欠落0。111の安定ID維持。範囲外の全置換なし</td>
+<td>EV-S</td>
+</tr>
+<tr id="L358">
+<td>PATCH-02／P0／S＋E</td>
+<td>基準版の複製</td>
+<td>手順に従って部品置換→完全版と比較→スモーク</td>
+<td>2形式一致、重複部品0、依存参照エラー0、SMK-01合格。貼付だけで上書きと誤認しない</td>
+<td>EV-S/EV-E</td>
+</tr>
+<tr id="L359">
+<td>PATCH-03／P1／S＋E</td>
+<td>適用済み版</td>
+<td>同じパッチを再適用しようとする</td>
+<td>二重適用を検出し停止、または同一状態を維持。サフィックス付き重複コントロールを増やさない</td>
+<td>EV-S/EV-E</td>
+</tr>
+<tr id="L360">
+<td>PATCH-04／P1／S＋E</td>
+<td>適用済みの試験複製</td>
+<td>復元手順で元版へ戻す→比較・スモーク</td>
+<td>基準ハッシュ相当の意味的構造に復帰、元版の既知結果と一致。正本や他画面を削除しない</td>
+<td>EV-S/EV-E</td>
+</tr>
+<tr id="L361">
+<td>PERF-01／P2／E</td>
+<td>固定基盤、D0</td>
+<td>起動10回、検索・選択・開閉各20回を測定</td>
+<td>第2.4節の暫定目標をp95で確認、全操作タイムアウトなし。生測定値と計算方法を保存</td>
+<td>EV-E＋測定CSV</td>
+</tr>
+<tr id="L362">
+<td>PERF-02／P1／E</td>
+<td>C0</td>
+<td>山田検索→B選択→閉開→0件→クリアを20周</td>
+<td>件数・選択の不一致0、画面エラー0、イベント重複0。最終25名・A・ページ1</td>
+<td>EV-E</td>
+</tr>
+<tr id="L363">
+<td>OPS-01／P0／S</td>
+<td>結果記録一式</td>
+<td>必須ケースと結果の突合</td>
+<td>欠落ケースをNOT_RUNにする。層・版・fixture・実値・証跡が揃わないPASSなし</td>
+<td>EV-S</td>
+</tr>
+<tr id="L364">
+<td>OPS-02／P1／E</td>
+<td>サニタイズ済み結果リンク</td>
+<td>スマホで結果要約と代表画像を閲覧</td>
+<td>版・合否・NG操作・次の処置が把握できる。認証情報や実データを公開しない</td>
+<td>EV-E</td>
+</tr>
+<tr id="L365">
+<td>HAR-01／P1／S＋E</td>
+<td>使い捨て試験コピー</td>
+<td>検索OnSelectを無効化し、C検索ケースを実行</td>
+<td>SRCH-03が確実にFAIL。初期データの存在だけでPASSしない。正本へ変異を混入しない</td>
+<td>EV-S/EV-E</td>
+</tr>
+<tr id="L366">
+<td>HAR-02／P1／S＋E</td>
+<td>同上</td>
+<td>galStaff.Itemsを空にする／選択後に別番号を返す</td>
+<td>INIT-01/DATA-01/SEL-01が該当変異を検出</td>
+<td>EV-S/EV-E</td>
+</tr>
+<tr id="L367">
+<td>HAR-03／P1／S＋V</td>
+<td>同上</td>
+<td>表2列を同じXへ置く／通知幅を親より大きくする</td>
+<td>VIS-01/VIS-03が検出しFAIL。比較画像を勝手に更新しない</td>
+<td>EV-S/EV-V</td>
+</tr>
+<tr id="L368">
+<td>HAR-04／P1／E＋P</td>
+<td>同上</td>
+<td>保存成功表示のみ返して実ファイルを作らない</td>
+<td>PDF-03がFAIL。HTTP成功応答やトーストだけでPASSしない</td>
+<td>EV-P</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L370" data-source-start="370" data-source-end="372">
+<h2 id="6-表示pdfの機械判定ルール">6. 表示・PDFの機械判定ルール</h2>
+</section>
+<section id="L372" data-source-start="372" data-source-end="381">
+<ol>
+<li>可視の文字・操作部品だけを測定する。親スクロール内の画面外セルは、スクロール後に測定する。</li>
+<li>文字のバウンディングボックスとセル内側を比較し、はみ出しは1 CSS px以内の丸め差だけ許容。値・文字が実際に欠けていれば丸め差以内でもFAIL。</li>
+<li>隣接する本文・ボタンの重なりは0。罫線、背景、選択マーカー、透明な行ヒット領域は意図した例外を部品ID付きで登録。例外を画面全体へ適用しない。</li>
+<li>表ヘッダーとデータセルの左端・幅は、同じスクロール位置で差1 CSS px以内。親幅の計算には外余白16、必要なスクロールバー安全域を含める。</li>
+<li>sidebar幅360/48、右詳細幅差328はアプリ論理px基準。ブラウザ側は実描画倍率を掛けて比較し、スケーリングによる誤検出を避ける。</li>
+<li>画像差分は同じOS・ブラウザ・日本語フォント・DPRで採取。暫定ピクセル許容は比較閾値0.2・差分率0.5%をレビュー起点とし、金額・番号・欠損領域は差分率が小さくても不合格。最終しきい値は初回実画面で校正する。</li>
+<li>可視テキストDOMが取得できない部品は画像／OCRで補完する。OCR信頼不足や矩形抽出不能はPASSにせずREVIEW_REQUIREDとして保留し、結果分類はBLOCKEDまたはH未実施とする。</li>
+<li>PDFはパーサーで開けること、ページ数2、MediaBox/向き一致、各ページ画像の枠・文字・対象一致を確認。位置の初期許容は正式空様式比±1mm、業務値・文字欠けは許容しない。</li>
+<li>ラスターPDFでテキスト抽出できない場合、OCR＋ページ画像レビューを行う。OCRだけで職員番号・金額の誤字を見逃さない。抽出失敗を空帳票の合格にしない。</li>
+<li>フォント12/14/16の数値だけでは読みやすさ合格にしない。Power Apps部品ごとの単位と100%実表示を校正する。</li>
+</ol>
+</section>
+<section id="L383" data-source-start="383" data-source-end="385">
+<h2 id="7-スモーク自動化実装契約">7. スモーク・自動化実装契約</h2>
+</section>
+<section id="L385" data-source-start="385" data-source-end="387">
+<h3 id="71-smk-01最初に必ず実行する連続操作">7.1 SMK-01：最初に必ず実行する連続操作</h3>
+</section>
+<section id="L387" data-source-start="387" data-source-end="396">
+<ol>
+<li>C0で起動。25名・A・ページ1を確認（INIT-01）。</li>
+<li>空欄検索で25名（SRCH-01）。</li>
+<li>山田入力直後に検索。A/B2名（SRCH-02）。</li>
+<li>B選択。右の番号B、山田 花子、給与Net316,700まで確認（SEL-01）。</li>
+<li>サイドバー閉→開。山田・2名・Bを保持（SIDE-02）。</li>
+<li>C番号で検索。C1名、佐藤 一郎（SRCH-03）。</li>
+<li>存在しない職員999ZZZで0件。旧詳細・出力なし（ZERO-01）。</li>
+<li>クリア。25名・A・ページ1へ復帰（ZERO-03）。</li>
+<li>次→前。5名→20名（PAGE-01）。</li>
+<li>Aの認定簿を表示し、2枚のうち2枚目最下段まで確認して閉じる（LED-01）。</li>
+</ol>
+</section>
+<section id="L398" data-source-start="398" data-source-end="398">
+<p>各ステップで実値を照合する。失敗後は、その失敗に依存する続きのステップをBLOCKEDとし、別の独立ケースは継続可能。リリース候補は新規コンテキストで3回全手順PASSが必要。REPORT対象時はPDF-01/PDF-03を追加。</p>
+</section>
+<section id="L400" data-source-start="400" data-source-end="402">
+<h3 id="72-操作部品の対応v111">7.2 操作部品の対応（v1.11）</h3>
+</section>
+<section id="block-L402" data-source-start="402" data-source-end="417">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L402">
+<th>Page Objectの論理名</th>
+<th>現行コントロール名</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L404">
+<td>search.keyword / organization / status</td>
+<td>txtKeyword111 / ddOrg111 / ddStatus111</td>
+</tr>
+<tr id="L405">
+<td>search.submit / clear / reloadDemo</td>
+<td>btnSearch111 / btnClear111 / btnLoad111</td>
+</tr>
+<tr id="L406">
+<td>staff.list / count / page</td>
+<td>galStaff111 / lblListTitle111 / lblPage111</td>
+</tr>
+<tr id="L407">
+<td>staff.previous / next / row</td>
+<td>btnPrev111 / btnNext111 / btnRow111</td>
+</tr>
+<tr id="L408">
+<td>detail.summary / name</td>
+<td>conPerson111 / lblName111</td>
+</tr>
+<tr id="L409">
+<td>detail.histories</td>
+<td>galWork111 / galCommute111 / galSocial111 / galResident111 / galTax111 / galPayroll111</td>
+</tr>
+<tr id="L410">
+<td>sidebar.panel / inner / toggle</td>
+<td>conSearchSidebar111 / conLeftScroll111 / btnSidebarToggle111</td>
+</tr>
+<tr id="L411">
+<td>typography.toggle</td>
+<td>btnTextSize111</td>
+</tr>
+<tr id="L412">
+<td>ledger.open / modal / close</td>
+<td>btnCertificate111 / conLedgerModal111 / btnLedgerClose111</td>
+</tr>
+<tr id="L413">
+<td>ledger.pdf / viewer / saved</td>
+<td>btnLedgerPdf111 / pdfLedger111 / btnLedgerSaved111</td>
+</tr>
+<tr id="L414">
+<td>payroll.open / export / close</td>
+<td>btnPayrollOpen111 / btnPayExport111 / btnPayClose111</td>
+</tr>
+<tr id="L415">
+<td>report.open / copy / close</td>
+<td>btnExport111 / btnCopy111 / btnReportClose111</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L417" data-source-start="417" data-source-end="417">
+<p>テストコードでは画面固有のセレクターをPage Objectに集約する。役割・アクセシブル名・対象フレーム・コントロール名を組み合わせ、対象1件を保証する。「閉じる」等は対象モーダルでスコープする。DOMのdata-control-name等が使えるかは対象環境で確認し、未確認のCSSセレクターを動作済みとしない。</p>
+</section>
+<section id="L419" data-source-start="419" data-source-end="419">
+<p>ギャラリー内の選択は番号で特定し、先頭行の座標固定で代用しない。スクロールして仮想化行を収集するときは番号で重複排除し、ページ末尾まで到達した証拠を残す。実行環境で見えていない状態をローカル評価器で補完してE2E合格にしない。</p>
+</section>
+<section id="L421" data-source-start="421" data-source-end="423">
+<h4 id="セレクター設計の再発防止ルール">セレクター設計の再発防止ルール</h4>
+</section>
+<section id="L423" data-source-start="423" data-source-end="429">
+<ol>
+<li>クリックは、表示文字のLabelやその子要素ではなく、実際にポインターイベントとOnSelectを受けるButton等の操作部品を対象にする。Power Appsの透明な行選択ボタンが表示Labelへ重なる場合は、行選択ボタンのroleとアクセシブル名を使用する。</li>
+<li>
+<code>.first()</code>、<code>.last()</code>、<code>.nth()</code>を、複数候補やstrict mode違反を回避する目的で使用しない。使用できるのは、順序自体が仕様であり、候補数と順序を先に検証し、理由をテストコードへ記録した場合だけとする。</li>
+<li>通常の操作・確認には、role、完全一致のアクセシブル名、業務上の一意キー（職員番号等）、対象フレームまたは親領域のスコープを組み合わせ、locatorが1件であることを保証する。</li>
+<li>サイドバーやモーダルを閉じた後の状態保持は、閉鎖領域内の非表示セルでは判定しない。選択職員は常時表示される詳細サマリー、検索条件は再展開後の入力値、ページはページ表示部品など、検証目的に対応する安定した表示先で確認する。閉鎖領域については非表示になったことを別に確認する。</li>
+<li>クリック後は、対象職員の職員番号・所属など一意な期待結果を確認し、クリックが実際にアプリ状態を変えたことを証明する。表示文字が見えることだけで操作成功としない。</li>
+<li>新しいlocatorは候補版だけでなく、失敗時に復元する直前の成功版でも実行する。版によって意図的に異なる表示は期待値を明示的に分岐し、テストコード自体の誤りで復元失敗を発生させない。</li>
+<li>タイムアウト時は、Playwrightのcall log、アクセシビリティsnapshot、スクリーンショットまたはtraceで、クリック遮蔽、非表示、複数一致、アプリ状態不良を区別する。テスト不具合とアプリ不具合を判定してから修正・再実行する。</li>
+</ol>
+</section>
+<section id="L431" data-source-start="431" data-source-end="433">
+<h3 id="73-自動化時に追加する構成今回作成しない">7.3 自動化時に追加する構成（今回作成しない）</h3>
+</section>
+<section id="L433" data-source-start="433" data-source-end="438">
+<ul>
+<li>
+<code>tests/fixtures/</code>：D0～D4、期待値、項目マップ、承認ハッシュ。</li>
+<li>
+<code>tests/e2e/pages/</code>：Page Object、認証境界、状態待機、実値取得。</li>
+<li>
+<code>tests/e2e/specs/</code>：本書ケースIDをテスト名に保持。</li>
+<li>
+<code>tests/visual/</code>：環境別ベースライン、許容例外、差分結果。</li>
+<li>
+<code>tests/pdf/</code>：ページ解析、帳票差込・画像検査。</li>
+<li>
+<code>docs/testing/runs/&lt;run-id&gt;/</code>：サニタイズした要約。生trace・PDFは非公開証跡保管先。</li>
+</ul>
+</section>
+<section id="L440" data-source-start="440" data-source-end="440">
+<p>不明なPower Fx関数は限定評価器で飛ばさず「未対応」とする。E2E実装前に、起動→山田検索→C検索→0件までの最小パイロットを実アプリで通し、認証、導入、自動公開、セレクター、証跡取得の成立を確認してから対象を広げる。</p>
+</section>
+<section id="L442" data-source-start="442" data-source-end="444">
+<h3 id="74-自動テストアプリv114の追加受入issue-23">7.4 自動テストアプリv1.14の追加受入（Issue #23）</h3>
+</section>
+<section id="L444" data-source-start="444" data-source-end="444">
+<p>実装は<code>e2e/changes/approved-property.test.ts</code>。既存<code>e2e/staff-master-p0.test.ts</code>は変更・緩和しない。追加ケースの対象は公開済みの隔離テストアプリとし、iframe、部品名、行の職員番号で一意に特定する。見えることと一致件数1を確認した部品だけを測定する。</p>
+</section>
+<section id="block-L446" data-source-start="446" data-source-end="454">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L446">
+<th>ケースID</th>
+<th>操作・条件</th>
+<th>合格条件・証跡</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L448">
+<td>AUT-META-001</td>
+<td>新規セッションで起動し、公開版がプレーヤーへ反映されたことを確認</td>
+<td>一意な実行中lblMeta111の版を最大90秒、再読込み間隔1/3/5秒で確認し、要求した版と厳密一致したときだけ合格。各起動で観測した版を<code>version-readiness.json</code>へ保存。公開画像を保持。機能テスト全体のretryは0のまま</td>
+</tr>
+<tr id="L449">
+<td>AUT-SIDEBAR-001</td>
+<td>山田検索→花子を実際の行ボタンで選択→開閉2往復→クリア→2ページ目で開閉</td>
+<td>横三本線、検索条件・2件・固定サマリーの選択・ページを維持。閉鎖領域のセルを選択保持判定に使わない</td>
+</tr>
+<tr id="L450">
+<td>AUT-LAYOUT-001</td>
+<td>ブラウザ幅900/1100/1366/1600/1920、標準／大きな文字の10条件。各文字サイズの1920で検索開閉も実施</td>
+<td>基本9項目の独立期待値・順序・同一列の項目と値のX/幅・直下配置・親内収容・行高64/72・値高24/28を確認。利用可能幅に応じて1～6列、1920標準で6列、検索閉鎖で幅と列数が拡張。氏名と状態の間8px・縦中央。全幅条件でヘッダー左右16px。1366でも業務領域幅は旧版と同じで、余白を二重に引かない。1366/1920×2文字サイズの画像と<code>layout-measurements.json</code>を保持</td>
+</tr>
+<tr id="L451">
+<td>AUT-LIST-001</td>
+<td>山田検索後、花子の行ボタンへフォーカス→Enterで選択</td>
+<td>固定サマリーが花子になる。選択行の所属背景#DCEAFF、非選択行は白。所属と状態の右端が一致。両行下端の区切り線が全幅・1px・#E2E8F0。選択画像を保持</td>
+</tr>
+<tr id="L452">
+<td>AUT-README-001（単体）</td>
+<td>検証済み受領記録からREADMEを生成。失敗ゲート・不正マーカー・ActionsのPR作成禁止・未知の通信エラーも入力</td>
+<td>全7ゲート合格のみ更新、手書き部分保持、再生成で差分なし、欠落・重複マーカーを拒否。文書更新は専用ブランチとPR経由。既知のPR作成禁止だけはPENDING_WORK_PRと生成ブランチ/SHAを保存し、統合成功と誤記しない。未知のエラーを引き継ぎ成功として扱わない。Workがmainへの反映を確認して完了する</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L454" data-source-start="454" data-source-end="454">
+<p>v1.14を初回公開する前に、同じテストを直前成功版v1.13へ実行する。v1.13の配置期待値は旧3/2/1列・行高96/104・値高64・ヘッダー追加余白なしとし、新UIの期待値へ混同しない。部品を取得できないことを「旧版だから」と無条件にスキップしない。両版で部品の一意性、全項目、色、操作を確認する。未知の版は合格にしない。</p>
+</section>
+<section id="L456" data-source-start="456" data-source-end="456">
+<p>測定値の許容差は座標1.1px未満。ホストプレーヤーの枠による幅1px差とブラウザ丸めを考慮し、内部幅はアプリの実測値を使う。1366pxウィンドウでは旧版と同じ<code>基本情報幅=アプリ幅-430</code>を確認する。アプリ幅がブラウザ幅の1.1px未満に収まるまで条件待機し、固定sleepでレイアウト完了とみなさない。</p>
+</section>
+<section id="L458" data-source-start="458" data-source-end="458">
+<p>Galleryの行は選択時に読み上げ名へ<code>. Selected.</code>が加わるため、職員番号を含む行名とこの既知の接尾辞の有無で一意に特定する。選択前後の件数1を確認してから配下の表示ラベルを測る。氏名だけや<code>.first()</code>で代替しない。スクリーンショットで日本語の欠け・項目と値の読みやすさも確認する。これらの合格はスクリーンリーダーや200%拡大など、本書の未実施アクセシビリティ試験全体の合格を意味しない。</p>
+</section>
+<section id="L460" data-source-start="460" data-source-end="460">
+<p>公開API・読戻しが成功しても、最初のプレーヤー起動で直前版が表示される場合がある。Issue #23では候補公開時にv1.13、復元時にv1.14を最初の起動で観測し、その後の起動ではそれぞれ要求版を確認した。版の準備待ちだけを再読込み付きで行い、旧版を許容する条件変更、アプリの再公開、機能テストの再試行で隠さない。期限内に一致しない場合は不合格として復元・調査へ進む。<a href="https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/save-publish-app">Microsoft公開手順</a>の公開反映遅延と再読込みの説明を参照。</p>
+</section>
+<section id="L462" data-source-start="462" data-source-end="462">
+<p>認証前段でパスワード欄等を取得できなかった場合は、UIの追加テスト/P0失敗と区別する。既存ライブラリの認証失敗画面PNGだけを1日保持し、認証状態やトークンを含むディレクトリー全体をartifactへ含めない。連続2回の同じ停止では単純再実行を止め、配布しない専用診断で同じ接続先の状態を確かめる。</p>
+</section>
+<section id="L464" data-source-start="464" data-source-end="466">
+<h3 id="75-アプリ名とworkの工程報告issue-27">7.5 アプリ名とWorkの工程報告（Issue #27）</h3>
+</section>
+<section id="block-L466" data-source-start="466" data-source-end="473">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L466">
+<th>ID</th>
+<th>操作・確認</th>
+<th>期待値・判定</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L468">
+<td>AUT-NAME-001（単体）</td>
+<td>README生成・旧タグ相当のSolutionをpack。XMLの重複DisplayName・空の指定名も入力</td>
+<td>configの指定名「自動開発_職員マスタ検索」を使用し、旧名を再生成しない。XMLはDisplayNameだけを変更し、旧タグの元ファイル・msapp・スキーマ名を保持。不正入力は書込み前に拒否</td>
+</tr>
+<tr id="L469">
+<td>AUT-WORK-001（運用確認）</td>
+<td>実行開始前の同じWorkの応答とIssueを確認</td>
+<td>今回の工程が1～10件、番号・名称付きで提示され、指示範囲内は追加承認待ちなしで開始</td>
+</tr>
+<tr id="L470">
+<td>AUT-WORK-002（運用確認）</td>
+<td>工程切替・長時間処理・状態取得不能時の応答を確認</td>
+<td>現在の番号／総数・工程名と確認根拠を示す。内部位置が不明なら確認中とし、架空の進捗率や成功を示さない。直接プッシュ通知やWork停止中の継続監視を実装済みと誤記しない</td>
+</tr>
+<tr id="L471">
+<td>AUT-WORK-003（運用確認）</td>
+<td>終了・停止時の同じWorkの応答を開始一覧と照合</td>
+<td>全工程が同じ番号・名称で結果表に含まれる。成功・失敗・対象外・未実施と理由・証跡を区別。修復前の失敗や復元結果を隠さず、アプリ未配布時にE2E/P0を今回合格と記載しない</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L473" data-source-start="473" data-source-end="473">
+<p>実アプリの手動改名はユーザー担当であり、GitHub更新だけで完了とは判定しない。今回の受入は名称を扱う処理の単体検証と文書・Workの運用確認。Power Appsへの配布・実表示名確認・E2E・P0は対象外。</p>
+</section>
+<section id="L475" data-source-start="475" data-source-end="477">
+<h3 id="76-成功タグとreadmeの整合issue-29">7.6 成功タグとREADMEの整合（Issue #29）</h3>
+</section>
+<section id="block-L477" data-source-start="477" data-source-end="487">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L477">
+<th>ID</th>
+<th>操作・条件</th>
+<th>期待結果</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L479">
+<td>AUT-TAG-001</td>
+<td>正しいREADMEで成功版確定・復元候補選定</td>
+<td>タグ版・README版・リンク・run・ハッシュ一致。不正な上位タグは選定しない</td>
+</tr>
+<tr id="L480">
+<td>AUT-TAG-002</td>
+<td>READMEだけ旧版のまま最終化</td>
+<td>停止し、ローカル・リモートとも新タグなし</td>
+</tr>
+<tr id="L481">
+<td>AUT-TAG-003</td>
+<td>README以外のソース差分を混入</td>
+<td>未検証変更として停止</td>
+</tr>
+<tr id="L482">
+<td>AUT-TAG-004</td>
+<td>ゲート失敗・run不一致・READMEハッシュ不一致</td>
+<td>全て拒否</td>
+</tr>
+<tr id="L483">
+<td>AUT-TAG-005</td>
+<td>最終化・既知のPR禁止・PR統合後の再実行</td>
+<td>READMEコミット後にタグ生成。PENDING_WORK_PRから再開しタグobject維持</td>
+</tr>
+<tr id="L484">
+<td>AUT-TAG-006</td>
+<td>v1.14訂正と再実行</td>
+<td>元注釈objectを完全保全。README以外・main不変。再実行でタグ不変</td>
+</tr>
+<tr id="L485">
+<td>AUT-TAG-007</td>
+<td>訂正直前にリモートタグが変更される</td>
+<td>atomic/leaseで訂正と保全の両方を拒否</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L487" data-source-start="487" data-source-end="487">
+<p>
+<code>tests/automation/test_release_snapshot.py</code>の8テストで実Git・ローカルbareリモートを使い、GitHub APIのみmockする。既存20件と合わせ28件。これらは公開アプリのE2E/P0の代替ではない。今回の文書・基盤修正ではアプリ再配布とE2E/P0は対象外とする。</p>
+</section>
+<section id="L489" data-source-start="489" data-source-end="491">
+<h2 id="8-実行結果の記録仕様">8. 実行結果の記録仕様</h2>
+</section>
+<section id="L491" data-source-start="491" data-source-end="513">
+<pre>
+<code class="language-yaml">run_id: &quot;YYYYMMDD-HHMM-unique&quot;
+document_version: &quot;1.00&quot;
+app_version: &quot;1.11&quot;
+git_commit: &quot;実行対象SHA&quot;
+source_sha256: &quot;対象ファイルのSHA-256&quot;
+published_version: &quot;実際のPower Apps公開版&quot;
+fixture_version: &quot;D0-v1&quot;
+environment_alias: &quot;個人テスト環境の別名&quot;
+browser_version: &quot;実測値&quot;
+viewport: &quot;1366x768&quot;
+layer: &quot;E&quot;
+case_id: &quot;SRCH-02&quot;
+expected:
+  count: 2
+  staff_ids: [&quot;00990000001&quot;, &quot;00990000002&quot;]
+actual: null
+result: &quot;NOT_RUN&quot;
+duration_ms: null
+evidence: []
+defect_id: null
+blocked_reason: null
+</code>
+</pre>
+</section>
+<section id="L515" data-source-start="515" data-source-end="515">
+<p>これは結果レコードの形式例で、実行済みの記録ではない。actual、result、evidenceは実測で埋める。性能閾値やマスク、リトライ回数を変更した場合はその変更も残す。3回中1回だけ成功したケースはFLAKYであってPASSではない。</p>
+</section>
+<section id="L517" data-source-start="517" data-source-end="519">
+<h2 id="9-既知不具合と未決事項">9. 既知不具合と未決事項</h2>
+</section>
+<section id="block-L519" data-source-start="519" data-source-end="529">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L519">
+<th>ID</th>
+<th>内容</th>
+<th>影響／扱い</th>
+<th>解除条件</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L521">
+<td>BUG-SEARCH-001</td>
+<td>v1.11で検索しても表示されないとのユーザー報告</td>
+<td>SRCH/INIT最優先。実行版・環境厳密照合前、原因未確定。ローカル68件合格で解決扱いしない</td>
+<td>実環境再現→修正→SMK-01を新規セッション3回PASS</td>
+</tr>
+<tr id="L522">
+<td>GAP-LEDGER-001</td>
+<td>現行Commuteに認定IDなし、帳票は共通経路・共通金額</td>
+<td>要件と実装の差。LED-06、PDF-03の整合性を現行データで合格にしない</td>
+<td>D3確定、ID選択・整合データ実装、対象試験PASS</td>
+</tr>
+<tr id="L523">
+<td>Q1</td>
+<td>正式PDF用紙・向き</td>
+<td>現行A3横を承認済みとみなさない。PDF-02はBLOCKED</td>
+<td>ユーザーが用紙・向きを決定し、2枚の空様式基準を確定</td>
+</tr>
+<tr id="L524">
+<td>Q2</td>
+<td>自動保存先・認証・フロー入出力・ファイル名</td>
+<td>PDF保存の実機試験はBLOCKED。未接続案内だけは試験可能</td>
+<td>環境構築時に接続契約と権限を決定</td>
+</tr>
+<tr id="L525">
+<td>Q3</td>
+<td>起動／検索性能・証跡保持の基準</td>
+<td>第2.4節と方針の暫定値で記録、保証値としない</td>
+<td>初回基盤で測定、基準値承認</td>
+</tr>
+<tr id="L526">
+<td>Q4</td>
+<td>全角空白・番号正規化・IME確定・区切り文字検索</td>
+<td>基本の空欄／山田／番号ケースは影響なし。境界ケース追加時に仕様確定</td>
+<td>正規化範囲と語句一致規則をユーザー確認</td>
+</tr>
+<tr id="L527">
+<td>Q5</td>
+<td>支援技術の対象組合せ、正式保存方式、本番全項目</td>
+<td>現行PC試作の結果から対象外を合格と推定しない</td>
+<td>本番・アクセシビリティ受入範囲を確定</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L529" data-source-start="529" data-source-end="529">
+<p>Q1/Q2等が未決でも、初期表示・検索・サイドバー・基本の視認性試験設計は進める。該当するREPORT完成判定だけを止める。本書の作成・格納を、未決事項の承認やYAML不具合の修正と解釈しない。</p>
+</section>
+<section id="L531" data-source-start="531" data-source-end="533">
+<h2 id="10-参考資料">10. 参考資料</h2>
+</section>
+<section id="L533" data-source-start="533" data-source-end="536">
+<ul>
+<li>
+<a href="https://learn.microsoft.com/en-us/power-platform/developer/playwright-samples/overview">Power Platform Playwright概要</a>：公開アプリE2Eの実装候補。</li>
+<li>
+<a href="https://learn.microsoft.com/en-us/power-platform/developer/playwright-samples/canvas-application">CanvasアプリのPlaywright例</a>：対象部品の実ブラウザ操作。</li>
+<li>
+<a href="https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/how-to/pdf-function">Power Apps PDF関数</a>：実験機能、現在表示対象からの生成と保存の分離。</li>
+<li>
+<a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a>：文字コントラスト・拡大・キーボード・フォーカスの参照基準。</li>
+</ul>
+</section>
+<section id="L538" data-source-start="538" data-source-end="540">
+<h2 id="変更履歴">変更履歴</h2>
+</section>
+<section id="block-L540" data-source-start="540" data-source-end="549">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L540">
+<th>版</th>
+<th>日付</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L542">
+<td>v1.05</td>
+<td>2026-09-24</td>
+<td>SCR-002軽量化の画面改名、比率余白、6タブ、共通2列詳細、HTML認定簿、163項目×動的月列、部品数・性能比較の受入を追加</td>
+</tr>
+<tr id="L543">
+<td>v1.04</td>
+<td>2026-09-16</td>
+<td>Issue #29：READMEと成功タグの整合、最終化順序、保全・競合・再実行の回帰試験を追加</td>
+</tr>
+<tr id="L544">
+<td>v1.03</td>
+<td>2026-09-16</td>
+<td>Issue #27の名称維持・README生成、開始工程・途中進捗・終了結果のWork報告を追加</td>
+</tr>
+<tr id="L545">
+<td>v1.02</td>
+<td>2026-09-16</td>
+<td>Issue #23の幅・文字サイズ別配置、一覧色・線・キーボード操作、候補と復元版の検証、README自動更新試験を追加</td>
+</tr>
+<tr id="L546">
+<td>v1.01</td>
+<td>2026-09-15</td>
+<td>Issue #12の失敗を受け、操作部品の特定、<code>.first()</code>等の制限、閉鎖領域の状態確認、候補版・復元版の両方でのlocator検証、証跡による原因区分を追加</td>
+</tr>
+<tr id="L547">
+<td>v1.00</td>
+<td>2026-09-13</td>
+<td>初版。独立期待値、実操作ケース、表示・PDF・差分回帰、スモーク、未決事項を定義</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L549" data-source-start="549" data-source-end="551">
+<h2 id="aut-ledger-117issue-35">AUT-LEDGER-117（Issue #35）</h2>
+</section>
+<section id="L551" data-source-start="551" data-source-end="551">
+<p>実装はe2e/hybrid/ledger.test.ts。職員011を選択し、倍率6段階の実寸、上部9部品の左右境界、白背景・青文字、職員情報保持を検査する。200%表示からPDFを生成し、実ファイルのページ数2・A4横寸法を検証し描画で2ページ目先頭を確認する。100%リセットと閉じるを確認する。既存7回帰を同じ公開版へ実施する。</p>
+</section>
+<section id="L553" data-source-start="553" data-source-end="555">
+<h2 id="scr-002軽量化追加受入2026-09-24">SCR-002軽量化追加受入（2026-09-24）</h2>
+</section>
+<section id="L555" data-source-start="555" data-source-end="555">
+<p>旧LED/PDF/AUT-LEDGER-117は現行版・旧機能の回帰履歴として保持する。軽量化候補版で正式HTMLへ一本化した後は、次のケースを優先し、旧Canvas認定簿が存在しないことを確認する。</p>
+</section>
+<section id="block-L557" data-source-start="557" data-source-end="582">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L557">
+<th>ID</th>
+<th>操作・条件</th>
+<th>期待結果</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L559">
+<td>LT-NAME-01</td>
+<td>候補ソース、StartScreen、Navigate、テスト、マニフェストを検索</td>
+<td>実行参照は<code>scrStaffMasterSearch</code>へ統一。<code>Screen1</code>は履歴説明・旧ファイル比較以外0件。末尾111の部品名は維持</td>
+</tr>
+<tr id="L560">
+<td>LT-LAYOUT-01</td>
+<td>1366×768、1920×1080</td>
+<td>業務画面が横4:56:4、縦2:26:2。丸め差を除き左右・上下が対称</td>
+</tr>
+<tr id="L561">
+<td>LT-LAYOUT-02</td>
+<td>幅900/1100/1366/1600/1920、標準／大きな文字、200％</td>
+<td>左検索、右詳細、6タブ、主要操作へ到達でき、欠け・重なりなし</td>
+</tr>
+<tr id="L562">
+<td>LT-TAB-01</td>
+<td>同一職員で6タブを順に切替</td>
+<td>タブ名・選択状態が明確。同じ職員の対象データを表示し、完成非表示パネル6組を持たない</td>
+</tr>
+<tr id="L563">
+<td>LT-DETAIL-01</td>
+<td>基本・勤務・通勤選択詳細・社会保険・税固定控除</td>
+<td>項目順どおり2列。全項目表示、長文折返し、行高追随、隣接行との重なりなし</td>
+</tr>
+<tr id="L564">
+<td>LT-HIST-01</td>
+<td>0件、1件、複数件、現行・過去・予定</td>
+<td>履歴一覧から選択した1件の全項目だけを詳細表示。職員切替で前職員の選択を破棄</td>
+</tr>
+<tr id="L565">
+<td>LT-COM-01</td>
+<td>通勤複数件から1件選択→認定簿表示</td>
+<td>選択GUIDと職員を検証し別タブHTMLを開く。表示値、A4横2ページ、1PDF、0/NULLを確認</td>
+</tr>
+<tr id="L566">
+<td>LT-COM-02</td>
+<td>通勤0件、職員切替、GUID不一致、権限なし</td>
+<td>ボタン無効または安全なエラー。別職員・旧認定の帳票を表示しない</td>
+</tr>
+<tr id="L567">
+<td>LT-COM-03</td>
+<td>候補ソースを棚卸し</td>
+<td>正式HTML入口は存在。旧Canvas帳票、PDFViewer、PDFタイマー・保存、旧PoC入口は正式機能版に存在しない</td>
+</tr>
+<tr id="L568">
+<td>LT-PAY-01</td>
+<td>基準給与簿を表示</td>
+<td>163項目が定義順で重複・欠落0。SCR-005支給明細と別機能</td>
+</tr>
+<tr id="L569">
+<td>LT-PAY-02</td>
+<td>開始月～終了月の選択・範囲変更</td>
+<td>年またぎ・単月・範囲内0件を含め、登録済みレコードの月だけを表示。未登録月の列なし。開始＞終了は適用されずエラー。固定12列なし。採用前・退職後だけを理由に列を隠さない</td>
+</tr>
+<tr id="L570">
+<td>LT-PAY-03</td>
+<td>値の状態・同月複数行</td>
+<td>0・負数・空欄を区別。同月に正常な複数レコードがあれば全件を別列に表示し、支給年月日・番号・行GUIDで値の出所を識別。月単位の合算・無条件Firstなし。日付空欄・解釈不能は例外として通知</td>
+</tr>
+<tr id="L571">
+<td>LT-PAY-04</td>
+<td>最終項目・最終レコード列まで操作</td>
+<td>見出しと行GUIDによる値の対応を維持して到達。セル数に比例した静的コントロール定義を持たない</td>
+</tr>
+<tr id="L572">
+<td>LT-DATA-01</td>
+<td>職員選択後に各タブ・給与セルを操作</td>
+<td>対象単位で取得済みデータを参照し、行・セルごとのDataverse呼出しを行わない</td>
+</tr>
+<tr id="L573">
+<td>LT-UI-01</td>
+<td>SCR-001のスマホ表示で確認用所属をタップ・変更し、各画面ボタンを操作</td>
+<td>所属候補を選択でき、操作が上部に集約され、権限の範囲は変わらない</td>
+</tr>
+<tr id="L574">
+<td>LT-UI-02</td>
+<td>SCR-002を縦スクロール、狭幅・大きな文字でも確認</td>
+<td>画面名・画面ID・取得日時のヘッダーのみ固定。ヘッダーにボタンはなく、直下のボタン群・サマリー・基本情報・詳細が一緒に動き、操作へ到達できる</td>
+</tr>
+<tr id="L575">
+<td>LT-UI-03</td>
+<td>検索と3状態の結果一覧、各タブを確認</td>
+<td>検索条件は縦一列、入力欄に虫眼鏡。氏名下に番号、状態下に部署略称。状態は文字と色で識別。詳細背景・見出しは参照画像と整合</td>
+</tr>
+<tr id="L576">
+<td>LT-UI-04</td>
+<td>操作領域・通勤タブ・フッターを確認</td>
+<td>保存など存続する操作はヘッダー直下。認定簿表示は通勤タブ右上で別タブHTMLを開く。「変更を破棄」ボタン、履歴一覧へ戻る、テストレコードフッター、最新データ読込、検索結果TSV出力はない。未保存の変更を失う操作では画面要件9.7に従って破棄確認を出す（2026-09-25追加要件を反映）</td>
+</tr>
+<tr id="L577">
+<td>LT-DATA-02</td>
+<td>初回、画面再入場、F5、職員切替、保存成功、表示開始月・終了月変更、タブ切替を操作</td>
+<td>必要な対象データだけ再取得し、取得成功日時を更新。範囲変更は列と値に反映。タブ切替だけでは再取得しない。画面にF5手順は載せない</td>
+</tr>
+<tr id="L578">
+<td>LT-DATA-03</td>
+<td>取得失敗、0件、別職員への切替、未保存編集中のF5を確認</td>
+<td>時刻だけが更新されず、失敗を表示。旧職員データと旧時刻を現職員の値として表示しない。F5で未保存内容が消えることを確認し、保存済みデータへの影響がない</td>
+</tr>
+<tr id="L579">
+<td>LT-PERF-01</td>
+<td>改修前後の同一条件</td>
+<td>全画面・画面別・型別部品数、App checker、Studio読込み・選択・保存、Player起動・検索・職員切替・タブ・HTML・給与を記録。改修前816/657との比較を残す</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L582" data-source-start="582" data-source-end="584">
+<h2 id="scr-003勤務時間報告scr-006対象月2026-09-29公開">SCR-003勤務時間報告・SCR-006対象月（2026-09-29公開）</h2>
+</section>
+<section id="L584" data-source-start="584" data-source-end="584">
+<p>変更ID：<code>CHANGE-20260929-SCR003-ATTENDANCE-IMPORT</code>。公開版識別時刻：<code>2026-09-29T09:11:07.0090418Z</code>。同一の現行アプリ、架空データのテスト環境を対象とする。</p>
+</section>
+<section id="block-L586" data-source-start="586" data-source-end="593">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L586">
+<th>ケース</th>
+<th>操作と独立期待値</th>
+<th>判定範囲</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L588">
+<td>UT-SCR003-CONTRACT-001</td>
+<td>TestDataの20列、局×月、番号12桁、欠勤整数を契約ファイルと照合</td>
+<td>静的契約のみ</td>
+</tr>
+<tr id="L589">
+<td>UT-SCR003-VIEW-001</td>
+<td>ホーム→勤務時間報告。未選択メッセージ、報告無効、Excel取込モーダルの添付・実行入口</td>
+<td>公開Player</td>
+</tr>
+<tr id="L590">
+<td>UT-SCR006-MONTH-001</td>
+<td>既存表示確認用管理者に切替→メンテナンス。対象月設定／解除の入口</td>
+<td>公開Player。実効認可を検査しない</td>
+</tr>
+<tr id="L591">
+<td>IT-SCR003-READBACK-001</td>
+<td>保存済み「2026/08 秘書課」を選択。勤務期間2026/08/01～2026/08/31、000000000001～000000000010、33.167、元の備考「年次休暇：8/28 5.25h、8/31」を確認</td>
+<td>公開Playerと保存済み架空10件の結合。取込を自動実行するケースではない</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L593" data-source-start="593" data-source-end="593">
+<p>所有者Studioの手動実施では初回10件取込、備考編集、欠勤0.5拒否、報告確認、報告済編集／取込拒否、入力中への戻し、同じExcel再取込による備考復元と10件維持、6課室候補と情報経済課2件、対象月解除と再設定を確認。公開Playerで表示を別途確認した。途中の失敗は、初回Excelシリアル値検証、接続確認画面、初期非表示ギャラリーの幅、保存ソースの既定値省略として記録し、後の成功へ混在させない。</p>
+</section>
+<section id="L595" data-source-start="595" data-source-end="595">
+<p>最終Action 36533040055は静的契約1件PASS、UI3件FAIL。専用検証アカウントのOneDriveがRefresh connection警告となりAllowが無効のため、UI検証は接続確認で阻害された。公開版・SHA・ソース・文書差分照合はPASS。再接続後に失敗ジョブを再実行し、全必須ゲート合格までPR #122を統合しない。</p>
+</section>
+<section id="L597" data-source-start="597" data-source-end="597">
+<p>権限判定・所属制限は利用者指示により後工程。局名を手入力し、ホームの管理者切替は既存の表示確認用UIであって実効権限ではない。999件境界、同時操作、途中障害、業務受入、総合試験は未判定。一時Excelの即時削除はExcelロックによる400で失敗し、所有者OneDriveに残る。これらを本番利用可能の判定へ読み替えない。</p>
+</section>
+<section id="L599" data-source-start="599" data-source-end="601">
+<h3 id="scr-003公開後のdom選択補正2026-09-29">SCR-003公開後のDOM選択補正（2026-09-29）</h3>
+</section>
+<section id="L601" data-source-start="601" data-source-end="601">
+<p>
+<code>CHANGE-20260929-SCR003-ATTENDANCE-IMPORT</code>／公開版 <code>2026-09-29T09:11:07.0090418Z</code>。<code>IT-SCR003-READBACK-001</code>では月・局名と状態が同じDOM要素に含まれるため、月・局名を含むlistitemが一意に1件であることを確認して選択する。勤務期間も勤務月と同じ要素内の文言として検査する。10件の12桁職員番号、33.167、備考、勤務期間の独立期待値は変更しない。これはテストセレクターの修復であり、データ不足や権限エラーを無視する条件ではない。</p>
+</section>
+<section id="L604" data-source-start="604" data-source-end="606">
+<h2 id="scr001003-ui変更change-20261001-scr001-003-ui">SCR001～003 UI変更（CHANGE-20261001-SCR001-003-UI）</h2>
+</section>
+<section id="L606" data-source-start="606" data-source-end="606">
+<p>公開版識別時刻：<code>2026-10-01T00:26:01.1961006Z</code>。同一App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。以下は従来のホーム表示とSCR003明細編集方式に優先する。</p>
+</section>
+<section id="block-L608" data-source-start="608" data-source-end="614">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L608">
+<th>ケース</th>
+<th>操作</th>
+<th>独立期待値</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L610">
+<td>IT-HOME-DETAIL-001</td>
+<td>職員検索→架空職員011を選択</td>
+<td>職員番号009900000011・03会計課が詳細へ渡る</td>
+</tr>
+<tr id="L611">
+<td>IT-SCR002-NAV-001</td>
+<td>架空職員011→給与簿→支給明細画面→検索へ戻る</td>
+<td>同じ職員番号が維持される。ホームには支給明細入口がない</td>
+</tr>
+<tr id="L612">
+<td>IT-SCR003-READBACK-001</td>
+<td>勤務時間報告→2026/08秘書課を選ぶ</td>
+<td>保存済み架空10件、12桁番号000000000001～010、期間8/1～8/31、33.167と備考を表示</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L614" data-source-start="614" data-source-end="614">
+<p>画面内編集単体は初期textboxなし、明細クリックで編集画面なし、編集切替で欠勤0・右寄せ・未変更保存不可、変更で保存可、破棄して再編集すると0を確認。保存と再取得はStudioの架空備考に試験値を書き元の空欄へ復元して確認した。公開版の保存E2E・障害・同時更新は未実施。</p>
+</section>
+<section id="L616" data-source-start="616" data-source-end="616">
+<p>2026-10-01再照合：アプリソースと公開版は維持し、起動待ち60秒、破棄ボタン「変更を破棄」、実描画borderfill要素を測る試験コードへ修正した。初回E2Eは7/10 PASS・3/10 FAIL、修正後の最終結果は未確定。</p>
+</section>
+<section id="L619" data-source-start="619" data-source-end="621">
+<h2 id="change-20261003-commute-official通勤認定簿公式様式-v102業務受入完了">CHANGE-20261003-COMMUTE-OFFICIAL／通勤認定簿公式様式 v1.02（業務受入完了）</h2>
+</section>
+<section id="L621" data-source-start="621" data-source-end="621">
+<p>公開Playerの架空職員009900000004／TK-910003を対象に、e2e/current-app/commute-official.test.tsの4件を実行。Actions37158642318、2026-10-03T22:32:55Z、4 passed。</p>
+</section>
+<section id="block-L623" data-source-start="623" data-source-end="630">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L623">
+<th>ケース</th>
+<th>操作・独立期待値</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L625">
+<td>UT-COM-FORM-001</td>
+<td>通勤→新様式。公式枠2ページ、71欄、職員番号009900000004・合計16,800・はみ出し0</td>
+<td>PASS</td>
+</tr>
+<tr id="L626">
+<td>IT-COM-PARALLEL-001</td>
+<td>新旧両ボタン。別タブ、旧新リソース名、同一GUID、71値一致</td>
+<td>PASS</td>
+</tr>
+<tr id="L627">
+<td>UT-COM-OVERFLOW-001</td>
+<td>試験DOMだけに長文を設定し印刷。枠超過メッセージ、印刷無効・帳票非表示</td>
+<td>PASS</td>
+</tr>
+<tr id="L628">
+<td>IT-COM-PRINT-001</td>
+<td>新旧をChromiumの印刷CSSでPDF出力。PDFヘッダー正常、各2ページ、印刷有効</td>
+<td>PASS</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L630" data-source-start="630" data-source-end="630">
+<p>人のOS印刷ダイアログ操作、用紙設定、業務的妥当性は受入で確認する。PDF比較の静的7ケースと旧処理mock10件は実環境6レコードの検証とは区別する。架空1レコード以外の全組合せ、総合試験D-07は未実施。</p>
+</section>
+<section id="L632" data-source-start="632" data-source-end="632">
+<p>対象公開版：<code>2026-10-03T18:31:30.4607518Z</code>。公開後読戻しActions37159201219で新旧WebリソースSHAと新旧ボタン全明示プロパティ一致。</p>
+</section>
+<section id="L635" data-source-start="635" data-source-end="637">
+<h3 id="2026-10-07-通勤新様式の受入結果">2026-10-07 通勤新様式の受入結果</h3>
+</section>
+<section id="L637" data-source-start="637" data-source-end="637">
+<p>2026-10-07（日本時間）、ユーザーから通勤認定簿の新様式の受入テスト完了の申告を受領し、CHANGE-20261003-COMMUTE-OFFICIALの業務受入をPASSとして記録した。対象は並行配置した公式様式v1.02（公開版 <code>2026-10-03T18:31:30.4607518Z</code>）。申告受領日を記録しており、実際の試験日時・確認レコード・項目別操作ログは未入力。個別の実機印刷設定や全データ組合せの実測証跡へ読み替えない。総合試験D-07と今後の給与モデル再構成の受入は別判定。旧様式の削除・通常ボタンの切替は今回実施しない。</p>
+</section>
+<section id="L640" data-source-start="640" data-source-end="642">
+<h2 id="change-20261007-commute-cutover通常入口への切替2026-10-07">CHANGE-20261007-COMMUTE-CUTOVER／通常入口への切替（2026-10-07）</h2>
+</section>
+<section id="L642" data-source-start="642" data-source-end="642">
+<p>同一App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>、公開版 <code>2026-10-07T01:17:13.7960236Z</code>。受入済み帳票v1.02を通常利用へ切替済み。通常の「認定簿表示」（btnCertificate111）を唯一の入口とし、btnCertificateOfficial102を撤去した。入口差分のソース版は <code>src/commute-ledger/v1.03/</code>。上記の旧新並行配置・切替未実施という記録は過去時点の履歴。</p>
+</section>
+<section id="L644" data-source-start="644" data-source-end="644">
+<p>旧Webリソース <code>crb3c_reports/commute-ledger-studio.html</code> は公開アプリから参照されない。2026-10-07 12:22頃 JST、ユーザーの操作時承認後に環境から当該1件を削除した。削除後Actions37566672250で不存在・新HTML SHA一致・通常ボタン全プロパティ一致を確認。別の <code>crb3c_reports/commute-ledger.html</code> は保持。削除後Playerで別タブ・TK-910003・71欄・2ページ・枠超過0を再確認した。</p>
+</section>
+<section id="L646" data-source-start="646" data-source-end="646">
+<p>今回の選定はUT-COM-FORM-001（単一入口・71欄・公式SVG2枚・枠超過0）、UT-COM-OVERFLOW-001（印刷前の枠超過停止）、IT-COM-CUTOVER-001（通常入口から別タブ・GUID・職員番号・認定ID・金額照合）、IT-COM-PRINT-001（新様式のみのA4横2ページPDF）、UT-HOME-001、IT-HOME-DETAIL-001。旧IT-COM-PARALLEL-001は履歴。新テストは旧リソースの実行を前提にしない。今回のActions結果は実施記録を参照し、過去PASSは転記しない。</p>
+</section>
+<section id="L648" data-source-start="648" data-source-end="650">
+<h2 id="2026-10-08-人給連携-試験観点未実施">2026-10-08 人給連携： 試験観点（未実施）</h2>
+</section>
+<section id="block-L650" data-source-start="650" data-source-end="665">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L650">
+<th>ID</th>
+<th>確認内容</th>
+<th>期待結果</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L652">
+<td>IF-T01</td>
+<td>xlsx生成、237列・見出し・順序</td>
+<td>基準サンプルと一致。１行目見出し、２行目からデータ</td>
+</tr>
+<tr id="L653">
+<td>IF-T02</td>
+<td>文字列形式・先頭ゼロ・日付</td>
+<td>職員番号等の桁・コード表記が保持され、日付yyyy/mm/dd</td>
+</tr>
+<tr id="L654">
+<td>IF-T03</td>
+<td>職員指定A/M</td>
+<td>指定が出力に反映。アプリが勝手に切替えない</td>
+</tr>
+<tr id="L655">
+<td>IF-T04</td>
+<td>11キーの対応</td>
+<td>全11項目が指定列へ出力され、内部GUIDとの混同なし</td>
+</tr>
+<tr id="L656">
+<td>IF-T05</td>
+<td>空欄0化</td>
+<td>架空データの人給取込で空欄が0になることを確認</td>
+</tr>
+<tr id="L657">
+<td>IF-T06</td>
+<td>網掛け列</td>
+<td>固定列を残し、これらの値を人給に反映する期待を持たない</td>
+</tr>
+<tr id="L658">
+<td>IF-T07</td>
+<td>出力→人給→給与簿取込→照合</td>
+<td>差分を確認し、訂正・M再取込後に差分ゼロを確認</td>
+</tr>
+<tr id="L659">
+<td>IF-T08</td>
+<td>エラー行</td>
+<td>エラー対象行がアプリで特定でき、処理履歴と関連付く。受渡方式確定後に実施</td>
+</tr>
+<tr id="L660">
+<td>IF-T09</td>
+<td>約800件</td>
+<td>件数・行欠落・重複・文字列保持を確認。性能の合否値は未入力</td>
+</tr>
+<tr id="L661">
+<td>IF-T10</td>
+<td>支払済み給与</td>
+<td>過去支払済み結果を変更せず、差額処理へ関連付け</td>
+</tr>
+<tr id="L662">
+<td>IF-T11</td>
+<td>対象期間</td>
+<td>前月本俸と過去月差額の対象期間が区別される。具体日付・集約方式確定後に実施</td>
+</tr>
+<tr id="L663">
+<td>IF-T12</td>
+<td>保存・再取込</td>
+<td>給与簿読取専用、処理回の計算版・取込回・照合結果を保持。中間版削除後も履歴参照</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L665" data-source-start="665" data-source-end="665">
+<p>試験には架空データを使う。利用制限のある実取込ファイルを共用テスト資材としてGitHubへ入れない。</p>
+</section>
+<section id="L668" data-source-start="668" data-source-end="668">
+<p>
+<a href="docs--design--detailed--payroll-jinkyu-interface.html" data-keep-context>出力仕様</a>。式の保留と新要件確定は既存の合格・公開版・受入結果を変更しない。</p>
+</section>
+<section id="L671" data-source-start="671" data-source-end="673">
+<h2 id="人給連携モックi1i12の受入観点2026-10-08全件未実施">人給連携モック・I1～I12の受入観点（2026-10-08、全件未実施）</h2>
+</section>
+<section id="L673" data-source-start="673" data-source-end="673">
+<p>承認済み画面構成の実装後に架空データで確認する。今回の文書整合検査とは別であり、以下をPASSとは記録しない。<a href="docs--requirements--screen-requirements.html" data-keep-context>画面要件</a>のJLINK-UI-01～11に対応する。</p>
+</section>
+<section id="block-L675" data-source-start="675" data-source-end="686">
+<div class="table-wrap" role="region" tabindex="0" aria-label="test-specification.mdの表">
+<table>
+<thead>
+<tr id="L675">
+<th>ID</th>
+<th>操作・条件</th>
+<th>独立期待値</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L677">
+<td>JLINK-T01</td>
+<td>ホームから人給連携へ入り3タブを切替、差分から入力画面へ進み戻る</td>
+<td>支給回と選択職員を保持。計算版の照合対象選択なし</td>
+</tr>
+<tr id="L678">
+<td>JLINK-T02</td>
+<td>初回全職員、絞込み、一括A/M後に一明細を変更、出力前確認</td>
+<td>対象・人数・明細数・A/M件数が出力対象と一致。職員の指定がxlsxへ反映</td>
+</tr>
+<tr id="L679">
+<td>JLINK-T03</td>
+<td>出力後に計算結果を変更して給与簿と照合</td>
+<td>変更通知あり。旧出力時の値でなく最新版がアプリ値に表示される</td>
+</tr>
+<tr id="L680">
+<td>JLINK-T04</td>
+<td>差分のみから全件へ切替、職員絞込み</td>
+<td>6列を表示。一致行を表示でき、確定判定はフィルター外を含む全支給回</td>
+</tr>
+<tr id="L681">
+<td>JLINK-T05</td>
+<td>複数差分項目が同じ出力明細に対応する状態で再出力</td>
+<td>対応明細だけ初期選択、重複出力なし、対象変更可能。対応方式確定後に実施</td>
+</tr>
+<tr id="L682">
+<td>JLINK-T06</td>
+<td>差分ゼロ後に結果変更、または未知職員等を残し確定操作</td>
+<td>古い照合・未解決状態では確定不可。権限と全支給回の最新照合を検証</td>
+</tr>
+<tr id="L683">
+<td>JLINK-T07</td>
+<td>最新照合ゼロの支給回を給与班が確定</td>
+<td>確認ダイアログなしでボタン確定。出力前確認は残り、ゼロだけでは自動確定しない</td>
+</tr>
+<tr id="L684">
+<td>JLINK-T08</td>
+<td>人給エラー情報を返す</td>
+<td>エラー対象行をアプリで識別。方式はI8確定後に実施。人給取込成否の手入力は要求しない</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L686" data-source-start="686" data-source-end="686">
+<p>差額の符号、非数値差分の表現、行対応、同時更新方式、実効権限は未入力の設計を確定してから検証する。モック承認を実装後の受入合格へ読み替えない。</p>
+</section>
+<section id="L688" data-source-start="688" data-source-end="690">
+<h2 id="dot-001公開38の引継ぎ観測と未照合2026-10-10">DOT-001：公開38の引継ぎ観測と未照合（2026-10-10）</h2>
+</section>
+<section id="L690" data-source-start="690" data-source-end="690">
+<p>対象はStaffMaster-Automation-TestのApp ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。ソースS‴は <code>fba65fdaefcf3b70821d7831ce86a4262ea4a214</code>。引継ぎ資料の09:44:53 UTCまでの観測でLive38・新draft39なし、公式Exportの対象2画面対応と公開Playerを確認。今回Workでの実機再試験ではない。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md">DOT-001検証記録</a>で証拠と限界を分離する。</p>
+</section>
+<section id="L692" data-source-start="692" data-source-end="692">
+<p>2026-10-10 07:37:54 UTCのA承認により、通常PCではサマリー固定、狭い・低い表示領域では項目を省略せず全体を縦横スクロールしサマリーも移動する。公開Player38では100%・実Chrome200%の5ボタンTab到達、2か月の各24項目の通常スクロール到達、100→200→100の固定表示・選択復帰を観測。再計算フォーカスの完全表示には横スクロールが必要で、履歴のAX表示がitem1となる差も残る。全アクセシビリティPASSではない。</p>
+</section>
+<section id="L694" data-source-start="694" data-source-end="695">
+<p>正式metadataの公開時刻P、安定PACパッケージSHA-256 H、選定自動E2E、文書保存後の最終照合は未取得・未実施（検証継続）。保存日時 <code>2026-10-10T09:27:24Z</code> とMaker Export hashをP/Hへ代用しない。全要件の実装・業務受入完了を示さない。</p>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

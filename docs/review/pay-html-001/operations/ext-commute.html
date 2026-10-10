@@ -1,85 +1,305 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
-  <title>③ EXT-COMMUTE 通勤認定簿HTML（別タブ）の操作定義 | 非常勤給与レビュー</title>
-  <link rel="stylesheet" href="../assets/review.css">
-  <script src="../assets/review.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+<title>③ EXT-COMMUTE 通勤認定簿HTML（別タブ）の操作定義 | 非常勤給与レビュー</title>
+<link rel="stylesheet" href="../assets/review.css">
+<script src="../assets/review.js" defer>
+</script>
 </head>
 <body data-screen-id="EXT-COMMUTE">
 <a class="skip" href="#main">本文へ移動</a>
-<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
-<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<header class="doc-header">
+<div>
+<strong>非常勤給与アプリ</strong>
+<span>画面・業務レビュー</span>
+</div>
+<p>PAY-HTML-001 / PAY-HTML-002改訂</p>
+</header>
+<nav class="doc-nav" aria-label="資料ナビゲーション">
+<a href="../index.html" >入口</a>
 <a href="../navigation.html" >① 画面遷移</a>
 <a href="../workflows/index.html" >② 業務フロー</a>
 <a href="index.html" aria-current="page">③ 操作定義</a>
 <a href="../wireframes/index.html" >④ ワイヤー</a>
 <a href="../coverage.html" >対応表</a>
-<a href="../design-notes.html" >設計注記</a></nav>
+<a href="../design-notes.html" >設計注記</a>
+</nav>
 <main id="main">
-<div class="document-meta"><span>0.2-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<div class="document-meta">
+<span>0.2-review / 2026-10-10</span>
+<strong>提案・レビュー用（未承認）</strong>
+<span>統合文書出典：<code>b5e5d460fe19169252de05bb02bafc9461120540</code>
+</span>
+</div>
 <h1>③ EXT-COMMUTE 通勤認定簿HTML（別タブ）の操作定義</h1>
 <p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
-<p><span class="badge current">現行実装</span> 認定GUIDで再取得する公式様式。ブラウザー印刷からA4横2ページの1PDFを保存。</p><p><a href="../wireframes/ext-commute.html" >この画面を操作する</a></p><nav aria-label="この画面の操作"><a href="#OP-F-PDF">ブラウザー印刷でPDF保存</a> <a href="#OP-F-RETURN-HTML">元の通勤タブへ戻る</a> </nav><section class="operation" id="OP-F-PDF" data-operation-id="OP-F-PDF" data-screen-id="EXT-COMMUTE"><h2>OP-F-PDF ブラウザー印刷でPDF保存</h2><p><span class="badge current">現行実装</span> <span id="TR-F-PDF">遷移：TR-F-PDF</span> / 業務：F・帳票</p><span class="requirement" data-requirement-id="SCR002-COM-003">SCR002-COM-003</span> <span class="requirement" data-requirement-id="F-05">F-05</span><div class="table-scroll" tabindex="0" role="region" aria-label="ブラウザー印刷でPDF保存の詳細契約">
-<table ><caption>ブラウザー印刷でPDF保存の詳細契約</caption>
-<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<aside class="portal-context" style="padding:16px;background:#edf5ff;border:1px solid #93b7db;margin:16px 0">
+<strong>要件定義から読む</strong>
+<p>
+<a data-context-return href="../../../requirements/standard-template/sections/2.1.1.html#section-2.1.1">関連する標準要件 2.1.1 へ戻る</a> · <a href="../../../requirements/standard-template/index.html">要件定義の入口</a> · <a href="../../../requirements/standard-template/requirements/index.html">要件IDで探す</a>
+</p>
+<p>このレビュー図・画面例の根拠は b5e5d460fe19、2026-10-10 時点の資料です。DOT-001承認A・Live38引継ぎ観測を反映。正式P/H・自動E2E・最終照合は未完了です。</p>
+</aside>
+<p>
+<span class="badge current">現行実装</span> 認定GUIDで再取得する公式様式。ブラウザー印刷からA4横2ページの1PDFを保存。</p>
+<p>
+<a href="../wireframes/ext-commute.html" >この画面を操作する</a>
+</p>
+<nav aria-label="この画面の操作">
+<a href="#OP-F-PDF">ブラウザー印刷でPDF保存</a>
+<a href="#OP-F-RETURN-HTML">元の通勤タブへ戻る</a>
+</nav>
+<section class="operation" id="OP-F-PDF" data-operation-id="OP-F-PDF" data-screen-id="EXT-COMMUTE">
+<h2>OP-F-PDF ブラウザー印刷でPDF保存</h2>
+<p>
+<span class="badge current">現行実装</span>
+<span id="TR-F-PDF">遷移：TR-F-PDF</span> / 業務：F・帳票</p>
+<a class="requirement" data-requirement-id="SCR002-COM-003" href="../../../requirements/standard-template/requirements/SCR002-COM-003.html">SCR002-COM-003</a>
+<a class="requirement" data-requirement-id="F-05" href="../../../requirements/standard-template/requirements/F-05.html">F-05</a>
+<div class="table-scroll" tabindex="0" role="region" aria-label="ブラウザー印刷でPDF保存の詳細契約">
+<table >
+<caption>ブラウザー印刷でPDF保存の詳細契約</caption>
+<thead>
+<tr>
+<th scope="col">定義項目</th>
+<th scope="col">内容</th>
+</tr>
+</thead>
 <tbody>
-<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">通勤HTMLの現行契約 10.4／CHANGE-20261003-COMMUTE-OFFICIAL／CHANGE-20261007-COMMUTE-CUTOVER</a> / <a href="../../../handoff/STATUS.md">現在の作業と読取り対象 2026-10-08人給連携／2026-10-07給与・通勤／2026-10-01 UI</a></td></tr>
-<tr><td>画面</td><td>EXT-COMMUTE → EXT-COMMUTE</td></tr>
-<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
-<tr><td>遷移元タブ</td><td>該当なし</td></tr>
-<tr><td>遷移元モード</td><td>読取り</td></tr>
-<tr><td>遷移先タブ</td><td>該当なし</td></tr>
-<tr><td>遷移先モード</td><td>読取り</td></tr>
-<tr><td>操作部品</td><td>ブラウザーの印刷</td></tr>
-<tr><td>操作方法</td><td>利用者が印刷を開きPDF保存</td></tr>
-<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
-<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
-<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
-<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
-<tr><td>入力検証・エラー</td><td>NULLと0を区別。71表示欄、選択認定、用紙向きとページ数。</td></tr>
-<tr><td>処理</td><td>A4横2ページを1つのPDFとして保存する。枠超過なら印刷停止・警告。</td></tr>
-<tr><td>保持する情報</td><td>ログイン主体、選択対象、参照元の識別情報。</td></tr>
-<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
-<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
-<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
-<tr><td>取消</td><td>印刷を閉じても認定データは変更しない。</td></tr>
-<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
-<tr><td>参照エンティティ</td><td>現在の認定簿HTML</td></tr>
-<tr><td>更新エンティティ</td><td>利用者が保存するPDFファイル</td></tr>
-</tbody></table></div>
-<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul><li>認定時の自動PDF作成はしない。実機個別印刷設定の全条件合格を意味しない。</li></ul></section><section class="operation" id="OP-F-RETURN-HTML" data-operation-id="OP-F-RETURN-HTML" data-screen-id="EXT-COMMUTE"><h2>OP-F-RETURN-HTML 元の通勤タブへ戻る</h2><p><span class="badge current">現行実装</span> <span id="TR-F-RETURN-HTML">遷移：TR-F-RETURN-HTML</span> / 業務：F・帳票</p><span class="requirement" data-requirement-id="SCR002-COM-003">SCR002-COM-003</span><div class="table-scroll" tabindex="0" role="region" aria-label="元の通勤タブへ戻るの詳細契約">
-<table ><caption>元の通勤タブへ戻るの詳細契約</caption>
-<thead><tr><th scope="col">定義項目</th><th scope="col">内容</th></tr></thead>
+<tr>
+<td>出典</td>
+<td>
+<a href="../../../requirements/standard-template/sources/docs--design--detailed--detailed-design.html">通勤HTMLの現行契約 10.4／CHANGE-20261003-COMMUTE-OFFICIAL／CHANGE-20261007-COMMUTE-CUTOVER</a> / <a href="../../../requirements/standard-template/sources/docs--handoff--STATUS.html">現在の作業と読取り対象 DOT-001最新状態と関連履歴の選択表示</a>
+</td>
+</tr>
+<tr>
+<td>画面</td>
+<td>EXT-COMMUTE → EXT-COMMUTE</td>
+</tr>
+<tr>
+<td>利用可能な役割</td>
+<td>会計課給与班・局担当者</td>
+</tr>
+<tr>
+<td>遷移元タブ</td>
+<td>該当なし</td>
+</tr>
+<tr>
+<td>遷移元モード</td>
+<td>読取り</td>
+</tr>
+<tr>
+<td>遷移先タブ</td>
+<td>該当なし</td>
+</tr>
+<tr>
+<td>遷移先モード</td>
+<td>読取り</td>
+</tr>
+<tr>
+<td>操作部品</td>
+<td>ブラウザーの印刷</td>
+</tr>
+<tr>
+<td>操作方法</td>
+<td>利用者が印刷を開きPDF保存</td>
+</tr>
+<tr>
+<td>対象行・データ範囲</td>
+<td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td>
+</tr>
+<tr>
+<td>表示条件</td>
+<td>対象画面・タブ内。権限別の具体表示条件は未入力。</td>
+</tr>
+<tr>
+<td>活性条件</td>
+<td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td>
+</tr>
+<tr>
+<td>実行前提</td>
+<td>認証済みで対象レコードを識別できること。</td>
+</tr>
+<tr>
+<td>入力検証・エラー</td>
+<td>NULLと0を区別。71表示欄、選択認定、用紙向きとページ数。</td>
+</tr>
+<tr>
+<td>処理</td>
+<td>A4横2ページを1つのPDFとして保存する。枠超過なら印刷停止・警告。</td>
+</tr>
+<tr>
+<td>保持する情報</td>
+<td>ログイン主体、選択対象、参照元の識別情報。</td>
+</tr>
+<tr>
+<td>解除する情報</td>
+<td>明記のないリセット範囲は未決。</td>
+</tr>
+<tr>
+<td>成功</td>
+<td>目的の状態と再表示を確認する。実装合格を意味しない。</td>
+</tr>
+<tr>
+<td>失敗・再実行</td>
+<td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>取消</td>
+<td>印刷を閉じても認定データは変更しない。</td>
+</tr>
+<tr>
+<td>未保存</td>
+<td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td>
+</tr>
+<tr>
+<td>参照エンティティ</td>
+<td>現在の認定簿HTML</td>
+</tr>
+<tr>
+<td>更新エンティティ</td>
+<td>利用者が保存するPDFファイル</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>受入観点</h3>
+<ul>
+<li>対象・権限・業務状態と出力／保存結果が対応する。</li>
+</ul>
+<h3>未決・注記</h3>
+<ul>
+<li>認定時の自動PDF作成はしない。実機個別印刷設定の全条件合格を意味しない。</li>
+</ul>
+</section>
+<section class="operation" id="OP-F-RETURN-HTML" data-operation-id="OP-F-RETURN-HTML" data-screen-id="EXT-COMMUTE">
+<h2>OP-F-RETURN-HTML 元の通勤タブへ戻る</h2>
+<p>
+<span class="badge current">現行実装</span>
+<span id="TR-F-RETURN-HTML">遷移：TR-F-RETURN-HTML</span> / 業務：F・帳票</p>
+<a class="requirement" data-requirement-id="SCR002-COM-003" href="../../../requirements/standard-template/requirements/SCR002-COM-003.html">SCR002-COM-003</a>
+<div class="table-scroll" tabindex="0" role="region" aria-label="元の通勤タブへ戻るの詳細契約">
+<table >
+<caption>元の通勤タブへ戻るの詳細契約</caption>
+<thead>
+<tr>
+<th scope="col">定義項目</th>
+<th scope="col">内容</th>
+</tr>
+</thead>
 <tbody>
-<tr><td>出典</td><td><a href="../../../design/detailed/detailed-design.md">通勤HTMLの現行契約 10.4／CHANGE-20261003-COMMUTE-OFFICIAL／CHANGE-20261007-COMMUTE-CUTOVER</a></td></tr>
-<tr><td>画面</td><td>EXT-COMMUTE → SCR-002</td></tr>
-<tr><td>利用可能な役割</td><td>会計課給与班・局担当者</td></tr>
-<tr><td>遷移元タブ</td><td>該当なし</td></tr>
-<tr><td>遷移元モード</td><td>読取り</td></tr>
-<tr><td>遷移先タブ</td><td>通勤</td></tr>
-<tr><td>遷移先モード</td><td>読取り</td></tr>
-<tr><td>操作部品</td><td>元のアプリタブを選択</td></tr>
-<tr><td>操作方法</td><td>ブラウザーで元タブに切替（必要時に帳票タブを閉じる）</td></tr>
-<tr><td>対象行・データ範囲</td><td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td></tr>
-<tr><td>表示条件</td><td>対象画面・タブ内。権限別の具体表示条件は未入力。</td></tr>
-<tr><td>活性条件</td><td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td></tr>
-<tr><td>実行前提</td><td>認証済みで対象レコードを識別できること。</td></tr>
-<tr><td>入力検証・エラー</td><td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td></tr>
-<tr><td>処理</td><td>元のSCR-002通勤タブへ戻る。</td></tr>
-<tr><td>保持する情報</td><td>職員・認定選択。</td></tr>
-<tr><td>解除する情報</td><td>明記のないリセット範囲は未決。</td></tr>
-<tr><td>成功</td><td>目的の状態と再表示を確認する。実装合格を意味しない。</td></tr>
-<tr><td>失敗・再実行</td><td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td></tr>
-<tr><td>取消</td><td>処理開始前の取消は状態を変更しない（画面操作案）。</td></tr>
-<tr><td>未保存</td><td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td></tr>
-<tr><td>参照エンティティ</td><td>元画面コンテキスト</td></tr>
-<tr><td>更新エンティティ</td><td></td></tr>
-</tbody></table></div>
-<h3>受入観点</h3><ul><li>対象・権限・業務状態と出力／保存結果が対応する。</li></ul><h3>未決・注記</h3><ul></ul></section>
+<tr>
+<td>出典</td>
+<td>
+<a href="../../../requirements/standard-template/sources/docs--design--detailed--detailed-design.html">通勤HTMLの現行契約 10.4／CHANGE-20261003-COMMUTE-OFFICIAL／CHANGE-20261007-COMMUTE-CUTOVER</a>
+</td>
+</tr>
+<tr>
+<td>画面</td>
+<td>EXT-COMMUTE → SCR-002</td>
+</tr>
+<tr>
+<td>利用可能な役割</td>
+<td>会計課給与班・局担当者</td>
+</tr>
+<tr>
+<td>遷移元タブ</td>
+<td>該当なし</td>
+</tr>
+<tr>
+<td>遷移元モード</td>
+<td>読取り</td>
+</tr>
+<tr>
+<td>遷移先タブ</td>
+<td>通勤</td>
+</tr>
+<tr>
+<td>遷移先モード</td>
+<td>読取り</td>
+</tr>
+<tr>
+<td>操作部品</td>
+<td>元のアプリタブを選択</td>
+</tr>
+<tr>
+<td>操作方法</td>
+<td>ブラウザーで元タブに切替（必要時に帳票タブを閉じる）</td>
+</tr>
+<tr>
+<td>対象行・データ範囲</td>
+<td>現行要件は同一所属制限。業務認可の実装・全経路検証は未完了。改修先の給与班全局／局担当自局と区別する。</td>
+</tr>
+<tr>
+<td>表示条件</td>
+<td>対象画面・タブ内。権限別の具体表示条件は未入力。</td>
+</tr>
+<tr>
+<td>活性条件</td>
+<td>対象・権限・業務状態を検証した場合。物理方式は未入力。</td>
+</tr>
+<tr>
+<td>実行前提</td>
+<td>認証済みで対象レコードを識別できること。</td>
+</tr>
+<tr>
+<td>入力検証・エラー</td>
+<td>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</td>
+</tr>
+<tr>
+<td>処理</td>
+<td>元のSCR-002通勤タブへ戻る。</td>
+</tr>
+<tr>
+<td>保持する情報</td>
+<td>職員・認定選択。</td>
+</tr>
+<tr>
+<td>解除する情報</td>
+<td>明記のないリセット範囲は未決。</td>
+</tr>
+<tr>
+<td>成功</td>
+<td>目的の状態と再表示を確認する。実装合格を意味しない。</td>
+</tr>
+<tr>
+<td>失敗・再実行</td>
+<td>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>取消</td>
+<td>処理開始前の取消は状態を変更しない（画面操作案）。</td>
+</tr>
+<tr>
+<td>未保存</td>
+<td>未保存入力の扱いは個別契約を優先。未定義の画面は未決。</td>
+</tr>
+<tr>
+<td>参照エンティティ</td>
+<td>元画面コンテキスト</td>
+</tr>
+<tr>
+<td>更新エンティティ</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>受入観点</h3>
+<ul>
+<li>対象・権限・業務状態と出力／保存結果が対応する。</li>
+</ul>
+<h3>未決・注記</h3>
+<ul>
+</ul>
+</section>
 </main>
 <footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+<script src="../../../requirements/standard-template/assets/context.js" data-portal-root="../../../requirements/standard-template" defer>
+</script>
 </body>
 </html>

@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>期末・勤勉率の登録 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" aria-current="page">業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../journeys.html" >業務の流れ</a>
+</span>
+<span aria-current="page">期末・勤勉率の登録</span>
+</nav>
+<a class="context-return" data-context-return href="../journeys.html">← 業務一覧へ戻る</a>
+<div>
+<span class="eyebrow">BUSINESS FLOW / WF-11</span>
+<h1 id="WF-11">期末・勤勉率の登録</h1>
+<p class="lead">期末率と勤勉率を別々に登録。入力不備は登録へ戻し、式などが未確定なら確認で止め、確定条件だけを計算根拠へ渡します。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>確定</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>この業務の確認ポイント</h2>
+<dl class="contract">
+<dt>担当する人</dt>
+<dd>会計課給与班（配置案）</dd>
+<dt>どこから始める</dt>
+<dd>職員と支給対象期間を選択</dd>
+<dt>使う画面</dt>
+<dd>
+<div class="chips">
+<a href="../screens/SCR-001.html?context=flow-WF-11#SCR-001" >SCR-001</a>
+<a href="../screens/SCR-004.html?context=flow-WF-11#SCR-004" >SCR-004</a>
+<a href="../screens/FUT-JLINK.html?context=flow-WF-11#FUT-JLINK" >FUT-JLINK</a>
+</div>
+</dd>
+<dt>何をもって完了</dt>
+<dd>別々の率を計算根拠へ</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>流れと戻り・分岐</h2>
+<figure data-figure>
+<div class="figure-controls">
+<button type="button" data-zoom-out aria-label="図を縮小">− 縮小</button>
+<output aria-live="polite">100%</output>
+<button type="button" data-zoom-in aria-label="図を拡大">＋ 拡大</button>
+<button type="button" data-zoom-fit>全体に戻す</button>
+</div>
+<div class="diagram-viewport" tabindex="0" role="region" aria-label="WF-11 期末・勤勉率の登録。拡大後は横・縦にスクロールできます。">
+<div class="diagram-canvas">
+<svg class="workflow-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1190" width="800" height="1190" role="img" aria-labelledby="WF-11-title WF-11-description" data-workflow-id="WF-11">
+<title id="WF-11-title">WF-11 期末・勤勉率の登録</title>
+<desc id="WF-11-description">期末率と勤勉率を別々に登録。入力不備は登録へ戻し、式などが未確定なら確認で止め、確定条件だけを計算根拠へ渡します。 工程は一度だけ配置。矢印をたどり、茶色の折返しは訂正・再試行。全条件は同じデータの経路表で確認できます。</desc>
+<defs>
+<marker id="WF-11-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+</marker>
+</defs>
+<g class="flow-lane app" data-lane-id="lane-1">
+<rect x="40" y="0" width="360" height="1190"/>
+<rect class="lane-heading-bg" x="40" y="0" width="360" height="65"/>
+<text x="220" y="25" class="flow-lane-title" text-anchor="middle">給与班（配置案）</text>
+<text x="220" y="49" class="flow-lane-scope" text-anchor="middle">期末率・勤勉率の登録</text>
+</g>
+<g class="flow-lane app" data-lane-id="lane-2">
+<rect x="400" y="0" width="360" height="1190"/>
+<rect class="lane-heading-bg" x="400" y="0" width="360" height="65"/>
+<text x="580" y="25" class="flow-lane-title" text-anchor="middle">条件確認・給与計算</text>
+<text x="580" y="49" class="flow-lane-scope" text-anchor="middle">未決の保留／根拠保持</text>
+</g>
+<g class="flow-connector view" data-edge-id="WF-11-view-01" data-from="start-a" data-to="a">
+<path class="flow-edge-halo" d="M 220 116 L 220 162"/>
+<path class="flow-edge" d="M 220 116 L 220 162" marker-end="url(#WF-11-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-11-view-02" data-from="join-c" data-to="c">
+<path class="flow-edge-halo" d="M 220 554 L 220 562"/>
+<path class="flow-edge" d="M 220 554 L 220 562" marker-end="url(#WF-11-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-11-view-03" data-from="e" data-to="end-e">
+<path class="flow-edge-halo" d="M 580 858 L 580 889"/>
+<path class="flow-edge" d="M 580 858 L 580 889" marker-end="url(#WF-11-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-11-view-04" data-from="f" data-to="end-f">
+<path class="flow-edge-halo" d="M 220 1058 L 220 1089"/>
+<path class="flow-edge" d="M 220 1058 L 220 1089" marker-end="url(#WF-11-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-11-edge-01" data-from="a" data-to="b" data-source-step="a" data-target-step="b">
+<path class="flow-edge-halo" d="M 220 258 L 220 362"/>
+<path class="flow-edge" d="M 220 258 L 220 362" marker-end="url(#WF-11-arrow)"/>
+<title>表示</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-11-edge-02" data-from="b" data-to="join-c" data-source-step="b" data-target-step="c">
+<path class="flow-edge-halo" d="M 220 458 L 220 534"/>
+<path class="flow-edge" d="M 220 458 L 220 534" marker-end="url(#WF-11-arrow)"/>
+<title>登録</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-11-edge-03" data-from="c" data-to="d" data-source-step="c" data-target-step="d">
+<path class="flow-edge-halo" d="M 220 658 L 220 742"/>
+<path class="flow-edge" d="M 220 658 L 220 742" marker-end="url(#WF-11-arrow)"/>
+<title>検証</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-11-edge-06" data-from="d" data-to="f" data-source-step="d" data-target-step="f">
+<path class="flow-edge-halo" d="M 220 878 L 220 962"/>
+<path class="flow-edge" d="M 220 878 L 220 962" marker-end="url(#WF-11-arrow)"/>
+<title>確定済条件のみ</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-11-edge-04" data-from="d" data-to="join-c" data-source-step="d" data-target-step="c">
+<path class="flow-edge-halo" d="M 95 810 L 87 810 L 87 544 L 210 544"/>
+<path class="flow-edge" d="M 95 810 L 87 810 L 87 544 L 210 544" marker-end="url(#WF-11-arrow)"/>
+<title>入力不備</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-11-edge-05" data-from="d" data-to="e" data-source-step="d" data-target-step="e">
+<path class="flow-edge-halo" d="M 345 810 L 458 810"/>
+<path class="flow-edge" d="M 345 810 L 458 810" marker-end="url(#WF-11-arrow)"/>
+<title>式等未確定</title>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-11-edge-01">
+<rect x="227" y="295.5" width="42.8" height="29" rx="4"/>
+<text x="234" y="314.5">表示</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-11-edge-02">
+<rect x="227" y="481.5" width="42.8" height="29" rx="4"/>
+<text x="234" y="500.5">登録</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-11-edge-03">
+<rect x="227" y="685.5" width="42.8" height="29" rx="4"/>
+<text x="234" y="704.5">検証</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-11-edge-06">
+<rect x="227" y="905.5" width="114.8" height="29" rx="4"/>
+<text x="234" y="924.5">確定済条件のみ</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-11-edge-04">
+<rect x="94" y="662.5" width="71.6" height="29" rx="4"/>
+<text x="101" y="681.5">入力不備</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-11-edge-05">
+<rect x="358.5" y="774" width="86" height="29" rx="4"/>
+<text x="365.5" y="793">式等未確定</text>
+</g>
+<g class="flow-node task" data-node-id="a" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,162.0,342.0,258.0" data-step-id="a">
+<a href="#step-a" aria-label="a 期末勤勉画面を開く：工程定義へ">
+<title>期末勤勉画面を開く。画面・入口は現行。以下の別率業務は改修先。</title>
+<rect x="98.0" y="162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="182.0">a · SCR-001</text>
+<text class="flow-task-label" x="112.0" y="207.0">期末勤勉画面を開く</text>
+</a>
+<a href="../operations/OP-001-RATES.html?context=flow-WF-11#OP-001-RATES" aria-label="OP-001-RATES 操作定義">
+<text class="flow-op-link" x="330.0" y="249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="b" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,362.0,342.0,458.0" data-step-id="b">
+<a href="#step-b" aria-label="b 職員・対象期間を選択：工程定義へ">
+<title>職員・対象期間を選択。職員×支給対象期間。</title>
+<rect x="98.0" y="362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="382.0">b · SCR-004</text>
+<text class="flow-task-label" x="112.0" y="407.0">職員・対象期間を選択</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="c" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,562.0,342.0,658.0" data-step-id="c">
+<a href="#step-c" aria-label="c 期末率・勤勉率を別登録：工程定義へ">
+<title>期末率・勤勉率を別登録。単一率へ統合しない。詳細項目・率範囲未入力。</title>
+<rect x="98.0" y="562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="582.0">c · SCR-004</text>
+<text class="flow-task-label" x="112.0" y="607.0">期末率・勤勉率を別登録</text>
+</a>
+<a href="../operations/OP-004-RATES.html?context=flow-WF-11#OP-004-RATES" aria-label="OP-004-RATES 操作定義">
+<text class="flow-op-link" x="330.0" y="649.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="d" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,742.0,345.0,878.0" data-step-id="d">
+<a href="#step-d" aria-label="d 必要条件を確認できるか：工程定義へ">
+<title>必要条件を確認できるか。基礎額・式・端数・適用判定は未決。</title>
+<polygon points="220.0,742.0 345.0,810 220.0,878.0 95.0,810"/>
+<text class="flow-node-id" x="220.0" y="770" text-anchor="middle">d · ×</text>
+<text class="flow-task-label" x="220.0" y="802" text-anchor="middle">必要条件を確認でき</text>
+<text class="flow-task-label" x="220.0" y="824" text-anchor="middle">るか</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="e" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,762.0,702.0,858.0" data-step-id="e">
+<a href="#step-e" aria-label="e 未決条件を確認する：工程定義へ">
+<title>未決条件を確認する。未確認式を推測して本番計算しない。</title>
+<rect x="458.0" y="762.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="782.0">e · SCR-004</text>
+<text class="flow-task-label" x="472.0" y="807.0">未決条件を確認する</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="f" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,962.0,342.0,1058.0" data-step-id="f">
+<a href="#step-f" aria-label="f 計算版の根拠へ保持：工程定義へ">
+<title>計算版の根拠へ保持。計算配置は提案。支払処理区分20等の割当ては未入力。</title>
+<rect x="98.0" y="962.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="982.0">f · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="1007.0">計算版の根拠へ保持</text>
+</a>
+<a href="../operations/OP-PAY-CALCULATE.html?context=flow-WF-11#OP-PAY-CALCULATE" aria-label="OP-PAY-CALCULATE 操作定義">
+<text class="flow-op-link" x="330.0" y="1049.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node start" data-node-id="start-a" data-node-kind="start" data-lane-id="lane-1" data-box="204.0,84.0,236.0,116.0">
+<title>開始。表示用要素</title>
+<circle cx="220.0" cy="100" r="16.0"/>
+<text class="flow-event-label" x="247.0" y="105" text-anchor="start">開始</text>
+</g>
+<g class="flow-node merge" data-node-id="join-c" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,534.0,230.0,554.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,534.0 230.0,544 220.0,554.0 210.0,544"/>
+<text class="flow-gateway-symbol" x="220.0" y="547" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node end" data-node-id="end-e" data-node-kind="end" data-lane-id="lane-2" data-box="563.0,889.0,597.0,923.0">
+<title>確認区間の終了。表示用要素</title>
+<circle cx="580.0" cy="906" r="17.0"/>
+<circle class="end-inner" cx="580.0" cy="906" r="12.0"/>
+<text class="flow-event-label" x="580.0" y="942" text-anchor="middle">確認区間の終了</text>
+</g>
+<g class="flow-node end" data-node-id="end-f" data-node-kind="end" data-lane-id="lane-1" data-box="203.0,1089.0,237.0,1123.0">
+<title>確認区間の終了。表示用要素</title>
+<circle cx="220.0" cy="1106" r="17.0"/>
+<circle class="end-inner" cx="220.0" cy="1106" r="12.0"/>
+<text class="flow-event-label" x="220.0" y="1142" text-anchor="middle">確認区間の終了</text>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="figure-note">拡大後は指で横・縦へスクロールできます。キーボードは図枠にTabで移動し矢印キー。図の工程名から操作の詳細へ進めます。図の下にも同じ工程と全経路を記載しています。</figcaption>
+</figure>
+<p class="meta">青の実線: 業務の順序。茶色: 訂正・再試行。破線: 外部システムとの受渡し等。内部画面移動、別タブ、利用者による人給への切替を混同しません。</p>
+</section>
+<section class="panel" >
+<h2>何を入力・確認するか</h2>
+<ol class="steps">
+<li id="step-a">
+<div class="step-title">
+<a href="../operations/OP-001-RATES.html?context=flow-WF-11#OP-001-RATES" >期末勤勉画面を開く</a>
+</div>
+<p>画面・入口は現行。以下の別率業務は改修先。</p>
+<div class="meta">
+<a href="../screens/SCR-001.html?context=flow-WF-11#SCR-001" >SCR-001</a>  / OP-001-RATES</div>
+</li>
+<li id="step-b">
+<div class="step-title">職員・対象期間を選択</div>
+<p>職員×支給対象期間。</p>
+<div class="meta">
+<a href="../screens/SCR-004.html?context=flow-WF-11#SCR-004" >SCR-004</a>
+</div>
+</li>
+<li id="step-c">
+<div class="step-title">
+<a href="../operations/OP-004-RATES.html?context=flow-WF-11#OP-004-RATES" >期末率・勤勉率を別登録</a>
+</div>
+<p>単一率へ統合しない。詳細項目・率範囲未入力。</p>
+<div class="meta">
+<a href="../screens/SCR-004.html?context=flow-WF-11#SCR-004" >SCR-004</a>  / OP-004-RATES</div>
+</li>
+<li id="step-d">
+<div class="step-title">必要条件を確認できるか</div>
+<p>基礎額・式・端数・適用判定は未決。</p>
+<div class="meta">
+<a href="../screens/SCR-004.html?context=flow-WF-11#SCR-004" >SCR-004</a>
+</div>
+</li>
+<li id="step-e">
+<div class="step-title">未決条件を確認する</div>
+<p>未確認式を推測して本番計算しない。</p>
+<div class="meta">
+<a href="../screens/SCR-004.html?context=flow-WF-11#SCR-004" >SCR-004</a>
+</div>
+</li>
+<li id="step-f">
+<div class="step-title">
+<a href="../operations/OP-PAY-CALCULATE.html?context=flow-WF-11#OP-PAY-CALCULATE" >計算版の根拠へ保持</a>
+</div>
+<p>計算配置は提案。支払処理区分20等の割当ては未入力。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-11#FUT-JLINK" >FUT-JLINK</a>  / OP-PAY-CALCULATE</div>
+</li>
+</ol>
+</section>
+<details>
+<summary>設計・構築者向け: 役割・データ・処理条件</summary>
+<div>
+<div class="table-wrap" role="region" tabindex="0" aria-label="業務を構成する操作の契約">
+<table>
+<caption>業務を構成する操作の契約</caption>
+<thead>
+<tr>
+<th scope="col">操作</th>
+<th scope="col">担当・対象範囲</th>
+<th scope="col">読む情報 → 変更する情報</th>
+<th scope="col">実行条件・失敗時</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="../operations/OP-001-RATES.html?context=flow-WF-11#OP-001-RATES" >OP-001-RATES 期末勤勉支給率登録</a>
+</td>
+<td>ログイン利用者<br>現行所属制限。将来の給与班全局・局担当自局の認可は別契約。</td>
+<td>ログイン主体、現行表示確認用コンテキスト → データ更新なし</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-004-RATES.html?context=flow-WF-11#OP-004-RATES" >OP-004-RATES 期末・勤勉率を登録</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>職員、支給対象期間 → 期末率・勤勉率</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-PAY-CALCULATE.html?context=flow-WF-11#OP-PAY-CALCULATE" >OP-PAY-CALCULATE 給与を計算・再計算</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>確認済み勤務条件・勤務実績、認定済み通勤、登録済み保険・税・控除、日額／時間額単価・期末勤勉別率・調整 → 計算版・職員別結果・使用根拠</td>
+<td>必要な勤務条件・控除・勤怠・通勤が確認済み／認定済みで、取込不完全でない。<br>未確認・不完全・式未確定を確定結果として採用しない。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrap" role="region" tabindex="0" aria-label="図と同一データの全経路">
+<table>
+<caption>図と同一データの全経路</caption>
+<thead>
+<tr>
+<th scope="col">起点</th>
+<th scope="col">条件・操作</th>
+<th scope="col">到達点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>期末勤勉画面を開く</td>
+<td>表示</td>
+<td>職員・対象期間を選択</td>
+</tr>
+<tr>
+<td>職員・対象期間を選択</td>
+<td>登録</td>
+<td>期末率・勤勉率を別登録</td>
+</tr>
+<tr>
+<td>期末率・勤勉率を別登録</td>
+<td>検証</td>
+<td>必要条件を確認できるか</td>
+</tr>
+<tr>
+<td>必要条件を確認できるか</td>
+<td>入力不備</td>
+<td>期末率・勤勉率を別登録</td>
+</tr>
+<tr>
+<td>必要条件を確認できるか</td>
+<td>式等未確定</td>
+<td>未決条件を確認する</td>
+</tr>
+<tr>
+<td>必要条件を確認できるか</td>
+<td>確定済条件のみ</td>
+<td>計算版の根拠へ保持</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<section class="panel" >
+<h2>要件と根拠へ戻る</h2>
+<div class="chips">
+<a href="../sections/1.1.2.html#section-1.1.2" >1.1.2</a>
+</div>
+<h3 style="margin-top:18px">関連要件ID</h3>
+<div class="chips">
+<a href="../requirements/PAYREQ-07.html?context=flow-WF-11#requirement-PAYREQ-07" >PAYREQ-07</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=flow-WF-11" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=flow-WF-11" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--open-decisions.html?context=flow-WF-11" data-keep-context>open-decisions.md</a>
+<div class="meta">docs/requirements/open-decisions.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

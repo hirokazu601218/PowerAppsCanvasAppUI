@@ -1,60 +1,256 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
-  <title>非常勤給与アプリ レビュー資料 | 非常勤給与レビュー</title>
-  <link rel="stylesheet" href="assets/review.css">
-  <script src="assets/review.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+<title>非常勤給与アプリ レビュー資料 | 非常勤給与レビュー</title>
+<link rel="stylesheet" href="assets/review.css">
+<script src="assets/review.js" defer>
+</script>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
-<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
-<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="index.html" aria-current="page">入口</a>
+<header class="doc-header">
+<div>
+<strong>非常勤給与アプリ</strong>
+<span>画面・業務レビュー</span>
+</div>
+<p>PAY-HTML-001 / PAY-HTML-002改訂</p>
+</header>
+<nav class="doc-nav" aria-label="資料ナビゲーション">
+<a href="index.html" aria-current="page">入口</a>
 <a href="navigation.html" >① 画面遷移</a>
 <a href="workflows/index.html" >② 業務フロー</a>
 <a href="operations/index.html" >③ 操作定義</a>
 <a href="wireframes/index.html" >④ ワイヤー</a>
 <a href="coverage.html" >対応表</a>
-<a href="design-notes.html" >設計注記</a></nav>
+<a href="design-notes.html" >設計注記</a>
+</nav>
 <main id="main">
-<div class="document-meta"><span>0.2-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<div class="document-meta">
+<span>0.2-review / 2026-10-10</span>
+<strong>提案・レビュー用（未承認）</strong>
+<span>統合文書出典：<code>b5e5d460fe19169252de05bb02bafc9461120540</code>
+</span>
+</div>
 <h1>非常勤給与アプリ レビュー資料</h1>
 <p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
+<aside class="portal-context" style="padding:16px;background:#edf5ff;border:1px solid #93b7db;margin:16px 0">
+<strong>要件定義から読む</strong>
+<p>
+<a data-context-return href="../../requirements/standard-template/sections/2.2.1.html#section-2.2.1">関連する標準要件 2.2.1 へ戻る</a> · <a href="../../requirements/standard-template/index.html">要件定義の入口</a> · <a href="../../requirements/standard-template/requirements/index.html">要件IDで探す</a>
+</p>
+<p>このレビュー図・画面例の根拠は b5e5d460fe19、2026-10-10 時点の資料です。DOT-001承認A・Live38引継ぎ観測を反映。正式P/H・自動E2E・最終照合は未完了です。</p>
+</aside>
 <p class="lead">画面から業務へ。業務から一つの操作へ。確認したい粒度を選んで進めます。</p>
-<div class="review-cards"><article><h2><a href="navigation.html" >01 画面遷移</a></h2><p>ホーム・戻り・役割別入口・外部との境界</p></article><article><h2><a href="workflows/index.html" >02 業務フロー</a></h2><p>業務単位の手順、分岐、失敗・再実行</p></article><article><h2><a href="operations/index.html" >03 操作定義</a></h2><p>条件・対象範囲・データ・例外を一か所で確認</p></article><article><h2><a href="wireframes/index.html" >04 ワイヤーフレーム</a></h2><p>架空の画面でタブ、確認、戻りをたどる</p></article></div><h2>読み方と判断の境界</h2><ul><li>画面の既存性と各操作の実装状態は分けて読みます。確定要件は実装済みを意味しません。</li><li>最新の2026-10-07要件と2026-10-08 I1～I12を優先します。D9以降の式は保留です。</li><li>支給回の給与班確定は最新の全体照合が差分ゼロの場合に限り、確認ダイアログは出しません。Excel出力前の確認とは別です。</li><li>未決を補うレイアウト・確認文・模擬操作は提案です。新しい制度判断や計算式は採用しません。</li></ul><div class="legend"><span class="badge current">現行実装</span><span class="badge accepted">確定改修要件</span><span class="badge proposed">提案</span><span class="badge open">未決</span></div><p>12画面・外部境界 / 15業務フロー / 100操作。<a href="coverage.html" >網羅性対応表</a>で相互参照を確認できます。</p><h2>出典</h2><div class="table-scroll" tabindex="0" role="region" aria-label="参照資料">
-<table ><caption>参照資料</caption>
-<thead><tr><th scope="col">出典ID</th><th scope="col">Markdown正本・参照節</th></tr></thead>
+<div class="review-cards">
+<article>
+<h2>
+<a href="navigation.html" >01 画面遷移</a>
+</h2>
+<p>ホーム・戻り・役割別入口・外部との境界</p>
+</article>
+<article>
+<h2>
+<a href="workflows/index.html" >02 業務フロー</a>
+</h2>
+<p>業務単位の手順、分岐、失敗・再実行</p>
+</article>
+<article>
+<h2>
+<a href="operations/index.html" >03 操作定義</a>
+</h2>
+<p>条件・対象範囲・データ・例外を一か所で確認</p>
+</article>
+<article>
+<h2>
+<a href="wireframes/index.html" >04 ワイヤーフレーム</a>
+</h2>
+<p>架空の画面でタブ、確認、戻りをたどる</p>
+</article>
+</div>
+<h2>読み方と判断の境界</h2>
+<ul>
+<li>画面の既存性と各操作の実装状態は分けて読みます。確定要件は実装済みを意味しません。</li>
+<li>最新の2026-10-07要件と2026-10-08 I1～I12を優先します。D9以降の式は保留です。</li>
+<li>支給回の給与班確定は最新の全体照合が差分ゼロの場合に限り、確認ダイアログは出しません。Excel出力前の確認とは別です。</li>
+<li>未決を補うレイアウト・確認文・模擬操作は提案です。新しい制度判断や計算式は採用しません。</li>
+</ul>
+<div class="legend">
+<span class="badge current">現行実装</span>
+<span class="badge accepted">確定改修要件</span>
+<span class="badge proposed">提案</span>
+<span class="badge open">未決</span>
+</div>
+<p>12画面・外部境界 / 15業務フロー / 100操作。<a href="coverage.html" >網羅性対応表</a>で相互参照を確認できます。</p>
+<h2>出典</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="参照資料">
+<table >
+<caption>参照資料</caption>
+<thead>
+<tr>
+<th scope="col">出典ID</th>
+<th scope="col">Markdown正本・参照節</th>
+</tr>
+</thead>
 <tbody>
-<tr><td>SRC-STATUS</td><td><a href="../../handoff/STATUS.md">現在の作業と読取り対象 2026-10-08人給連携／2026-10-07給与・通勤／2026-10-01 UI</a></td></tr>
-<tr><td>SRC-PAY</td><td><a href="../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></td></tr>
-<tr><td>SRC-AD</td><td><a href="../../requirements/business-requirements.md">業務要件：採用前工程 A～D／AD-01～10</a></td></tr>
-<tr><td>SRC-E</td><td><a href="../../requirements/business-requirements.md">業務要件：給与登録 E／E-01～12</a></td></tr>
-<tr><td>SRC-F</td><td><a href="../../requirements/business-requirements.md">業務要件：通勤認定 F／F-01～08</a></td></tr>
-<tr><td>SRC-G</td><td><a href="../../requirements/business-requirements.md">業務要件：外部決定 G／G-01～06</a></td></tr>
-<tr><td>SRC-AUTH</td><td><a href="../../requirements/business-requirements.md">業務要件：役割・ルール AUTH-01～04、PAY-01～05</a></td></tr>
-<tr><td>SRC-FR</td><td><a href="../../requirements/requirements.md">機能要件 FR-AD／FR-E／FR-F／FR-G／FR-PAY／FR-AUTH</a></td></tr>
-<tr><td>SRC-SCREEN</td><td><a href="../../requirements/screen-requirements.md">画面要件：現行・将来 1～6章、8～13章</a></td></tr>
-<tr><td>SRC-UIOCT</td><td><a href="../../requirements/screen-requirements.md">10月1日画面改修 SCR001～003 UI変更（CHANGE-20261001-SCR001-003-UI）</a></td></tr>
-<tr><td>SRC-JSCREEN</td><td><a href="../../requirements/screen-requirements.md">人給連携画面要件 2026-10-08／JLINK-UI-01～11</a></td></tr>
-<tr><td>SRC-I</td><td><a href="../../requirements/payroll-interface-decisions-20261008.md">人給の決定・保留 7. D1～D12、10. 残件、11. I1～I12</a></td></tr>
-<tr><td>SRC-IF</td><td><a href="../../design/detailed/payroll-jinkyu-interface.md">人給Excel・給与簿CSV仕様 2～6章、IF-01～12、PERIOD-01～05、11キー</a></td></tr>
-<tr><td>SRC-JDETAIL</td><td><a href="../../design/detailed/payroll-jinkyu-interface.md">承認画面の処理契約 7.1 出力／7.2 最新版照合／7.3 訂正・エラー・確定</a></td></tr>
-<tr><td>SRC-BASIC</td><td><a href="../../design/basic/basic-design.md">給与管理基本設計 現行画面境界、2026-10-07改修先、2026-10-08人給</a></td></tr>
-<tr><td>SRC-DATA</td><td><a href="../../design/basic/data-model.md">データ設計 現行隔離表、2026-10-07変更後論理モデル、2026-10-08連携</a></td></tr>
-<tr><td>SRC-DETAIL</td><td><a href="../../design/detailed/detailed-design.md">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a></td></tr>
-<tr><td>SRC-ATT</td><td><a href="../../design/detailed/detailed-design.md">詳細設計：勤怠 2026-09-29勤務時間報告／2026-10-01 UI／2026-10-07勤怠再取込</a></td></tr>
-<tr><td>SRC-CALC</td><td><a href="../../design/detailed/detailed-design.md">詳細設計：改修先 2026-10-07変更後処理契約、計算・人給照合・状態制御</a></td></tr>
-<tr><td>SRC-COMMUTE</td><td><a href="../../design/detailed/detailed-design.md">通勤HTMLの現行契約 10.4／CHANGE-20261003-COMMUTE-OFFICIAL／CHANGE-20261007-COMMUTE-CUTOVER</a></td></tr>
-<tr><td>SRC-OPEN</td><td><a href="../../requirements/open-decisions.md">未決・未照合 D-01～08、PD-01～09、2026-10-08モック・I決定反映後残件</a></td></tr>
-<tr><td>SRC-TEST</td><td><a href="../../testing/test-specification.md">人給連携試験仕様 IF-T01～12、JLINK-T01～08（業務試験未実施）</a></td></tr>
-<tr><td>SRC-DESIGN</td><td><a href="../../design/basic/design-system.md">B案デザイン基準 文字・色・余白・Fluent/DADS・Power Apps実機校正</a></td></tr>
-<tr><td>SRC-LEDGER-FIELDS</td><td><a href="../../../config/dataverse/payrollledger-columns.json">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a></td></tr>
-<tr><td>SRC-POCNAV</td><td><a href="../../../src/screen-ui/v1.30/home.paste.yaml">現行ホームのPoC入口 Button3.Text／OnSelect（scrExcelImportPocへの遷移）</a></td></tr>
-</tbody></table></div>
-
+<tr>
+<td>SRC-STATUS</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--handoff--STATUS.html">現在の作業と読取り対象 DOT-001最新状態と関連履歴の選択表示</a>
+</td>
+</tr>
+<tr>
+<td>SRC-PAY</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--payroll-confirmed-20261007.html">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a>
+</td>
+</tr>
+<tr>
+<td>SRC-AD</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--business-requirements.html">業務要件：採用前工程 A～D／AD-01～10</a>
+</td>
+</tr>
+<tr>
+<td>SRC-E</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--business-requirements.html">業務要件：給与登録 E／E-01～12</a>
+</td>
+</tr>
+<tr>
+<td>SRC-F</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--business-requirements.html">業務要件：通勤認定 F／F-01～08</a>
+</td>
+</tr>
+<tr>
+<td>SRC-G</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--business-requirements.html">業務要件：外部決定 G／G-01～06</a>
+</td>
+</tr>
+<tr>
+<td>SRC-AUTH</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--business-requirements.html">業務要件：役割・ルール AUTH-01～04、PAY-01～05</a>
+</td>
+</tr>
+<tr>
+<td>SRC-FR</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--requirements.html">機能要件 FR-AD／FR-E／FR-F／FR-G／FR-PAY／FR-AUTH</a>
+</td>
+</tr>
+<tr>
+<td>SRC-SCREEN</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--screen-requirements.html">画面要件：現行・将来 1～6章、8～13章</a>
+</td>
+</tr>
+<tr>
+<td>SRC-UIOCT</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--screen-requirements.html">10月1日画面改修 SCR001～003 UI変更（CHANGE-20261001-SCR001-003-UI）</a>
+</td>
+</tr>
+<tr>
+<td>SRC-JSCREEN</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--screen-requirements.html">人給連携画面要件 2026-10-08／JLINK-UI-01～11</a>
+</td>
+</tr>
+<tr>
+<td>SRC-I</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--payroll-interface-decisions-20261008.html">人給の決定・保留 7. D1～D12、10. 残件、11. I1～I12</a>
+</td>
+</tr>
+<tr>
+<td>SRC-IF</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--design--detailed--payroll-jinkyu-interface.html">人給Excel・給与簿CSV仕様 2～6章、IF-01～12、PERIOD-01～05、11キー</a>
+</td>
+</tr>
+<tr>
+<td>SRC-JDETAIL</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--design--detailed--payroll-jinkyu-interface.html">承認画面の処理契約 7.1 出力／7.2 最新版照合／7.3 訂正・エラー・確定</a>
+</td>
+</tr>
+<tr>
+<td>SRC-BASIC</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--design--basic--basic-design.html">給与管理基本設計 現行画面境界、2026-10-07改修先、2026-10-08人給</a>
+</td>
+</tr>
+<tr>
+<td>SRC-DATA</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--design--basic--data-model.html">データ設計 現行隔離表、2026-10-07変更後論理モデル、2026-10-08連携</a>
+</td>
+</tr>
+<tr>
+<td>SRC-DETAIL</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--design--detailed--detailed-design.html">詳細設計：検索と試算 10.1～10.10、11.1～11.3、12章</a>
+</td>
+</tr>
+<tr>
+<td>SRC-ATT</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--design--detailed--detailed-design.html">詳細設計：勤怠 2026-09-29勤務時間報告／2026-10-01 UI／2026-10-07勤怠再取込</a>
+</td>
+</tr>
+<tr>
+<td>SRC-CALC</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--design--detailed--detailed-design.html">詳細設計：改修先 2026-10-07変更後処理契約、計算・人給照合・状態制御</a>
+</td>
+</tr>
+<tr>
+<td>SRC-COMMUTE</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--design--detailed--detailed-design.html">通勤HTMLの現行契約 10.4／CHANGE-20261003-COMMUTE-OFFICIAL／CHANGE-20261007-COMMUTE-CUTOVER</a>
+</td>
+</tr>
+<tr>
+<td>SRC-OPEN</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--requirements--open-decisions.html">未決・未照合 D-01～08、PD-01～09、2026-10-08モック・I決定反映後残件</a>
+</td>
+</tr>
+<tr>
+<td>SRC-TEST</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--testing--test-specification.html">人給連携試験仕様 IF-T01～12、JLINK-T01～08（業務試験未実施）</a>
+</td>
+</tr>
+<tr>
+<td>SRC-DESIGN</td>
+<td>
+<a href="../../requirements/standard-template/sources/docs--design--basic--design-system.html">B案デザイン基準 文字・色・余白・Fluent/DADS・Power Apps実機校正</a>
+</td>
+</tr>
+<tr>
+<td>SRC-LEDGER-FIELDS</td>
+<td>
+<a href="../../requirements/standard-template/sources/config--dataverse--payrollledger-columns.json.html">既存給与簿163項目定義 表示項目・現行型・必須性。新モデル物理設計とは別</a>
+</td>
+</tr>
+<tr>
+<td>SRC-POCNAV</td>
+<td>
+<a href="../../requirements/standard-template/sources/src--screen-ui--v1.30--home.paste.yaml.html">現行ホームのPoC入口 Button3.Text／OnSelect（scrExcelImportPocへの遷移）</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </main>
 <footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+<script src="../../requirements/standard-template/assets/context.js" data-portal-root="../../requirements/standard-template" defer>
+</script>
 </body>
 </html>

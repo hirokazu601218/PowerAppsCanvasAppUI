@@ -1,0 +1,1250 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>要件未設定・確認事項 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="assets/portal.css">
+<script src="assets/portal.js" defer>
+</script>
+<script src="assets/context.js" data-portal-root="./" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="index.html" >入口</a>
+<a href="journeys.html" >業務から読む</a>
+<a href="screens/index.html" >画面一覧</a>
+<a href="chapters.html" >標準の章立て</a>
+<a href="requirements/index.html" >要件ID・操作</a>
+<a href="open-items.html" aria-current="page">要件未設定</a>
+<a href="reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="index.html" >要件定義</a>
+</span>
+<span aria-current="page">要件未設定・確認事項</span>
+</nav>
+<div>
+<span class="eyebrow">DECISION & COVERAGE</span>
+<h1>要件未設定・確認すること</h1>
+<p class="lead">未設定の仕様を、実装や試験の未完了と混ぜずに確認します。</p>
+<div class="stat-row">
+<span>
+<strong>10</strong>記載済み</span>
+<span>
+<strong>51</strong>一部設定</span>
+<span>
+<strong>48</strong>要件未設定</span>
+</div>
+<p class="notice">上の内訳は標準書式の本文109項目についての記載充足です。「記載済み」でも実装・実機確認は別に必要です。D9以降の式は保留を維持します。</p>
+<form class="toolbar" data-search-form role="search">
+<label class="search-field">本文を検索<input type="search" name="q" placeholder="未設定の条件・章番号で検索" autocomplete="off">
+</label>
+<label>記載の充足で絞る<select name="state">
+<option value="">すべて</option>
+<option value="unset">要件未設定</option>
+<option value="partial">一部設定</option>
+<option value="documented">記載済み</option>
+</select>
+</label>
+<button type="submit">検索</button>
+<button type="button" data-reset>リセット</button>
+</form>
+<p class="results" data-result-count role="status" aria-live="polite">
+</p>
+<p class="empty" data-empty hidden>条件に一致する項目はありません。検索語や状態を変えてください。</p>
+<noscript>
+<p class="notice info">検索と絞込みにはJavaScriptが必要です。全項目は下に表示しています。ブラウザーのページ内検索も利用できます。</p>
+</noscript>
+<ul class="list">
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/1.1.1.html#section-1.1.1" >1.1.1 業務範囲</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 採用前の番号未発行候補と番号確定職員との統合方式。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>非常勤職員の職員基本・勤務条件、通勤、保険・税・固定控除、勤務時間報告、期末勤勉率、給与計算、人給照合、追給・返納を対象とする。A～Dの採用前工程は給与情報への受渡しを整理する。</div>
+</details>
+</li>
+<li data-search-item data-states="documented">
+<h3>
+<a href="sections/1.1.2.html#section-1.1.2" >1.1.2 業務フロー</a>
+</h3>
+<span class="tag green">記載済み</span>
+<p>給与情報を登録・確認し、認定済み通勤と報告済み勤怠等により計算する。Excelを人給へ渡し、戻り給与簿CSVと最新版の計算結果を照合する。差分を訂正して再照合し、差分ゼロで給与班が確定、支払い済みを記録する。支払済みの誤りは別の追給・返納で扱う。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/1.1.3.html#section-1.1.3" >1.1.3 業務の実施に必要な体制</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 実効ロールの属性取得元、物理権限、運用責任者・担当人数。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>会計課給与班は全局の計算・確認・確定・認定を担当。局担当者は自局の勤務・申請・支給明細と必要な共通職員基本情報を扱う。業務マスタ管理者とシステム管理者は役割を分離し、兼務可能。本人機能は将来追加。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/1.1.4.html#section-1.1.4" >1.1.4 入出力情報項目及び取扱量</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 月間件数、ピーク件数、ファイル最大量、給与簿CSVの照合キー・出力行対応。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>職員情報Excel、勤務時間Excel、人給出力xlsx、人給給与簿CSV、通勤認定簿を扱う。人給出力は237列・見出し1行目・データ2行目・文字列形式。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/1.1.5.html#section-1.1.5" >1.1.5 管理対象情報一覧</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 正式物理テーブル名・列名等（PD-01）。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>職員基本、勤務条件履歴、組織・予算・単価・区分、保険履歴、税条件・固定控除、月別住民税、通勤ヘッダー・経路、勤怠ヘッダー・明細、支給回・計算版・根拠、給与簿・照合履歴、追給・返納・回収実績を管理する。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/1.2.1.html#section-1.2.1" >1.2.1 サービスの利用者数及び情報システムの利用者数</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> サービスの利用者数及び情報システムの利用者数の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/1.2.2.html#section-1.2.2" >1.2.2 処理件数</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 件数上限・処理時間基準、システム全体／月間の件数、ピーク、総容量・増加率。約800を利用者数・上限・性能合格値には読み替えない。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>人給連携の規模は、通常約800レコードを想定する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/1.3.1.html#section-1.3.1" >1.3.1 業務実施時期・期間及び繁忙期</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 各月の締切日・支給日カレンダー、賞与・年末業務の時期、繁忙期の正式定義。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>月末締め・翌月支給を人給連携の通常対象期間とする。給与対象期間と支給日は別管理し、通常既定値と例外変更に対応する。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/1.3.2.html#section-1.3.2" >1.3.2 業務の実施・提供時間</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 業務の実施・提供時間の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/1.3.3.html#section-1.3.3" >1.3.3 ヘルプデスク業務</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> ヘルプデスク業務の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/1.4.html#section-1.4" >1.4 業務の実施場所等</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 業務の実施場所等の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/1.5.html#section-1.5" >1.5 業務観点で管理すべき指標</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 処理時間・生産性等の業務KPI、測定頻度、評価責任者。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>給与簿との項目・合計差額、欠落・余分・重複を確認し、差分がある間は給与班確定を不可とする。返納の回収済額・残額を管理する。</div>
+</details>
+</li>
+<li data-search-item data-states="documented">
+<h3>
+<a href="sections/1.6.1.html#section-1.6.1" >1.6.1 情報システム化の範囲</a>
+</h3>
+<span class="tag green">記載済み</span>
+<p>Canvas＋Dataverse標準＋Power Automateによるローコード構築。外部機関への電子申請・申請進捗管理は設けず、決定結果を登録する。本人向け、家族個別、SKDB、独立メモ、銀行・債主・マイナンバー、月額基本給与は初回対象外。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/1.7.1.html#section-1.7.1" >1.7.1 システム停止時を想定した業務</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> システム停止時を想定した業務の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/1.8.1.html#section-1.8.1" >1.8.1 情報セキュリティ対策の基本的な考え方</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 実運用の情報区分・監査期間・認証属性・データ／フロー認可方式。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>給与班全局／局担当自局の範囲を適用し、所属選択UIだけで認可を変更しない。構築・検証は架空データで実施する。</div>
+</details>
+</li>
+<li data-search-item data-states="documented">
+<h3>
+<a href="sections/2.1.1.html#section-2.1.1" >2.1.1 機能一覧</a>
+</h3>
+<span class="tag green">記載済み</span>
+<p>PAYREQ-01～10で全体構造、職員、勤務条件、保険税控除、通勤、勤怠、計算確定、人給照合・追給返納、役割、構築保存検証を追跡する。現行R15～R23と将来FR-*を区別する。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.1.2.html#section-2.1.2" >2.1.2 技術検証</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 変更後モデルの保存・認可・人給往復、性能・障害時復旧の実証。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>隔離データで既存画面・帳票・勤怠等の検証を行う。HTMLの模擬操作は業務処理の実装・受入証拠にはしない。</div>
+</details>
+</li>
+<li data-search-item data-states="documented">
+<h3>
+<a href="sections/2.1.3.html#section-2.1.3" >2.1.3 機能の主な追加・変更点</a>
+</h3>
+<span class="tag green">記載済み</span>
+<p>勤怠再取込は職員行の追加更新・未掲載行保持・手修正上書き・空欄消去へ改修する。現行全置換と区別する。人給連携は同一画面3タブとし、最新版計算結果との照合を行う。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.1.4.html#section-2.1.4" >2.1.4 今後の機能追加を踏まえた構成</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 拡張時の規模・性能、正式画面ID、物理方式。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>本人機能は初回対象外とし、将来追加できる構造とする。履歴と計算根拠を保持する。</div>
+</details>
+</li>
+<li data-search-item data-states="documented">
+<h3>
+<a href="sections/2.1.5.html#section-2.1.5" >2.1.5 機能構成概念図</a>
+</h3>
+<span class="tag green">記載済み</span>
+<p>画面・業務・操作の関係は既存レビューHTMLの全体遷移図と業務別フローを参照する。システム構成は基本設計に記載。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.2.1.html#section-2.2.1" >2.2.1 画面一覧</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 将来画面の正式ID。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>現行SCR-001～006に加え、遡及差額の独立画面（仮SCR-007）、将来データ一括取込、将来人給連携を区別する。PoC一括取込と正式業務取込は別である。</div>
+</details>
+</li>
+<li data-search-item data-states="documented">
+<h3>
+<a href="sections/2.2.2.html#section-2.2.2" >2.2.2 画面イメージ</a>
+</h3>
+<span class="tag green">記載済み</span>
+<p>既存のクリック式ワイヤーフレームを参照する。現行実装・確定改修要件・提案・未決の区分を維持し、モック全体を承認済み実装としない。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.2.3.html#section-2.2.3" >2.2.3 画面遷移の基本的考え方</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> D-05の起動・認証詳細。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>ホームから職員マスタ検索・勤務時間報告・期末勤勉支給率登録・メンテナンスへ移動する。支給明細はSCR-002経由。人給連携は支給回の状況／出力／取込・照合の3タブ。外部認証・人給への手動切替・帳票別タブを区別する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.2.4.html#section-2.2.4" >2.2.4 画面設計ポリシー</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 対象端末・支援技術の組合せ、業務可読性の判定主体。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>SCR-002の6タブと画面共通余白、対象幅での欠け・重なりの防止、読取り／編集／保存と失敗時入力保持を適用する。給与簿は読取り専用。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.3.1.html#section-2.3.1" >2.3.1 帳票一覧</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> その他帳票の正式一覧、出力権限・配布条件の残る詳細。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>通勤手当認定簿は別タブHTML・ブラウザー印刷によるA4横2ページ。人給連携のxlsx出力は外部インタフェースとして管理する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.3.2.html#section-2.3.2" >2.3.2 帳票イメージ</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 変更後データモデルと全帳票項目の対応の再照合。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>既存通勤帳票は公式様式による2ページ構成。今回の資料は帳票原本を変更せず、詳細設計・通勤帳票レビューへの参照を設ける。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.4.1.html#section-2.4.1" >2.4.1 データモデル</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 正式物理モデル、制約実装、削除連鎖。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>GUID主キーLookupと職員番号を保持し、職員一人一行、給与に影響する条件は有効期間履歴、必要業務単位でヘッダー／明細を分ける。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.4.2.html#section-2.4.2" >2.4.2 データ一覧</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 正式テーブル数・名称・旧新対応。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>変更後論理モデルの管理単位はデータ設計を参照。現行隔離_STUDIOテーブルと変更後論理モデルを混同しない。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.4.3.html#section-2.4.3" >2.4.3 データ定義</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 正式列型・精度・初期値・保存経路（PD-01）。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>職員番号は半角数字12桁の文字列、先頭ゼロ保持・不足ゼロ埋め。基本情報は最新値、給与条件等は期間履歴。保険資格日と控除期間を分離し、固定控除は職員×項目×期間×額、住民税は職員×控除年月で管理。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.4.4.html#section-2.4.4" >2.4.4 CRUDマトリクス</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 全機能×全管理単位のCRUDマトリクス、削除権限・条件。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>給与簿はアプリ内読取り専用、支払済み結果は訂正せず、誤りは追給／返納案件で扱う。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.4.5.html#section-2.4.5" >2.4.5 コード一覧</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 全コード体系・正式状態コード、D削除出力の適用。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>区分マスタは業務管理者が可変候補を管理する。人給出力のA/M区分は職員が判断する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.4.6.html#section-2.4.6" >2.4.6 コード内容定義</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 状態の物理コードと網羅的遷移制約。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>勤務条件等は登録→確認待ち→給与班確定、必要時差戻し。通勤は提出⇄差戻し→認定。計算は計算済み→照合中→差分ゼロ確認→給与班確定→支払い済み。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/2.4.7.html#section-2.4.7" >2.4.7 オープンデータ一覧</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> オープンデータ一覧の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.4.8.html#section-2.4.8" >2.4.8 モニタリング対象データ一覧</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> システム運用監視の対象・取得方式・頻度・閾値・責任者、業務KPIとしての分析軸・評価条件。照合結果から人給の処理ログや取込成功を創作しない。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>業務上の照合履歴として、各処理回の日時・実行者・件数・状態、不一致職員・項目・双方金額・差額を保存する。支給回の対象期間・支給日・状態と、差分一覧の職員・対象期間・項目・アプリ値・給与簿値・差額を表示し、差分のみ／全件を切り替えられる。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/2.5.1.html#section-2.5.1" >2.5.1 外部インタフェース一覧</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 給与簿照合キー・行対応、人給エラー取得方式I8、Excel生成・保存配布・性能、D9以降の式。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>異動情報Excel取込、勤務時間Excel取込、人給xlsx出力・給与簿CSV取込を扱う。人給出力は237列・11キー、A/M選択、空欄0化。照合は出力元となる最新版のアプリ計算結果データと給与簿データを比較し、出力後の変更を通知する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.1.1.html#section-3.1.1" >3.1.1 本システムの利用者の種類、特性</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 人数、利用端末・支援技術、習熟度の具体的分類。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>初回は会計課給与班・局担当・業務マスタ管理者を想定する。本人機能は将来追加。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.1.2.html#section-3.1.2" >3.1.2 ユーザビリティ要件</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 業務可読性の評価者・判定基準。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>SCR-001～006は幅900・1100・1366・1600・1920、200%拡大、標準／大きな文字で操作到達・欠け・重なりを確認する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.1.3.html#section-3.1.3" >3.1.3 アクセシビリティ要件</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 正式な適合水準、対象支援技術と評価方法。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>Tab・フォーカス・読み上げ等の既存対象条件を引き継ぐ。</div>
+</details>
+</li>
+<li data-search-item data-states="documented">
+<h3>
+<a href="sections/3.2.1.html#section-3.2.1" >3.2.1 システム方式についての全体方針</a>
+</h3>
+<span class="tag green">記載済み</span>
+<p>Canvas＋Dataverse標準＋Power Automateのローコードのみ。独自API・プラグイン等のコード実装を前提にしない。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.2.2.html#section-3.2.2" >3.2.2 クラウドサービスの選定、利用に関する要件</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 本番サービスの選定条件、契約・利用条件、具体的な構成・設定、処理配置、実行上限、件数に応じた性能、責任分界。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>利用する方式はPower Apps Canvas＋Dataverse標準＋Power Automateのローコードのみとする。独自API・プラグイン等のコード実装を前提にしない。</div>
+</details>
+</li>
+<li data-search-item data-states="documented">
+<h3>
+<a href="sections/3.2.3.html#section-3.2.3" >3.2.3 開発方式</a>
+</h3>
+<span class="tag green">記載済み</span>
+<p>確定要件と変更一覧→データモデル／定義書改訂→段階構築。架空データで検証し実データ移行は後段とする。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.2.4.html#section-3.2.4" >3.2.4 機器等の設置方針</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 機器等の設置方針の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.2.5.html#section-3.2.5" >3.2.5 その他</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> その他の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.3.1.html#section-3.3.1" >3.3.1 規模に関する前提条件</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 件数上限・処理時間基準、システム全体／月間の件数、ピーク、総容量・増加率。約800を利用者数・上限・性能合格値には読み替えない。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>人給連携の規模は、通常約800レコードを想定する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.3.2.html#section-3.3.2" >3.3.2 データ量</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 件数上限・処理時間基準、システム全体／月間の件数、ピーク、総容量・増加率。約800を利用者数・上限・性能合格値には読み替えない。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>人給連携の規模は、通常約800レコードを想定する。人給出力は237列（A〜IC）である。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.3.3.html#section-3.3.3" >3.3.3 処理件数</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 件数上限・処理時間基準、システム全体／月間の件数、ピーク、総容量・増加率。約800を利用者数・上限・性能合格値には読み替えない。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>人給連携の規模は、通常約800レコードを想定する。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.3.4.html#section-3.3.4" >3.3.4 利用者数</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 利用者数の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.3.5.html#section-3.3.5" >3.3.5 保管データ量・保管期間</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 保管データ量、具体的な保存期間、削除時期・方式・権限、バックアップ／復元、削除後の参照整合。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>処理中は各計算版と根拠を保持する。差分ゼロで支払い確定後は中間版・中間根拠を削除可能とするが、最終結果、最終版の勤務条件・勤怠・単価等の計算根拠、給与簿、支払実績は残す。照合処理回ごとの日時・実行者・件数・状態、不一致職員・項目・双方金額・差額を、中間版削除後も参照できるよう保持する。Excel／CSVファイル自体の継続保存は不要。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.4.1.html#section-3.4.1" >3.4.1 性能を考慮する対象</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 許容秒数・同時利用数・回数・達成率。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>起動・検索・職員切替・タブ・履歴・HTML・給与表示を同条件で改修前後計時する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.4.2.html#section-3.4.2" >3.4.2 応答時間</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 許容秒数、同時利用数、計測回数、達成率・百分位。比較計測の実施を性能合格とは扱わない。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>起動・検索・職員切替・タブ・履歴・HTML・給与表示を、改修前後で同じ環境・データ・操作として計時し、比較値と悪化箇所を記録する。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.4.3.html#section-3.4.3" >3.4.3 スループット</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> スループットの具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.5.1.html#section-3.5.1" >3.5.1 可用性要件</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 可用性要件の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.5.2.html#section-3.5.2" >3.5.2 完全性要件</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 排他・復旧・再実行の具体方式と検証。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>0件・対象切替・失敗時に旧職員の値を新対象として残さない。勤怠取込中は対象編集・提出停止、全件検証後反映、途中失敗結果は計算から除外する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.6.1.html#section-3.6.1" >3.6.1 性能及び機能の拡張性</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> データ増加時の規模・性能と再設計条件。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>将来の本人機能追加、有効期間履歴、同月複数支給回に対応する。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.7.1.html#section-3.7.1" >3.7.1 上位互換性</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 上位互換性の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.7.2.html#section-3.7.2" >3.7.2 業務分担</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 業務分担の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.8.1.html#section-3.8.1" >3.8.1 オープンな標準的技術又は製品の採用</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> オープンな標準的技術又は製品の採用の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.9.1.html#section-3.9.1" >3.9.1 継続性に係る目標値</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 継続性に係る目標値の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.9.2.html#section-3.9.2" >3.9.2 継続性に係る対策</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 排他・復旧・再実行の具体方式、障害・災害時の業務代替、復旧時間（RTO）・復旧時点（RPO）の目標と検証。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>勤務実績の対象報告を取り込んでいる間は編集・提出を停止し、全件検証後に反映する。途中失敗などで不完全な結果は給与計算から除外し、復旧／再実行の対象とする。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.10.1.html#section-3.10.1" >3.10.1 セキュリティ対応方針</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 本番セキュリティ方針の正式承認、監査・機微情報・脆弱性対応。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>給与班と局担当の対象範囲、業務マスタ管理／システム管理の役割分離を適用する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.10.2.html#section-3.10.2" >3.10.2 セキュリティ要件</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 認証属性の取得元、Dataverseの物理ロール、フロー認可、監査保存期間。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>操作時にログイン者の実効ロールと対象職員を検証する。UI非表示や所属選択だけを認可としない。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.11.1.html#section-3.11.1" >3.11.1 システム構成</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 本番接続・責任分界・正式環境構成。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>単一検証用Canvasアプリ、Dataverse、Power Automate、通勤帳票HTMLを構成要素とする。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.11.2.html#section-3.11.2" >3.11.2 クラウドサービス構成</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 本番の正式なクラウド構成、環境・接続設定、サービス間の処理配置、実行上限、責任分界、セキュリティ設定と性能の確認。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>アプリはPower Apps Canvas、データはDataverse標準、連携処理はPower Automateを使用するローコード方式とする。独自API・プラグイン等のコード実装を構成の前提にしない。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.11.3.html#section-3.11.3" >3.11.3 ハードウェア構成</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> ハードウェア構成の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.11.4.html#section-3.11.4" >3.11.4 ソフトウェア構成</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> サポート対象版・構成の確定。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>アプリ実装方式はPower Apps Canvas、データはDataverse標準、連携処理はPower Automateとする。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.11.5.html#section-3.11.5" >3.11.5 ネットワーク構成</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> ネットワーク構成の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.11.6.html#section-3.11.6" >3.11.6 施設・設備要件</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 施設・設備要件の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.11.7.html#section-3.11.7" >3.11.7 利用端末の要件</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 利用端末の要件の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.12.html#section-3.12" >3.12 データマネジメントに関する事項</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 保存期間、削除方式・権限、バックアップ／復元、データ品質責任。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>最終結果・最終計算根拠・給与簿・支払実績・照合回ごとの日時／実行者／件数／状態／不一致双方額・差額を保持。支払確定後の中間版は削除可能。Excel／CSV自体の継続保存は不要。</div>
+</details>
+</li>
+<li data-search-item data-states="documented">
+<h3>
+<a href="sections/3.13.1.html#section-3.13.1" >3.13.1 単体テスト</a>
+</h3>
+<span class="tag green">記載済み</span>
+<p>改修部品の単体試験を必須として選定記録・期待結果・実測を残す。</p>
+</li>
+<li data-search-item data-states="documented">
+<h3>
+<a href="sections/3.13.2.html#section-3.13.2" >3.13.2 結合テスト</a>
+</h3>
+<span class="tag green">記載済み</span>
+<p>他部品に影響する場合は結合試験を選定する。データ整合・権限・既存動作の維持を確認する。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.13.3.html#section-3.13.3" >3.13.3 総合テスト</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> D-07の対象シナリオ、開始終了条件の具体値、独立期待値、非機能観点、実施時期・担当・自動化範囲。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>総合テストは、複数機能を通す業務シナリオと開始・終了条件を定義してから、一連の業務結果と必要な非機能要件を確認する。公開直後の起動確認や単体・結合の成功を総合テスト完了へ読み替えず、総合テストと業務受入を独立して判定する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.13.4.html#section-3.13.4" >3.13.4 受入テスト</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 新給与モデル全体の業務受入シナリオ・時期。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>設計・式確認、単体・結合、データ整合・権限・既存動作維持を受入前提とする。既存変更の受入結果は対象版・範囲に限定する。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.14.1.html#section-3.14.1" >3.14.2 移行計画の作成</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 移行計画の作成の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.14.2.html#section-3.14.2" >3.14.3 移行データ準備・提供</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 移行対象抽出・整備・提供手順と責任者。本番移行は今回対象外。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>架空データで検証し、実データ移行は後段とする。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.14.3.html#section-3.14.3" >3.14.4 移行データ分析</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 移行データ分析の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.14.4.html#section-3.14.4" >3.14.5 移行設計</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 移行設計の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.14.5.html#section-3.14.5" >3.14.6 データ移行サーバ・ツールの開発</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> データ移行サーバ・ツールの開発の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.14.6.html#section-3.14.6" >3.14.7 移行リハーサル</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 移行リハーサルの具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.14.7.html#section-3.14.7" >3.14.8 移行判定</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 移行判定の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.14.8.html#section-3.14.8" >3.14.9 本番移行</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 本番移行の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.14.9.html#section-3.14.9" >3.14.10 稼働判定</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 稼働判定の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.14.10.html#section-3.14.10" >3.14.11 移行対象データ</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 移行対象データの具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.14.11.html#section-3.14.11" >3.14.12 移行対象業務</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 移行対象業務の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.15.1.html#section-3.15.1" >3.15.1 引継ぎ計画書の作成</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 引継ぎ計画書の作成の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.15.2.html#section-3.15.2" >3.15.2 引継ぎ方法</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 正式引継ぎ手順、担当、承認主体。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>GitHubの要件・設計・ソース・進捗から追跡できるようにする。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.15.3.html#section-3.15.3" >3.15.3 引継ぎ対象</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 正式な引継ぎ対象一覧と受領条件。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>要件・基本設計・詳細設計・ソース・試験と検証記録を管理する。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.15.4.html#section-3.15.4" >3.15.4 クラウドサービスを利用する場合の引継ぎ</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> クラウドサービスを利用する場合の引継ぎの具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.15.5.html#section-3.15.5" >3.15.5 引継ぎ結果報告書の作成</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 引継ぎ結果報告書の作成の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.15.6.html#section-3.15.6" >3.15.6 前任事業者からの引継作業</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 前任事業者からの引継作業の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.16.1.html#section-3.16.1" >3.16.1 教育計画の策定</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 教育計画の策定の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.16.2.html#section-3.16.2" >3.16.2 教育対象者</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 教育対象者の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.16.3.html#section-3.16.3" >3.16.3 教育の実施時期</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 教育の実施時期の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.16.4.html#section-3.16.4" >3.16.4 教育の方法</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 教育の方法の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.16.5.html#section-3.16.5" >3.16.5 教材の作成</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 教材の作成の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.16.6.html#section-3.16.6" >3.16.6 教育訓練実施結果報告</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 教育訓練実施結果報告の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.17.1.html#section-3.17.1" >3.17.1 運用・保守計画</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 運用・保守計画の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.17.2.html#section-3.17.2" >3.17.2 運用・保守準備</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 運用・保守準備の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.17.3.html#section-3.17.3" >3.17.3 共通的な要件</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 本番の日常点検・障害連絡・監視・受付時間。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>検証アプリの単一アプリ運用、改修時の版管理・試験選定を適用する。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.17.4.html#section-3.17.4" >3.17.4 システム稼働要件</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> システム稼働要件の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.17.5.html#section-3.17.5" >3.17.5 主な運用作業一覧</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 主な運用作業一覧の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.18.1.html#section-3.18.1" >3.18.1 保守業務の実施</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 保守担当、保守期間・受付時間、修正期限、依存更新の範囲と責任。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>改修時は版管理と試験選定を適用する。変更した部品・数式の単体試験は必須とし、他部品・画面・データ・帳票・外部連携に影響する場合は結合試験も選定し、記録と実測を残す。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.18.2.html#section-3.18.2" >3.18.2 保守設計</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 保守設計の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.18.3.html#section-3.18.3" >3.18.3 アプリケーションの保守</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 保守体制、対応時間・期限、変更規模の区分、依存更新方針。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>アプリの改修は影響分析とケース選定に基づき、変更部品の単体試験および影響先の結合試験を実施する。公開版とGitHub候補ソースの同一性を別に確認し、未実施・未照合を合格にしない。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.18.4.html#section-3.18.4" >3.18.4 クラウドサービスの保守</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> クラウドサービスの保守の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.18.5.html#section-3.18.5" >3.18.5 ソフトウェア保守</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> ソフトウェア保守の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.18.6.html#section-3.18.6" >3.18.6 保守実績の評価及び改善</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 保守実績の評価及び改善の具体条件・対象範囲・判定基準。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="sections/3.18.7.html#section-3.18.7" >3.18.7 ドキュメントの保守</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>
+<strong>要件未設定:</strong> 保守担当・期限・正式な承認体制。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>要件→設計→試験をIDで追跡し、変更時に関連資料と未決一覧を更新する。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="sections/3.18.8.html#section-3.18.8" >3.18.8 軽微な改修</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>
+<strong>要件未設定:</strong> 軽微な改修の具体条件・対象範囲・判定基準。</p>
+</li>
+</ul>
+<h2>原本から補完した8見出し</h2>
+<p class="meta">旧本文109項目とは別枠です。一部設定7、要件未設定1。原本例を案件の条件へ流用していません。</p>
+<ul class="list">
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="template-sections/3.12.1.html" >3.12.1 データ管理体制の明確化</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>データ品質責任者・運用責任者の具体的な割当て、権威ある属性取得・物理ロール・フロー経路の認可。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>給与班は全局の対象業務について確認・確定・認定を担当し、局担当者は自局の勤務・申請・支給明細と必要な共通職員基本情報を扱う。業務マスタ管理者とシステム管理者を分け、同じ人物の兼務は認める。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="template-sections/3.12.2.html" >3.12.2 データの標準化</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>一般列の正式名・型・精度、共通コードの全面的な標準化、他システムとのデータ流通方式、給与簿照合キーと行対応。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>職員基本は一人一行、職員番号は全体一意の半角数字12桁文字列とし先頭ゼロを保持する。参照はGUID主キーへのLookupと職員番号を両方保持する。人給出力は既存契約に沿った237列・文字列形式とし、日付はyyyy/mm/ddの固定桁数で出力する。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="template-sections/3.12.3.html" >3.12.3 データに関するドキュメントの一元的管理</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>データ辞書の具体的な更新責任者・承認主体・運用頻度、未確定物理項目の整備。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>要件・設計・ソースはGitHubとSTATUSで履歴を追う。データモデルでは機械可読の列契約を参照し、確定済み論理モデルと未入力の物理名・型・制約を区別して管理する。</div>
+</details>
+</li>
+<li data-search-item data-states="unset">
+<h3>
+<a href="template-sections/3.12.4.html" >3.12.4 オープンデータ化を容易にする設計</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+<p>公開対象データ、匿名化、公開方式は要件未設定。給与個人情報の公開を推測しません。</p>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="template-sections/3.12.5.html" >3.12.5 データに関する運用情報の管理</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>保存期間、削除方式・権限、バックアップ／復元、物理的な参照整合、運用ログ全般の収集条件。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>計算版・取込回・照合結果を処理回ごとに残す。照合ごとの日時・実行者・件数・状態、不一致職員・項目・双方金額・差額を保存し、中間版削除後も参照できるようにする。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="template-sections/3.12.6.html" >3.12.6 データの機密性定義に応じた設計</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>正式な機密性分類・分類別の取扱規則、権威ある属性取得、Dataverse物理ロール・所有共有・フロー認可、監査期間。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>業務上の情報範囲は、給与班の全局対象と局担当者の自局記録・必要な共通基本情報に分ける。業務マスタ管理とシステム管理権限を分離する。画面非表示だけで実効認可を完了としない。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="template-sections/3.12.7.html" >3.12.7 データ品質の継続的改善</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>品質指標の数値目標、定期評価の頻度・責任者、恒常的な品質改善手順、排他・復旧・再実行の物理方式。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>元データの訂正後は再確認・再提出を行い、影響する未払い支給回を再計算・再照合する。職員・支給回ごとの項目・合計に加え、欠落・余分・重複も確認する。途中失敗の不完全な取込結果を計算に利用しない。</div>
+</details>
+</li>
+<li data-search-item data-states="partial unset">
+<h3>
+<a href="template-sections/3.14.1.html" >3.14.1 移行に関する前提条件</a>
+</h3>
+<span class="tag amber">一部設定・要件未設定あり</span>
+<p>実データ移行の対象、具体的な受入・件数照合・差戻し・期間・担当、実施承認。本節は移行実行を承認しない。</p>
+<details>
+<summary>すでに記載した範囲</summary>
+<div>架空データで検証し、実データ移行は後段とする。現在の隔離検証アプリから実データ・本番環境への移行は今回の対象外であり、必要時に件数照合・差戻し・移行期間等を別途定める。</div>
+</details>
+</li>
+</ul>
+<section class="panel" >
+<h2>実装・検証の残件は、別の根拠で確認する</h2>
+<p>本改訂はHTML資料の改善です。アプリの実装状態や実機の合否は更新していません。未実装・実装差分・未照合・業務判断待ちは正本の未決一覧で区別されています。</p>
+<ul class="list">
+<li>
+<a href="sources/docs--requirements--open-decisions.html" data-keep-context>open-decisions.md</a>
+<div class="meta">docs/requirements/open-decisions.md</div>
+</li>
+<li>
+<a href="sources/docs--testing--test-specification.html" data-keep-context>test-specification.md</a>
+<div class="meta">docs/testing/test-specification.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="sources.html" >出典と版</a> · <a href="reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

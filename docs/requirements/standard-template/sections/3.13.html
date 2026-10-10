@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>3.13 テストに関する事項 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="3.html#section-3" >3 非機能要件定義</a>
+</span>
+<span aria-current="page">3.13 テストに関する事項</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 3.13</span>
+<h1 id="section-3.13">3.13 テストに関する事項</h1>
+<section class="panel" >
+<h2>この章・節に含まれる項目</h2>
+<ul class="list">
+<li>
+<h3>
+<a href="3.13.1.html#section-3.13.1" >3.13.1 単体テスト</a>
+</h3>
+<p>改修部品の単体試験を必須として選定記録・期待結果・実測を残す。</p>
+<span class="tag ">記載済み</span>
+</li>
+<li>
+<h3>
+<a href="3.13.2.html#section-3.13.2" >3.13.2 結合テスト</a>
+</h3>
+<p>他部品に影響する場合は結合試験を選定する。データ整合・権限・既存動作の維持を確認する。</p>
+<span class="tag ">記載済み</span>
+</li>
+<li>
+<h3>
+<a href="3.13.3.html#section-3.13.3" >3.13.3 総合テスト</a>
+</h3>
+<p>総合テストは、複数機能を通す業務シナリオと開始・終了条件を定義してから、一連の業務結果と必要な非機能要件を確認する。公開直後の起動確認や単体・結合の成功を総合テスト完了へ読み替えず、総合テストと業務受入を独立して判定する。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+<li>
+<h3>
+<a href="3.13.4.html#section-3.13.4" >3.13.4 受入テスト</a>
+</h3>
+<p>設計・式確認、単体・結合、データ整合・権限・既存動作維持を受入前提とする。既存変更の受入結果は対象版・範囲に限定する。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+</ul>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-44">
+<h4>表 44　テスト要件</h4>
+<p>項番 / 分類 / 要件</p>
+<ul>
+<li>テスト工程の定義</li>
+<li>テスト環境</li>
+<li>テスト 計画書</li>
+<li>テスト 仕様書</li>
+<li>テストの実施</li>
+<li>テストデータ</li>
+<li>対応状況の報告</li>
+<li>テスト完了報告書</li>
+<li>テストの 自動化</li>
+<li>将来時点の仕様変更</li>
+<li>構築時の 脆弱性対策</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>案件開始後においては、発注者は受託者からの報告内容を理解し、要件どおりの仕様書になっていないなど何らかの問題が疑われる場合は受託者に対策を講じるように依頼するなど先手の対応を取るようにしてください。</li>
+<li>案件開始後においては、発注者は受託者からの報告内容を理解し、予定に対して実績が大きく乖離しているなど何らかの問題が疑われる場合は受託者に対策を講じるように依頼するなど先手の対応を取るようにしてください。
+</li>
+</ul>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

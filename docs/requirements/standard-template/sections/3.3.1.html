@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>3.3.1 規模に関する前提条件 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="3.3.html#section-3.3" >3.3 システム規模に関する事項</a>
+</span>
+<span aria-current="page">3.3.1 規模に関する前提条件</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 3.3.1</span>
+<h1 id="section-3.3.1">3.3.1 規模に関する前提条件</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>一部設定・要件未設定あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>個別出典を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>既存の確定事項から補足した範囲</h2>
+<p>IF-12の明記済み概数のみを採用。期間や1ファイル当たりの固定値を付け足さない。</p>
+<ul>
+<li>
+<a href="../sources/docs--design--detailed--payroll-jinkyu-interface.html?context=section-3.3.1#L22" >IF-12 · 22行目</a>
+</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>現在の要件</h2>
+<p class="lead">人給連携の規模は、通常約800レコードを想定する。</p>
+</section>
+<section class="panel" >
+<h2>要件未設定・判断が必要な内容</h2>
+<p class="notice">件数上限・処理時間基準、システム全体／月間の件数、ピーク、総容量・増加率。約800を利用者数・上限・性能合格値には読み替えない。</p>
+<p class="meta">具体的な条件・対象範囲・判定基準を未設定のまま表示しています。レイアウト案やテンプレートの例から補いません。</p>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.3.1.1">
+<strong>使用量・費用の監視と可視化</strong>
+<span class="tag ">原本の条文例</span>
+<p>使用量・費用の監視と可視化</p>
+</li>
+<li id="3.3.1.2">
+<strong>マネージドサービス・構成見直しによる費用管理</strong>
+<span class="tag ">原本の条文例</span>
+<p>マネージドサービス・構成見直しによる費用管理</p>
+</li>
+<li id="3.3.1.3">
+<strong>リソース確保方式</strong>
+<span class="tag ">原本の条文例</span>
+<p>リソース確保方式</p>
+</li>
+</ul>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+<section class="panel" >
+<h2>根拠資料と、この節への戻り</h2>
+<p class="meta">資料は読みやすい別ページで開きます。冒頭の「元の要件へ戻る」でこの節へ戻れます。JavaScriptなしでも資料側の参照元一覧から戻れます。</p>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--non-functional-requirements.html?context=section-3.3.1" data-keep-context>non-functional-requirements.md</a>
+<div class="meta">docs/requirements/non-functional-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--design--detailed--payroll-jinkyu-interface.html?context=section-3.3.1" data-keep-context>payroll-jinkyu-interface.md</a>
+<div class="meta">docs/design/detailed/payroll-jinkyu-interface.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

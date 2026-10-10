@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>OP-E-HISTORY 実際の条件変更を登録 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" aria-current="page">要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../requirements/index.html" >要件ID・操作</a>
+</span>
+<span aria-current="page">OP-E-HISTORY 実際の条件変更を登録</span>
+</nav>
+<a class="context-return" data-context-return href="../screens/SCR-002.html#SCR-002">← 操作元の画面へ戻る</a>
+<div>
+<span class="eyebrow">OPERATION / OP-E-HISTORY</span>
+<h1 id="OP-E-HISTORY">実際の条件変更を登録</h1>
+<p class="lead">実際の条件変更は月途中を含む新しい有効期間履歴として登録。発令は勤務条件へ統合し、所属既定予算を個別予算で上書き可能。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>確定</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<p class="meta">関連操作・配置の区分: 確定改修要件 / 遷移ID: <span id="TR-E-HISTORY">TR-E-HISTORY</span>
+</p>
+<section class="panel" >
+<h2>利用する場面</h2>
+<dl class="contract">
+<dt>担当</dt>
+<dd>会計課給与班 / 局担当者</dd>
+<dt>操作する画面</dt>
+<dd>
+<a href="../screens/SCR-002.html#SCR-002" >SCR-002 職員マスタ検索・詳細</a> → <a href="../screens/SCR-002.html#SCR-002" >SCR-002</a>
+</dd>
+<dt>何を確認するか</dt>
+<dd>計算対象の採用日は必須。保険未確認／加入／非加入、資格日と控除期間を分ける。固定控除は職員×項目×期間×額。</dd>
+<dt>完了の確認</dt>
+<dd>目的の状態と再表示を確認する。実装合格を意味しない。</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>設計・構築者向けの処理契約</h2>
+<dl class="contract">
+<dt>遷移元タブ</dt>
+<dd data-contract-field="origin_tab">勤務条件／社会保険／税固定控除</dd>
+<dt>遷移元の状態</dt>
+<dd data-contract-field="origin_mode">編集</dd>
+<dt>遷移先タブ</dt>
+<dd data-contract-field="destination_tab">勤務条件／社会保険／税固定控除</dd>
+<dt>遷移先の状態</dt>
+<dd data-contract-field="destination_mode">登録</dd>
+<dt>操作部品</dt>
+<dd data-contract-field="control">提案：実際の条件変更を登録</dd>
+<dt>操作方法</dt>
+<dd data-contract-field="method">クリック／キーボード実行（具体部品は未入力）</dd>
+<dt>対象行・データ範囲</dt>
+<dd data-contract-field="row_scope">給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</dd>
+<dt>表示条件</dt>
+<dd data-contract-field="visible">対象画面・タブ内。権限別の具体表示条件は未入力。</dd>
+<dt>実行できる条件</dt>
+<dd data-contract-field="enabled">対象・権限・業務状態を検証した場合。物理方式は未入力。</dd>
+<dt>実行前提</dt>
+<dd data-contract-field="preconditions">認証済みで対象レコードを識別できること。</dd>
+<dt>入力検証</dt>
+<dd data-contract-field="validation">計算対象の採用日は必須。保険未確認／加入／非加入、資格日と控除期間を分ける。固定控除は職員×項目×期間×額。</dd>
+<dt>処理する内容</dt>
+<dd data-contract-field="process">実際の条件変更は月途中を含む新しい有効期間履歴として登録。発令は勤務条件へ統合し、所属既定予算を個別予算で上書き可能。</dd>
+<dt>保持する情報</dt>
+<dd data-contract-field="retained">ログイン主体、選択対象、参照元の識別情報。</dd>
+<dt>解除・失効する情報</dt>
+<dd data-contract-field="reset">明記のないリセット範囲は未決。</dd>
+<dt>成功時</dt>
+<dd data-contract-field="success">目的の状態と再表示を確認する。実装合格を意味しない。</dd>
+<dt>失敗・再実行</dt>
+<dd data-contract-field="failure">エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</dd>
+<dt>取消時</dt>
+<dd data-contract-field="cancel">処理開始前の取消は状態を変更しない（画面操作案）。</dd>
+<dt>未保存の扱い</dt>
+<dd data-contract-field="unsaved">未保存入力の扱いは個別契約を優先。未定義の画面は未決。</dd>
+<dt>参照するデータ</dt>
+<dd data-contract-field="reads">
+<ul>
+<li>職員基本</li>
+<li>旧履歴</li>
+<li>日額／時間額単価・所属既定予算</li>
+</ul>
+</dd>
+<dt>変更・記録するデータ</dt>
+<dd data-contract-field="writes">
+<ul>
+<li>勤務条件・保険・税・固定控除の新履歴</li>
+<li>職員×控除年月の住民税</li>
+</ul>
+</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>受入観点・注記</h2>
+<h3>確認する観点</h3>
+<ul>
+<li>対象・権限・業務状態と出力／保存結果が対応する。</li>
+</ul>
+<h3>未決・提案・対象範囲</h3>
+<ul>
+<li>月額基本給与、始終業・休憩・週時間、家族個別情報、銀行等は初回対象外。</li>
+<li>具体列・入力範囲・期間重複条件は未入力。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>要件・業務・出典をたどる</h2>
+<h3>関連要件ID</h3>
+<div class="chips">
+<a href="../requirements/PAYREQ-01.html#requirement-PAYREQ-01" >PAYREQ-01</a>
+<a href="../requirements/PAYREQ-02.html#requirement-PAYREQ-02" >PAYREQ-02</a>
+<a href="../requirements/PAYREQ-03.html#requirement-PAYREQ-03" >PAYREQ-03</a>
+<a href="../requirements/PAYREQ-04.html#requirement-PAYREQ-04" >PAYREQ-04</a>
+</div>
+<h3 style="margin-top:18px">含まれる業務</h3>
+<div class="chips">
+<a href="../workflows/WF-05.html#WF-05" >WF-05</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=req-PAYREQ-01" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+<li>
+<a href="../sources/docs--design--basic--data-model.html?context=req-PAYREQ-01" data-keep-context>data-model.md</a>
+<div class="meta">docs/design/basic/data-model.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

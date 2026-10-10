@@ -1,55 +1,466 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
-  <title>② A～D 決裁後変更・採用取消 | 非常勤給与レビュー</title>
-  <link rel="stylesheet" href="../assets/review.css">
-  <script src="../assets/review.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+<title>② A～D 決裁後変更・採用取消 | 非常勤給与レビュー</title>
+<link rel="stylesheet" href="../assets/review.css">
+<script src="../assets/review.js" defer>
+</script>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
-<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
-<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<header class="doc-header">
+<div>
+<strong>非常勤給与アプリ</strong>
+<span>画面・業務レビュー</span>
+</div>
+<p>PAY-HTML-001 / PAY-HTML-002改訂</p>
+</header>
+<nav class="doc-nav" aria-label="資料ナビゲーション">
+<a href="../index.html" >入口</a>
 <a href="../navigation.html" >① 画面遷移</a>
 <a href="index.html" aria-current="page">② 業務フロー</a>
 <a href="../operations/index.html" >③ 操作定義</a>
 <a href="../wireframes/index.html" >④ ワイヤー</a>
 <a href="../coverage.html" >対応表</a>
-<a href="../design-notes.html" >設計注記</a></nav>
+<a href="../design-notes.html" >設計注記</a>
+</nav>
 <main id="main">
-<div class="document-meta"><span>0.2-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<div class="document-meta">
+<span>0.2-review / 2026-10-10</span>
+<strong>提案・レビュー用（未承認）</strong>
+<span>統合文書出典：<code>b5e5d460fe19169252de05bb02bafc9461120540</code>
+</span>
+</div>
 <h1>② A～D 決裁後変更・採用取消</h1>
 <p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
-<p><span class="badge accepted">確定改修要件</span> 担当：秘書課・給与班</p><dl><dt>開始</dt><dd>前工程で変更または取消</dd><dt>終了</dt><dd>再確定、または履歴を残して計算除外</dd></dl><span class="requirement" data-requirement-id="AD-06">AD-06</span> <span class="requirement" data-requirement-id="AD-07">AD-07</span> <span class="requirement" data-requirement-id="AD-08">AD-08</span> <span class="requirement" data-requirement-id="E-08">E-08</span> <span class="requirement" data-requirement-id="E-09">E-09</span><p class="lead workflow-summary">変更は旧値を保持して給与班が再確認。採用取消は候補を削除せず、履歴を残して給与計算から除外します。</p><div class="flow-legend"><span>○ 開始／◎ 確認区間の終了</span><span>角丸：作業</span><span>◇ ×：条件分岐</span><span>小さい◇：合流・結果分岐</span><span>茶線：訂正・再試行</span><span>破線：アプリ外との受渡し</span></div><p class="diagram-reading">上から下へ主な流れをたどります。工程は一度だけ配置し、矢印で分岐・合流・戻り先をつないでいます。BPMN風のレビュー表記であり、BPMN 2.0の実行可能な定義ではありません。工程を選ぶと定義へ、操作定義↗から操作の詳細へ進みます。</p><section class="connected-workflow" data-connected-workflow><div class="diagram-tools" data-diagram-tools hidden><button type="button" data-diagram-fit>幅に合わせる</button><button type="button" data-diagram-all>全体を見る</button><button type="button" data-diagram-actual>100%</button><button type="button" data-diagram-out aria-label="業務図を縮小">−</button><button type="button" data-diagram-in aria-label="業務図を拡大">＋</button><output data-diagram-scale aria-live="polite">100%</output><span>図内だけを横・縦スクロールできます</span></div><div class="workflow-scroll" tabindex="0" role="region" aria-label="A～D 決裁後変更・採用取消。上下に流れを追い、枠内をスクロール"><svg class="workflow-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1390" width="800" height="1390" role="img" aria-labelledby="WF-03-title WF-03-description" data-workflow-id="WF-03"><title id="WF-03-title">WF-03 A～D 決裁後変更・採用取消</title><desc id="WF-03-description">変更は旧値を保持して給与班が再確認。採用取消は候補を削除せず、履歴を残して給与計算から除外します。 工程は一度だけ配置。矢印をたどり、茶色の折返しは訂正・再試行。全条件は同じデータの経路表で確認できます。</desc><defs><marker id="WF-03-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs><g class="flow-lane app" data-lane-id="lane-1"><rect x="40" y="0" width="360" height="1390"/><rect class="lane-heading-bg" x="40" y="0" width="360" height="65"/><text x="220" y="25" class="flow-lane-title" text-anchor="middle">給与班・給与アプリ</text><text x="220" y="49" class="flow-lane-scope" text-anchor="middle">変更の比較と再確認</text></g><g class="flow-lane app" data-lane-id="lane-2"><rect x="400" y="0" width="360" height="1390"/><rect class="lane-heading-bg" x="400" y="0" width="360" height="65"/><text x="580" y="25" class="flow-lane-title" text-anchor="middle">給与班・給与アプリ</text><text x="580" y="49" class="flow-lane-scope" text-anchor="middle">取消と計算除外</text></g><g class="flow-connector view" data-edge-id="WF-03-view-01" data-from="start-a" data-to="a"><path class="flow-edge-halo" d="M 220 116 L 220 162"/><path class="flow-edge" d="M 220 116 L 220 162" marker-end="url(#WF-03-arrow)"/><title>表示用接続</title></g><g class="flow-connector view" data-edge-id="WF-03-view-02" data-from="join-f" data-to="f"><path class="flow-edge-halo" d="M 220 1154 L 220 1162"/><path class="flow-edge" d="M 220 1154 L 220 1162" marker-end="url(#WF-03-arrow)"/><title>表示用接続</title></g><g class="flow-connector view" data-edge-id="WF-03-view-03" data-from="f" data-to="end-f"><path class="flow-edge-halo" d="M 220 1258 L 220 1289"/><path class="flow-edge" d="M 220 1258 L 220 1289" marker-end="url(#WF-03-arrow)"/><title>表示用接続</title></g><g class="flow-connector view" data-edge-id="WF-03-view-04" data-from="h" data-to="end-h"><path class="flow-edge-halo" d="M 580 858 L 580 889"/><path class="flow-edge" d="M 580 858 L 580 889" marker-end="url(#WF-03-arrow)"/><title>表示用接続</title></g><g class="flow-connector normal" data-edge-id="WF-03-edge-01" data-from="a" data-to="b" data-source-step="a" data-target-step="b"><path class="flow-edge-halo" d="M 220 258 L 220 342"/><path class="flow-edge" d="M 220 258 L 220 342" marker-end="url(#WF-03-arrow)"/><title>判定</title></g><g class="flow-connector normal" data-edge-id="WF-03-edge-02" data-from="b" data-to="c" data-source-step="b" data-target-step="c"><path class="flow-edge-halo" d="M 220 478 L 220 562"/><path class="flow-edge" d="M 220 478 L 220 562" marker-end="url(#WF-03-arrow)"/><title>変更</title></g><g class="flow-connector normal" data-edge-id="WF-03-edge-03" data-from="c" data-to="d" data-source-step="c" data-target-step="d"><path class="flow-edge-halo" d="M 220 658 L 220 742"/><path class="flow-edge" d="M 220 658 L 220 742" marker-end="url(#WF-03-arrow)"/><title>比較</title></g><g class="flow-connector normal" data-edge-id="WF-03-edge-04" data-from="d" data-to="e" data-source-step="d" data-target-step="e"><path class="flow-edge-halo" d="M 220 878 L 220 962"/><path class="flow-edge" d="M 220 878 L 220 962" marker-end="url(#WF-03-arrow)"/><title>相違あり</title></g><g class="flow-connector normal" data-edge-id="WF-03-edge-05" data-from="d" data-to="join-f" data-source-step="d" data-target-step="f"><path class="flow-edge-halo" d="M 220 878 L 220 886 L 86 886 L 86 1126 L 220 1126 L 220 1134"/><path class="flow-edge" d="M 220 878 L 220 886 L 86 886 L 86 1126 L 220 1126 L 220 1134" marker-end="url(#WF-03-arrow)"/><title>相違なし</title></g><g class="flow-connector normal" data-edge-id="WF-03-edge-06" data-from="e" data-to="join-f" data-source-step="e" data-target-step="f"><path class="flow-edge-halo" d="M 220 1058 L 220 1134"/><path class="flow-edge" d="M 220 1058 L 220 1134" marker-end="url(#WF-03-arrow)"/><title>判断後</title></g><g class="flow-connector normal" data-edge-id="WF-03-edge-08" data-from="g" data-to="h" data-source-step="g" data-target-step="h"><path class="flow-edge-halo" d="M 580 658 L 580 762"/><path class="flow-edge" d="M 580 658 L 580 762" marker-end="url(#WF-03-arrow)"/><title>履歴保持</title></g><g class="flow-connector normal" data-edge-id="WF-03-edge-07" data-from="b" data-to="g" data-source-step="b" data-target-step="g"><path class="flow-edge-halo" d="M 220 478 L 220 486 L 580 486 L 580 562"/><path class="flow-edge" d="M 220 478 L 220 486 L 580 486 L 580 562" marker-end="url(#WF-03-arrow)"/><title>取消</title></g><g class="flow-edge-label normal" data-label-for="WF-03-edge-01"><rect x="227" y="285.5" width="42.8" height="29" rx="4"/><text x="234" y="304.5">判定</text></g><g class="flow-edge-label normal" data-label-for="WF-03-edge-02"><rect x="227" y="505.5" width="42.8" height="29" rx="4"/><text x="234" y="524.5">変更</text></g><g class="flow-edge-label normal" data-label-for="WF-03-edge-03"><rect x="227" y="685.5" width="42.8" height="29" rx="4"/><text x="234" y="704.5">比較</text></g><g class="flow-edge-label normal" data-label-for="WF-03-edge-04"><rect x="227" y="905.5" width="71.6" height="29" rx="4"/><text x="234" y="924.5">相違あり</text></g><g class="flow-edge-label normal" data-label-for="WF-03-edge-05"><rect x="117.2" y="893" width="71.6" height="29" rx="4"/><text x="124.2" y="912">相違なし</text></g><g class="flow-edge-label normal" data-label-for="WF-03-edge-06"><rect x="227" y="1081.5" width="57.2" height="29" rx="4"/><text x="234" y="1100.5">判断後</text></g><g class="flow-edge-label normal" data-label-for="WF-03-edge-08"><rect x="587" y="695.5" width="71.6" height="29" rx="4"/><text x="594" y="714.5">履歴保持</text></g><g class="flow-edge-label normal" data-label-for="WF-03-edge-07"><rect x="378.6" y="450" width="42.8" height="29" rx="4"/><text x="385.6" y="469">取消</text></g><g class="flow-node task" data-node-id="a" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,162.0,342.0,258.0" data-step-id="a"><a href="#a" aria-label="a 変更・取消情報を受領：工程定義へ"><title>変更・取消情報を受領。自動受領方式は未決。採用取消は給与支給前のみ。</title><rect x="98.0" y="162.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="112.0" y="182.0">a · SCR-002</text><text class="flow-task-label" x="112.0" y="207.0">変更・取消情報を受領</text></a></g><g class="flow-node gateway" data-node-id="b" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,342.0,345.0,478.0" data-step-id="b"><a href="#b" aria-label="b 変更か採用取消か：工程定義へ"><title>変更か採用取消か。確認待ち／確定のどちらも取消対象。</title><polygon points="220.0,342.0 345.0,410 220.0,478.0 95.0,410"/><text class="flow-node-id" x="220.0" y="370" text-anchor="middle">b · ×</text><text class="flow-task-label" x="220.0" y="402" text-anchor="middle">変更か採用取消か</text></a></g><g class="flow-node task" data-node-id="c" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,562.0,342.0,658.0" data-step-id="c"><a href="#c" aria-label="c 変更前の内容を保持：工程定義へ"><title>変更前の内容を保持。実際の変更と誤登録訂正を区別。</title><rect x="98.0" y="562.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="112.0" y="582.0">c · SCR-002</text><text class="flow-task-label" x="112.0" y="607.0">変更前の内容を保持</text></a><a href="../operations/scr-002.html#OP-AD-CHANGE" aria-label="OP-AD-CHANGE 操作定義"><text class="flow-op-link" x="330.0" y="649.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node gateway" data-node-id="d" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,742.0,345.0,878.0" data-step-id="d"><a href="#d" aria-label="d 給与班修正値と相違か：工程定義へ"><title>給与班修正値と相違か。上流変更で給与班の値を自動上書きしない。</title><polygon points="220.0,742.0 345.0,810 220.0,878.0 95.0,810"/><text class="flow-node-id" x="220.0" y="770" text-anchor="middle">d · ×</text><text class="flow-task-label" x="220.0" y="802" text-anchor="middle">給与班修正値と相違</text><text class="flow-task-label" x="220.0" y="824" text-anchor="middle">か</text></a></g><g class="flow-node task" data-node-id="e" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,962.0,342.0,1058.0" data-step-id="e"><a href="#e" aria-label="e 採用値を給与班が判断：工程定義へ"><title>採用値を給与班が判断。採用値・変更前後を残す。</title><rect x="98.0" y="962.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="112.0" y="982.0">e · SCR-002</text><text class="flow-task-label" x="112.0" y="1007.0">採用値を給与班が判断</text></a><a href="../operations/scr-002.html#OP-AD-CHANGE" aria-label="OP-AD-CHANGE 操作定義"><text class="flow-op-link" x="330.0" y="1049.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node task" data-node-id="f" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1162.0,342.0,1258.0" data-step-id="f"><a href="#f" aria-label="f 確認待ちへ戻し再確定：工程定義へ"><title>確認待ちへ戻し再確定。再確定まで計算へ使用しない。未払いに影響すれば再計算。</title><rect x="98.0" y="1162.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="112.0" y="1182.0">f · SCR-002</text><text class="flow-task-label" x="112.0" y="1207.0">確認待ちへ戻し再確定</text></a><a href="../operations/scr-002.html#OP-E-CONFIRM" aria-label="OP-E-CONFIRM 操作定義"><text class="flow-op-link" x="330.0" y="1249.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node task" data-node-id="g" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,562.0,702.0,658.0" data-step-id="g"><a href="#g" aria-label="g 候補を採用取消にする：工程定義へ"><title>候補を採用取消にする。候補を削除せず履歴保持。</title><rect x="458.0" y="562.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="472.0" y="582.0">g · SCR-002</text><text class="flow-task-label" x="472.0" y="607.0">候補を採用取消にする</text></a><a href="../operations/scr-002.html#OP-AD-CANCEL" aria-label="OP-AD-CANCEL 操作定義"><text class="flow-op-link" x="690.0" y="649.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node task" data-node-id="h" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,762.0,702.0,858.0" data-step-id="h"><a href="#h" aria-label="h 給与計算から除外：工程定義へ"><title>給与計算から除外。採用取消に伴う既支給返納は要件外。</title><rect x="458.0" y="762.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="472.0" y="782.0">h · SCR-002</text><text class="flow-task-label" x="472.0" y="807.0">給与計算から除外</text></a></g><g class="flow-node start" data-node-id="start-a" data-node-kind="start" data-lane-id="lane-1" data-box="204.0,84.0,236.0,116.0"><title>開始。表示用要素</title><circle cx="220.0" cy="100" r="16.0"/><text class="flow-event-label" x="247.0" y="105" text-anchor="start">開始</text></g><g class="flow-node merge" data-node-id="join-f" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,1134.0,230.0,1154.0"><title>合流。表示用要素</title><polygon points="220.0,1134.0 230.0,1144 220.0,1154.0 210.0,1144"/><text class="flow-gateway-symbol" x="220.0" y="1147" text-anchor="middle"></text></g><g class="flow-node end" data-node-id="end-f" data-node-kind="end" data-lane-id="lane-1" data-box="203.0,1289.0,237.0,1323.0"><title>確認区間の終了。表示用要素</title><circle cx="220.0" cy="1306" r="17.0"/><circle class="end-inner" cx="220.0" cy="1306" r="12.0"/><text class="flow-event-label" x="220.0" y="1342" text-anchor="middle">確認区間の終了</text></g><g class="flow-node end" data-node-id="end-h" data-node-kind="end" data-lane-id="lane-2" data-box="563.0,889.0,597.0,923.0"><title>確認区間の終了。表示用要素</title><circle cx="580.0" cy="906" r="17.0"/><circle class="end-inner" cx="580.0" cy="906" r="12.0"/><text class="flow-event-label" x="580.0" y="942" text-anchor="middle">確認区間の終了</text></g></svg></div></section><div class="table-scroll" tabindex="0" role="region" aria-label="接続図と同一データの全経路（表示用の開始・終了・合流は業務操作に数えません）">
-<table ><caption>接続図と同一データの全経路（表示用の開始・終了・合流は業務操作に数えません）</caption>
-<thead><tr><th scope="col">経路ID</th><th scope="col">起点</th><th scope="col">条件／操作</th><th scope="col">到達点</th></tr></thead>
+<aside class="portal-context" style="padding:16px;background:#edf5ff;border:1px solid #93b7db;margin:16px 0">
+<strong>要件定義から読む</strong>
+<p>
+<a data-context-return href="../../../requirements/standard-template/sections/1.1.2.html#section-1.1.2">関連する標準要件 1.1.2 へ戻る</a> · <a href="../../../requirements/standard-template/index.html">要件定義の入口</a> · <a href="../../../requirements/standard-template/requirements/index.html">要件IDで探す</a>
+</p>
+<p>このレビュー図・画面例の根拠は b5e5d460fe19、2026-10-10 時点の資料です。DOT-001承認A・Live38引継ぎ観測を反映。正式P/H・自動E2E・最終照合は未完了です。</p>
+</aside>
+<p>
+<span class="badge accepted">確定改修要件</span> 担当：秘書課・給与班</p>
+<dl>
+<dt>開始</dt>
+<dd>前工程で変更または取消</dd>
+<dt>終了</dt>
+<dd>再確定、または履歴を残して計算除外</dd>
+</dl>
+<a class="requirement" data-requirement-id="AD-06" href="../../../requirements/standard-template/requirements/AD-06.html">AD-06</a>
+<a class="requirement" data-requirement-id="AD-07" href="../../../requirements/standard-template/requirements/AD-07.html">AD-07</a>
+<a class="requirement" data-requirement-id="AD-08" href="../../../requirements/standard-template/requirements/AD-08.html">AD-08</a>
+<a class="requirement" data-requirement-id="E-08" href="../../../requirements/standard-template/requirements/E-08.html">E-08</a>
+<a class="requirement" data-requirement-id="E-09" href="../../../requirements/standard-template/requirements/E-09.html">E-09</a>
+<p class="lead workflow-summary">変更は旧値を保持して給与班が再確認。採用取消は候補を削除せず、履歴を残して給与計算から除外します。</p>
+<div class="flow-legend">
+<span>○ 開始／◎ 確認区間の終了</span>
+<span>角丸：作業</span>
+<span>◇ ×：条件分岐</span>
+<span>小さい◇：合流・結果分岐</span>
+<span>茶線：訂正・再試行</span>
+<span>破線：アプリ外との受渡し</span>
+</div>
+<p class="diagram-reading">上から下へ主な流れをたどります。工程は一度だけ配置し、矢印で分岐・合流・戻り先をつないでいます。BPMN風のレビュー表記であり、BPMN 2.0の実行可能な定義ではありません。工程を選ぶと定義へ、操作定義↗から操作の詳細へ進みます。</p>
+<section class="connected-workflow" data-connected-workflow>
+<div class="diagram-tools" data-diagram-tools hidden>
+<button type="button" data-diagram-fit>幅に合わせる</button>
+<button type="button" data-diagram-all>全体を見る</button>
+<button type="button" data-diagram-actual>100%</button>
+<button type="button" data-diagram-out aria-label="業務図を縮小">−</button>
+<button type="button" data-diagram-in aria-label="業務図を拡大">＋</button>
+<output data-diagram-scale aria-live="polite">100%</output>
+<span>図内だけを横・縦スクロールできます</span>
+</div>
+<div class="workflow-scroll" tabindex="0" role="region" aria-label="A～D 決裁後変更・採用取消。上下に流れを追い、枠内をスクロール">
+<svg class="workflow-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1390" width="800" height="1390" role="img" aria-labelledby="WF-03-title WF-03-description" data-workflow-id="WF-03">
+<title id="WF-03-title">WF-03 A～D 決裁後変更・採用取消</title>
+<desc id="WF-03-description">変更は旧値を保持して給与班が再確認。採用取消は候補を削除せず、履歴を残して給与計算から除外します。 工程は一度だけ配置。矢印をたどり、茶色の折返しは訂正・再試行。全条件は同じデータの経路表で確認できます。</desc>
+<defs>
+<marker id="WF-03-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+</marker>
+</defs>
+<g class="flow-lane app" data-lane-id="lane-1">
+<rect x="40" y="0" width="360" height="1390"/>
+<rect class="lane-heading-bg" x="40" y="0" width="360" height="65"/>
+<text x="220" y="25" class="flow-lane-title" text-anchor="middle">給与班・給与アプリ</text>
+<text x="220" y="49" class="flow-lane-scope" text-anchor="middle">変更の比較と再確認</text>
+</g>
+<g class="flow-lane app" data-lane-id="lane-2">
+<rect x="400" y="0" width="360" height="1390"/>
+<rect class="lane-heading-bg" x="400" y="0" width="360" height="65"/>
+<text x="580" y="25" class="flow-lane-title" text-anchor="middle">給与班・給与アプリ</text>
+<text x="580" y="49" class="flow-lane-scope" text-anchor="middle">取消と計算除外</text>
+</g>
+<g class="flow-connector view" data-edge-id="WF-03-view-01" data-from="start-a" data-to="a">
+<path class="flow-edge-halo" d="M 220 116 L 220 162"/>
+<path class="flow-edge" d="M 220 116 L 220 162" marker-end="url(#WF-03-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-03-view-02" data-from="join-f" data-to="f">
+<path class="flow-edge-halo" d="M 220 1154 L 220 1162"/>
+<path class="flow-edge" d="M 220 1154 L 220 1162" marker-end="url(#WF-03-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-03-view-03" data-from="f" data-to="end-f">
+<path class="flow-edge-halo" d="M 220 1258 L 220 1289"/>
+<path class="flow-edge" d="M 220 1258 L 220 1289" marker-end="url(#WF-03-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-03-view-04" data-from="h" data-to="end-h">
+<path class="flow-edge-halo" d="M 580 858 L 580 889"/>
+<path class="flow-edge" d="M 580 858 L 580 889" marker-end="url(#WF-03-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-03-edge-01" data-from="a" data-to="b" data-source-step="a" data-target-step="b">
+<path class="flow-edge-halo" d="M 220 258 L 220 342"/>
+<path class="flow-edge" d="M 220 258 L 220 342" marker-end="url(#WF-03-arrow)"/>
+<title>判定</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-03-edge-02" data-from="b" data-to="c" data-source-step="b" data-target-step="c">
+<path class="flow-edge-halo" d="M 220 478 L 220 562"/>
+<path class="flow-edge" d="M 220 478 L 220 562" marker-end="url(#WF-03-arrow)"/>
+<title>変更</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-03-edge-03" data-from="c" data-to="d" data-source-step="c" data-target-step="d">
+<path class="flow-edge-halo" d="M 220 658 L 220 742"/>
+<path class="flow-edge" d="M 220 658 L 220 742" marker-end="url(#WF-03-arrow)"/>
+<title>比較</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-03-edge-04" data-from="d" data-to="e" data-source-step="d" data-target-step="e">
+<path class="flow-edge-halo" d="M 220 878 L 220 962"/>
+<path class="flow-edge" d="M 220 878 L 220 962" marker-end="url(#WF-03-arrow)"/>
+<title>相違あり</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-03-edge-05" data-from="d" data-to="join-f" data-source-step="d" data-target-step="f">
+<path class="flow-edge-halo" d="M 220 878 L 220 886 L 86 886 L 86 1126 L 220 1126 L 220 1134"/>
+<path class="flow-edge" d="M 220 878 L 220 886 L 86 886 L 86 1126 L 220 1126 L 220 1134" marker-end="url(#WF-03-arrow)"/>
+<title>相違なし</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-03-edge-06" data-from="e" data-to="join-f" data-source-step="e" data-target-step="f">
+<path class="flow-edge-halo" d="M 220 1058 L 220 1134"/>
+<path class="flow-edge" d="M 220 1058 L 220 1134" marker-end="url(#WF-03-arrow)"/>
+<title>判断後</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-03-edge-08" data-from="g" data-to="h" data-source-step="g" data-target-step="h">
+<path class="flow-edge-halo" d="M 580 658 L 580 762"/>
+<path class="flow-edge" d="M 580 658 L 580 762" marker-end="url(#WF-03-arrow)"/>
+<title>履歴保持</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-03-edge-07" data-from="b" data-to="g" data-source-step="b" data-target-step="g">
+<path class="flow-edge-halo" d="M 220 478 L 220 486 L 580 486 L 580 562"/>
+<path class="flow-edge" d="M 220 478 L 220 486 L 580 486 L 580 562" marker-end="url(#WF-03-arrow)"/>
+<title>取消</title>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-03-edge-01">
+<rect x="227" y="285.5" width="42.8" height="29" rx="4"/>
+<text x="234" y="304.5">判定</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-03-edge-02">
+<rect x="227" y="505.5" width="42.8" height="29" rx="4"/>
+<text x="234" y="524.5">変更</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-03-edge-03">
+<rect x="227" y="685.5" width="42.8" height="29" rx="4"/>
+<text x="234" y="704.5">比較</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-03-edge-04">
+<rect x="227" y="905.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="924.5">相違あり</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-03-edge-05">
+<rect x="117.2" y="893" width="71.6" height="29" rx="4"/>
+<text x="124.2" y="912">相違なし</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-03-edge-06">
+<rect x="227" y="1081.5" width="57.2" height="29" rx="4"/>
+<text x="234" y="1100.5">判断後</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-03-edge-08">
+<rect x="587" y="695.5" width="71.6" height="29" rx="4"/>
+<text x="594" y="714.5">履歴保持</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-03-edge-07">
+<rect x="378.6" y="450" width="42.8" height="29" rx="4"/>
+<text x="385.6" y="469">取消</text>
+</g>
+<g class="flow-node task" data-node-id="a" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,162.0,342.0,258.0" data-step-id="a">
+<a href="#a" aria-label="a 変更・取消情報を受領：工程定義へ">
+<title>変更・取消情報を受領。自動受領方式は未決。採用取消は給与支給前のみ。</title>
+<rect x="98.0" y="162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="182.0">a · SCR-002</text>
+<text class="flow-task-label" x="112.0" y="207.0">変更・取消情報を受領</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="b" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,342.0,345.0,478.0" data-step-id="b">
+<a href="#b" aria-label="b 変更か採用取消か：工程定義へ">
+<title>変更か採用取消か。確認待ち／確定のどちらも取消対象。</title>
+<polygon points="220.0,342.0 345.0,410 220.0,478.0 95.0,410"/>
+<text class="flow-node-id" x="220.0" y="370" text-anchor="middle">b · ×</text>
+<text class="flow-task-label" x="220.0" y="402" text-anchor="middle">変更か採用取消か</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="c" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,562.0,342.0,658.0" data-step-id="c">
+<a href="#c" aria-label="c 変更前の内容を保持：工程定義へ">
+<title>変更前の内容を保持。実際の変更と誤登録訂正を区別。</title>
+<rect x="98.0" y="562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="582.0">c · SCR-002</text>
+<text class="flow-task-label" x="112.0" y="607.0">変更前の内容を保持</text>
+</a>
+<a href="../operations/scr-002.html#OP-AD-CHANGE" aria-label="OP-AD-CHANGE 操作定義">
+<text class="flow-op-link" x="330.0" y="649.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="d" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,742.0,345.0,878.0" data-step-id="d">
+<a href="#d" aria-label="d 給与班修正値と相違か：工程定義へ">
+<title>給与班修正値と相違か。上流変更で給与班の値を自動上書きしない。</title>
+<polygon points="220.0,742.0 345.0,810 220.0,878.0 95.0,810"/>
+<text class="flow-node-id" x="220.0" y="770" text-anchor="middle">d · ×</text>
+<text class="flow-task-label" x="220.0" y="802" text-anchor="middle">給与班修正値と相違</text>
+<text class="flow-task-label" x="220.0" y="824" text-anchor="middle">か</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="e" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,962.0,342.0,1058.0" data-step-id="e">
+<a href="#e" aria-label="e 採用値を給与班が判断：工程定義へ">
+<title>採用値を給与班が判断。採用値・変更前後を残す。</title>
+<rect x="98.0" y="962.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="982.0">e · SCR-002</text>
+<text class="flow-task-label" x="112.0" y="1007.0">採用値を給与班が判断</text>
+</a>
+<a href="../operations/scr-002.html#OP-AD-CHANGE" aria-label="OP-AD-CHANGE 操作定義">
+<text class="flow-op-link" x="330.0" y="1049.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="f" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1162.0,342.0,1258.0" data-step-id="f">
+<a href="#f" aria-label="f 確認待ちへ戻し再確定：工程定義へ">
+<title>確認待ちへ戻し再確定。再確定まで計算へ使用しない。未払いに影響すれば再計算。</title>
+<rect x="98.0" y="1162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="1182.0">f · SCR-002</text>
+<text class="flow-task-label" x="112.0" y="1207.0">確認待ちへ戻し再確定</text>
+</a>
+<a href="../operations/scr-002.html#OP-E-CONFIRM" aria-label="OP-E-CONFIRM 操作定義">
+<text class="flow-op-link" x="330.0" y="1249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="g" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,562.0,702.0,658.0" data-step-id="g">
+<a href="#g" aria-label="g 候補を採用取消にする：工程定義へ">
+<title>候補を採用取消にする。候補を削除せず履歴保持。</title>
+<rect x="458.0" y="562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="582.0">g · SCR-002</text>
+<text class="flow-task-label" x="472.0" y="607.0">候補を採用取消にする</text>
+</a>
+<a href="../operations/scr-002.html#OP-AD-CANCEL" aria-label="OP-AD-CANCEL 操作定義">
+<text class="flow-op-link" x="690.0" y="649.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="h" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,762.0,702.0,858.0" data-step-id="h">
+<a href="#h" aria-label="h 給与計算から除外：工程定義へ">
+<title>給与計算から除外。採用取消に伴う既支給返納は要件外。</title>
+<rect x="458.0" y="762.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="782.0">h · SCR-002</text>
+<text class="flow-task-label" x="472.0" y="807.0">給与計算から除外</text>
+</a>
+</g>
+<g class="flow-node start" data-node-id="start-a" data-node-kind="start" data-lane-id="lane-1" data-box="204.0,84.0,236.0,116.0">
+<title>開始。表示用要素</title>
+<circle cx="220.0" cy="100" r="16.0"/>
+<text class="flow-event-label" x="247.0" y="105" text-anchor="start">開始</text>
+</g>
+<g class="flow-node merge" data-node-id="join-f" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,1134.0,230.0,1154.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,1134.0 230.0,1144 220.0,1154.0 210.0,1144"/>
+<text class="flow-gateway-symbol" x="220.0" y="1147" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node end" data-node-id="end-f" data-node-kind="end" data-lane-id="lane-1" data-box="203.0,1289.0,237.0,1323.0">
+<title>確認区間の終了。表示用要素</title>
+<circle cx="220.0" cy="1306" r="17.0"/>
+<circle class="end-inner" cx="220.0" cy="1306" r="12.0"/>
+<text class="flow-event-label" x="220.0" y="1342" text-anchor="middle">確認区間の終了</text>
+</g>
+<g class="flow-node end" data-node-id="end-h" data-node-kind="end" data-lane-id="lane-2" data-box="563.0,889.0,597.0,923.0">
+<title>確認区間の終了。表示用要素</title>
+<circle cx="580.0" cy="906" r="17.0"/>
+<circle class="end-inner" cx="580.0" cy="906" r="12.0"/>
+<text class="flow-event-label" x="580.0" y="942" text-anchor="middle">確認区間の終了</text>
+</g>
+</svg>
+</div>
+</section>
+<div class="table-scroll" tabindex="0" role="region" aria-label="接続図と同一データの全経路（表示用の開始・終了・合流は業務操作に数えません）">
+<table >
+<caption>接続図と同一データの全経路（表示用の開始・終了・合流は業務操作に数えません）</caption>
+<thead>
+<tr>
+<th scope="col">経路ID</th>
+<th scope="col">起点</th>
+<th scope="col">条件／操作</th>
+<th scope="col">到達点</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><span data-edge-reference="WF-03-edge-01">WF-03-edge-01</span></td><td>a 変更・取消情報を受領</td><td>判定</td><td>b 変更か採用取消か</td></tr>
-<tr><td><span data-edge-reference="WF-03-edge-02">WF-03-edge-02</span></td><td>b 変更か採用取消か</td><td>変更</td><td>c 変更前の内容を保持</td></tr>
-<tr><td><span data-edge-reference="WF-03-edge-03">WF-03-edge-03</span></td><td>c 変更前の内容を保持</td><td>比較</td><td>d 給与班修正値と相違か</td></tr>
-<tr><td><span data-edge-reference="WF-03-edge-04">WF-03-edge-04</span></td><td>d 給与班修正値と相違か</td><td>相違あり</td><td>e 採用値を給与班が判断</td></tr>
-<tr><td><span data-edge-reference="WF-03-edge-05">WF-03-edge-05</span></td><td>d 給与班修正値と相違か</td><td>相違なし</td><td>f 確認待ちへ戻し再確定</td></tr>
-<tr><td><span data-edge-reference="WF-03-edge-06">WF-03-edge-06</span></td><td>e 採用値を給与班が判断</td><td>判断後</td><td>f 確認待ちへ戻し再確定</td></tr>
-<tr><td><span data-edge-reference="WF-03-edge-07">WF-03-edge-07</span></td><td>b 変更か採用取消か</td><td>取消</td><td>g 候補を採用取消にする</td></tr>
-<tr><td><span data-edge-reference="WF-03-edge-08">WF-03-edge-08</span></td><td>g 候補を採用取消にする</td><td>履歴保持</td><td>h 給与計算から除外</td></tr>
-</tbody></table></div>
+<tr>
+<td>
+<span data-edge-reference="WF-03-edge-01">WF-03-edge-01</span>
+</td>
+<td>a 変更・取消情報を受領</td>
+<td>判定</td>
+<td>b 変更か採用取消か</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-03-edge-02">WF-03-edge-02</span>
+</td>
+<td>b 変更か採用取消か</td>
+<td>変更</td>
+<td>c 変更前の内容を保持</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-03-edge-03">WF-03-edge-03</span>
+</td>
+<td>c 変更前の内容を保持</td>
+<td>比較</td>
+<td>d 給与班修正値と相違か</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-03-edge-04">WF-03-edge-04</span>
+</td>
+<td>d 給与班修正値と相違か</td>
+<td>相違あり</td>
+<td>e 採用値を給与班が判断</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-03-edge-05">WF-03-edge-05</span>
+</td>
+<td>d 給与班修正値と相違か</td>
+<td>相違なし</td>
+<td>f 確認待ちへ戻し再確定</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-03-edge-06">WF-03-edge-06</span>
+</td>
+<td>e 採用値を給与班が判断</td>
+<td>判断後</td>
+<td>f 確認待ちへ戻し再確定</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-03-edge-07">WF-03-edge-07</span>
+</td>
+<td>b 変更か採用取消か</td>
+<td>取消</td>
+<td>g 候補を採用取消にする</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-03-edge-08">WF-03-edge-08</span>
+</td>
+<td>g 候補を採用取消にする</td>
+<td>履歴保持</td>
+<td>h 給与計算から除外</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="table-scroll" tabindex="0" role="region" aria-label="業務工程の定義">
-<table ><caption>業務工程の定義</caption>
-<thead><tr><th scope="col">工程</th><th scope="col">画面・種類</th><th scope="col">動作・条件</th><th scope="col">操作定義／画面</th></tr></thead>
+<table >
+<caption>業務工程の定義</caption>
+<thead>
+<tr>
+<th scope="col">工程</th>
+<th scope="col">画面・種類</th>
+<th scope="col">動作・条件</th>
+<th scope="col">操作定義／画面</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><span id="a">a</span> 変更・取消情報を受領</td><td>SCR-002<br>start</td><td>自動受領方式は未決。採用取消は給与支給前のみ。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
-<tr><td><span id="b">b</span> 変更か採用取消か</td><td>SCR-002<br>decision</td><td>確認待ち／確定のどちらも取消対象。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
-<tr><td><span id="c">c</span> 変更前の内容を保持</td><td>SCR-002<br>action</td><td>実際の変更と誤登録訂正を区別。</td><td><a href="../operations/scr-002.html#OP-AD-CHANGE" >OP-AD-CHANGE</a> / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
-<tr><td><span id="d">d</span> 給与班修正値と相違か</td><td>SCR-002<br>decision</td><td>上流変更で給与班の値を自動上書きしない。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
-<tr><td><span id="e">e</span> 採用値を給与班が判断</td><td>SCR-002<br>action</td><td>採用値・変更前後を残す。</td><td><a href="../operations/scr-002.html#OP-AD-CHANGE" >OP-AD-CHANGE</a> / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
-<tr><td><span id="f">f</span> 確認待ちへ戻し再確定</td><td>SCR-002<br>end</td><td>再確定まで計算へ使用しない。未払いに影響すれば再計算。</td><td><a href="../operations/scr-002.html#OP-E-CONFIRM" >OP-E-CONFIRM</a> / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
-<tr><td><span id="g">g</span> 候補を採用取消にする</td><td>SCR-002<br>action</td><td>候補を削除せず履歴保持。</td><td><a href="../operations/scr-002.html#OP-AD-CANCEL" >OP-AD-CANCEL</a> / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
-<tr><td><span id="h">h</span> 給与計算から除外</td><td>SCR-002<br>end</td><td>採用取消に伴う既支給返納は要件外。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a></td></tr>
-</tbody></table></div>
-<h2>例外・未保存・引継ぎの確認</h2><p>各操作定義の失敗／取消／未保存／保持・解除欄を確認してください。処理中・報告済み・支払済みの編集制限、並行更新、再試行の物理方式は確定業務と未決方式を分けています。モックの再試行成功は実データの復旧保証ではありません。</p><p>出典：<a href="../../../requirements/business-requirements.md">業務要件：採用前工程 A～D／AD-01～10</a> / <a href="../../../requirements/business-requirements.md">業務要件：給与登録 E／E-01～12</a> / <a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a></p>
+<tr>
+<td>
+<span id="a">a</span> 変更・取消情報を受領</td>
+<td>SCR-002<br>start</td>
+<td>自動受領方式は未決。採用取消は給与支給前のみ。</td>
+<td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="b">b</span> 変更か採用取消か</td>
+<td>SCR-002<br>decision</td>
+<td>確認待ち／確定のどちらも取消対象。</td>
+<td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="c">c</span> 変更前の内容を保持</td>
+<td>SCR-002<br>action</td>
+<td>実際の変更と誤登録訂正を区別。</td>
+<td>
+<a href="../operations/scr-002.html#OP-AD-CHANGE" >OP-AD-CHANGE</a> / <a href="../wireframes/scr-002.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="d">d</span> 給与班修正値と相違か</td>
+<td>SCR-002<br>decision</td>
+<td>上流変更で給与班の値を自動上書きしない。</td>
+<td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="e">e</span> 採用値を給与班が判断</td>
+<td>SCR-002<br>action</td>
+<td>採用値・変更前後を残す。</td>
+<td>
+<a href="../operations/scr-002.html#OP-AD-CHANGE" >OP-AD-CHANGE</a> / <a href="../wireframes/scr-002.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="f">f</span> 確認待ちへ戻し再確定</td>
+<td>SCR-002<br>end</td>
+<td>再確定まで計算へ使用しない。未払いに影響すれば再計算。</td>
+<td>
+<a href="../operations/scr-002.html#OP-E-CONFIRM" >OP-E-CONFIRM</a> / <a href="../wireframes/scr-002.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="g">g</span> 候補を採用取消にする</td>
+<td>SCR-002<br>action</td>
+<td>候補を削除せず履歴保持。</td>
+<td>
+<a href="../operations/scr-002.html#OP-AD-CANCEL" >OP-AD-CANCEL</a> / <a href="../wireframes/scr-002.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="h">h</span> 給与計算から除外</td>
+<td>SCR-002<br>end</td>
+<td>採用取消に伴う既支給返納は要件外。</td>
+<td>業務境界・状態（操作なし） / <a href="../wireframes/scr-002.html" >画面を開く</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>例外・未保存・引継ぎの確認</h2>
+<p>各操作定義の失敗／取消／未保存／保持・解除欄を確認してください。処理中・報告済み・支払済みの編集制限、並行更新、再試行の物理方式は確定業務と未決方式を分けています。モックの再試行成功は実データの復旧保証ではありません。</p>
+<p>出典：<a href="../../../requirements/standard-template/sources/docs--requirements--business-requirements.html">業務要件：採用前工程 A～D／AD-01～10</a> / <a href="../../../requirements/standard-template/sources/docs--requirements--business-requirements.html">業務要件：給与登録 E／E-01～12</a> / <a href="../../../requirements/standard-template/sources/docs--requirements--payroll-confirmed-20261007.html">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a>
+</p>
 </main>
 <footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+<script src="../../../requirements/standard-template/assets/context.js" data-portal-root="../../../requirements/standard-template" defer>
+</script>
 </body>
 </html>

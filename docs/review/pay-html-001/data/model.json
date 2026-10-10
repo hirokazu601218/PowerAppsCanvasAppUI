@@ -1,7 +1,8 @@
 {
   "metadata": {
     "version": "0.2-review",
-    "source_sha": "6064ca820553511e1d52b19f896a063213eb88c8",
+    "source_sha": "b5e5d460fe19169252de05bb02bafc9461120540",
+    "original_main": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
     "updated": "2026-10-10",
     "status": "提案・レビュー用（未承認）"
   },
@@ -10,7 +11,7 @@
       "id": "SRC-STATUS",
       "path": "docs/handoff/STATUS.md",
       "title": "現在の作業と読取り対象",
-      "section": "2026-10-08人給連携／2026-10-07給与・通勤／2026-10-01 UI"
+      "section": "DOT-001最新状態と関連履歴の選択表示"
     },
     {
       "id": "SRC-PAY",
@@ -283,6 +284,8 @@
       "requirements": [
         "SCR005-ACT-001",
         "SCR005-ACT-004",
+        "SCR005-UI-004",
+        "SCR005-UI-015",
         "COMMON-NAV-003"
       ],
       "source_ids": [

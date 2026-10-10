@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>閲覧方法 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="assets/portal.css">
+<script src="assets/portal.js" defer>
+</script>
+<script src="assets/context.js" data-portal-root="./" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="index.html" >入口</a>
+<a href="journeys.html" >業務から読む</a>
+<a href="screens/index.html" >画面一覧</a>
+<a href="chapters.html" >標準の章立て</a>
+<a href="requirements/index.html" >要件ID・操作</a>
+<a href="open-items.html" >要件未設定</a>
+<a href="reading-guide.html" aria-current="page">閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="index.html" >要件定義</a>
+</span>
+<span aria-current="page">閲覧方法</span>
+</nav>
+<div>
+<span class="eyebrow">HOW TO READ</span>
+<h1>iPhone・PCでの開き方</h1>
+<p class="lead">この成果物は、未公開の静的HTML一式です。閲覧環境によって使える機能が異なります。</p>
+<section class="panel" >
+<h2>iPhone: SafariでURLを開く方式が本来の閲覧先</h2>
+<ol>
+<li>この資料を、承認した閲覧者だけが開けるWeb置場へ配置します。</li>
+<li>そのURLをSafariで開きます。</li>
+<li>要件・関連資料を通常リンクで移動し、検索・図の拡大を使います。</li>
+</ol>
+<p class="notice">今回、Web配置・Sites登録・公開・アクセス権変更は実施していません。URLでの提供には、公開先と閲覧範囲の承認が別途必要です。</p>
+<p>PCのlocalhostは同じPCだけのアドレスで、iPhoneからそのまま開けるURLではありません。</p>
+</section>
+<section class="panel" >
+<h2>PC: 展開したフォルダーを通常ブラウザーで開く</h2>
+<ol>
+<li>配布ZIPを展開し、フォルダーの構造をそのまま保持します。</li>
+<li>docs/requirements/standard-template/index.html をChrome・Edge・Safari等で開きます。配布ZIPでは viewer/docs/requirements/standard-template/index.html です。</li>
+<li>別ページへのリンク、本文、図を確認します。検索・拡大はJavaScriptを許可した通常ブラウザーで利用します。</li>
+</ol>
+<p class="meta">外部CDN・ネットワークによる本文取得は不要です。ローカルファイルへの移動が制限される環境では、PC内のHTTPサーバーで一式を配信してください。GitHubのファイル画面はHTMLソースの表示です。</p>
+</section>
+<section class="panel" >
+<h2>iPhoneの「ファイル」プレビュー: 読むだけの補助資料</h2>
+<p>Quick Lookは通常のWebブラウザーではありません。別HTMLへの移動、同一ページのアンカー、JavaScript、検索、拡大ボタン、モック操作を保証できません。</p>
+<p>
+<a href="index-mobile.html" >単独ファイルの閲覧用要約</a>は、業務の全体像・確定した境界・主な未設定事項を、上から読むために用意しています。別資料や操作機能は含めていません。</p>
+<p class="notice">この補助資料だけでは、全要件・全操作を確認したことになりません。詳細レビューには通常ブラウザー版が必要です。iPhone実機／Safariでの動作は未検証です。今回の環境ではブラウザーからローカルHTTPへ到達できず、Chromiumの表示・操作・狭幅描画も未実施です。静的リンク検査やJavaScript単体試験は実ブラウザー試験の代わりにはしていません。</p>
+</section>
+<section class="panel" >
+<h2>ボタンが動かないとき</h2>
+<ul>
+<li>「ファイル」内のプレビューであれば、動作不良と決めつけず、まず閲覧方法を確認します。</li>
+<li>通常ブラウザーでもJavaScriptを使えない場合、検索と拡大は使えません。本文と普通のリンクは残ります。</li>
+<li>図が小さい場合は拡大し、図枠を縦・横へスクロールします。同じ内容は図の下の工程・経路表でも確認できます。</li>
+<li>関連資料の冒頭に元要件へのリンクがあります。ブラウザーの「戻る」も使えます。</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="sources.html" >出典と版</a> · <a href="reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

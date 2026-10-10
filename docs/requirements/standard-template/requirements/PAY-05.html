@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>PAY-05 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="index.html" aria-current="page">要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >要件ID・操作</a>
+</span>
+<span aria-current="page">PAY-05</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 要件ID一覧へ戻る</a>
+<div>
+<span class="eyebrow">REQUIREMENT / PAY-05</span>
+<h1 id="requirement-PAY-05">PAY-05</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>出典箇所を記載</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>正本の該当記述を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>正本に書かれている内容</h2>
+<p class="meta">出典の要件行・見出し・該当箇所をそのまま示しています。複数の記述がある場合は、文書と時点を確認してください。</p>
+<div class="source-row">
+<p>PAY-05 ｜ 給与班が給与相殺・納入告知書の方法を判断する。分割回収と両方法の併用を許容し、案件別に複数回収実績・回収済額・残額を管理する。支払い済み給与を上書きしない（Q53・R3・R18）。</p>
+<p class="source">
+<a href="../sources/docs--requirements--business-requirements.html?context=req-PAY-05#L262" >business-requirements.md · 262行目</a> / 正本の該当行</p>
+</div>
+<div class="source-row">
+<p>PAY-05 ｜ 給与相殺か納入告知書かの返納方法判断：対応する現行機能要件なし ｜ 方式別処理・帳票・入金管理の設計と試験未定</p>
+<p class="source">
+<a href="../sources/docs--requirements--traceability-matrix.html?context=req-PAY-05#L321" >traceability-matrix.md · 321行目</a> / 正本の該当行</p>
+</div>
+</section>
+<p class="meta">関連操作・配置の区分: 提案。この区分を上記の要件判断へ転記していません。</p>
+<section class="panel" >
+<h2>この要件が関係する操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-REPAY-METHOD · SCR-007</span>
+<h3>
+<a href="../operations/OP-REPAY-METHOD.html?context=req-PAY-05#OP-REPAY-METHOD" >返納方法を決定</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>給与班が給与相殺・納入告知書を選ぶ。分割回収と両方法併用を認め、元支払と返納案件を関連付ける。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-REPAY-RECORD · SCR-007</span>
+<h3>
+<a href="../operations/OP-REPAY-RECORD.html?context=req-PAY-05#OP-REPAY-RECORD" >回収実績と残額を記録</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>案件に複数の回収実績を結び、回収済額と残額を確認する。支払済み給与を訂正しない。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>関連する章・業務・画面</h2>
+<h3>標準の章・節</h3>
+<div class="chips">
+<a href="../sections/1.1.2.html#section-1.1.2" >1.1.2</a>
+<a href="../sections/2.4.4.html#section-2.4.4" >2.4.4</a>
+<a href="../sections/3.12.html#section-3.12" >3.12</a>
+</div>
+<h3 style="margin-top:18px">業務</h3>
+<div class="chips">
+<a href="../workflows/WF-14.html?context=req-PAY-05#WF-14" >WF-14</a>
+</div>
+<h3 style="margin-top:18px">画面</h3>
+<div class="chips">
+</div>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

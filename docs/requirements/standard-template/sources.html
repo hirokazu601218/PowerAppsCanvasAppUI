@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>出典と版 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="assets/portal.css">
+<script src="assets/portal.js" defer>
+</script>
+<script src="assets/context.js" data-portal-root="./" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="index.html" >入口</a>
+<a href="journeys.html" >業務から読む</a>
+<a href="screens/index.html" >画面一覧</a>
+<a href="chapters.html" >標準の章立て</a>
+<a href="requirements/index.html" >要件ID・操作</a>
+<a href="open-items.html" >要件未設定</a>
+<a href="reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="index.html" >要件定義</a>
+</span>
+<span aria-current="page">出典と版</span>
+</nav>
+<div>
+<span class="eyebrow">PROVENANCE</span>
+<h1>出典と版</h1>
+<p class="lead">どの時点の何を根拠にしたか。正本とレビュー資料を分けて追跡します。</p>
+<section class="panel" >
+<h2>この版の範囲</h2>
+<dl class="contract">
+<dt>作業基準</dt>
+<dd>PR #136 / b5e5d460fe19169252de05bb02bafc9461120540</dd>
+<dt>正本</dt>
+<dd>GitHub Markdown。PR #137から必要なDOT-001文書差分を選択統合。新しい業務仕様・制度判断は追加していません。</dd>
+<dt>画面・操作モデル</dt>
+<dd>b5e5d460fe19169252de05bb02bafc9461120540 / 2026-10-10</dd>
+<dt>優先する確定要件</dt>
+<dd>2026-10-07給与要件 / 2026-10-08人給決定</dd>
+<dt>DOT-001の反映範囲と限界</dt>
+<dd>承認A・Live38引継ぎ観測・記録を選択反映。正式P/H・選定自動E2E・最終照合は未完了。今回のアプリ実装・実機再試験ではありません。</dd>
+</dl>
+</section>
+<div class="table-wrap" role="region" tabindex="0" aria-label="基準ソースの一覧">
+<table>
+<caption>基準ソースの一覧</caption>
+<thead>
+<tr>
+<th scope="col">資料</th>
+<th scope="col">HTML表示範囲</th>
+<th scope="col">SHA-256</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="sources/config--dataverse--payrollledger-columns.json.html" >config/dataverse/payrollledger-columns.json</a>
+</td>
+<td>全文</td>
+<td>
+<code>a4aafc9b4beae1559c65dd7c0f830b5421024bad67a04a2ee34bd4e1e9c905ab</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--acceptance--user-acceptance.html" >docs/acceptance/user-acceptance.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>49e437c0066f0004e502a79227f20cd3e5905d4af7e3d62e28bce8160bd513b8</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--design--basic--basic-design.html" >docs/design/basic/basic-design.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>248acb8c8cea78e57e720e3f3e546f4baab342f492d7e574a901a1aaf20cc462</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--design--basic--data-model.html" >docs/design/basic/data-model.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>bca14fc642bebbe57f04b7cb4e54577ae81508d25d04c2178dae0129ae5747cd</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--design--basic--design-system.html" >docs/design/basic/design-system.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>62a13bd642f102c46f00a00d4b8eb8679b10029fe0902b37d7288ed3e69c9465</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--design--detailed--detailed-design.html" >docs/design/detailed/detailed-design.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>d3a32f6d3f591fedec5f310c0e75511754f6d8c3ee5ca682d193a30b659a2ae0</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--design--detailed--payroll-jinkyu-interface.html" >docs/design/detailed/payroll-jinkyu-interface.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--handoff--STATUS.html" >docs/handoff/STATUS.md</a>
+</td>
+<td>DOT-001・DOT-002と関連履歴の6節選択抜粋</td>
+<td>
+<code>9ccf20b9def5b34913e4a83277c1b85425352289bee4dd80f47f5627d9c33892</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--operations--single-app-workflow.html" >docs/operations/single-app-workflow.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>d3f0f63827b07773ccc092edce9d70d2012475068bb5dfa705d9e7545620f415</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--requirements--business-requirements.html" >docs/requirements/business-requirements.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>707f695e40f7fa165e598ff2940eed0ec8bc06134d7f7e035200c116c044fe65</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--requirements--non-functional-requirements.html" >docs/requirements/non-functional-requirements.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--requirements--open-decisions.html" >docs/requirements/open-decisions.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>0fa75fc2ca5c4bf18a4f9988864098116d8463b80ee399147e17f92d58236e52</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--requirements--payroll-confirmed-20261007.html" >docs/requirements/payroll-confirmed-20261007.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--requirements--payroll-interface-decisions-20261008.html" >docs/requirements/payroll-interface-decisions-20261008.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>11dcc8ce3cb8b4ada1cb5b5e6f0da83707ddf0254de5c3b95ea31c9dc164b913</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--requirements--requirements.html" >docs/requirements/requirements.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>74ea62a804391cc29a9471dfac08923af5f38456ec51c3d93e47a05ad5029fa8</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--requirements--screen-requirements.html" >docs/requirements/screen-requirements.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>52ae4f29d73310c99783b902f50f9bc8fb297ed58c260f6818f35563ae314fea</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--requirements--traceability-matrix.html" >docs/requirements/traceability-matrix.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>ddb84071fff5a5260fd60307e45b3cabb689107e287284e795ac1f366c053b74</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--testing--test-policy.html" >docs/testing/test-policy.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/docs--testing--test-specification.html" >docs/testing/test-specification.md</a>
+</td>
+<td>全文</td>
+<td>
+<code>ed9e93db8a4506897a7af77bc6f8899fa0d7278f2ea0e0a59731d8c630be5ca9</code>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sources/src--screen-ui--v1.30--home.paste.yaml.html" >src/screen-ui/v1.30/home.paste.yaml</a>
+</td>
+<td>全文</td>
+<td>
+<code>3c7e8bec503fb1b01d70ca4d4f3d0a2134034ae5a18515a3e9d768ca4505cd1b</code>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section class="panel" >
+<h2>標準テンプレート</h2>
+<p>DS-120第5章 要件定義書標準テンプレート。原本Wordの版2026-06-12 / ZIP掲載更新2026-07-15。</p>
+<p>
+<a href="https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/9117f22a/20260715_resources_standard_guidelines_guideline_07.zip">デジタル庁公式ZIP</a> · <a href="https://www.digital.go.jp/resources/standard_guidelines">公式掲載ページ</a> · <a href="template-details.html" >階層・補助項目の照合</a>
+</p>
+<p class="meta">Word SHA-256: 29f34fc98729f2d1ea3e4136b09c7abbc2254a6b23c9aff3fa2817eb238781c2</p>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="sources.html" >出典と版</a> · <a href="reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

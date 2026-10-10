@@ -1,0 +1,750 @@
+{
+  "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+  "sections": 20,
+  "references": 53,
+  "result": "PASS",
+  "references_review": [
+    {
+      "id": "3.2.2",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        97,
+        97
+      ],
+      "current_range": [
+        97,
+        97
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.2.2",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        67,
+        67
+      ],
+      "current_range": [
+        67,
+        67
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.3.5",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        103,
+        104
+      ],
+      "current_range": [
+        103,
+        104
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.3.5",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        112,
+        113
+      ],
+      "current_range": [
+        112,
+        113
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.3.5",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        71,
+        71
+      ],
+      "current_range": [
+        71,
+        71
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.9.2",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        110,
+        110
+      ],
+      "current_range": [
+        110,
+        110
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.9.2",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        68,
+        68
+      ],
+      "current_range": [
+        68,
+        68
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.11.2",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        97,
+        97
+      ],
+      "current_range": [
+        97,
+        97
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.11.2",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        67,
+        67
+      ],
+      "current_range": [
+        67,
+        67
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "1.2.2",
+      "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+      "previous_range": [
+        22,
+        22
+      ],
+      "current_range": [
+        22,
+        22
+      ],
+      "quote_unchanged": true,
+      "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b"
+    },
+    {
+      "id": "3.3.1",
+      "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+      "previous_range": [
+        22,
+        22
+      ],
+      "current_range": [
+        22,
+        22
+      ],
+      "quote_unchanged": true,
+      "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b"
+    },
+    {
+      "id": "3.3.2",
+      "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+      "previous_range": [
+        22,
+        22
+      ],
+      "current_range": [
+        22,
+        22
+      ],
+      "quote_unchanged": true,
+      "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b"
+    },
+    {
+      "id": "3.3.2",
+      "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+      "previous_range": [
+        12,
+        12
+      ],
+      "current_range": [
+        12,
+        12
+      ],
+      "quote_unchanged": true,
+      "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b"
+    },
+    {
+      "id": "3.3.3",
+      "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+      "previous_range": [
+        22,
+        22
+      ],
+      "current_range": [
+        22,
+        22
+      ],
+      "quote_unchanged": true,
+      "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b"
+    },
+    {
+      "id": "2.4.8",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        113,
+        113
+      ],
+      "current_range": [
+        113,
+        113
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "2.4.8",
+      "path": "docs/requirements/screen-requirements.md",
+      "previous_range": [
+        503,
+        503
+      ],
+      "current_range": [
+        503,
+        503
+      ],
+      "quote_unchanged": true,
+      "sha256": "52ae4f29d73310c99783b902f50f9bc8fb297ed58c260f6818f35563ae314fea"
+    },
+    {
+      "id": "2.4.8",
+      "path": "docs/requirements/screen-requirements.md",
+      "previous_range": [
+        509,
+        509
+      ],
+      "current_range": [
+        509,
+        509
+      ],
+      "quote_unchanged": true,
+      "sha256": "52ae4f29d73310c99783b902f50f9bc8fb297ed58c260f6818f35563ae314fea"
+    },
+    {
+      "id": "2.4.8",
+      "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+      "previous_range": [
+        109,
+        109
+      ],
+      "current_range": [
+        109,
+        109
+      ],
+      "quote_unchanged": true,
+      "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b"
+    },
+    {
+      "id": "3.4.2",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        25,
+        25
+      ],
+      "current_range": [
+        25,
+        25
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.4.2",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        37,
+        37
+      ],
+      "current_range": [
+        37,
+        37
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.13.3",
+      "path": "docs/testing/test-policy.md",
+      "previous_range": [
+        30,
+        30
+      ],
+      "current_range": [
+        30,
+        30
+      ],
+      "quote_unchanged": true,
+      "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
+    },
+    {
+      "id": "3.13.3",
+      "path": "docs/testing/test-policy.md",
+      "previous_range": [
+        33,
+        33
+      ],
+      "current_range": [
+        33,
+        33
+      ],
+      "quote_unchanged": true,
+      "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
+    },
+    {
+      "id": "3.13.3",
+      "path": "docs/testing/test-policy.md",
+      "previous_range": [
+        56,
+        56
+      ],
+      "current_range": [
+        56,
+        56
+      ],
+      "quote_unchanged": true,
+      "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
+    },
+    {
+      "id": "3.18.1",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        51,
+        51
+      ],
+      "current_range": [
+        51,
+        51
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.18.1",
+      "path": "docs/testing/test-policy.md",
+      "previous_range": [
+        28,
+        29
+      ],
+      "current_range": [
+        28,
+        29
+      ],
+      "quote_unchanged": true,
+      "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
+    },
+    {
+      "id": "3.18.1",
+      "path": "docs/testing/test-policy.md",
+      "previous_range": [
+        50,
+        50
+      ],
+      "current_range": [
+        50,
+        50
+      ],
+      "quote_unchanged": true,
+      "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
+    },
+    {
+      "id": "3.18.3",
+      "path": "docs/testing/test-policy.md",
+      "previous_range": [
+        28,
+        29
+      ],
+      "current_range": [
+        28,
+        29
+      ],
+      "quote_unchanged": true,
+      "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
+    },
+    {
+      "id": "3.18.3",
+      "path": "docs/testing/test-policy.md",
+      "previous_range": [
+        44,
+        44
+      ],
+      "current_range": [
+        44,
+        44
+      ],
+      "quote_unchanged": true,
+      "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
+    },
+    {
+      "id": "3.18.3",
+      "path": "docs/testing/test-policy.md",
+      "previous_range": [
+        48,
+        50
+      ],
+      "current_range": [
+        48,
+        50
+      ],
+      "quote_unchanged": true,
+      "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5"
+    },
+    {
+      "id": "3.18.3",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        51,
+        51
+      ],
+      "current_range": [
+        51,
+        51
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.12.1",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        111,
+        111
+      ],
+      "current_range": [
+        111,
+        111
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.12.1",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        117,
+        117
+      ],
+      "current_range": [
+        117,
+        117
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.12.1",
+      "path": "docs/requirements/business-requirements.md",
+      "previous_range": [
+        245,
+        248
+      ],
+      "current_range": [
+        245,
+        248
+      ],
+      "quote_unchanged": true,
+      "sha256": "707f695e40f7fa165e598ff2940eed0ec8bc06134d7f7e035200c116c044fe65"
+    },
+    {
+      "id": "3.12.2",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        33,
+        34
+      ],
+      "current_range": [
+        33,
+        34
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.12.2",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        38,
+        38
+      ],
+      "current_range": [
+        38,
+        38
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.12.2",
+      "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+      "previous_range": [
+        12,
+        14
+      ],
+      "current_range": [
+        12,
+        14
+      ],
+      "quote_unchanged": true,
+      "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b"
+    },
+    {
+      "id": "3.12.2",
+      "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+      "previous_range": [
+        24,
+        24
+      ],
+      "current_range": [
+        24,
+        24
+      ],
+      "quote_unchanged": true,
+      "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b"
+    },
+    {
+      "id": "3.12.3",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        48,
+        48
+      ],
+      "current_range": [
+        48,
+        48
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.12.3",
+      "path": "docs/design/basic/data-model.md",
+      "previous_range": [
+        30,
+        30
+      ],
+      "current_range": [
+        30,
+        30
+      ],
+      "quote_unchanged": true,
+      "sha256": "bca14fc642bebbe57f04b7cb4e54577ae81508d25d04c2178dae0129ae5747cd"
+    },
+    {
+      "id": "3.12.3",
+      "path": "docs/design/basic/data-model.md",
+      "previous_range": [
+        50,
+        50
+      ],
+      "current_range": [
+        50,
+        50
+      ],
+      "quote_unchanged": true,
+      "sha256": "bca14fc642bebbe57f04b7cb4e54577ae81508d25d04c2178dae0129ae5747cd"
+    },
+    {
+      "id": "3.12.5",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        104,
+        104
+      ],
+      "current_range": [
+        104,
+        104
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.12.5",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        113,
+        113
+      ],
+      "current_range": [
+        113,
+        113
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.12.5",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        71,
+        71
+      ],
+      "current_range": [
+        71,
+        71
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.12.6",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        111,
+        111
+      ],
+      "current_range": [
+        111,
+        111
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.12.6",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        117,
+        117
+      ],
+      "current_range": [
+        117,
+        117
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.12.6",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        27,
+        27
+      ],
+      "current_range": [
+        27,
+        27
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.12.6",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        70,
+        70
+      ],
+      "current_range": [
+        70,
+        70
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.12.7",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        101,
+        101
+      ],
+      "current_range": [
+        101,
+        101
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.12.7",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        107,
+        107
+      ],
+      "current_range": [
+        107,
+        107
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.12.7",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        110,
+        110
+      ],
+      "current_range": [
+        110,
+        110
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.14.1",
+      "path": "docs/requirements/payroll-confirmed-20261007.md",
+      "previous_range": [
+        90,
+        90
+      ],
+      "current_range": [
+        90,
+        90
+      ],
+      "quote_unchanged": true,
+      "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2"
+    },
+    {
+      "id": "3.14.1",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        47,
+        47
+      ],
+      "current_range": [
+        47,
+        47
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    },
+    {
+      "id": "3.14.1",
+      "path": "docs/requirements/non-functional-requirements.md",
+      "previous_range": [
+        72,
+        72
+      ],
+      "current_range": [
+        72,
+        72
+      ],
+      "quote_unchanged": true,
+      "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75"
+    }
+  ]
+}

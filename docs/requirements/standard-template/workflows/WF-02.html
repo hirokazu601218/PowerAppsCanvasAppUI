@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>A～D 採用候補の受渡し | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" aria-current="page">業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../journeys.html" >業務の流れ</a>
+</span>
+<span aria-current="page">A～D 採用候補の受渡し</span>
+</nav>
+<a class="context-return" data-context-return href="../journeys.html">← 業務一覧へ戻る</a>
+<div>
+<span class="eyebrow">BUSINESS FLOW / WF-02</span>
+<h1 id="WF-02">A～D 採用候補の受渡し</h1>
+<p class="lead">Cの発令登録完了から、候補作成と職員番号発行へ分かれます。番号発行を待たず給与班の確認・確定へ進めます。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>確定</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>この業務の確認ポイント</h2>
+<dl class="contract">
+<dt>担当する人</dt>
+<dd>秘書課・前工程担当・給与班</dd>
+<dt>どこから始める</dt>
+<dd>通常職員の初任給確定、または調査員のC開始</dd>
+<dt>使う画面</dt>
+<dd>
+<div class="chips">
+<a href="../screens/FUT-IMPORT.html?context=flow-WF-02#FUT-IMPORT" >FUT-IMPORT</a>
+<a href="../screens/SCR-002.html?context=flow-WF-02#SCR-002" >SCR-002</a>
+<a href="../screens/SCR-006.html?context=flow-WF-02#SCR-006" >SCR-006</a>
+</div>
+</dd>
+<dt>何をもって完了</dt>
+<dd>同じ候補に発行番号を反映</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>流れと戻り・分岐</h2>
+<figure data-figure>
+<div class="figure-controls">
+<button type="button" data-zoom-out aria-label="図を縮小">− 縮小</button>
+<output aria-live="polite">100%</output>
+<button type="button" data-zoom-in aria-label="図を拡大">＋ 拡大</button>
+<button type="button" data-zoom-fit>全体に戻す</button>
+</div>
+<div class="diagram-viewport" tabindex="0" role="region" aria-label="WF-02 A～D 採用候補の受渡し。拡大後は横・縦にスクロールできます。">
+<div class="diagram-canvas">
+<svg class="workflow-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 1790" width="1160" height="1790" role="img" aria-labelledby="WF-02-title WF-02-description" data-workflow-id="WF-02">
+<title id="WF-02-title">WF-02 A～D 採用候補の受渡し</title>
+<desc id="WF-02-description">Cの発令登録完了から、候補作成と職員番号発行へ分かれます。番号発行を待たず給与班の確認・確定へ進めます。 工程は一度だけ配置。矢印をたどり、茶色の折返しは訂正・再試行。全条件は同じデータの経路表で確認できます。</desc>
+<defs>
+<marker id="WF-02-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+</marker>
+</defs>
+<g class="flow-lane external" data-lane-id="lane-1">
+<rect x="40" y="0" width="360" height="1790"/>
+<rect class="lane-heading-bg" x="40" y="0" width="360" height="65"/>
+<text x="220" y="25" class="flow-lane-title" text-anchor="middle">秘書課・前工程担当</text>
+<text x="220" y="49" class="flow-lane-scope" text-anchor="middle">A～D／給与アプリ外</text>
+</g>
+<g class="flow-lane app" data-lane-id="lane-2">
+<rect x="400" y="0" width="360" height="1790"/>
+<rect class="lane-heading-bg" x="400" y="0" width="360" height="65"/>
+<text x="580" y="25" class="flow-lane-title" text-anchor="middle">給与アプリ</text>
+<text x="580" y="49" class="flow-lane-scope" text-anchor="middle">候補作成・番号反映</text>
+</g>
+<g class="flow-lane app" data-lane-id="lane-3">
+<rect x="760" y="0" width="360" height="1790"/>
+<rect class="lane-heading-bg" x="760" y="0" width="360" height="65"/>
+<text x="940" y="25" class="flow-lane-title" text-anchor="middle">給与班</text>
+<text x="940" y="49" class="flow-lane-scope" text-anchor="middle">候補の確認・確定</text>
+</g>
+<g class="flow-connector view" data-edge-id="WF-02-view-01" data-from="start-a" data-to="a">
+<path class="flow-edge-halo" d="M 220 116 L 220 162"/>
+<path class="flow-edge" d="M 220 116 L 220 162" marker-end="url(#WF-02-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-02-view-02" data-from="start-i" data-to="i">
+<path class="flow-edge-halo" d="M 220 516 L 220 562"/>
+<path class="flow-edge" d="M 220 516 L 220 562" marker-end="url(#WF-02-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-02-view-03" data-from="join-c" data-to="c">
+<path class="flow-edge-halo" d="M 220 754 L 220 762"/>
+<path class="flow-edge" d="M 220 754 L 220 762" marker-end="url(#WF-02-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-02-view-04" data-from="c" data-to="split-c">
+<path class="flow-edge-halo" d="M 220 858 L 220 866"/>
+<path class="flow-edge" d="M 220 858 L 220 866" marker-end="url(#WF-02-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-02-view-05" data-from="d" data-to="split-d">
+<path class="flow-edge-halo" d="M 580 1058 L 580 1066"/>
+<path class="flow-edge" d="M 580 1058 L 580 1066" marker-end="url(#WF-02-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-02-view-06" data-from="join-g" data-to="g">
+<path class="flow-edge-halo" d="M 580 1354 L 580 1362"/>
+<path class="flow-edge" d="M 580 1354 L 580 1362" marker-end="url(#WF-02-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-02-view-07" data-from="join-h" data-to="h">
+<path class="flow-edge-halo" d="M 940 1554 L 940 1562"/>
+<path class="flow-edge" d="M 940 1554 L 940 1562" marker-end="url(#WF-02-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-02-view-08" data-from="h" data-to="end-h">
+<path class="flow-edge-halo" d="M 940 1658 L 940 1689"/>
+<path class="flow-edge" d="M 940 1658 L 940 1689" marker-end="url(#WF-02-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-02-edge-01" data-from="a" data-to="b" data-source-step="a" data-target-step="b">
+<path class="flow-edge-halo" d="M 220 258 L 220 362"/>
+<path class="flow-edge" d="M 220 258 L 220 362" marker-end="url(#WF-02-arrow)"/>
+<title>確定後</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-02-edge-02" data-from="b" data-to="join-c" data-source-step="b" data-target-step="c">
+<path class="flow-edge-halo" d="M 220 458 L 220 466 L 86 466 L 86 726 L 220 726 L 220 734"/>
+<path class="flow-edge" d="M 220 458 L 220 466 L 86 466 L 86 726 L 220 726 L 220 734" marker-end="url(#WF-02-arrow)"/>
+<title>決裁後</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-02-edge-03" data-from="i" data-to="join-c" data-source-step="i" data-target-step="c">
+<path class="flow-edge-halo" d="M 220 658 L 220 734"/>
+<path class="flow-edge" d="M 220 658 L 220 734" marker-end="url(#WF-02-arrow)"/>
+<title>直接開始</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-02-edge-06" data-from="split-c" data-to="f" data-source-step="c" data-target-step="f">
+<path class="flow-edge-halo" d="M 220 886 L 220 962"/>
+<path class="flow-edge" d="M 220 886 L 220 962" marker-end="url(#WF-02-arrow)"/>
+<title>番号発行へ</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-02-edge-08" data-from="split-d" data-to="join-g" data-source-step="d" data-target-step="g">
+<path class="flow-edge-halo" d="M 580 1086 L 580 1334"/>
+<path class="flow-edge" d="M 580 1086 L 580 1334" marker-end="url(#WF-02-arrow)"/>
+<title>同じ候補</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-02-edge-10" data-from="e" data-to="join-h" data-source-step="e" data-target-step="h">
+<path class="flow-edge-halo" d="M 940 1258 L 940 1534"/>
+<path class="flow-edge" d="M 940 1258 L 940 1534" marker-end="url(#WF-02-arrow)"/>
+<title>確認状態を保持</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-02-edge-04" data-from="split-c" data-to="d" data-source-step="c" data-target-step="d">
+<path class="flow-edge-halo" d="M 220 886 L 220 894 L 580 894 L 580 962"/>
+<path class="flow-edge" d="M 220 886 L 220 894 L 580 894 L 580 962" marker-end="url(#WF-02-arrow)"/>
+<title>通知・連携方式未決</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-02-edge-05" data-from="split-d" data-to="e" data-source-step="d" data-target-step="e">
+<path class="flow-edge-halo" d="M 580 1086 L 580 1094 L 940 1094 L 940 1162"/>
+<path class="flow-edge" d="M 580 1086 L 580 1094 L 940 1094 L 940 1162" marker-end="url(#WF-02-arrow)"/>
+<title>確認</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-02-edge-07" data-from="f" data-to="join-g" data-source-step="f" data-target-step="g">
+<path class="flow-edge-halo" d="M 220 1058 L 220 1326 L 580 1326 L 580 1334"/>
+<path class="flow-edge" d="M 220 1058 L 220 1326 L 580 1326 L 580 1334" marker-end="url(#WF-02-arrow)"/>
+<title>番号発行後</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-02-edge-09" data-from="g" data-to="join-h" data-source-step="g" data-target-step="h">
+<path class="flow-edge-halo" d="M 580 1458 L 580 1526 L 940 1526 L 940 1534"/>
+<path class="flow-edge" d="M 580 1458 L 580 1526 L 940 1526 L 940 1534" marker-end="url(#WF-02-arrow)"/>
+<title>対応確認</title>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-02-edge-01">
+<rect x="227" y="295.5" width="57.2" height="29" rx="4"/>
+<text x="234" y="314.5">確定後</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-02-edge-02">
+<rect x="124.4" y="473" width="57.2" height="29" rx="4"/>
+<text x="131.4" y="492">決裁後</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-02-edge-03">
+<rect x="227" y="681.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="700.5">直接開始</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-02-edge-06">
+<rect x="227" y="909.5" width="86" height="29" rx="4"/>
+<text x="234" y="928.5">番号発行へ</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-02-edge-08">
+<rect x="587" y="1195.5" width="71.6" height="29" rx="4"/>
+<text x="594" y="1214.5">同じ候補</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-02-edge-10">
+<rect x="947" y="1381.5" width="114.8" height="29" rx="4"/>
+<text x="954" y="1400.5">確認状態を保持</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-02-edge-04">
+<rect x="328.2" y="901" width="143.6" height="29" rx="4"/>
+<text x="335.2" y="920">通知・連携方式未決</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-02-edge-05">
+<rect x="738.6" y="1058" width="42.8" height="29" rx="4"/>
+<text x="745.6" y="1077">確認</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-02-edge-07">
+<rect x="227" y="1177.5" width="86" height="29" rx="4"/>
+<text x="234" y="1196.5">番号発行後</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-02-edge-09">
+<rect x="587" y="1477.5" width="71.6" height="29" rx="4"/>
+<text x="594" y="1496.5">対応確認</text>
+</g>
+<g class="flow-node task" data-node-id="a" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,162.0,342.0,258.0" data-step-id="a">
+<a href="#step-a" aria-label="a 通常職員の初任給確定：工程定義へ">
+<title>通常職員の初任給確定。A。秘書課の確定前情報は渡さない。</title>
+<rect x="98.0" y="162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="182.0">a · アプリ外／業務境界</text>
+<text class="flow-task-label" x="112.0" y="207.0">通常職員の初任給確定</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="b" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,362.0,342.0,458.0" data-step-id="b">
+<a href="#step-b" aria-label="b 採用起案の決裁：工程定義へ">
+<title>採用起案の決裁。B。決裁だけでは候補を作らない。</title>
+<rect x="98.0" y="362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="382.0">b · アプリ外／業務境界</text>
+<text class="flow-task-label" x="112.0" y="407.0">採用起案の決裁</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="i" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,562.0,342.0,658.0" data-step-id="i">
+<a href="#step-i" aria-label="i 調査員はCから開始：工程定義へ">
+<title>調査員はCから開始。調査員にA・Bを適用しない。</title>
+<rect x="98.0" y="562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="582.0">i · アプリ外／業務境界</text>
+<text class="flow-task-label" x="112.0" y="607.0">調査員はCから開始</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="c" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,762.0,342.0,858.0" data-step-id="c">
+<a href="#step-c" aria-label="c 発令情報の登録完了：工程定義へ">
+<title>発令情報の登録完了。C。通常職員・調査員ともこの時点を通知起点にする。</title>
+<rect x="98.0" y="762.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="782.0">c · アプリ外／業務境界</text>
+<text class="flow-task-label" x="112.0" y="807.0">発令情報の登録完了</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="d" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,962.0,702.0,1058.0" data-step-id="d">
+<a href="#step-d" aria-label="d 確認待ち候補を作成：工程定義へ">
+<title>確認待ち候補を作成。自動通知・作成は目標。調査員は採用日でルール版選択。</title>
+<rect x="458.0" y="962.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="982.0">d · FUT-IMPORT</text>
+<text class="flow-task-label" x="472.0" y="1007.0">確認待ち候補を作成</text>
+</a>
+<a href="../operations/OP-AD-CANDIDATE.html?context=flow-WF-02#OP-AD-CANDIDATE" aria-label="OP-AD-CANDIDATE 操作定義">
+<text class="flow-op-link" x="690.0" y="1049.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="e" data-node-kind="task" data-lane-id="lane-3" data-box="818.0,1162.0,1062.0,1258.0" data-step-id="e">
+<a href="#step-e" aria-label="e 給与班が確認・確定：工程定義へ">
+<title>給与班が確認・確定。職員番号発行を候補作成・確認確定の前提にしない。</title>
+<rect x="818.0" y="1162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="832.0" y="1182.0">e · SCR-002</text>
+<text class="flow-task-label" x="832.0" y="1207.0">給与班が確認・確定</text>
+</a>
+<a href="../operations/OP-E-CONFIRM.html?context=flow-WF-02#OP-E-CONFIRM" aria-label="OP-E-CONFIRM 操作定義">
+<text class="flow-op-link" x="1050.0" y="1249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="f" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,962.0,342.0,1058.0" data-step-id="f">
+<a href="#step-f" aria-label="f 職員番号を発行：工程定義へ">
+<title>職員番号を発行。Dは候補作成と並行した後続工程。</title>
+<rect x="98.0" y="962.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="982.0">f · アプリ外／業務境界</text>
+<text class="flow-task-label" x="112.0" y="1007.0">職員番号を発行</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="g" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,1362.0,702.0,1458.0" data-step-id="g">
+<a href="#step-g" aria-label="g 同じ候補へ番号反映：工程定義へ">
+<title>同じ候補へ番号反映。採用ごとの識別子で自動反映を目標。手動紐づけ操作は設けない。</title>
+<rect x="458.0" y="1362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="1382.0">g · SCR-002</text>
+<text class="flow-task-label" x="472.0" y="1407.0">同じ候補へ番号反映</text>
+</a>
+<a href="../operations/OP-AD-NUMBER.html?context=flow-WF-02#OP-AD-NUMBER" aria-label="OP-AD-NUMBER 操作定義">
+<text class="flow-op-link" x="690.0" y="1449.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="h" data-node-kind="task" data-lane-id="lane-3" data-box="818.0,1562.0,1062.0,1658.0" data-step-id="h">
+<a href="#step-h" aria-label="h 番号と候補の整合を確認：工程定義へ">
+<title>番号と候補の整合を確認。再採用は新しい採用識別子。一人一行基本との統合はPD-08。</title>
+<rect x="818.0" y="1562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="832.0" y="1582.0">h · SCR-002</text>
+<text class="flow-task-label" x="832.0" y="1607.0">番号と候補の整合を確認</text>
+</a>
+</g>
+<g class="flow-node start" data-node-id="start-a" data-node-kind="start" data-lane-id="lane-1" data-box="204.0,84.0,236.0,116.0">
+<title>開始。表示用要素</title>
+<circle cx="220.0" cy="100" r="16.0"/>
+<text class="flow-event-label" x="247.0" y="105" text-anchor="start">開始</text>
+</g>
+<g class="flow-node start" data-node-id="start-i" data-node-kind="start" data-lane-id="lane-1" data-box="204.0,484.0,236.0,516.0">
+<title>開始。表示用要素</title>
+<circle cx="220.0" cy="500" r="16.0"/>
+<text class="flow-event-label" x="247.0" y="505" text-anchor="start">開始</text>
+</g>
+<g class="flow-node merge" data-node-id="join-c" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,734.0,230.0,754.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,734.0 230.0,744 220.0,754.0 210.0,744"/>
+<text class="flow-gateway-symbol" x="220.0" y="747" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node split" data-node-id="split-c" data-node-kind="split" data-lane-id="lane-1" data-box="210.0,866.0,230.0,886.0">
+<title>結果分岐。表示用要素</title>
+<polygon points="220.0,866.0 230.0,876 220.0,886.0 210.0,876"/>
+<text class="flow-gateway-symbol" x="220.0" y="879" text-anchor="middle">+</text>
+</g>
+<g class="flow-node split" data-node-id="split-d" data-node-kind="split" data-lane-id="lane-2" data-box="570.0,1066.0,590.0,1086.0">
+<title>結果分岐。表示用要素</title>
+<polygon points="580.0,1066.0 590.0,1076 580.0,1086.0 570.0,1076"/>
+<text class="flow-gateway-symbol" x="580.0" y="1079" text-anchor="middle">+</text>
+</g>
+<g class="flow-node merge" data-node-id="join-g" data-node-kind="merge" data-lane-id="lane-2" data-box="570.0,1334.0,590.0,1354.0">
+<title>合流。表示用要素</title>
+<polygon points="580.0,1334.0 590.0,1344 580.0,1354.0 570.0,1344"/>
+<text class="flow-gateway-symbol" x="580.0" y="1347" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node merge" data-node-id="join-h" data-node-kind="merge" data-lane-id="lane-3" data-box="930.0,1534.0,950.0,1554.0">
+<title>合流。表示用要素</title>
+<polygon points="940.0,1534.0 950.0,1544 940.0,1554.0 930.0,1544"/>
+<text class="flow-gateway-symbol" x="940.0" y="1547" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node end" data-node-id="end-h" data-node-kind="end" data-lane-id="lane-3" data-box="923.0,1689.0,957.0,1723.0">
+<title>確認区間の終了。表示用要素</title>
+<circle cx="940.0" cy="1706" r="17.0"/>
+<circle class="end-inner" cx="940.0" cy="1706" r="12.0"/>
+<text class="flow-event-label" x="940.0" y="1742" text-anchor="middle">確認区間の終了</text>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="figure-note">拡大後は指で横・縦へスクロールできます。キーボードは図枠にTabで移動し矢印キー。図の工程名から操作の詳細へ進めます。図の下にも同じ工程と全経路を記載しています。</figcaption>
+</figure>
+<p class="meta">青の実線: 業務の順序。茶色: 訂正・再試行。破線: 外部システムとの受渡し等。内部画面移動、別タブ、利用者による人給への切替を混同しません。</p>
+</section>
+<section class="panel" >
+<h2>何を入力・確認するか</h2>
+<ol class="steps">
+<li id="step-a">
+<div class="step-title">通常職員の初任給確定</div>
+<p>A。秘書課の確定前情報は渡さない。</p>
+<div class="meta">アプリ外・画面未指定 </div>
+</li>
+<li id="step-b">
+<div class="step-title">採用起案の決裁</div>
+<p>B。決裁だけでは候補を作らない。</p>
+<div class="meta">アプリ外・画面未指定 </div>
+</li>
+<li id="step-i">
+<div class="step-title">調査員はCから開始</div>
+<p>調査員にA・Bを適用しない。</p>
+<div class="meta">アプリ外・画面未指定 </div>
+</li>
+<li id="step-c">
+<div class="step-title">発令情報の登録完了</div>
+<p>C。通常職員・調査員ともこの時点を通知起点にする。</p>
+<div class="meta">アプリ外・画面未指定 </div>
+</li>
+<li id="step-d">
+<div class="step-title">
+<a href="../operations/OP-AD-CANDIDATE.html?context=flow-WF-02#OP-AD-CANDIDATE" >確認待ち候補を作成</a>
+</div>
+<p>自動通知・作成は目標。調査員は採用日でルール版選択。</p>
+<div class="meta">
+<a href="../screens/FUT-IMPORT.html?context=flow-WF-02#FUT-IMPORT" >FUT-IMPORT</a>  / OP-AD-CANDIDATE</div>
+</li>
+<li id="step-e">
+<div class="step-title">
+<a href="../operations/OP-E-CONFIRM.html?context=flow-WF-02#OP-E-CONFIRM" >給与班が確認・確定</a>
+</div>
+<p>職員番号発行を候補作成・確認確定の前提にしない。</p>
+<div class="meta">
+<a href="../screens/SCR-002.html?context=flow-WF-02#SCR-002" >SCR-002</a>  / OP-E-CONFIRM</div>
+</li>
+<li id="step-f">
+<div class="step-title">職員番号を発行</div>
+<p>Dは候補作成と並行した後続工程。</p>
+<div class="meta">アプリ外・画面未指定 </div>
+</li>
+<li id="step-g">
+<div class="step-title">
+<a href="../operations/OP-AD-NUMBER.html?context=flow-WF-02#OP-AD-NUMBER" >同じ候補へ番号反映</a>
+</div>
+<p>採用ごとの識別子で自動反映を目標。手動紐づけ操作は設けない。</p>
+<div class="meta">
+<a href="../screens/SCR-002.html?context=flow-WF-02#SCR-002" >SCR-002</a>  / OP-AD-NUMBER</div>
+</li>
+<li id="step-h">
+<div class="step-title">番号と候補の整合を確認</div>
+<p>再採用は新しい採用識別子。一人一行基本との統合はPD-08。</p>
+<div class="meta">
+<a href="../screens/SCR-002.html?context=flow-WF-02#SCR-002" >SCR-002</a>
+</div>
+</li>
+</ol>
+</section>
+<details>
+<summary>設計・構築者向け: 役割・データ・処理条件</summary>
+<div>
+<div class="table-wrap" role="region" tabindex="0" aria-label="業務を構成する操作の契約">
+<table>
+<caption>業務を構成する操作の契約</caption>
+<thead>
+<tr>
+<th scope="col">操作</th>
+<th scope="col">担当・対象範囲</th>
+<th scope="col">読む情報 → 変更する情報</th>
+<th scope="col">実行条件・失敗時</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="../operations/OP-AD-CANDIDATE.html?context=flow-WF-02#OP-AD-CANDIDATE" >OP-AD-CANDIDATE 発令情報から候補作成</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>異動情報アプリの発令情報、調査員用ルール・適用日 → 給与情報の確認待ち候補</td>
+<td>通常職員はA初任給確定・B採用起案決裁後。調査員はCから開始。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-E-CONFIRM.html?context=flow-WF-02#OP-E-CONFIRM" >OP-E-CONFIRM 給与情報を確定・再確定</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>確認待ちデータ、確認履歴 → 給与班確定状態・確認記録</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-AD-NUMBER.html?context=flow-WF-02#OP-AD-NUMBER" >OP-AD-NUMBER 発行職員番号を反映</a>
+</td>
+<td>会計課給与班 / 局担当者<br>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td>
+<td>採用ごとの識別子、発行職員番号 → 既存候補と職員基本の対応（物理方式未決）</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrap" role="region" tabindex="0" aria-label="図と同一データの全経路">
+<table>
+<caption>図と同一データの全経路</caption>
+<thead>
+<tr>
+<th scope="col">起点</th>
+<th scope="col">条件・操作</th>
+<th scope="col">到達点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通常職員の初任給確定</td>
+<td>確定後</td>
+<td>採用起案の決裁</td>
+</tr>
+<tr>
+<td>採用起案の決裁</td>
+<td>決裁後</td>
+<td>発令情報の登録完了</td>
+</tr>
+<tr>
+<td>調査員はCから開始</td>
+<td>直接開始</td>
+<td>発令情報の登録完了</td>
+</tr>
+<tr>
+<td>発令情報の登録完了</td>
+<td>通知・連携方式未決</td>
+<td>確認待ち候補を作成</td>
+</tr>
+<tr>
+<td>確認待ち候補を作成</td>
+<td>確認</td>
+<td>給与班が確認・確定</td>
+</tr>
+<tr>
+<td>発令情報の登録完了</td>
+<td>番号発行へ</td>
+<td>職員番号を発行</td>
+</tr>
+<tr>
+<td>職員番号を発行</td>
+<td>番号発行後</td>
+<td>同じ候補へ番号反映</td>
+</tr>
+<tr>
+<td>確認待ち候補を作成</td>
+<td>同じ候補</td>
+<td>同じ候補へ番号反映</td>
+</tr>
+<tr>
+<td>同じ候補へ番号反映</td>
+<td>対応確認</td>
+<td>番号と候補の整合を確認</td>
+</tr>
+<tr>
+<td>給与班が確認・確定</td>
+<td>確認状態を保持</td>
+<td>番号と候補の整合を確認</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<section class="panel" >
+<h2>例外・未決・確認時の注意</h2>
+<ul>
+<li>「＋」は並行する後続関係です。番号と候補の整合確認は、給与班の確認・確定を待たせる条件ではありません。</li>
+<li>番号反映の合流は、候補の存在と番号発行済みを合わせる関係です。最終の整合確認は給与計算開始の新しい条件ではありません。</li>
+<li>自動通知・番号反映の方式と実現可否は未決です。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>要件と根拠へ戻る</h2>
+<div class="chips">
+<a href="../sections/1.1.2.html#section-1.1.2" >1.1.2</a>
+</div>
+<h3 style="margin-top:18px">関連要件ID</h3>
+<div class="chips">
+<a href="../requirements/AD-01.html?context=flow-WF-02#requirement-AD-01" >AD-01</a>
+<a href="../requirements/AD-02.html?context=flow-WF-02#requirement-AD-02" >AD-02</a>
+<a href="../requirements/AD-03.html?context=flow-WF-02#requirement-AD-03" >AD-03</a>
+<a href="../requirements/AD-04.html?context=flow-WF-02#requirement-AD-04" >AD-04</a>
+<a href="../requirements/AD-05.html?context=flow-WF-02#requirement-AD-05" >AD-05</a>
+<a href="../requirements/AD-09.html?context=flow-WF-02#requirement-AD-09" >AD-09</a>
+<a href="../requirements/FR-AD-01.html?context=flow-WF-02#requirement-FR-AD-01" >FR-AD-01</a>
+<a href="../requirements/FR-AD-02.html?context=flow-WF-02#requirement-FR-AD-02" >FR-AD-02</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--business-requirements.html?context=flow-WF-02" data-keep-context>business-requirements.md</a>
+<div class="meta">docs/requirements/business-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--requirements.html?context=flow-WF-02" data-keep-context>requirements.md</a>
+<div class="meta">docs/requirements/requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=flow-WF-02" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--open-decisions.html?context=flow-WF-02" data-keep-context>open-decisions.md</a>
+<div class="meta">docs/requirements/open-decisions.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

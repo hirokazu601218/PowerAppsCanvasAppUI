@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>人給出力・照合・差分再出力 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" aria-current="page">業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../journeys.html" >業務の流れ</a>
+</span>
+<span aria-current="page">人給出力・照合・差分再出力</span>
+</nav>
+<a class="context-return" data-context-return href="../journeys.html">← 業務一覧へ戻る</a>
+<div>
+<span class="eyebrow">BUSINESS FLOW / WF-13</span>
+<h1 id="WF-13">人給出力・照合・差分再出力</h1>
+<p class="lead">全職員を起点に出力準備 → 人給 → 最新版照合。差分の原因を訂正し、必要な明細だけ再出力するループを、全体確定への主線から分けて示します。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>確定</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>この業務の確認ポイント</h2>
+<dl class="contract">
+<dt>担当する人</dt>
+<dd>会計課給与班</dd>
+<dt>どこから始める</dt>
+<dd>人給連携の支給回選択</dd>
+<dt>使う画面</dt>
+<dd>
+<div class="chips">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-13#FUT-JLINK" >FUT-JLINK</a>
+<a href="../screens/EXT-JINKYU.html?context=flow-WF-13#EXT-JINKYU" >EXT-JINKYU</a>
+<a href="../screens/SCR-002.html?context=flow-WF-13#SCR-002" >SCR-002</a>
+<a href="../screens/SCR-003.html?context=flow-WF-13#SCR-003" >SCR-003</a>
+</div>
+</dd>
+<dt>何をもって完了</dt>
+<dd>差分訂正ループまたは支給回確定</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>流れと戻り・分岐</h2>
+<figure data-figure>
+<div class="figure-controls">
+<button type="button" data-zoom-out aria-label="図を縮小">− 縮小</button>
+<output aria-live="polite">100%</output>
+<button type="button" data-zoom-in aria-label="図を拡大">＋ 拡大</button>
+<button type="button" data-zoom-fit>全体に戻す</button>
+</div>
+<div class="diagram-viewport" tabindex="0" role="region" aria-label="WF-13 人給出力・照合・差分再出力。拡大後は横・縦にスクロールできます。">
+<div class="diagram-canvas">
+<svg class="workflow-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 1990" width="1160" height="1990" role="img" aria-labelledby="WF-13-title WF-13-description" data-workflow-id="WF-13">
+<title id="WF-13-title">WF-13 人給出力・照合・差分再出力</title>
+<desc id="WF-13-description">全職員を起点に出力準備 → 人給 → 最新版照合。差分の原因を訂正し、必要な明細だけ再出力するループを、全体確定への主線から分けて示します。 工程は一度だけ配置。矢印をたどり、茶色の折返しは訂正・再試行。全条件は同じデータの経路表で確認できます。</desc>
+<defs>
+<marker id="WF-13-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+</marker>
+</defs>
+<g class="flow-lane app" data-lane-id="lane-1">
+<rect x="40" y="0" width="360" height="1990"/>
+<rect class="lane-heading-bg" x="40" y="0" width="360" height="65"/>
+<text x="220" y="25" class="flow-lane-title" text-anchor="middle">給与班・給与アプリ</text>
+<text x="220" y="49" class="flow-lane-scope" text-anchor="middle">人給連携：出力／取込・照合</text>
+</g>
+<g class="flow-lane app" data-lane-id="lane-2">
+<rect x="400" y="0" width="360" height="1990"/>
+<rect class="lane-heading-bg" x="400" y="0" width="360" height="65"/>
+<text x="580" y="25" class="flow-lane-title" text-anchor="middle">給与班／原因データ担当</text>
+<text x="580" y="49" class="flow-lane-scope" text-anchor="middle">原因訂正と再出力準備</text>
+</g>
+<g class="flow-lane external" data-lane-id="lane-3">
+<rect x="760" y="0" width="360" height="1990"/>
+<rect class="lane-heading-bg" x="760" y="0" width="360" height="65"/>
+<text x="940" y="25" class="flow-lane-title" text-anchor="middle">給与班・人給システム</text>
+<text x="940" y="49" class="flow-lane-scope" text-anchor="middle">アプリ外：取込・CSV出力</text>
+</g>
+<g class="flow-connector view" data-edge-id="WF-13-view-01" data-from="start-a" data-to="a">
+<path class="flow-edge-halo" d="M 220 116 L 220 162"/>
+<path class="flow-edge" d="M 220 116 L 220 162" marker-end="url(#WF-13-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-13-view-02" data-from="join-b" data-to="b">
+<path class="flow-edge-halo" d="M 220 354 L 220 362"/>
+<path class="flow-edge" d="M 220 354 L 220 362" marker-end="url(#WF-13-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-13-view-03" data-from="join-c" data-to="c">
+<path class="flow-edge-halo" d="M 220 554 L 220 562"/>
+<path class="flow-edge" d="M 220 554 L 220 562" marker-end="url(#WF-13-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-13-view-04" data-from="join-f" data-to="f">
+<path class="flow-edge-halo" d="M 220 1154 L 220 1162"/>
+<path class="flow-edge" d="M 220 1154 L 220 1162" marker-end="url(#WF-13-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-13-view-05" data-from="i" data-to="split-i">
+<path class="flow-edge-halo" d="M 580 1658 L 580 1666"/>
+<path class="flow-edge" d="M 580 1658 L 580 1666" marker-end="url(#WF-13-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-13-view-06" data-from="k" data-to="end-k">
+<path class="flow-edge-halo" d="M 220 1858 L 220 1889"/>
+<path class="flow-edge" d="M 220 1858 L 220 1889" marker-end="url(#WF-13-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-13-edge-01" data-from="a" data-to="join-b" data-source-step="a" data-target-step="b">
+<path class="flow-edge-halo" d="M 220 258 L 220 334"/>
+<path class="flow-edge" d="M 220 258 L 220 334" marker-end="url(#WF-13-arrow)"/>
+<title>初回出力</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-13-edge-02" data-from="b" data-to="join-c" data-source-step="b" data-target-step="c">
+<path class="flow-edge-halo" d="M 220 458 L 220 534"/>
+<path class="flow-edge" d="M 220 458 L 220 534" marker-end="url(#WF-13-arrow)"/>
+<title>対象確認</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-13-edge-03" data-from="c" data-to="d" data-source-step="c" data-target-step="d">
+<path class="flow-edge-halo" d="M 220 658 L 220 742"/>
+<path class="flow-edge" d="M 220 658 L 220 742" marker-end="url(#WF-13-arrow)"/>
+<title>出力準備</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-13-edge-07" data-from="f" data-to="g" data-source-step="f" data-target-step="g">
+<path class="flow-edge-halo" d="M 220 1258 L 220 1362"/>
+<path class="flow-edge" d="M 220 1258 L 220 1362" marker-end="url(#WF-13-arrow)"/>
+<title>結果表示</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-13-edge-08" data-from="g" data-to="h" data-source-step="g" data-target-step="h">
+<path class="flow-edge-halo" d="M 220 1458 L 220 1542"/>
+<path class="flow-edge" d="M 220 1458 L 220 1542" marker-end="url(#WF-13-arrow)"/>
+<title>全体判定</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-13-edge-14" data-from="h" data-to="k" data-source-step="h" data-target-step="k">
+<path class="flow-edge-halo" d="M 220 1678 L 220 1762"/>
+<path class="flow-edge" d="M 220 1678 L 220 1762" marker-end="url(#WF-13-arrow)"/>
+<title>全体最新ゼロ</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-13-edge-05" data-from="d" data-to="e" data-source-step="d" data-target-step="e">
+<path class="flow-edge-halo" d="M 220 878 L 220 954 L 940 954 L 940 962"/>
+<path class="flow-edge" d="M 220 878 L 220 954 L 940 954 L 940 962" marker-end="url(#WF-13-arrow)"/>
+<title>確認して出力</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-13-edge-06" data-from="e" data-to="join-f" data-source-step="e" data-target-step="f">
+<path class="flow-edge-halo" d="M 940 1058 L 940 1126 L 220 1126 L 220 1134"/>
+<path class="flow-edge" d="M 940 1058 L 940 1126 L 220 1126 L 220 1134" marker-end="url(#WF-13-arrow)"/>
+<title>給与簿CSV戻り</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-13-edge-04" data-from="d" data-to="join-b" data-source-step="d" data-target-step="b">
+<path class="flow-edge-halo" d="M 95 810 L 87 810 L 87 344 L 210 344"/>
+<path class="flow-edge" d="M 95 810 L 87 810 L 87 344 L 210 344" marker-end="url(#WF-13-arrow)"/>
+<title>取消・対象を見直す</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-13-edge-10" data-from="split-i" data-to="j" data-source-step="i" data-target-step="j">
+<path class="flow-edge-halo" d="M 570 1676 L 450 1676 L 450 1410 L 458 1410"/>
+<path class="flow-edge" d="M 570 1676 L 450 1676 L 450 1410 L 458 1410" marker-end="url(#WF-13-arrow)"/>
+<title>再計算後に再出力必要</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-13-edge-13" data-from="h" data-to="join-f" data-source-step="h" data-target-step="f">
+<path class="flow-edge-halo" d="M 95 1610 L 87 1610 L 87 1144 L 210 1144"/>
+<path class="flow-edge" d="M 95 1610 L 87 1610 L 87 1144 L 210 1144" marker-end="url(#WF-13-arrow)"/>
+<title>計算変更・旧ゼロ失効</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-13-edge-09" data-from="h" data-to="i" data-source-step="h" data-target-step="i">
+<path class="flow-edge-halo" d="M 345 1610 L 458 1610"/>
+<path class="flow-edge" d="M 345 1610 L 458 1610" marker-end="url(#WF-13-arrow)"/>
+<title>差分あり</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-13-edge-11" data-from="split-i" data-to="join-f" data-source-step="i" data-target-step="f">
+<path class="flow-edge-halo" d="M 570 1676 L 562 1676 L 562 1695 L 359 1695 L 359 1117 L 202 1117 L 202 1144 L 210 1144"/>
+<path class="flow-edge" d="M 570 1676 L 562 1676 L 562 1695 L 359 1695 L 359 1117 L 202 1117 L 202 1144 L 210 1144" marker-end="url(#WF-13-arrow)"/>
+<title>再照合のみ必要</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-13-edge-12" data-from="j" data-to="join-c" data-source-step="j" data-target-step="c">
+<path class="flow-edge-halo" d="M 458 1410 L 450 1410 L 450 517 L 202 517 L 202 544 L 210 544"/>
+<path class="flow-edge" d="M 458 1410 L 450 1410 L 450 517 L 202 517 L 202 544 L 210 544" marker-end="url(#WF-13-arrow)"/>
+<title>A/Mを職員判断</title>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-13-edge-01">
+<rect x="227" y="281.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="300.5">初回出力</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-13-edge-02">
+<rect x="227" y="481.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="500.5">対象確認</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-13-edge-03">
+<rect x="227" y="685.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="704.5">出力準備</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-13-edge-07">
+<rect x="227" y="1295.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="1314.5">結果表示</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-13-edge-08">
+<rect x="227" y="1485.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="1504.5">全体判定</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-13-edge-14">
+<rect x="227" y="1705.5" width="100.4" height="29" rx="4"/>
+<text x="234" y="1724.5">全体最新ゼロ</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-13-edge-05">
+<rect x="227" y="901.5" width="100.4" height="29" rx="4"/>
+<text x="234" y="920.5">確認して出力</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-13-edge-06">
+<rect x="947" y="1077.5" width="107.6" height="29" rx="4"/>
+<text x="954" y="1096.5">給与簿CSV戻り</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-13-edge-04">
+<rect x="64.4" y="308" width="143.6" height="29" rx="4"/>
+<text x="71.4" y="327">取消・対象を見直す</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-13-edge-10">
+<rect x="457" y="1528.5" width="158" height="29" rx="4"/>
+<text x="464" y="1547.5">再計算後に再出力必要</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-13-edge-13">
+<rect x="38.75" y="1108" width="158" height="29" rx="4"/>
+<text x="45.75" y="1127">計算変更・旧ゼロ失効</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-13-edge-09">
+<rect x="365.7" y="1574" width="71.6" height="29" rx="4"/>
+<text x="372.7" y="1593">差分あり</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-13-edge-11">
+<rect x="403.1" y="1702" width="114.8" height="29" rx="4"/>
+<text x="410.1" y="1721">再照合のみ必要</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-13-edge-12">
+<rect x="457" y="1038.3" width="107.6" height="29" rx="4"/>
+<text x="464" y="1057.3">A/Mを職員判断</text>
+</g>
+<g class="flow-node task" data-node-id="a" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,162.0,342.0,258.0" data-step-id="a">
+<a href="#step-a" aria-label="a 支給回を3タブで保持：工程定義へ">
+<title>支給回を3タブで保持。支給回の状況／出力／取込・照合。計算版選択なし。</title>
+<rect x="98.0" y="162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="182.0">a · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="207.0">支給回を3タブで保持</text>
+</a>
+<a href="../operations/OP-JLINK-SELECT.html?context=flow-WF-13#OP-JLINK-SELECT" aria-label="OP-JLINK-SELECT 操作定義">
+<text class="flow-op-link" x="330.0" y="249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="b" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,362.0,342.0,458.0" data-step-id="b">
+<a href="#step-b" aria-label="b 初回は全職員を選択：工程定義へ">
+<title>初回は全職員を選択。職員絞込み・対象変更可能。</title>
+<rect x="98.0" y="362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="382.0">b · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="407.0">初回は全職員を選択</text>
+</a>
+<a href="../operations/OP-JLINK-TARGET.html?context=flow-WF-13#OP-JLINK-TARGET" aria-label="OP-JLINK-TARGET 操作定義">
+<text class="flow-op-link" x="330.0" y="449.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="c" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,562.0,342.0,658.0" data-step-id="c">
+<a href="#step-c" aria-label="c A/Mを一括・明細指定：工程定義へ">
+<title>A/Mを一括・明細指定。職員判断。再出力でも自動Mにしない。</title>
+<rect x="98.0" y="562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="582.0">c · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="607.0">A/Mを一括・明細指定</text>
+</a>
+<a href="../operations/OP-JLINK-AM.html?context=flow-WF-13#OP-JLINK-AM" aria-label="OP-JLINK-AM 操作定義">
+<text class="flow-op-link" x="330.0" y="649.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="d" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,742.0,345.0,878.0" data-step-id="d">
+<a href="#step-d" aria-label="d 人数・明細数等を出力前確認：工程定義へ">
+<title>人数・明細数等を出力前確認。支給回・人数・明細数・A/M件数。</title>
+<polygon points="220.0,742.0 345.0,810 220.0,878.0 95.0,810"/>
+<text class="flow-node-id" x="220.0" y="770" text-anchor="middle">d · ×</text>
+<text class="flow-task-label" x="220.0" y="802" text-anchor="middle">人数・明細数等を出</text>
+<text class="flow-task-label" x="220.0" y="824" text-anchor="middle">力前確認</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="e" data-node-kind="task" data-lane-id="lane-3" data-box="818.0,962.0,1062.0,1058.0" data-step-id="e">
+<a href="#step-e" aria-label="e 人給へ取込・給与簿CSV出力：工程定義へ">
+<title>人給へ取込・給与簿CSV出力。人給取込エラーはI8。取得方式未決。</title>
+<rect x="818.0" y="962.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="832.0" y="982.0">e · EXT-JINKYU</text>
+<text class="flow-task-label" x="832.0" y="1007.0">人給へ取込・給与簿CSV出力</text>
+</a>
+<a href="../operations/OP-JINKYU-PROCESS.html?context=flow-WF-13#OP-JINKYU-PROCESS" aria-label="OP-JINKYU-PROCESS 操作定義">
+<text class="flow-op-link" x="1050.0" y="1049.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="f" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1162.0,342.0,1258.0" data-step-id="f">
+<a href="#step-f" aria-label="f 給与簿取込・最新版照合：工程定義へ">
+<title>給与簿取込・最新版照合。最新版変更で「出力後に計算結果が変更されています」。</title>
+<rect x="98.0" y="1162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="1182.0">f · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="1207.0">給与簿取込・最新版照合</text>
+</a>
+<a href="../operations/OP-JLINK-RECONCILE.html?context=flow-WF-13#OP-JLINK-RECONCILE" aria-label="OP-JLINK-RECONCILE 操作定義">
+<text class="flow-op-link" x="330.0" y="1249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="g" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1362.0,342.0,1458.0" data-step-id="g">
+<a href="#step-g" aria-label="g 差分のみ・全件を切替：工程定義へ">
+<title>差分のみ・全件を切替。職員・期間・項目・アプリ値・給与簿値・差額。</title>
+<rect x="98.0" y="1362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="1382.0">g · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="1407.0">差分のみ・全件を切替</text>
+</a>
+<a href="../operations/OP-JLINK-FILTER.html?context=flow-WF-13#OP-JLINK-FILTER" aria-label="OP-JLINK-FILTER 操作定義">
+<text class="flow-op-link" x="330.0" y="1449.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="h" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,1542.0,345.0,1678.0" data-step-id="h">
+<a href="#step-h" aria-label="h 差分・未解決が残るか：工程定義へ">
+<title>差分・未解決が残るか。全体最新ゼロを確認。外部成功証明ではない。</title>
+<polygon points="220.0,1542.0 345.0,1610 220.0,1678.0 95.0,1610"/>
+<text class="flow-node-id" x="220.0" y="1570" text-anchor="middle">h · ×</text>
+<text class="flow-task-label" x="220.0" y="1602" text-anchor="middle">差分・未解決が残る</text>
+<text class="flow-task-label" x="220.0" y="1624" text-anchor="middle">か</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="i" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,1562.0,702.0,1658.0" data-step-id="i">
+<a href="#step-i" aria-label="i 原因画面で訂正：工程定義へ">
+<title>原因画面で訂正。勤怠はSCR-003。戻る際に支給回・職員を保持。</title>
+<rect x="458.0" y="1562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="1582.0">i · SCR-002</text>
+<text class="flow-task-label" x="472.0" y="1607.0">原因画面で訂正</text>
+</a>
+<a href="../operations/OP-JLINK-CORRECT.html?context=flow-WF-13#OP-JLINK-CORRECT" aria-label="OP-JLINK-CORRECT 操作定義">
+<text class="flow-op-link" x="690.0" y="1649.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="j" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,1362.0,702.0,1458.0" data-step-id="j">
+<a href="#step-j" aria-label="j 差分対応の明細を選択：工程定義へ">
+<title>差分対応の明細を選択。差分項目行ではなく対応出力明細。変更可能・重複出力なし。</title>
+<rect x="458.0" y="1362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="1382.0">j · FUT-JLINK</text>
+<text class="flow-task-label" x="472.0" y="1407.0">差分対応の明細を選択</text>
+</a>
+<a href="../operations/OP-JLINK-REEXPORT.html?context=flow-WF-13#OP-JLINK-REEXPORT" aria-label="OP-JLINK-REEXPORT 操作定義">
+<text class="flow-op-link" x="690.0" y="1449.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="k" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1762.0,342.0,1858.0" data-step-id="k">
+<a href="#step-k" aria-label="k 給与班が全体を確定：工程定義へ">
+<title>給与班が全体を確定。確認ダイアログなし。表示対象だけで判定しない。</title>
+<rect x="98.0" y="1762.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="1782.0">k · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="1807.0">給与班が全体を確定</text>
+</a>
+<a href="../operations/OP-JLINK-CONFIRM.html?context=flow-WF-13#OP-JLINK-CONFIRM" aria-label="OP-JLINK-CONFIRM 操作定義">
+<text class="flow-op-link" x="330.0" y="1849.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node start" data-node-id="start-a" data-node-kind="start" data-lane-id="lane-1" data-box="204.0,84.0,236.0,116.0">
+<title>開始。表示用要素</title>
+<circle cx="220.0" cy="100" r="16.0"/>
+<text class="flow-event-label" x="247.0" y="105" text-anchor="start">開始</text>
+</g>
+<g class="flow-node merge" data-node-id="join-b" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,334.0,230.0,354.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,334.0 230.0,344 220.0,354.0 210.0,344"/>
+<text class="flow-gateway-symbol" x="220.0" y="347" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node merge" data-node-id="join-c" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,534.0,230.0,554.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,534.0 230.0,544 220.0,554.0 210.0,544"/>
+<text class="flow-gateway-symbol" x="220.0" y="547" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node merge" data-node-id="join-f" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,1134.0,230.0,1154.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,1134.0 230.0,1144 220.0,1154.0 210.0,1144"/>
+<text class="flow-gateway-symbol" x="220.0" y="1147" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node split" data-node-id="split-i" data-node-kind="split" data-lane-id="lane-2" data-box="570.0,1666.0,590.0,1686.0">
+<title>結果分岐。表示用要素</title>
+<polygon points="580.0,1666.0 590.0,1676 580.0,1686.0 570.0,1676"/>
+<text class="flow-gateway-symbol" x="580.0" y="1679" text-anchor="middle">×</text>
+</g>
+<g class="flow-node end" data-node-id="end-k" data-node-kind="end" data-lane-id="lane-1" data-box="203.0,1889.0,237.0,1923.0">
+<title>確認区間の終了。表示用要素</title>
+<circle cx="220.0" cy="1906" r="17.0"/>
+<circle class="end-inner" cx="220.0" cy="1906" r="12.0"/>
+<text class="flow-event-label" x="220.0" y="1942" text-anchor="middle">確認区間の終了</text>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="figure-note">拡大後は指で横・縦へスクロールできます。キーボードは図枠にTabで移動し矢印キー。図の工程名から操作の詳細へ進めます。図の下にも同じ工程と全経路を記載しています。</figcaption>
+</figure>
+<p class="meta">青の実線: 業務の順序。茶色: 訂正・再試行。破線: 外部システムとの受渡し等。内部画面移動、別タブ、利用者による人給への切替を混同しません。</p>
+</section>
+<section class="panel" >
+<h2>何を入力・確認するか</h2>
+<ol class="steps">
+<li id="step-a">
+<div class="step-title">
+<a href="../operations/OP-JLINK-SELECT.html?context=flow-WF-13#OP-JLINK-SELECT" >支給回を3タブで保持</a>
+</div>
+<p>支給回の状況／出力／取込・照合。計算版選択なし。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-13#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-SELECT</div>
+</li>
+<li id="step-b">
+<div class="step-title">
+<a href="../operations/OP-JLINK-TARGET.html?context=flow-WF-13#OP-JLINK-TARGET" >初回は全職員を選択</a>
+</div>
+<p>職員絞込み・対象変更可能。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-13#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-TARGET</div>
+</li>
+<li id="step-c">
+<div class="step-title">
+<a href="../operations/OP-JLINK-AM.html?context=flow-WF-13#OP-JLINK-AM" >A/Mを一括・明細指定</a>
+</div>
+<p>職員判断。再出力でも自動Mにしない。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-13#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-AM</div>
+</li>
+<li id="step-d">
+<div class="step-title">
+<a href="../operations/OP-JLINK-EXPORT.html?context=flow-WF-13#OP-JLINK-EXPORT" >人数・明細数等を出力前確認</a>
+</div>
+<p>支給回・人数・明細数・A/M件数。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-13#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-EXPORT</div>
+</li>
+<li id="step-e">
+<div class="step-title">
+<a href="../operations/OP-JINKYU-PROCESS.html?context=flow-WF-13#OP-JINKYU-PROCESS" >Excelを人給へ渡す</a>
+</div>
+<p>人給取込エラーはI8。取得方式未決。</p>
+<div class="meta">
+<a href="../screens/EXT-JINKYU.html?context=flow-WF-13#EXT-JINKYU" >EXT-JINKYU</a>  / OP-JINKYU-PROCESS</div>
+</li>
+<li id="step-f">
+<div class="step-title">
+<a href="../operations/OP-JLINK-RECONCILE.html?context=flow-WF-13#OP-JLINK-RECONCILE" >給与簿取込・最新版照合</a>
+</div>
+<p>最新版変更で「出力後に計算結果が変更されています」。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-13#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-RECONCILE</div>
+</li>
+<li id="step-g">
+<div class="step-title">
+<a href="../operations/OP-JLINK-FILTER.html?context=flow-WF-13#OP-JLINK-FILTER" >差分のみ・全件を切替</a>
+</div>
+<p>職員・期間・項目・アプリ値・給与簿値・差額。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-13#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-FILTER</div>
+</li>
+<li id="step-h">
+<div class="step-title">差分・未解決が残るか</div>
+<p>全体最新ゼロを確認。外部成功証明ではない。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-13#FUT-JLINK" >FUT-JLINK</a>
+</div>
+</li>
+<li id="step-i">
+<div class="step-title">
+<a href="../operations/OP-JLINK-CORRECT.html?context=flow-WF-13#OP-JLINK-CORRECT" >原因画面で訂正</a>
+</div>
+<p>勤怠はSCR-003。戻る際に支給回・職員を保持。</p>
+<div class="meta">
+<a href="../screens/SCR-002.html?context=flow-WF-13#SCR-002" >SCR-002</a>  / OP-JLINK-CORRECT</div>
+</li>
+<li id="step-j">
+<div class="step-title">
+<a href="../operations/OP-JLINK-REEXPORT.html?context=flow-WF-13#OP-JLINK-REEXPORT" >差分対応の明細を選択</a>
+</div>
+<p>差分項目行ではなく対応出力明細。変更可能・重複出力なし。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-13#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-REEXPORT</div>
+</li>
+<li id="step-k">
+<div class="step-title">
+<a href="../operations/OP-JLINK-CONFIRM.html?context=flow-WF-13#OP-JLINK-CONFIRM" >給与班が全体を確定</a>
+</div>
+<p>確認ダイアログなし。表示対象だけで判定しない。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-13#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-CONFIRM</div>
+</li>
+</ol>
+</section>
+<details>
+<summary>設計・構築者向け: 役割・データ・処理条件</summary>
+<div>
+<div class="table-wrap" role="region" tabindex="0" aria-label="業務を構成する操作の契約">
+<table>
+<caption>業務を構成する操作の契約</caption>
+<thead>
+<tr>
+<th scope="col">操作</th>
+<th scope="col">担当・対象範囲</th>
+<th scope="col">読む情報 → 変更する情報</th>
+<th scope="col">実行条件・失敗時</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-SELECT.html?context=flow-WF-13#OP-JLINK-SELECT" >OP-JLINK-SELECT 支給回・タブを選択</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>支給回・最新結果・取込照合状態 → データ更新なし</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-TARGET.html?context=flow-WF-13#OP-JLINK-TARGET" >OP-JLINK-TARGET 出力対象を選択</a>
+</td>
+<td>会計課給与班<br>表示・出力対象のみ。確定判定の支給回全体範囲は縮小しない。</td>
+<td>最新計算結果の出力明細、差分と出力明細の対応 → 画面内の出力対象選択</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-AM.html?context=flow-WF-13#OP-JLINK-AM" >OP-JLINK-AM A/Mを指定</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>出力対象明細、利用者指定 → 明細別指定A/M</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-EXPORT.html?context=flow-WF-13#OP-JLINK-EXPORT" >OP-JLINK-EXPORT 確認してExcel出力</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>最新版計算結果、指定対象・A/M、既存237列見出し → 出力xlsx、出力履歴</td>
+<td>支給回・人数・明細数・A/M件数を利用者が確認。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JINKYU-PROCESS.html?context=flow-WF-13#OP-JINKYU-PROCESS" >OP-JINKYU-PROCESS 人給取込・給与簿出力</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>計算結果xlsx、人給側データ → 外部人給データ（実行は別システム）、給与簿CSV</td>
+<td>認証済みで対象レコードを識別できること。<br>人給側のエラーはI8で表示要件あり。結果取得方式は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-RECONCILE.html?context=flow-WF-13#OP-JLINK-RECONCILE" >OP-JLINK-RECONCILE 最新版と照合</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>選択支給回の最新版計算結果、成功した給与簿取込回 → 照合処理・不一致明細・最新結果識別</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-FILTER.html?context=flow-WF-13#OP-JLINK-FILTER" >OP-JLINK-FILTER 差分・全件表示を切替</a>
+</td>
+<td>会計課給与班<br>表示範囲だけを変更。確定範囲は全支給回。</td>
+<td>照合結果 → 画面表示条件</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-CORRECT.html?context=flow-WF-13#OP-JLINK-CORRECT" >OP-JLINK-CORRECT 差分原因の入力画面へ</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>差分・対象職員・支給回 → データ更新なし</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-REEXPORT.html?context=flow-WF-13#OP-JLINK-REEXPORT" >OP-JLINK-REEXPORT 差分対応明細を再出力</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>差分と出力明細の対応、最新版結果 → 出力対象・指定A/M・再出力履歴</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-CONFIRM.html?context=flow-WF-13#OP-JLINK-CONFIRM" >OP-JLINK-CONFIRM 給与班が支給回を確定</a>
+</td>
+<td>会計課給与班<br>表示・職員絞込みにかかわらず支給回全体。</td>
+<td>支給回全体の最新計算識別・照合、必要情報の確定状態 → 給与班確定状態・履歴</td>
+<td>支給回全体の最新照合が差分ゼロで未解決行がない。<br>古いゼロ・変更・権限不足・未解決を検出したら確定せず再照合へ。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrap" role="region" tabindex="0" aria-label="図と同一データの全経路">
+<table>
+<caption>図と同一データの全経路</caption>
+<thead>
+<tr>
+<th scope="col">起点</th>
+<th scope="col">条件・操作</th>
+<th scope="col">到達点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>支給回を3タブで保持</td>
+<td>初回出力</td>
+<td>初回は全職員を選択</td>
+</tr>
+<tr>
+<td>初回は全職員を選択</td>
+<td>対象確認</td>
+<td>A/Mを一括・明細指定</td>
+</tr>
+<tr>
+<td>A/Mを一括・明細指定</td>
+<td>出力準備</td>
+<td>人数・明細数等を出力前確認</td>
+</tr>
+<tr>
+<td>人数・明細数等を出力前確認</td>
+<td>取消・対象を見直す</td>
+<td>初回は全職員を選択</td>
+</tr>
+<tr>
+<td>人数・明細数等を出力前確認</td>
+<td>確認して出力</td>
+<td>Excelを人給へ渡す</td>
+</tr>
+<tr>
+<td>Excelを人給へ渡す</td>
+<td>給与簿CSV戻り</td>
+<td>給与簿取込・最新版照合</td>
+</tr>
+<tr>
+<td>給与簿取込・最新版照合</td>
+<td>結果表示</td>
+<td>差分のみ・全件を切替</td>
+</tr>
+<tr>
+<td>差分のみ・全件を切替</td>
+<td>全体判定</td>
+<td>差分・未解決が残るか</td>
+</tr>
+<tr>
+<td>差分・未解決が残るか</td>
+<td>差分あり</td>
+<td>原因画面で訂正</td>
+</tr>
+<tr>
+<td>原因画面で訂正</td>
+<td>再計算後に再出力必要</td>
+<td>差分対応の明細を選択</td>
+</tr>
+<tr>
+<td>原因画面で訂正</td>
+<td>再照合のみ必要</td>
+<td>給与簿取込・最新版照合</td>
+</tr>
+<tr>
+<td>差分対応の明細を選択</td>
+<td>A/Mを職員判断</td>
+<td>A/Mを一括・明細指定</td>
+</tr>
+<tr>
+<td>差分・未解決が残るか</td>
+<td>計算変更・旧ゼロ失効</td>
+<td>給与簿取込・最新版照合</td>
+</tr>
+<tr>
+<td>差分・未解決が残るか</td>
+<td>全体最新ゼロ</td>
+<td>給与班が全体を確定</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<section class="panel" >
+<h2>例外・未決・確認時の注意</h2>
+<ul>
+<li>出力前確認と給与班確定は別です。確定は全体最新ゼロ・未解決なしを検証するボタン操作で、確認ダイアログはありません。</li>
+<li>I8の人給エラー取得方式、給与簿と出力明細の対応、最新結果の識別・同時更新の物理方式は未決です。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>要件と根拠へ戻る</h2>
+<div class="chips">
+<a href="../sections/1.1.2.html#section-1.1.2" >1.1.2</a>
+<a href="../sections/2.5.1.html#section-2.5.1" >2.5.1</a>
+</div>
+<h3 style="margin-top:18px">関連要件ID</h3>
+<div class="chips">
+<a href="../requirements/JLINK-UI-01.html?context=flow-WF-13#requirement-JLINK-UI-01" >JLINK-UI-01</a>
+<a href="../requirements/JLINK-UI-03.html?context=flow-WF-13#requirement-JLINK-UI-03" >JLINK-UI-03</a>
+<a href="../requirements/JLINK-UI-04.html?context=flow-WF-13#requirement-JLINK-UI-04" >JLINK-UI-04</a>
+<a href="../requirements/JLINK-UI-05.html?context=flow-WF-13#requirement-JLINK-UI-05" >JLINK-UI-05</a>
+<a href="../requirements/JLINK-UI-06.html?context=flow-WF-13#requirement-JLINK-UI-06" >JLINK-UI-06</a>
+<a href="../requirements/JLINK-UI-07.html?context=flow-WF-13#requirement-JLINK-UI-07" >JLINK-UI-07</a>
+<a href="../requirements/JLINK-UI-08.html?context=flow-WF-13#requirement-JLINK-UI-08" >JLINK-UI-08</a>
+<a href="../requirements/JLINK-UI-09.html?context=flow-WF-13#requirement-JLINK-UI-09" >JLINK-UI-09</a>
+<a href="../requirements/JLINK-UI-10.html?context=flow-WF-13#requirement-JLINK-UI-10" >JLINK-UI-10</a>
+<a href="../requirements/JLINK-UI-11.html?context=flow-WF-13#requirement-JLINK-UI-11" >JLINK-UI-11</a>
+<a href="../requirements/I1.html?context=flow-WF-13#requirement-I1" >I1</a>
+<a href="../requirements/I2.html?context=flow-WF-13#requirement-I2" >I2</a>
+<a href="../requirements/I3.html?context=flow-WF-13#requirement-I3" >I3</a>
+<a href="../requirements/I4.html?context=flow-WF-13#requirement-I4" >I4</a>
+<a href="../requirements/I5.html?context=flow-WF-13#requirement-I5" >I5</a>
+<a href="../requirements/I6.html?context=flow-WF-13#requirement-I6" >I6</a>
+<a href="../requirements/I7.html?context=flow-WF-13#requirement-I7" >I7</a>
+<a href="../requirements/I8.html?context=flow-WF-13#requirement-I8" >I8</a>
+<a href="../requirements/I9.html?context=flow-WF-13#requirement-I9" >I9</a>
+<a href="../requirements/I10.html?context=flow-WF-13#requirement-I10" >I10</a>
+<a href="../requirements/I11.html?context=flow-WF-13#requirement-I11" >I11</a>
+<a href="../requirements/I12.html?context=flow-WF-13#requirement-I12" >I12</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=flow-WF-13" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--payroll-interface-decisions-20261008.html?context=flow-WF-13" data-keep-context>payroll-interface-decisions-20261008.md</a>
+<div class="meta">docs/requirements/payroll-interface-decisions-20261008.md</div>
+</li>
+<li>
+<a href="../sources/docs--design--detailed--payroll-jinkyu-interface.html?context=flow-WF-13" data-keep-context>payroll-jinkyu-interface.md</a>
+<div class="meta">docs/design/detailed/payroll-jinkyu-interface.md</div>
+</li>
+<li>
+<a href="../sources/docs--testing--test-specification.html?context=flow-WF-13" data-keep-context>test-specification.md</a>
+<div class="meta">docs/testing/test-specification.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

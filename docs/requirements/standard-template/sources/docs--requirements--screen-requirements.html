@@ -1,61 +1,217 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>docs/requirements/screen-requirements.md</title><style>:root{font-family:system-ui,'Noto Sans JP',sans-serif;color:#172c45;background:#f4f7fb;line-height:1.8}*{box-sizing:border-box}body{margin:0}a{color:#0759a8;text-underline-offset:4px}a:hover{color:#002f67}button,input,select{font:inherit}button,.link{display:inline-block;background:white;border:1px solid #aabed0;border-radius:7px;padding:9px 14px;cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #d58b00;outline-offset:3px}header{background:#102d4e;color:white;padding:32px max(24px,calc((100vw - 1250px)/2))}header p{margin:6px 0;color:#dce8f4}h1{font-size:clamp(25px,4vw,37px);line-height:1.4;margin:12px 0}h2{font-size:25px}h3{font-size:21px}h4{font-size:18px}h2,h3,h4{scroll-margin-top:20px}main{max-width:1300px;margin:0 auto;padding:28px;min-width:0}.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px}.sidebar{position:sticky;top:12px;align-self:start;max-height:94vh;overflow:auto;background:white;border:1px solid #dce4ed;border-radius:10px;padding:16px}.sidebar a{display:block;padding:5px;font-size:14px}.sidebar strong{display:block;margin-top:12px}.intro,.chapter{background:white;border:1px solid #dce4ed;border-radius:12px;padding:25px;margin-bottom:24px}.item{border-top:1px solid #dce4ed;padding:18px 0;overflow-wrap:anywhere}.item p{margin:10px 0}.badge{display:inline-block;background:#e7eef7;color:#294c70;border-radius:5px;padding:2px 9px;font-size:12px;font-weight:700}.missing{background:#fff4da;border-left:4px solid #bc7800;padding:12px;color:#643e00}.refs{font-size:13px}.refs a{margin-right:14px}.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0}.toolbar input{min-width:0;width:260px;padding:10px;border:1px solid #aabed0;border-radius:7px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.cards a{display:block;padding:17px;border:1px solid #b9cde0;border-radius:8px;text-decoration:none;background:#f6faff}.cards a small{display:block;color:#47627d}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #d5dee8;padding:10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#eaf0f7}.table-wrap{overflow:auto}details{margin:12px 0}summary{cursor:pointer;font-weight:700}pre{overflow:auto;background:#f0f3f7;padding:14px;white-space:pre-wrap}code{overflow-wrap:anywhere}dialog{width:min(1300px,96vw);height:94vh;border:1px solid #b8c7d8;border-radius:12px;padding:0}dialog::backdrop{background:#102d4e99}.dialog-bar{display:flex;align-items:center;gap:15px;padding:12px;flex-wrap:wrap}.dialog-bar strong{flex:1}iframe{width:100%;height:calc(100% - 100px);border:0}.skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;background:white;padding:10px}.source main{max-width:1100px;background:white}.source h1{font-size:27px}.source img{max-width:100%}[hidden]{display:none!important}footer{padding:24px;color:#456}@media(max-width:800px){main{padding:14px}.layout{display:block}.sidebar{position:static;max-height:230px;margin-bottom:18px}.intro,.chapter{padding:18px}.toolbar{align-items:stretch}.toolbar input{width:100%}table{min-width:580px}}@media print{.sidebar,.toolbar,.cards,dialog,.preview-button{display:none!important}.layout{display:block}header{background:white;color:black;padding:10px}header p{color:black}.chapter,.intro{border:0;padding:0}.item{break-inside:avoid}main{padding:0}[hidden]{display:block!important}a{color:black}}</style></head><body class="source"><header><p>出典資料のHTML表示 · 元の記述・状態を保持</p><h1>screen-requirements.md</h1><p>2026-10-10取得。新旧記述が併記されています。2026-10-07確定要件・10-08人給決定を優先してください。</p></header><main><p><a href="../index.html">← 要件定義書へ戻る</a> · <a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md">GitHub原文</a></p><p>Mermaidコードは原文として表示します。描画済み業務・画面図は要件定義書の関連資料から開けます。</p><h1 id="画面要件定義書">画面要件定義書</h1>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>screen-requirements.md | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">screen-requirements.md</span>
+</nav>
+<a class="context-return" data-context-return href="../sections/2.1.3.html#section-2.1.3">← 関連する要件 2.1.3 へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>screen-requirements.md</h1>
+<p class="meta">docs/requirements/screen-requirements.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/requirements/screen-requirements.md">この版のGitHub原文</a> / SHA-256: <code>52ae4f29d73310c99783b902f50f9bc8fb297ed58c260f6818f35563ae314fea</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+<a href="../sections/2.1.3.html#section-2.1.3" >2.1.3</a>
+<a href="../sections/2.2.1.html#section-2.2.1" >2.2.1</a>
+<a href="../sections/2.2.2.html#section-2.2.2" >2.2.2</a>
+<a href="../sections/2.2.3.html#section-2.2.3" >2.2.3</a>
+<a href="../sections/2.2.4.html#section-2.2.4" >2.2.4</a>
+<a href="../sections/2.3.1.html#section-2.3.1" >2.3.1</a>
+<a href="../sections/2.4.8.html#section-2.4.8" >2.4.8</a>
+<a href="../sections/3.1.2.html#section-3.1.2" >3.1.2</a>
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+<a href="../requirements/FUT-IMPORT-001.html#requirement-FUT-IMPORT-001" >FUT-IMPORT-001</a>
+<a href="../requirements/FUT-STATE-E.html#requirement-FUT-STATE-E" >FUT-STATE-E</a>
+<a href="../requirements/FUT-STATE-F.html#requirement-FUT-STATE-F" >FUT-STATE-F</a>
+<a href="../requirements/FUT-STATE-PAY.html#requirement-FUT-STATE-PAY" >FUT-STATE-PAY</a>
+<a href="../requirements/I1.html#requirement-I1" >I1</a>
+<a href="../requirements/I12.html#requirement-I12" >I12</a>
+<a href="../requirements/JLINK-UI-01.html#requirement-JLINK-UI-01" >JLINK-UI-01</a>
+<a href="../requirements/JLINK-UI-02.html#requirement-JLINK-UI-02" >JLINK-UI-02</a>
+<a href="../requirements/JLINK-UI-03.html#requirement-JLINK-UI-03" >JLINK-UI-03</a>
+<a href="../requirements/JLINK-UI-04.html#requirement-JLINK-UI-04" >JLINK-UI-04</a>
+<a href="../requirements/JLINK-UI-05.html#requirement-JLINK-UI-05" >JLINK-UI-05</a>
+<a href="../requirements/JLINK-UI-06.html#requirement-JLINK-UI-06" >JLINK-UI-06</a>
+<a href="../requirements/JLINK-UI-07.html#requirement-JLINK-UI-07" >JLINK-UI-07</a>
+<a href="../requirements/JLINK-UI-08.html#requirement-JLINK-UI-08" >JLINK-UI-08</a>
+<a href="../requirements/JLINK-UI-09.html#requirement-JLINK-UI-09" >JLINK-UI-09</a>
+<a href="../requirements/JLINK-UI-10.html#requirement-JLINK-UI-10" >JLINK-UI-10</a>
+<a href="../requirements/JLINK-UI-11.html#requirement-JLINK-UI-11" >JLINK-UI-11</a>
+<a href="../requirements/SCR001-UI-001.html#requirement-SCR001-UI-001" >SCR001-UI-001</a>
+<a href="../requirements/SCR002-COM-003.html#requirement-SCR002-COM-003" >SCR002-COM-003</a>
+<a href="../requirements/SCR002-E-001.html#requirement-SCR002-E-001" >SCR002-E-001</a>
+<a href="../requirements/SCR002-EDIT-001.html#requirement-SCR002-EDIT-001" >SCR002-EDIT-001</a>
+<a href="../requirements/SCR002-EDIT-002.html#requirement-SCR002-EDIT-002" >SCR002-EDIT-002</a>
+<a href="../requirements/SCR002-EDIT-003.html#requirement-SCR002-EDIT-003" >SCR002-EDIT-003</a>
+<a href="../requirements/SCR002-EDIT-004.html#requirement-SCR002-EDIT-004" >SCR002-EDIT-004</a>
+<a href="../requirements/SCR002-F-001.html#requirement-SCR002-F-001" >SCR002-F-001</a>
+<a href="../requirements/SCR002-G-001.html#requirement-SCR002-G-001" >SCR002-G-001</a>
+<a href="../requirements/SCR002-G-002.html#requirement-SCR002-G-002" >SCR002-G-002</a>
+<a href="../requirements/SCR002-G-004.html#requirement-SCR002-G-004" >SCR002-G-004</a>
+<a href="../requirements/SCR002-LT-002.html#requirement-SCR002-LT-002" >SCR002-LT-002</a>
+<a href="../requirements/SCR002-LT-003.html#requirement-SCR002-LT-003" >SCR002-LT-003</a>
+<a href="../requirements/SCR002-LT-004.html#requirement-SCR002-LT-004" >SCR002-LT-004</a>
+<a href="../requirements/SCR002-LT-007.html#requirement-SCR002-LT-007" >SCR002-LT-007</a>
+<a href="../requirements/SCR002-PAY-005.html#requirement-SCR002-PAY-005" >SCR002-PAY-005</a>
+<a href="../requirements/SCR002-PAY-006.html#requirement-SCR002-PAY-006" >SCR002-PAY-006</a>
+<a href="../requirements/SCR002-PAY-008.html#requirement-SCR002-PAY-008" >SCR002-PAY-008</a>
+<a href="../requirements/SCR002-UI-003.html#requirement-SCR002-UI-003" >SCR002-UI-003</a>
+<a href="../requirements/SCR002-UI-004.html#requirement-SCR002-UI-004" >SCR002-UI-004</a>
+<a href="../requirements/SCR005-ACT-001.html#requirement-SCR005-ACT-001" >SCR005-ACT-001</a>
+<a href="../requirements/SCR005-ACT-002.html#requirement-SCR005-ACT-002" >SCR005-ACT-002</a>
+<a href="../requirements/SCR005-ACT-003.html#requirement-SCR005-ACT-003" >SCR005-ACT-003</a>
+<a href="../requirements/SCR005-ACT-004.html#requirement-SCR005-ACT-004" >SCR005-ACT-004</a>
+<a href="../requirements/SCR005-ACT-005.html#requirement-SCR005-ACT-005" >SCR005-ACT-005</a>
+<a href="../requirements/SCR005-ACT-006.html#requirement-SCR005-ACT-006" >SCR005-ACT-006</a>
+<a href="../requirements/SCR005-ACT-007.html#requirement-SCR005-ACT-007" >SCR005-ACT-007</a>
+<a href="../requirements/SCR005-CALC-008.html#requirement-SCR005-CALC-008" >SCR005-CALC-008</a>
+<a href="../requirements/SCR005-UI-004.html#requirement-SCR005-UI-004" >SCR005-UI-004</a>
+<a href="../requirements/SCR005-UI-015.html#requirement-SCR005-UI-015" >SCR005-UI-015</a>
+<a href="../requirements/SCR006-RULE-001.html#requirement-SCR006-RULE-001" >SCR006-RULE-001</a>
+<a href="../requirements/SCR007-DIFF-001.html#requirement-SCR007-DIFF-001" >SCR007-DIFF-001</a>
+</div>
+<div class="chips">
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L1" data-source-start="1" data-source-end="3">
+<h1 id="画面要件定義書">画面要件定義書</h1>
+</section>
+<section id="L3" data-source-start="3" data-source-end="3">
 <blockquote>
-<p><strong>2026-10-07の改修仕様</strong>：<a href="docs--requirements--payroll-confirmed-20261007.html">確定要件</a>を適用する。下記の公開版・実測記録は当時の状態として保持し、今回の要件確定だけでアプリ／Dataverseを変更済みとは扱わない。競合する今後の業務仕様は新しい確定要件を優先する。</p>
+<p>
+<strong>2026-10-07の改修仕様</strong>：<a href="docs--requirements--payroll-confirmed-20261007.html" data-keep-context>確定要件</a>を適用する。下記の公開版・実測記録は当時の状態として保持し、今回の要件確定だけでアプリ／Dataverseを変更済みとは扱わない。競合する今後の業務仕様は新しい確定要件を優先する。</p>
 </blockquote>
+</section>
+<section id="L5" data-source-start="5" data-source-end="8">
 <ul>
 <li>文書版：1.6</li>
 <li>主対象：現行の単一編集・公開アプリ（App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>）。旧試作の項目は適用区分を明示</li>
 <li>定義範囲：画面一覧、画面遷移、操作、引継ぎ情報、権限制御、全画面共通余白、SCR-002の軽量化・表示編集要件、SCR-005のUI・試算要件、および将来業務E・F・G・給与ルール・遡及差額の画面配置案</li>
 <li>本書は画面要件を定義するものであり、実装済みであることを示すものではない。</li>
 </ul>
-<p>機能要件R15～R23や他画面との関係は<a href="docs--requirements--traceability-matrix.html">要件間マトリクス</a>、決定を待つ画面内事項は<a href="docs--requirements--open-decisions.html">未決事項一覧</a>に索引化する。正式な画面条件は本書の各IDを参照する。</p>
+</section>
+<section id="L10" data-source-start="10" data-source-end="10">
+<p>機能要件R15～R23や他画面との関係は<a href="docs--requirements--traceability-matrix.html" data-keep-context>要件間マトリクス</a>、決定を待つ画面内事項は<a href="docs--requirements--open-decisions.html" data-keep-context>未決事項一覧</a>に索引化する。正式な画面条件は本書の各IDを参照する。</p>
+</section>
+<section id="L12" data-source-start="12" data-source-end="14">
 <h2 id="1-画面一覧">1. 画面一覧</h2>
+</section>
+<section id="block-L14" data-source-start="14" data-source-end="23">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L14">
 <th>No.</th>
 <th>画面ID</th>
 <th>画面名</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L16">
 <td>1</td>
 <td>SCR-001</td>
 <td>ログイン画面&amp;ホーム画面</td>
 </tr>
-<tr>
+<tr id="L17">
 <td>2</td>
 <td>SCR-002</td>
 <td>職員マスタ検索・詳細</td>
 </tr>
-<tr>
+<tr id="L18">
 <td>3</td>
 <td>SCR-003</td>
 <td>勤務時間報告画面</td>
 </tr>
-<tr>
+<tr id="L19">
 <td>4</td>
 <td>SCR-004</td>
 <td>期末勤勉支給率登録画面</td>
 </tr>
-<tr>
+<tr id="L20">
 <td>5</td>
 <td>SCR-005</td>
 <td>支給明細画面</td>
 </tr>
-<tr>
+<tr id="L21">
 <td>6</td>
 <td>SCR-006</td>
 <td>メンテナンス画面</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L23" data-source-start="23" data-source-end="23">
 <p>ログイン画面とホーム画面は、一つの画面項目（SCR-001）として整理する。以下の画面遷移の起点・戻り先は、SCR-001内のホーム画面とする。ただしMicrosoftの外部サインイン画面をCanvas内で実装済みのログイン画面とみなさない。ログイン画面とホーム画面の内部遷移や認証の詳細は別途定義する。</p>
-<p><code>COMMON-SCREEN-001</code>：上表のSCR-001～006の画面ID・表示名・役割の対応を維持する。SCR-001に外部Microsoft認証の実装を含めない。</p>
+</section>
+<section id="L25" data-source-start="25" data-source-end="25">
+<p>
+<code>COMMON-SCREEN-001</code>：上表のSCR-001～006の画面ID・表示名・役割の対応を維持する。SCR-001に外部Microsoft認証の実装を含めない。</p>
+</section>
+<section id="L27" data-source-start="27" data-source-end="29">
 <h2 id="2-画面遷移図">2. 画面遷移図</h2>
+</section>
+<section id="L29" data-source-start="29" data-source-end="29">
 <p>第1階層グループを左、第2階層グループを右に配置する。第1階層には画面1を置き、第2階層には画面2・3・4・5・6を上から順に並べる。この縦の並びは配置順であり、2→3→4→5→6という遷移を追加するものではない。</p>
+</section>
+<section id="L31" data-source-start="31" data-source-end="31">
 <p>各画面名のボタンでホーム画面から対象画面へ遷移し、各画面の「ホーム」ボタンでホーム画面へ戻る。双方向矢印は往路・復路をまとめて示し、方向別の操作は「3. 画面遷移・操作一覧」に定義する。</p>
+</section>
+<section id="L33" data-source-start="33" data-source-end="33">
 <p>Mermaidのブロック図（block-beta）で階層グループと配置順を指定する。第2階層内の2と5の相互遷移も維持する。2と5の間の線は、画面列の右に余白と配線専用列を設けて迂回させ、画面3・4のブロックを横切らない構成とする。右側の丸印は線の折返し点であり、画面や処理を表さない。画面2と5の両端に向かう矢印で相互遷移を示す。</p>
-<pre><code class="language-mermaid">block-beta
+</section>
+<section id="L35" data-source-start="35" data-source-end="73">
+<pre>
+<code class="language-mermaid">block-beta
     columns 3
     block:L1
         columns 1
@@ -92,14 +248,26 @@
     style H2 fill:#dbeafe,stroke:#dbeafe,color:#17365d
     style L1 fill:#ffffff,stroke:#2563eb
     style L2 fill:#ffffff,stroke:#2563eb
-</code></pre>
+</code>
+</pre>
+</section>
+<section id="L75" data-source-start="75" data-source-end="75">
 <p>ホーム画面のメンテナンス画面ボタンは、管理者以外には非活性で表示する。画面2～5で扱う職員データの範囲は「5. 権限制御」に従う。</p>
+</section>
+<section id="L77" data-source-start="77" data-source-end="79">
 <h2 id="3-画面遷移操作一覧">3. 画面遷移・操作一覧</h2>
+</section>
+<section id="L79" data-source-start="79" data-source-end="81">
 <h3 id="31-ホーム画面からの遷移">3.1 ホーム画面からの遷移</h3>
+</section>
+<section id="L81" data-source-start="81" data-source-end="81">
 <p>ホーム画面に、画面2～6の各画面名を表示したボタンを設置する。</p>
+</section>
+<section id="block-L83" data-source-start="83" data-source-end="91">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L83">
 <th>遷移元</th>
 <th>ボタン名</th>
 <th>操作</th>
@@ -107,169 +275,233 @@
 <th>条件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L85">
 <td>SCR-001：ホーム画面</td>
 <td>職員マスタ検索</td>
 <td>クリック</td>
 <td>SCR-002：職員マスタ検索・詳細</td>
 <td>ログイン済み</td>
 </tr>
-<tr>
+<tr id="L86">
 <td>SCR-001：ホーム画面</td>
 <td>勤務時間報告画面</td>
 <td>クリック</td>
 <td>SCR-003：勤務時間報告画面</td>
 <td>ログイン済み</td>
 </tr>
-<tr>
+<tr id="L87">
 <td>SCR-001：ホーム画面</td>
 <td>期末勤勉支給率登録画面</td>
 <td>クリック</td>
 <td>SCR-004：期末勤勉支給率登録画面</td>
 <td>ログイン済み</td>
 </tr>
-<tr>
+<tr id="L88">
 <td>SCR-001：ホーム画面</td>
 <td>支給明細画面</td>
 <td>クリック</td>
 <td>SCR-005：支給明細画面</td>
 <td>ログイン済み</td>
 </tr>
-<tr>
+<tr id="L89">
 <td>SCR-001：ホーム画面</td>
 <td>メンテナンス画面</td>
 <td>クリック</td>
 <td>SCR-006：メンテナンス画面</td>
 <td>ログイン済みかつ管理者。管理者以外はボタン非活性</td>
 </tr>
-</tbody></table>
-<p><code>COMMON-NAV-001</code>：上表の5経路すべてをホームからの遷移として追跡する。SCR-006の活性条件は<code>COMMON-AUTH-002</code>を併用する。</p>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L91" data-source-start="91" data-source-end="91">
+<p>
+<code>COMMON-NAV-001</code>：上表の5経路すべてをホームからの遷移として追跡する。SCR-006の活性条件は<code>COMMON-AUTH-002</code>を併用する。</p>
+</section>
+<section id="L93" data-source-start="93" data-source-end="95">
 <h3 id="32-ホーム画面へ戻る遷移">3.2 ホーム画面へ戻る遷移</h3>
+</section>
+<section id="L95" data-source-start="95" data-source-end="95">
 <p>画面2～6の各画面に「ホーム」ボタンを設置する。</p>
+</section>
+<section id="block-L97" data-source-start="97" data-source-end="105">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L97">
 <th>遷移元</th>
 <th>ボタン名</th>
 <th>操作</th>
 <th>遷移先</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L99">
 <td>SCR-002：職員マスタ検索・詳細</td>
 <td>ホーム</td>
 <td>クリック</td>
 <td>SCR-001：ホーム画面</td>
 </tr>
-<tr>
+<tr id="L100">
 <td>SCR-003：勤務時間報告画面</td>
 <td>ホーム</td>
 <td>クリック</td>
 <td>SCR-001：ホーム画面</td>
 </tr>
-<tr>
+<tr id="L101">
 <td>SCR-004：期末勤勉支給率登録画面</td>
 <td>ホーム</td>
 <td>クリック</td>
 <td>SCR-001：ホーム画面</td>
 </tr>
-<tr>
+<tr id="L102">
 <td>SCR-005：支給明細画面</td>
 <td>ホーム</td>
 <td>クリック</td>
 <td>SCR-001：ホーム画面</td>
 </tr>
-<tr>
+<tr id="L103">
 <td>SCR-006：メンテナンス画面</td>
 <td>ホーム</td>
 <td>クリック</td>
 <td>SCR-001：ホーム画面</td>
 </tr>
-</tbody></table>
-<p><code>COMMON-NAV-002</code>：上表の5経路すべてについてホームへの戻りを追跡する。SCR-006からの戻りは管理者画面に到達できる条件で確認する。</p>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L105" data-source-start="105" data-source-end="105">
+<p>
+<code>COMMON-NAV-002</code>：上表の5経路すべてについてホームへの戻りを追跡する。SCR-006からの戻りは管理者画面に到達できる条件で確認する。</p>
+</section>
+<section id="L107" data-source-start="107" data-source-end="109">
 <h3 id="33-職員マスタ検索と支給明細画面の相互遷移">3.3 職員マスタ検索と支給明細画面の相互遷移</h3>
+</section>
+<section id="block-L109" data-source-start="109" data-source-end="114">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L109">
 <th>遷移元</th>
 <th>遷移先</th>
 <th>引き継ぐ選択情報</th>
 <th>操作</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L111">
 <td>SCR-002：職員マスタ検索・詳細</td>
 <td>SCR-005：支給明細画面</td>
 <td>職員番号、支給対象月</td>
 <td>ボタン名・操作方法は別途定義</td>
 </tr>
-<tr>
+<tr id="L112">
 <td>SCR-005：支給明細画面</td>
 <td>SCR-002：職員マスタ検索・詳細</td>
 <td>職員番号、支給対象月</td>
 <td>「職員マスタ検索」ボタンをクリック</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L114" data-source-start="114" data-source-end="114">
 <p>対象職員は、ログインアカウントに紐づく所属部署と一致する非常勤職員に限定する。</p>
-<p><code>COMMON-NAV-003</code>：上表のSCR-002とSCR-005の双方向遷移、職員番号・対象月の受渡し、および所属制限を一組として追跡する。SCR-002からのボタン名・操作方法は6章の未決事項として残す。</p>
+</section>
+<section id="L116" data-source-start="116" data-source-end="116">
+<p>
+<code>COMMON-NAV-003</code>：上表のSCR-002とSCR-005の双方向遷移、職員番号・対象月の受渡し、および所属制限を一組として追跡する。SCR-002からのボタン名・操作方法は6章の未決事項として残す。</p>
+</section>
+<section id="L118" data-source-start="118" data-source-end="120">
 <h2 id="4-画面間で引き継ぐ情報">4. 画面間で引き継ぐ情報</h2>
+</section>
+<section id="block-L120" data-source-start="120" data-source-end="125">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L120">
 <th>適用範囲</th>
 <th>情報の区分</th>
 <th>項目</th>
 <th>要件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L122">
 <td>ログイン後の全画面間</td>
 <td>ログイン職員のアカウント情報</td>
 <td>氏名、メールアドレス</td>
 <td>画面遷移後も同じログイン職員の情報を保持する</td>
 </tr>
-<tr>
+<tr id="L123">
 <td>SCR-002 ⇄ SCR-005</td>
 <td>画面で選択した職員情報</td>
 <td>職員番号、支給対象月</td>
 <td>選択した職員・支給対象月を遷移先へ引き継ぐ</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L125" data-source-start="125" data-source-end="125">
 <p>ログイン職員のアカウント情報と、画面で選択した非常勤職員の情報は区別して扱う。所属部署・管理者区分はログインアカウントに紐づけて権限判定に使用し、その取得元・判定方法は別途定義する。</p>
-<p><code>COMMON-CONTEXT-001</code>：全画面間でログイン職員の氏名・メールアドレスを同一主体として保持する。<code>COMMON-CONTEXT-002</code>：SCR-002とSCR-005の間で選択職員番号・対象月を引き継ぎ、ログイン職員の属性と混同しない。</p>
+</section>
+<section id="L127" data-source-start="127" data-source-end="127">
+<p>
+<code>COMMON-CONTEXT-001</code>：全画面間でログイン職員の氏名・メールアドレスを同一主体として保持する。<code>COMMON-CONTEXT-002</code>：SCR-002とSCR-005の間で選択職員番号・対象月を引き継ぎ、ログイン職員の属性と混同しない。</p>
+</section>
+<section id="L129" data-source-start="129" data-source-end="131">
 <h2 id="5-権限制御">5. 権限制御</h2>
+</section>
+<section id="block-L131" data-source-start="131" data-source-end="139">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L131">
 <th>対象</th>
 <th>要件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L133">
 <td>閲覧可能なデータ</td>
 <td>ログインアカウントに紐づく所属部署と、非常勤職員の所属部署が一致するデータのみ閲覧可能</td>
 </tr>
-<tr>
+<tr id="L134">
 <td>編集可能なデータ</td>
 <td>同じ所属部署の非常勤職員データのみ編集可能。各画面で提供する編集機能の詳細は別途定義</td>
 </tr>
-<tr>
+<tr id="L135">
 <td>職員データを伴う画面遷移</td>
 <td>同じ所属部署の非常勤職員を対象とする場合のみ遷移可能。画面2と画面5の相互遷移にも適用</td>
 </tr>
-<tr>
+<tr id="L136">
 <td>メンテナンス画面への遷移</td>
 <td>管理者のみ遷移可能</td>
 </tr>
-<tr>
+<tr id="L137">
 <td>ホーム画面のメンテナンス画面ボタン</td>
 <td>管理者には活性、管理者以外には非活性で表示</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L139" data-source-start="139" data-source-end="139">
 <p>所属部署による制限は、検索結果・一覧表示・対象職員の参照・更新・画面遷移に共通して適用する。画面遷移で引き継いだ職員番号だけを根拠に、別部署の職員データを表示・編集できないこと。</p>
+</section>
+<section id="L141" data-source-start="141" data-source-end="141">
 <p>管理者が他部署の職員データを扱える例外は、現時点では定義しない。管理者であることによる所属部署制限の解除は、本書の要件に含めない。</p>
-<p><code>COMMON-AUTH-001</code>：上表の閲覧・編集・職員を伴う画面遷移と、検索／一覧／更新の所属部署制限をまとめて追跡する。<code>COMMON-AUTH-002</code>：SCR-006への管理者限定遷移とホームのボタン活性／非活性を追跡する。ボタンの表示状態だけでサーバー側の権限確認を代替しない。管理者も所属部署制限の例外とはしない。</p>
+</section>
+<section id="L143" data-source-start="143" data-source-end="143">
+<p>
+<code>COMMON-AUTH-001</code>：上表の閲覧・編集・職員を伴う画面遷移と、検索／一覧／更新の所属部署制限をまとめて追跡する。<code>COMMON-AUTH-002</code>：SCR-006への管理者限定遷移とホームのボタン活性／非活性を追跡する。ボタンの表示状態だけでサーバー側の権限確認を代替しない。管理者も所属部署制限の例外とはしない。</p>
+</section>
+<section id="L145" data-source-start="145" data-source-end="147">
 <h2 id="6-別途定義する事項">6. 別途定義する事項</h2>
+</section>
+<section id="L147" data-source-start="147" data-source-end="151">
 <ul>
 <li>モーダル、条件分岐、外部処理の詳細。本書で確定した所属部署・管理者の制限を前提とする。</li>
 <li>SCR-005は8章を適用する。その他の画面の入力項目・表示項目・詳細機能は別途定義。</li>
@@ -277,235 +509,285 @@
 <li>ログイン認証、所属部署・管理者区分の取得元と判定方法。</li>
 <li>SCR-002の未保存データを伴う遷移は9.7に定義。その他の画面における未選択・未保存時の扱いは別途定義。</li>
 </ul>
+</section>
+<section id="L153" data-source-start="153" data-source-end="155">
 <h2 id="7-変更履歴">7. 変更履歴</h2>
+</section>
+<section id="block-L155" data-source-start="155" data-source-end="174">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L155">
 <th>文書版</th>
 <th>変更内容</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L157">
 <td>1.6</td>
 <td>人給連携モック承認・I1～I12の画面と操作要件を追加（改修先、実装未検証）</td>
 </tr>
-<tr>
+<tr id="L158">
 <td>1.5</td>
 <td>E・F・G・遡及差額の状態遷移と、Fの認定期間による終了を定義</td>
 </tr>
-<tr>
+<tr id="L159">
 <td>1.4</td>
 <td>将来業務の給与班・局担当者・職員本人の対象範囲と、SCR-006ルール管理権限を定義。現行の権限設定と区別</td>
 </tr>
-<tr>
+<tr id="L160">
 <td>1.3</td>
 <td>E・F・給与ルール管理と遡及差額の配置を追加。独立した遡及差額画面は将来対象であり、現行6画面は維持</td>
 </tr>
-<tr>
+<tr id="L161">
 <td>1.2</td>
 <td>将来業務Gの決定結果登録・確認を社会保険・税固定控除の既存タブへ配置。現行アプリの実装とは区別</td>
 </tr>
-<tr>
+<tr id="L162">
 <td>1.1</td>
 <td>1～5章の既存要件に画面一覧・往復遷移・対象受渡し・所属／管理者制限の追跡IDを8件付与。要件の内容と未決事項は維持</td>
 </tr>
-<tr>
+<tr id="L163">
 <td>1.0</td>
 <td>単一アプリの測定・公開判定へ旧安定版反映文言を修正。未採番だったSCR-001上部操作・全画面比率・軽量化測定にIDを追加。外部サインインと画面内機能を区別</td>
 </tr>
-<tr>
+<tr id="L164">
 <td>0.9</td>
 <td>全画面共通余白、SCR-002のタブ・表・検索結果・編集・給与簿表示、SCR-005のスクロール起点を追加。給与簿を常時読み取り専用とした。</td>
 </tr>
-<tr>
+<tr id="L165">
 <td>0.8</td>
 <td>SCR-001スマホ用所属選択と上部操作、SCR-002の固定ヘッダー・スクロール・検索一覧・配色・操作ボタン・取得日時を追加。</td>
 </tr>
-<tr>
+<tr id="L166">
 <td>0.7</td>
 <td>SCR-002軽量化要件を追加。左検索・右詳細を維持し、6タブ、共通2列詳細、通勤HTML、基準給与簿163項目の動的支給月列、画面領域比率、Screen1改名方針を定義。</td>
 </tr>
-<tr>
+<tr id="L167">
 <td>0.6</td>
 <td>SCR-005の修正画像、配置・計算・項目対応・内蔵データ・操作・YAML受入要件を追加。控除見出し直下の加算式を削除。</td>
 </tr>
-<tr>
+<tr id="L168">
 <td>0.5</td>
 <td>GitHubでのMermaid構文エラーを修正。折返し点の空文字ラベルを空白1文字へ変更。</td>
 </tr>
-<tr>
+<tr id="L169">
 <td>0.4</td>
 <td>画面2と5の相互遷移線を、右側の配線専用列と折返し点を経由する経路へ変更。画面の配置順・遷移要件は維持。</td>
 </tr>
-<tr>
+<tr id="L170">
 <td>0.3</td>
 <td>階層グループを導入。左に第1階層（画面1）、右に第2階層（画面2～6）を置き、第2階層を2・3・4・5・6の順に縦配置。既存の遷移・権限制御は維持。</td>
 </tr>
-<tr>
+<tr id="L171">
 <td>0.2</td>
 <td>画面2を画面3の左へ配置。ホームの各画面名ボタン、各画面のホームボタン、アカウント・選択職員情報の引継ぎ、所属部署制限、管理者限定メンテナンス遷移を定義。別途定義事項を整理。</td>
 </tr>
-<tr>
+<tr id="L172">
 <td>0.1</td>
 <td>指定された6画面と7方向の遷移を初版として定義。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L174" data-source-start="174" data-source-end="176">
 <h2 id="8-scr-005-支給明細画面canvas-ui作成要件">8. SCR-005 支給明細画面：Canvas UI作成要件</h2>
+</section>
+<section id="L176" data-source-start="176" data-source-end="178">
 <h3 id="81-適用範囲と参照資料">8.1 適用範囲と参照資料</h3>
+</section>
+<section id="L178" data-source-start="178" data-source-end="178">
 <p>2026/09/18の修正デザインを、次回の貼付用YAML／Power Fx作成の基準とする。今回の成果は要件と画像であり、YAML実装・Studio検証・公開・Dataverse変更は未実施。</p>
+</section>
+<section id="L180" data-source-start="180" data-source-end="183">
 <ul>
-<li><a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/records/docs/design/images/scr-005-payroll-detail-v1.png">確定配置のデザイン案 PNG</a></li>
-<li><a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/basic/design-system.md">B案デザイン基準</a></li>
-<li><a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/other/docs/prototypes/attendance-payroll-prototype.md">旧2画面プロトタイプ</a>：勤務日数・欠勤時間の集計方法を参考にする。SCR-005の旧レイアウトと「基本額−欠勤控除＋超過勤務手当」の合計は本節に置き換える。旧YAMLが本節対応済みであるとは扱わない。</li>
-<li><a href="docs--design--basic--data-model.html">通勤テーブル定義</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/config/dataverse/payrollledger-columns.json">基準給与簿項目定義</a></li>
+<li>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/design/images/scr-005-payroll-detail-v1.png">確定配置のデザイン案 PNG</a>
+</li>
+<li>
+<a href="docs--design--basic--design-system.html" data-keep-context>B案デザイン基準</a>
+</li>
+<li>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/other/docs/prototypes/attendance-payroll-prototype.md">旧2画面プロトタイプ</a>：勤務日数・欠勤時間の集計方法を参考にする。SCR-005の旧レイアウトと「基本額−欠勤控除＋超過勤務手当」の合計は本節に置き換える。旧YAMLが本節対応済みであるとは扱わない。</li>
+<li>
+<a href="docs--design--basic--data-model.html" data-keep-context>通勤テーブル定義</a>、<a href="config--dataverse--payrollledger-columns.json.html" data-keep-context>基準給与簿項目定義</a>
+</li>
 </ul>
+</section>
+<section id="L185" data-source-start="185" data-source-end="185">
 <p>画像は配置の参考。数値・文字列・データ型・状態・操作は本書を正とし、画像を背景に貼る実装ではなく、各表示をCanvasコントロールとして構成する。画像の職員番号の桁数を転記せず、実装では12桁文字列を使用する。</p>
-<p><img src="../../records/docs/design/images/scr-005-payroll-detail-v1.png" alt="SCR-005 支給明細画面デザイン案 v1"></p>
+</section>
+<section id="L187" data-source-start="187" data-source-end="187">
+<p>
+<img src="../assets/source-scr-005-payroll-detail-v1.png" alt="SCR-005 支給明細画面デザイン案 v1">
+</p>
+</section>
+<section id="L189" data-source-start="189" data-source-end="191">
 <h3 id="82-表示順構成">8.2 表示順・構成</h3>
+</section>
+<section id="block-L191" data-source-start="191" data-source-end="209">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L191">
 <th>要件ID</th>
 <th>領域</th>
 <th>表示・構造</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L193">
 <td>SCR005-UI-001</td>
 <td>ヘッダー</td>
 <td>「非常勤給与 ｜ 支給明細画面」、ホーム、画面ID「SCR-005」。画面IDは右上のみ</td>
 </tr>
-<tr>
+<tr id="L194">
 <td>SCR005-UI-002</td>
 <td>対象・操作</td>
 <td>支給対象月、職員番号、氏名、所属、職員マスタ検索、再計算。氏名・所属・金額・単価は参照表示。対象職員は検索画面で選択する</td>
 </tr>
-<tr>
+<tr id="L195">
 <td>SCR005-UI-003</td>
 <td>仮例の案内</td>
 <td>内蔵データでは上部に「画面確認用の仮例｜金額・料率・適用区分は未確定」。下端には同趣旨の補記を置かない</td>
 </tr>
-<tr>
+<tr id="L196">
 <td>SCR005-UI-004</td>
 <td>上部サマリー</td>
 <td>「給与支給総額 − 控除額計 ＝ 現金支給額」を金額付きで表示。現金支給額を強調。本文スクロール中も見える固定領域に置く</td>
 </tr>
-<tr>
+<tr id="L197">
 <td>SCR005-UI-005</td>
 <td>内訳操作</td>
 <td>「支給の内訳」「控除の内訳」で対応する本文の開閉を切替。初期は両方展開。開閉状態は文字・アイコンでも示す</td>
 </tr>
-<tr>
+<tr id="L198">
 <td>SCR005-UI-006</td>
 <td>支給見出し</td>
 <td>「給与支給総額の内訳」と右端に給与支給総額</td>
 </tr>
-<tr>
+<tr id="L199">
 <td>SCR005-UI-007</td>
 <td>支給の式</td>
 <td>見出しの直下、俸給支給額の前の白背景に「俸給支給額 193,750円 ＋ 通勤手当 6,250円 ＝ 200,000円」。実装では動的な金額</td>
 </tr>
-<tr>
+<tr id="L200">
 <td>SCR005-UI-008</td>
 <td>俸給支給額</td>
 <td>見出しに俸給支給額。内部に「固定額 − 欠勤減額 ＝ 俸給支給額」、その下に固定額と欠勤減額の2段を入れ子で表示</td>
 </tr>
-<tr>
+<tr id="L201">
 <td>SCR005-UI-009</td>
 <td>固定額</td>
 <td>項目名、日額単価、×、勤務日数、＝、算出額</td>
 </tr>
-<tr>
+<tr id="L202">
 <td>SCR005-UI-010</td>
 <td>欠勤減額</td>
 <td>項目名、欠勤時間単価、×、欠勤時間、＝、算出額。「全日欠勤は勤務日数・欠勤減額に含めません」の案内</td>
 </tr>
-<tr>
+<tr id="L203">
 <td>SCR005-UI-011</td>
 <td>通勤手当</td>
 <td>見出しと当月額、支給方式、適用期間、認定済み当月支給額の参照根拠。毎月固定の例は「通勤毎月 6,250円 → 通勤9月 6,250円」</td>
 </tr>
-<tr>
+<tr id="L204">
 <td>SCR005-UI-012</td>
 <td>控除見出し</td>
 <td>「控除額計の内訳」、対象区分「当給与期間分」、右端に控除額計。直下は「社会保険関係」。間に控除額の足し算式を置かない</td>
 </tr>
-<tr>
+<tr id="L205">
 <td>SCR005-UI-013</td>
 <td>社会保険関係</td>
 <td>8.4の先頭5項目を「項目名／算出根拠／金額」の3列で表示し、最後に社会保険料計の小計</td>
 </tr>
-<tr>
+<tr id="L206">
 <td>SCR005-UI-014</td>
 <td>税・その他</td>
 <td>所得税、住民税、貯金預入を同じ3列で表示。貯金預入が本文の最終行</td>
 </tr>
-<tr>
+<tr id="L207">
 <td>SCR005-UI-015</td>
 <td>縦スクロール</td>
 <td>支給対象月から「職員マスタ検索」ボタンまでの対象・操作欄はスクロール領域の外に置く。その欄より下の内訳本文を縦スクロールできるようにする。上部サマリーは従来どおり固定し、最後の貯金預入まで到達できること</td>
 </tr>
-</tbody></table>
-<p><strong>表示しないもの：</strong> 通勤手当の後の給与支給総額カード、税・その他の後の控除額計カード、控除見出し直下の加算式、最下部の現金支給額カード、最下部の「計算根拠・料率は仮例～定義します」の補記、右下の画面ID。上部サマリー・各内訳見出しの金額・社会保険料計は維持する。</p>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L209" data-source-start="209" data-source-end="209">
+<p>
+<strong>表示しないもの：</strong> 通勤手当の後の給与支給総額カード、税・その他の後の控除額計カード、控除見出し直下の加算式、最下部の現金支給額カード、最下部の「計算根拠・料率は仮例～定義します」の補記、右下の画面ID。上部サマリー・各内訳見出しの金額・社会保険料計は維持する。</p>
+</section>
+<section id="L211" data-source-start="211" data-source-end="213">
 <h3 id="83-計算集計と表示の分離">8.3 計算・集計と表示の分離</h3>
+</section>
+<section id="block-L213" data-source-start="213" data-source-end="224">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L213">
 <th>要件ID</th>
 <th>項目</th>
 <th>計算・扱い</th>
 <th>仮例</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L215">
 <td>SCR005-CALC-001</td>
 <td>勤務日数</td>
 <td>選択職員・対象勤務月の登録済み日別明細のうち通常勤務分が0より大きい日を数える。1日1件を前提に重複を検出</td>
 <td>20日</td>
 </tr>
-<tr>
+<tr id="L216">
 <td>SCR005-CALC-002</td>
 <td>固定額</td>
 <td>日額単価 × 勤務日数。1日所定7時間45分＝465分</td>
 <td>9,750 × 20＝195,000円</td>
 </tr>
-<tr>
+<tr id="L217">
 <td>SCR005-CALC-003</td>
 <td>欠勤減額</td>
 <td>職員基本情報の欠勤時間単価 × 勤務した日の控除対象欠勤分合計 ÷ 60</td>
 <td>1,250 × 1時間＝1,250円</td>
 </tr>
-<tr>
+<tr id="L218">
 <td>SCR005-CALC-004</td>
 <td>俸給支給額</td>
 <td>固定額 − 欠勤減額</td>
 <td>193,750円</td>
 </tr>
-<tr>
+<tr id="L219">
 <td>SCR005-CALC-005</td>
 <td>給与支給総額</td>
 <td>俸給支給額 ＋ 通勤手当</td>
 <td>200,000円</td>
 </tr>
-<tr>
+<tr id="L220">
 <td>SCR005-CALC-006</td>
 <td>社会保険料計</td>
 <td>本試作では8.4の先頭5項目の合計。独立した追加控除項目ではない</td>
 <td>28,200円</td>
 </tr>
-<tr>
+<tr id="L221">
 <td>SCR005-CALC-007</td>
 <td>控除額計</td>
 <td>社会保険料計 ＋ 所得税 ＋ 住民税 ＋ 貯金預入。計算は行うが加算式の行は画面に出さない</td>
 <td>48,200円</td>
 </tr>
-<tr>
+<tr id="L222">
 <td>SCR005-CALC-008</td>
 <td>現金支給額</td>
 <td>給与支給総額 − 控除額計</td>
 <td>151,800円</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L224" data-source-start="224" data-source-end="230">
 <ul>
 <li>全日欠勤は勤務日数から除外し、欠勤減額にも重ねて含めない。実勤務20日と別に全日欠勤日がある場合、固定額は日額×20日。</li>
 <li>勤務日の不足は欠勤として確認・記録された分を対象とする。年休等の有給区分を無条件に欠勤へ置換しない。旧試作の勤務日は通常勤務分＋欠勤分＝465分を前提とする。</li>
@@ -515,108 +797,157 @@
 <li>控除の本番料率・対象区分・課税範囲・法定の個別端数処理は未確定。画像の率で本番計算を確定しない。負の最終額や返納・追給の業務処理も別途定義し、本試作では対象外の状態を表示する。</li>
 <li>最新指定の給与支給総額は俸給支給額＋通勤手当。旧試作の超過勤務手当は今回の画面・合計には加えない。将来の支給項目拡張は別要件とする。</li>
 </ul>
+</section>
+<section id="L232" data-source-start="232" data-source-end="234">
 <h3 id="84-控除の項目名根拠データ対応">8.4 控除の項目名・根拠・データ対応</h3>
+</section>
+<section id="L234" data-source-start="234" data-source-end="234">
 <p>名称は基準給与簿の「〇〇・当給与期間分」の〇〇を使用する。「返納・追給分」は混在させない。以下の論理名は既存定義の参照先であり、試作コレクションから実テーブルへの接続実装を意味しない。</p>
+</section>
+<section id="block-L236" data-source-start="236" data-source-end="248">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L236">
 <th>表示名</th>
 <th>既存論理名</th>
 <th>画面の算出根拠（すべて仮例）</th>
 <th align="right">金額</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L238">
 <td>共済短期掛金</td>
-<td><code>crb3c_mutual_short_current</code></td>
+<td>
+<code>crb3c_mutual_short_current</code>
+</td>
 <td>短期・月額 200,000円 × 仮率4.50%</td>
 <td align="right">9,000円</td>
 </tr>
-<tr>
+<tr id="L239">
 <td>子ども・子育て支援掛金</td>
-<td><code>crb3c_mutual_childcare_current</code></td>
+<td>
+<code>crb3c_mutual_childcare_current</code>
+</td>
 <td>算定基礎額 200,000円 × 仮率0.10%</td>
 <td align="right">200円</td>
 </tr>
-<tr>
+<tr id="L240">
 <td>退職等年金掛金</td>
-<td><code>crb3c_retirement_contribution_current</code></td>
+<td>
+<code>crb3c_retirement_contribution_current</code>
+</td>
 <td>適用区分：対象外（仮例）</td>
 <td align="right">0円</td>
 </tr>
-<tr>
+<tr id="L241">
 <td>厚生年金保険料</td>
-<td><code>crb3c_pension_insurance_current</code></td>
+<td>
+<code>crb3c_pension_insurance_current</code>
+</td>
 <td>厚生年金・月額 200,000円 × 仮率9.00%</td>
 <td align="right">18,000円</td>
 </tr>
-<tr>
+<tr id="L242">
 <td>雇用保険料</td>
-<td><code>crb3c_employment_insurance_current</code></td>
+<td>
+<code>crb3c_employment_insurance_current</code>
+</td>
 <td>対象賃金 200,000円 × 仮率0.50%</td>
 <td align="right">1,000円</td>
 </tr>
-<tr>
+<tr id="L243">
 <td>社会保険料計</td>
-<td><code>crb3c_social_total_current</code></td>
+<td>
+<code>crb3c_social_total_current</code>
+</td>
 <td>上記5項目の小計。控除額計へ二重加算しない</td>
 <td align="right">28,200円</td>
 </tr>
-<tr>
+<tr id="L244">
 <td>所得税</td>
-<td><code>crb3c_income_tax_current</code></td>
+<td>
+<code>crb3c_income_tax_current</code>
+</td>
 <td>税額表参照（仮）：被課税金額165,550円・甲欄・扶養0人。参照結果は表示用の仮値</td>
 <td align="right">3,000円</td>
 </tr>
-<tr>
+<tr id="L245">
 <td>住民税</td>
-<td><code>crb3c_resident_tax_current</code></td>
+<td>
+<code>crb3c_resident_tax_current</code>
+</td>
 <td>税額通知書の当月額（仮）を適用</td>
 <td align="right">7,000円</td>
 </tr>
-<tr>
+<tr id="L246">
 <td>貯金預入</td>
-<td><code>crb3c_savings_current</code></td>
+<td>
+<code>crb3c_savings_current</code>
+</td>
 <td>本人申込額（仮）：毎月10,000円</td>
 <td align="right">10,000円</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L248" data-source-start="248" data-source-end="248">
 <p>対象外の項目も行を残し、0円と対象外の理由を示す。欠落データは0円と区別する。基準給与簿には介護掛金・健康保険料等の他項目もあるが、この9行のデザインには含めない。本番の社会保険料計を常にこの5項目だけで再計算できるとは扱わず、対象項目の拡張・既存小計との整合を本番接続前に定義する。</p>
+</section>
+<section id="L250" data-source-start="250" data-source-end="250">
 <p>算出根拠は金額から逆算して捏造しない。基準給与簿の金額列だけでは料率・通知書・税額表の参照条件が分からないため、内蔵試作では根拠情報も別途保持する。</p>
+</section>
+<section id="L252" data-source-start="252" data-source-end="254">
 <h3 id="85-データ契約と通勤手当">8.5 データ契約と通勤手当</h3>
+</section>
+<section id="L254" data-source-start="254" data-source-end="254">
 <p>今回のUIはアプリ内蔵の架空データで作成可能とする。未定義の実テーブル作成は行わない。共通の初期化箇所にデータを集約し、ラベルやボタンへ同じ数値を重複直書きしない。</p>
+</section>
+<section id="block-L256" data-source-start="256" data-source-end="265">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L256">
 <th>データ群（試作名）</th>
 <th>必要な項目・型</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>職員 <code>colStaff</code></td>
+<tbody>
+<tr id="L258">
+<td>職員 <code>colStaff</code>
+</td>
 <td>StaffNo：12桁文字列、氏名・所属：文字列、DailyRate・AbsenceHourlyRate：数値、所定勤務分：整数465</td>
 </tr>
-<tr>
-<td>勤務 <code>colAttendance</code></td>
+<tr id="L259">
+<td>勤務 <code>colAttendance</code>
+</td>
 <td>StaffNo、勤務日：Date、RegularMinutes・AbsenceMinutes：整数、日区分、登録版</td>
 </tr>
-<tr>
-<td>月登録 <code>colMonths</code></td>
+<tr id="L260">
+<td>月登録 <code>colMonths</code>
+</td>
 <td>StaffNo、勤務月：月初Date、登録済み状態・登録版。0日で登録した月と未登録月を区別</td>
 </tr>
-<tr>
-<td>通勤 <code>colCommute</code></td>
+<tr id="L261">
+<td>通勤 <code>colCommute</code>
+</td>
 <td>職員番号、支給対象月、認定ID、支給方式、適用開始日・終了日、通勤毎月、対象月の支給予定額、根拠表示</td>
 </tr>
-<tr>
-<td>控除 <code>colDeductions</code></td>
+<tr id="L262">
+<td>控除 <code>colDeductions</code>
+</td>
 <td>職員番号、支給対象月、項目コード、表示順、グループ、項目名、適用状態、根拠種別、基礎額・率（任意）、参照条件／通知書等の根拠文字列、金額。社会保険料計は別途導出し二重集計しない</td>
 </tr>
-<tr>
+<tr id="L263">
 <td>計算結果</td>
 <td>対象キー、入力登録版、未丸めの固定額・欠勤減額・俸給・通勤・給与総額・控除小計・控除総額・現金支給額、最終切捨て値、計算状態</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L265" data-source-start="265" data-source-end="269">
 <ul>
 <li>試作では支給対象月と勤務月を同月で関連付ける。本番の締め・翌月支払等の対応は別途定義する。</li>
 <li>通勤の既存列：支給方式 <code>crb3c_method</code>、適用開始日 <code>crb3c_startdate</code>、適用終了日 <code>crb3c_enddate</code>、通勤毎月 <code>crb3c_monthly</code>、通勤9月 <code>crb3c_month09</code>。他月も既存の月別列を使用する。</li>
@@ -624,58 +955,72 @@
 <li>半年定期・毎月精算をこの毎月固定式で代替しない。月途中の変更、複数認定、期間重複の採用規則は未確定として、該当時は要確認にする。未登録と認定済み0円を区別する。</li>
 <li>選択キーは職員番号＋対象月。氏名では結合しない。選択・取得・再計算にも本書5章の所属制限を適用し、ログイン者情報と対象職員情報を混同しない。</li>
 </ul>
+</section>
+<section id="L271" data-source-start="271" data-source-end="273">
 <h3 id="86-操作状態">8.6 操作・状態</h3>
+</section>
+<section id="block-L273" data-source-start="273" data-source-end="284">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L273">
 <th>要件ID</th>
 <th>操作・状態</th>
 <th>振る舞い</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L275">
 <td>SCR005-ACT-001</td>
 <td>ホーム</td>
 <td>SCR-001へ戻る。ログイン者情報を保持</td>
 </tr>
-<tr>
+<tr id="L276">
 <td>SCR005-ACT-002</td>
 <td>職員マスタ検索</td>
 <td>SCR-002へ遷移し、選択職員番号・支給対象月を引き継ぐ。SCR-002から戻る時も選択を反映</td>
 </tr>
-<tr>
+<tr id="L277">
 <td>SCR005-ACT-003</td>
 <td>初期表示</td>
 <td>有効な対象があればデータ確認後に計算表示。未選択なら選択案内を出し再計算を無効化。無関係の職員を自動選択しない</td>
 </tr>
-<tr>
+<tr id="L278">
 <td>SCR005-ACT-004</td>
 <td>再計算</td>
 <td>現在の内蔵データから検証・再計算。処理中は連打を防止。データの登録やDataverseへの書込みは行わない</td>
 </tr>
-<tr>
+<tr id="L279">
 <td>SCR005-ACT-005</td>
 <td>対象・版変更</td>
 <td>職員・対象月・勤務登録版が変わった時点で旧結果を無効化し、再計算を促す。旧結果を新しい対象の数値として残さない</td>
 </tr>
-<tr>
+<tr id="L280">
 <td>SCR005-ACT-006</td>
 <td>未登録・不足・失敗</td>
 <td>未登録勤務、欠勤単価未設定、通勤・控除データ欠落、重複等は理由を表示し、総額は「—」。未登録を0円扱いしない</td>
 </tr>
-<tr>
+<tr id="L281">
 <td>SCR005-ACT-007</td>
 <td>折りたたみ</td>
 <td>支給・控除を独立して開閉。見出し金額と上部サマリーは残す。閉じた領域の高さ・空白を除去し、Tab対象から外す</td>
 </tr>
-<tr>
+<tr id="L282">
 <td>SCR005-ACT-008</td>
 <td>金額0</td>
 <td>登録済みかつ必要情報が揃った0円は「0円」。欠勤なしでも欠勤0時間・減額0円の行を残す</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L284" data-source-start="284" data-source-end="284">
 <p>この画面は表示・試算用とし、保存・確定・支払実行は含めない。内蔵データはアプリ終了・初期化で失われる試作であることを実装説明に記載する。</p>
+</section>
+<section id="L286" data-source-start="286" data-source-end="288">
 <h3 id="87-yaml構成デザイン受入条件">8.7 YAML構成・デザイン・受入条件</h3>
+</section>
+<section id="L288" data-source-start="288" data-source-end="294">
 <ul>
 <li>YAMLはPower Appsへ貼付できるコンテナー単位で作り、初期化Power Fx、必要変数、配置先、依存する遷移先画面を併記する。内部名は既存 <code>scrPayroll</code> との対応を明示する。コントロール版・対応プロパティは実装時のStudioで確認する。</li>
 <li>固定のヘッダー／支給対象月から「職員マスタ検索」ボタンまでの対象・操作欄／サマリー領域と、その下から縦スクロールする内訳領域を分ける。内訳は縦の自動レイアウト、各計算行は横配置を基本とし、固定座標だけで長文を切らない。画像は全体像を示すもので実際の画面高さではない。</li>
@@ -685,192 +1030,266 @@
 <li>実装時の受入ケース：①仮例200,000−48,200＝151,800、②欠勤なし、③全日欠勤を勤務日数と欠勤控除へ二重計上しない、④一部欠勤30分、⑤中間小数と最終切捨て、⑥未登録と登録済み0の区別、⑦対象・登録版変更時の旧結果消去、⑧社会保険料計の二重加算防止、⑨折りたたみ時の空白除去、⑩削除指定6要素の非表示、⑪他部署の参照拒否、⑫長い根拠文・画面末尾の見切れ防止、⑬対象・操作欄が本文スクロールで流れず、欄の下から末尾までスクロールできること。</li>
 <li>完了判定はYAML構文だけでなくStudio貼付・コンパイル・操作・見た目の確認を含める。本要件追記時点ではこれらは未実施。</li>
 </ul>
+</section>
+<section id="L296" data-source-start="296" data-source-end="298">
 <h2 id="9-scr-002-職員マスタ検索詳細軽量化要件">9. SCR-002 職員マスタ検索・詳細：軽量化要件</h2>
+</section>
+<section id="L298" data-source-start="298" data-source-end="300">
 <h3 id="91-適用範囲と優先順位">9.1 適用範囲と優先順位</h3>
-<p>本節は2026-09-24に確定したSCR-002の軽量化要件であり、同画面について本書、<a href="docs--requirements--requirements.html">要件定義書</a>、<a href="docs--design--basic--basic-design.html">基本設計書</a>、<a href="docs--design--detailed--detailed-design.html">詳細設計書</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/records/docs/requirements/ui-v1.20.md">v1.21給与詳細・認定簿軽量化</a>の旧配置と競合する場合は本節を優先する。現行実装の検証記録は履歴として保持し、本節の実装完了を示すものではない。SCR-005支給明細画面は別機能であり、本節の基準給与簿へ統合しない。</p>
+</section>
+<section id="L300" data-source-start="300" data-source-end="300">
+<p>本節は2026-09-24に確定したSCR-002の軽量化要件であり、同画面について本書、<a href="docs--requirements--requirements.html" data-keep-context>要件定義書</a>、<a href="docs--design--basic--basic-design.html" data-keep-context>基本設計書</a>、<a href="docs--design--detailed--detailed-design.html" data-keep-context>詳細設計書</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/docs/requirements/ui-v1.20.md">v1.21給与詳細・認定簿軽量化</a>の旧配置と競合する場合は本節を優先する。現行実装の検証記録は履歴として保持し、本節の実装完了を示すものではない。SCR-005支給明細画面は別機能であり、本節の基準給与簿へ統合しない。</p>
+</section>
+<section id="L302" data-source-start="302" data-source-end="304">
 <h3 id="92-画面構成">9.2 画面構成</h3>
+</section>
+<section id="block-L304" data-source-start="304" data-source-end="314">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L304">
 <th>要件ID</th>
 <th>領域</th>
 <th>要件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L306">
 <td>SCR002-LT-001</td>
 <td>画面名</td>
 <td>Power Apps内部スクリーン名は<code>Screen1</code>から<code>scrStaffMasterSearch</code>へ変更する。画面表示名は「SCR-002 職員マスタ検索・詳細」とする。実装時にStartScreen、Navigate、クロススクリーン参照、テスト、配布スクリプトを一括照合する。既存コントロール名末尾<code>111</code>は一括改名しない</td>
 </tr>
-<tr>
+<tr id="L307">
 <td>SCR002-LT-002</td>
 <td>左領域</td>
 <td>現行の開閉式職員検索・検索結果一覧を維持する。職員選択だけでは自動で閉じず、検索条件、結果、選択職員、ページ位置を保持する</td>
 </tr>
-<tr>
+<tr id="L308">
 <td>SCR002-LT-003</td>
 <td>右領域</td>
 <td>選択職員サマリーと、基本情報、勤務条件、通勤、社会保険、税固定控除、給与簿の6タブを表示する。従来の「給与」表示は「給与簿」へ改称する</td>
 </tr>
-<tr>
+<tr id="L309">
 <td>SCR002-LT-004</td>
 <td>タブ切替</td>
 <td>基本情報、勤務条件、通勤の選択レコード詳細、社会保険、税固定控除は共通の詳細ギャラリーをタブに応じて使い回す。6区分の完成した非表示パネルを同一スクリーンに保持しない</td>
 </tr>
-<tr>
+<tr id="L310">
 <td>SCR002-LT-005</td>
 <td>履歴</td>
 <td>履歴を持つ区分は、複数履歴の場合は短い履歴選択行で対象レコードを選び、1件の場合は選択行を省略し、選択レコードの全項目を詳細ギャラリーへ表示する。複数履歴、現行・過去・予定、0件を識別できること</td>
 </tr>
-<tr>
+<tr id="L311">
 <td>SCR002-LT-006</td>
 <td>2列表示</td>
 <td>基本情報から税固定控除までの5タブは、青背景の項目名と白背景の値を一組とし、横に二組ずつ並べる。見た目・配置を共通化し、項目・値・編集可否はタブごとに渡す。長文も黙って省略せず、折返し、行高、Tooltip等で全文確認可能にする。欠け・重なり・著しい可読性低下が実機で確認された項目だけ、根拠を記録して全幅表示にできる。給与簿は項目名・値の一組を縦に並べ、表示対象月の複数レコードだけ値列を横方向へ増やす。項目名の青・値の白という配色を共通化する</td>
 </tr>
-<tr>
+<tr id="L312">
 <td>SCR002-LT-007</td>
 <td>0件・切替</td>
 <td>検索0件、職員切替、履歴0件では以前の職員・履歴・認定ID・給与値を残さない。職員番号は12桁文字列キーとして扱う</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L314" data-source-start="314" data-source-end="316">
 <h3 id="921-scr-001-ホームの操作配置">9.2.1 SCR-001 ホームの操作配置</h3>
+</section>
+<section id="block-L316" data-source-start="316" data-source-end="321">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L316">
 <th>要件ID</th>
 <th>要件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L318">
 <td>SCR001-UI-001</td>
 <td>画面遷移ボタンおよび確認用の権限切替・所属選択を上部へ集約する。スマートフォンのPlayer上でも「確認用所属」をタップして候補を開き、選択・確定できること。表示のみで選択不能なプルダウンを許容しない</td>
 </tr>
-<tr>
+<tr id="L319">
 <td>SCR001-UI-002</td>
 <td>確認用所属の切替は既存の閲覧・編集権限を拡張する根拠にしない。ログイン者の所属に基づく権限判定と確認用UIの値を区別する</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L321" data-source-start="321" data-source-end="323">
 <h3 id="922-scr-002-画面配置と操作">9.2.2 SCR-002 画面配置と操作</h3>
+</section>
+<section id="block-L323" data-source-start="323" data-source-end="333">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L323">
 <th>要件ID</th>
 <th>要件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L325">
 <td>SCR002-UI-001</td>
 <td>「非常勤職員マスタ検索」のヘッダーは固定し、画面ID「SCR-002」とデータ取得日時を表示する。ホームを画面IDの左側に置く</td>
 </tr>
-<tr>
+<tr id="L326">
 <td>SCR002-UI-002</td>
 <td>ヘッダー直下のボタン群、選択職員のサマリー・基本情報および詳細を同一の縦スクロール対象とする。検索一覧の内部スクロール、給与表の横スクロールは必要に応じて維持する</td>
 </tr>
-<tr>
+<tr id="L327">
 <td>SCR002-UI-003</td>
 <td>文字サイズ切替、支給明細への遷移、「詳細表示」、読み取り／編集モード切替、「保存」など存続する操作をヘッダー直下の操作領域へ集める。操作領域は本文とともにスクロールする。ホームは固定ヘッダー右端の画面IDの左隣に移し、旧ホーム右の独立した年月選択は削除する。給与簿内の表示開始月・表示終了月は残す。既存の「変更を破棄」ボタンは削除する。表示条件と権限制御は既存要件に従う</td>
 </tr>
-<tr>
+<tr id="L328">
 <td>SCR002-UI-004</td>
 <td>左の検索条件を縦一列に配置し、「職員を検索」入力欄に虫眼鏡アイコンを付ける。検索結果は氏名の下に職員番号、在籍・退職・採用前の状態の下に部署略称を表示する。状態は色分けし、文字でも識別できるようにする</td>
 </tr>
-<tr>
+<tr id="L329">
 <td>SCR002-UI-005</td>
 <td>右詳細の背景とギャラリー見出しは社会保険履歴編集画面の参照画像に合わせ、選択と入力値の読みやすさを確保する。勤務条件・通勤・社会保険・税固定控除の長文履歴カードは置かず、複数履歴があるときだけ短い選択行を表示する。履歴一覧へ戻るボタンおよび「保存前、編集対象：テストレコード」のフッターは配置しない</td>
 </tr>
-<tr>
+<tr id="L330">
 <td>SCR002-UI-006</td>
 <td>「最新データを読込」および「検索結果をTSVで出力」ボタンを削除する。画面を開いたままの自動定期更新は行わず、利用者向け画面にブラウザー更新の手順を記載しない</td>
 </tr>
-<tr>
+<tr id="L331">
 <td>SCR002-UI-007</td>
 <td>ヘッダーの「データ取得日時」は、表示対象の初回取得、職員切替時の詳細取得、保存成功後の再取得が成功した時点で更新する。失敗時は時刻のみ更新せず、エラーを明示する。日時は利用者の表示タイムゾーンで示し、対象データを誤認させない</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L333" data-source-start="333" data-source-end="335">
 <h3 id="93-通勤タブとhtml認定簿">9.3 通勤タブとHTML認定簿</h3>
+</section>
+<section id="block-L335" data-source-start="335" data-source-end="343">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L335">
 <th>要件ID</th>
 <th>要件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L337">
 <td>SCR002-COM-001</td>
 <td>通勤タブに認定ID、適用期間、支給方式、主要金額等の認定レコード一覧を表示し、利用者が1件を選択する</td>
 </tr>
-<tr>
+<tr id="L338">
 <td>SCR002-COM-002</td>
 <td>有効な選択レコードがある場合だけ「認定簿表示」を有効化する。クリック時に選択認定GUIDと選択職員の一致を再検証し、別ブラウザータブで正式HTML認定簿を開く</td>
 </tr>
-<tr>
+<tr id="L339">
 <td>SCR002-COM-005</td>
 <td>「認定簿表示」は通勤タブの右上に置く。現行の「選択職員の認定簿を表示」は改名・移動し、認定レコード未選択時は無効にする</td>
 </tr>
-<tr>
+<tr id="L340">
 <td>SCR002-COM-003</td>
 <td>HTML認定簿はA4横2ページをブラウザー印刷から1PDFとして保存でき、Dataverse権限、NULLと0、別職員・旧選択の再利用防止を適用する</td>
 </tr>
-<tr>
+<tr id="L341">
 <td>SCR002-COM-004</td>
 <td>HTML版を正式入口として残し、Canvas内の旧認定簿2ページ、PDFViewer、PDF生成・保存操作、旧PoC入口は軽量化実装時にアプリから削除する。検証記録と旧ソースはGit履歴・検証資料として残すが、正式機能版へ再配置しない</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L343" data-source-start="343" data-source-end="345">
 <h3 id="94-基準給与簿">9.4 基準給与簿</h3>
+</section>
+<section id="L345" data-source-start="345" data-source-end="345">
 <p>「給与簿」タブから開く基準給与簿は、SCR-005支給明細とは別の職員台帳機能とする。件数の直下から最初の「給与期間対象年」を表示し、旧800pxの空白を置かない。</p>
+</section>
+<section id="block-L347" data-source-start="347" data-source-end="355">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L347">
 <th>要件ID</th>
 <th>要件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L349">
 <td>SCR002-PAY-001</td>
 <td>基準給与簿の163項目を定義順どおり縦方向へ表示し、重複・欠落を許さない</td>
 </tr>
-<tr>
+<tr id="L350">
 <td>SCR002-PAY-002</td>
 <td>利用者が表示開始月・表示終了月（年月）を選択する。開始月≦終了月の範囲内で、登録済み給与レコードの支給年月日から得た月だけを横方向へ動的表示する。年度や12か月に固定せず、範囲変更に追随する</td>
 </tr>
-<tr>
+<tr id="L351">
 <td>SCR002-PAY-003</td>
 <td>範囲内に登録レコードのない月は列を表示しない。同じ支給月の複数レコードは正常なものをすべて別列として表示し、月単位の合算・上書き・無条件Firstを行わない。各列に支給年月日、番号、レコード識別子等を示して区別できるようにする。登録の可否条件は登録処理の仕様で別途精査する</td>
 </tr>
-<tr>
+<tr id="L352">
 <td>SCR002-PAY-004</td>
 <td>登録済みレコード内の0、負数、空欄を区別する。未登録月は列を作らず、対象範囲の登録レコードが0件なら空状態を表示する。163項目×表示レコード列の末尾へ到達でき、見出しとセルの対応を誤認しないこと</td>
 </tr>
-<tr>
+<tr id="L353">
 <td>SCR002-PAY-005</td>
 <td>163×表示レコード数のセルコントロールを静的作成せず、縦ギャラリーと横ギャラリー等の反復構造を使用する。ただし項目の縦方向はギャラリー内に独立したスクロールを設けず、画面の内容領域と一緒に全163項目の末尾まで縦スクロールできること。月別の横スクロールは維持する。支給年月日が空欄・解釈不能な行を黙って範囲外として捨てず、例外件数と対象を確認できるようにする</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L355" data-source-start="355" data-source-end="357">
 <h3 id="95-全画面共通の画面領域比率">9.5 全画面共通の画面領域比率</h3>
-<p><code>COMMON-LAYOUT-001</code>：Power Appsが描画する親領域内に業務画面コンテナーを置き、以下の比率をSCR-001～SCR-006へ共通に適用する。比率の定義元を共通化し、画面ごとに定数を複製しない。</p>
+</section>
+<section id="L357" data-source-start="357" data-source-end="357">
+<p>
+<code>COMMON-LAYOUT-001</code>：Power Appsが描画する親領域内に業務画面コンテナーを置き、以下の比率をSCR-001～SCR-006へ共通に適用する。比率の定義元を共通化し、画面ごとに定数を複製しない。</p>
+</section>
+<section id="L359" data-source-start="359" data-source-end="359">
 <p>比率はブラウザー外枠やOSウィンドウ自体の寸法を制御する要件ではない。</p>
+</section>
+<section id="block-L361" data-source-start="361" data-source-end="366">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L361">
 <th>方向</th>
 <th>比率</th>
 <th>算出</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L363">
 <td>横</td>
 <td>左余白4：業務画面56：右余白4</td>
-<td><code>X=Parent.Width*4/64</code>、<code>Width=Parent.Width*56/64</code></td>
+<td>
+<code>X=Parent.Width*4/64</code>、<code>Width=Parent.Width*56/64</code>
+</td>
 </tr>
-<tr>
+<tr id="L364">
 <td>縦</td>
 <td>上余白2：業務画面26：下余白2</td>
-<td><code>Y=Parent.Height*2/30</code>、<code>Height=Parent.Height*26/30</code></td>
+<td>
+<code>Y=Parent.Height*2/30</code>、<code>Height=Parent.Height*26/30</code>
+</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L366" data-source-start="366" data-source-end="366">
 <p>1366×768、1920×1080を主要条件とし、幅900、1100、1600、ブラウザー200％、標準／大きな文字でも、左検索、右詳細2列、タブ、動的月列、主要操作の欠け・重なり・到達不能がないことを確認する。</p>
+</section>
+<section id="L368" data-source-start="368" data-source-end="370">
 <h3 id="96-軽量化の受入条件">9.6 軽量化の受入条件</h3>
-<p><code>SCR002-PERF-001</code>：単一アプリの改修直前・直後を同じ環境、データ量、操作と計測条件で比較し、実測値と未計測項目を残す。過去の全6画面816、SCR-002相当657コントロールは旧版の参考値であって、現在の単一アプリの改修直前値には転記しない。</p>
+</section>
+<section id="L370" data-source-start="370" data-source-end="370">
+<p>
+<code>SCR002-PERF-001</code>：単一アプリの改修直前・直後を同じ環境、データ量、操作と計測条件で比較し、実測値と未計測項目を残す。過去の全6画面816、SCR-002相当657コントロールは旧版の参考値であって、現在の単一アプリの改修直前値には転記しない。</p>
+</section>
+<section id="L372" data-source-start="372" data-source-end="376">
 <ul>
 <li>改修直前に現行の単一App IDから全6画面とSCR-002相当のコントロール数を読戻し、基準値として保存する。</li>
 <li>改修後はコントロール型別・画面別に再集計し、SCR-002相当は150～210を設計目標とする。目標未達だけで不合格にはしないが、差分と残存理由を記録する。</li>
@@ -878,56 +1297,68 @@
 <li>起動、検索、職員切替、タブ切替、履歴選択、HTML認定簿起動、基準給与簿の初期表示・横移動を改修前後で測定する。</li>
 <li>文書更新だけでは実装済み・軽量化完了と判定しない。現在の単一アプリで保存版読戻し、同一App IDの公開版と回帰試験を区別して判定する。別の安定版アプリへの反映を完了条件としない。</li>
 </ul>
+</section>
+<section id="L378" data-source-start="378" data-source-end="380">
 <h3 id="97-画面表示編集の追加要件2026-09-25確定">9.7 画面表示・編集の追加要件（2026-09-25確定）</h3>
+</section>
+<section id="block-L380" data-source-start="380" data-source-end="393">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L380">
 <th>要件ID</th>
 <th>要件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L382">
 <td>SCR002-UI-008</td>
 <td>6タブは選択・非選択が形、枠、背景、文字で判別できるタブ型UIとし、通常の操作ボタン群と見分けられること。添付の選択タブ画像を参考とし、色だけに選択状態を依存しない</td>
 </tr>
-<tr>
+<tr id="L383">
 <td>SCR002-UI-009</td>
 <td>検索結果で選択した職員は、氏名・職員番号・在籍／退職区分・部署略称を含む行全体を同じ選択用の青背景でつなぐ。氏名と職員番号の間、状態と部署略称の間の白い帯をなくし、職員番号欄だけ異なる背景を残さない。未選択の行と区別できる左マーカーと選択状態表示を維持する</td>
 </tr>
-<tr>
+<tr id="L384">
 <td>SCR002-UI-010</td>
 <td>タブ内冒頭の不要なテキストボックスを削除する。履歴レコードの選択に必要な操作と、その識別情報は維持する</td>
 </tr>
-<tr>
+<tr id="L385">
 <td>SCR002-EDIT-001</td>
 <td>SCR-002を開いたときは読み取りモードとする。読み取り／編集モードの切替操作を置き、編集モードで基本情報、勤務条件、通勤、社会保険、税固定控除の編集可能な値を変更できる。給与簿タブは両モードとも全項目読み取り専用とする</td>
 </tr>
-<tr>
+<tr id="L386">
 <td>SCR002-EDIT-002</td>
 <td>保存時は変更された編集可能項目を、選択職員・選択履歴レコード・所属部署権限を確認したうえで対応するDataverseレコードへ反映する。保存成功後に再取得して読み取りモードへ戻す。給与簿への書込みは行わない。実データ接続や更新先が未整備の項目を、保存に成功したように扱わない</td>
 </tr>
-<tr>
+<tr id="L387">
 <td>SCR002-EDIT-003</td>
 <td>編集中にタブを移っても未保存の入力を保持する。未保存の変更があるまま別画面への遷移または別職員の選択を試みたら、「変更を破棄して移動しますか」を確認し、続行を選んだ場合だけ破棄・移動する。キャンセルなら現在の職員と入力を保持する。保存失敗時も入力を保持し、エラーを示す</td>
 </tr>
-<tr>
+<tr id="L388">
 <td>SCR002-EDIT-004</td>
 <td>画面上の「変更を破棄」ボタンは置かない。読み取りモードへの切替で未保存の変更が失われる場合にも破棄確認を出す</td>
 </tr>
-<tr>
+<tr id="L389">
 <td>SCR002-PAY-006</td>
 <td>「給与簿」の表示開始月と表示終了月のそれぞれの入力欄の直横に、対応するカレンダー切替操作を配置する</td>
 </tr>
-<tr>
+<tr id="L390">
 <td>SCR002-PAY-007</td>
 <td>給与簿末尾の「セルを選択すると、ここに全文を表示します。」欄を削除する。長文・識別子の全文確認はセルの折返しや補助表示で確保する</td>
 </tr>
-<tr>
+<tr id="L391">
 <td>SCR002-PAY-008</td>
 <td>「項目（163項目）」行とその隣の欄を削除する。給与期間対象年以降は独立した縦スクロールを設けず、画面の内容領域全体で163項目を縦に移動できるようにする。項目名と各支給月列の対応を保つ</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L393" data-source-start="393" data-source-end="395">
 <h3 id="98-今回の変更の受入条件">9.8 今回の変更の受入条件</h3>
+</section>
+<section id="L395" data-source-start="395" data-source-end="400">
 <ul>
 <li>6画面をフルスクリーンで開き、上下左右の余白が共通比率で保たれ、狭幅や200%拡大でも必要な操作へ到達できる。</li>
 <li>SCR-002の6タブで選択状態、共通の青／白表、給与簿の月別列例外、検索結果の職員番号を含む連続した選択背景を確認する。</li>
@@ -936,135 +1367,188 @@
 <li>SCR-005では対象・操作欄とサマリーを維持したまま、その下の内訳を最後の貯金預入まで縦スクロールできる。</li>
 <li>本節は要件の確定を記録する。実装・Studio検証・同一App IDの公開・公開Playerの確認はそれぞれ別途証跡で判定する。旧安定版への配布を現行の完了条件としない。</li>
 </ul>
+</section>
+<section id="L402" data-source-start="402" data-source-end="404">
 <h2 id="10-将来業務gの画面配置業務機能要件に対応未実装">10. 将来業務Gの画面配置（業務・機能要件に対応、未実装）</h2>
-<p><a href="docs--requirements--business-requirements.html#g-%E5%A4%96%E9%83%A8%E6%A9%9F%E9%96%A2%E3%81%A8%E3%81%AE%E6%89%8B%E7%B6%9A%E3%81%8D">業務要件G</a>、<a href="docs--requirements--requirements.html">FR-G-01～04</a>に対応する画面配置。SCR-002の既存6タブ構成は維持し、新しい「外部手続き」タブやアプリ内電子申請操作を設けない。下表は将来の画面要件であり、現行画面で操作可能と判定したものではない。</p>
+</section>
+<section id="L404" data-source-start="404" data-source-end="404">
+<p>
+<a href="docs--requirements--business-requirements.html#g-%E5%A4%96%E9%83%A8%E6%A9%9F%E9%96%A2%E3%81%A8%E3%81%AE%E6%89%8B%E7%B6%9A%E3%81%8D" data-keep-context>業務要件G</a>、<a href="docs--requirements--requirements.html" data-keep-context>FR-G-01～04</a>に対応する画面配置。SCR-002の既存6タブ構成は維持し、新しい「外部手続き」タブやアプリ内電子申請操作を設けない。下表は将来の画面要件であり、現行画面で操作可能と判定したものではない。</p>
+</section>
+<section id="block-L406" data-source-start="406" data-source-end="413">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L406">
 <th>画面要件ID</th>
 <th>配置・操作</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L408">
 <td>SCR002-G-001</td>
 <td>共済組合・社会保険・ハローワークに関わる外部機関の決定結果の登録・確認操作は、SCR-002の「社会保険」タブに置く。</td>
 </tr>
-<tr>
+<tr id="L409">
 <td>SCR002-G-002</td>
 <td>転職者の住民税に関わる外部機関の決定結果の登録・確認操作は、SCR-002の「税固定控除」タブに置く。住民税年度更新の未確定要件とは区別する。</td>
 </tr>
-<tr>
+<tr id="L410">
 <td>SCR002-G-003</td>
 <td>紙・電子いずれの決定結果も、その手続きを担当した局担当者または会計課給与班の担当者が登録する。アプリ内の電子申請、決定結果の自動取込、申請・受付状況の一覧・進捗管理の操作は配置しない。</td>
 </tr>
-<tr>
+<tr id="L411">
 <td>SCR002-G-004</td>
 <td>決定結果は「登録（確認待ち）→給与班の確定」とし、給与計算に影響する内容は確定前に使用しない。給与班が同じ社会保険・税固定控除の各タブで内容・対象職員を確認して確定する操作を置く。外部機関の決定内容を給与班が採否判定する操作は設けない。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L413" data-source-start="413" data-source-end="413">
 <p>既存の<code>SCR002-EDIT-001～004</code>は詳細項目の表示・編集・保存に関する要件であり、決定結果の登録と給与班の確認・確定が実装済みであることを意味しない。職員本人・局担当者・会計課給与班の対象範囲は12章の将来権限を適用する。現行の<code>COMMON-AUTH-001</code>による所属部署制限との切替・共存と実効ロールの判定方法は後続設計で決める。決定結果の個別項目と入力検証は後続の項目定義で扱う。G-03の二重申請防止は申請操作がアプリ外となるため実現方法未決であり、本節に画面操作を追加しない。</p>
+</section>
+<section id="L415" data-source-start="415" data-source-end="417">
 <h2 id="11-将来業務ef給与ルール遡及差額の画面配置未実装">11. 将来業務E・F・給与ルール・遡及差額の画面配置（未実装）</h2>
+</section>
+<section id="L417" data-source-start="417" data-source-end="417">
 <p>2026-09-28の一問一答で決定した配置。現行の画面一覧・画面遷移図は現在の6画面を示す。下表のデータ一括取込画面と遡及差額の独立画面は将来追加する対象であり、現行の<code>COMMON-SCREEN-001</code>に実装済みという意味ではない。遡及差額の最終配置と画面遷移の詳細は後続で決める。</p>
+</section>
+<section id="block-L419" data-source-start="419" data-source-end="427">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L419">
 <th>画面要件ID</th>
 <th>対応する機能</th>
 <th>配置と画面上の役割</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L421">
 <td>SCR002-E-001</td>
 <td>FR-AD-01～03、FR-E-01～03</td>
 <td>SCR-002左側の既存検索領域に「給与情報の確認待ち」の絞込みと候補選択を追加する。修正後に確認待ちへ戻った候補も絞込み対象に含める。右側の詳細領域で選択した候補の不足・不整合の確認、修正、会計課給与班の確定・再確定を扱う。Excel一括取込操作はSCR-001ホームのボタンから開く専用画面で行い、この検索領域には置かない。</td>
 </tr>
-<tr>
+<tr id="L422">
 <td>FUT-IMPORT-001</td>
 <td>FR-E-01</td>
 <td>SCR-001ホームに「データ一括取込み」ボタンを追加し、専用画面を開く。異動情報アプリのExcelについて行ごとに取込結果と不備・重複の可能性を表示し、会計課給与班が注意のある行の取込可否を判断する。画面IDや詳細項目は後続設計で決める。</td>
 </tr>
-<tr>
+<tr id="L423">
 <td>SCR002-F-001</td>
 <td>FR-F-01～04</td>
 <td>SCR-002の既存「通勤」タブで届出・差戻し・再提出・認定・変更時の再認定・認定終了を扱う。差戻し理由はシステム外で連絡し、再提出操作は同タブ内に置く。認定簿の出力操作は同タブの既存HTML認定簿入口との整合を確認する。病気・欠勤時の一時的な不支給を認定終了と混同しない。</td>
 </tr>
-<tr>
+<tr id="L424">
 <td>SCR006-RULE-001</td>
 <td>FR-AUTH-04、PAYREQ-09</td>
 <td>SCR-006の単価・区分等の業務マスタ登録・改定は業務マスタ管理者に許可する。給与班との兼務可能。システム管理権限は別。従来の給与班のみという将来要件をQ55・R21で更新する。</td>
 </tr>
-<tr>
+<tr id="L425">
 <td>SCR007-DIFF-001</td>
 <td>FR-PAY-01/02</td>
 <td>遡及差額の確認・確定には、まず既存SCR-005の試算画面と区別した独立画面を設ける。対象職員の計算結果を一覧から選び、差額の内訳を確認して会計課給与班が確定する。画面IDは将来対象の識別のため<code>SCR-007</code>と仮置きする。完成後にSCR-002のタブとする可能性を再検討する（未決一覧D-08）。遷移元と支給・返納操作の範囲は後続設計で決める。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L427" data-source-start="427" data-source-end="427">
 <p>Gの決定結果は10章の<code>SCR002-G-001～004</code>に従い、SCR-002の社会保険・税固定控除タブへ分ける。E・F・Gの追加によって既存の<code>SCR002-LT-003</code>の6タブ構成を増やさない。給与簿の読取り専用要件<code>SCR002-EDIT-001</code>、現行SCR-005の内蔵仮例、現行SCR-006の管理者限定を実装済みの将来業務に読み替えない。</p>
+</section>
+<section id="L429" data-source-start="429" data-source-end="431">
 <h2 id="12-将来業務の役割別対象範囲現行権限とは別">12. 将来業務の役割別対象範囲（現行権限とは別）</h2>
-<p><a href="docs--requirements--business-requirements.html">業務要件AUTH-01～04</a>と<a href="docs--requirements--requirements.html">機能要件FR-AUTH-01～04</a>に基づく、E・F・G・給与ルール・遡及差額に共通の将来権限。現行<code>COMMON-AUTH-001/002</code>は同一部署の職員データとSCR-006管理者に関する現行要件であり、下表を追記しただけで公開アプリの権限は変更されない。</p>
+</section>
+<section id="L431" data-source-start="431" data-source-end="431">
+<p>
+<a href="docs--requirements--business-requirements.html" data-keep-context>業務要件AUTH-01～04</a>と<a href="docs--requirements--requirements.html" data-keep-context>機能要件FR-AUTH-01～04</a>に基づく、E・F・G・給与ルール・遡及差額に共通の将来権限。現行<code>COMMON-AUTH-001/002</code>は同一部署の職員データとSCR-006管理者に関する現行要件であり、下表を追記しただけで公開アプリの権限は変更されない。</p>
+</section>
+<section id="block-L433" data-source-start="433" data-source-end="440">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L433">
 <th>画面要件ID</th>
 <th>利用者</th>
 <th>対象範囲と画面操作の境界</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L435">
 <td>FUT-AUTH-001</td>
 <td>会計課給与班</td>
 <td>所属部署を問わず全対象職員について、担当する修正・確定、通勤認定、外部機関の決定結果確認、遡及差額の確認・確定を行える。SCR-006の業務マスタ登録・改定には業務管理者ロールも必要で、兼務可能。</td>
 </tr>
-<tr>
+<tr id="L436">
 <td>FUT-AUTH-002</td>
 <td>局担当者</td>
 <td>自局の勤務・申請・支給明細と必要な共通職員基本情報に限定。他局分・全局集計と給与班専属操作は許可しない（R15）。</td>
 </tr>
-<tr>
+<tr id="L437">
 <td>FUT-AUTH-003</td>
 <td>職員本人（将来）</td>
 <td>本人の参照・通勤提出・自己認定簿出力は将来追加。初回は対象外。追加時は自己分に限定（Q54）。</td>
 </tr>
-<tr>
+<tr id="L438">
 <td>FUT-AUTH-004</td>
 <td>業務マスタ管理</td>
 <td>業務管理者がSCR-006の給与単価・区分等を管理。給与班と兼務可能。アプリ／Dataverseのシステム管理権限は別（Q55・R21）。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L440" data-source-start="440" data-source-end="440">
 <p>対象職員の検索・詳細表示だけでなく、履歴レコードの選択、保存・確定、認定簿出力、SCR-002と他画面の遷移先でも同じ範囲を検証する。ログイン者の役割・担当部署略称・職員本人との対応、複数役割の場合の優先順位と現行権限からの移行条件は未決。確認用所属の選択や画面表示の制御を実データの認可と混同しない。</p>
+</section>
+<section id="L442" data-source-start="442" data-source-end="444">
 <h2 id="13-将来業務の状態遷移efg遡及差額">13. 将来業務の状態遷移（E・F・G・遡及差額）</h2>
+</section>
+<section id="L444" data-source-start="444" data-source-end="444">
 <p>業務要件の2026-09-28の一問一答に対応する。状態名は業務上の扱いを示し、保存列・画面コントロール・履歴データの構造は後続の設計で定める。現行のSCR-002／005／006／将来の独立画面で動作確認済みという意味ではない。</p>
+</section>
+<section id="block-L446" data-source-start="446" data-source-end="453">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L446">
 <th>画面要件ID</th>
 <th>対象・画面</th>
 <th>状態と遷移・画面上の条件</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L448">
 <td>FUT-STATE-E</td>
 <td>SCR-002給与情報</td>
 <td>勤務条件・保険・税等を登録→確認待ち→給与班確定、必要時差戻し。訂正後は再確認し、未払い結果は再計算・再照合（Q18・Q27・R11）。採用候補の確認待ち／確定から採用取消への遷移と給与計算除外は既存AD-07の要件として維持する。</td>
 </tr>
-<tr>
+<tr id="L449">
 <td>FUT-STATE-F</td>
 <td>SCR-002通勤タブ</td>
 <td>通勤届は「提出⇄差戻し→認定」。変更時は新たな提出と再認定を行う。受給要件喪失による終了は独立状態とせず、認定期間の開始と終了で管理する。病気・欠勤時の不支給は認定終了と区別する。</td>
 </tr>
-<tr>
+<tr id="L450">
 <td>FUT-STATE-G</td>
 <td>SCR-002社会保険／税固定控除タブ</td>
 <td>外部機関の決定結果は担当者の「登録（確認待ち）→給与班の確定」。給与計算に影響する決定内容は確定前に使わず、確定は外部機関の決定の採否判断を意味しない。</td>
 </tr>
-<tr>
+<tr id="L451">
 <td>FUT-STATE-PAY</td>
 <td>遡及差額の独立画面（仮ID <code>SCR-007</code>）</td>
 <td>計算結果を「確認待ち→給与班の確定」で扱う。支給・返納の実施結果はこの2状態に加えず、差額の確定とは別に記録する。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L453" data-source-start="453" data-source-end="453">
 <p>Eの取消分岐と修正後の再確認を次図に示す。</p>
-<pre><code class="language-mermaid">stateDiagram-v2
+</section>
+<section id="L455" data-source-start="455" data-source-end="465">
+<pre>
+<code class="language-mermaid">stateDiagram-v2
     [*] --&gt; Pending
     state &quot;確認待ち&quot; as Pending
     state &quot;確定&quot; as Confirmed
@@ -1073,133 +1557,187 @@
     Confirmed --&gt; Pending: 修正と履歴保持
     Pending --&gt; Cancelled: 採用取消
     Confirmed --&gt; Cancelled: 採用取消
-</code></pre>
+</code>
+</pre>
+</section>
+<section id="L467" data-source-start="467" data-source-end="467">
 <p>状態ごとに利用できる操作は12章の役割別対象範囲を適用する。差額の実施結果と通勤の認定期間は各状態と別の業務記録であり、具体的なデータ項目は後続の項目定義で扱う。</p>
+</section>
+<section id="L470" data-source-start="470" data-source-end="472">
 <h2 id="scr001003-ui変更change-20261001-scr001-003-ui">SCR001～003 UI変更（CHANGE-20261001-SCR001-003-UI）</h2>
+</section>
+<section id="L472" data-source-start="472" data-source-end="472">
 <p>公開版識別時刻：<code>2026-10-01T00:26:01.1961006Z</code>。同一App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。以下は従来のホーム表示とSCR003明細編集方式に優先する。</p>
+</section>
+<section id="L474" data-source-start="474" data-source-end="474">
 <p>SCR001の操作名は「職員マスタ検索」「勤務時間報告」「期末勤勉支給率登録」「メンテナンス」。4個をキャンバス幅内で横一列の角丸正方形にし、白背景・青枠・青文字、文字サイズ14を維持する。管理者以外のメンテナンス非活性は維持する。「PoCデータ一括取込」は4個の下に置く。支給明細画面へのホーム直接導線を削除し、SCR002の支給明細画面ボタンから進む。</p>
+</section>
+<section id="L476" data-source-start="476" data-source-end="476">
 <p>SCR002はヘッダー内の横線とホーム左側の縦線をヘッダー背景色に合わせ、画面ID枠を削除する。ホームボタン枠は維持する。SCR003は画面IDをヘッダー右側へ配置し共通サイズ、ホーム白文字、共通外余白、通勤日数～欠勤時間の数値右寄せとする。</p>
+</section>
+<section id="L478" data-source-start="478" data-source-end="478">
 <p>SCR003は初期読み取り専用。同画面の「編集モード」で一覧内を編集し「保存」で既存保存フローへ送信する。成功後は再取得して読み取りへ戻る。明細クリックによる別編集画面を廃止する。失敗時は入力を保持し、未保存の読み取り切替は破棄確認する。入力中以外は編集できない。</p>
+</section>
+<section id="L480" data-source-start="480" data-source-end="480">
 <p>所有者公開Playerで配置・ヘッダー・架空10件・編集切替を確認。Studioで備考保存と再表示、元の空欄への復元を確認。専用利用者の選定E2E、同時更新／障害、業務認可、実データ運用、業務受入、総合試験の合格を示すものではない。</p>
+</section>
+<section id="L482" data-source-start="482" data-source-end="484">
 <h2 id="2026-10-07の改修画面契約未実装">2026-10-07の改修画面契約（未実装）</h2>
+</section>
+<section id="block-L484" data-source-start="484" data-source-end="493">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L484">
 <th>対象</th>
 <th>変更後の振る舞い</th>
 <th>未確定事項</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L486">
 <td>SCR-002</td>
 <td>基本＋住所、発令を含む勤務条件履歴、通勤ヘッダー／経路、保険・税・固定控除・月別住民税。給与簿は人給取込の読み取り専用。条件の誤りは元データ訂正→再確認。</td>
 <td>正式列・一般型・検証値・画面部品割付</td>
 </tr>
-<tr>
+<tr id="L487">
 <td>SCR-003</td>
 <td>所属×勤務月。入力中は日数・時間・備考と職員行を編集。報告済みはロック。再取込は追加更新、未掲載行保持、手修正を上書き、空欄クリア。処理中は編集・提出停止。</td>
 <td>途中失敗復旧、必須空欄の検証、並行操作</td>
 </tr>
-<tr>
+<tr id="L488">
 <td>SCR-004</td>
 <td>職員×支給対象期間で期末・勤勉の別率登録。</td>
 <td>正式項目、式、部品割付</td>
 </tr>
-<tr>
+<tr id="L489">
 <td>給与計算・照合</td>
 <td>給与班の計算版実行と個別／所属一括確定。支給回・期間・支給日を区別し、人給との差分ゼロを確定条件にする。</td>
 <td>CSV取込／出力と照合画面の最終配置</td>
 </tr>
-<tr>
+<tr id="L490">
 <td>遡及・追給・返納</td>
 <td>元の支払い済み記録を維持。過去月差額と集約追給行、返納案件の複数回収・残額を確認する。</td>
 <td>SCR-007仮案の最終配置、取消・過回収等</td>
 </tr>
-<tr>
+<tr id="L491">
 <td>通勤HTML</td>
 <td>ヘッダーIDで経路取得。別タブHTML→ブラウザー印刷PDFを維持。新様式受入まで旧版通常入口を残す。</td>
 <td>新モデルの帳票データ契約・経路数上限</td>
 </tr>
-</tbody></table>
-<p>上記は<a href="docs--requirements--payroll-confirmed-20261007.html">PAYREQ-01～10</a>の今後の改修契約。SCR-005の現行内蔵仮例やSCR-003の現行全置換処理が変更済みという意味ではない。本人機能は将来追加。公開済み画面の受入結果を新しい給与業務全体の合格に転用しない。</p>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L493" data-source-start="493" data-source-end="493">
+<p>上記は<a href="docs--requirements--payroll-confirmed-20261007.html" data-keep-context>PAYREQ-01～10</a>の今後の改修契約。SCR-005の現行内蔵仮例やSCR-003の現行全置換処理が変更済みという意味ではない。本人機能は将来追加。公開済み画面の受入結果を新しい給与業務全体の合格に転用しない。</p>
+</section>
+<section id="L496" data-source-start="496" data-source-end="498">
 <h2 id="2026-10-08-人給連携画面承認済みモックi1i12">2026-10-08 人給連携画面：承認済みモック・I1～I12</h2>
-<p>本節は改修先の画面要件。上記の現行6画面一覧・公開版の記録に人給連携を実装済みとして追加しない。正式画面IDは未入力。<a href="docs--requirements--payroll-interface-decisions-20261008.html">決定台帳</a>を根拠とし、モック内の架空値・デモ操作は要件外とする。</p>
+</section>
+<section id="L498" data-source-start="498" data-source-end="498">
+<p>本節は改修先の画面要件。上記の現行6画面一覧・公開版の記録に人給連携を実装済みとして追加しない。正式画面IDは未入力。<a href="docs--requirements--payroll-interface-decisions-20261008.html" data-keep-context>決定台帳</a>を根拠とし、モック内の架空値・デモ操作は要件外とする。</p>
+</section>
+<section id="block-L500" data-source-start="500" data-source-end="514">
+<div class="table-wrap" role="region" tabindex="0" aria-label="screen-requirements.mdの表">
 <table>
 <thead>
-<tr>
+<tr id="L500">
 <th>要件ID</th>
 <th>領域</th>
 <th>確定要件</th>
 <th>決定</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr id="L502">
 <td>JLINK-UI-01</td>
 <td>入口・構成</td>
 <td>ホームから「人給連携」へ。同一画面の「支給回の状況」「出力」「取込・照合」を切り替える</td>
 <td>モック・I3</td>
 </tr>
-<tr>
+<tr id="L503">
 <td>JLINK-UI-02</td>
 <td>共通ヘッダー</td>
 <td>選択支給回の支給日・対象期間・状態を表示し、タブ間で支給回を保持する。計算版の照合対象選択は置かない</td>
 <td>モック・I5</td>
 </tr>
-<tr>
+<tr id="L504">
 <td>JLINK-UI-03</td>
 <td>出力対象</td>
 <td>初回は支給回の全職員を既定対象とし、職員で絞り込める。再出力は差分に対応する明細行を初期選択し変更可能</td>
 <td>I1・I9</td>
 </tr>
-<tr>
+<tr id="L505">
 <td>JLINK-UI-04</td>
 <td>更新区分</td>
 <td>A/Mを一括指定し明細ごとに変更できる。初回A・不一致修正Mの業務判断は職員が行い、自動切替しない</td>
 <td>I2・IF-05</td>
 </tr>
-<tr>
+<tr id="L506">
 <td>JLINK-UI-05</td>
 <td>出力前確認</td>
 <td>支給回・人数・明細数・A/M件数を確認してExcelを出力する</td>
 <td>I4</td>
 </tr>
-<tr>
+<tr id="L507">
 <td>JLINK-UI-06</td>
 <td>取込・照合</td>
 <td>人給給与簿CSVを取り込み、最新版のアプリ計算結果と照合する。給与簿は読取専用。人給取込の成否を手入力する操作は置かない</td>
 <td>I5・I10</td>
 </tr>
-<tr>
+<tr id="L508">
 <td>JLINK-UI-07</td>
 <td>計算変更通知</td>
 <td>出力後に結果が変更された場合「出力後に計算結果が変更されています」を表示し、最新版との再照合へつなぐ</td>
 <td>I7</td>
 </tr>
-<tr>
+<tr id="L509">
 <td>JLINK-UI-08</td>
 <td>差分表示</td>
 <td>初期は差分のみ、全件へ切替可能。職員・対象期間・項目・アプリ値・給与簿値・差額を表示</td>
 <td>I6・I11</td>
 </tr>
-<tr>
+<tr id="L510">
 <td>JLINK-UI-09</td>
 <td>訂正への動線</td>
 <td>差分の原因に応じ勤務条件・勤怠・通勤等の入力画面へ進む。戻った際に支給回・職員を保持する。給与簿の直接訂正はしない</td>
 <td>モック・IF-10</td>
 </tr>
-<tr>
+<tr id="L511">
 <td>JLINK-UI-10</td>
 <td>エラー行</td>
 <td>人給のエラー行をアプリで特定できるようにする。エラー情報の取得・関連付け方式は未入力</td>
 <td>I8・IF-11</td>
 </tr>
-<tr>
+<tr id="L512">
 <td>JLINK-UI-11</td>
 <td>給与班確定</td>
 <td>支給回全体の最新照合が差分ゼロのとき給与班が確定ボタンで確定。確認ダイアログは出さない。差分ゼロだけで自動確定しない</td>
 <td>I12・既存確定要件</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L514" data-source-start="514" data-source-end="514">
 <p>職員絞込み・差分のみ表示は表示／出力対象の操作であり、支給回全体の確定判定範囲を狭めない。未知職員・欠落・余分・重複等の未解決状態を残したまま確定しない。出力前確認（I4）と給与班確定時のダイアログなし（I12）は別操作である。権限は改修先の給与班・自局・本人の既存要件に従い、画面表示だけで認可を代替しない。</p>
-<p>最新版変更時に前回の差分ゼロを確定根拠として再利用しない。計算版・出力・取込回・照合結果は履歴として関連付ける。詳細は<a href="docs--design--detailed--payroll-jinkyu-interface.html">人給連携詳細設計</a>。I9の行対応とI8の取得方式は確定前に実装方式を断定しない。</p>
-</main></body></html>
+</section>
+<section id="L516" data-source-start="516" data-source-end="516">
+<p>最新版変更時に前回の差分ゼロを確定根拠として再利用しない。計算版・出力・取込回・照合結果は履歴として関連付ける。詳細は<a href="docs--design--detailed--payroll-jinkyu-interface.html" data-keep-context>人給連携詳細設計</a>。I9の行対応とI8の取得方式は確定前に実装方式を断定しない。</p>
+</section>
+<section id="L518" data-source-start="518" data-source-end="520">
+<h2 id="dot-001scr005-ui-004015の承認a追補">DOT-001：SCR005-UI-004／015の承認A追補</h2>
+</section>
+<section id="L520" data-source-start="520" data-source-end="521">
+<p>2026-10-10 07:37:54 UTCにAを承認。通常PCのサマリー固定は維持し、狭い・低い表示領域だけ全体を縦横スクロールしてサマリーも移動する。文字・項目は省略しない。公開38の観測と残るフォーカス見切れ・履歴AX差は<a href="docs--requirements--requirements.html" data-keep-context>機能要件のDOT-001節</a>を参照。常時固定という旧行はこの承認範囲に限り更新され、未確認のアクセシビリティ基準を緩和しない。</p>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

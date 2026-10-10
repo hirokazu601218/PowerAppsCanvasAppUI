@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>画面一覧 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="index.html" aria-current="page">画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span aria-current="page">画面一覧</span>
+</nav>
+<div>
+<span class="eyebrow">SCREEN CATALOG</span>
+<h1>画面一覧</h1>
+<p class="lead">画面の目的、表示する内容、入力・確認の流れを見比べます。外部システムと将来の画面は分けて表示しています。</p>
+<div class="actions">
+<a href="../../../review/pay-html-001/navigation.html?context=section-2.2.3" class="button">全体画面遷移図</a>
+<a href="../sections/2.2.1.html#section-2.2.1" class="button">標準要件 画面一覧へ</a>
+</div>
+<div class="notice">「現行実装」は古い資料にある区分です。DOT-001の引継ぎLive38観測と承認Aを反映したモデルです。今回の実機再試験ではなく、正式P/H・選定自動E2E・最終照合は未完了です。</div>
+<div class="section-head">
+<h2>アプリ内の画面</h2>
+</div>
+<div class="card-grid">
+<article class="card">
+<span class="number">SCR-001</span>
+<h3>
+<a href="SCR-001.html#SCR-001" >ログイン画面＆ホーム画面</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>現行4主ボタンから業務画面へ移動。外部Microsoft認証をCanvas内画面とみなさない。</p>
+<div class="meta">ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">SCR-002</span>
+<h3>
+<a href="SCR-002.html#SCR-002" >職員マスタ検索・詳細</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>検索・履歴・6タブ表示の現行画面。E・F・Gの将来業務を既存タブに追加する。</p>
+<div class="meta">会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">SCR-003</span>
+<h3>
+<a href="SCR-003.html#SCR-003" >勤務時間報告画面</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>所属×勤務月の報告。現行は一覧内編集・全置換取込。確定改修要件は追加更新方式。</p>
+<div class="meta">会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">SCR-004</span>
+<h3>
+<a href="SCR-004.html#SCR-004" >期末勤勉支給率登録画面</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>現行6画面の一つ。職員×支給対象期間の期末・勤勉別率は確定改修要件。</p>
+<div class="meta">会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">SCR-005</span>
+<h3>
+<a href="SCR-005.html#SCR-005" >支給明細画面</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>選択職員・対象月の内蔵仮例による支給内訳試算。給与班の本番計算・確定と分ける。</p>
+<div class="meta">会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">SCR-006</span>
+<h3>
+<a href="SCR-006.html#SCR-006" >メンテナンス画面</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>現行管理者限定画面と対象月設定。業務マスタ管理を改修先として整理。</p>
+<div class="meta">業務マスタ管理者 / 現行管理者</div>
+</article>
+</div>
+<div class="section-head">
+<h2>将来機能・試作の境界</h2>
+</div>
+<div class="card-grid">
+<article class="card">
+<span class="number">FUT-IMPORT</span>
+<h3>
+<a href="FUT-IMPORT.html#FUT-IMPORT" >データ一括取込み</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>Eの異動情報Excelを複数職員分取り込み、行別不備・重複候補を確認する専用画面。</p>
+<div class="meta">会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">FUT-JLINK</span>
+<h3>
+<a href="FUT-JLINK.html#FUT-JLINK" >人給連携</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>支給回ごとに出力・給与簿取込・最新照合・給与班確定を行う承認済み構成。</p>
+<div class="meta">会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">SCR-007</span>
+<h3>
+<a href="SCR-007.html#SCR-007" >遡及差額の確認（仮）</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>先行して独立画面で差額結果の確認・確定を扱う。返納操作配置は提案。</p>
+<div class="meta">会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">CUR-IMPORT-POC</span>
+<h3>
+<a href="CUR-IMPORT-POC.html#CUR-IMPORT-POC" >PoCデータ一括取込（現行）</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>現行ホームの4主ボタン下にある既存PoCへの入口。給与登録Eの専用取込とは区別する。</p>
+<div class="meta">ログイン利用者</div>
+</article>
+</div>
+<div class="section-head">
+<h2>アプリ外</h2>
+</div>
+<div class="card-grid">
+<article class="card">
+<span class="number">EXT-COMMUTE</span>
+<h3>
+<a href="EXT-COMMUTE.html#EXT-COMMUTE" >通勤認定簿HTML（別タブ）</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>認定GUIDで再取得する公式様式。ブラウザー印刷からA4横2ページの1PDFを保存。</p>
+<div class="meta">会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">EXT-JINKYU</span>
+<h3>
+<a href="EXT-JINKYU.html#EXT-JINKYU" >人給システム（外部）</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>職員がExcelを取り込み、人給で必要な処理を行い給与簿CSVを出力する外部境界。</p>
+<div class="meta">会計課給与班</div>
+</article>
+</div>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

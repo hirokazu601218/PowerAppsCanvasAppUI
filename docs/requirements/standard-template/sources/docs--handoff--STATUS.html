@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>STATUS.md | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">STATUS.md</span>
+</nav>
+<a class="context-return" data-context-return href="../sources.html">← 出典一覧へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>STATUS.md</h1>
+<p class="meta">docs/handoff/STATUS.md<br>DOT-001・DOT-002最新状態と関連する過去4節の計6節だけの選択抜粋。全履歴はGitHub原文で確認してください。</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/handoff/STATUS.md">この版のGitHub原文</a> / SHA-256: <code>9ccf20b9def5b34913e4a83277c1b85425352289bee4dd80f47f5627d9c33892</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+</div>
+<div class="chips">
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L3" data-source-start="3" data-source-end="5">
+<h2 id="2026-10-10-dot-002-html改善dot-001選択統合ui検証待ち">2026-10-10 DOT-002 HTML改善・DOT-001選択統合（UI検証待ち）</h2>
+</section>
+<section id="L5" data-source-start="5" data-source-end="9">
+<ul>
+<li>対象：<code>docs/requirements-html-20261010</code>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/136">Draft PR #136</a>。baseは維持。PR #137全体を統合せず、DOT-001文書・表示入力・記録だけを選択反映する。</li>
+<li>読取り対象：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/dot/request-list.md">依頼台帳</a>、要件・画面・未決・基本／詳細設計・試験仕様のDOT-001節、両レビューREADME、HTML生成／検査スクリプト。Libraryの指定ZIPと追補を使用し重複時は追補優先。</li>
+<li>148上位見出し・173下位項目、分割HTMLの往復導線、短いモバイル要約を採用。最新正本を基準に生成一致・引用・SHA・リンク・ID・配置・模擬JSを再検証し、結果は<code>records/changes/dot-002/manual-20261010-integration/</code>へ記録する。</li>
+<li>実ブラウザー操作、375/390幅、実機iPhone/Safari/Quick Lookは実行証拠がなければNOT_RUN。静的PASSをUI完了・業務受入に読み替えない。DOT-001正式P/H・自動E2E・最終照合は未完了を維持。</li>
+<li>アプリ・src・Dataverse・フロー・workflow・権限・main・公開版・Web配置は対象外。</li>
+</ul>
+</section>
+<section id="L11" data-source-start="11" data-source-end="13">
+<h2 id="2026-10-10-dot-001-文書html整合検証継続">2026-10-10 DOT-001 文書・HTML整合（検証継続）</h2>
+</section>
+<section id="L13" data-source-start="13" data-source-end="17">
+<ul>
+<li>最新依頼：Work-prompt.txtに基づく台帳・文書・HTML・記録とDraft PR。アプリ・データ・フローは並行変更しない。開始10:22:53 UTC（19:22:53 JST）、60分期限11:22:53 UTC。</li>
+<li>読取り対象：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/dot/request-list.md">依頼台帳</a>、PAY-IMPLEMENT-001要求／選定、各文書DOT-001節、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md">今回記録</a>。</li>
+<li>S‴保存、引継ぎLive38観測・公式Export比較・A承認を記録。下のr6未承認／Live36等は当時の履歴であり最新状態ではない。</li>
+<li>正式P/Hは未取得。GitHub Actions実行画面が未サインインでreadback未実施。最終照合も前提不足で未実施。偽P/H・PASSを作らない。</li>
+<li>関連テスト：文書・HTML静的検査。引継ぎの手動14 UI＋1ソース、ローカル94＋配置3、公開Player観測、名前付き自動15、PR選定19を別扱い。Issue #51・D-07・制度式・実効認可は残件。</li>
+</ul>
+</section>
+<section id="L37" data-source-start="37" data-source-end="39">
+<h2 id="2026-10-08-人給連携モックi1i12の文書反映">2026-10-08 人給連携モック・I1～I12の文書反映</h2>
+</section>
+<section id="L39" data-source-start="39" data-source-end="43">
+<ul>
+<li>最新依頼：承認モックとI1～I12をGitHubの画面要件・設計へ反映。文書のみでアプリ・Dataverse・公開版は変更しない。</li>
+<li>確定：同一画面3タブ、対象・A/M指定、Excel出力前確認、最新版データ照合、変更通知、差分6列と表示切替、差分対応明細の再出力、取込成否の手入力なし、確定ダイアログなし。I1～I3はモック承認を根拠とする。</li>
+<li>読取り対象：画面要件のJLINK節→決定台帳I1～I12→人給連携詳細設計7章→未決事項の最新残件→試験仕様JLINK-T01～08。</li>
+<li>残件：I8エラー情報取得方式、給与簿照合キー・出力行対応、最新結果の識別と同時更新の物理方式、正式画面ID、Excel生成方式・配布先・性能。D9以降の計算式は保留を維持する。</li>
+<li>文書整合・配置を検証する。IF-T・JLINK-Tの業務試験は未実施。過去の受入結果・Issue #51・総合試験D-07の判定は維持する。</li>
+</ul>
+</section>
+<section id="L45" data-source-start="45" data-source-end="47">
+<h2 id="2026-10-08-人給excel出力給与簿csv照合の文書反映">2026-10-08 人給Excel出力・給与簿CSV照合の文書反映</h2>
+</section>
+<section id="L47" data-source-start="47" data-source-end="52">
+<ul>
+<li>最新依頼：確定内容をGitHubへ反映。計算式精査は後回し。従来の通勤作業とは異なるため本依頼を優先する。通勤の最新受入・撤去完了は下記履歴を維持。</li>
+<li>出力xlsx237列・11キー・文字列形式・職員判断A/M・空欄0化を確定。給与簿戻りはCSV。D1～D8確定、D9～D12未回答・保留。</li>
+<li>読取り対象：<a href="docs--design--detailed--payroll-jinkyu-interface.html" data-keep-context>出力仕様</a>→<a href="docs--requirements--payroll-interface-decisions-20261008.html" data-keep-context>決定台帳</a>→給与確定要件・未決PD-02/03→基本／データ／詳細設計の人給節→試験仕様のIF-T項目。</li>
+<li>今回は文書のみ。関連テスト：動作変更は対象外。リンク・用語・文書配置のみ検証。アプリ・Dataverse・Power Automate・公開版・既存受入結果は変更しない。IF-T全件未実施。</li>
+<li>次：生成方式・操作・給与簿照合キーと行対応・エラー受渡方式の詳細化。式精査再開はD9から。複数過去月集約と対象日、賞与・法改正の割当ては未入力。Issue #51、総合試験D-07は未完了。</li>
+<li>Library資料は参考・非正本。利用制限のある実取込ExcelをGitHubへ追加せず、個別値を転記しない。</li>
+</ul>
+</section>
+<section id="L75" data-source-start="75" data-source-end="77">
+<h2 id="2026-10-07-給与要件確定github文書反映">2026-10-07 給与要件確定・GitHub文書反映</h2>
+</section>
+<section id="L77" data-source-start="77" data-source-end="84">
+<ul>
+<li>最新依頼：公開掲載の承認を受領し、作成済みの給与要件文書と通勤新様式の受入完了をGitHubへ反映する。</li>
+<li>
+<a href="docs--requirements--payroll-confirmed-20261007.html" data-keep-context>確定要件</a>：Q1～Q60・R1～R21、PAYREQ-01～10。人給CSV往復・差分ゼロ確定、支払済不訂正、最終計算根拠・照合履歴保持、勤怠取込更新方式、局別権限、分割返納、業務／システム管理分離を反映。</li>
+<li>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/changes/payroll-markdown-change-list-20261007.md">添付２文書の変更対応</a>：10グループ59項目。原文の位置・修正前後・理由・会話根拠を保持。不明な理由・物理名・式は未入力。</li>
+<li>今回は文書のみ。要件・業務・画面・非機能・基本／詳細設計・データモデル・対応表・未決一覧・資料索引を整合。新しい文書種別の現行入力登録はconfig/document-routing.json。</li>
+<li>関連テスト：動作変更は対象外。リンク・記述整合と文書配置を確認する。アプリ・Dataverse・フロー・機械可読列契約・公開版・既存の実測結果を変更しない。新業務の実装・業務受入・性能試験は未実施。</li>
+<li>残件：<a href="docs--requirements--open-decisions.html" data-keep-context>PD-01～09</a>。人給CSV仕様・現行Excel等の資料確認、物理設計・ローコード復旧・性能・権限・保存期間が必要。Issue #51、総合試験D-07は未完了。通勤新様式v1.02の業務受入は下記のユーザー申告でPASS。</li>
+<li>通勤受入：2026-10-07（日本時間）、ユーザーから通勤認定簿の新様式の受入テスト完了の申告を受領し、CHANGE-20261003-COMMUTE-OFFICIALの業務受入をPASSとして記録した。対象は並行配置した公式様式v1.02（公開版 <code>2026-10-03T18:31:30.4607518Z</code>）。申告受領日を記録しており、実際の試験日時・確認レコード・項目別操作ログは未入力。個別の実機印刷設定や全データ組合せの実測証跡へ読み替えない。総合試験D-07と今後の給与モデル再構成の受入は別判定。旧様式の削除・通常ボタンの切替は今回実施しない。</li>
+<li>読取り対象：確定要件→対象グループの変更対応→業務／画面／非機能→基本／データ／詳細設計→未決一覧。Libraryの添付2原文・修正一覧は必要時の参考で、正本はGitHub。無関係な保険画像を読み直す必要はない。</li>
+</ul>
+</section>
+<section id="L102" data-source-start="102" data-source-end="104">
+<h2 id="2026-10-01-scr001003-ui変更公開後照合main統合完了">2026-10-01 SCR001～003 UI変更・公開後照合・main統合完了</h2>
+</section>
+<section id="L104" data-source-start="104" data-source-end="112">
+<ul>
+<li>CHANGE-20261001-SCR001-003-UI。現行同一App IDへ09:26:01 JST公開。公開時刻 <code>2026-10-01T00:26:01.1961006Z</code>、パッケージSHA <code>2f0b2447f3744157fa538d095830990157602f5e1fc596396266b4f5d9c78ff5</code>。</li>
+<li>最終Action <a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36797346142">36797346142</a>は公開メタデータ・パッケージSHA・要件／設計／結合仕様差分・選定単体／結合E2E・最終ゲートすべてPASS。最新PRチェックE2E36797350878、文書照合36797351099、文書配置36797350890もPASS。</li>
+<li>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/124">PR #124</a>を2026-10-01 11:05 JSTにmainへmerge。マージコミット <code>1e0b2b39df99542970ed057494fa65a040256a0e</code>。今回の要求・実装・試験・公開・文書反映・統合の6工程は完了。</li>
+<li>初回E2E7件PASS／3件FAILは履歴。起動待ち、破棄確認ボタン名、描画CSS要素、Confirm後のARIA名消失に対するテスト修正後、最終E2E成功。アプリソースと公開版は維持。</li>
+<li>所有者Studioで架空10件の備考保存・再表示・空欄への完全復元、公開Playerで3画面・モード切替・未保存変更破棄を確認。</li>
+<li>業務受入：2026-10-01 11:55 JST、ユーザーが今回のSCR001～003 UI変更について「受け入れテスト完了。okです。」と申告、PASS。項目別操作ログは未提供。総合試験D-07、実データ運用、業務認可、999件境界、同時更新・途中障害は別判定。</li>
+<li>読取り対象：新たな変更指示があるまで、要求・v1.30・<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/docs/verification/postpublish/change-20261001-scr001-003-ui.json">公開後記録</a>・選定ケース・最終Actions結果。完了詳細は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/change-20261001-scr001-003-ui/manual-20261001-completion/completion.md">実施記録</a>。</li>
+<li>統合後E2E <a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36804181953">36804181953</a>は初回9件PASS／1件起動待ち時間超過、attempt 2で成功。完了記録PR #125もmainへ統合済み。</li>
+<li>受入記録と3文書の最終結果更新：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/b5e5d460fe19169252de05bb02bafc9461120540/records/changes/change-20261001-scr001-003-ui/manual-20261001-acceptance/acceptance.md">受入記録</a>。今回の文書記録作業は11:55 JST開始、12:55 JST期限。関連テスト：動作変更なしにつき対象外。リンク・記述整合と文書配置を確認。</li>
+</ul>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

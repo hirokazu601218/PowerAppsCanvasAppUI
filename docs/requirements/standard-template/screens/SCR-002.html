@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>SCR-002 職員マスタ検索・詳細 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="index.html" aria-current="page">画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >画面一覧</a>
+</span>
+<span aria-current="page">SCR-002 職員マスタ検索・詳細</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 画面一覧へ戻る</a>
+<div>
+<span class="eyebrow">SCREEN / SCR-002</span>
+<h1 id="SCR-002">職員マスタ検索・詳細</h1>
+<p class="lead">検索・履歴・6タブ表示の現行画面。E・F・Gの将来業務を既存タブに追加する。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>既存記録</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>既存区分・出典時点限定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>画面で何をするか</h2>
+<dl class="contract">
+<dt>利用する人</dt>
+<dd>会計課給与班 / 局担当者</dd>
+<dt>どこから開く</dt>
+<dd>
+<a href="../operations/OP-001-STAFF.html?context=screen-SCR-002#OP-001-STAFF" >SCR-001: 職員マスタ検索</a>
+<br>
+<a href="../operations/OP-005-RETURN.html?context=screen-SCR-002#OP-005-RETURN" >SCR-005: 職員詳細へ戻る</a>
+<br>
+<a href="../operations/OP-AD-CANDIDATE.html?context=screen-SCR-002#OP-AD-CANDIDATE" >FUT-IMPORT: 発令情報から候補作成</a>
+<br>
+<a href="../operations/OP-IMPORT-RETURN.html?context=screen-SCR-002#OP-IMPORT-RETURN" >FUT-IMPORT: 確認待ち候補を開く</a>
+<br>
+<a href="../operations/OP-F-RETURN-HTML.html?context=screen-SCR-002#OP-F-RETURN-HTML" >EXT-COMMUTE: 元の通勤タブへ戻る</a>
+<br>
+<a href="../operations/OP-JLINK-CORRECT.html?context=screen-SCR-002#OP-JLINK-CORRECT" >FUT-JLINK: 差分原因の入力画面へ</a>
+</dd>
+<dt>表示する領域</dt>
+<dd>基本情報 / 勤務条件 / 通勤 / 社会保険 / 税固定控除 / 給与簿</dd>
+<dt>入力・確認</dt>
+<dd>編集モードへ / 変更を保存 / 発行職員番号を反映 / 前工程変更の差異確認 / 採用取消を反映 / 実際の条件変更を登録 / 誤登録を訂正 / 内容を確認待ちにする / 給与情報を差し戻す / 給与情報を確定・再確定 / 通勤届を入力 / 通勤届を提出・再提出 / 通勤届を差し戻す / 通勤手当を認定 / 変更届から新認定へ / 一時不支給期間を確認 / 認定期間の終了を確定 / 外部決定結果を登録 / 外部決定結果を確認確定 / 検索条件をクリア / 文字サイズを切替</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>画面構成を確認する</h2>
+<div class="screen-layout">
+<div class="mock-pane">
+<strong>SCR-002</strong>
+<p>会計課給与班 / 局担当者</p>
+<p>対象を選び、内容を確認</p>
+</div>
+<div class="mock-pane">
+<div class="mock-tabs">
+<span>基本情報</span>
+<span>勤務条件</span>
+<span>通勤</span>
+<span>社会保険</span>
+<span>税固定控除</span>
+<span>給与簿</span>
+</div>
+<strong>職員マスタ検索・詳細</strong>
+<p>検索・履歴・6タブ表示の現行画面。E・F・Gの将来業務を既存タブに追加する。</p>
+<p class="meta">構造を説明する略図です。入力項目・配置の確定度は各操作に従います。</p>
+</div>
+</div>
+<div class="actions">
+<a href="../../../review/pay-html-001/wireframes/scr-002.html?context=screen-SCR-002" class="button primary">詳しい画面イメージを開く</a>
+<a href="../../../review/pay-html-001/operations/scr-002.html?context=screen-SCR-002" class="button">画面内の操作をまとめて読む</a>
+</div>
+<p class="meta">画面イメージは架空データのHTMLモックです。Power Appsでの実装・アクセシビリティ・保存・認可を検証済みとは扱いません。</p>
+</section>
+<section class="panel" >
+<h2>この画面の操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-002-SEARCH · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-SEARCH.html?context=screen-SCR-002#OP-002-SEARCH" >職員を検索</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>入力条件を確定し、認可範囲の職員を取得する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-SELECT · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-SELECT.html?context=screen-SCR-002#OP-002-SELECT" >職員を選択</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>12桁番号と所属を再検証し、当該職員の必要データを取得する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-SIDEBAR · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-SIDEBAR.html?context=screen-SCR-002#OP-002-SIDEBAR" >検索欄を開閉</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>検索欄の幅と表示を切替え、閉じた領域をTab対象から外す。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-TABS · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-TABS.html?context=screen-SCR-002#OP-002-TABS" >詳細タブを切替</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>取得済みデータでタブを切替える。給与簿は常時読取り専用。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-HISTORY · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-HISTORY.html?context=screen-SCR-002#OP-002-HISTORY" >履歴を選択</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>選択GUIDで該当職員の履歴を表示する。0件・単一件・複数件を区別する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-EDIT · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-EDIT.html?context=screen-SCR-002#OP-002-EDIT" >編集モードへ</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>対象レコードと表示値を確認し、許可列の入力バッファを作る。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-SAVE · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-SAVE.html?context=screen-SCR-002#OP-002-SAVE" >変更を保存</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>変更された許可列のみ保存し、再取得した内容と一致を確認して読取りへ戻す。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-READMODE · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-READMODE.html?context=screen-SCR-002#OP-002-READMODE" >読取りモードへ</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>変更なしなら読取りへ。未保存なら破棄確認を表示する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-CANCEL · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-CANCEL.html?context=screen-SCR-002#OP-002-CANCEL" >破棄確認を取消</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>保留した移動・職員変更・読取り切替を取消し、編集を続ける。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-DISCARD · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-DISCARD.html?context=screen-SCR-002#OP-002-DISCARD" >破棄して続行</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>明示的な続行を受けた後に入力を破棄し、保留していた目的画面／職員へ移動する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-LEDGER · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-LEDGER.html?context=screen-SCR-002#OP-002-LEDGER" >給与簿の月範囲変更</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>職員と月範囲で取得し、163項目×登録済み支給行を表示。同月複数行は別列。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-PAYDETAIL · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-PAYDETAIL.html?context=screen-SCR-002#OP-002-PAYDETAIL" >支給明細へ</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>選択職員・対象月を渡し、遷移先で存在と所属を再確認。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-HOME · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-HOME.html?context=screen-SCR-002#OP-002-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-AD-NUMBER · SCR-002</span>
+<h3>
+<a href="../operations/OP-AD-NUMBER.html?context=screen-SCR-002#OP-AD-NUMBER" >発行職員番号を反映</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>採用ごとの識別子で同じ候補へ12桁番号を反映する。再採用は新しい採用識別子を使う。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-AD-CHANGE · SCR-002</span>
+<h3>
+<a href="../operations/OP-AD-CHANGE.html?context=screen-SCR-002#OP-AD-CHANGE" >前工程変更の差異確認</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>変更前を保持。給与班の修正値と前工程変更値が食い違えば自動上書きせず採用値を給与班が判断する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-AD-CANCEL · SCR-002</span>
+<h3>
+<a href="../operations/OP-AD-CANCEL.html?context=screen-SCR-002#OP-AD-CANCEL" >採用取消を反映</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>確認待ち・確定のいずれからも採用取消へ移し、候補を保持して給与計算から除外。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-E-PENDING · SCR-002</span>
+<h3>
+<a href="../operations/OP-E-PENDING.html?context=screen-SCR-002#OP-E-PENDING" >確認待ちで絞り込む</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>左検索に確認待ち絞込みを追加し、右詳細で不足・不整合を表示。確定後修正で戻った候補も含める。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-E-HISTORY · SCR-002</span>
+<h3>
+<a href="../operations/OP-E-HISTORY.html?context=screen-SCR-002#OP-E-HISTORY" >実際の条件変更を登録</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>実際の条件変更は月途中を含む新しい有効期間履歴として登録。発令は勤務条件へ統合し、所属既定予算を個別予算で上書き可能。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-E-CORRECT · SCR-002</span>
+<h3>
+<a href="../operations/OP-E-CORRECT.html?context=screen-SCR-002#OP-E-CORRECT" >誤登録を訂正</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>原則は局担当が不足・不整合を訂正。給与班も直接訂正可能。誤登録は確定済み履歴も直接訂正でき、前後値を残して再確認へ戻す。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-E-SUBMIT · SCR-002</span>
+<h3>
+<a href="../operations/OP-E-SUBMIT.html?context=screen-SCR-002#OP-E-SUBMIT" >内容を確認待ちにする</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>勤務条件・保険・税等の内容を給与班の確認待ちにする。局との連絡・調整はアプリ外。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-E-RETURN · SCR-002</span>
+<h3>
+<a href="../operations/OP-E-RETURN.html?context=screen-SCR-002#OP-E-RETURN" >給与情報を差し戻す</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>必要な修正を差戻しとし、原則局担当が直して再提出する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-E-CONFIRM · SCR-002</span>
+<h3>
+<a href="../operations/OP-E-CONFIRM.html?context=screen-SCR-002#OP-E-CONFIRM" >給与情報を確定・再確定</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>給与班が対象・内容を確認して確定する。訂正後も同じ確認待ちから再確定し、影響する未払い結果を再計算・再照合へ。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-F-EDIT · SCR-002</span>
+<h3>
+<a href="../operations/OP-F-EDIT.html?context=screen-SCR-002#OP-F-EDIT" >通勤届を入力</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>認定ヘッダーと経路ごとの明細を入力。経路ごとに定期券前払いまたはIC運賃×実通勤日数を選択し混在可能。</p>
+<div class="meta">担当: 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-F-SUBMIT · SCR-002</span>
+<h3>
+<a href="../operations/OP-F-SUBMIT.html?context=screen-SCR-002#OP-F-SUBMIT" >通勤届を提出・再提出</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>内容検証後に提出。差戻しは原則提出者が修正し、同じ通勤タブから再提出する。</p>
+<div class="meta">担当: 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-F-RETURN · SCR-002</span>
+<h3>
+<a href="../operations/OP-F-RETURN.html?context=screen-SCR-002#OP-F-RETURN" >通勤届を差し戻す</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>給与班が不備を差戻し状態にし、差戻し理由をアプリ外で提出者へ連絡する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-F-CERTIFY · SCR-002</span>
+<h3>
+<a href="../operations/OP-F-CERTIFY.html?context=screen-SCR-002#OP-F-CERTIFY" >通勤手当を認定</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>給与班が認定し、計算は認定済みヘッダーと経路を直接参照する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-F-CHANGE · SCR-002</span>
+<h3>
+<a href="../operations/OP-F-CHANGE.html?context=screen-SCR-002#OP-F-CHANGE" >変更届から新認定へ</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>変更届を新たに提出し給与班が再認定。旧認定を残し、精算・追給・返納と関連付ける。</p>
+<div class="meta">担当: 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-F-NOPAY · SCR-002</span>
+<h3>
+<a href="../operations/OP-F-NOPAY.html?context=screen-SCR-002#OP-F-NOPAY" >一時不支給期間を確認</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>病気・欠勤で通勤しない期間は通勤手当を支給しない。認定期間終了と区別する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-F-END · SCR-002</span>
+<h3>
+<a href="../operations/OP-F-END.html?context=screen-SCR-002#OP-F-END" >認定期間の終了を確定</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>給与班が認定期間の終了を確定する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-F-HTML · SCR-002</span>
+<h3>
+<a href="../operations/OP-F-HTML.html?context=screen-SCR-002#OP-F-HTML" >認定簿を表示</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>選択認定GUIDだけを別タブHTMLへ渡し、HTML側で親職員と認定を再取得。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-G-REGISTER · SCR-002</span>
+<h3>
+<a href="../operations/OP-G-REGISTER.html?context=screen-SCR-002#OP-G-REGISTER" >外部決定結果を登録</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>紙・電子で受領した外部機関の決定結果を担当局または給与班が手入力する。住民税は税固定控除、共済・保険・ハローワークは社会保険。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-G-CONFIRM · SCR-002</span>
+<h3>
+<a href="../operations/OP-G-CONFIRM.html?context=screen-SCR-002#OP-G-CONFIRM" >外部決定結果を確認確定</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>給与班が決定内容・対象職員を確認して確定する。給与へ影響する内容はそれまで使わない。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-002-CLEAR · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-CLEAR.html?context=screen-SCR-002#OP-002-CLEAR" >検索条件をクリア</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>レビュー案として検索入力・条件を初期状態へ戻す。再検索・選択解除のタイミングは未確定。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-FONT · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-FONT.html?context=screen-SCR-002#OP-002-FONT" >文字サイズを切替</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>ヘッダー直下の操作領域で文字サイズを切替える。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-RETURN · SCR-002</span>
+<h3>
+<a href="../operations/OP-JLINK-RETURN.html?context=screen-SCR-002#OP-JLINK-RETURN" >人給連携へ戻る</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>訂正経路から支給回・職員を保持して人給連携へ戻る。更新された元データは再確認・再計算・再照合が必要。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>境界・未決・注記</h2>
+<ul>
+<li>住民税は税固定控除タブ内。外部手続きタブを新設しない。</li>
+<li>給与簿は常時読取り専用。既存56項目の読取検証は新モデルの編集・保存合格を意味しない。</li>
+<li>給与簿163項目表示と人給出力237列は別契約。</li>
+<li>勤務条件・保険等の確認状態は改修先。現行実装へ読み替えない。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>この画面を使う業務</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">WF-01</span>
+<h3>
+<a href="../workflows/WF-01.html?context=screen-SCR-002#WF-01" >職員検索・編集・画面往復</a>
+</h3>
+<p>ホームから職員検索 → 保存済み読取り、または移動取消</p>
+<div class="meta">ログイン利用者</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-02</span>
+<h3>
+<a href="../workflows/WF-02.html?context=screen-SCR-002#WF-02" >A～D 採用候補の受渡し</a>
+</h3>
+<p>通常職員の初任給確定、または調査員のC開始 → 同じ候補に発行番号を反映</p>
+<div class="meta">秘書課・前工程担当・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-03</span>
+<h3>
+<a href="../workflows/WF-03.html?context=screen-SCR-002#WF-03" >A～D 決裁後変更・採用取消</a>
+</h3>
+<p>前工程で変更または取消 → 再確定、または履歴を残して計算除外</p>
+<div class="meta">秘書課・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-04</span>
+<h3>
+<a href="../workflows/WF-04.html?context=screen-SCR-002#WF-04" >E Excel一括取込と行別判断</a>
+</h3>
+<p>ホームのデータ一括取込み → 確認待ち候補と行別結果</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-05</span>
+<h3>
+<a href="../workflows/WF-05.html?context=screen-SCR-002#WF-05" >E 条件・控除の確認と訂正</a>
+</h3>
+<p>新規・実際変更・誤登録訂正 → 給与班確定後の未払い再計算</p>
+<div class="meta">局担当者・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-06</span>
+<h3>
+<a href="../workflows/WF-06.html?context=screen-SCR-002#WF-06" >F 通勤届の提出・差戻し・認定</a>
+</h3>
+<p>局担当の通勤届入力 → 認定済み情報を計算が直接参照</p>
+<div class="meta">局担当者・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-07</span>
+<h3>
+<a href="../workflows/WF-07.html?context=screen-SCR-002#WF-07" >F 変更認定・不支給・期間終了</a>
+</h3>
+<p>通勤認定後の事情変更 → 新認定、一時不支給または期間終了</p>
+<div class="meta">局担当者・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-08</span>
+<h3>
+<a href="../workflows/WF-08.html?context=screen-SCR-002#WF-08" >F 通勤認定簿・別タブPDF</a>
+</h3>
+<p>通勤タブで認定を選択 → A4横2ページを1PDFとして保存</p>
+<div class="meta">給与班・局担当者</div>
+<span class="tag ">現行実装</span>
+</article>
+<article class="card">
+<span class="number">WF-09</span>
+<h3>
+<a href="../workflows/WF-09.html?context=screen-SCR-002#WF-09" >G 外部機関の決定結果登録</a>
+</h3>
+<p>外部で手続きし決定結果を受領 → 確定した決定結果を管理・計算へ利用</p>
+<div class="meta">担当局・給与班・外部機関</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-12</span>
+<h3>
+<a href="../workflows/WF-12.html?context=screen-SCR-002#WF-12" >給与計算から確定・支払記録</a>
+</h3>
+<p>確認済み元データと支給回 → 最新差分ゼロ確定・支払い済み記録</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-13</span>
+<h3>
+<a href="../workflows/WF-13.html?context=screen-SCR-002#WF-13" >人給出力・照合・差分再出力</a>
+</h3>
+<p>人給連携の支給回選択 → 差分訂正ループまたは支給回確定</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>要件と出典</h2>
+<div class="chips">
+<a href="../sections/2.2.1.html#section-2.2.1" >2.2.1</a>
+<a href="../sections/2.2.2.html#section-2.2.2" >2.2.2</a>
+<a href="../sections/2.2.3.html#section-2.2.3" >2.2.3</a>
+</div>
+<h3 style="margin-top:18px">関連要件</h3>
+<div class="chips">
+<a href="../requirements/SCR002-LT-003.html?context=screen-SCR-002#requirement-SCR002-LT-003" >SCR002-LT-003</a>
+<a href="../requirements/SCR002-EDIT-001.html?context=screen-SCR-002#requirement-SCR002-EDIT-001" >SCR002-EDIT-001</a>
+<a href="../requirements/SCR002-E-001.html?context=screen-SCR-002#requirement-SCR002-E-001" >SCR002-E-001</a>
+<a href="../requirements/SCR002-F-001.html?context=screen-SCR-002#requirement-SCR002-F-001" >SCR002-F-001</a>
+<a href="../requirements/SCR002-G-001.html?context=screen-SCR-002#requirement-SCR002-G-001" >SCR002-G-001</a>
+<a href="../requirements/SCR002-G-002.html?context=screen-SCR-002#requirement-SCR002-G-002" >SCR002-G-002</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=screen-SCR-002" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--design--detailed--detailed-design.html?context=screen-SCR-002" data-keep-context>detailed-design.md</a>
+<div class="meta">docs/design/detailed/detailed-design.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=screen-SCR-002" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

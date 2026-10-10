@@ -1,43 +1,203 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
-  <title>④ EXT-COMMUTE 通勤認定簿HTML（別タブ） | 非常勤給与レビュー</title>
-  <link rel="stylesheet" href="../assets/review.css">
-  <script src="../assets/review.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+<title>④ EXT-COMMUTE 通勤認定簿HTML（別タブ） | 非常勤給与レビュー</title>
+<link rel="stylesheet" href="../assets/review.css">
+<script src="../assets/review.js" defer>
+</script>
 </head>
 <body data-screen-id="EXT-COMMUTE">
 <a class="skip" href="#main">本文へ移動</a>
-<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
-<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<header class="doc-header">
+<div>
+<strong>非常勤給与アプリ</strong>
+<span>画面・業務レビュー</span>
+</div>
+<p>PAY-HTML-001 / PAY-HTML-002改訂</p>
+</header>
+<nav class="doc-nav" aria-label="資料ナビゲーション">
+<a href="../index.html" >入口</a>
 <a href="../navigation.html" >① 画面遷移</a>
 <a href="../workflows/index.html" >② 業務フロー</a>
 <a href="../operations/index.html" >③ 操作定義</a>
 <a href="index.html" aria-current="page">④ ワイヤー</a>
 <a href="../coverage.html" >対応表</a>
-<a href="../design-notes.html" >設計注記</a></nav>
+<a href="../design-notes.html" >設計注記</a>
+</nav>
 <main id="main">
-<div class="document-meta"><span>0.2-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<div class="document-meta">
+<span>0.2-review / 2026-10-10</span>
+<strong>提案・レビュー用（未承認）</strong>
+<span>統合文書出典：<code>b5e5d460fe19169252de05bb02bafc9461120540</code>
+</span>
+</div>
 <h1>④ EXT-COMMUTE 通勤認定簿HTML（別タブ）</h1>
 <p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
-<p><span class="badge current">現行実装</span> 認定GUIDで再取得する公式様式。ブラウザー印刷からA4横2ページの1PDFを保存。</p><p><a href="../operations/ext-commute.html" >この画面の操作定義</a> / <a href="../design-notes.html#mock-design" >設計・状態の注記</a></p><section class="review-controls" aria-label="レビュー用の条件切替"><p>レビュー用の条件切替（業務画面外）。権限変更・実データ更新は行いません。操作で現れる文言・モーダル配置は提案です。</p><label>役割<select data-review-role><option value="payroll">給与班</option><option value="bureau">局担当者</option><option value="master">業務マスタ管理者</option><option value="system">システム管理者</option><option value="self">職員本人（将来）</option></select></label><label>状態<select data-review-state><option value="normal">通常</option><option value="initial">初期・未選択</option><option value="zero">検索・履歴0件</option><option value="loading">処理中</option><option value="error">エラー</option><option value="readonly">報告済み・読み取り</option><option value="difference">照合差分あり</option><option value="clean">全体差分ゼロ</option><option value="stale">計算更新後</option><option value="unknown">未知職員あり</option><option value="paid">支払い済み</option></select></label><label>次の模擬保存<select data-save-result><option value="success">成功</option><option value="failure">失敗</option></select></label><button type="button" data-review-reset>初期化</button></section><section class="mock-boundary" aria-label="PC業務画面例"><div class="mock-caption">PCレイアウトの画面例 · 架空データ · 実処理は行いません · 狭い画面はこの枠内を横スクロール</div><div class="mock-app" data-mock-screen="EXT-COMMUTE"><header class="mock-header"><div><h2>通勤認定簿HTML（別タブ）</h2><span class="context-name">架空総務局 · 架空担当者</span></div><div class="header-actions"><a href="scr-002.html" data-operation-id="OP-F-RETURN-HTML" data-mock-nav >通勤へ戻る</a><span>画面例</span></div></header><p class="mock-status mock-warning" data-role-warning hidden>この業務は給与班が担当します。現在の役割では対象データを表示しません。</p><div class="mock-body" data-business-content><h3>通勤手当認定簿（確認用）</h3><p>架空 花子／009900009901／TK-990001</p><p>適用期間：2026/04/01〜2026/09/30</p><div class="table-scroll" tabindex="0" role="region" aria-label="認定ヘッダーに対応する経路">
-<table ><caption>認定ヘッダーに対応する経路</caption>
-<thead><tr><th scope="col">経路</th><th scope="col">方式</th><th scope="col">認定内容</th></tr></thead>
+<aside class="portal-context" style="padding:16px;background:#edf5ff;border:1px solid #93b7db;margin:16px 0">
+<strong>要件定義から読む</strong>
+<p>
+<a data-context-return href="../../../requirements/standard-template/sections/2.2.2.html#section-2.2.2">関連する標準要件 2.2.2 へ戻る</a> · <a href="../../../requirements/standard-template/index.html">要件定義の入口</a> · <a href="../../../requirements/standard-template/requirements/index.html">要件IDで探す</a>
+</p>
+<p>このレビュー図・画面例の根拠は b5e5d460fe19、2026-10-10 時点の資料です。DOT-001承認A・Live38引継ぎ観測を反映。正式P/H・自動E2E・最終照合は未完了です。</p>
+</aside>
+<p>
+<span class="badge current">現行実装</span> 認定GUIDで再取得する公式様式。ブラウザー印刷からA4横2ページの1PDFを保存。</p>
+<p>
+<a href="../operations/ext-commute.html" >この画面の操作定義</a> / <a href="../design-notes.html#mock-design" >設計・状態の注記</a>
+</p>
+<section class="review-controls" aria-label="レビュー用の条件切替">
+<p>レビュー用の条件切替（業務画面外）。権限変更・実データ更新は行いません。操作で現れる文言・モーダル配置は提案です。</p>
+<label>役割<select data-review-role>
+<option value="payroll">給与班</option>
+<option value="bureau">局担当者</option>
+<option value="master">業務マスタ管理者</option>
+<option value="system">システム管理者</option>
+<option value="self">職員本人（将来）</option>
+</select>
+</label>
+<label>状態<select data-review-state>
+<option value="normal">通常</option>
+<option value="initial">初期・未選択</option>
+<option value="zero">検索・履歴0件</option>
+<option value="loading">処理中</option>
+<option value="error">エラー</option>
+<option value="readonly">報告済み・読み取り</option>
+<option value="difference">照合差分あり</option>
+<option value="clean">全体差分ゼロ</option>
+<option value="stale">計算更新後</option>
+<option value="unknown">未知職員あり</option>
+<option value="paid">支払い済み</option>
+</select>
+</label>
+<label>次の模擬保存<select data-save-result>
+<option value="success">成功</option>
+<option value="failure">失敗</option>
+</select>
+</label>
+<button type="button" data-review-reset>初期化</button>
+</section>
+<section class="mock-boundary" aria-label="PC業務画面例">
+<div class="mock-caption">PCレイアウトの画面例 · 架空データ · 実処理は行いません · 狭い画面はこの枠内を横スクロール</div>
+<div class="mock-app" data-mock-screen="EXT-COMMUTE">
+<header class="mock-header">
+<div>
+<h2>通勤認定簿HTML（別タブ）</h2>
+<span class="context-name">架空総務局 · 架空担当者</span>
+</div>
+<div class="header-actions">
+<a href="scr-002.html" data-operation-id="OP-F-RETURN-HTML" data-mock-nav >通勤へ戻る</a>
+<span>画面例</span>
+</div>
+</header>
+<p class="mock-status mock-warning" data-role-warning hidden>この業務は給与班が担当します。現在の役割では対象データを表示しません。</p>
+<div class="mock-body" data-business-content>
+<h3>通勤手当認定簿（確認用）</h3>
+<p>架空 花子／009900009901／TK-990001</p>
+<p>適用期間：2026/04/01〜2026/09/30</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="認定ヘッダーに対応する経路">
+<table >
+<caption>認定ヘッダーに対応する経路</caption>
+<thead>
+<tr>
+<th scope="col">経路</th>
+<th scope="col">方式</th>
+<th scope="col">認定内容</th>
+</tr>
+</thead>
 <tbody>
-<tr><td>架空駅A → 架空駅B</td><td>定期券前払い</td><td>6,250円（架空）</td></tr>
-<tr><td>架空停留所C → 架空停留所D</td><td>IC</td><td>日数に応じる（計算なし）</td></tr>
-</tbody></table></div>
-<p>実装ではA4横2ページをブラウザー印刷から1PDFに保存します。本画面は帳票レイアウトの再実装ではありません。</p><button type="button" data-operation-id="OP-F-PDF" data-allowed-roles="bureau payroll" data-action="print-guide" class="secondary" >印刷の案内</button><p>別タブを閉じると元の職員マスタ画面に戻れます。</p></div></div></section><dialog class="mock-dialog" data-mock-dialog aria-labelledby="dialog-title"><h3 id="dialog-title" data-dialog-title>操作の確認</h3><div data-dialog-body></div><div class="mock-actions"><button type="button" data-dialog-cancel>キャンセル</button><button type="button" class="primary" data-dialog-confirm>続行</button></div></dialog><noscript><p class="no-js-message">JavaScriptは無効です。全タブと仕様本文をそのまま表示しています。モックの保存・確認操作は動きません。</p></noscript><section class="static-states"><h2>状態と操作の静的定義</h2><ul><li>初期・未選択：対象を選ぶ案内を表示し、旧職員・旧履歴・旧金額を残しません。</li><li>0件：対象がない旨を表示。以前の詳細・認定ID・金額を利用しません。</li><li>処理中：重複実行・編集・提出を停止。完了または失敗の通知を待ちます。</li><li>エラー：原因と再試行への案内を表示。失敗時は成功したように扱いません。編集中の入力は維持します。</li><li>未保存：SCR-002のタブ変更では保持。別職員／画面／読み取りへの変更時に「変更を破棄して移動しますか」。続行だけ破棄、キャンセルは現状保持。その他画面への共通適用は提案です。</li><li>役割：給与班の全対象・局担当の自局・将来本人の自己分と、業務マスタ／システム管理を区別します。確認用の役割切替は実際の認可ではありません。</li><li>人給連携：出力前確認には支給回・人数・明細数・A/M件数。給与班確定はダイアログなし。選択支給回の全対象について最新照合が差分ゼロで未解決行がない場合だけ確定できます。表示フィルターで判定を狭めません。</li></ul></section><h2>操作と仕様の対応</h2><div class="table-scroll" tabindex="0" role="region" aria-label="この画面の操作対応（業務画面外）">
-<table ><caption>この画面の操作対応（業務画面外）</caption>
-<thead><tr><th scope="col">操作ID</th><th scope="col">業務操作</th><th scope="col">区分</th><th scope="col">定義</th></tr></thead>
+<tr>
+<td>架空駅A → 架空駅B</td>
+<td>定期券前払い</td>
+<td>6,250円（架空）</td>
+</tr>
+<tr>
+<td>架空停留所C → 架空停留所D</td>
+<td>IC</td>
+<td>日数に応じる（計算なし）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>実装ではA4横2ページをブラウザー印刷から1PDFに保存します。本画面は帳票レイアウトの再実装ではありません。</p>
+<button type="button" data-operation-id="OP-F-PDF" data-allowed-roles="bureau payroll" data-action="print-guide" class="secondary" >印刷の案内</button>
+<p>別タブを閉じると元の職員マスタ画面に戻れます。</p>
+</div>
+</div>
+</section>
+<dialog class="mock-dialog" data-mock-dialog aria-labelledby="dialog-title">
+<h3 id="dialog-title" data-dialog-title>操作の確認</h3>
+<div data-dialog-body>
+</div>
+<div class="mock-actions">
+<button type="button" data-dialog-cancel>キャンセル</button>
+<button type="button" class="primary" data-dialog-confirm>続行</button>
+</div>
+</dialog>
+<noscript>
+<p class="no-js-message">JavaScriptは無効です。全タブと仕様本文をそのまま表示しています。モックの保存・確認操作は動きません。</p>
+</noscript>
+<section class="static-states">
+<h2>状態と操作の静的定義</h2>
+<ul>
+<li>初期・未選択：対象を選ぶ案内を表示し、旧職員・旧履歴・旧金額を残しません。</li>
+<li>0件：対象がない旨を表示。以前の詳細・認定ID・金額を利用しません。</li>
+<li>処理中：重複実行・編集・提出を停止。完了または失敗の通知を待ちます。</li>
+<li>エラー：原因と再試行への案内を表示。失敗時は成功したように扱いません。編集中の入力は維持します。</li>
+<li>未保存：SCR-002のタブ変更では保持。別職員／画面／読み取りへの変更時に「変更を破棄して移動しますか」。続行だけ破棄、キャンセルは現状保持。その他画面への共通適用は提案です。</li>
+<li>役割：給与班の全対象・局担当の自局・将来本人の自己分と、業務マスタ／システム管理を区別します。確認用の役割切替は実際の認可ではありません。</li>
+<li>人給連携：出力前確認には支給回・人数・明細数・A/M件数。給与班確定はダイアログなし。選択支給回の全対象について最新照合が差分ゼロで未解決行がない場合だけ確定できます。表示フィルターで判定を狭めません。</li>
+</ul>
+</section>
+<h2>操作と仕様の対応</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="この画面の操作対応（業務画面外）">
+<table >
+<caption>この画面の操作対応（業務画面外）</caption>
+<thead>
+<tr>
+<th scope="col">操作ID</th>
+<th scope="col">業務操作</th>
+<th scope="col">区分</th>
+<th scope="col">定義</th>
+</tr>
+</thead>
 <tbody>
-<tr><td>OP-F-PDF</td><td>ブラウザー印刷でPDF保存</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/ext-commute.html#OP-F-PDF" >条件・例外を読む</a></td></tr>
-<tr><td>OP-F-RETURN-HTML</td><td>元の通勤タブへ戻る</td><td><span class="badge current">現行実装</span></td><td><a href="../operations/ext-commute.html#OP-F-RETURN-HTML" >条件・例外を読む</a></td></tr>
-</tbody></table></div>
-<p>出典：<a href="../../../design/detailed/detailed-design.md">通勤HTMLの現行契約 10.4／CHANGE-20261003-COMMUTE-OFFICIAL／CHANGE-20261007-COMMUTE-CUTOVER</a> / <a href="../../../handoff/STATUS.md">現在の作業と読取り対象 2026-10-08人給連携／2026-10-07給与・通勤／2026-10-01 UI</a></p><h2>未決・実装上の注記</h2><ul><li>10月7日の通常入口切替と旧リソース撤去後に受入PASS。新データモデルとの帳票連携は別の未実装契約。</li><li>現行は71表示欄の様式v1.02。旧84データ列との数の違いを同一視しない。</li><li>権限実効性・全データ組合せ・総合試験は既存の受入PASSから推定しない。</li></ul>
+<tr>
+<td>OP-F-PDF</td>
+<td>ブラウザー印刷でPDF保存</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../operations/ext-commute.html#OP-F-PDF" >条件・例外を読む</a>
+</td>
+</tr>
+<tr>
+<td>OP-F-RETURN-HTML</td>
+<td>元の通勤タブへ戻る</td>
+<td>
+<span class="badge current">現行実装</span>
+</td>
+<td>
+<a href="../operations/ext-commute.html#OP-F-RETURN-HTML" >条件・例外を読む</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>出典：<a href="../../../requirements/standard-template/sources/docs--design--detailed--detailed-design.html">通勤HTMLの現行契約 10.4／CHANGE-20261003-COMMUTE-OFFICIAL／CHANGE-20261007-COMMUTE-CUTOVER</a> / <a href="../../../requirements/standard-template/sources/docs--handoff--STATUS.html">現在の作業と読取り対象 DOT-001最新状態と関連履歴の選択表示</a>
+</p>
+<h2>未決・実装上の注記</h2>
+<ul>
+<li>10月7日の通常入口切替と旧リソース撤去後に受入PASS。新データモデルとの帳票連携は別の未実装契約。</li>
+<li>現行は71表示欄の様式v1.02。旧84データ列との数の違いを同一視しない。</li>
+<li>権限実効性・全データ組合せ・総合試験は既存の受入PASSから推定しない。</li>
+</ul>
 </main>
 <footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+<script src="../../../requirements/standard-template/assets/context.js" data-portal-root="../../../requirements/standard-template" defer>
+</script>
 </body>
 </html>

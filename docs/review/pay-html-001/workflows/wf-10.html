@@ -1,67 +1,731 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
-  <title>② 勤務時間報告・取込とロック | 非常勤給与レビュー</title>
-  <link rel="stylesheet" href="../assets/review.css">
-  <script src="../assets/review.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="非常勤給与アプリ PAY-HTML-001 非正本のレビュー資料">
+<title>② 勤務時間報告・取込とロック | 非常勤給与レビュー</title>
+<link rel="stylesheet" href="../assets/review.css">
+<script src="../assets/review.js" defer>
+</script>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
-<header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
-<nav class="doc-nav" aria-label="資料ナビゲーション"><a href="../index.html" >入口</a>
+<header class="doc-header">
+<div>
+<strong>非常勤給与アプリ</strong>
+<span>画面・業務レビュー</span>
+</div>
+<p>PAY-HTML-001 / PAY-HTML-002改訂</p>
+</header>
+<nav class="doc-nav" aria-label="資料ナビゲーション">
+<a href="../index.html" >入口</a>
 <a href="../navigation.html" >① 画面遷移</a>
 <a href="index.html" aria-current="page">② 業務フロー</a>
 <a href="../operations/index.html" >③ 操作定義</a>
 <a href="../wireframes/index.html" >④ ワイヤー</a>
 <a href="../coverage.html" >対応表</a>
-<a href="../design-notes.html" >設計注記</a></nav>
+<a href="../design-notes.html" >設計注記</a>
+</nav>
 <main id="main">
-<div class="document-meta"><span>0.2-review / 2026-10-09</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>252abe4aa5d3b1d99a584a30c97d9b48153c91f5</code></span></div>
+<div class="document-meta">
+<span>0.2-review / 2026-10-10</span>
+<strong>提案・レビュー用（未承認）</strong>
+<span>統合文書出典：<code>b5e5d460fe19169252de05bb02bafc9461120540</code>
+</span>
+</div>
 <h1>② 勤務時間報告・取込とロック</h1>
 <p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
-<p><span class="badge accepted">確定改修要件</span> 担当：局担当者・給与班</p><dl><dt>開始</dt><dd>所属×勤務月の入力中報告</dd><dt>終了</dt><dd>報告済み、または不完全隔離から復旧</dd></dl><span class="requirement" data-requirement-id="PAYREQ-06">PAYREQ-06</span> <span class="requirement" data-requirement-id="PAYREQ-07">PAYREQ-07</span><p class="lead workflow-summary">入力とExcel取込を分け、保存後に報告へ合流。取込途中失敗は隔離・復旧へ、給与班差戻しは入力中へ戻って再報告します。</p><div class="flow-legend"><span>○ 開始／◎ 確認区間の終了</span><span>角丸：作業</span><span>◇ ×：条件分岐</span><span>小さい◇：合流・結果分岐</span><span>茶線：訂正・再試行</span><span>破線：アプリ外との受渡し</span></div><p class="diagram-reading">上から下へ主な流れをたどります。工程は一度だけ配置し、矢印で分岐・合流・戻り先をつないでいます。BPMN風のレビュー表記であり、BPMN 2.0の実行可能な定義ではありません。工程を選ぶと定義へ、操作定義↗から操作の詳細へ進みます。</p><ul class="flow-notes"><li>取込中は同じ報告の編集・提出を停止します。復旧・再実行は方式未決（PD-05）であり、無条件のロールバックを保証しません。</li></ul><section class="connected-workflow" data-connected-workflow><div class="diagram-tools" data-diagram-tools hidden><button type="button" data-diagram-fit>幅に合わせる</button><button type="button" data-diagram-all>全体を見る</button><button type="button" data-diagram-actual>100%</button><button type="button" data-diagram-out aria-label="業務図を縮小">−</button><button type="button" data-diagram-in aria-label="業務図を拡大">＋</button><output data-diagram-scale aria-live="polite">100%</output><span>図内だけを横・縦スクロールできます</span></div><div class="workflow-scroll" tabindex="0" role="region" aria-label="勤務時間報告・取込とロック。上下に流れを追い、枠内をスクロール"><svg class="workflow-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 1990" width="1160" height="1990" role="img" aria-labelledby="WF-10-title WF-10-description" data-workflow-id="WF-10"><title id="WF-10-title">WF-10 勤務時間報告・取込とロック</title><desc id="WF-10-description">入力とExcel取込を分け、保存後に報告へ合流。取込途中失敗は隔離・復旧へ、給与班差戻しは入力中へ戻って再報告します。 工程は一度だけ配置。矢印をたどり、茶色の折返しは訂正・再試行。全条件は同じデータの経路表で確認できます。</desc><defs><marker id="WF-10-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs><g class="flow-lane app" data-lane-id="lane-1"><rect x="40" y="0" width="360" height="1990"/><rect class="lane-heading-bg" x="40" y="0" width="360" height="65"/><text x="220" y="25" class="flow-lane-title" text-anchor="middle">局担当者／給与班</text><text x="220" y="49" class="flow-lane-scope" text-anchor="middle">入力中の操作</text></g><g class="flow-lane app" data-lane-id="lane-2"><rect x="400" y="0" width="360" height="1990"/><rect class="lane-heading-bg" x="400" y="0" width="360" height="65"/><text x="580" y="25" class="flow-lane-title" text-anchor="middle">給与アプリ・取込処理</text><text x="580" y="49" class="flow-lane-scope" text-anchor="middle">全件検証・反映・復旧</text></g><g class="flow-lane app" data-lane-id="lane-3"><rect x="760" y="0" width="360" height="1990"/><rect class="lane-heading-bg" x="760" y="0" width="360" height="65"/><text x="940" y="25" class="flow-lane-title" text-anchor="middle">給与班</text><text x="940" y="49" class="flow-lane-scope" text-anchor="middle">報告後の確認・差戻し</text></g><g class="flow-connector view" data-edge-id="WF-10-view-01" data-from="start-a" data-to="a"><path class="flow-edge-halo" d="M 220 116 L 220 162"/><path class="flow-edge" d="M 220 116 L 220 162" marker-end="url(#WF-10-arrow)"/><title>表示用接続</title></g><g class="flow-connector view" data-edge-id="WF-10-view-02" data-from="join-b" data-to="b"><path class="flow-edge-halo" d="M 220 330 L 220 342"/><path class="flow-edge" d="M 220 330 L 220 342" marker-end="url(#WF-10-arrow)"/><title>表示用接続</title></g><g class="flow-connector view" data-edge-id="WF-10-view-03" data-from="join-c" data-to="c"><path class="flow-edge-halo" d="M 220 554 L 220 562"/><path class="flow-edge" d="M 220 554 L 220 562" marker-end="url(#WF-10-arrow)"/><title>表示用接続</title></g><g class="flow-connector view" data-edge-id="WF-10-view-04" data-from="join-d" data-to="d"><path class="flow-edge-halo" d="M 580 554 L 580 562"/><path class="flow-edge" d="M 580 554 L 580 562" marker-end="url(#WF-10-arrow)"/><title>表示用接続</title></g><g class="flow-connector view" data-edge-id="WF-10-view-05" data-from="d" data-to="split-d"><path class="flow-edge-halo" d="M 580 658 L 580 666"/><path class="flow-edge" d="M 580 658 L 580 666" marker-end="url(#WF-10-arrow)"/><title>表示用接続</title></g><g class="flow-connector view" data-edge-id="WF-10-view-06" data-from="join-h" data-to="h"><path class="flow-edge-halo" d="M 220 1154 L 220 1162"/><path class="flow-edge" d="M 220 1154 L 220 1162" marker-end="url(#WF-10-arrow)"/><title>表示用接続</title></g><g class="flow-connector view" data-edge-id="WF-10-view-07" data-from="h" data-to="split-h"><path class="flow-edge-halo" d="M 220 1258 L 220 1266"/><path class="flow-edge" d="M 220 1258 L 220 1266" marker-end="url(#WF-10-arrow)"/><title>表示用接続</title></g><g class="flow-connector view" data-edge-id="WF-10-view-08" data-from="l" data-to="end-l"><path class="flow-edge-halo" d="M 940 1858 L 940 1889"/><path class="flow-edge" d="M 940 1858 L 940 1889" marker-end="url(#WF-10-arrow)"/><title>表示用接続</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-01" data-from="a" data-to="join-b" data-source-step="a" data-target-step="b"><path class="flow-edge-halo" d="M 220 258 L 220 310"/><path class="flow-edge" d="M 220 258 L 220 310" marker-end="url(#WF-10-arrow)"/><title>入力中</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-02" data-from="b" data-to="join-c" data-source-step="b" data-target-step="c"><path class="flow-edge-halo" d="M 220 478 L 220 534"/><path class="flow-edge" d="M 220 478 L 220 534" marker-end="url(#WF-10-arrow)"/><title>画面入力</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-05" data-from="split-d" data-to="e" data-source-step="d" data-target-step="e"><path class="flow-edge-halo" d="M 580 686 L 580 762"/><path class="flow-edge" d="M 580 686 L 580 762" marker-end="url(#WF-10-arrow)"/><title>全件検証OK</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-06" data-from="e" data-to="f" data-source-step="e" data-target-step="f"><path class="flow-edge-halo" d="M 580 858 L 580 942"/><path class="flow-edge" d="M 580 858 L 580 942" marker-end="url(#WF-10-arrow)"/><title>結果確認</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-07" data-from="f" data-to="g" data-source-step="f" data-target-step="g"><path class="flow-edge-halo" d="M 580 1078 L 580 1162"/><path class="flow-edge" d="M 580 1078 L 580 1162" marker-end="url(#WF-10-arrow)"/><title>途中失敗</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-10" data-from="c" data-to="join-h" data-source-step="c" data-target-step="h"><path class="flow-edge-halo" d="M 220 658 L 220 1134"/><path class="flow-edge" d="M 220 658 L 220 1134" marker-end="url(#WF-10-arrow)"/><title>保存</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-12" data-from="split-h" data-to="i" data-source-step="h" data-target-step="i"><path class="flow-edge-halo" d="M 220 1286 L 220 1362"/><path class="flow-edge" d="M 220 1286 L 220 1362" marker-end="url(#WF-10-arrow)"/><title>確認後</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-16" data-from="j" data-to="l" data-source-step="j" data-target-step="l"><path class="flow-edge-halo" d="M 940 1678 L 940 1762"/><path class="flow-edge" d="M 940 1678 L 940 1762" marker-end="url(#WF-10-arrow)"/><title>利用可能</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-03" data-from="b" data-to="join-d" data-source-step="b" data-target-step="d"><path class="flow-edge-halo" d="M 220 478 L 220 486 L 580 486 L 580 534"/><path class="flow-edge" d="M 220 478 L 220 486 L 580 486 L 580 534" marker-end="url(#WF-10-arrow)"/><title>Excel</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-09" data-from="f" data-to="join-h" data-source-step="f" data-target-step="h"><path class="flow-edge-halo" d="M 580 1078 L 580 1086 L 230 1086 L 230 1126 L 220 1126 L 220 1134"/><path class="flow-edge" d="M 580 1078 L 580 1086 L 230 1086 L 230 1126 L 220 1126 L 220 1134" marker-end="url(#WF-10-arrow)"/><title>完了</title></g><g class="flow-connector normal" data-edge-id="WF-10-edge-13" data-from="i" data-to="j" data-source-step="i" data-target-step="j"><path class="flow-edge-halo" d="M 220 1458 L 220 1534 L 940 1534 L 940 1542"/><path class="flow-edge" d="M 220 1458 L 220 1534 L 940 1534 L 940 1542" marker-end="url(#WF-10-arrow)"/><title>報告済み</title></g><g class="flow-connector return" data-edge-id="WF-10-edge-08" data-from="g" data-to="join-d" data-source-step="g" data-target-step="d"><path class="flow-edge-halo" d="M 458 1210 L 450 1210 L 450 544 L 570 544"/><path class="flow-edge" d="M 458 1210 L 450 1210 L 450 544 L 570 544" marker-end="url(#WF-10-arrow)"/><title>復旧・再実行</title></g><g class="flow-connector return" data-edge-id="WF-10-edge-11" data-from="split-h" data-to="join-c" data-source-step="h" data-target-step="c"><path class="flow-edge-halo" d="M 210 1276 L 86 1276 L 86 544 L 210 544"/><path class="flow-edge" d="M 210 1276 L 86 1276 L 86 544 L 210 544" marker-end="url(#WF-10-arrow)"/><title>保存失敗・保持</title></g><g class="flow-connector return" data-edge-id="WF-10-edge-14" data-from="j" data-to="k" data-source-step="j" data-target-step="k"><path class="flow-edge-halo" d="M 815 1610 L 807 1610 L 807 1410 L 818 1410"/><path class="flow-edge" d="M 815 1610 L 807 1610 L 807 1410 L 818 1410" marker-end="url(#WF-10-arrow)"/><title>訂正必要</title></g><g class="flow-connector return" data-edge-id="WF-10-edge-04" data-from="split-d" data-to="join-b" data-source-step="d" data-target-step="b"><path class="flow-edge-halo" d="M 570 676 L 359 676 L 359 300 L 202 300 L 202 320 L 210 320"/><path class="flow-edge" d="M 570 676 L 359 676 L 359 300 L 202 300 L 202 320 L 210 320" marker-end="url(#WF-10-arrow)"/><title>検証NG・修正</title></g><g class="flow-connector return" data-edge-id="WF-10-edge-15" data-from="k" data-to="join-b" data-source-step="k" data-target-step="b"><path class="flow-edge-halo" d="M 818 1410 L 810 1410 L 810 293 L 193 293 L 193 320 L 210 320"/><path class="flow-edge" d="M 818 1410 L 810 1410 L 810 293 L 193 293 L 193 320 L 210 320" marker-end="url(#WF-10-arrow)"/><title>入力中へ</title></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-01"><rect x="135.8" y="269.5" width="57.2" height="29" rx="4"/><text x="142.8" y="288.5">入力中</text></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-02"><rect x="227" y="491.5" width="71.6" height="29" rx="4"/><text x="234" y="510.5">画面入力</text></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-05"><rect x="587" y="709.5" width="86" height="29" rx="4"/><text x="594" y="728.5">全件検証OK</text></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-06"><rect x="587" y="885.5" width="71.6" height="29" rx="4"/><text x="594" y="904.5">結果確認</text></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-07"><rect x="587" y="1105.5" width="71.6" height="29" rx="4"/><text x="594" y="1124.5">途中失敗</text></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-10"><rect x="227" y="881.5" width="42.8" height="29" rx="4"/><text x="234" y="900.5">保存</text></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-12"><rect x="227" y="1309.5" width="57.2" height="29" rx="4"/><text x="234" y="1328.5">確認後</text></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-16"><rect x="947" y="1705.5" width="71.6" height="29" rx="4"/><text x="954" y="1724.5">利用可能</text></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-03"><rect x="375" y="450" width="50" height="29" rx="4"/><text x="382" y="469">Excel</text></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-09"><rect x="383.6" y="1050" width="42.8" height="29" rx="4"/><text x="390.6" y="1069">完了</text></g><g class="flow-edge-label normal" data-label-for="WF-10-edge-13"><rect x="227" y="1481.5" width="71.6" height="29" rx="4"/><text x="234" y="1500.5">報告済み</text></g><g class="flow-edge-label return" data-label-for="WF-10-edge-08"><rect x="457" y="862.5" width="100.4" height="29" rx="4"/><text x="464" y="881.5">復旧・再実行</text></g><g class="flow-edge-label return" data-label-for="WF-10-edge-11"><rect x="90.6" y="1283" width="114.8" height="29" rx="4"/><text x="97.6" y="1302">保存失敗・保持</text></g><g class="flow-edge-label return" data-label-for="WF-10-edge-14"><rect x="814" y="1495.5" width="71.6" height="29" rx="4"/><text x="821" y="1514.5">訂正必要</text></g><g class="flow-edge-label return" data-label-for="WF-10-edge-04"><rect x="467.05" y="683" width="100.4" height="29" rx="4"/><text x="474.05" y="702">検証NG・修正</text></g><g class="flow-edge-label return" data-label-for="WF-10-edge-15"><rect x="817" y="837" width="71.6" height="29" rx="4"/><text x="824" y="856">入力中へ</text></g><g class="flow-node task" data-node-id="a" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,162.0,342.0,258.0" data-step-id="a"><a href="#a" aria-label="a 有効な所属・勤務月を選択：工程定義へ"><title>有効な所属・勤務月を選択。現行全置換と異なる、10月7日改修先の取込図。</title><rect x="98.0" y="162.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="112.0" y="182.0">a · SCR-003</text><text class="flow-task-label" x="112.0" y="207.0">有効な所属・勤務月を選択</text></a><a href="../operations/scr-003.html#OP-003-SELECT" aria-label="OP-003-SELECT 操作定義"><text class="flow-op-link" x="330.0" y="249.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node gateway" data-node-id="b" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,342.0,345.0,478.0" data-step-id="b"><a href="#b" aria-label="b 入力かExcel取込か：工程定義へ"><title>入力かExcel取込か。入力中だけ。報告済みは編集・取込不可。</title><polygon points="220.0,342.0 345.0,410 220.0,478.0 95.0,410"/><text class="flow-node-id" x="220.0" y="370" text-anchor="middle">b · ×</text><text class="flow-task-label" x="220.0" y="402" text-anchor="middle">入力かExcel取込か</text></a></g><g class="flow-node task" data-node-id="c" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,562.0,342.0,658.0" data-step-id="c"><a href="#c" aria-label="c 日数・時間・備考を編集：工程定義へ"><title>日数・時間・備考を編集。改修先は職員行追加／削除可。超勤3桁・欠勤整数。</title><rect x="98.0" y="562.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="112.0" y="582.0">c · SCR-003</text><text class="flow-task-label" x="112.0" y="607.0">日数・時間・備考を編集</text></a><a href="../operations/scr-003.html#OP-003-EDIT" aria-label="OP-003-EDIT 操作定義"><text class="flow-op-link" x="330.0" y="649.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node task" data-node-id="d" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,562.0,702.0,658.0" data-step-id="d"><a href="#d" aria-label="d 全件検証・処理中ロック：工程定義へ"><title>全件検証・処理中ロック。同報告の編集・提出を停止し全行を検証。</title><rect x="458.0" y="562.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="472.0" y="582.0">d · SCR-003</text><text class="flow-task-label" x="472.0" y="607.0">全件検証・処理中ロック</text></a><a href="../operations/scr-003.html#OP-003-IMPORT" aria-label="OP-003-IMPORT 操作定義"><text class="flow-op-link" x="690.0" y="649.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node task" data-node-id="e" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,762.0,702.0,858.0" data-step-id="e"><a href="#e" aria-label="e 掲載職員行を追加更新：工程定義へ"><title>掲載職員行を追加更新。手修正上書き・空欄消去・0保持・未掲載保持。</title><rect x="458.0" y="762.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="472.0" y="782.0">e · SCR-003</text><text class="flow-task-label" x="472.0" y="807.0">掲載職員行を追加更新</text></a><a href="../operations/scr-003.html#OP-003-IMPORT" aria-label="OP-003-IMPORT 操作定義"><text class="flow-op-link" x="690.0" y="849.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node gateway" data-node-id="f" data-node-kind="gateway" data-lane-id="lane-2" data-box="455.0,942.0,705.0,1078.0" data-step-id="f"><a href="#f" aria-label="f 反映は全て完了したか：工程定義へ"><title>反映は全て完了したか。全件事前検証でも反映途中障害はあり得る。</title><polygon points="580.0,942.0 705.0,1010 580.0,1078.0 455.0,1010"/><text class="flow-node-id" x="580.0" y="970" text-anchor="middle">f · ×</text><text class="flow-task-label" x="580.0" y="1002" text-anchor="middle">反映は全て完了した</text><text class="flow-task-label" x="580.0" y="1024" text-anchor="middle">か</text></a></g><g class="flow-node task" data-node-id="g" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,1162.0,702.0,1258.0" data-step-id="g"><a href="#g" aria-label="g 不完全として計算除外：工程定義へ"><title>不完全として計算除外。復旧方式PD-05。無条件ロールバック保証なし。</title><rect x="458.0" y="1162.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="472.0" y="1182.0">g · SCR-003</text><text class="flow-task-label" x="472.0" y="1207.0">不完全として計算除外</text></a><a href="../operations/scr-003.html#OP-003-RECOVER" aria-label="OP-003-RECOVER 操作定義"><text class="flow-op-link" x="690.0" y="1249.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node task" data-node-id="h" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1162.0,342.0,1258.0" data-step-id="h"><a href="#h" aria-label="h 保存して読取りへ：工程定義へ"><title>保存して読取りへ。保存失敗は入力保持。未保存の読取り切替は破棄確認。</title><rect x="98.0" y="1162.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="112.0" y="1182.0">h · SCR-003</text><text class="flow-task-label" x="112.0" y="1207.0">保存して読取りへ</text></a><a href="../operations/scr-003.html#OP-003-SAVE" aria-label="OP-003-SAVE 操作定義"><text class="flow-op-link" x="330.0" y="1249.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node task" data-node-id="i" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1362.0,342.0,1458.0" data-step-id="i"><a href="#i" aria-label="i 勤務時間を報告：工程定義へ"><title>勤務時間を報告。保存済み内容を報告。</title><rect x="98.0" y="1362.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="112.0" y="1382.0">i · SCR-003</text><text class="flow-task-label" x="112.0" y="1407.0">勤務時間を報告</text></a><a href="../operations/scr-003.html#OP-003-REPORT" aria-label="OP-003-REPORT 操作定義"><text class="flow-op-link" x="330.0" y="1449.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node gateway" data-node-id="j" data-node-kind="gateway" data-lane-id="lane-3" data-box="815.0,1542.0,1065.0,1678.0" data-step-id="j"><a href="#j" aria-label="j 報告済み内容に訂正が必要か：工程定義へ"><title>報告済み内容に訂正が必要か。給与班確認で訂正が必要なら差戻し。</title><polygon points="940.0,1542.0 1065.0,1610 940.0,1678.0 815.0,1610"/><text class="flow-node-id" x="940.0" y="1570" text-anchor="middle">j · ×</text><text class="flow-task-label" x="940.0" y="1602" text-anchor="middle">報告済み内容に訂正</text><text class="flow-task-label" x="940.0" y="1624" text-anchor="middle">が必要か</text></a></g><g class="flow-node task" data-node-id="k" data-node-kind="task" data-lane-id="lane-3" data-box="818.0,1362.0,1062.0,1458.0" data-step-id="k"><a href="#k" aria-label="k 給与班が差し戻す：工程定義へ"><title>給与班が差し戻す。訂正・再提出後、未払いの影響分は再計算・再照合。</title><rect x="818.0" y="1362.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="832.0" y="1382.0">k · SCR-003</text><text class="flow-task-label" x="832.0" y="1407.0">給与班が差し戻す</text></a><a href="../operations/scr-003.html#OP-003-RETURN" aria-label="OP-003-RETURN 操作定義"><text class="flow-op-link" x="1050.0" y="1449.0" text-anchor="end">操作定義 ↗</text></a></g><g class="flow-node task" data-node-id="l" data-node-kind="task" data-lane-id="lane-3" data-box="818.0,1762.0,1062.0,1858.0" data-step-id="l"><a href="#l" aria-label="l 給与計算で職員別に集計：工程定義へ"><title>給与計算で職員別に集計。所属別報告から職員別集計。取込不完全は含めない。</title><rect x="818.0" y="1762.0" width="244" height="96" rx="13"/><text class="flow-node-id" x="832.0" y="1782.0">l · SCR-003</text><text class="flow-task-label" x="832.0" y="1807.0">給与計算で職員別に集計</text></a></g><g class="flow-node start" data-node-id="start-a" data-node-kind="start" data-lane-id="lane-1" data-box="204.0,84.0,236.0,116.0"><title>開始。表示用要素</title><circle cx="220.0" cy="100" r="16.0"/><text class="flow-event-label" x="247.0" y="105" text-anchor="start">開始</text></g><g class="flow-node merge" data-node-id="join-b" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,310.0,230.0,330.0"><title>合流。表示用要素</title><polygon points="220.0,310.0 230.0,320 220.0,330.0 210.0,320"/><text class="flow-gateway-symbol" x="220.0" y="323" text-anchor="middle"></text></g><g class="flow-node merge" data-node-id="join-c" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,534.0,230.0,554.0"><title>合流。表示用要素</title><polygon points="220.0,534.0 230.0,544 220.0,554.0 210.0,544"/><text class="flow-gateway-symbol" x="220.0" y="547" text-anchor="middle"></text></g><g class="flow-node merge" data-node-id="join-d" data-node-kind="merge" data-lane-id="lane-2" data-box="570.0,534.0,590.0,554.0"><title>合流。表示用要素</title><polygon points="580.0,534.0 590.0,544 580.0,554.0 570.0,544"/><text class="flow-gateway-symbol" x="580.0" y="547" text-anchor="middle"></text></g><g class="flow-node split" data-node-id="split-d" data-node-kind="split" data-lane-id="lane-2" data-box="570.0,666.0,590.0,686.0"><title>結果分岐。表示用要素</title><polygon points="580.0,666.0 590.0,676 580.0,686.0 570.0,676"/><text class="flow-gateway-symbol" x="580.0" y="679" text-anchor="middle">×</text></g><g class="flow-node merge" data-node-id="join-h" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,1134.0,230.0,1154.0"><title>合流。表示用要素</title><polygon points="220.0,1134.0 230.0,1144 220.0,1154.0 210.0,1144"/><text class="flow-gateway-symbol" x="220.0" y="1147" text-anchor="middle"></text></g><g class="flow-node split" data-node-id="split-h" data-node-kind="split" data-lane-id="lane-1" data-box="210.0,1266.0,230.0,1286.0"><title>結果分岐。表示用要素</title><polygon points="220.0,1266.0 230.0,1276 220.0,1286.0 210.0,1276"/><text class="flow-gateway-symbol" x="220.0" y="1279" text-anchor="middle">×</text></g><g class="flow-node end" data-node-id="end-l" data-node-kind="end" data-lane-id="lane-3" data-box="923.0,1889.0,957.0,1923.0"><title>確認区間の終了。表示用要素</title><circle cx="940.0" cy="1906" r="17.0"/><circle class="end-inner" cx="940.0" cy="1906" r="12.0"/><text class="flow-event-label" x="940.0" y="1942" text-anchor="middle">確認区間の終了</text></g></svg></div></section><div class="table-scroll" tabindex="0" role="region" aria-label="接続図と同一データの全経路（表示用の開始・終了・合流は業務操作に数えません）">
-<table ><caption>接続図と同一データの全経路（表示用の開始・終了・合流は業務操作に数えません）</caption>
-<thead><tr><th scope="col">経路ID</th><th scope="col">起点</th><th scope="col">条件／操作</th><th scope="col">到達点</th></tr></thead>
+<aside class="portal-context" style="padding:16px;background:#edf5ff;border:1px solid #93b7db;margin:16px 0">
+<strong>要件定義から読む</strong>
+<p>
+<a data-context-return href="../../../requirements/standard-template/sections/1.1.2.html#section-1.1.2">関連する標準要件 1.1.2 へ戻る</a> · <a href="../../../requirements/standard-template/index.html">要件定義の入口</a> · <a href="../../../requirements/standard-template/requirements/index.html">要件IDで探す</a>
+</p>
+<p>このレビュー図・画面例の根拠は b5e5d460fe19、2026-10-10 時点の資料です。DOT-001承認A・Live38引継ぎ観測を反映。正式P/H・自動E2E・最終照合は未完了です。</p>
+</aside>
+<p>
+<span class="badge accepted">確定改修要件</span> 担当：局担当者・給与班</p>
+<dl>
+<dt>開始</dt>
+<dd>所属×勤務月の入力中報告</dd>
+<dt>終了</dt>
+<dd>報告済み、または不完全隔離から復旧</dd>
+</dl>
+<a class="requirement" data-requirement-id="PAYREQ-06" href="../../../requirements/standard-template/requirements/PAYREQ-06.html">PAYREQ-06</a>
+<a class="requirement" data-requirement-id="PAYREQ-07" href="../../../requirements/standard-template/requirements/PAYREQ-07.html">PAYREQ-07</a>
+<p class="lead workflow-summary">入力とExcel取込を分け、保存後に報告へ合流。取込途中失敗は隔離・復旧へ、給与班差戻しは入力中へ戻って再報告します。</p>
+<div class="flow-legend">
+<span>○ 開始／◎ 確認区間の終了</span>
+<span>角丸：作業</span>
+<span>◇ ×：条件分岐</span>
+<span>小さい◇：合流・結果分岐</span>
+<span>茶線：訂正・再試行</span>
+<span>破線：アプリ外との受渡し</span>
+</div>
+<p class="diagram-reading">上から下へ主な流れをたどります。工程は一度だけ配置し、矢印で分岐・合流・戻り先をつないでいます。BPMN風のレビュー表記であり、BPMN 2.0の実行可能な定義ではありません。工程を選ぶと定義へ、操作定義↗から操作の詳細へ進みます。</p>
+<ul class="flow-notes">
+<li>取込中は同じ報告の編集・提出を停止します。復旧・再実行は方式未決（PD-05）であり、無条件のロールバックを保証しません。</li>
+</ul>
+<section class="connected-workflow" data-connected-workflow>
+<div class="diagram-tools" data-diagram-tools hidden>
+<button type="button" data-diagram-fit>幅に合わせる</button>
+<button type="button" data-diagram-all>全体を見る</button>
+<button type="button" data-diagram-actual>100%</button>
+<button type="button" data-diagram-out aria-label="業務図を縮小">−</button>
+<button type="button" data-diagram-in aria-label="業務図を拡大">＋</button>
+<output data-diagram-scale aria-live="polite">100%</output>
+<span>図内だけを横・縦スクロールできます</span>
+</div>
+<div class="workflow-scroll" tabindex="0" role="region" aria-label="勤務時間報告・取込とロック。上下に流れを追い、枠内をスクロール">
+<svg class="workflow-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 1990" width="1160" height="1990" role="img" aria-labelledby="WF-10-title WF-10-description" data-workflow-id="WF-10">
+<title id="WF-10-title">WF-10 勤務時間報告・取込とロック</title>
+<desc id="WF-10-description">入力とExcel取込を分け、保存後に報告へ合流。取込途中失敗は隔離・復旧へ、給与班差戻しは入力中へ戻って再報告します。 工程は一度だけ配置。矢印をたどり、茶色の折返しは訂正・再試行。全条件は同じデータの経路表で確認できます。</desc>
+<defs>
+<marker id="WF-10-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+</marker>
+</defs>
+<g class="flow-lane app" data-lane-id="lane-1">
+<rect x="40" y="0" width="360" height="1990"/>
+<rect class="lane-heading-bg" x="40" y="0" width="360" height="65"/>
+<text x="220" y="25" class="flow-lane-title" text-anchor="middle">局担当者／給与班</text>
+<text x="220" y="49" class="flow-lane-scope" text-anchor="middle">入力中の操作</text>
+</g>
+<g class="flow-lane app" data-lane-id="lane-2">
+<rect x="400" y="0" width="360" height="1990"/>
+<rect class="lane-heading-bg" x="400" y="0" width="360" height="65"/>
+<text x="580" y="25" class="flow-lane-title" text-anchor="middle">給与アプリ・取込処理</text>
+<text x="580" y="49" class="flow-lane-scope" text-anchor="middle">全件検証・反映・復旧</text>
+</g>
+<g class="flow-lane app" data-lane-id="lane-3">
+<rect x="760" y="0" width="360" height="1990"/>
+<rect class="lane-heading-bg" x="760" y="0" width="360" height="65"/>
+<text x="940" y="25" class="flow-lane-title" text-anchor="middle">給与班</text>
+<text x="940" y="49" class="flow-lane-scope" text-anchor="middle">報告後の確認・差戻し</text>
+</g>
+<g class="flow-connector view" data-edge-id="WF-10-view-01" data-from="start-a" data-to="a">
+<path class="flow-edge-halo" d="M 220 116 L 220 162"/>
+<path class="flow-edge" d="M 220 116 L 220 162" marker-end="url(#WF-10-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-10-view-02" data-from="join-b" data-to="b">
+<path class="flow-edge-halo" d="M 220 330 L 220 342"/>
+<path class="flow-edge" d="M 220 330 L 220 342" marker-end="url(#WF-10-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-10-view-03" data-from="join-c" data-to="c">
+<path class="flow-edge-halo" d="M 220 554 L 220 562"/>
+<path class="flow-edge" d="M 220 554 L 220 562" marker-end="url(#WF-10-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-10-view-04" data-from="join-d" data-to="d">
+<path class="flow-edge-halo" d="M 580 554 L 580 562"/>
+<path class="flow-edge" d="M 580 554 L 580 562" marker-end="url(#WF-10-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-10-view-05" data-from="d" data-to="split-d">
+<path class="flow-edge-halo" d="M 580 658 L 580 666"/>
+<path class="flow-edge" d="M 580 658 L 580 666" marker-end="url(#WF-10-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-10-view-06" data-from="join-h" data-to="h">
+<path class="flow-edge-halo" d="M 220 1154 L 220 1162"/>
+<path class="flow-edge" d="M 220 1154 L 220 1162" marker-end="url(#WF-10-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-10-view-07" data-from="h" data-to="split-h">
+<path class="flow-edge-halo" d="M 220 1258 L 220 1266"/>
+<path class="flow-edge" d="M 220 1258 L 220 1266" marker-end="url(#WF-10-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-10-view-08" data-from="l" data-to="end-l">
+<path class="flow-edge-halo" d="M 940 1858 L 940 1889"/>
+<path class="flow-edge" d="M 940 1858 L 940 1889" marker-end="url(#WF-10-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-01" data-from="a" data-to="join-b" data-source-step="a" data-target-step="b">
+<path class="flow-edge-halo" d="M 220 258 L 220 310"/>
+<path class="flow-edge" d="M 220 258 L 220 310" marker-end="url(#WF-10-arrow)"/>
+<title>入力中</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-02" data-from="b" data-to="join-c" data-source-step="b" data-target-step="c">
+<path class="flow-edge-halo" d="M 220 478 L 220 534"/>
+<path class="flow-edge" d="M 220 478 L 220 534" marker-end="url(#WF-10-arrow)"/>
+<title>画面入力</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-05" data-from="split-d" data-to="e" data-source-step="d" data-target-step="e">
+<path class="flow-edge-halo" d="M 580 686 L 580 762"/>
+<path class="flow-edge" d="M 580 686 L 580 762" marker-end="url(#WF-10-arrow)"/>
+<title>全件検証OK</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-06" data-from="e" data-to="f" data-source-step="e" data-target-step="f">
+<path class="flow-edge-halo" d="M 580 858 L 580 942"/>
+<path class="flow-edge" d="M 580 858 L 580 942" marker-end="url(#WF-10-arrow)"/>
+<title>結果確認</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-07" data-from="f" data-to="g" data-source-step="f" data-target-step="g">
+<path class="flow-edge-halo" d="M 580 1078 L 580 1162"/>
+<path class="flow-edge" d="M 580 1078 L 580 1162" marker-end="url(#WF-10-arrow)"/>
+<title>途中失敗</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-10" data-from="c" data-to="join-h" data-source-step="c" data-target-step="h">
+<path class="flow-edge-halo" d="M 220 658 L 220 1134"/>
+<path class="flow-edge" d="M 220 658 L 220 1134" marker-end="url(#WF-10-arrow)"/>
+<title>保存</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-12" data-from="split-h" data-to="i" data-source-step="h" data-target-step="i">
+<path class="flow-edge-halo" d="M 220 1286 L 220 1362"/>
+<path class="flow-edge" d="M 220 1286 L 220 1362" marker-end="url(#WF-10-arrow)"/>
+<title>確認後</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-16" data-from="j" data-to="l" data-source-step="j" data-target-step="l">
+<path class="flow-edge-halo" d="M 940 1678 L 940 1762"/>
+<path class="flow-edge" d="M 940 1678 L 940 1762" marker-end="url(#WF-10-arrow)"/>
+<title>利用可能</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-03" data-from="b" data-to="join-d" data-source-step="b" data-target-step="d">
+<path class="flow-edge-halo" d="M 220 478 L 220 486 L 580 486 L 580 534"/>
+<path class="flow-edge" d="M 220 478 L 220 486 L 580 486 L 580 534" marker-end="url(#WF-10-arrow)"/>
+<title>Excel</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-09" data-from="f" data-to="join-h" data-source-step="f" data-target-step="h">
+<path class="flow-edge-halo" d="M 580 1078 L 580 1086 L 230 1086 L 230 1126 L 220 1126 L 220 1134"/>
+<path class="flow-edge" d="M 580 1078 L 580 1086 L 230 1086 L 230 1126 L 220 1126 L 220 1134" marker-end="url(#WF-10-arrow)"/>
+<title>完了</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-10-edge-13" data-from="i" data-to="j" data-source-step="i" data-target-step="j">
+<path class="flow-edge-halo" d="M 220 1458 L 220 1534 L 940 1534 L 940 1542"/>
+<path class="flow-edge" d="M 220 1458 L 220 1534 L 940 1534 L 940 1542" marker-end="url(#WF-10-arrow)"/>
+<title>報告済み</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-10-edge-08" data-from="g" data-to="join-d" data-source-step="g" data-target-step="d">
+<path class="flow-edge-halo" d="M 458 1210 L 450 1210 L 450 544 L 570 544"/>
+<path class="flow-edge" d="M 458 1210 L 450 1210 L 450 544 L 570 544" marker-end="url(#WF-10-arrow)"/>
+<title>復旧・再実行</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-10-edge-11" data-from="split-h" data-to="join-c" data-source-step="h" data-target-step="c">
+<path class="flow-edge-halo" d="M 210 1276 L 86 1276 L 86 544 L 210 544"/>
+<path class="flow-edge" d="M 210 1276 L 86 1276 L 86 544 L 210 544" marker-end="url(#WF-10-arrow)"/>
+<title>保存失敗・保持</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-10-edge-14" data-from="j" data-to="k" data-source-step="j" data-target-step="k">
+<path class="flow-edge-halo" d="M 815 1610 L 807 1610 L 807 1410 L 818 1410"/>
+<path class="flow-edge" d="M 815 1610 L 807 1610 L 807 1410 L 818 1410" marker-end="url(#WF-10-arrow)"/>
+<title>訂正必要</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-10-edge-04" data-from="split-d" data-to="join-b" data-source-step="d" data-target-step="b">
+<path class="flow-edge-halo" d="M 570 676 L 359 676 L 359 300 L 202 300 L 202 320 L 210 320"/>
+<path class="flow-edge" d="M 570 676 L 359 676 L 359 300 L 202 300 L 202 320 L 210 320" marker-end="url(#WF-10-arrow)"/>
+<title>検証NG・修正</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-10-edge-15" data-from="k" data-to="join-b" data-source-step="k" data-target-step="b">
+<path class="flow-edge-halo" d="M 818 1410 L 810 1410 L 810 293 L 193 293 L 193 320 L 210 320"/>
+<path class="flow-edge" d="M 818 1410 L 810 1410 L 810 293 L 193 293 L 193 320 L 210 320" marker-end="url(#WF-10-arrow)"/>
+<title>入力中へ</title>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-01">
+<rect x="135.8" y="269.5" width="57.2" height="29" rx="4"/>
+<text x="142.8" y="288.5">入力中</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-02">
+<rect x="227" y="491.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="510.5">画面入力</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-05">
+<rect x="587" y="709.5" width="86" height="29" rx="4"/>
+<text x="594" y="728.5">全件検証OK</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-06">
+<rect x="587" y="885.5" width="71.6" height="29" rx="4"/>
+<text x="594" y="904.5">結果確認</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-07">
+<rect x="587" y="1105.5" width="71.6" height="29" rx="4"/>
+<text x="594" y="1124.5">途中失敗</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-10">
+<rect x="227" y="881.5" width="42.8" height="29" rx="4"/>
+<text x="234" y="900.5">保存</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-12">
+<rect x="227" y="1309.5" width="57.2" height="29" rx="4"/>
+<text x="234" y="1328.5">確認後</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-16">
+<rect x="947" y="1705.5" width="71.6" height="29" rx="4"/>
+<text x="954" y="1724.5">利用可能</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-03">
+<rect x="375" y="450" width="50" height="29" rx="4"/>
+<text x="382" y="469">Excel</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-09">
+<rect x="383.6" y="1050" width="42.8" height="29" rx="4"/>
+<text x="390.6" y="1069">完了</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-10-edge-13">
+<rect x="227" y="1481.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="1500.5">報告済み</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-10-edge-08">
+<rect x="457" y="862.5" width="100.4" height="29" rx="4"/>
+<text x="464" y="881.5">復旧・再実行</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-10-edge-11">
+<rect x="90.6" y="1283" width="114.8" height="29" rx="4"/>
+<text x="97.6" y="1302">保存失敗・保持</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-10-edge-14">
+<rect x="814" y="1495.5" width="71.6" height="29" rx="4"/>
+<text x="821" y="1514.5">訂正必要</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-10-edge-04">
+<rect x="467.05" y="683" width="100.4" height="29" rx="4"/>
+<text x="474.05" y="702">検証NG・修正</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-10-edge-15">
+<rect x="817" y="837" width="71.6" height="29" rx="4"/>
+<text x="824" y="856">入力中へ</text>
+</g>
+<g class="flow-node task" data-node-id="a" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,162.0,342.0,258.0" data-step-id="a">
+<a href="#a" aria-label="a 有効な所属・勤務月を選択：工程定義へ">
+<title>有効な所属・勤務月を選択。現行全置換と異なる、10月7日改修先の取込図。</title>
+<rect x="98.0" y="162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="182.0">a · SCR-003</text>
+<text class="flow-task-label" x="112.0" y="207.0">有効な所属・勤務月を選択</text>
+</a>
+<a href="../operations/scr-003.html#OP-003-SELECT" aria-label="OP-003-SELECT 操作定義">
+<text class="flow-op-link" x="330.0" y="249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="b" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,342.0,345.0,478.0" data-step-id="b">
+<a href="#b" aria-label="b 入力かExcel取込か：工程定義へ">
+<title>入力かExcel取込か。入力中だけ。報告済みは編集・取込不可。</title>
+<polygon points="220.0,342.0 345.0,410 220.0,478.0 95.0,410"/>
+<text class="flow-node-id" x="220.0" y="370" text-anchor="middle">b · ×</text>
+<text class="flow-task-label" x="220.0" y="402" text-anchor="middle">入力かExcel取込か</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="c" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,562.0,342.0,658.0" data-step-id="c">
+<a href="#c" aria-label="c 日数・時間・備考を編集：工程定義へ">
+<title>日数・時間・備考を編集。改修先は職員行追加／削除可。超勤3桁・欠勤整数。</title>
+<rect x="98.0" y="562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="582.0">c · SCR-003</text>
+<text class="flow-task-label" x="112.0" y="607.0">日数・時間・備考を編集</text>
+</a>
+<a href="../operations/scr-003.html#OP-003-EDIT" aria-label="OP-003-EDIT 操作定義">
+<text class="flow-op-link" x="330.0" y="649.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="d" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,562.0,702.0,658.0" data-step-id="d">
+<a href="#d" aria-label="d 全件検証・処理中ロック：工程定義へ">
+<title>全件検証・処理中ロック。同報告の編集・提出を停止し全行を検証。</title>
+<rect x="458.0" y="562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="582.0">d · SCR-003</text>
+<text class="flow-task-label" x="472.0" y="607.0">全件検証・処理中ロック</text>
+</a>
+<a href="../operations/scr-003.html#OP-003-IMPORT" aria-label="OP-003-IMPORT 操作定義">
+<text class="flow-op-link" x="690.0" y="649.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="e" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,762.0,702.0,858.0" data-step-id="e">
+<a href="#e" aria-label="e 掲載職員行を追加更新：工程定義へ">
+<title>掲載職員行を追加更新。手修正上書き・空欄消去・0保持・未掲載保持。</title>
+<rect x="458.0" y="762.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="782.0">e · SCR-003</text>
+<text class="flow-task-label" x="472.0" y="807.0">掲載職員行を追加更新</text>
+</a>
+<a href="../operations/scr-003.html#OP-003-IMPORT" aria-label="OP-003-IMPORT 操作定義">
+<text class="flow-op-link" x="690.0" y="849.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="f" data-node-kind="gateway" data-lane-id="lane-2" data-box="455.0,942.0,705.0,1078.0" data-step-id="f">
+<a href="#f" aria-label="f 反映は全て完了したか：工程定義へ">
+<title>反映は全て完了したか。全件事前検証でも反映途中障害はあり得る。</title>
+<polygon points="580.0,942.0 705.0,1010 580.0,1078.0 455.0,1010"/>
+<text class="flow-node-id" x="580.0" y="970" text-anchor="middle">f · ×</text>
+<text class="flow-task-label" x="580.0" y="1002" text-anchor="middle">反映は全て完了した</text>
+<text class="flow-task-label" x="580.0" y="1024" text-anchor="middle">か</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="g" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,1162.0,702.0,1258.0" data-step-id="g">
+<a href="#g" aria-label="g 不完全として計算除外：工程定義へ">
+<title>不完全として計算除外。復旧方式PD-05。無条件ロールバック保証なし。</title>
+<rect x="458.0" y="1162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="1182.0">g · SCR-003</text>
+<text class="flow-task-label" x="472.0" y="1207.0">不完全として計算除外</text>
+</a>
+<a href="../operations/scr-003.html#OP-003-RECOVER" aria-label="OP-003-RECOVER 操作定義">
+<text class="flow-op-link" x="690.0" y="1249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="h" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1162.0,342.0,1258.0" data-step-id="h">
+<a href="#h" aria-label="h 保存して読取りへ：工程定義へ">
+<title>保存して読取りへ。保存失敗は入力保持。未保存の読取り切替は破棄確認。</title>
+<rect x="98.0" y="1162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="1182.0">h · SCR-003</text>
+<text class="flow-task-label" x="112.0" y="1207.0">保存して読取りへ</text>
+</a>
+<a href="../operations/scr-003.html#OP-003-SAVE" aria-label="OP-003-SAVE 操作定義">
+<text class="flow-op-link" x="330.0" y="1249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="i" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1362.0,342.0,1458.0" data-step-id="i">
+<a href="#i" aria-label="i 勤務時間を報告：工程定義へ">
+<title>勤務時間を報告。保存済み内容を報告。</title>
+<rect x="98.0" y="1362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="1382.0">i · SCR-003</text>
+<text class="flow-task-label" x="112.0" y="1407.0">勤務時間を報告</text>
+</a>
+<a href="../operations/scr-003.html#OP-003-REPORT" aria-label="OP-003-REPORT 操作定義">
+<text class="flow-op-link" x="330.0" y="1449.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="j" data-node-kind="gateway" data-lane-id="lane-3" data-box="815.0,1542.0,1065.0,1678.0" data-step-id="j">
+<a href="#j" aria-label="j 報告済み内容に訂正が必要か：工程定義へ">
+<title>報告済み内容に訂正が必要か。給与班確認で訂正が必要なら差戻し。</title>
+<polygon points="940.0,1542.0 1065.0,1610 940.0,1678.0 815.0,1610"/>
+<text class="flow-node-id" x="940.0" y="1570" text-anchor="middle">j · ×</text>
+<text class="flow-task-label" x="940.0" y="1602" text-anchor="middle">報告済み内容に訂正</text>
+<text class="flow-task-label" x="940.0" y="1624" text-anchor="middle">が必要か</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="k" data-node-kind="task" data-lane-id="lane-3" data-box="818.0,1362.0,1062.0,1458.0" data-step-id="k">
+<a href="#k" aria-label="k 給与班が差し戻す：工程定義へ">
+<title>給与班が差し戻す。訂正・再提出後、未払いの影響分は再計算・再照合。</title>
+<rect x="818.0" y="1362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="832.0" y="1382.0">k · SCR-003</text>
+<text class="flow-task-label" x="832.0" y="1407.0">給与班が差し戻す</text>
+</a>
+<a href="../operations/scr-003.html#OP-003-RETURN" aria-label="OP-003-RETURN 操作定義">
+<text class="flow-op-link" x="1050.0" y="1449.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="l" data-node-kind="task" data-lane-id="lane-3" data-box="818.0,1762.0,1062.0,1858.0" data-step-id="l">
+<a href="#l" aria-label="l 給与計算で職員別に集計：工程定義へ">
+<title>給与計算で職員別に集計。所属別報告から職員別集計。取込不完全は含めない。</title>
+<rect x="818.0" y="1762.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="832.0" y="1782.0">l · SCR-003</text>
+<text class="flow-task-label" x="832.0" y="1807.0">給与計算で職員別に集計</text>
+</a>
+</g>
+<g class="flow-node start" data-node-id="start-a" data-node-kind="start" data-lane-id="lane-1" data-box="204.0,84.0,236.0,116.0">
+<title>開始。表示用要素</title>
+<circle cx="220.0" cy="100" r="16.0"/>
+<text class="flow-event-label" x="247.0" y="105" text-anchor="start">開始</text>
+</g>
+<g class="flow-node merge" data-node-id="join-b" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,310.0,230.0,330.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,310.0 230.0,320 220.0,330.0 210.0,320"/>
+<text class="flow-gateway-symbol" x="220.0" y="323" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node merge" data-node-id="join-c" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,534.0,230.0,554.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,534.0 230.0,544 220.0,554.0 210.0,544"/>
+<text class="flow-gateway-symbol" x="220.0" y="547" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node merge" data-node-id="join-d" data-node-kind="merge" data-lane-id="lane-2" data-box="570.0,534.0,590.0,554.0">
+<title>合流。表示用要素</title>
+<polygon points="580.0,534.0 590.0,544 580.0,554.0 570.0,544"/>
+<text class="flow-gateway-symbol" x="580.0" y="547" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node split" data-node-id="split-d" data-node-kind="split" data-lane-id="lane-2" data-box="570.0,666.0,590.0,686.0">
+<title>結果分岐。表示用要素</title>
+<polygon points="580.0,666.0 590.0,676 580.0,686.0 570.0,676"/>
+<text class="flow-gateway-symbol" x="580.0" y="679" text-anchor="middle">×</text>
+</g>
+<g class="flow-node merge" data-node-id="join-h" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,1134.0,230.0,1154.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,1134.0 230.0,1144 220.0,1154.0 210.0,1144"/>
+<text class="flow-gateway-symbol" x="220.0" y="1147" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node split" data-node-id="split-h" data-node-kind="split" data-lane-id="lane-1" data-box="210.0,1266.0,230.0,1286.0">
+<title>結果分岐。表示用要素</title>
+<polygon points="220.0,1266.0 230.0,1276 220.0,1286.0 210.0,1276"/>
+<text class="flow-gateway-symbol" x="220.0" y="1279" text-anchor="middle">×</text>
+</g>
+<g class="flow-node end" data-node-id="end-l" data-node-kind="end" data-lane-id="lane-3" data-box="923.0,1889.0,957.0,1923.0">
+<title>確認区間の終了。表示用要素</title>
+<circle cx="940.0" cy="1906" r="17.0"/>
+<circle class="end-inner" cx="940.0" cy="1906" r="12.0"/>
+<text class="flow-event-label" x="940.0" y="1942" text-anchor="middle">確認区間の終了</text>
+</g>
+</svg>
+</div>
+</section>
+<div class="table-scroll" tabindex="0" role="region" aria-label="接続図と同一データの全経路（表示用の開始・終了・合流は業務操作に数えません）">
+<table >
+<caption>接続図と同一データの全経路（表示用の開始・終了・合流は業務操作に数えません）</caption>
+<thead>
+<tr>
+<th scope="col">経路ID</th>
+<th scope="col">起点</th>
+<th scope="col">条件／操作</th>
+<th scope="col">到達点</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><span data-edge-reference="WF-10-edge-01">WF-10-edge-01</span></td><td>a 有効な所属・勤務月を選択</td><td>入力中</td><td>b 入力かExcel取込か</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-02">WF-10-edge-02</span></td><td>b 入力かExcel取込か</td><td>画面入力</td><td>c 日数・時間・備考を編集</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-03">WF-10-edge-03</span></td><td>b 入力かExcel取込か</td><td>Excel</td><td>d 全件検証・処理中ロック</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-04">WF-10-edge-04</span></td><td>d 全件検証・処理中ロック</td><td>検証NG・修正</td><td>b 入力かExcel取込か</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-05">WF-10-edge-05</span></td><td>d 全件検証・処理中ロック</td><td>全件検証OK</td><td>e 掲載職員行を追加更新</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-06">WF-10-edge-06</span></td><td>e 掲載職員行を追加更新</td><td>結果確認</td><td>f 反映は全て完了したか</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-07">WF-10-edge-07</span></td><td>f 反映は全て完了したか</td><td>途中失敗</td><td>g 不完全として計算除外</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-08">WF-10-edge-08</span></td><td>g 不完全として計算除外</td><td>復旧・再実行</td><td>d 全件検証・処理中ロック</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-09">WF-10-edge-09</span></td><td>f 反映は全て完了したか</td><td>完了</td><td>h 保存して読取りへ</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-10">WF-10-edge-10</span></td><td>c 日数・時間・備考を編集</td><td>保存</td><td>h 保存して読取りへ</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-11">WF-10-edge-11</span></td><td>h 保存して読取りへ</td><td>保存失敗・保持</td><td>c 日数・時間・備考を編集</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-12">WF-10-edge-12</span></td><td>h 保存して読取りへ</td><td>確認後</td><td>i 勤務時間を報告</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-13">WF-10-edge-13</span></td><td>i 勤務時間を報告</td><td>報告済み</td><td>j 報告済み・編集取込不可</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-14">WF-10-edge-14</span></td><td>j 報告済み・編集取込不可</td><td>訂正必要</td><td>k 給与班が差し戻す</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-15">WF-10-edge-15</span></td><td>k 給与班が差し戻す</td><td>入力中へ</td><td>b 入力かExcel取込か</td></tr>
-<tr><td><span data-edge-reference="WF-10-edge-16">WF-10-edge-16</span></td><td>j 報告済み・編集取込不可</td><td>利用可能</td><td>l 給与計算で職員別に集計</td></tr>
-</tbody></table></div>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-01">WF-10-edge-01</span>
+</td>
+<td>a 有効な所属・勤務月を選択</td>
+<td>入力中</td>
+<td>b 入力かExcel取込か</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-02">WF-10-edge-02</span>
+</td>
+<td>b 入力かExcel取込か</td>
+<td>画面入力</td>
+<td>c 日数・時間・備考を編集</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-03">WF-10-edge-03</span>
+</td>
+<td>b 入力かExcel取込か</td>
+<td>Excel</td>
+<td>d 全件検証・処理中ロック</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-04">WF-10-edge-04</span>
+</td>
+<td>d 全件検証・処理中ロック</td>
+<td>検証NG・修正</td>
+<td>b 入力かExcel取込か</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-05">WF-10-edge-05</span>
+</td>
+<td>d 全件検証・処理中ロック</td>
+<td>全件検証OK</td>
+<td>e 掲載職員行を追加更新</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-06">WF-10-edge-06</span>
+</td>
+<td>e 掲載職員行を追加更新</td>
+<td>結果確認</td>
+<td>f 反映は全て完了したか</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-07">WF-10-edge-07</span>
+</td>
+<td>f 反映は全て完了したか</td>
+<td>途中失敗</td>
+<td>g 不完全として計算除外</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-08">WF-10-edge-08</span>
+</td>
+<td>g 不完全として計算除外</td>
+<td>復旧・再実行</td>
+<td>d 全件検証・処理中ロック</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-09">WF-10-edge-09</span>
+</td>
+<td>f 反映は全て完了したか</td>
+<td>完了</td>
+<td>h 保存して読取りへ</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-10">WF-10-edge-10</span>
+</td>
+<td>c 日数・時間・備考を編集</td>
+<td>保存</td>
+<td>h 保存して読取りへ</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-11">WF-10-edge-11</span>
+</td>
+<td>h 保存して読取りへ</td>
+<td>保存失敗・保持</td>
+<td>c 日数・時間・備考を編集</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-12">WF-10-edge-12</span>
+</td>
+<td>h 保存して読取りへ</td>
+<td>確認後</td>
+<td>i 勤務時間を報告</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-13">WF-10-edge-13</span>
+</td>
+<td>i 勤務時間を報告</td>
+<td>報告済み</td>
+<td>j 報告済み・編集取込不可</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-14">WF-10-edge-14</span>
+</td>
+<td>j 報告済み・編集取込不可</td>
+<td>訂正必要</td>
+<td>k 給与班が差し戻す</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-15">WF-10-edge-15</span>
+</td>
+<td>k 給与班が差し戻す</td>
+<td>入力中へ</td>
+<td>b 入力かExcel取込か</td>
+</tr>
+<tr>
+<td>
+<span data-edge-reference="WF-10-edge-16">WF-10-edge-16</span>
+</td>
+<td>j 報告済み・編集取込不可</td>
+<td>利用可能</td>
+<td>l 給与計算で職員別に集計</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="table-scroll" tabindex="0" role="region" aria-label="業務工程の定義">
-<table ><caption>業務工程の定義</caption>
-<thead><tr><th scope="col">工程</th><th scope="col">画面・種類</th><th scope="col">動作・条件</th><th scope="col">操作定義／画面</th></tr></thead>
+<table >
+<caption>業務工程の定義</caption>
+<thead>
+<tr>
+<th scope="col">工程</th>
+<th scope="col">画面・種類</th>
+<th scope="col">動作・条件</th>
+<th scope="col">操作定義／画面</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><span id="a">a</span> 有効な所属・勤務月を選択</td><td>SCR-003<br>start</td><td>現行全置換と異なる、10月7日改修先の取込図。</td><td><a href="../operations/scr-003.html#OP-003-SELECT" >OP-003-SELECT</a> / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="b">b</span> 入力かExcel取込か</td><td>SCR-003<br>decision</td><td>入力中だけ。報告済みは編集・取込不可。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="c">c</span> 日数・時間・備考を編集</td><td>SCR-003<br>action</td><td>改修先は職員行追加／削除可。超勤3桁・欠勤整数。</td><td><a href="../operations/scr-003.html#OP-003-EDIT" >OP-003-EDIT</a> / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="d">d</span> 全件検証・処理中ロック</td><td>SCR-003<br>action</td><td>同報告の編集・提出を停止し全行を検証。</td><td><a href="../operations/scr-003.html#OP-003-IMPORT" >OP-003-IMPORT</a> / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="e">e</span> 掲載職員行を追加更新</td><td>SCR-003<br>action</td><td>手修正上書き・空欄消去・0保持・未掲載保持。</td><td><a href="../operations/scr-003.html#OP-003-IMPORT" >OP-003-IMPORT</a> / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="f">f</span> 反映は全て完了したか</td><td>SCR-003<br>decision</td><td>全件事前検証でも反映途中障害はあり得る。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="g">g</span> 不完全として計算除外</td><td>SCR-003<br>action</td><td>復旧方式PD-05。無条件ロールバック保証なし。</td><td><a href="../operations/scr-003.html#OP-003-RECOVER" >OP-003-RECOVER</a> / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="h">h</span> 保存して読取りへ</td><td>SCR-003<br>action</td><td>保存失敗は入力保持。未保存の読取り切替は破棄確認。</td><td><a href="../operations/scr-003.html#OP-003-SAVE" >OP-003-SAVE</a> / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="i">i</span> 勤務時間を報告</td><td>SCR-003<br>action</td><td>保存済み内容を報告。</td><td><a href="../operations/scr-003.html#OP-003-REPORT" >OP-003-REPORT</a> / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="j">j</span> 報告済み・編集取込不可</td><td>SCR-003<br>decision</td><td>給与班確認で訂正が必要なら差戻し。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="k">k</span> 給与班が差し戻す</td><td>SCR-003<br>action</td><td>訂正・再提出後、未払いの影響分は再計算・再照合。</td><td><a href="../operations/scr-003.html#OP-003-RETURN" >OP-003-RETURN</a> / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-<tr><td><span id="l">l</span> 給与計算で職員別に集計</td><td>SCR-003<br>end</td><td>所属別報告から職員別集計。取込不完全は含めない。</td><td>業務境界・状態（操作なし） / <a href="../wireframes/scr-003.html" >画面を開く</a></td></tr>
-</tbody></table></div>
-<h2>例外・未保存・引継ぎの確認</h2><p>各操作定義の失敗／取消／未保存／保持・解除欄を確認してください。処理中・報告済み・支払済みの編集制限、並行更新、再試行の物理方式は確定業務と未決方式を分けています。モックの再試行成功は実データの復旧保証ではありません。</p><p>出典：<a href="../../../requirements/payroll-confirmed-20261007.md">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a> / <a href="../../../design/detailed/detailed-design.md">詳細設計：勤怠 2026-09-29勤務時間報告／2026-10-01 UI／2026-10-07勤怠再取込</a> / <a href="../../../requirements/open-decisions.md">未決・未照合 D-01～08、PD-01～09、2026-10-08モック・I決定反映後残件</a></p>
+<tr>
+<td>
+<span id="a">a</span> 有効な所属・勤務月を選択</td>
+<td>SCR-003<br>start</td>
+<td>現行全置換と異なる、10月7日改修先の取込図。</td>
+<td>
+<a href="../operations/scr-003.html#OP-003-SELECT" >OP-003-SELECT</a> / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="b">b</span> 入力かExcel取込か</td>
+<td>SCR-003<br>decision</td>
+<td>入力中だけ。報告済みは編集・取込不可。</td>
+<td>業務境界・状態（操作なし） / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="c">c</span> 日数・時間・備考を編集</td>
+<td>SCR-003<br>action</td>
+<td>改修先は職員行追加／削除可。超勤3桁・欠勤整数。</td>
+<td>
+<a href="../operations/scr-003.html#OP-003-EDIT" >OP-003-EDIT</a> / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="d">d</span> 全件検証・処理中ロック</td>
+<td>SCR-003<br>action</td>
+<td>同報告の編集・提出を停止し全行を検証。</td>
+<td>
+<a href="../operations/scr-003.html#OP-003-IMPORT" >OP-003-IMPORT</a> / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="e">e</span> 掲載職員行を追加更新</td>
+<td>SCR-003<br>action</td>
+<td>手修正上書き・空欄消去・0保持・未掲載保持。</td>
+<td>
+<a href="../operations/scr-003.html#OP-003-IMPORT" >OP-003-IMPORT</a> / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="f">f</span> 反映は全て完了したか</td>
+<td>SCR-003<br>decision</td>
+<td>全件事前検証でも反映途中障害はあり得る。</td>
+<td>業務境界・状態（操作なし） / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="g">g</span> 不完全として計算除外</td>
+<td>SCR-003<br>action</td>
+<td>復旧方式PD-05。無条件ロールバック保証なし。</td>
+<td>
+<a href="../operations/scr-003.html#OP-003-RECOVER" >OP-003-RECOVER</a> / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="h">h</span> 保存して読取りへ</td>
+<td>SCR-003<br>action</td>
+<td>保存失敗は入力保持。未保存の読取り切替は破棄確認。</td>
+<td>
+<a href="../operations/scr-003.html#OP-003-SAVE" >OP-003-SAVE</a> / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="i">i</span> 勤務時間を報告</td>
+<td>SCR-003<br>action</td>
+<td>保存済み内容を報告。</td>
+<td>
+<a href="../operations/scr-003.html#OP-003-REPORT" >OP-003-REPORT</a> / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="j">j</span> 報告済み・編集取込不可</td>
+<td>SCR-003<br>decision</td>
+<td>給与班確認で訂正が必要なら差戻し。</td>
+<td>業務境界・状態（操作なし） / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="k">k</span> 給与班が差し戻す</td>
+<td>SCR-003<br>action</td>
+<td>訂正・再提出後、未払いの影響分は再計算・再照合。</td>
+<td>
+<a href="../operations/scr-003.html#OP-003-RETURN" >OP-003-RETURN</a> / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+<tr>
+<td>
+<span id="l">l</span> 給与計算で職員別に集計</td>
+<td>SCR-003<br>end</td>
+<td>所属別報告から職員別集計。取込不完全は含めない。</td>
+<td>業務境界・状態（操作なし） / <a href="../wireframes/scr-003.html" >画面を開く</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>例外・未保存・引継ぎの確認</h2>
+<p>各操作定義の失敗／取消／未保存／保持・解除欄を確認してください。処理中・報告済み・支払済みの編集制限、並行更新、再試行の物理方式は確定業務と未決方式を分けています。モックの再試行成功は実データの復旧保証ではありません。</p>
+<p>出典：<a href="../../../requirements/standard-template/sources/docs--requirements--payroll-confirmed-20261007.html">給与確定要件 PAYREQ-01～10、Q1～Q60、R1～R21、2026-10-08追補</a> / <a href="../../../requirements/standard-template/sources/docs--design--detailed--detailed-design.html">詳細設計：勤怠 2026-09-29勤務時間報告／2026-10-01 UI／2026-10-07勤怠再取込</a> / <a href="../../../requirements/standard-template/sources/docs--requirements--open-decisions.html">未決・未照合 D-01～08、PD-01～09、2026-10-08モック・I決定反映後残件</a>
+</p>
 </main>
 <footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+<script src="../../../requirements/standard-template/assets/context.js" data-portal-root="../../../requirements/standard-template" defer>
+</script>
 </body>
 </html>

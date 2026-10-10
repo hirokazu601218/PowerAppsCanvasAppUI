@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>SCR005-ACT-006 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="index.html" aria-current="page">要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >要件ID・操作</a>
+</span>
+<span aria-current="page">SCR005-ACT-006</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 要件ID一覧へ戻る</a>
+<div>
+<span class="eyebrow">REQUIREMENT / SCR005-ACT-006</span>
+<h1 id="requirement-SCR005-ACT-006">SCR005-ACT-006</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>出典箇所を記載</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>正本の該当記述を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>正本に書かれている内容</h2>
+<p class="meta">出典の要件行・見出し・該当箇所をそのまま示しています。複数の記述がある場合は、文書と時点を確認してください。</p>
+<div class="source-row">
+<p>SCR005-ACT-006 ｜ 未登録勤務・単価未設定・通勤／控除欠落・重複・取得失敗は理由を区別し、計算状態を「不足／失敗」として総額「—」を示す。</p>
+<p class="source">
+<a href="../sources/docs--design--detailed--detailed-design.html?context=req-SCR005-ACT-006#L188" >detailed-design.md · 188行目</a> / 正本の該当行</p>
+</div>
+<div class="source-row">
+<p>SCR005-ACT-006 ｜ 未登録・不足・失敗 ｜ 未登録勤務、欠勤単価未設定、通勤・控除データ欠落、重複等は理由を表示し、総額は「—」。未登録を0円扱いしない</p>
+<p class="source">
+<a href="../sources/docs--requirements--screen-requirements.html?context=req-SCR005-ACT-006#L280" >screen-requirements.md · 280行目</a> / 正本の該当行</p>
+</div>
+<div class="source-row">
+<p>SCR005-ACT-006 ｜ 不足・失敗時の未計算表示 ｜ B機／D11.3 ｜ — ｜ 未登録を0円と混同しない。 ｜ 要再現：[P26] 不足理由表示、前月額の根拠文残留。失敗時未試験。[O] ｜ 差分あり：[V27] V27-10。未登録月で額—と不足理由、前月額を含む説明文が残留。失敗時未試験。</p>
+<p class="source">
+<a href="../sources/docs--requirements--traceability-matrix.html?context=req-SCR005-ACT-006#L126" >traceability-matrix.md · 126行目</a> / 正本の該当行</p>
+</div>
+</section>
+<p class="meta">関連操作・配置の区分: 確定改修要件。この区分を上記の要件判断へ転記していません。</p>
+<section class="panel" >
+<h2>この要件が関係する操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-005-MONTH · SCR-005</span>
+<h3>
+<a href="../operations/OP-005-MONTH.html?context=req-SCR005-ACT-006#OP-005-MONTH" >試算対象月を変更</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>対象変更で旧結果と根拠を失効させ、新入力を確認する。未選択なら選択案内。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>関連する章・業務・画面</h2>
+<h3>標準の章・節</h3>
+<p class="meta">個別の標準節への対応は未入力です。<a href="../sections/2.1.1.html#section-2.1.1" >機能一覧から確認</a>
+</p>
+<h3 style="margin-top:18px">業務</h3>
+<div class="chips">
+</div>
+<h3 style="margin-top:18px">画面</h3>
+<div class="chips">
+</div>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 b5e5d460fe19。レビューの業務・画面モデル: b5e5d460fe19 / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/H・選定自動E2E・最終照合は未完了です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>
