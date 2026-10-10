@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>3.18.3 アプリケーションの保守 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="3.18.html#section-3.18" >3.18 保守に関する事項</a>
+</span>
+<span aria-current="page">3.18.3 アプリケーションの保守</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 3.18.3</span>
+<h1 id="section-3.18.3">3.18.3 アプリケーションの保守</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>一部設定・要件未設定あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>個別出典を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>既存の確定事項から補足した範囲</h2>
+<p>正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。</p>
+<ul>
+<li>
+<a href="../sources/docs--testing--test-policy.html?context=section-3.18.3#L28" >3. テスト工程の選び方 · 28行目</a>
+</li>
+<li>
+<a href="../sources/docs--testing--test-policy.html?context=section-3.18.3#L44" >4. 設計成果物と観点の対応 · 44行目</a>
+</li>
+<li>
+<a href="../sources/docs--testing--test-policy.html?context=section-3.18.3#L48" >5. 担当、環境、証跡 · 48行目</a>
+</li>
+<li>
+<a href="../sources/docs--requirements--non-functional-requirements.html?context=section-3.18.3#L51" >NFR-R · 51行目</a>
+</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>現在の要件</h2>
+<p class="lead">アプリの改修は影響分析とケース選定に基づき、変更部品の単体試験および影響先の結合試験を実施する。公開版とGitHub候補ソースの同一性を別に確認し、未実施・未照合を合格にしない。</p>
+</section>
+<section class="panel" >
+<h2>要件未設定・判断が必要な内容</h2>
+<p class="notice">保守体制、対応時間・期限、変更規模の区分、依存更新方針。</p>
+<p class="meta">具体的な条件・対象範囲・判定基準を未設定のまま表示しています。レイアウト案やテンプレートの例から補いません。</p>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.18.3.1">
+<strong>インシデント管理</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.2">
+<strong>是正保守</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.3">
+<strong>適応保守</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.4">
+<strong>予防保守</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.5">
+<strong>改善措置</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.6">
+<strong>根本原因の分析</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.7">
+<strong>検証</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.8">
+<strong>ドキュメントの修正</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>他の事業者が保守を行う場合は、本章は以下を参考に記載してください。
+記載例：業務アプリケーションに起因する障害については、本システムの運用・保守事業者がプログラムの修正、変更、適用等復旧までの一連の作業を実施するものとする。ただし、受託者の契約期間中における業務アプリケーションの保守においては受託者が実施する。また、契約不適合責任の期間内における障害のうち、障害原因が受託者の責任範囲と判断される場合の一連の作業は、受託者が実施する。</li>
+</ul>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+<section class="panel" >
+<h2>根拠資料と、この節への戻り</h2>
+<p class="meta">資料は読みやすい別ページで開きます。冒頭の「元の要件へ戻る」でこの節へ戻れます。JavaScriptなしでも資料側の参照元一覧から戻れます。</p>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--non-functional-requirements.html?context=section-3.18.3" data-keep-context>non-functional-requirements.md</a>
+<div class="meta">docs/requirements/non-functional-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--testing--test-policy.html?context=section-3.18.3" data-keep-context>test-policy.md</a>
+<div class="meta">docs/testing/test-policy.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

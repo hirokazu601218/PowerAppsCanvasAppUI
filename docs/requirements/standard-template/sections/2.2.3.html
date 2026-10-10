@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>2.2.3 画面遷移の基本的考え方 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="2.2.html#section-2.2" >2.2 画面に関する事項</a>
+</span>
+<span aria-current="page">2.2.3 画面遷移の基本的考え方</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 2.2.3</span>
+<h1 id="section-2.2.3">2.2.3 画面遷移の基本的考え方</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>一部設定・要件未設定あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>個別出典を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>現在の要件</h2>
+<p class="lead">ホームから職員マスタ検索・勤務時間報告・期末勤勉支給率登録・メンテナンスへ移動する。支給明細はSCR-002経由。人給連携は支給回の状況／出力／取込・照合の3タブ。外部認証・人給への手動切替・帳票別タブを区別する。</p>
+</section>
+<section class="panel" >
+<h2>要件未設定・判断が必要な内容</h2>
+<p class="notice">D-05の起動・認証詳細。</p>
+<p class="meta">具体的な条件・対象範囲・判定基準を未設定のまま表示しています。レイアウト案やテンプレートの例から補いません。</p>
+</section>
+<section class="panel" >
+<h2>操作条件まで確認する</h2>
+<p class="meta">関連する既存操作モデルの具体内容です。下位仕様や画面配置が提案の場合は、その区分を維持しています。</p>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-001-STAFF · SCR-001</span>
+<h3>
+<a href="../operations/OP-001-STAFF.html?context=section-2.2.3#OP-001-STAFF" >職員マスタ検索</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>最新の4主ボタンから対象画面へ移動する。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-PAYDETAIL · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-PAYDETAIL.html?context=section-2.2.3#OP-002-PAYDETAIL" >支給明細へ</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>選択職員・対象月を渡し、遷移先で存在と所属を再確認。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-F-RETURN-HTML · EXT-COMMUTE</span>
+<h3>
+<a href="../operations/OP-F-RETURN-HTML.html?context=section-2.2.3#OP-F-RETURN-HTML" >元の通勤タブへ戻る</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>元のSCR-002通勤タブへ戻る。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-JINKYU-PROCESS · EXT-JINKYU</span>
+<h3>
+<a href="../operations/OP-JINKYU-PROCESS.html?context=section-2.2.3#OP-JINKYU-PROCESS" >人給取込・給与簿出力</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>xlsxを人給へ取り込み必要な人給処理を行い、人給給与簿CSVを出力してアプリへ戻す。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>関連する業務の流れ</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">WF-01</span>
+<h3>
+<a href="../workflows/WF-01.html?context=section-2.2.3#WF-01" >職員検索・編集・画面往復</a>
+</h3>
+<p>ホームから職員検索 → 保存済み読取り、または移動取消</p>
+<div class="meta">ログイン利用者</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-08</span>
+<h3>
+<a href="../workflows/WF-08.html?context=section-2.2.3#WF-08" >F 通勤認定簿・別タブPDF</a>
+</h3>
+<p>通勤タブで認定を選択 → A4横2ページを1PDFとして保存</p>
+<div class="meta">給与班・局担当者</div>
+<span class="tag ">現行実装</span>
+</article>
+<article class="card">
+<span class="number">WF-13</span>
+<h3>
+<a href="../workflows/WF-13.html?context=section-2.2.3#WF-13" >人給出力・照合・差分再出力</a>
+</h3>
+<p>人給連携の支給回選択 → 差分訂正ループまたは支給回確定</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>画面・外部境界</h2>
+<ul class="list">
+<li>
+<h3>
+<a href="../screens/SCR-001.html?context=section-2.2.3#SCR-001" >SCR-001 ログイン画面＆ホーム画面</a>
+</h3>
+<p>現行4主ボタンから業務画面へ移動。外部Microsoft認証をCanvas内画面とみなさない。</p>
+<span class="tag ">現行実装</span>
+<span class="meta">ログイン利用者</span>
+</li>
+<li>
+<h3>
+<a href="../screens/SCR-002.html?context=section-2.2.3#SCR-002" >SCR-002 職員マスタ検索・詳細</a>
+</h3>
+<p>検索・履歴・6タブ表示の現行画面。E・F・Gの将来業務を既存タブに追加する。</p>
+<span class="tag ">現行実装</span>
+<span class="meta">会計課給与班 / 局担当者</span>
+</li>
+<li>
+<h3>
+<a href="../screens/SCR-005.html?context=section-2.2.3#SCR-005" >SCR-005 支給明細画面</a>
+</h3>
+<p>選択職員・対象月の内蔵仮例による支給内訳試算。給与班の本番計算・確定と分ける。</p>
+<span class="tag ">現行実装</span>
+<span class="meta">会計課給与班 / 局担当者</span>
+</li>
+<li>
+<h3>
+<a href="../screens/FUT-JLINK.html?context=section-2.2.3#FUT-JLINK" >FUT-JLINK 人給連携</a>
+</h3>
+<p>支給回ごとに出力・給与簿取込・最新照合・給与班確定を行う承認済み構成。</p>
+<span class="tag ">確定改修要件</span>
+<span class="meta">会計課給与班</span>
+</li>
+<li>
+<h3>
+<a href="../screens/EXT-JINKYU.html?context=section-2.2.3#EXT-JINKYU" >EXT-JINKYU 人給システム（外部）</a>
+</h3>
+<p>職員がExcelを取り込み、人給で必要な処理を行い給与簿CSVを出力する外部境界。</p>
+<span class="tag ">確定改修要件</span>
+<span class="meta">会計課給与班</span>
+</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>関係の種類を区別する</h2>
+<ul>
+<li>アプリ内: ホームから各業務画面へ。支給明細は職員詳細から開きます。</li>
+<li>通勤認定簿: 別タブで表示し、元の職員詳細タブへ戻ります。</li>
+<li>人給: 利用者が別システムへ切り替え、Excel・CSVを受け渡します。自動の画面遷移ではありません。</li>
+</ul>
+<p>
+<a href="../../../review/pay-html-001/navigation.html?context=section-2.2.3" >全体の1対多・方向別遷移図を開く</a>
+</p>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>図で示す対象</h3>
+<ul>
+<li id="template-figure-06">図 6　画面遷移図<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>記載イメージとして画面遷移図を本書に掲載していますが、実案件では画面数が多く本書に全て記載することは難しいと考えるため、別紙に記載することを推奨します。</li>
+</ul>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+<section class="panel" >
+<h2>根拠資料と、この節への戻り</h2>
+<p class="meta">資料は読みやすい別ページで開きます。冒頭の「元の要件へ戻る」でこの節へ戻れます。JavaScriptなしでも資料側の参照元一覧から戻れます。</p>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=section-2.2.3" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--payroll-interface-decisions-20261008.html?context=section-2.2.3" data-keep-context>payroll-interface-decisions-20261008.md</a>
+<div class="meta">docs/requirements/payroll-interface-decisions-20261008.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

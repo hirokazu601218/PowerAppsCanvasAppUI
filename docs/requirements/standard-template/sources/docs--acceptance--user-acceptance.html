@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>user-acceptance.md | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">user-acceptance.md</span>
+</nav>
+<a class="context-return" data-context-return href="../sections/2.1.2.html#section-2.1.2">← 関連する要件 2.1.2 へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>user-acceptance.md</h1>
+<p class="meta">docs/acceptance/user-acceptance.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/acceptance/user-acceptance.md">この版のGitHub原文</a> / SHA-256: <code>49e437c0066f0004e502a79227f20cd3e5905d4af7e3d62e28bce8160bd513b8</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+<a href="../sections/2.1.2.html#section-2.1.2" >2.1.2</a>
+<a href="../sections/2.3.2.html#section-2.3.2" >2.3.2</a>
+<a href="../sections/3.13.4.html#section-3.13.4" >3.13.4</a>
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+</div>
+<div class="chips">
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L1" data-source-start="1" data-source-end="3">
+<h1 id="受入テスト計画と結果">受入テスト計画と結果</h1>
+</section>
+<section id="L3" data-source-start="3" data-source-end="3">
+<blockquote>
+<p>対象：現行App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>／v25の受入候補を2026-09-28に追記。実施時期は未決</p>
+</blockquote>
+</section>
+<section id="L5" data-source-start="5" data-source-end="7">
+<h2 id="位置付け">位置付け</h2>
+</section>
+<section id="L7" data-source-start="7" data-source-end="7">
+<p>
+<a href="docs--testing--test-policy.html" data-keep-context>全体テスト計画</a>に基づき、Codexによる単体・結合試験結果と残件を確認した後、ユーザーが自身の業務目的に照らして公開Playerで受入を判断する。旧<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/acceptance.md">acceptance.md</a>はv1.11時点のT01～T14の索引・旧検査手順であり、本書の実施記録ではない。総合テストの業務シナリオ・実施時期は別途策定する。</p>
+</section>
+<section id="L9" data-source-start="9" data-source-end="11">
+<h2 id="開始条件と確認範囲">開始条件と確認範囲</h2>
+</section>
+<section id="L11" data-source-start="11" data-source-end="13">
+<ul>
+<li>対象App ID・環境・公開版、隔離テーブルであることを確認する。</li>
+<li>改修対象の単体テスト、必要な結合テストの結果と残件をCodexが提示する。</li>
+<li>ユーザーが確認する業務シナリオと期待結果を、実施前にここへ追記する。候補は職員検索、該当者の選択、履歴、通勤認定簿の表示・出力。未確定の候補を実施済みとはしない。</li>
+</ul>
+</section>
+<section id="L15" data-source-start="15" data-source-end="17">
+<h2 id="実施記録の様式">実施記録の様式</h2>
+</section>
+<section id="block-L17" data-source-start="17" data-source-end="21">
+<div class="table-wrap" role="region" tabindex="0" aria-label="user-acceptance.mdの表">
+<table>
+<thead>
+<tr id="L17">
+<th>実施日</th>
+<th>対象版・App ID</th>
+<th>業務シナリオ／要件ID</th>
+<th>操作と期待結果</th>
+<th>実結果と証跡</th>
+<th>判定・残件</th>
+<th>確認者</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L19">
+<td>未実施</td>
+<td>未確定</td>
+<td>未確定</td>
+<td>実施前に定義</td>
+<td>未実施</td>
+<td>NOT_RUN</td>
+<td>未確定</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L21" data-source-start="21" data-source-end="21">
+<p>自動E2EのPASSをこの表のPASSへ転記しない。受入の合否・保留・修正指示はユーザーが判断する。</p>
+</section>
+<section id="L23" data-source-start="23" data-source-end="25">
+<h2 id="scr-002公開v25の受入確認案未実施">SCR-002公開v25の受入確認案（未実施）</h2>
+</section>
+<section id="L25" data-source-start="25" data-source-end="25">
+<p>対象はApp ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>、公開メタデータ時刻<code>2026-09-28T05:00:02.0455229Z</code>。Dataverseの正式表に職員行は投入していないため、現時点では隔離の架空職員<code>009900000011</code>を使う。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/verification/postpublish/change-20260928-scr002-history.json">技術試験</a>の6件はPASSしたが、以下の業務上の受入判断はユーザーが行う。</p>
+</section>
+<section id="block-L27" data-source-start="27" data-source-end="33">
+<div class="table-wrap" role="region" tabindex="0" aria-label="user-acceptance.mdの表">
+<table>
+<thead>
+<tr id="L27">
+<th>確認</th>
+<th>操作</th>
+<th>確認する結果</th>
+<th>記録状態</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L29">
+<td>項目と用語</td>
+<td>SCR-002の011を開き、勤務条件・社会保険・税固定控除を確認。税固定控除内で住民税履歴も選択</td>
+<td>添付4定義書の15・26・9・6項目が業務上必要な表示名・順序・意味に合い、税と住民税の履歴を取り違えない</td>
+<td>NOT_RUN</td>
+</tr>
+<tr id="L30">
+<td>値の見え方</td>
+<td>勤務条件の日額単価0、その他備考の空欄を確認。各タブの長文と最終項目まで到達</td>
+<td>0と未登録の区別、日付・数値・長文の見やすさが業務判断に足りる</td>
+<td>NOT_RUN</td>
+</tr>
+<tr id="L31">
+<td>切替と空状態</td>
+<td>011から履歴のない004へ切り替え、再度011を選択</td>
+<td>011の履歴が004に残らず、011に戻すと元の履歴を表示する</td>
+<td>NOT_RUN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L33" data-source-start="33" data-source-end="33">
+<p>編集・保存と他所属の権限試験は<a href="docs--requirements--open-decisions.html" data-keep-context title="旧参照先の見出しが現在の資料にないため、資料の先頭を開きます。">D-01・D-02</a>の決定と専用テスト条件を要する。総合テストの範囲・時期はD-07で別途決める。確認者、日時、実結果、判定を記入するまで、本案を受入PASSと扱わない。</p>
+</section>
+<section id="L36" data-source-start="36" data-source-end="38">
+<h2 id="change-20261003-commute-official通勤認定簿公式様式-v102業務受入完了">CHANGE-20261003-COMMUTE-OFFICIAL／通勤認定簿公式様式 v1.02（業務受入完了）</h2>
+</section>
+<section id="L38" data-source-start="38" data-source-end="38">
+<p>状態：2026-10-07のユーザー申告により業務受入PASS。旧様式を維持した試験入口を同じ公開アプリに追加済み。以下は受入確認手順であり、項目ごとの操作ログは未提供。</p>
+</section>
+<section id="L40" data-source-start="40" data-source-end="44">
+<ol>
+<li>いつもの公開アプリを再読込みし、「職員マスタ検索」→架空職員009900000004→「通勤」を選ぶ。</li>
+<li>「認定簿表示」で旧版、「新様式（受入テスト）」で新版がそれぞれ別タブに開くことを確認。</li>
+<li>氏名、経路、金額、認定期間を元データと比較。人事院000015000.pdfの2ページと罫線・見出し・欄位置を比較。</li>
+<li>新版の印刷ボタンから「PDFに保存」。A4・横・余白なし・倍率100%・ヘッダー/フッターなしを確認し、2ページ、欠け、空白ページ、文字の重なりがないことを確認。</li>
+<li>通常の「認定簿表示」で旧版の表示・PDF保存が引き続きできることを確認。</li>
+</ol>
+</section>
+<section id="L46" data-source-start="46" data-source-end="46">
+<p>公式枠を維持するため自動行高拡張はしない。文字は自動折返し、収まらない場合は印刷停止。経路5〜8等は今回未追加。これらの扱いが業務上適切かも受入対象。合否、確認日、確認レコード、不具合を記録する。合格だけで旧版を削除せず、切替はユーザーの明示指示後。</p>
+</section>
+<section id="L49" data-source-start="49" data-source-end="51">
+<h3 id="2026-10-07-通勤新様式の受入結果">2026-10-07 通勤新様式の受入結果</h3>
+</section>
+<section id="L51" data-source-start="51" data-source-end="51">
+<p>2026-10-07（日本時間）、ユーザーから通勤認定簿の新様式の受入テスト完了の申告を受領し、CHANGE-20261003-COMMUTE-OFFICIALの業務受入をPASSとして記録した。対象は並行配置した公式様式v1.02（公開版 <code>2026-10-03T18:31:30.4607518Z</code>）。申告受領日を記録しており、実際の試験日時・確認レコード・項目別操作ログは未入力。個別の実機印刷設定や全データ組合せの実測証跡へ読み替えない。総合試験D-07と今後の給与モデル再構成の受入は別判定。旧様式の削除・通常ボタンの切替は今回実施しない。</p>
+</section>
+<section id="L54" data-source-start="54" data-source-end="56">
+<h2 id="change-20261007-commute-cutover通常入口への切替2026-10-07">CHANGE-20261007-COMMUTE-CUTOVER／通常入口への切替（2026-10-07）</h2>
+</section>
+<section id="L56" data-source-start="56" data-source-end="56">
+<p>同一App ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>、公開版 <code>2026-10-07T01:17:13.7960236Z</code>。受入済み帳票v1.02を通常利用へ切替済み。通常の「認定簿表示」（btnCertificate111）を唯一の入口とし、btnCertificateOfficial102を撤去した。入口差分のソース版は <code>src/commute-ledger/v1.03/</code>。上記の旧新並行配置・切替未実施という記録は過去時点の履歴。</p>
+</section>
+<section id="L58" data-source-start="58" data-source-end="58">
+<p>旧Webリソース <code>crb3c_reports/commute-ledger-studio.html</code> は公開アプリから参照されない。2026-10-07 12:22頃 JST、ユーザーの操作時承認後に環境から当該1件を削除した。削除後Actions37566672250で不存在・新HTML SHA一致・通常ボタン全プロパティ一致を確認。別の <code>crb3c_reports/commute-ledger.html</code> は保持。削除後Playerで別タブ・TK-910003・71欄・2ページ・枠超過0を再確認した。</p>
+</section>
+<section id="L60" data-source-start="60" data-source-end="60">
+<p>受入済みv1.02の通常入口は、同じPlayer→職員マスタ検索→通勤→「認定簿表示」。試験ボタンは撤去済み。2026-10-07の受入申告は旧公開版に対する履歴として保持する。この切替実施記録作成時点では切替後の業務受入申告は未受領。その後の申告は次節に記録する。</p>
+</section>
+<section id="L63" data-source-start="63" data-source-end="65">
+<h3 id="2026-10-07-1249-jst-切替後の業務受入pass">2026-10-07 12:49 JST 切替後の業務受入PASS</h3>
+</section>
+<section id="L65" data-source-start="65" data-source-end="65">
+<p>2026-10-07 12:49 JST、ユーザーから「受入テスト終了。okです。進めてください」と申告を受領。CHANGE-20261007-COMMUTE-CUTOVERの切替・旧様式撤去後の業務受入をPASSとして記録する。対象はApp ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>、公開版 <code>2026-10-07T01:17:13.7960236Z</code>、通常「認定簿表示」から開く新様式v1.02。旧公開版の受入記録とは別の今回の申告である。</p>
+</section>
+<section id="L67" data-source-start="67" data-source-end="68">
+<p>申告受領日時を記録した。実際の試験日時・確認レコード・項目別操作ログ・個別の印刷設定は未提供。ユーザーの総合的な受入PASSを、未提供の操作ログや全データ組合せ・総合試験D-07の実測合格へ読み替えない。</p>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

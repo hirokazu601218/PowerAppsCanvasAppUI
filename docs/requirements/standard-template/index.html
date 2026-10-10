@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>要件定義の入口 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="assets/portal.css">
+<script src="assets/portal.js" defer>
+</script>
+<script src="assets/context.js" data-portal-root="./" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="index.html" aria-current="page">入口</a>
+<a href="journeys.html" >業務から読む</a>
+<a href="screens/index.html" >画面一覧</a>
+<a href="chapters.html" >標準の章立て</a>
+<a href="requirements/index.html" >要件ID・操作</a>
+<a href="open-items.html" >要件未設定</a>
+<a href="reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="index.html" >要件定義</a>
+</span>
+<span aria-current="page">要件定義の入口</span>
+</nav>
+<div>
+<div class="hero">
+<section>
+<span class="eyebrow">REQUIREMENTS REVIEW / DS-120</span>
+<h1>給与業務を、<br>要件からたどる。</h1>
+<p class="lead">業務の流れと画面を確認する方にも、設計・構築の条件を追う方にも。ひとつの要件から、担当・操作・データ・例外・根拠までつなげて読めます。</p>
+<div class="actions">
+<a href="journeys.html" class="button primary">業務の流れから読む</a>
+<a href="requirements/index.html" class="button">要件IDから探す</a>
+</div>
+</section>
+<aside class="hero-note">
+<strong>今回の資料で分かること</strong>
+<ul>
+<li>誰が、どの画面で、何を確認するか</li>
+<li>何が確定し、何がまだ未設定か</li>
+<li>設計・試験につなぐ操作条件と出典</li>
+</ul>
+<p class="meta">アプリの実装や給与計算を実行する資料ではありません。</p>
+</aside>
+</div>
+<section>
+<div class="section-head">
+<h2>確認したいところから</h2>
+<a href="reading-guide.html" >iPhone・PCでの開き方</a>
+</div>
+<div class="card-grid two">
+<a class="card card-link featured" href="screens/index.html">
+<span class="number">01 / 業務利用者</span>
+<h3>画面を見ながら確認 →</h3>
+<p>入口、表示内容、入力・確認、完了の条件を画面ごとに整理。</p>
+</a>
+<a class="card card-link featured" href="chapters.html">
+<span class="number">02 / 設計・構築者</span>
+<h3>標準の章立てで確認 →</h3>
+<p>DS-120第5章の章立てから、業務・機能・非機能へ。</p>
+</a>
+<a class="card card-link featured" href="requirements/index.html">
+<span class="number">03 / 条件を追跡</span>
+<h3>要件・操作を検索 →</h3>
+<p>要件IDと操作IDから、役割、データ、例外、関連資料へ。</p>
+</a>
+<a class="card card-link featured" href="open-items.html">
+<span class="number">04 / 次の判断</span>
+<h3>要件未設定を確認 →</h3>
+<p>記載の不足と、実装・検証の状況を分けて確認。</p>
+</a>
+</div>
+</section>
+<section class="panel" style="margin-top:24px">
+<h2>全体の流れをつかむ</h2>
+<ol class="steps">
+<li>
+<div class="step-title">
+<a href="workflows/WF-05.html#WF-05" >給与情報を整える</a>
+</div>
+<p>勤務条件・保険・税などを登録し、給与班が確認。未確認の情報は計算に使いません。</p>
+</li>
+<li>
+<div class="step-title">
+<a href="workflows/WF-10.html#WF-10" >勤務実績をそろえる</a>
+</div>
+<p>局・勤務月ごとに報告。取込中・途中失敗を完了扱いにしません。</p>
+</li>
+<li>
+<div class="step-title">
+<a href="workflows/WF-12.html#WF-12" >計算する</a>
+</div>
+<p>認定済み通勤、報告済み勤怠などから計算。使用した条件と結果を版ごとに保持します。</p>
+</li>
+<li>
+<div class="step-title">
+<a href="workflows/WF-13.html#WF-13" >人給と照合する</a>
+</div>
+<p>Excelを人給へ渡し、CSVを戻して最新版と照合。差分は原因の画面へ戻って訂正します。</p>
+</li>
+<li>
+<div class="step-title">
+<a href="workflows/WF-14.html#WF-14" >確定後の差額を扱う</a>
+</div>
+<p>支払済みの元結果は直さず、追給・返納として別に扱います。</p>
+</li>
+</ol>
+<p class="meta">工程順の読み方を示しています。各業務の戻り・分岐・失敗時の経路は、個別フロー図と操作定義で確認できます。</p>
+</section>
+<section class="panel">
+<h2>確定している境界</h2>
+<ul>
+<li>2026年10月7日の給与確定要件、10月8日の人給連携の決定を優先します。</li>
+<li>人給連携は「支給回の状況／出力／取込・照合」の3タブ。最新の全体照合が差分ゼロの場合だけ、給与班が支給回を確定します。</li>
+<li>D9以降の計算式、端数、符号などの制度判断は保留です。</li>
+</ul>
+<div class="chips">
+<a href="requirements/I12.html#requirement-I12" >I12: 支給回の確定条件</a>
+<a href="sources/docs--requirements--payroll-confirmed-20261007.html" >給与確定要件の全文</a>
+<a href="sources/docs--requirements--payroll-interface-decisions-20261008.html" >人給連携の決定・保留</a>
+</div>
+</section>
+<div class="stat-row">
+<span>
+<strong>148</strong>原本の上位見出し</span>
+<span>
+<strong>15</strong>業務フロー</span>
+<span>
+<strong>12</strong>画面・外部境界</span>
+<span>
+<strong>100</strong>操作定義</span>
+</div>
+<p class="meta">本文対象109項目の内訳: 記載済み10 / 一部設定51 / 要件未設定48。この数字は実装率・検証率ではありません。</p>
+<p class="notice info">iPhoneの「ファイル」プレビューでは、別ファイルへの移動・検索・図の操作は保証されません。主な閲覧先はSafari等の通常ブラウザーです。現時点では未公開のローカル成果物です。</p>
+</div>
+<details class="wrap">
+<summary>以前の章・節リンク</summary>
+<div class="chips">
+<a id="section-1" href="sections/1.html#section-1">1 業務要件定義</a>
+<a id="section-1.1" href="sections/1.1.html#section-1.1">1.1 業務実施手順</a>
+<a id="section-1.1.1" href="sections/1.1.1.html#section-1.1.1">1.1.1 業務範囲</a>
+<a id="section-1.1.2" href="sections/1.1.2.html#section-1.1.2">1.1.2 業務フロー</a>
+<a id="section-1.1.3" href="sections/1.1.3.html#section-1.1.3">1.1.3 業務の実施に必要な体制</a>
+<a id="section-1.1.4" href="sections/1.1.4.html#section-1.1.4">1.1.4 入出力情報項目及び取扱量</a>
+<a id="section-1.1.5" href="sections/1.1.5.html#section-1.1.5">1.1.5 管理対象情報一覧</a>
+<a id="section-1.2" href="sections/1.2.html#section-1.2">1.2 業務の規模</a>
+<a id="section-1.2.1" href="sections/1.2.1.html#section-1.2.1">1.2.1 サービスの利用者数及び情報システムの利用者数</a>
+<a id="section-1.2.2" href="sections/1.2.2.html#section-1.2.2">1.2.2 処理件数</a>
+<a id="section-1.3" href="sections/1.3.html#section-1.3">1.3 業務実施の時期・時間</a>
+<a id="section-1.3.1" href="sections/1.3.1.html#section-1.3.1">1.3.1 業務実施時期・期間及び繁忙期</a>
+<a id="section-1.3.2" href="sections/1.3.2.html#section-1.3.2">1.3.2 業務の実施・提供時間</a>
+<a id="section-1.3.3" href="sections/1.3.3.html#section-1.3.3">1.3.3 ヘルプデスク業務</a>
+<a id="section-1.4" href="sections/1.4.html#section-1.4">1.4 業務の実施場所等</a>
+<a id="section-1.5" href="sections/1.5.html#section-1.5">1.5 業務観点で管理すべき指標</a>
+<a id="section-1.6" href="sections/1.6.html#section-1.6">1.6 情報システム化の範囲</a>
+<a id="section-1.6.1" href="sections/1.6.1.html#section-1.6.1">1.6.1 情報システム化の範囲</a>
+<a id="section-1.7" href="sections/1.7.html#section-1.7">1.7 業務の継続の方針等</a>
+<a id="section-1.7.1" href="sections/1.7.1.html#section-1.7.1">1.7.1 システム停止時を想定した業務</a>
+<a id="section-1.8" href="sections/1.8.html#section-1.8">1.8 情報セキュリティ対策の方針等</a>
+<a id="section-1.8.1" href="sections/1.8.1.html#section-1.8.1">1.8.1 情報セキュリティ対策の基本的な考え方</a>
+<a id="section-2" href="sections/2.html#section-2">2 機能要件定義</a>
+<a id="section-2.1" href="sections/2.1.html#section-2.1">2.1 機能に関する事項</a>
+<a id="section-2.1.1" href="sections/2.1.1.html#section-2.1.1">2.1.1 機能一覧</a>
+<a id="section-2.1.2" href="sections/2.1.2.html#section-2.1.2">2.1.2 技術検証</a>
+<a id="section-2.1.3" href="sections/2.1.3.html#section-2.1.3">2.1.3 機能の主な追加・変更点</a>
+<a id="section-2.1.4" href="sections/2.1.4.html#section-2.1.4">2.1.4 今後の機能追加を踏まえた構成</a>
+<a id="section-2.1.5" href="sections/2.1.5.html#section-2.1.5">2.1.5 機能構成概念図</a>
+<a id="section-2.2" href="sections/2.2.html#section-2.2">2.2 画面に関する事項</a>
+<a id="section-2.2.1" href="sections/2.2.1.html#section-2.2.1">2.2.1 画面一覧</a>
+<a id="section-2.2.2" href="sections/2.2.2.html#section-2.2.2">2.2.2 画面イメージ</a>
+<a id="section-2.2.3" href="sections/2.2.3.html#section-2.2.3">2.2.3 画面遷移の基本的考え方</a>
+<a id="section-2.2.4" href="sections/2.2.4.html#section-2.2.4">2.2.4 画面設計ポリシー</a>
+<a id="section-2.3" href="sections/2.3.html#section-2.3">2.3 帳票に関する事項</a>
+<a id="section-2.3.1" href="sections/2.3.1.html#section-2.3.1">2.3.1 帳票一覧</a>
+<a id="section-2.3.2" href="sections/2.3.2.html#section-2.3.2">2.3.2 帳票イメージ</a>
+<a id="section-2.4" href="sections/2.4.html#section-2.4">2.4 データに関する事項</a>
+<a id="section-2.4.1" href="sections/2.4.1.html#section-2.4.1">2.4.1 データモデル</a>
+<a id="section-2.4.2" href="sections/2.4.2.html#section-2.4.2">2.4.2 データ一覧</a>
+<a id="section-2.4.3" href="sections/2.4.3.html#section-2.4.3">2.4.3 データ定義</a>
+<a id="section-2.4.4" href="sections/2.4.4.html#section-2.4.4">2.4.4 CRUDマトリクス</a>
+<a id="section-2.4.5" href="sections/2.4.5.html#section-2.4.5">2.4.5 コード一覧</a>
+<a id="section-2.4.6" href="sections/2.4.6.html#section-2.4.6">2.4.6 コード内容定義</a>
+<a id="section-2.4.7" href="sections/2.4.7.html#section-2.4.7">2.4.7 オープンデータ一覧</a>
+<a id="section-2.4.8" href="sections/2.4.8.html#section-2.4.8">2.4.8 モニタリング対象データ一覧</a>
+<a id="section-2.5" href="sections/2.5.html#section-2.5">2.5 外部インタフェースに関する事項</a>
+<a id="section-2.5.1" href="sections/2.5.1.html#section-2.5.1">2.5.1 外部インタフェース一覧</a>
+<a id="section-3" href="sections/3.html#section-3">3 非機能要件定義</a>
+<a id="section-3.1" href="sections/3.1.html#section-3.1">3.1 ユーザビリティ及びアクセシビリティに関する事項</a>
+<a id="section-3.1.1" href="sections/3.1.1.html#section-3.1.1">3.1.1 本システムの利用者の種類、特性</a>
+<a id="section-3.1.2" href="sections/3.1.2.html#section-3.1.2">3.1.2 ユーザビリティ要件</a>
+<a id="section-3.1.3" href="sections/3.1.3.html#section-3.1.3">3.1.3 アクセシビリティ要件</a>
+<a id="section-3.2" href="sections/3.2.html#section-3.2">3.2 システム方式に関する事項</a>
+<a id="section-3.2.1" href="sections/3.2.1.html#section-3.2.1">3.2.1 システム方式についての全体方針</a>
+<a id="section-3.2.2" href="sections/3.2.2.html#section-3.2.2">3.2.2 クラウドサービスの選定、利用に関する要件</a>
+<a id="section-3.2.3" href="sections/3.2.3.html#section-3.2.3">3.2.3 開発方式</a>
+<a id="section-3.2.4" href="sections/3.2.4.html#section-3.2.4">3.2.4 機器等の設置方針</a>
+<a id="section-3.2.5" href="sections/3.2.5.html#section-3.2.5">3.2.5 その他</a>
+<a id="section-3.3" href="sections/3.3.html#section-3.3">3.3 システム規模に関する事項</a>
+<a id="section-3.3.1" href="sections/3.3.1.html#section-3.3.1">3.3.1 規模に関する前提条件</a>
+<a id="section-3.3.2" href="sections/3.3.2.html#section-3.3.2">3.3.2 データ量</a>
+<a id="section-3.3.3" href="sections/3.3.3.html#section-3.3.3">3.3.3 処理件数</a>
+<a id="section-3.3.4" href="sections/3.3.4.html#section-3.3.4">3.3.4 利用者数</a>
+<a id="section-3.3.5" href="sections/3.3.5.html#section-3.3.5">3.3.5 保管データ量・保管期間</a>
+<a id="section-3.4" href="sections/3.4.html#section-3.4">3.4 性能に関する事項</a>
+<a id="section-3.4.1" href="sections/3.4.1.html#section-3.4.1">3.4.1 性能を考慮する対象</a>
+<a id="section-3.4.2" href="sections/3.4.2.html#section-3.4.2">3.4.2 応答時間</a>
+<a id="section-3.4.3" href="sections/3.4.3.html#section-3.4.3">3.4.3 スループット</a>
+<a id="section-3.5" href="sections/3.5.html#section-3.5">3.5 信頼性に関する事項</a>
+<a id="section-3.5.1" href="sections/3.5.1.html#section-3.5.1">3.5.1 可用性要件</a>
+<a id="section-3.5.2" href="sections/3.5.2.html#section-3.5.2">3.5.2 完全性要件</a>
+<a id="section-3.6" href="sections/3.6.html#section-3.6">3.6 拡張性に関する事項</a>
+<a id="section-3.6.1" href="sections/3.6.1.html#section-3.6.1">3.6.1 性能及び機能の拡張性</a>
+<a id="section-3.7" href="sections/3.7.html#section-3.7">3.7 上位互換性に関する事項</a>
+<a id="section-3.7.1" href="sections/3.7.1.html#section-3.7.1">3.7.1 上位互換性</a>
+<a id="section-3.7.2" href="sections/3.7.2.html#section-3.7.2">3.7.2 業務分担</a>
+<a id="section-3.8" href="sections/3.8.html#section-3.8">3.8 中立性に関する事項</a>
+<a id="section-3.8.1" href="sections/3.8.1.html#section-3.8.1">3.8.1 オープンな標準的技術又は製品の採用</a>
+<a id="section-3.9" href="sections/3.9.html#section-3.9">3.9 継続性に関する事項</a>
+<a id="section-3.9.1" href="sections/3.9.1.html#section-3.9.1">3.9.1 継続性に係る目標値</a>
+<a id="section-3.9.2" href="sections/3.9.2.html#section-3.9.2">3.9.2 継続性に係る対策</a>
+<a id="section-3.10" href="sections/3.10.html#section-3.10">3.10 情報セキュリティに関する事項</a>
+<a id="section-3.10.1" href="sections/3.10.1.html#section-3.10.1">3.10.1 セキュリティ対応方針</a>
+<a id="section-3.10.2" href="sections/3.10.2.html#section-3.10.2">3.10.2 セキュリティ要件</a>
+<a id="section-3.11" href="sections/3.11.html#section-3.11">3.11 情報システム稼働環境に関する事項</a>
+<a id="section-3.11.1" href="sections/3.11.1.html#section-3.11.1">3.11.1 システム構成</a>
+<a id="section-3.11.2" href="sections/3.11.2.html#section-3.11.2">3.11.2 クラウドサービス構成</a>
+<a id="section-3.11.3" href="sections/3.11.3.html#section-3.11.3">3.11.3 ハードウェア構成</a>
+<a id="section-3.11.4" href="sections/3.11.4.html#section-3.11.4">3.11.4 ソフトウェア構成</a>
+<a id="section-3.11.5" href="sections/3.11.5.html#section-3.11.5">3.11.5 ネットワーク構成</a>
+<a id="section-3.11.6" href="sections/3.11.6.html#section-3.11.6">3.11.6 施設・設備要件</a>
+<a id="section-3.11.7" href="sections/3.11.7.html#section-3.11.7">3.11.7 利用端末の要件</a>
+<a id="section-3.12" href="sections/3.12.html#section-3.12">3.12 データマネジメントに関する事項</a>
+<a id="section-3.13" href="sections/3.13.html#section-3.13">3.13 テストに関する事項</a>
+<a id="section-3.13.1" href="sections/3.13.1.html#section-3.13.1">3.13.1 単体テスト</a>
+<a id="section-3.13.2" href="sections/3.13.2.html#section-3.13.2">3.13.2 結合テスト</a>
+<a id="section-3.13.3" href="sections/3.13.3.html#section-3.13.3">3.13.3 総合テスト</a>
+<a id="section-3.13.4" href="sections/3.13.4.html#section-3.13.4">3.13.4 受入テスト</a>
+<a id="section-3.14" href="sections/3.14.html#section-3.14">3.14 移行に関する事項</a>
+<a id="section-3.14.1" href="sections/3.14.1.html#section-3.14.1">3.14.1 移行計画の作成</a>
+<a id="section-3.14.2" href="sections/3.14.2.html#section-3.14.2">3.14.2 移行データ準備・提供</a>
+<a id="section-3.14.3" href="sections/3.14.3.html#section-3.14.3">3.14.3 移行データ分析</a>
+<a id="section-3.14.4" href="sections/3.14.4.html#section-3.14.4">3.14.4 移行設計</a>
+<a id="section-3.14.5" href="sections/3.14.5.html#section-3.14.5">3.14.5 データ移行サーバ・ツールの開発</a>
+<a id="section-3.14.6" href="sections/3.14.6.html#section-3.14.6">3.14.6 移行リハーサル</a>
+<a id="section-3.14.7" href="sections/3.14.7.html#section-3.14.7">3.14.7 移行判定</a>
+<a id="section-3.14.8" href="sections/3.14.8.html#section-3.14.8">3.14.8 本番移行</a>
+<a id="section-3.14.9" href="sections/3.14.9.html#section-3.14.9">3.14.9 稼働判定</a>
+<a id="section-3.14.10" href="sections/3.14.10.html#section-3.14.10">3.14.10 移行対象データ</a>
+<a id="section-3.14.11" href="sections/3.14.11.html#section-3.14.11">3.14.11 移行対象業務</a>
+<a id="section-3.15" href="sections/3.15.html#section-3.15">3.15 引継ぎに関する事項</a>
+<a id="section-3.15.1" href="sections/3.15.1.html#section-3.15.1">3.15.1 引継ぎ計画書の作成</a>
+<a id="section-3.15.2" href="sections/3.15.2.html#section-3.15.2">3.15.2 引継ぎ方法</a>
+<a id="section-3.15.3" href="sections/3.15.3.html#section-3.15.3">3.15.3 引継ぎ対象</a>
+<a id="section-3.15.4" href="sections/3.15.4.html#section-3.15.4">3.15.4 クラウドサービスを利用する場合の引継ぎ</a>
+<a id="section-3.15.5" href="sections/3.15.5.html#section-3.15.5">3.15.5 引継ぎ結果報告書の作成</a>
+<a id="section-3.15.6" href="sections/3.15.6.html#section-3.15.6">3.15.6 前任事業者からの引継作業</a>
+<a id="section-3.16" href="sections/3.16.html#section-3.16">3.16 教育に関する事項</a>
+<a id="section-3.16.1" href="sections/3.16.1.html#section-3.16.1">3.16.1 教育計画の策定</a>
+<a id="section-3.16.2" href="sections/3.16.2.html#section-3.16.2">3.16.2 教育対象者</a>
+<a id="section-3.16.3" href="sections/3.16.3.html#section-3.16.3">3.16.3 教育の実施時期</a>
+<a id="section-3.16.4" href="sections/3.16.4.html#section-3.16.4">3.16.4 教育の方法</a>
+<a id="section-3.16.5" href="sections/3.16.5.html#section-3.16.5">3.16.5 教材の作成</a>
+<a id="section-3.16.6" href="sections/3.16.6.html#section-3.16.6">3.16.6 教育訓練実施結果報告</a>
+<a id="section-3.17" href="sections/3.17.html#section-3.17">3.17 運用に関する事項</a>
+<a id="section-3.17.1" href="sections/3.17.1.html#section-3.17.1">3.17.1 運用・保守計画</a>
+<a id="section-3.17.2" href="sections/3.17.2.html#section-3.17.2">3.17.2 運用・保守準備</a>
+<a id="section-3.17.3" href="sections/3.17.3.html#section-3.17.3">3.17.3 共通的な要件</a>
+<a id="section-3.17.4" href="sections/3.17.4.html#section-3.17.4">3.17.4 システム稼働要件</a>
+<a id="section-3.17.5" href="sections/3.17.5.html#section-3.17.5">3.17.5 主な運用作業一覧</a>
+<a id="section-3.18" href="sections/3.18.html#section-3.18">3.18 保守に関する事項</a>
+<a id="section-3.18.1" href="sections/3.18.1.html#section-3.18.1">3.18.1 保守業務の実施</a>
+<a id="section-3.18.2" href="sections/3.18.2.html#section-3.18.2">3.18.2 保守設計</a>
+<a id="section-3.18.3" href="sections/3.18.3.html#section-3.18.3">3.18.3 アプリケーションの保守</a>
+<a id="section-3.18.4" href="sections/3.18.4.html#section-3.18.4">3.18.4 クラウドサービスの保守</a>
+<a id="section-3.18.5" href="sections/3.18.5.html#section-3.18.5">3.18.5 ソフトウェア保守</a>
+<a id="section-3.18.6" href="sections/3.18.6.html#section-3.18.6">3.18.6 保守実績の評価及び改善</a>
+<a id="section-3.18.7" href="sections/3.18.7.html#section-3.18.7">3.18.7 ドキュメントの保守</a>
+<a id="section-3.18.8" href="sections/3.18.8.html#section-3.18.8">3.18.8 軽微な改修</a>
+</div>
+</details>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="sources.html" >出典と版</a> · <a href="reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

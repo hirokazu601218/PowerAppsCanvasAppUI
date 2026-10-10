@@ -1,0 +1,94 @@
+{
+  "method": "Static/source and simulated-DOM checks only; not browser, layout, Safari, iPhone or business acceptance.",
+  "completed_at": "2026-10-10T11:03:27+00:00",
+  "results": [
+    {
+      "command": [
+        "python",
+        "scripts/review/generate_payroll_review.py",
+        "--check"
+      ],
+      "verified_at": "2026-10-10T11:03:24+00:00",
+      "exit_code": 0,
+      "stdout": "46 HTML pages verified\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "scripts/review/generate_requirements_html.mjs",
+        "--check"
+      ],
+      "verified_at": "2026-10-10T11:03:25+00:00",
+      "exit_code": 0,
+      "stdout": "448 files verified; 138 requirement IDs, 140 legacy headings, 0 unresolved source references.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "scripts/review/package_requirements_mobile.py",
+        "--check"
+      ],
+      "verified_at": "2026-10-10T11:03:25+00:00",
+      "exit_code": 0,
+      "stdout": "448 files verified; 138 requirement IDs, 140 legacy headings, 0 unresolved source references.\nPurpose-built static reading sheet: 27567 bytes\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "scripts/review/requirements_portal/test_portal_logic.mjs"
+      ],
+      "verified_at": "2026-10-10T11:03:26+00:00",
+      "exit_code": 0,
+      "stdout": "✔ SIMULATED: all requirement and operation cards display initially (4.780962ms)\n✔ SIMULATED: I12 query finds the requirement and related operation text (1.838151ms)\n✔ SIMULATED: search normalizes full-width text and case (2.268085ms)\n✔ SIMULATED: operation filter excludes requirement cards (1.489377ms)\n✔ SIMULATED: empty result, reset, and focus callback (1.789109ms)\n✔ SIMULATED: unset filter includes both unset and partial-unset items (1.221161ms)\n✔ SIMULATED: text and state filters combine and reset together (1.251986ms)\n✔ SIMULATED: section context returns to its exact section anchor (1.019875ms)\n✔ SIMULATED: requirement, workflow, screen, and official-template context allowlist (2.307653ms)\n✔ SIMULATED: external redirect context is not accepted (0.680333ms)\n✔ SIMULATED: SVG zoom bounds, reset, and keyboard-scroll callbacks (0.763617ms)\nℹ tests 11\nℹ suites 0\nℹ pass 11\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 165.026553\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "scripts/review/validate_payroll_review.py"
+      ],
+      "verified_at": "2026-10-10T11:03:26+00:00",
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS\", \"screens\": 12, \"operations\": 100, \"workflows\": 15, \"html_pages\": 46, \"relative_links_checked\": 2832}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "scripts/review/validate_requirements_portal.py",
+        "--baseline",
+        "/workspace/shared/pay-req-html-rework-001/baseline",
+        "--report",
+        "/workspace/shared/pay-req-html-rework-001/candidate/records/changes/pay-req-html-rework-001/manual-20261010-portal/static-validation.json"
+      ],
+      "verified_at": "2026-10-10T11:03:26+00:00",
+      "exit_code": 0,
+      "stdout": "{\"result\": \"PASS_STATIC\", \"pages\": 489, \"relative_links\": 15765}; 25 checks",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "isolated negative fixture",
+        "stale canonical quotation"
+      ],
+      "verified_at": "2026-10-10T10:59:51+00:00",
+      "result": "PASS_EXPECTED_REJECTION",
+      "expected": "Generator stops before output when canonical quotation no longer matches.",
+      "actual": "Supplement source changed: 3.2.2, docs/requirements/payroll-confirmed-20261007.md:97. Re-review the source and summary."
+    },
+    {
+      "command": [
+        "scan emitted portal HTML",
+        "nonexistent entry filename"
+      ],
+      "verified_at": "2026-10-10T11:03:27+00:00",
+      "result": "PASS",
+      "actual": "Zero phantom entry references; checkout docs/.../index.html and ZIP viewer/docs/.../index.html explicitly distinguished."
+    }
+  ],
+  "post_freeze_correction": "Fixed guide and reading-sheet entry paths; no new START file created."
+}

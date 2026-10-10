@@ -49,7 +49,7 @@ def sources_html(model, ids, current):
         s=byid.get(sid)
         if not s:
             items.append(E(sid)); continue
-        target=os.path.relpath(ROOT/s['path'], (OUT/current).parent).replace(os.sep,'/')
+        target=os.path.relpath(ROOT/'docs/requirements/standard-template/sources'/(s['path'].replace('/', '--').removesuffix('.md')+'.html'), (OUT/current).parent).replace(os.sep,'/')
         items.append(f'<a href="{E(target)}">{E(s["title"])} {E(s.get("section", ""))}</a>')
     return ' / '.join(items)
 
@@ -60,9 +60,14 @@ def reqs(ids):
 
 def page(model, current, title, body, active='', screen=None):
     meta=model['metadata']
+    portal_root=os.path.relpath(ROOT/'docs/requirements/standard-template', (OUT/current).parent).replace(os.sep,'/')
+    section='2.2.2' if current.startswith('wireframes/') else '1.1.2' if current.startswith('workflows/') else '2.1.1' if current.startswith('operations/') else '2.2.3' if current=='navigation.html' else '2.2.1'
+    # Ordinary links are primary. A supplied context only enhances the explicit return target.
+    body=re.sub(r'<span class="requirement" data-requirement-id="([^"]+)">([^<]+)</span>', lambda m: f'<a class="requirement" data-requirement-id="{E(m.group(1))}" href="{portal_root}/requirements/{E(m.group(1))}.html">{m.group(2)}</a>', body)
+    context=f'<aside class="portal-context" style="padding:16px;background:#edf5ff;border:1px solid #93b7db;margin:16px 0"><strong>要件定義から読む</strong><p><a data-context-return href="{portal_root}/sections/{section}.html#section-{section}">関連する標準要件 {section} へ戻る</a> · <a href="{portal_root}/index.html">要件定義の入口</a> · <a href="{portal_root}/requirements/index.html">要件IDで探す</a></p><p>このレビュー図・画面例の根拠は {E(meta['source_sha'][:12])}、{E(meta['updated'])} 時点の資料です。DOT-001承認A・Live38引継ぎ観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。</p></aside>'
     nav=[('index.html','入口'),('navigation.html','① 画面遷移'),('workflows/index.html','② 業務フロー'),('operations/index.html','③ 操作定義'),('wireframes/index.html','④ ワイヤー'),('coverage.html','対応表'),('design-notes.html','設計注記')]
     navhtml='\n'.join(link(p,t,current,'aria-current="page"' if active==p else '') for p,t in nav)
-    return f'''<!doctype html>
+    document = f'''<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
@@ -77,15 +82,18 @@ def page(model, current, title, body, active='', screen=None):
 <header class="doc-header"><div><strong>非常勤給与アプリ</strong><span>画面・業務レビュー</span></div><p>PAY-HTML-001 / PAY-HTML-002改訂</p></header>
 <nav class="doc-nav" aria-label="資料ナビゲーション">{navhtml}</nav>
 <main id="main">
-<div class="document-meta"><span>{E(meta['version'])} / {E(meta['updated'])}</span><strong>提案・レビュー用（未承認）</strong><span>元 main：<code>{E(meta['source_sha'])}</code></span></div>
+<div class="document-meta"><span>{E(meta['version'])} / {E(meta['updated'])}</span><strong>提案・レビュー用（未承認）</strong><span>統合文書出典：<code>{E(meta['source_sha'])}</code></span></div>
 <h1>{E(title)}</h1>
 <p class="scope-note">Markdownが正本です。本資料は現行の観測・確定改修要件・提案・未決を分けた確認用HTMLです。画面例はすべて架空です。実アプリ・給与計算・保存・外部送信は実行しません。</p>
+{context}
 {body}
 </main>
 <footer>PAY-HTML-001 · 静的HTML本文はJavaScript・ネットワークなしで読めます。図の拡大縮小・閲覧とモックの操作補助にJavaScriptを使用します。<br>HTML承認と、Power Appsでの実装・権限・性能・業務受入は別の判定です。</footer>
+<script src="{portal_root}/assets/context.js" data-portal-root="{portal_root}" defer></script>
 </body>
 </html>
 '''
+    return re.sub(r'>\s*<', '>\n<', document)
 
 
 def overview_map(model):

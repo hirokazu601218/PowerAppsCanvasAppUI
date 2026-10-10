@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>data-model.md | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">data-model.md</span>
+</nav>
+<a class="context-return" data-context-return href="../sections/1.1.5.html#section-1.1.5">← 関連する要件 1.1.5 へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>data-model.md</h1>
+<p class="meta">docs/design/basic/data-model.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/basic/data-model.md">この版のGitHub原文</a> / SHA-256: <code>bca14fc642bebbe57f04b7cb4e54577ae81508d25d04c2178dae0129ae5747cd</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+<a href="../sections/1.1.5.html#section-1.1.5" >1.1.5</a>
+<a href="../sections/2.4.1.html#section-2.4.1" >2.4.1</a>
+<a href="../sections/2.4.2.html#section-2.4.2" >2.4.2</a>
+<a href="../sections/2.4.3.html#section-2.4.3" >2.4.3</a>
+<a href="../sections/2.4.4.html#section-2.4.4" >2.4.4</a>
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+</div>
+<div class="chips">
+<a href="../template-sections/3.12.3.html#template-3.12.3" >原本 3.12.3 データに関するドキュメントの一元的管理</a>
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L1" data-source-start="1" data-source-end="3">
+<h1 id="dataverseデータ設計職員基本通勤基準給与簿">Dataverseデータ設計（職員基本・通勤・基準給与簿）</h1>
+</section>
+<section id="L3" data-source-start="3" data-source-end="3">
+<blockquote>
+<p>
+<strong>2026-10-07の改修仕様</strong>：<a href="docs--requirements--payroll-confirmed-20261007.html" data-keep-context>確定要件</a>を適用する。下記の公開版・実測記録は当時の状態として保持し、今回の要件確定だけでアプリ／Dataverseを変更済みとは扱わない。競合する今後の業務仕様は新しい確定要件を優先する。</p>
+</blockquote>
+</section>
+<section id="L5" data-source-start="5" data-source-end="7">
+<h2 id="対象と正本">対象と正本</h2>
+</section>
+<section id="L7" data-source-start="7" data-source-end="7">
+<p>現行単一アプリは隔離された <code>M_職員基本_STUDIO</code>、<code>T_通勤_STUDIO</code>、<code>T_基準給与簿_STUDIO</code> を参照する。以下の元テーブルの設計は親子関係と型を考える根拠であり、<code>_STUDIO</code> の物理列・権限・行を読戻した証拠ではない。接続・保存・権限の未確認部分は<a href="docs--requirements--open-decisions.html" data-keep-context>未決一覧</a>を参照。</p>
+</section>
+<section id="block-L9" data-source-start="9" data-source-end="15">
+<div class="table-wrap" role="region" tabindex="0" aria-label="data-model.mdの表">
+<table>
+<thead>
+<tr id="L9">
+<th>テーブル</th>
+<th>論理関係と主な契約</th>
+<th>全列の正本</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L11">
+<td>
+<code>M_職員基本</code>（元の <code>crb3c_staffbasic</code>）</td>
+<td>職員1人1行。12桁数字の職員番号を文字列の代替キーとし、実体の主キーはGUID。在籍状態は日本時間の日付から導出。</td>
+<td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/design/dataverse-staff-basic-before-consolidation.md#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB">移行前の職員基本設計</a>。<code>_STUDIO</code>側の列・権限は未照合</td>
+</tr>
+<tr id="L12">
+<td>
+<code>T_通勤</code>（元の <code>crb3c_commute</code>）</td>
+<td>親職員1件に認定0..N件。子の親LookupはGUID、子の職員番号は重複可能。認定GUIDと職員の一致を確認する。</td>
+<td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/config/dataverse/commute-columns.json">機械可読の84列</a>。原本の型決定・テスト値は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/design/dataverse-commute-before-consolidation.md">移行前の設計</a>
+</td>
+</tr>
+<tr id="L13">
+<td>
+<code>T_基準給与簿</code>（元の <code>crb3c_payrollledger</code>）</td>
+<td>親職員1件に履歴0..N件。同月複数行を許容し、各行をGUIDで区別。SCR-002では読取り専用。</td>
+<td>
+<a href="config--dataverse--payrollledger-columns.json.html" data-keep-context>機械可読の163列</a>。元の範囲・fixtureは<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/design/dataverse-payrollledger-before-consolidation.md">移行前の設計</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L15" data-source-start="15" data-source-end="17">
+<h2 id="関係と検証の境界">関係と検証の境界</h2>
+</section>
+<section id="block-L17" data-source-start="17" data-source-end="24">
+<div class="table-wrap" role="region" tabindex="0" aria-label="data-model.mdの表">
+<table>
+<thead>
+<tr id="L17">
+<th>関係</th>
+<th>必要な確認</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L19">
+<td>職員→通勤</td>
+<td>職員番号の代替キーから親GUIDを解決して子Lookupへ結ぶ。認定IDだけ、氏名だけでは別人を区別できない。0件、複数件、同姓同名、退職・未来のfixtureを確認</td>
+</tr>
+<tr id="L20">
+<td>職員→給与簿</td>
+<td>親GUIDのLookupと12桁番号の整合を確認。同月複数行、追給・返納の負値、登録済み0円とNULLを区別</td>
+</tr>
+<tr id="L21">
+<td>元テーブル→隔離<code>_STUDIO</code>
+</td>
+<td>テーブル名の類似だけで列型・権限・データが同一とは判断しない。現行接続先のメタデータと画面での読戻しが必要</td>
+</tr>
+<tr id="L22">
+<td>各画面の更新</td>
+<td>基本情報・通勤を含む5区分の編集可能列、勤務・保険・税の保存先、実効ロールを確定してから書込みを検証。給与簿のSCR-002からの更新は要件外</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L24" data-source-start="24" data-source-end="24">
+<p>元テーブルでは通勤・給与簿の子Lookupは <code>ApplicationRequired</code> だが、任意のAPI経路で非NULLが保証されたわけではない。書込み経路ごとに親子関係を検証する。職員基本の税表は甲／乙、勤務時間は分の整数（例7:45＝465分）、保険は未確認の空欄と未加入を区別する。これらの列挙・型は元テーブルの契約であり、現行隔離テーブルの実測値への転記は保留する。</p>
+</section>
+<section id="L26" data-source-start="26" data-source-end="26">
+<p>古いDataverse作成作業の実行手順、7件・6件の投入値、60分制限、旧Canvas接続前提は各<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/design/">移行前の設計</a>に保存した。現在の自動化フローが使う対象と権限は<a href="docs--operations--single-app-workflow.html" data-keep-context>単一アプリ運用</a>と実際の接続設定で確認する。</p>
+</section>
+<section id="L28" data-source-start="28" data-source-end="30">
+<h2 id="scr-002の4履歴テーブル2026-09-28">SCR-002の4履歴テーブル（2026-09-28）</h2>
+</section>
+<section id="L30" data-source-start="30" data-source-end="30">
+<p>添付4定義書の列名・型・制約を<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/config/dataverse/scr002-history-columns.json">機械可読の列契約</a>に転記した。正式4表と隔離4表のメタデータ、親子関係は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36363649180">構築Action</a>で読戻し済み。公開v25の隔離4表の全列表示は専用利用者の選定6ケース（Action 36380881898）で検証した。編集保存・他所属の権限と実データは未判定。</p>
+</section>
+<section id="block-L32" data-source-start="32" data-source-end="39">
+<div class="table-wrap" role="region" tabindex="0" aria-label="data-model.mdの表">
+<table>
+<thead>
+<tr id="L32">
+<th>タブ</th>
+<th>正式表 / 隔離表（論理名）</th>
+<th align="right">添付列数</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L34">
+<td>勤務条件</td>
+<td>
+<code>crb3c_workcondition</code> / <code>crb3c_studioworkcondition</code>
+</td>
+<td align="right">15</td>
+</tr>
+<tr id="L35">
+<td>社会保険</td>
+<td>
+<code>crb3c_socialinsurance</code> / <code>crb3c_studiosocialinsurance</code>
+</td>
+<td align="right">26</td>
+</tr>
+<tr id="L36">
+<td>税固定控除</td>
+<td>
+<code>crb3c_taxfixeddeduction</code> / <code>crb3c_studiotaxfixeddeduction</code>
+</td>
+<td align="right">9</td>
+</tr>
+<tr id="L37">
+<td>税固定控除内の住民税</td>
+<td>
+<code>crb3c_residenttax</code> / <code>crb3c_studioresidenttax</code>
+</td>
+<td align="right">6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L39" data-source-start="39" data-source-end="39">
+<p>各表は所有者付きで、GUIDの主キー、必須の履歴レコード名、および親職員への必須Lookupを持つ。親は正式表では<code>M_職員基本</code>、隔離表では<code>M_職員基本_STUDIO</code>。親の削除はRestrict。添付56列はいずれも任意で、日付はDateOnly、数値は整数または小数。元定義の正規表現・候補値など列型だけで表せない条件は列の説明に記録した。正式表に人事行は投入せず、隔離表は架空値だけで試験する。子の職員番号と親GUIDの整合は書込み時に別途検証する。</p>
+</section>
+<section id="L42" data-source-start="42" data-source-end="44">
+<h2 id="scr-003勤務時間報告scr-006対象月2026-09-29公開">SCR-003勤務時間報告・SCR-006対象月（2026-09-29公開）</h2>
+</section>
+<section id="L44" data-source-start="44" data-source-end="44">
+<p>変更ID：<code>CHANGE-20260929-SCR003-ATTENDANCE-IMPORT</code>。公開版識別時刻：<code>2026-09-29T06:38:41.555451Z</code>。同一の現行アプリ、架空データのテスト環境を対象とする。</p>
+</section>
+<section id="L46" data-source-start="46" data-source-end="46">
+<p>列契約は <code>config/dataverse/scr003-attendance-columns.json</code>。報告ヘッダー→複数バッチ→複数明細。画面はヘッダーの有効バッチだけを表示し、旧バッチを保持する。対象月は独立表で有効状態を管理する。局×月の一意性は直列フロー内で確認し、実効権限は未実装。</p>
+</section>
+<section id="L48" data-source-start="48" data-source-end="50">
+<h2 id="2026-10-07の変更後論理モデル物理設計未確定">2026-10-07の変更後論理モデル（物理設計未確定）</h2>
+</section>
+<section id="L50" data-source-start="50" data-source-end="50">
+<p>
+<a href="docs--requirements--payroll-confirmed-20261007.html" data-keep-context>確定要件</a>と<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/changes/payroll-markdown-change-list-20261007.md">添付２文書の変更対応</a>に基づく。以下の名称は論理的な管理単位の仮称であり、既存_STUDIO表の正式な置換物理名・列名・実装済み関係ではない。物理テーブル数、制約の実装方法、削除連鎖等は未入力。親参照はGUID Lookup、職員番号も保持する。</p>
+</section>
+<section id="block-L52" data-source-start="52" data-source-end="69">
+<div class="table-wrap" role="region" tabindex="0" aria-label="data-model.mdの表">
+<table>
+<thead>
+<tr id="L52">
+<th>管理単位</th>
+<th>データ粒度・主な属性</th>
+<th>元構造との対応</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L54">
+<td>職員基本</td>
+<td>一人一行、12桁一意番号、基本情報＋住所、最新所属</td>
+<td>M_Shokuinを整理。銀行・債主・個人番号は初回対象外</td>
+</tr>
+<tr id="L55">
+<td>勤務条件履歴</td>
+<td>職員×有効期間、発令・所属・予算・日額／時間額単価・一日時間・確認状態</td>
+<td>M_Hatsureiと職員側給与条件を統合</td>
+</tr>
+<tr id="L56">
+<td>組織・予算・給与単価・区分マスタ</td>
+<td>階層なし組織、所属既定予算、個別予算、単価・可変候補</td>
+<td>M_Soshiki・M_Yosan・M_Hokyu・T_Kubunの用途を整理</td>
+</tr>
+<tr id="L57">
+<td>保険履歴</td>
+<td>各保険の加入確認、資格日、控除期間、等級・標準報酬・登録額</td>
+<td>M_Kojoと職員側保険列を整理</td>
+</tr>
+<tr id="L58">
+<td>税条件・固定控除</td>
+<td>税区分／扶養人数の期間履歴、職員×項目×期間×額</td>
+<td>M_Kojoの用途別再構成、控除項目マスタ</td>
+</tr>
+<tr id="L59">
+<td>住民税</td>
+<td>職員×控除年月×金額</td>
+<td>M_Jzeiの月別列から月別行へ</td>
+</tr>
+<tr id="L60">
+<td>通勤ヘッダー・経路</td>
+<td>職員認定の期間・状態、経路別定期／IC方式、新旧認定関連</td>
+<td>M_Ninteiの親子ロールを分離</td>
+</tr>
+<tr id="L61">
+<td>勤怠ヘッダー・職員明細・取込処理</td>
+<td>所属×勤務月、職員別日数時間、提出状態、取込検証・反映・失敗状態</td>
+<td>M_Kintaiの親子ロールを分離。複数所属の実績を集計</td>
+</tr>
+<tr id="L62">
+<td>支給回・職員別結果・計算版・根拠</td>
+<td>支給回、期間／支給日、職員、版、結果と使用値、確定／支払状態</td>
+<td>M_Shikyuを再構成。参照IDだけでなく使用値を保存</td>
+</tr>
+<tr id="L63">
+<td>期末勤勉率・調整</td>
+<td>職員×対象期間の別率、結果と別の項目調整額・理由・処理者</td>
+<td>単一率・その他額だけに依存しない</td>
+</tr>
+<tr id="L64">
+<td>給与簿取込回・明細</td>
+<td>人給CSVの通常／追給の行と各支給控除列、職員・支給回</td>
+<td>M_Kyuyoboは取込後読み取り専用。sgの意味は未入力</td>
+</tr>
+<tr id="L65">
+<td>照合処理・不一致明細</td>
+<td>計算版×取込回、日時・人・件数・結果、職員項目と双方額・差額</td>
+<td>旧GUID帳票照合から処理履歴へ。中間版削除後も明細保持</td>
+</tr>
+<tr id="L66">
+<td>追給返納案件・差額内訳・回収実績</td>
+<td>過去支払との関連、月別項目差額、人給集約、複数回収・方法・残額</td>
+<td>支払済を不訂正。返納分割・相殺と告知書併用</td>
+</tr>
+<tr id="L67">
+<td>利用者・複数ロール・対象所属</td>
+<td>給与班・局担当・業務管理、兼務、自局範囲</td>
+<td>M_Userの単一区分・組織1～3列を再設計</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L69" data-source-start="69" data-source-end="69">
+<p>初回モデルからM_Kazoku・M_SKDB・M_Memoを外す。既存データの物理削除を実行する意味ではない。認定権者・官職を複写するかLookupにするか、一般列の型、プライマリ列、特殊月・略語の対応は未入力。</p>
+</section>
+<section id="L71" data-source-start="71" data-source-end="73">
+<h3 id="計算照合回収の関連">計算・照合・回収の関連</h3>
+</section>
+<section id="L73" data-source-start="73" data-source-end="84">
+<pre>
+<code class="language-mermaid">erDiagram
+    支給回 ||--o{ 計算版 : &quot;計算実行&quot;
+    計算版 ||--o{ 使用根拠 : &quot;使用値を保存&quot;
+    計算版 ||--o{ 職員別結果 : &quot;項目結果&quot;
+    支給回 ||--o{ 給与簿取込回 : &quot;人給CSV&quot;
+    給与簿取込回 ||--o{ 給与簿明細 : &quot;通常と追給&quot;
+    計算版 ||--o{ 照合処理 : &quot;対応版&quot;
+    給与簿取込回 ||--o{ 照合処理 : &quot;対応取込&quot;
+    照合処理 ||--o{ 不一致明細 : &quot;双方額と差額&quot;
+    返納案件 ||--o{ 回収実績 : &quot;分割と方法併用&quot;
+</code>
+</pre>
+</section>
+<section id="L86" data-source-start="86" data-source-end="86">
+<p>図は論理構成の候補。必須Lookupの正式実装、多重度の詳細、支給回と人給行の確定キーは設計時に検証する。中間版削除時に照合処理の識別情報や双方額を失わないよう、履歴の保持方式と参照制約を確定する。支払い済み給与を訂正する更新関係は設けない。</p>
+</section>
+<section id="L88" data-source-start="88" data-source-end="90">
+<h2 id="2026-10-08-人給連携確定仕様">2026-10-08 人給連携確定仕様</h2>
+</section>
+<section id="L90" data-source-start="90" data-source-end="90">
+<p>人給出力行に11キーと職員判断更新区分、計算版・対象期間との対応を持つ論理要件を追加する。正式物理列名・型・実装は未入力。給与簿CSV照合キーは別で未入力。差額発生対象期間を保持し、複数過去月集約との両立は未入力。既存給与簿のsgを11キーへ推定対応させない。</p>
+</section>
+<section id="L92" data-source-start="92" data-source-end="93">
+<p>
+<a href="docs--design--detailed--payroll-jinkyu-interface.html" data-keep-context>出力仕様</a>、<a href="docs--requirements--payroll-interface-decisions-20261008.html" data-keep-context>決定台帳</a>。</p>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

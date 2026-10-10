@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>2.2.4 画面設計ポリシー | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="2.2.html#section-2.2" >2.2 画面に関する事項</a>
+</span>
+<span aria-current="page">2.2.4 画面設計ポリシー</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 2.2.4</span>
+<h1 id="section-2.2.4">2.2.4 画面設計ポリシー</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>一部設定・要件未設定あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>個別出典を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>現在の要件</h2>
+<p class="lead">SCR-002の6タブと画面共通余白、対象幅での欠け・重なりの防止、読取り／編集／保存と失敗時入力保持を適用する。給与簿は読取り専用。</p>
+</section>
+<section class="panel" >
+<h2>要件未設定・判断が必要な内容</h2>
+<p class="notice">対象端末・支援技術の組合せ、業務可読性の判定主体。</p>
+<p class="meta">具体的な条件・対象範囲・判定基準を未設定のまま表示しています。レイアウト案やテンプレートの例から補いません。</p>
+</section>
+<section class="panel" >
+<h2>操作条件まで確認する</h2>
+<p class="meta">関連する既存操作モデルの具体内容です。下位仕様や画面配置が提案の場合は、その区分を維持しています。</p>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-002-EDIT · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-EDIT.html?context=section-2.2.4#OP-002-EDIT" >編集モードへ</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>対象レコードと表示値を確認し、許可列の入力バッファを作る。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-SAVE · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-SAVE.html?context=section-2.2.4#OP-002-SAVE" >変更を保存</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>変更された許可列のみ保存し、再取得した内容と一致を確認して読取りへ戻す。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-READMODE · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-READMODE.html?context=section-2.2.4#OP-002-READMODE" >読取りモードへ</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>変更なしなら読取りへ。未保存なら破棄確認を表示する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>画面・外部境界</h2>
+<ul class="list">
+<li>
+<h3>
+<a href="../screens/SCR-002.html?context=section-2.2.4#SCR-002" >SCR-002 職員マスタ検索・詳細</a>
+</h3>
+<p>検索・履歴・6タブ表示の現行画面。E・F・Gの将来業務を既存タブに追加する。</p>
+<span class="tag ">現行実装</span>
+<span class="meta">会計課給与班 / 局担当者</span>
+</li>
+<li>
+<h3>
+<a href="../screens/SCR-003.html?context=section-2.2.4#SCR-003" >SCR-003 勤務時間報告画面</a>
+</h3>
+<p>所属×勤務月の報告。現行は一覧内編集・全置換取込。確定改修要件は追加更新方式。</p>
+<span class="tag ">現行実装</span>
+<span class="meta">会計課給与班 / 局担当者</span>
+</li>
+</ul>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="2.2.4.1">
+<strong>UXデザイン</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="2.2.4.2">
+<strong>画面の表示</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="2.2.4.3">
+<strong>入力負荷の軽減</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="2.2.4.4">
+<strong>誤操作の防止</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="2.2.4.5">
+<strong>メニュー</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+<section class="panel" >
+<h2>根拠資料と、この節への戻り</h2>
+<p class="meta">資料は読みやすい別ページで開きます。冒頭の「元の要件へ戻る」でこの節へ戻れます。JavaScriptなしでも資料側の参照元一覧から戻れます。</p>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=section-2.2.4" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--non-functional-requirements.html?context=section-2.2.4" data-keep-context>non-functional-requirements.md</a>
+<div class="meta">docs/requirements/non-functional-requirements.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

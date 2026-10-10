@@ -1,0 +1,19 @@
+{
+  "change_id": "dot-002",
+  "run_id": "manual-20261010-integration",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T11:41:28.035903+00:00",
+  "source_commit": "b5e5d460fe19169252de05bb02bafc9461120540",
+  "version": "0.3-review",
+  "request_id": "DOT-002",
+  "related_id": "PAY-REQ-HTML-REWORK-001",
+  "browser_verification": "NOT_RUN",
+  "iphone_verification": "NOT_RUN",
+  "scope": "Documentation selective integration and HTML only; no src, workflow, environment, permissions, main merge, or publication changes.",
+  "static_checks": "PASS_STATIC:31 checks;490 HTML;15811 relative references",
+  "simulated_logic": "PASS:11 simulated tests",
+  "canonical_preservation": "PASS:156 inputs;four DOT-001 records exact",
+  "github_reflection": "Target branch docs/requirements-html-20261010;Draft PR136;commit reported in PR",
+  "verified_at": "2026-10-10T11:46:37.437087+00:00"
+}

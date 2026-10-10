@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "method": "Explicit full staged changed-file list relative to original PR136 head",
+  "files": 540,
+  "counts": {
+    "current": 509,
+    "record": 18,
+    "other": 0,
+    "code": 13
+  }
+}

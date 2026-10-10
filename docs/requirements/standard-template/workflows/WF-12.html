@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>給与計算から確定・支払記録 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" aria-current="page">業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../journeys.html" >業務の流れ</a>
+</span>
+<span aria-current="page">給与計算から確定・支払記録</span>
+</nav>
+<a class="context-return" data-context-return href="../journeys.html">← 業務一覧へ戻る</a>
+<div>
+<span class="eyebrow">BUSINESS FLOW / WF-12</span>
+<h1 id="WF-12">給与計算から確定・支払記録</h1>
+<p class="lead">計算 → 人給 → 給与簿取込 → 最新版照合。差分は原因側へ戻し、全体最新ゼロを確認して給与班確定、その後に外部支払いと記録を分けます。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>確定</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>この業務の確認ポイント</h2>
+<dl class="contract">
+<dt>担当する人</dt>
+<dd>会計課給与班</dd>
+<dt>どこから始める</dt>
+<dd>確認済み元データと支給回</dd>
+<dt>使う画面</dt>
+<dd>
+<div class="chips">
+<a href="../screens/SCR-002.html?context=flow-WF-12#SCR-002" >SCR-002</a>
+<a href="../screens/SCR-003.html?context=flow-WF-12#SCR-003" >SCR-003</a>
+<a href="../screens/SCR-004.html?context=flow-WF-12#SCR-004" >SCR-004</a>
+<a href="../screens/FUT-JLINK.html?context=flow-WF-12#FUT-JLINK" >FUT-JLINK</a>
+<a href="../screens/EXT-JINKYU.html?context=flow-WF-12#EXT-JINKYU" >EXT-JINKYU</a>
+<a href="../screens/SCR-007.html?context=flow-WF-12#SCR-007" >SCR-007</a>
+</div>
+</dd>
+<dt>何をもって完了</dt>
+<dd>最新差分ゼロ確定・支払い済み記録</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>流れと戻り・分岐</h2>
+<figure data-figure>
+<div class="figure-controls">
+<button type="button" data-zoom-out aria-label="図を縮小">− 縮小</button>
+<output aria-live="polite">100%</output>
+<button type="button" data-zoom-in aria-label="図を拡大">＋ 拡大</button>
+<button type="button" data-zoom-fit>全体に戻す</button>
+</div>
+<div class="diagram-viewport" tabindex="0" role="region" aria-label="WF-12 給与計算から確定・支払記録。拡大後は横・縦にスクロールできます。">
+<div class="diagram-canvas">
+<svg class="workflow-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 2390" width="1160" height="2390" role="img" aria-labelledby="WF-12-title WF-12-description" data-workflow-id="WF-12">
+<title id="WF-12-title">WF-12 給与計算から確定・支払記録</title>
+<desc id="WF-12-description">計算 → 人給 → 給与簿取込 → 最新版照合。差分は原因側へ戻し、全体最新ゼロを確認して給与班確定、その後に外部支払いと記録を分けます。 工程は一度だけ配置。矢印をたどり、茶色の折返しは訂正・再試行。全条件は同じデータの経路表で確認できます。</desc>
+<defs>
+<marker id="WF-12-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+</marker>
+</defs>
+<g class="flow-lane app" data-lane-id="lane-1">
+<rect x="40" y="0" width="360" height="2390"/>
+<rect class="lane-heading-bg" x="40" y="0" width="360" height="65"/>
+<text x="220" y="25" class="flow-lane-title" text-anchor="middle">給与班・給与アプリ</text>
+<text x="220" y="49" class="flow-lane-scope" text-anchor="middle">計算・照合・確定と記録</text>
+</g>
+<g class="flow-lane app" data-lane-id="lane-2">
+<rect x="400" y="0" width="360" height="2390"/>
+<rect class="lane-heading-bg" x="400" y="0" width="360" height="65"/>
+<text x="580" y="25" class="flow-lane-title" text-anchor="middle">給与班／原因データ担当</text>
+<text x="580" y="49" class="flow-lane-scope" text-anchor="middle">訂正・再確認</text>
+</g>
+<g class="flow-lane external" data-lane-id="lane-3">
+<rect x="760" y="0" width="360" height="2390"/>
+<rect class="lane-heading-bg" x="760" y="0" width="360" height="65"/>
+<text x="940" y="25" class="flow-lane-title" text-anchor="middle">外部処理</text>
+<text x="940" y="49" class="flow-lane-scope" text-anchor="middle">人給／支払い実施</text>
+</g>
+<g class="flow-connector view" data-edge-id="WF-12-view-01" data-from="start-a" data-to="a">
+<path class="flow-edge-halo" d="M 220 116 L 220 162"/>
+<path class="flow-edge" d="M 220 116 L 220 162" marker-end="url(#WF-12-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-12-view-02" data-from="join-b" data-to="b">
+<path class="flow-edge-halo" d="M 220 354 L 220 362"/>
+<path class="flow-edge" d="M 220 354 L 220 362" marker-end="url(#WF-12-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-12-view-03" data-from="join-d" data-to="d">
+<path class="flow-edge-halo" d="M 940 754 L 940 762"/>
+<path class="flow-edge" d="M 940 754 L 940 762" marker-end="url(#WF-12-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-12-view-04" data-from="join-e" data-to="e">
+<path class="flow-edge-halo" d="M 220 954 L 220 962"/>
+<path class="flow-edge" d="M 220 954 L 220 962" marker-end="url(#WF-12-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-12-view-05" data-from="e" data-to="split-e">
+<path class="flow-edge-halo" d="M 220 1058 L 220 1066"/>
+<path class="flow-edge" d="M 220 1058 L 220 1066" marker-end="url(#WF-12-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-12-view-06" data-from="join-f" data-to="f">
+<path class="flow-edge-halo" d="M 220 1154 L 220 1162"/>
+<path class="flow-edge" d="M 220 1154 L 220 1162" marker-end="url(#WF-12-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-12-view-07" data-from="h" data-to="split-h">
+<path class="flow-edge-halo" d="M 580 1458 L 580 1466"/>
+<path class="flow-edge" d="M 580 1458 L 580 1466" marker-end="url(#WF-12-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-12-view-08" data-from="l" data-to="end-l">
+<path class="flow-edge-halo" d="M 220 2258 L 220 2289"/>
+<path class="flow-edge" d="M 220 2258 L 220 2289" marker-end="url(#WF-12-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-12-edge-01" data-from="a" data-to="join-b" data-source-step="a" data-target-step="b">
+<path class="flow-edge-halo" d="M 220 258 L 220 334"/>
+<path class="flow-edge" d="M 220 258 L 220 334" marker-end="url(#WF-12-arrow)"/>
+<title>確認済み</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-12-edge-02" data-from="b" data-to="c" data-source-step="b" data-target-step="c">
+<path class="flow-edge-halo" d="M 220 458 L 220 562"/>
+<path class="flow-edge" d="M 220 458 L 220 562" marker-end="url(#WF-12-arrow)"/>
+<title>計算済み</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-12-edge-05" data-from="split-e" data-to="join-f" data-source-step="e" data-target-step="f">
+<path class="flow-edge-halo" d="M 220 1086 L 220 1134"/>
+<path class="flow-edge" d="M 220 1086 L 220 1134" marker-end="url(#WF-12-arrow)"/>
+<title>取込成功</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-12-edge-07" data-from="f" data-to="g" data-source-step="f" data-target-step="g">
+<path class="flow-edge-halo" d="M 220 1258 L 220 1342"/>
+<path class="flow-edge" d="M 220 1258 L 220 1342" marker-end="url(#WF-12-arrow)"/>
+<title>照合完了</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-12-edge-12" data-from="g" data-to="i" data-source-step="g" data-target-step="i">
+<path class="flow-edge-halo" d="M 220 1478 L 220 1562"/>
+<path class="flow-edge" d="M 220 1478 L 220 1562" marker-end="url(#WF-12-arrow)"/>
+<title>最新ゼロ</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-12-edge-15" data-from="k" data-to="l" data-source-step="k" data-target-step="l">
+<path class="flow-edge-halo" d="M 220 2058 L 220 2162"/>
+<path class="flow-edge" d="M 220 2058 L 220 2162" marker-end="url(#WF-12-arrow)"/>
+<title>記録後</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-12-edge-03" data-from="c" data-to="join-d" data-source-step="c" data-target-step="d">
+<path class="flow-edge-halo" d="M 220 658 L 220 726 L 940 726 L 940 734"/>
+<path class="flow-edge" d="M 220 658 L 220 726 L 940 726 L 940 734" marker-end="url(#WF-12-arrow)"/>
+<title>外部へ</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-12-edge-04" data-from="d" data-to="join-e" data-source-step="d" data-target-step="e">
+<path class="flow-edge-halo" d="M 940 858 L 940 926 L 220 926 L 220 934"/>
+<path class="flow-edge" d="M 940 858 L 940 926 L 220 926 L 220 934" marker-end="url(#WF-12-arrow)"/>
+<title>給与簿戻り</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-12-edge-13" data-from="i" data-to="j" data-source-step="i" data-target-step="j">
+<path class="flow-edge-halo" d="M 220 1658 L 220 1754 L 940 1754 L 940 1762"/>
+<path class="flow-edge" d="M 220 1658 L 220 1754 L 940 1754 L 940 1762" marker-end="url(#WF-12-arrow)"/>
+<title>確定後</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-12-edge-14" data-from="j" data-to="k" data-source-step="j" data-target-step="k">
+<path class="flow-edge-halo" d="M 940 1858 L 940 1954 L 220 1954 L 220 1962"/>
+<path class="flow-edge" d="M 940 1858 L 940 1954 L 220 1954 L 220 1962" marker-end="url(#WF-12-arrow)"/>
+<title>実施確認</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-12-edge-06" data-from="split-e" data-to="join-e" data-source-step="e" data-target-step="e">
+<path class="flow-edge-halo" d="M 210 1076 L 86 1076 L 86 944 L 210 944"/>
+<path class="flow-edge" d="M 210 1076 L 86 1076 L 86 944 L 210 944" marker-end="url(#WF-12-arrow)"/>
+<title>失敗・前回保持で再取込</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-12-edge-11" data-from="g" data-to="join-f" data-source-step="g" data-target-step="f">
+<path class="flow-edge-halo" d="M 95 1410 L 87 1410 L 87 1144 L 210 1144"/>
+<path class="flow-edge" d="M 95 1410 L 87 1410 L 87 1144 L 210 1144" marker-end="url(#WF-12-arrow)"/>
+<title>結果更新・旧ゼロ失効</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-12-edge-08" data-from="g" data-to="h" data-source-step="g" data-target-step="h">
+<path class="flow-edge-halo" d="M 345 1410 L 458 1410"/>
+<path class="flow-edge" d="M 345 1410 L 458 1410" marker-end="url(#WF-12-arrow)"/>
+<title>差分／未解決</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-12-edge-09" data-from="split-h" data-to="join-b" data-source-step="h" data-target-step="b">
+<path class="flow-edge-halo" d="M 570 1476 L 359 1476 L 359 317 L 202 317 L 202 344 L 210 344"/>
+<path class="flow-edge" d="M 570 1476 L 359 1476 L 359 317 L 202 317 L 202 344 L 210 344" marker-end="url(#WF-12-arrow)"/>
+<title>元データ修正後</title>
+</g>
+<g class="flow-connector external" data-edge-id="WF-12-edge-10" data-from="split-h" data-to="join-d" data-source-step="h" data-target-step="d">
+<path class="flow-edge-halo" d="M 590 1476 L 806 1476 L 806 717 L 958 717 L 958 744 L 950 744"/>
+<path class="flow-edge" d="M 590 1476 L 806 1476 L 806 717 L 958 717 L 958 744 L 950 744" marker-end="url(#WF-12-arrow)"/>
+<title>人給側の訂正</title>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-12-edge-01">
+<rect x="227" y="281.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="300.5">確認済み</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-12-edge-02">
+<rect x="227" y="495.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="514.5">計算済み</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-12-edge-05">
+<rect x="227" y="1095.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="1114.5">取込成功</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-12-edge-07">
+<rect x="227" y="1285.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="1304.5">照合完了</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-12-edge-12">
+<rect x="227" y="1505.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="1524.5">最新ゼロ</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-12-edge-15">
+<rect x="227" y="2095.5" width="57.2" height="29" rx="4"/>
+<text x="234" y="2114.5">記録後</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-12-edge-03">
+<rect x="227" y="677.5" width="57.2" height="29" rx="4"/>
+<text x="234" y="696.5">外部へ</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-12-edge-04">
+<rect x="947" y="877.5" width="86" height="29" rx="4"/>
+<text x="954" y="896.5">給与簿戻り</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-12-edge-13">
+<rect x="227" y="1691.5" width="57.2" height="29" rx="4"/>
+<text x="234" y="1710.5">確定後</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-12-edge-14">
+<rect x="947" y="1891.5" width="71.6" height="29" rx="4"/>
+<text x="954" y="1910.5">実施確認</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-12-edge-06">
+<rect x="38" y="1083" width="158" height="48" rx="4"/>
+<text x="45" y="1102">失敗・前回保持で再取</text>
+<text x="45" y="1121">込</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-12-edge-11">
+<rect x="94" y="1279.6" width="100.4" height="48" rx="4"/>
+<text x="101" y="1298.6">結果更新・旧</text>
+<text x="101" y="1317.6">ゼロ失効</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-12-edge-08">
+<rect x="365.7" y="1355" width="71.6" height="48" rx="4"/>
+<text x="372.7" y="1374">差分／未</text>
+<text x="372.7" y="1393">解決</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-12-edge-09">
+<rect x="407.1" y="1483" width="114.8" height="29" rx="4"/>
+<text x="414.1" y="1502">元データ修正後</text>
+</g>
+<g class="flow-edge-label external" data-label-for="WF-12-edge-10">
+<rect x="647.8" y="1483" width="100.4" height="29" rx="4"/>
+<text x="654.8" y="1502">人給側の訂正</text>
+</g>
+<g class="flow-node task" data-node-id="a" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,162.0,342.0,258.0" data-step-id="a">
+<a href="#step-a" aria-label="a 元データ確認・支給回選択：工程定義へ">
+<title>元データ確認・支給回選択。対象期間と支給日を区別。計算起動の配置は提案。</title>
+<rect x="98.0" y="162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="182.0">a · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="207.0">元データ確認・支給回選択</text>
+</a>
+<a href="../operations/OP-PAY-PERIOD.html?context=flow-WF-12#OP-PAY-PERIOD" aria-label="OP-PAY-PERIOD 操作定義">
+<text class="flow-op-link" x="330.0" y="249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="b" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,362.0,342.0,458.0" data-step-id="b">
+<a href="#step-b" aria-label="b 給与を計算・根拠保存：工程定義へ">
+<title>給与を計算・根拠保存。確認済み条件・勤怠・認定通勤・登録控除・別率。</title>
+<rect x="98.0" y="362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="382.0">b · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="407.0">給与を計算・根拠保存</text>
+</a>
+<a href="../operations/OP-PAY-CALCULATE.html?context=flow-WF-12#OP-PAY-CALCULATE" aria-label="OP-PAY-CALCULATE 操作定義">
+<text class="flow-op-link" x="330.0" y="449.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="c" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,562.0,342.0,658.0" data-step-id="c">
+<a href="#step-c" aria-label="c 対象・A/M確認しExcel出力：工程定義へ">
+<title>対象・A/M確認しExcel出力。237列xlsx。出力前確認を行う。</title>
+<rect x="98.0" y="562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="582.0">c · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="607.0">対象・A/M確認しExcel出力</text>
+</a>
+<a href="../operations/OP-JLINK-EXPORT.html?context=flow-WF-12#OP-JLINK-EXPORT" aria-label="OP-JLINK-EXPORT 操作定義">
+<text class="flow-op-link" x="330.0" y="649.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="d" data-node-kind="task" data-lane-id="lane-3" data-box="818.0,762.0,1062.0,858.0" data-step-id="d">
+<a href="#step-d" aria-label="d 人給取込・給与簿CSV出力：工程定義へ">
+<title>人給取込・給与簿CSV出力。外部操作。成功状態の手入力は設けない。</title>
+<rect x="818.0" y="762.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="832.0" y="782.0">d · EXT-JINKYU</text>
+<text class="flow-task-label" x="832.0" y="807.0">人給取込・給与簿CSV出力</text>
+</a>
+<a href="../operations/OP-JINKYU-PROCESS.html?context=flow-WF-12#OP-JINKYU-PROCESS" aria-label="OP-JINKYU-PROCESS 操作定義">
+<text class="flow-op-link" x="1050.0" y="849.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="e" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,962.0,342.0,1058.0" data-step-id="e">
+<a href="#step-e" aria-label="e 給与簿CSVを取込：工程定義へ">
+<title>給与簿CSVを取込。給与簿は読取り専用。失敗時は前回成功分を維持。</title>
+<rect x="98.0" y="962.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="982.0">e · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="1007.0">給与簿CSVを取込</text>
+</a>
+<a href="../operations/OP-JLINK-IMPORT.html?context=flow-WF-12#OP-JLINK-IMPORT" aria-label="OP-JLINK-IMPORT 操作定義">
+<text class="flow-op-link" x="330.0" y="1049.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="f" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1162.0,342.0,1258.0" data-step-id="f">
+<a href="#step-f" aria-label="f 最新版のアプリ値と照合：工程定義へ">
+<title>最新版のアプリ値と照合。出力後変更通知。古い版は一致基準にしない。</title>
+<rect x="98.0" y="1162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="1182.0">f · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="1207.0">最新版のアプリ値と照合</text>
+</a>
+<a href="../operations/OP-JLINK-RECONCILE.html?context=flow-WF-12#OP-JLINK-RECONCILE" aria-label="OP-JLINK-RECONCILE 操作定義">
+<text class="flow-op-link" x="330.0" y="1249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="g" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,1342.0,345.0,1478.0" data-step-id="g">
+<a href="#step-g" aria-label="g 全体最新ゼロ・未解決なし：工程定義へ">
+<title>全体最新ゼロ・未解決なし。未知・欠落・余分・重複を確認。表示絞込みで範囲を縮めない。</title>
+<polygon points="220.0,1342.0 345.0,1410 220.0,1478.0 95.0,1410"/>
+<text class="flow-node-id" x="220.0" y="1370" text-anchor="middle">g · ×</text>
+<text class="flow-task-label" x="220.0" y="1402" text-anchor="middle">全体最新ゼロ・未解</text>
+<text class="flow-task-label" x="220.0" y="1424" text-anchor="middle">決なし</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="h" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,1362.0,702.0,1458.0" data-step-id="h">
+<a href="#step-h" aria-label="h 原因に応じ元データ訂正：工程定義へ">
+<title>原因に応じ元データ訂正。再確認／再提出後に再計算。人給原因は外部で訂正。</title>
+<rect x="458.0" y="1362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="1382.0">h · SCR-002</text>
+<text class="flow-task-label" x="472.0" y="1407.0">原因に応じ元データ訂正</text>
+</a>
+<a href="../operations/OP-JLINK-CORRECT.html?context=flow-WF-12#OP-JLINK-CORRECT" aria-label="OP-JLINK-CORRECT 操作定義">
+<text class="flow-op-link" x="690.0" y="1449.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="i" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1562.0,342.0,1658.0" data-step-id="i">
+<a href="#step-i" aria-label="i ボタンで給与班確定：工程定義へ">
+<title>ボタンで給与班確定。確認ダイアログなし。ゼロだけで自動確定しない。</title>
+<rect x="98.0" y="1562.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="1582.0">i · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="1607.0">ボタンで給与班確定</text>
+</a>
+<a href="../operations/OP-JLINK-CONFIRM.html?context=flow-WF-12#OP-JLINK-CONFIRM" aria-label="OP-JLINK-CONFIRM 操作定義">
+<text class="flow-op-link" x="330.0" y="1649.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="j" data-node-kind="task" data-lane-id="lane-3" data-box="818.0,1762.0,1062.0,1858.0" data-step-id="j">
+<a href="#step-j" aria-label="j 外部で支払いを実施：工程定義へ">
+<title>外部で支払いを実施。アプリが実送金する要件はない。</title>
+<rect x="818.0" y="1762.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="832.0" y="1782.0">j · アプリ外／業務境界</text>
+<text class="flow-task-label" x="832.0" y="1807.0">外部で支払いを実施</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="k" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,1962.0,342.0,2058.0" data-step-id="k">
+<a href="#step-k" aria-label="k 支払い済みを記録：工程定義へ">
+<title>支払い済みを記録。記録UI配置は提案。元の支払済み結果は不訂正。</title>
+<rect x="98.0" y="1962.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="1982.0">k · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="2007.0">支払い済みを記録</text>
+</a>
+<a href="../operations/OP-PAY-PAID.html?context=flow-WF-12#OP-PAY-PAID" aria-label="OP-PAY-PAID 操作定義">
+<text class="flow-op-link" x="330.0" y="2049.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="l" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,2162.0,342.0,2258.0" data-step-id="l">
+<a href="#step-l" aria-label="l 最終根拠・照合履歴を保持：工程定義へ">
+<title>最終根拠・照合履歴を保持。中間版削除後も双方額・差額等を参照可能。保存条件PD-06。</title>
+<rect x="98.0" y="2162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="2182.0">l · FUT-JLINK</text>
+<text class="flow-task-label" x="112.0" y="2207.0">最終根拠・照合履歴を保持</text>
+</a>
+<a href="../operations/OP-JLINK-HISTORY.html?context=flow-WF-12#OP-JLINK-HISTORY" aria-label="OP-JLINK-HISTORY 操作定義">
+<text class="flow-op-link" x="330.0" y="2249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node start" data-node-id="start-a" data-node-kind="start" data-lane-id="lane-1" data-box="204.0,84.0,236.0,116.0">
+<title>開始。表示用要素</title>
+<circle cx="220.0" cy="100" r="16.0"/>
+<text class="flow-event-label" x="247.0" y="105" text-anchor="start">開始</text>
+</g>
+<g class="flow-node merge" data-node-id="join-b" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,334.0,230.0,354.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,334.0 230.0,344 220.0,354.0 210.0,344"/>
+<text class="flow-gateway-symbol" x="220.0" y="347" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node merge" data-node-id="join-d" data-node-kind="merge" data-lane-id="lane-3" data-box="930.0,734.0,950.0,754.0">
+<title>合流。表示用要素</title>
+<polygon points="940.0,734.0 950.0,744 940.0,754.0 930.0,744"/>
+<text class="flow-gateway-symbol" x="940.0" y="747" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node merge" data-node-id="join-e" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,934.0,230.0,954.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,934.0 230.0,944 220.0,954.0 210.0,944"/>
+<text class="flow-gateway-symbol" x="220.0" y="947" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node split" data-node-id="split-e" data-node-kind="split" data-lane-id="lane-1" data-box="210.0,1066.0,230.0,1086.0">
+<title>結果分岐。表示用要素</title>
+<polygon points="220.0,1066.0 230.0,1076 220.0,1086.0 210.0,1076"/>
+<text class="flow-gateway-symbol" x="220.0" y="1079" text-anchor="middle">×</text>
+</g>
+<g class="flow-node merge" data-node-id="join-f" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,1134.0,230.0,1154.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,1134.0 230.0,1144 220.0,1154.0 210.0,1144"/>
+<text class="flow-gateway-symbol" x="220.0" y="1147" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node split" data-node-id="split-h" data-node-kind="split" data-lane-id="lane-2" data-box="570.0,1466.0,590.0,1486.0">
+<title>結果分岐。表示用要素</title>
+<polygon points="580.0,1466.0 590.0,1476 580.0,1486.0 570.0,1476"/>
+<text class="flow-gateway-symbol" x="580.0" y="1479" text-anchor="middle">×</text>
+</g>
+<g class="flow-node end" data-node-id="end-l" data-node-kind="end" data-lane-id="lane-1" data-box="203.0,2289.0,237.0,2323.0">
+<title>確認区間の終了。表示用要素</title>
+<circle cx="220.0" cy="2306" r="17.0"/>
+<circle class="end-inner" cx="220.0" cy="2306" r="12.0"/>
+<text class="flow-event-label" x="220.0" y="2342" text-anchor="middle">確認区間の終了</text>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="figure-note">拡大後は指で横・縦へスクロールできます。キーボードは図枠にTabで移動し矢印キー。図の工程名から操作の詳細へ進めます。図の下にも同じ工程と全経路を記載しています。</figcaption>
+</figure>
+<p class="meta">青の実線: 業務の順序。茶色: 訂正・再試行。破線: 外部システムとの受渡し等。内部画面移動、別タブ、利用者による人給への切替を混同しません。</p>
+</section>
+<section class="panel" >
+<h2>何を入力・確認するか</h2>
+<ol class="steps">
+<li id="step-a">
+<div class="step-title">
+<a href="../operations/OP-PAY-PERIOD.html?context=flow-WF-12#OP-PAY-PERIOD" >元データ確認・支給回選択</a>
+</div>
+<p>対象期間と支給日を区別。計算起動の配置は提案。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-12#FUT-JLINK" >FUT-JLINK</a>  / OP-PAY-PERIOD</div>
+</li>
+<li id="step-b">
+<div class="step-title">
+<a href="../operations/OP-PAY-CALCULATE.html?context=flow-WF-12#OP-PAY-CALCULATE" >給与を計算・根拠保存</a>
+</div>
+<p>確認済み条件・勤怠・認定通勤・登録控除・別率。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-12#FUT-JLINK" >FUT-JLINK</a>  / OP-PAY-CALCULATE</div>
+</li>
+<li id="step-c">
+<div class="step-title">
+<a href="../operations/OP-JLINK-EXPORT.html?context=flow-WF-12#OP-JLINK-EXPORT" >対象・A/M確認しExcel出力</a>
+</div>
+<p>237列xlsx。出力前確認を行う。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-12#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-EXPORT</div>
+</li>
+<li id="step-d">
+<div class="step-title">
+<a href="../operations/OP-JINKYU-PROCESS.html?context=flow-WF-12#OP-JINKYU-PROCESS" >人給取込・給与簿CSV出力</a>
+</div>
+<p>外部操作。成功状態の手入力は設けない。</p>
+<div class="meta">
+<a href="../screens/EXT-JINKYU.html?context=flow-WF-12#EXT-JINKYU" >EXT-JINKYU</a>  / OP-JINKYU-PROCESS</div>
+</li>
+<li id="step-e">
+<div class="step-title">
+<a href="../operations/OP-JLINK-IMPORT.html?context=flow-WF-12#OP-JLINK-IMPORT" >給与簿CSVを取込</a>
+</div>
+<p>給与簿は読取り専用。失敗時は前回成功分を維持。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-12#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-IMPORT</div>
+</li>
+<li id="step-f">
+<div class="step-title">
+<a href="../operations/OP-JLINK-RECONCILE.html?context=flow-WF-12#OP-JLINK-RECONCILE" >最新版のアプリ値と照合</a>
+</div>
+<p>出力後変更通知。古い版は一致基準にしない。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-12#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-RECONCILE</div>
+</li>
+<li id="step-g">
+<div class="step-title">全体最新ゼロ・未解決なし</div>
+<p>未知・欠落・余分・重複を確認。表示絞込みで範囲を縮めない。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-12#FUT-JLINK" >FUT-JLINK</a>
+</div>
+</li>
+<li id="step-h">
+<div class="step-title">
+<a href="../operations/OP-JLINK-CORRECT.html?context=flow-WF-12#OP-JLINK-CORRECT" >原因に応じ元データ訂正</a>
+</div>
+<p>再確認／再提出後に再計算。人給原因は外部で訂正。</p>
+<div class="meta">
+<a href="../screens/SCR-002.html?context=flow-WF-12#SCR-002" >SCR-002</a>  / OP-JLINK-CORRECT</div>
+</li>
+<li id="step-i">
+<div class="step-title">
+<a href="../operations/OP-JLINK-CONFIRM.html?context=flow-WF-12#OP-JLINK-CONFIRM" >ボタンで給与班確定</a>
+</div>
+<p>確認ダイアログなし。ゼロだけで自動確定しない。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-12#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-CONFIRM</div>
+</li>
+<li id="step-j">
+<div class="step-title">外部で支払いを実施</div>
+<p>アプリが実送金する要件はない。</p>
+<div class="meta">アプリ外・画面未指定 </div>
+</li>
+<li id="step-k">
+<div class="step-title">
+<a href="../operations/OP-PAY-PAID.html?context=flow-WF-12#OP-PAY-PAID" >支払い済みを記録</a>
+</div>
+<p>記録UI配置は提案。元の支払済み結果は不訂正。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-12#FUT-JLINK" >FUT-JLINK</a>  / OP-PAY-PAID</div>
+</li>
+<li id="step-l">
+<div class="step-title">
+<a href="../operations/OP-JLINK-HISTORY.html?context=flow-WF-12#OP-JLINK-HISTORY" >最終根拠・照合履歴を保持</a>
+</div>
+<p>中間版削除後も双方額・差額等を参照可能。保存条件PD-06。</p>
+<div class="meta">
+<a href="../screens/FUT-JLINK.html?context=flow-WF-12#FUT-JLINK" >FUT-JLINK</a>  / OP-JLINK-HISTORY</div>
+</li>
+</ol>
+</section>
+<details>
+<summary>設計・構築者向け: 役割・データ・処理条件</summary>
+<div>
+<div class="table-wrap" role="region" tabindex="0" aria-label="業務を構成する操作の契約">
+<table>
+<caption>業務を構成する操作の契約</caption>
+<thead>
+<tr>
+<th scope="col">操作</th>
+<th scope="col">担当・対象範囲</th>
+<th scope="col">読む情報 → 変更する情報</th>
+<th scope="col">実行条件・失敗時</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="../operations/OP-PAY-PERIOD.html?context=flow-WF-12#OP-PAY-PERIOD" >OP-PAY-PERIOD 支給回・対象期間を設定</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>職員・支給対象期間・支給日 → 支給回の期間・支給日（論理記録）</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-PAY-CALCULATE.html?context=flow-WF-12#OP-PAY-CALCULATE" >OP-PAY-CALCULATE 給与を計算・再計算</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>確認済み勤務条件・勤務実績、認定済み通勤、登録済み保険・税・控除、日額／時間額単価・期末勤勉別率・調整 → 計算版・職員別結果・使用根拠</td>
+<td>必要な勤務条件・控除・勤怠・通勤が確認済み／認定済みで、取込不完全でない。<br>未確認・不完全・式未確定を確定結果として採用しない。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-EXPORT.html?context=flow-WF-12#OP-JLINK-EXPORT" >OP-JLINK-EXPORT 確認してExcel出力</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>最新版計算結果、指定対象・A/M、既存237列見出し → 出力xlsx、出力履歴</td>
+<td>支給回・人数・明細数・A/M件数を利用者が確認。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JINKYU-PROCESS.html?context=flow-WF-12#OP-JINKYU-PROCESS" >OP-JINKYU-PROCESS 人給取込・給与簿出力</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>計算結果xlsx、人給側データ → 外部人給データ（実行は別システム）、給与簿CSV</td>
+<td>認証済みで対象レコードを識別できること。<br>人給側のエラーはI8で表示要件あり。結果取得方式は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-IMPORT.html?context=flow-WF-12#OP-JLINK-IMPORT" >OP-JLINK-IMPORT 給与簿CSVを取り込む</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>人給給与簿CSV → 給与簿取込回・読取り専用明細・原値</td>
+<td>認証済みで対象レコードを識別できること。<br>失敗時は前回成功分を維持し、失敗を最新成功として扱わない。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-RECONCILE.html?context=flow-WF-12#OP-JLINK-RECONCILE" >OP-JLINK-RECONCILE 最新版と照合</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>選択支給回の最新版計算結果、成功した給与簿取込回 → 照合処理・不一致明細・最新結果識別</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-CORRECT.html?context=flow-WF-12#OP-JLINK-CORRECT" >OP-JLINK-CORRECT 差分原因の入力画面へ</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>差分・対象職員・支給回 → データ更新なし</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-CONFIRM.html?context=flow-WF-12#OP-JLINK-CONFIRM" >OP-JLINK-CONFIRM 給与班が支給回を確定</a>
+</td>
+<td>会計課給与班<br>表示・職員絞込みにかかわらず支給回全体。</td>
+<td>支給回全体の最新計算識別・照合、必要情報の確定状態 → 給与班確定状態・履歴</td>
+<td>支給回全体の最新照合が差分ゼロで未解決行がない。<br>古いゼロ・変更・権限不足・未解決を検出したら確定せず再照合へ。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-PAY-PAID.html?context=flow-WF-12#OP-PAY-PAID" >OP-PAY-PAID 支払い済みを記録</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>確定結果、支払実績 → 支払い済み状態・支払実績</td>
+<td>給与班確定済みで、外部での支払実施を確認できること。記録項目・証跡条件は未入力。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-JLINK-HISTORY.html?context=flow-WF-12#OP-JLINK-HISTORY" >OP-JLINK-HISTORY 処理回の履歴を確認</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>各処理回の日時・実行者・件数・状態、双方額・差額、最終結果・最終根拠・給与簿・支払実績 → データ更新なし</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrap" role="region" tabindex="0" aria-label="図と同一データの全経路">
+<table>
+<caption>図と同一データの全経路</caption>
+<thead>
+<tr>
+<th scope="col">起点</th>
+<th scope="col">条件・操作</th>
+<th scope="col">到達点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>元データ確認・支給回選択</td>
+<td>確認済み</td>
+<td>給与を計算・根拠保存</td>
+</tr>
+<tr>
+<td>給与を計算・根拠保存</td>
+<td>計算済み</td>
+<td>対象・A/M確認しExcel出力</td>
+</tr>
+<tr>
+<td>対象・A/M確認しExcel出力</td>
+<td>外部へ</td>
+<td>人給取込・給与簿CSV出力</td>
+</tr>
+<tr>
+<td>人給取込・給与簿CSV出力</td>
+<td>給与簿戻り</td>
+<td>給与簿CSVを取込</td>
+</tr>
+<tr>
+<td>給与簿CSVを取込</td>
+<td>取込成功</td>
+<td>最新版のアプリ値と照合</td>
+</tr>
+<tr>
+<td>給与簿CSVを取込</td>
+<td>失敗・前回保持で再取込</td>
+<td>給与簿CSVを取込</td>
+</tr>
+<tr>
+<td>最新版のアプリ値と照合</td>
+<td>照合完了</td>
+<td>全体最新ゼロ・未解決なし</td>
+</tr>
+<tr>
+<td>全体最新ゼロ・未解決なし</td>
+<td>差分／未解決</td>
+<td>原因に応じ元データ訂正</td>
+</tr>
+<tr>
+<td>原因に応じ元データ訂正</td>
+<td>元データ修正後</td>
+<td>給与を計算・根拠保存</td>
+</tr>
+<tr>
+<td>原因に応じ元データ訂正</td>
+<td>人給側の訂正</td>
+<td>人給取込・給与簿CSV出力</td>
+</tr>
+<tr>
+<td>全体最新ゼロ・未解決なし</td>
+<td>結果更新・旧ゼロ失効</td>
+<td>最新版のアプリ値と照合</td>
+</tr>
+<tr>
+<td>全体最新ゼロ・未解決なし</td>
+<td>最新ゼロ</td>
+<td>ボタンで給与班確定</td>
+</tr>
+<tr>
+<td>ボタンで給与班確定</td>
+<td>確定後</td>
+<td>外部で支払いを実施</td>
+</tr>
+<tr>
+<td>外部で支払いを実施</td>
+<td>実施確認</td>
+<td>支払い済みを記録</td>
+</tr>
+<tr>
+<td>支払い済みを記録</td>
+<td>記録後</td>
+<td>最終根拠・照合履歴を保持</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<section class="panel" >
+<h2>要件と根拠へ戻る</h2>
+<div class="chips">
+<a href="../sections/1.1.2.html#section-1.1.2" >1.1.2</a>
+</div>
+<h3 style="margin-top:18px">関連要件ID</h3>
+<div class="chips">
+<a href="../requirements/PAYREQ-07.html?context=flow-WF-12#requirement-PAYREQ-07" >PAYREQ-07</a>
+<a href="../requirements/PAYREQ-08.html?context=flow-WF-12#requirement-PAYREQ-08" >PAYREQ-08</a>
+<a href="../requirements/PAYREQ-10.html?context=flow-WF-12#requirement-PAYREQ-10" >PAYREQ-10</a>
+<a href="../requirements/I5.html?context=flow-WF-12#requirement-I5" >I5</a>
+<a href="../requirements/I7.html?context=flow-WF-12#requirement-I7" >I7</a>
+<a href="../requirements/I12.html?context=flow-WF-12#requirement-I12" >I12</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=flow-WF-12" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+<li>
+<a href="../sources/docs--design--detailed--detailed-design.html?context=flow-WF-12" data-keep-context>detailed-design.md</a>
+<div class="meta">docs/design/detailed/detailed-design.md</div>
+</li>
+<li>
+<a href="../sources/docs--design--detailed--payroll-jinkyu-interface.html?context=flow-WF-12" data-keep-context>payroll-jinkyu-interface.md</a>
+<div class="meta">docs/design/detailed/payroll-jinkyu-interface.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

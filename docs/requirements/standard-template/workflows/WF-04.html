@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>E Excel一括取込と行別判断 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" aria-current="page">業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../journeys.html" >業務の流れ</a>
+</span>
+<span aria-current="page">E Excel一括取込と行別判断</span>
+</nav>
+<a class="context-return" data-context-return href="../journeys.html">← 業務一覧へ戻る</a>
+<div>
+<span class="eyebrow">BUSINESS FLOW / WF-04</span>
+<h1 id="WF-04">E Excel一括取込と行別判断</h1>
+<p class="lead">ファイルを検証し、正常行を先行取込。問題行は給与班が1行ずつ取り込むか見送るか判断し、確認待ち候補へつなぎます。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>確定</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>この業務の確認ポイント</h2>
+<dl class="contract">
+<dt>担当する人</dt>
+<dd>会計課給与班</dd>
+<dt>どこから始める</dt>
+<dd>ホームのデータ一括取込み</dd>
+<dt>使う画面</dt>
+<dd>
+<div class="chips">
+<a href="../screens/SCR-001.html?context=flow-WF-04#SCR-001" >SCR-001</a>
+<a href="../screens/FUT-IMPORT.html?context=flow-WF-04#FUT-IMPORT" >FUT-IMPORT</a>
+<a href="../screens/SCR-002.html?context=flow-WF-04#SCR-002" >SCR-002</a>
+</div>
+</dd>
+<dt>何をもって完了</dt>
+<dd>確認待ち候補と行別結果</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>流れと戻り・分岐</h2>
+<figure data-figure>
+<div class="figure-controls">
+<button type="button" data-zoom-out aria-label="図を縮小">− 縮小</button>
+<output aria-live="polite">100%</output>
+<button type="button" data-zoom-in aria-label="図を拡大">＋ 拡大</button>
+<button type="button" data-zoom-fit>全体に戻す</button>
+</div>
+<div class="diagram-viewport" tabindex="0" role="region" aria-label="WF-04 E Excel一括取込と行別判断。拡大後は横・縦にスクロールできます。">
+<div class="diagram-canvas">
+<svg class="workflow-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 1390" width="1160" height="1390" role="img" aria-labelledby="WF-04-title WF-04-description" data-workflow-id="WF-04">
+<title id="WF-04-title">WF-04 E Excel一括取込と行別判断</title>
+<desc id="WF-04-description">ファイルを検証し、正常行を先行取込。問題行は給与班が1行ずつ取り込むか見送るか判断し、確認待ち候補へつなぎます。 工程は一度だけ配置。矢印をたどり、茶色の折返しは訂正・再試行。全条件は同じデータの経路表で確認できます。</desc>
+<defs>
+<marker id="WF-04-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+</marker>
+</defs>
+<g class="flow-lane app" data-lane-id="lane-1">
+<rect x="40" y="0" width="360" height="1390"/>
+<rect class="lane-heading-bg" x="40" y="0" width="360" height="65"/>
+<text x="220" y="25" class="flow-lane-title" text-anchor="middle">給与班・取込処理</text>
+<text x="220" y="49" class="flow-lane-scope" text-anchor="middle">検証と正常行</text>
+</g>
+<g class="flow-lane app" data-lane-id="lane-2">
+<rect x="400" y="0" width="360" height="1390"/>
+<rect class="lane-heading-bg" x="400" y="0" width="360" height="65"/>
+<text x="580" y="25" class="flow-lane-title" text-anchor="middle">給与班</text>
+<text x="580" y="49" class="flow-lane-scope" text-anchor="middle">問題行の判断</text>
+</g>
+<g class="flow-lane app" data-lane-id="lane-3">
+<rect x="760" y="0" width="360" height="1390"/>
+<rect class="lane-heading-bg" x="760" y="0" width="360" height="65"/>
+<text x="940" y="25" class="flow-lane-title" text-anchor="middle">局担当者／給与班</text>
+<text x="940" y="49" class="flow-lane-scope" text-anchor="middle">不足の訂正</text>
+</g>
+<g class="flow-connector view" data-edge-id="WF-04-view-01" data-from="start-a" data-to="a">
+<path class="flow-edge-halo" d="M 220 116 L 220 162"/>
+<path class="flow-edge" d="M 220 116 L 220 162" marker-end="url(#WF-04-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-04-view-02" data-from="join-b" data-to="b">
+<path class="flow-edge-halo" d="M 220 354 L 220 362"/>
+<path class="flow-edge" d="M 220 354 L 220 362" marker-end="url(#WF-04-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-04-view-03" data-from="b" data-to="split-b">
+<path class="flow-edge-halo" d="M 220 458 L 220 466"/>
+<path class="flow-edge" d="M 220 458 L 220 466" marker-end="url(#WF-04-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-04-view-04" data-from="join-f" data-to="f">
+<path class="flow-edge-halo" d="M 220 954 L 220 962"/>
+<path class="flow-edge" d="M 220 954 L 220 962" marker-end="url(#WF-04-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-04-view-05" data-from="g" data-to="end-g">
+<path class="flow-edge-halo" d="M 580 1058 L 580 1089"/>
+<path class="flow-edge" d="M 580 1058 L 580 1089" marker-end="url(#WF-04-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector view" data-edge-id="WF-04-view-06" data-from="h" data-to="end-h">
+<path class="flow-edge-halo" d="M 940 1258 L 940 1289"/>
+<path class="flow-edge" d="M 940 1258 L 940 1289" marker-end="url(#WF-04-arrow)"/>
+<title>表示用接続</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-04-edge-01" data-from="a" data-to="join-b" data-source-step="a" data-target-step="b">
+<path class="flow-edge-halo" d="M 220 258 L 220 334"/>
+<path class="flow-edge" d="M 220 258 L 220 334" marker-end="url(#WF-04-arrow)"/>
+<title>開始</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-04-edge-02" data-from="split-b" data-to="c" data-source-step="b" data-target-step="c">
+<path class="flow-edge-halo" d="M 220 486 L 220 542"/>
+<path class="flow-edge" d="M 220 486 L 220 542" marker-end="url(#WF-04-arrow)"/>
+<title>検証完了</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-04-edge-04" data-from="c" data-to="d" data-source-step="c" data-target-step="d">
+<path class="flow-edge-halo" d="M 220 678 L 220 762"/>
+<path class="flow-edge" d="M 220 678 L 220 762" marker-end="url(#WF-04-arrow)"/>
+<title>正常行</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-04-edge-06" data-from="d" data-to="join-f" data-source-step="d" data-target-step="f">
+<path class="flow-edge-halo" d="M 220 858 L 220 934"/>
+<path class="flow-edge" d="M 220 858 L 220 934" marker-end="url(#WF-04-arrow)"/>
+<title>反映</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-04-edge-08" data-from="e" data-to="g" data-source-step="e" data-target-step="g">
+<path class="flow-edge-halo" d="M 580 878 L 580 962"/>
+<path class="flow-edge" d="M 580 878 L 580 962" marker-end="url(#WF-04-arrow)"/>
+<title>見送る</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-04-edge-05" data-from="c" data-to="e" data-source-step="c" data-target-step="e">
+<path class="flow-edge-halo" d="M 220 678 L 220 686 L 580 686 L 580 742"/>
+<path class="flow-edge" d="M 220 678 L 220 686 L 580 686 L 580 742" marker-end="url(#WF-04-arrow)"/>
+<title>問題行</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-04-edge-07" data-from="e" data-to="join-f" data-source-step="e" data-target-step="f">
+<path class="flow-edge-halo" d="M 580 878 L 580 886 L 230 886 L 230 926 L 220 926 L 220 934"/>
+<path class="flow-edge" d="M 580 878 L 580 886 L 230 886 L 230 926 L 220 926 L 220 934" marker-end="url(#WF-04-arrow)"/>
+<title>取り込む</title>
+</g>
+<g class="flow-connector normal" data-edge-id="WF-04-edge-09" data-from="f" data-to="h" data-source-step="f" data-target-step="h">
+<path class="flow-edge-halo" d="M 220 1058 L 220 1154 L 940 1154 L 940 1162"/>
+<path class="flow-edge" d="M 220 1058 L 220 1154 L 940 1154 L 940 1162" marker-end="url(#WF-04-arrow)"/>
+<title>確認待ちへ</title>
+</g>
+<g class="flow-connector return" data-edge-id="WF-04-edge-03" data-from="split-b" data-to="join-b" data-source-step="b" data-target-step="b">
+<path class="flow-edge-halo" d="M 210 476 L 86 476 L 86 344 L 210 344"/>
+<path class="flow-edge" d="M 210 476 L 86 476 L 86 344 L 210 344" marker-end="url(#WF-04-arrow)"/>
+<title>読取失敗・再選択</title>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-04-edge-01">
+<rect x="227" y="281.5" width="42.8" height="29" rx="4"/>
+<text x="234" y="300.5">開始</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-04-edge-02">
+<rect x="227" y="499.5" width="71.6" height="29" rx="4"/>
+<text x="234" y="518.5">検証完了</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-04-edge-04">
+<rect x="227" y="705.5" width="57.2" height="29" rx="4"/>
+<text x="234" y="724.5">正常行</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-04-edge-06">
+<rect x="170.2" y="881.5" width="42.8" height="29" rx="4"/>
+<text x="177.2" y="900.5">反映</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-04-edge-08">
+<rect x="587" y="905.5" width="57.2" height="29" rx="4"/>
+<text x="594" y="924.5">見送る</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-04-edge-05">
+<rect x="371.4" y="650" width="57.2" height="29" rx="4"/>
+<text x="378.4" y="669">問題行</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-04-edge-07">
+<rect x="369.2" y="850" width="71.6" height="29" rx="4"/>
+<text x="376.2" y="869">取り込む</text>
+</g>
+<g class="flow-edge-label normal" data-label-for="WF-04-edge-09">
+<rect x="227" y="1091.5" width="86" height="29" rx="4"/>
+<text x="234" y="1110.5">確認待ちへ</text>
+</g>
+<g class="flow-edge-label return" data-label-for="WF-04-edge-03">
+<rect x="71" y="483" width="129.2" height="29" rx="4"/>
+<text x="78" y="502">読取失敗・再選択</text>
+</g>
+<g class="flow-node task" data-node-id="a" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,162.0,342.0,258.0" data-step-id="a">
+<a href="#step-a" aria-label="a データ一括取込みを開く：工程定義へ">
+<title>データ一括取込みを開く。専用画面。現行PoCとは別。</title>
+<rect x="98.0" y="162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="182.0">a · SCR-001</text>
+<text class="flow-task-label" x="112.0" y="207.0">データ一括取込みを開く</text>
+</a>
+<a href="../operations/OP-001-IMPORT.html?context=flow-WF-04#OP-001-IMPORT" aria-label="OP-001-IMPORT 操作定義">
+<text class="flow-op-link" x="330.0" y="249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="b" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,362.0,342.0,458.0" data-step-id="b">
+<a href="#step-b" aria-label="b Excelを選び行検証：工程定義へ">
+<title>Excelを選び行検証。形式・列・一般検証詳細は未決。</title>
+<rect x="98.0" y="362.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="382.0">b · FUT-IMPORT</text>
+<text class="flow-task-label" x="112.0" y="407.0">Excelを選び行検証</text>
+</a>
+<a href="../operations/OP-IMPORT-VALIDATE.html?context=flow-WF-04#OP-IMPORT-VALIDATE" aria-label="OP-IMPORT-VALIDATE 操作定義">
+<text class="flow-op-link" x="330.0" y="449.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="c" data-node-kind="gateway" data-lane-id="lane-1" data-box="95.0,542.0,345.0,678.0" data-step-id="c">
+<a href="#step-c" aria-label="c 不備・重複候補があるか：工程定義へ">
+<title>不備・重複候補があるか。人の存在だけで一律禁止しない。内容を比較。</title>
+<polygon points="220.0,542.0 345.0,610 220.0,678.0 95.0,610"/>
+<text class="flow-node-id" x="220.0" y="570" text-anchor="middle">c · ○</text>
+<text class="flow-task-label" x="220.0" y="602" text-anchor="middle">不備・重複候補があ</text>
+<text class="flow-task-label" x="220.0" y="624" text-anchor="middle">るか</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="d" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,762.0,342.0,858.0" data-step-id="d">
+<a href="#step-d" aria-label="d 正常行を先に取込：工程定義へ">
+<title>正常行を先に取込。問題のない行は先行反映可能。</title>
+<rect x="98.0" y="762.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="782.0">d · FUT-IMPORT</text>
+<text class="flow-task-label" x="112.0" y="807.0">正常行を先に取込</text>
+</a>
+<a href="../operations/OP-IMPORT-APPLY.html?context=flow-WF-04#OP-IMPORT-APPLY" aria-label="OP-IMPORT-APPLY 操作定義">
+<text class="flow-op-link" x="330.0" y="849.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node gateway" data-node-id="e" data-node-kind="gateway" data-lane-id="lane-2" data-box="455.0,742.0,705.0,878.0" data-step-id="e">
+<a href="#step-e" aria-label="e 問題行を給与班が判断：工程定義へ">
+<title>問題行を給与班が判断。取込済み・重複可能性等の注意を確認。</title>
+<polygon points="580.0,742.0 705.0,810 580.0,878.0 455.0,810"/>
+<text class="flow-node-id" x="580.0" y="770" text-anchor="middle">e · ×</text>
+<text class="flow-task-label" x="580.0" y="802" text-anchor="middle">問題行を給与班が判</text>
+<text class="flow-task-label" x="580.0" y="824" text-anchor="middle">断</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="f" data-node-kind="task" data-lane-id="lane-1" data-box="98.0,962.0,342.0,1058.0" data-step-id="f">
+<a href="#step-f" aria-label="f 確認待ち候補を作成：工程定義へ">
+<title>確認待ち候補を作成。行別の処理結果を保持。</title>
+<rect x="98.0" y="962.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="112.0" y="982.0">f · FUT-IMPORT</text>
+<text class="flow-task-label" x="112.0" y="1007.0">確認待ち候補を作成</text>
+</a>
+<a href="../operations/OP-IMPORT-APPLY.html?context=flow-WF-04#OP-IMPORT-APPLY" aria-label="OP-IMPORT-APPLY 操作定義">
+<text class="flow-op-link" x="330.0" y="1049.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="g" data-node-kind="task" data-lane-id="lane-2" data-box="458.0,962.0,702.0,1058.0" data-step-id="g">
+<a href="#step-g" aria-label="g その行の取込を見送る：工程定義へ">
+<title>その行の取込を見送る。問題行だけ見送り。再取込手順は未決。</title>
+<rect x="458.0" y="962.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="472.0" y="982.0">g · FUT-IMPORT</text>
+<text class="flow-task-label" x="472.0" y="1007.0">その行の取込を見送る</text>
+</a>
+</g>
+<g class="flow-node task" data-node-id="h" data-node-kind="task" data-lane-id="lane-3" data-box="818.0,1162.0,1062.0,1258.0" data-step-id="h">
+<a href="#step-h" aria-label="h 不足を確認・訂正：工程定義へ">
+<title>不足を確認・訂正。候補選択はSCR-002左検索、確認は右詳細。</title>
+<rect x="818.0" y="1162.0" width="244" height="96" rx="13"/>
+<text class="flow-node-id" x="832.0" y="1182.0">h · SCR-002</text>
+<text class="flow-task-label" x="832.0" y="1207.0">不足を確認・訂正</text>
+</a>
+<a href="../operations/OP-E-CORRECT.html?context=flow-WF-04#OP-E-CORRECT" aria-label="OP-E-CORRECT 操作定義">
+<text class="flow-op-link" x="1050.0" y="1249.0" text-anchor="end">操作定義 ↗</text>
+</a>
+</g>
+<g class="flow-node start" data-node-id="start-a" data-node-kind="start" data-lane-id="lane-1" data-box="204.0,84.0,236.0,116.0">
+<title>開始。表示用要素</title>
+<circle cx="220.0" cy="100" r="16.0"/>
+<text class="flow-event-label" x="247.0" y="105" text-anchor="start">開始</text>
+</g>
+<g class="flow-node merge" data-node-id="join-b" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,334.0,230.0,354.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,334.0 230.0,344 220.0,354.0 210.0,344"/>
+<text class="flow-gateway-symbol" x="220.0" y="347" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node split" data-node-id="split-b" data-node-kind="split" data-lane-id="lane-1" data-box="210.0,466.0,230.0,486.0">
+<title>結果分岐。表示用要素</title>
+<polygon points="220.0,466.0 230.0,476 220.0,486.0 210.0,476"/>
+<text class="flow-gateway-symbol" x="220.0" y="479" text-anchor="middle">×</text>
+</g>
+<g class="flow-node merge" data-node-id="join-f" data-node-kind="merge" data-lane-id="lane-1" data-box="210.0,934.0,230.0,954.0">
+<title>合流。表示用要素</title>
+<polygon points="220.0,934.0 230.0,944 220.0,954.0 210.0,944"/>
+<text class="flow-gateway-symbol" x="220.0" y="947" text-anchor="middle">
+</text>
+</g>
+<g class="flow-node end" data-node-id="end-g" data-node-kind="end" data-lane-id="lane-2" data-box="563.0,1089.0,597.0,1123.0">
+<title>確認区間の終了。表示用要素</title>
+<circle cx="580.0" cy="1106" r="17.0"/>
+<circle class="end-inner" cx="580.0" cy="1106" r="12.0"/>
+<text class="flow-event-label" x="580.0" y="1142" text-anchor="middle">確認区間の終了</text>
+</g>
+<g class="flow-node end" data-node-id="end-h" data-node-kind="end" data-lane-id="lane-3" data-box="923.0,1289.0,957.0,1323.0">
+<title>確認区間の終了。表示用要素</title>
+<circle cx="940.0" cy="1306" r="17.0"/>
+<circle class="end-inner" cx="940.0" cy="1306" r="12.0"/>
+<text class="flow-event-label" x="940.0" y="1342" text-anchor="middle">確認区間の終了</text>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="figure-note">拡大後は指で横・縦へスクロールできます。キーボードは図枠にTabで移動し矢印キー。図の工程名から操作の詳細へ進めます。図の下にも同じ工程と全経路を記載しています。</figcaption>
+</figure>
+<p class="meta">青の実線: 業務の順序。茶色: 訂正・再試行。破線: 外部システムとの受渡し等。内部画面移動、別タブ、利用者による人給への切替を混同しません。</p>
+</section>
+<section class="panel" >
+<h2>何を入力・確認するか</h2>
+<ol class="steps">
+<li id="step-a">
+<div class="step-title">
+<a href="../operations/OP-001-IMPORT.html?context=flow-WF-04#OP-001-IMPORT" >データ一括取込みを開く</a>
+</div>
+<p>専用画面。現行PoCとは別。</p>
+<div class="meta">
+<a href="../screens/SCR-001.html?context=flow-WF-04#SCR-001" >SCR-001</a>  / OP-001-IMPORT</div>
+</li>
+<li id="step-b">
+<div class="step-title">
+<a href="../operations/OP-IMPORT-VALIDATE.html?context=flow-WF-04#OP-IMPORT-VALIDATE" >Excelを選び行検証</a>
+</div>
+<p>形式・列・一般検証詳細は未決。</p>
+<div class="meta">
+<a href="../screens/FUT-IMPORT.html?context=flow-WF-04#FUT-IMPORT" >FUT-IMPORT</a>  / OP-IMPORT-VALIDATE</div>
+</li>
+<li id="step-c">
+<div class="step-title">不備・重複候補があるか</div>
+<p>人の存在だけで一律禁止しない。内容を比較。</p>
+<div class="meta">
+<a href="../screens/FUT-IMPORT.html?context=flow-WF-04#FUT-IMPORT" >FUT-IMPORT</a>
+</div>
+</li>
+<li id="step-d">
+<div class="step-title">
+<a href="../operations/OP-IMPORT-APPLY.html?context=flow-WF-04#OP-IMPORT-APPLY" >正常行を先に取込</a>
+</div>
+<p>問題のない行は先行反映可能。</p>
+<div class="meta">
+<a href="../screens/FUT-IMPORT.html?context=flow-WF-04#FUT-IMPORT" >FUT-IMPORT</a>  / OP-IMPORT-APPLY</div>
+</li>
+<li id="step-e">
+<div class="step-title">
+<a href="../operations/OP-IMPORT-APPLY.html?context=flow-WF-04#OP-IMPORT-APPLY" >問題行を給与班が判断</a>
+</div>
+<p>取込済み・重複可能性等の注意を確認。</p>
+<div class="meta">
+<a href="../screens/FUT-IMPORT.html?context=flow-WF-04#FUT-IMPORT" >FUT-IMPORT</a>  / OP-IMPORT-APPLY</div>
+</li>
+<li id="step-f">
+<div class="step-title">
+<a href="../operations/OP-IMPORT-APPLY.html?context=flow-WF-04#OP-IMPORT-APPLY" >確認待ち候補を作成</a>
+</div>
+<p>行別の処理結果を保持。</p>
+<div class="meta">
+<a href="../screens/FUT-IMPORT.html?context=flow-WF-04#FUT-IMPORT" >FUT-IMPORT</a>  / OP-IMPORT-APPLY</div>
+</li>
+<li id="step-g">
+<div class="step-title">その行の取込を見送る</div>
+<p>問題行だけ見送り。再取込手順は未決。</p>
+<div class="meta">
+<a href="../screens/FUT-IMPORT.html?context=flow-WF-04#FUT-IMPORT" >FUT-IMPORT</a>
+</div>
+</li>
+<li id="step-h">
+<div class="step-title">
+<a href="../operations/OP-E-CORRECT.html?context=flow-WF-04#OP-E-CORRECT" >不足を確認・訂正</a>
+</div>
+<p>候補選択はSCR-002左検索、確認は右詳細。</p>
+<div class="meta">
+<a href="../screens/SCR-002.html?context=flow-WF-04#SCR-002" >SCR-002</a>  / OP-E-CORRECT</div>
+</li>
+</ol>
+</section>
+<details>
+<summary>設計・構築者向け: 役割・データ・処理条件</summary>
+<div>
+<div class="table-wrap" role="region" tabindex="0" aria-label="業務を構成する操作の契約">
+<table>
+<caption>業務を構成する操作の契約</caption>
+<thead>
+<tr>
+<th scope="col">操作</th>
+<th scope="col">担当・対象範囲</th>
+<th scope="col">読む情報 → 変更する情報</th>
+<th scope="col">実行条件・失敗時</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="../operations/OP-001-IMPORT.html?context=flow-WF-04#OP-001-IMPORT" >OP-001-IMPORT データ一括取込み</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>対象の論理レコード（正式物理名未入力） → データ更新なし</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-IMPORT-VALIDATE.html?context=flow-WF-04#OP-IMPORT-VALIDATE" >OP-IMPORT-VALIDATE Excelの行を検証</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>異動情報Excel、既存職員と関連データ → 取込検証結果（論理記録）</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-IMPORT-APPLY.html?context=flow-WF-04#OP-IMPORT-APPLY" >OP-IMPORT-APPLY 行別に取込を判断</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>行別検証結果、給与班の判断 → 給与情報の確認待ち候補、行別処理結果</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-IMPORT-APPLY.html?context=flow-WF-04#OP-IMPORT-APPLY" >OP-IMPORT-APPLY 行別に取込を判断</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>行別検証結果、給与班の判断 → 給与情報の確認待ち候補、行別処理結果</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-IMPORT-APPLY.html?context=flow-WF-04#OP-IMPORT-APPLY" >OP-IMPORT-APPLY 行別に取込を判断</a>
+</td>
+<td>会計課給与班<br>給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</td>
+<td>行別検証結果、給与班の判断 → 給与情報の確認待ち候補、行別処理結果</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+<tr>
+<td>
+<a href="../operations/OP-E-CORRECT.html?context=flow-WF-04#OP-E-CORRECT" >OP-E-CORRECT 誤登録を訂正</a>
+</td>
+<td>会計課給与班 / 局担当者<br>給与班は全対象、局担当は自局記録と必要な共通基本情報。実効方式はPD-04。</td>
+<td>訂正前の元データ、影響する未払い支給回 → 訂正後元データ・訂正前後履歴、確認待ち状態・影響情報</td>
+<td>認証済みで対象レコードを識別できること。<br>エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrap" role="region" tabindex="0" aria-label="図と同一データの全経路">
+<table>
+<caption>図と同一データの全経路</caption>
+<thead>
+<tr>
+<th scope="col">起点</th>
+<th scope="col">条件・操作</th>
+<th scope="col">到達点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>データ一括取込みを開く</td>
+<td>開始</td>
+<td>Excelを選び行検証</td>
+</tr>
+<tr>
+<td>Excelを選び行検証</td>
+<td>検証完了</td>
+<td>不備・重複候補があるか</td>
+</tr>
+<tr>
+<td>Excelを選び行検証</td>
+<td>読取失敗・再選択</td>
+<td>Excelを選び行検証</td>
+</tr>
+<tr>
+<td>不備・重複候補があるか</td>
+<td>正常行</td>
+<td>正常行を先に取込</td>
+</tr>
+<tr>
+<td>不備・重複候補があるか</td>
+<td>問題行</td>
+<td>問題行を給与班が判断</td>
+</tr>
+<tr>
+<td>正常行を先に取込</td>
+<td>反映</td>
+<td>確認待ち候補を作成</td>
+</tr>
+<tr>
+<td>問題行を給与班が判断</td>
+<td>取り込む</td>
+<td>確認待ち候補を作成</td>
+</tr>
+<tr>
+<td>問題行を給与班が判断</td>
+<td>見送る</td>
+<td>その行の取込を見送る</td>
+</tr>
+<tr>
+<td>確認待ち候補を作成</td>
+<td>確認待ちへ</td>
+<td>不足を確認・訂正</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<section class="panel" >
+<h2>例外・未決・確認時の注意</h2>
+<ul>
+<li>「○」は行ごとの振分けです。同じファイルに正常行と問題行があれば、両方の経路を扱います。勤怠取込の全件事前検証とは異なります。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>要件と根拠へ戻る</h2>
+<div class="chips">
+<a href="../sections/1.1.2.html#section-1.1.2" >1.1.2</a>
+</div>
+<h3 style="margin-top:18px">関連要件ID</h3>
+<div class="chips">
+<a href="../requirements/E-02.html?context=flow-WF-04#requirement-E-02" >E-02</a>
+<a href="../requirements/E-03.html?context=flow-WF-04#requirement-E-03" >E-03</a>
+<a href="../requirements/E-04.html?context=flow-WF-04#requirement-E-04" >E-04</a>
+<a href="../requirements/E-11.html?context=flow-WF-04#requirement-E-11" >E-11</a>
+<a href="../requirements/FUT-IMPORT-001.html?context=flow-WF-04#requirement-FUT-IMPORT-001" >FUT-IMPORT-001</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--business-requirements.html?context=flow-WF-04" data-keep-context>business-requirements.md</a>
+<div class="meta">docs/requirements/business-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=flow-WF-04" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

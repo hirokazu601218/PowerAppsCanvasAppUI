@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-10T11:45:29.709187+00:00",
+  "status": "NOT_RUN",
+  "method": "Playwright executablePath existence and installed browser file inventory; no browser UI executed",
+  "browsers": {
+    "chromium": {
+      "exists": false
+    },
+    "firefox": {
+      "exists": false
+    },
+    "webkit": {
+      "exists": false
+    }
+  },
+  "scope": [
+    "desktop browser navigation/history/search/reset/zoom/keyboard",
+    "375/390 CSS viewport",
+    "JavaScript disabled rendering",
+    "iPhone/Safari/Quick Look"
+  ],
+  "reason": "No runnable browser installed in this execution environment; no external publication or forwarding used."
+}

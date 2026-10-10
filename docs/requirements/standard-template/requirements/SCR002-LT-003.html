@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>SCR002-LT-003 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="index.html" aria-current="page">要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >要件ID・操作</a>
+</span>
+<span aria-current="page">SCR002-LT-003</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 要件ID一覧へ戻る</a>
+<div>
+<span class="eyebrow">REQUIREMENT / SCR002-LT-003</span>
+<h1 id="requirement-SCR002-LT-003">SCR002-LT-003</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>出典箇所を記載</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>正本の該当記述を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>既存区分・出典時点限定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>正本に書かれている内容</h2>
+<p class="meta">出典の要件行・見出し・該当箇所をそのまま示しています。複数の記述がある場合は、文書と時点を確認してください。</p>
+<div class="source-row">
+<p>SCR002-LT-003 ｜ 右領域 ｜ 選択職員サマリーと、基本情報、勤務条件、通勤、社会保険、税固定控除、給与簿の6タブを表示する。従来の「給与」表示は「給与簿」へ改称する</p>
+<p class="source">
+<a href="../sources/docs--requirements--screen-requirements.html?context=req-SCR002-LT-003#L308" >screen-requirements.md · 308行目</a> / 正本の該当行</p>
+</div>
+<div class="source-row">
+<p>SCR002-LT-003 ｜ B構 ｜ D10.1・10.3 ｜ 計画 LT-TAB-01 ｜ 6タブの内容と名称を現行版で照合。 ｜ 一部確認：[P26] 6タブ名を確認。全内容・状態未検証。 ｜ 一部確認：[V27] V27-05。6タブ表示。各タブの全状態・内容は未照合。</p>
+<p class="source">
+<a href="../sources/docs--requirements--traceability-matrix.html?context=req-SCR002-LT-003#L59" >traceability-matrix.md · 59行目</a> / 正本の該当行</p>
+</div>
+</section>
+<p class="meta">関連操作・配置の区分: 現行実装。この区分を上記の要件判断へ転記していません。</p>
+<section class="panel" >
+<h2>この要件が関係する操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-002-TABS · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-TABS.html?context=req-SCR002-LT-003#OP-002-TABS" >詳細タブを切替</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>取得済みデータでタブを切替える。給与簿は常時読取り専用。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>関連する章・業務・画面</h2>
+<h3>標準の章・節</h3>
+<div class="chips">
+<a href="../sections/2.2.1.html#section-2.2.1" >2.2.1</a>
+<a href="../sections/2.2.2.html#section-2.2.2" >2.2.2</a>
+<a href="../sections/2.2.3.html#section-2.2.3" >2.2.3</a>
+<a href="../sections/2.2.4.html#section-2.2.4" >2.2.4</a>
+</div>
+<h3 style="margin-top:18px">業務</h3>
+<div class="chips">
+</div>
+<h3 style="margin-top:18px">画面</h3>
+<div class="chips">
+<a href="../screens/SCR-002.html?context=req-SCR002-LT-003#SCR-002" >SCR-002</a>
+</div>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

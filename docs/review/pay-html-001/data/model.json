@@ -1,8 +1,21 @@
 {
   "metadata": {
     "version": "0.2-review",
-    "source_sha": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
-    "updated": "2026-10-09",
+    "publication": {
+      "lastPublishTime": "2026-10-10T09:28:28.7479961Z",
+      "lastDraftVersion": "2026-10-10T09:27:24Z",
+      "download_sha256": "7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f",
+      "scr002_sha256": "80ae540f22bbdb8661c8eece398401e4f0ea391eda3e1ed9b0350814731ae2f4",
+      "run_id": "38049776822",
+      "run_status": "FAIL",
+      "record_path": "records/changes/dot-001/38049776822/record.json",
+      "record_sha256": "09239d80cfcb9cb898dac5842ba1c5ef8f2f0bea4587e2e51b0d17a68bb822b1",
+      "selected_e2e": "NOT_RUN",
+      "full_reconciliation": "NOT_RUN"
+    },
+    "source_sha": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+    "original_main": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+    "updated": "2026-10-10",
     "status": "提案・レビュー用（未承認）"
   },
   "sources": [
@@ -10,7 +23,7 @@
       "id": "SRC-STATUS",
       "path": "docs/handoff/STATUS.md",
       "title": "現在の作業と読取り対象",
-      "section": "2026-10-08人給連携／2026-10-07給与・通勤／2026-10-01 UI"
+      "section": "DOT-001最新状態と関連履歴の選択表示"
     },
     {
       "id": "SRC-PAY",
@@ -283,6 +296,8 @@
       "requirements": [
         "SCR005-ACT-001",
         "SCR005-ACT-004",
+        "SCR005-UI-004",
+        "SCR005-UI-015",
         "COMMON-NAV-003"
       ],
       "source_ids": [
@@ -292,7 +307,7 @@
       ],
       "notes": [
         "現行再計算ではDataverseの保存・支給確定・支払処理を行わない。",
-        "本番式、欠勤時間単価の元表反映（Issue #51）、固定サマリー等の未達・未照合は残る。",
+        "通常PCサマリー固定と狭い・低い領域の全体スクロールは承認A。引継ぎ公開38で通常到達を観測。正式P/Hはrun 38049776822で採取済み。旧v25 guardでrun FAIL。focus見切れ・履歴AX差と選定E2E・最終照合は残る。制度式・Issue #51は未完了。",
         "改修先計算の配置をこの画面へ断定しない。レビュー上の候補配置には提案を明記。"
       ]
     },

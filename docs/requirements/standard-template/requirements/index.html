@@ -1,0 +1,2605 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>要件ID・操作 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="index.html" aria-current="page">要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span aria-current="page">要件ID・操作</span>
+</nav>
+<div>
+<span class="eyebrow">TRACE REQUIREMENTS</span>
+<h1>要件ID・操作から探す</h1>
+<p class="lead">要件IDから出典と関連操作へ。操作IDから担当・前提・データ・例外まで追えます。</p>
+<p class="meta">標準書式の記載充足は<a href="../open-items.html" >「要件未設定」</a>で確認します。この一覧ではモデルに登場するIDと操作を扱います。</p>
+<form class="toolbar" data-search-form role="search">
+<label class="search-field">本文を検索<input type="search" name="q" placeholder="要件ID、画面、業務、データ名" autocomplete="off">
+</label>
+<label>対象<select name="kind">
+<option value="">すべて</option>
+<option value="requirement">要件ID</option>
+<option value="operation">操作</option>
+</select>
+</label>
+<button type="submit">検索</button>
+<button type="button" data-reset>リセット</button>
+</form>
+<p class="results" data-result-count role="status" aria-live="polite">
+</p>
+<p class="empty" data-empty hidden>条件に一致する項目はありません。検索語や状態を変えてください。</p>
+<noscript>
+<p class="notice info">検索と絞込みにはJavaScriptが必要です。全項目は下に表示しています。ブラウザーのページ内検索も利用できます。</p>
+</noscript>
+<ul class="list">
+<li data-search-item data-kind="requirement" data-search-text="AD-01 発令情報から候補作成 | AD-01 | A 内定手続き | 初任給決定情報は秘書課の確定前に非常勤給与アプリへ渡さない。確定後の情報を利用対象とする。 | | AD-01 | 初任給確定後の情報受領：対応する現行機能要件なし | 連携条件・設計・試験未定 |">
+<h3>
+<a href="AD-01.html#requirement-AD-01" >AD-01</a>
+</h3>
+<p>発令情報から候補作成</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="AD-02 発令情報から候補作成 | AD-02 | B 採用起案 | 初任給が確定していても、EASYの採用起案が決裁されるまでは、その職員の給与情報の登録候補を作らない。 | | AD-02 | EASY決裁前の候補抑止：対応する現行機能要件なし | 決裁通知方法・設計・試験未定 |">
+<h3>
+<a href="AD-02.html#requirement-AD-02" >AD-02</a>
+</h3>
+<p>発令情報から候補作成</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="AD-03 発令情報から候補作成 | AD-03 | C 発令 | 通常の非常勤職員はA・Bを経て、調査員はCから開始するが、いずれも異動情報アプリへの発令情報の登録完了時に非常勤給与アプリへ通知され、登録候補を作る。通常職員の決裁完了は前提条件であり、候補作成の通知時点ではない。 | | AD-03 | 通常職員・調査員のC発令情報登録完了時の候補作成：対応する現行機能要件なし | 通知・作成方式・設計・試験未定 |">
+<h3>
+<a href="AD-03.html#requirement-AD-03" >AD-03</a>
+</h3>
+<p>発令情報から候補作成</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="AD-04 発行職員番号を反映 | AD-04 | D 職員DB登録・異動情報アプリ更新 | 発令情報の登録完了時点で職員番号が未発行でも登録候補を作る。異動情報アプリが職員の採用ごとに自動採番する識別子で候補を照合し、職員番号発行後に同じ候補へ自動反映することを目標とする。手動紐づけ操作は設けない。 | | AD-04 | 識別子照合・職員番号自動反映：対応する現行機能要件なし | 連携方式・失敗時対応・試験未定 |">
+<h3>
+<a href="AD-04.html#requirement-AD-04" >AD-04</a>
+</h3>
+<p>発行職員番号を反映</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="AD-05 発行職員番号を反映 | AD-05 | D 職員DB登録・異動情報アプリ更新 | 同じ職員が退職後に再採用された場合は、以前の識別子を再利用せず、新しい識別子を採番する。 | | AD-05 | 再採用時の新識別子：対応する現行機能要件なし | 採番仕様・試験未定 |">
+<h3>
+<a href="AD-05.html#requirement-AD-05" >AD-05</a>
+</h3>
+<p>発行職員番号を反映</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="AD-06 採用取消を反映 | AD-06 | B～D 採用取消 | 採用起案の決裁後に採用が取り消された場合、秘書課が異動情報アプリに取消を登録し、非常勤給与アプリが取消情報を受け取ることを目標とする。連携方式と実現可否は未決。 | | AD-06 | 秘書課による採用取消情報の受領：対応する現行機能要件なし | 連携方式・取消通知の試験未定 |">
+<h3>
+<a href="AD-06.html#requirement-AD-06" >AD-06</a>
+</h3>
+<p>採用取消を反映</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="AD-07 採用取消を反映 | AD-07 | B～E 採用取消後の候補 | 採用取消しは給与支給前に行う。Eの「確認待ち」「確定」のどちらからも「採用取消」へ移せる。該当候補を削除せず履歴を保持し、給与計算の対象から自動除外する。採用取消しに伴う既支給給与の返納処理は業務要件の対象外とする。 | | AD-07 | 確認待ち・確定から採用取消へ：将来画面要件 `FUT-STATE-E` | 履歴保持・計算除外試験未定。現行SCR-005は内蔵仮例 |">
+<h3>
+<a href="AD-07.html#requirement-AD-07" >AD-07</a>
+</h3>
+<p>採用取消を反映</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="AD-08 前工程変更の差異確認 | AD-08 | B～E 決裁後の変更 | 採用を取り消さずに決裁後の勤務条件や初任給などが変更された場合、変更前の内容を履歴に残して登録候補を更新する。確定済みの情報を変更した場合はE-08の再確認・再確定を適用する。 | | AD-08 | 決裁後の変更前履歴保持：関連候補 `SCR002-LT-005` | 変更連携・履歴保存・試験未定 |">
+<h3>
+<a href="AD-08.html#requirement-AD-08" >AD-08</a>
+</h3>
+<p>前工程変更の差異確認</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="AD-09 発令情報から候補作成 | AD-09 | C～E 調査員の初任給 | 調査員はAの個別初任給決定を経ず、非常勤給与アプリにあらかじめ登録した調査員用の給与ルールマスタを参照して登録候補の初任給を自動設定する（採用日基準の版選択はPAY-01）。マスタは業務マスタ管理者が登録・改定する。給与班との兼務は可能（Q55・R21）。 | | AD-09 | 調査員の初任給ルールマスタ自動設定：対応する現行機能要件なし | マスタ・自動設定の設計と試験未定 |">
+<h3>
+<a href="AD-09.html#requirement-AD-09" >AD-09</a>
+</h3>
+<p>発令情報から候補作成</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="AUTH-04 | AUTH-04 | 業務マスタ管理者が給与単価・区分等を管理する。給与班と兼務可能。システム管理権限は別とし、同一人の兼務も可能（Q55・R21）。 | | AUTH-04 | SCR-006給与ルールの給与班限定：`FUT-AUTH-004` | 現行管理者限定との整合・試験未決 |">
+<h3>
+<a href="AUTH-04.html#requirement-AUTH-04" >AUTH-04</a>
+</h3>
+<p>画面・業務から参照される要件</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 0件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="COMMON-AUTH-002 | `COMMON-AUTH-002` | SCR-006入口は管理者だけ有効。画面への遷移時にも管理者判定を行う | 管理者属性取得元とサーバー側認可は未決。確認用UIは権限を与えない | | `COMMON-AUTH-002` | 管理者限定のSCR-006入口・遷移 | B機 | D12.3・12.4 | 一般の確認用入口が無効なことを観察。管理者実属性と直接遷移の拒否は未試験 | 一部確認：[P26] 一般確認用権限でSCR-006入口無効。管理者未試験。[O] | 一部確認：[V27] V27-02。一般の入口無効。管理者と直接遷移は未試験。 | | `COMMON-AUTH-002` | 管理者だけSCR-006入口を活性 | — | — | — | 管理者だけ入れる | UI活性状態に加え実際のアクセス拒否を確認 |">
+<h3>
+<a href="COMMON-AUTH-002.html#requirement-COMMON-AUTH-002" >COMMON-AUTH-002</a>
+</h3>
+<p>画面・業務から参照される要件</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 0件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="COMMON-CONTEXT-001 職員マスタ検索 勤務時間報告 期末勤勉支給率登録 メンテナンス ホームへ戻る ホームへ戻る ホームへ戻る ホームへ戻る ホームへ戻る ホームへ戻る ホームへ戻る ホームへ戻る ホームへ戻る | `COMMON-CONTEXT-001` | ログイン職員の氏名・メールは画面を越えて同一のログイン主体として保持 | 属性の権威ある取得元は未定 | | `COMMON-CONTEXT-001` | ログイン職員の氏名・メールを全画面で保持 | B機 | D12.3・12.4 | 画面間の主体と表示を一部観察。アカウント属性の権威ある取得元は未決 | 一部確認：[P26] 画面上の主体を一部観察。氏名・メール全画面保持未試験。[O] | 一部確認：[V27] V27-02。ホームの主体のみ。氏名・メールを全画面で比較していない。 | | `COMMON-CONTEXT-001` | ログイン者の氏名・メール | 同じログイン者 | 同じログイン者 | 同じログイン者 | 同じログイン者 | 選択した非常勤職員の識別情報とは別主体 |">
+<h3>
+<a href="COMMON-CONTEXT-001.html#requirement-COMMON-CONTEXT-001" >COMMON-CONTEXT-001</a>
+</h3>
+<p>職員マスタ検索 / 勤務時間報告 / 期末勤勉支給率登録 / メンテナンス / ホームへ戻る / ホームへ戻る / ホームへ戻る / ホームへ戻る / ホームへ戻る / ホームへ戻る / ホームへ戻る / ホームへ戻る / ホームへ戻る</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 13件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="COMMON-CONTEXT-002 支給明細へ | `COMMON-CONTEXT-002` | 選択した非常勤職員番号・対象月はSCR-002／005で保持。ログイン者の属性と別の状態とする | 未選択時は無関係な職員を自動選択しない | | `COMMON-CONTEXT-002` | SCR-002⇄005の対象職員番号・対象月を保持 | B機 | D12.3・12.4 | 所有者で合成011・2026/10の受渡しを観察。未選択・他職員・権限拒否は未試験 | 一部確認：[P26] 職員011・月2026/10を往復で保持。他職員未試験。 | 一部確認：[V27] V27-04。011・月を保持、検索結果1→7件。別人・所属・専用利用者未試験。 | | `COMMON-CONTEXT-002` | — | 選択職員番号・対象月 | — | 同じ選択職員番号・対象月 | — | 往復・対象変更・未選択時に旧結果を引き継がない |">
+<h3>
+<a href="COMMON-CONTEXT-002.html#requirement-COMMON-CONTEXT-002" >COMMON-CONTEXT-002</a>
+</h3>
+<p>支給明細へ</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="COMMON-NAV-001 職員マスタ検索 勤務時間報告 期末勤勉支給率登録 メンテナンス PoCデータ一括取込 | `COMMON-NAV-001` | ホームから画面名の入口でSCR-002～006へ進む5経路を設ける | SCR-006のみ管理者判定が必要 | | `COMMON-NAV-001` | ホーム→SCR-002～006の5経路 | B機 | D12.3・12.4 | コード`UT-HOME-001`はSCR-002のみ。SCR-003／004／005の入口は所有者で観察、SCR-006管理者経路は未試験 | 一部確認：[P26] ホーム入口と一般権限で一部遷移。管理者未試験。[O] | 一部確認：[V27] V27-02。所有者の001～005と4往復。SCR-006管理者経路・業務内部未試験。 |">
+<h3>
+<a href="COMMON-NAV-001.html#requirement-COMMON-NAV-001" >COMMON-NAV-001</a>
+</h3>
+<p>職員マスタ検索 / 勤務時間報告 / 期末勤勉支給率登録 / メンテナンス / PoCデータ一括取込</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 5件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="COMMON-NAV-002 ホームへ戻る ホームへ戻る ホームへ戻る ホームへ戻る ホームへ戻る | `COMMON-NAV-002` | SCR-002～006の各画面から「ホーム」で戻る5経路を設ける | SCR-006は管理者での到達を前提に確認 | | `COMMON-NAV-002` | SCR-002～006→ホームの5経路 | B機 | D12.3 | SCR-002／003／004／005の一部を所有者で観察。SCR-006の復路は未試験 | 一部確認：[P26] 複数画面からの戻り。SCR-006の復路未試験。 | 一部確認：[V27] V27-02。所有者の001～005と4往復。SCR-006管理者経路・業務内部未試験。 |">
+<h3>
+<a href="COMMON-NAV-002.html#requirement-COMMON-NAV-002" >COMMON-NAV-002</a>
+</h3>
+<p>ホームへ戻る / ホームへ戻る / ホームへ戻る / ホームへ戻る / ホームへ戻る</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 5件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="COMMON-NAV-003 支給明細へ 職員詳細へ戻る | `COMMON-NAV-003` | SCR-002とSCR-005が職員番号・対象月を伴って双方向に遷移する。対象の存在と所属を遷移先で再確認する | SCR-002側のボタン名・操作方法は要件未定 | | `COMMON-NAV-003` | SCR-002⇄SCR-005、職員番号と対象月、所属 | B機 | D12.3・12.4、D11.3 | 所有者の往復時に検索結果保持の不一致。専用利用者の結合ケースはBLOCKED。SCR-002側の操作名称と所属判定は未決／未試験 | 一部確認：[P26] 002⇄005で職員・月保持、検索一覧は初期7件。[S26] 結合BLOCKED。[O] | 一部確認：[V27] V27-04。011・月を保持、検索結果1→7件。別人・所属・専用利用者未試験。 | | `COMMON-NAV-003` | — | SCR-005への移動・戻り | — | SCR-002への移動、`SCR005-ACT-002` | — | 双方向の職員番号・月・所属制限。SCR-002側の操作名はD-05 |">
+<h3>
+<a href="COMMON-NAV-003.html#requirement-COMMON-NAV-003" >COMMON-NAV-003</a>
+</h3>
+<p>支給明細へ / 職員詳細へ戻る</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="COMMON-SCREEN-001 | `COMMON-SCREEN-001` | SCR-001はホーム、SCR-002は検索詳細、SCR-003は勤務、SCR-004は支給率、SCR-005は支給明細、SCR-006は管理者用メンテナンス。外部Microsoft認証をCanvasの内部画面数に含めない | SCR-004／SCR-006の対象月設定以外の画面内業務機能は未要件定義 | | `COMMON-SCREEN-001` | SCR-001～006の画面ID・表示名・外部認証の境界 | B機 | D12.3 | 画面表示の一部を所有者Playerで観察。SCR-006管理者側とSCR-003／004／006の業務内部は未確認・未定義 | 一部確認：[P26] ホームから複数画面と表示名。管理者SCR-006未試験。[O] | 一部確認：[V27] V27-02。所有者の001～005と4往復。SCR-006管理者経路・業務内部未試験。 | | `COMMON-SCREEN-001` | ホーム・外部認証の境界 | 画面ID・役割 | 各画面ID・役割 | 画面ID・役割 | 画面ID・役割 | 画面の列挙。外部Microsoft認証画面はCanvasの内部画面ではない |">
+<h3>
+<a href="COMMON-SCREEN-001.html#requirement-COMMON-SCREEN-001" >COMMON-SCREEN-001</a>
+</h3>
+<p>画面・業務から参照される要件</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 0件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-02 Excelの行を検証 | E-02 | 自動連携の実現可否にかかわらず、会計課給与班が、異動情報アプリから出力したExcelを取り込んで給与情報の確認待ちデータを作成できること。複数職員を一括で取り込めること。 | | E-02 | 会計課給与班の複数職員Excel一括取込：対応する現行機能要件なし | 異動情報アプリ出力の列・様式、取込設計・試験未定 |">
+<h3>
+<a href="E-02.html#requirement-E-02" >E-02</a>
+</h3>
+<p>Excelの行を検証</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-03 Excelの行を検証 | E-03 | 取込時の重複判定は、職員本人が存在するかどうかだけで判断せず、当該職員に紐づくデータの内容を照合すること。照合するデータ項目と判定条件は未決とする。 | | E-03 | 職員に紐づくデータの照合：対応する現行機能要件なし | 照合条件・試験未定 |">
+<h3>
+<a href="E-03.html#requirement-E-03" >E-03</a>
+</h3>
+<p>Excelの行を検証</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-04 Excelの行を検証 行別に取込を判断 | E-04 | 職員に紐づくデータが一致する場合、または重複の可能性がある場合は、「取込済み」「重複可能性あり」等の注意を会計課給与班に表示すること。注意表示を踏まえた取込の最終判断は会計課給与班が行う。人単位で一律に取込を禁止しない。 | | E-04 | 重複注意と取込判断：対応する現行機能要件なし | 表示・操作設計・試験未定 |">
+<h3>
+<a href="E-04.html#requirement-E-04" >E-04</a>
+</h3>
+<p>Excelの行を検証 / 行別に取込を判断</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-05 Excelの行を検証 | E-05 | 取得・取込した登録候補について、給与計算に必要な情報の不足・不整合を検証し、修正対象を確認できること。具体的な必須項目および検証条件は未決とする。 | | E-05 | 不足・不整合の検証：対応する現行機能要件なし | 必須項目・試験未定 |">
+<h3>
+<a href="E-05.html#requirement-E-05" >E-05</a>
+</h3>
+<p>Excelの行を検証</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-06 誤登録を訂正 | E-06 | 不足・不整合は原則として局担当者が修正し、会計課給与班が確認すること。会計課給与班も必要に応じて直接修正できること。局担当者との調整はE-12に従う。 | | E-06 | 局担当者・給与班による修正：関連候補 `SCR002-EDIT-001～004` | 編集対象と権限は未決。実装・試験完了を意味しない |">
+<h3>
+<a href="E-06.html#requirement-E-06" >E-06</a>
+</h3>
+<p>誤登録を訂正</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-07 内容を確認待ちにする 給与情報を差し戻す 給与情報を確定・再確定 | E-07 | 勤務条件・保険・税等の登録内容を「登録→確認待ち→給与班確定」で扱い、必要時は差戻しを行う。具体的な保存コードは未入力（Q18・Q27）。 | | E-07 | 確認待ち→確定：将来画面要件 `FUT-STATE-E` | 操作・試験未実装 |">
+<h3>
+<a href="E-07.html#requirement-E-07" >E-07</a>
+</h3>
+<p>内容を確認待ちにする / 給与情報を差し戻す / 給与情報を確定・再確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 3件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-08 誤登録を訂正 給与情報を確定・再確定 | E-08 | 「確定」後に修正が生じた場合は「確認待ち」に戻し、確定後に修正した履歴を残す。会計課給与班が再確認・再確定するまで修正内容を給与計算に反映しない。「再確認待ち」という別の状態は設けない。 | | E-08 | 確定後の修正は履歴を残して確認待ちに戻す：`FUT-STATE-E` | 再確定まで計算利用を止める試験未定 |">
+<h3>
+<a href="E-08.html#requirement-E-08" >E-08</a>
+</h3>
+<p>誤登録を訂正 / 給与情報を確定・再確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-09 前工程変更の差異確認 | E-09 | 異動情報アプリから届いた変更情報が、非常勤給与アプリ内で会計課給与班が修正した値と食い違う場合、自動上書きしない。差異を表示し、会計課給与班が採用する値を判断する。 | | E-09 | 連携変更値と給与班修正値の差異判断：対応する現行機能要件なし | 差異表示・判断履歴・試験未定 |">
+<h3>
+<a href="E-09.html#requirement-E-09" >E-09</a>
+</h3>
+<p>前工程変更の差異確認</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-10 給与情報を確定・再確定 | E-10 | 給与情報の確認待ちデータは、会計課給与班による確認・確定が済むまで給与計算に使用しない。 | | E-10 | 確認待ちデータの給与計算利用禁止：関連候補 `SCR005-CALC-001～008` | 現行SCR-005は内蔵仮例。確定状態の判定・実データ計算・試験未定 |">
+<h3>
+<a href="E-10.html#requirement-E-10" >E-10</a>
+</h3>
+<p>給与情報を確定・再確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-11 行別に取込を判断 | E-11 | Excel一括取込で一部の行に不備または重複可能性がある場合、問題のない行は先に取り込み、問題のある行だけ会計課給与班の確認待ちにする。重複の最終取込判断はE-04に従う。 | | E-11 | 一括取込時の正常行先行・問題行別確認：対応する現行機能要件なし | 部分成功・重複警告・再取込の設計と試験未定 |">
+<h3>
+<a href="E-11.html#requirement-E-11" >E-11</a>
+</h3>
+<p>行別に取込を判断</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="E-12 内容を確認待ちにする 給与情報を差し戻す | E-12 | アプリ外の連絡・調整は継続し、勤務条件・控除等には確認手順上の差戻しを設ける。元データ誤登録は訂正・再確認し、未払い結果を再計算する。2026-09-27の「差戻し機能を含めない」方針はQ18・Q27・R11で更新。 | | E-12 | 局担当者との不足・不整合の調整はシステム外：対応するアプリ内差戻し要件なし | アプリ内の差戻し機能は対象外。調整後の修正と確認はE-06で追跡 |">
+<h3>
+<a href="E-12.html#requirement-E-12" >E-12</a>
+</h3>
+<p>内容を確認待ちにする / 給与情報を差し戻す</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="F-01 通勤届を入力 通勤届を提出・再提出 | F-01 | 初回は局担当者が自局分を入力・提出する。職員本人の入力・提出は将来追加（Q54）。 | | F-01 | 局担当者・職員本人の通勤届入力：関連候補 `SCR002-EDIT-001～004` | 本人入力・権限の設計と試験未定 |">
+<h3>
+<a href="F-01.html#requirement-F-01" >F-01</a>
+</h3>
+<p>通勤届を入力 / 通勤届を提出・再提出</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="F-02 通勤届を入力 通勤届を提出・再提出 | F-02 | 非常勤給与アプリは必須項目・入力内容を検証し、会計課給与班が提出内容を審査できるようにする。具体的な項目と検証条件は未決。 | | F-02 | 検証と会計課給与班の審査：対応する現行機能要件なし | 入力項目・審査・試験未定 |">
+<h3>
+<a href="F-02.html#requirement-F-02" >F-02</a>
+</h3>
+<p>通勤届を入力 / 通勤届を提出・再提出</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="F-03 通勤届を提出・再提出 通勤届を差し戻す | F-03 | 会計課給与班が不備を差し戻す場合、アプリ上で差戻しの状態にし、差戻し理由の連絡はシステム外で行う。原則としてその通勤届を入力・提出した人が修正し、SCR-002の通勤タブ内で再提出する。 | | F-03 | 提出者への差戻し・再提出：対応する現行機能要件なし | 状態遷移・通知・試験未定 |">
+<h3>
+<a href="F-03.html#requirement-F-03" >F-03</a>
+</h3>
+<p>通勤届を提出・再提出 / 通勤届を差し戻す</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="F-04 通勤手当を認定 | F-04 | 会計課給与班が通勤手当を認定する。給与計算は確定した認定情報を直接参照する。認定額を別の給与情報へ重複して転記・保存することは本要件では求めない。支給月と認定期間の対応や遡及等の計算条件は未決。 | | F-04 | 確定済み認定情報の給与計算での参照：関連候補 `SCR002-COM-001～005`、`SCR005-CALC-001～008` | 現行SCR-005は内蔵仮例の試算。実データ参照・業務計算の設計と試験未定 |">
+<h3>
+<a href="F-04.html#requirement-F-04" >F-04</a>
+</h3>
+<p>通勤手当を認定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="F-05 ブラウザー印刷でPDF保存 | F-05 | 認定簿PDFは認定時に自動作成せず、初回は給与班・局担当者の操作で出力する。別タブHTML→ブラウザー印刷を維持。本人出力は将来追加（Q33・Q54）。 | | F-05 | 利用者操作による認定簿PDF：関連候補 `SCR002-COM-001～005` | 3者の出力操作・PDF生成の実装と試験未照合 |">
+<h3>
+<a href="F-05.html#requirement-F-05" >F-05</a>
+</h3>
+<p>ブラウザー印刷でPDF保存</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="F-07 変更届から新認定へ | F-07 | 初回は局担当者が変更を提出し、給与班が新認定を行う。旧認定を残し、精算・追給・返納に関連付ける。本人提出は将来追加（Q32・Q54）。 | | F-07 | 通勤内容の変更後の再認定：`FUT-STATE-F` | 新たな提出・再認定の試験未定 |">
+<h3>
+<a href="F-07.html#requirement-F-07" >F-07</a>
+</h3>
+<p>変更届から新認定へ</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="F-08 一時不支給期間を確認 認定期間の終了を確定 | F-08 | 病気・欠勤で通勤しない期間は通勤手当を支給しない。この一時不支給と受給要件喪失による期間終了を区別する。初回は局担当者の届出を給与班が確認して認定期間を終了する。本人届出は将来追加。独立した認定終了状態は設けない。 | | F-08 | 病気欠勤の不支給と認定期間の終了：`FUT-STATE-F` | 独立の終了状態なし。期間と計算の試験未定 |">
+<h3>
+<a href="F-08.html#requirement-F-08" >F-08</a>
+</h3>
+<p>一時不支給期間を確認 / 認定期間の終了を確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FR-AD-01 発令情報から候補作成 | FR-AD-01 | AD-01～03、E-01 | 通常職員は秘書課の初任給確定と採用起案決裁を前提とし、調査員はA・Bを経ず、いずれも異動情報アプリのC「発令情報登録完了」で給与情報の確認待ちデータを作る。決裁完了だけでは作らない。Cからの自動通知・自動作成は実現可否待ちの目標機能とする。 | | FR-AD-01 | AD-01～03、E-01 | 将来のSCR-002候補選択 `SCR002-E-001`。自動連携方式未決 |">
+<h3>
+<a href="FR-AD-01.html#requirement-FR-AD-01" >FR-AD-01</a>
+</h3>
+<p>発令情報から候補作成</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FR-AD-02 発行職員番号を反映 | FR-AD-02 | AD-04/05 | 職員番号未発行でも採用ごとの識別子で候補を照合する。番号発行後に同じ候補へ自動反映することを目標とし、手動で候補を紐づけない。再採用には新しい識別子を用いる。 | | FR-AD-02 | AD-04/05 | 採用単位識別子・職員番号後続反映。採番・連携未決 |">
+<h3>
+<a href="FR-AD-02.html#requirement-FR-AD-02" >FR-AD-02</a>
+</h3>
+<p>発行職員番号を反映</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FR-AD-03 採用取消を反映 | FR-AD-03 | AD-06～08 | 採用取消しはEの「確認待ち」「確定」のどちらからも「採用取消」へ移し、候補を消さず履歴を保持して給与計算から除外する。決裁後の変更は旧内容を保持し、確定済み情報にはFR-E-03の再確定を適用する。取消・変更の自動受領方法は未決。 | | FR-AD-03 | AD-06～08 | 取消・変更履歴・計算除外。現行SCR-005は仮例 |">
+<h3>
+<a href="FR-AD-03.html#requirement-FR-AD-03" >FR-AD-03</a>
+</h3>
+<p>採用取消を反映</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FR-AD-04 発令情報から候補作成 | FR-AD-04 | AD-09/10、PAY-01 | 業務マスタ管理者が管理する調査員の給与ルールから、採用日を基準に適用版を選んで初任給を候補へ自動設定する。改定前のルール・金額を上書きしない。 | | FR-AD-04 | AD-09/10、PAY-01 | ルール登録・改定は将来のSCR-006 `SCR006-RULE-001`。給与班権限未決 |">
+<h3>
+<a href="FR-AD-04.html#requirement-FR-AD-04" >FR-AD-04</a>
+</h3>
+<p>発令情報から候補作成</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FR-E-01 データ一括取込み Excelの行を検証 行別に取込を判断 | FR-E-01 | E-02～04、E-11 | 会計課給与班が異動情報アプリから出力したExcelで複数職員分を一括取込できる。取込結果を行ごとに表示し、重複は人の存在だけではなく人に紐づくデータの内容を照合して注意を示す。問題のない行を先に取り込み、不備や重複可能性のある行は給与班が取込可否を最終判断する。自動作成が可能でも手動取込を残す。 | | FR-E-01 | E-02～04、E-11 | 一括取込はSCR-001ホームから専用画面 `FUT-IMPORT-001`。候補の確認・確定はSCR-002 `SCR002-E-001`。詳細設計・試験未定 |">
+<h3>
+<a href="FR-E-01.html#requirement-FR-E-01" >FR-E-01</a>
+</h3>
+<p>データ一括取込み / Excelの行を検証 / 行別に取込を判断</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 3件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FR-E-03 前工程変更の差異確認 | FR-E-03 | E-07～10 | 「登録→確認待ち→給与班確定」とし、必要時は差戻しを行う。確定後の修正は変更履歴を残して確認待ちへ戻し、給与班の再確定まで計算に使用しない。異動情報アプリの変更値と給与班の修正値が食い違うときは自動上書きせず差異を示し、給与班が採用する値を決める。 | | FR-E-03 | E-07～10 | SCR-002右詳細 `SCR002-E-001`と状態 `FUT-STATE-E`。現行SCR-005は仮例 |">
+<h3>
+<a href="FR-E-03.html#requirement-FR-E-03" >FR-E-03</a>
+</h3>
+<p>前工程変更の差異確認</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FR-F-03 一時不支給期間を確認 | FR-F-03 | F-08 | 病気・欠勤期間中の通勤手当不支給と、受給要件喪失による認定期間の終了を区別する。後者は届出を受けて給与班が認定期間の終了を確定し、独立した「認定終了」状態は設けない。 | | FR-F-03 | F-08 | 将来のSCR-002通勤タブ `SCR002-F-001`。適用時点・計算条件未決 |">
+<h3>
+<a href="FR-F-03.html#requirement-FR-F-03" >FR-F-03</a>
+</h3>
+<p>一時不支給期間を確認</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FR-F-04 認定簿を表示 | FR-F-04 | F-05/06 | 初回の認定簿PDF出力は給与班・局担当者。給与班は全対象、局担当は自局分。本人による自己分出力は将来追加。別タブHTMLとブラウザー印刷を維持し、新様式受入まで旧様式を残す。 | | FR-F-04 | F-05/06 | `SCR002-COM-*`関連候補。3者の出力権限未設計 |">
+<h3>
+<a href="FR-F-04.html#requirement-FR-F-04" >FR-F-04</a>
+</h3>
+<p>認定簿を表示</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FR-PAY-01 過去月との差額を計算 | FR-PAY-01 | PAY-02/03、AD-10 | 給与ルールの適用版・開始日・対象者を参照し、改定対象となる在職者に新ルールを適用する。旧ルールと既計算結果を保持したまま、過去に影響する期間の差額を計算する。 | | FR-PAY-01 | PAY-02/03、AD-10 | ルール管理はSCR-006、差額確認はまず独立画面 `SCR007-DIFF-001`。最終配置はD-08、計算条件未決 |">
+<h3>
+<a href="FR-PAY-01.html#requirement-FR-PAY-01" >FR-PAY-01</a>
+</h3>
+<p>過去月との差額を計算</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FUT-IMPORT-001 データ一括取込み 確認待ち候補を開く ホームへ戻る | FUT-IMPORT-001 | FR-E-01 | SCR-001ホームに「データ一括取込み」ボタンを追加し、専用画面を開く。異動情報アプリのExcelについて行ごとに取込結果と不備・重複の可能性を表示し、会計課給与班が注意のある行の取込可否を判断する。画面IDや詳細項目は後続設計で決める。 | | FUT-IMPORT-001 | E-02～04、E-11 | ホームから専用画面でExcel取込。行別結果と給与班の判断。実装・試験未定 |">
+<h3>
+<a href="FUT-IMPORT-001.html#requirement-FUT-IMPORT-001" >FUT-IMPORT-001</a>
+</h3>
+<p>データ一括取込み / 確認待ち候補を開く / ホームへ戻る</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 3件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FUT-STATE-E 確認待ちで絞り込む | FUT-STATE-E | SCR-002給与情報 | 勤務条件・保険・税等を登録→確認待ち→給与班確定、必要時差戻し。訂正後は再確認し、未払い結果は再計算・再照合（Q18・Q27・R11）。採用候補の確認待ち／確定から採用取消への遷移と給与計算除外は既存AD-07の要件として維持する。 | | FUT-STATE-E | E-07/08、AD-07 | 確認待ち・確定・採用取消の遷移。実装・試験未定 |">
+<h3>
+<a href="FUT-STATE-E.html#requirement-FUT-STATE-E" >FUT-STATE-E</a>
+</h3>
+<p>確認待ちで絞り込む</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FUT-STATE-F 通勤届を差し戻す 認定期間の終了を確定 | FUT-STATE-F | SCR-002通勤タブ | 通勤届は「提出⇄差戻し→認定」。変更時は新たな提出と再認定を行う。受給要件喪失による終了は独立状態とせず、認定期間の開始と終了で管理する。病気・欠勤時の不支給は認定終了と区別する。 | | FUT-STATE-F | F-01～04、F-07/08 | 提出・差戻し・認定。終了は認定期間で管理。実装・試験未定 |">
+<h3>
+<a href="FUT-STATE-F.html#requirement-FUT-STATE-F" >FUT-STATE-F</a>
+</h3>
+<p>通勤届を差し戻す / 認定期間の終了を確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="FUT-STATE-PAY 差額内訳を確認・確定 | FUT-STATE-PAY | 遡及差額の独立画面（仮ID `SCR-007`） | 計算結果を「確認待ち→給与班の確定」で扱う。支給・返納の実施結果はこの2状態に加えず、差額の確定とは別に記録する。 | | FUT-STATE-PAY | PAY-03/04/05 | 差額の確認待ち・確定と支給返納の別記録。実装・試験未定 |">
+<h3>
+<a href="FUT-STATE-PAY.html#requirement-FUT-STATE-PAY" >FUT-STATE-PAY</a>
+</h3>
+<p>差額内訳を確認・確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="G-01 外部決定結果を登録 | G-01 | 社会保険、共済組合、ハローワークへの手続きと転職者の住民税手続きを対象に、外部機関の決定結果を非常勤給与アプリで管理する。アプリ内の電子申請操作は設けない。 | | G-01 | 4区分の外部機関の決定結果：将来画面要件 `SCR002-G-001/002` | アプリ内電子申請なし。結果登録・試験は未実装 |">
+<h3>
+<a href="G-01.html#requirement-G-01" >G-01</a>
+</h3>
+<p>外部決定結果を登録</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="G-02 外部決定結果を登録 | G-02 | 局担当者または会計課給与班の担当者が、担当した外部手続きの決定結果を非常勤給与アプリへ登録する。具体的な操作はAUTH-01/02の対象範囲内で行う。ログイン者と担当局の確認方法は未決。 | | G-02 | 担当者による決定結果登録：将来画面要件 `SCR002-G-003` | 現行`COMMON-AUTH-001`との権限整合・試験未決 |">
+<h3>
+<a href="G-02.html#requirement-G-02" >G-02</a>
+</h3>
+<p>外部決定結果を登録</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="G-04 外部決定結果を登録 | G-04 | 外部機関の決定結果は紙・電子の別にかかわらず担当者が非常勤給与アプリへ登録し、決定内容を確認・管理できるようにする。申請状況・受付結果は管理せず、決定結果の自動取込も行わない。外部機関の決定内容を正として扱う。 | | G-04 | 紙・電子の決定結果の担当者登録：将来画面要件 `SCR002-G-001～003` | 自動取込・申請・受付状況管理は対象外。画面・試験は未実装 |">
+<h3>
+<a href="G-04.html#requirement-G-04" >G-04</a>
+</h3>
+<p>外部決定結果を登録</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="G-05 外部決定結果を確認確定 | G-05 | 決定結果の状態は担当者の「登録（確認待ち）」から給与班の「確定」へ移す。給与計算に影響する内容は、給与班が内容と対象職員を確認・確定するまで使用しない。外部機関の決定内容を正とし、申請内容と食い違う場合に給与班が採否を決め直す工程は設けない。確定後の適用時点や項目の具体的条件は未決。 | | G-05 | 決定結果の登録（確認待ち）→確定：`FUT-STATE-G`、`SCR002-G-004` | 計算への反映試験未定。現行SCR-005は内蔵仮例 |">
+<h3>
+<a href="G-05.html#requirement-G-05" >G-05</a>
+</h3>
+<p>外部決定結果を確認確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="G-06 外部決定結果を登録 | G-06 | 紙等で行った外部手続きの決定結果もG-04と同じく、手続きを行った局担当者または会計課給与班の担当者が登録する。申請状況・受付結果は管理しない。証憑の扱いは未決。 | | G-06 | 紙等の決定結果を担当者が登録：将来画面要件 `SCR002-G-001～003` | 証憑・画面・試験未実装 |">
+<h3>
+<a href="G-06.html#requirement-G-06" >G-06</a>
+</h3>
+<p>外部決定結果を登録</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I1 出力対象を選択 ### 2026-10-08 承認済み人給連携画面とI1～I12
+
+ ## 7. 承認済み画面の処理契約（I1～I12）
+
+ ## 11. モック承認・I1～I12（2026-10-08）
+
+ | I1 | モック承認による確定 | 支給回の全職員を既定の出力対象とし、職員を絞り込める | 承認された出力画面の対象選択 | ## 2026-10-08 人給連携画面：承認済みモック・I1～I12
+
+ ## 人給連携モック・I1～I12の受入観点（2026-10-08、全件未実施）
+
+">
+<h3>
+<a href="I1.html#requirement-I1" >I1</a>
+</h3>
+<p>出力対象を選択</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 6件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I2 A/Mを指定 差分対応明細を再出力 | I2 | モック承認による確定 | A/Mは一括指定と明細ごとの変更を可能とする。判断は職員が行う | 承認された更新区分操作と既存の職員判断方針 |">
+<h3>
+<a href="I2.html#requirement-I2" >I2</a>
+</h3>
+<p>A/Mを指定 / 差分対応明細を再出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I3 人給連携 支給回・タブを選択 | I3 | モック承認による確定 | 人給連携の同一画面に「支給回の状況」「出力」「取込・照合」を配置 | 利用者の「いいですね。これでいいです」によるモック承認 |">
+<h3>
+<a href="I3.html#requirement-I3" >I3</a>
+</h3>
+<p>人給連携 / 支給回・タブを選択</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I4 確認してExcel出力 差分対応明細を再出力 | I4 | A | Excel出力前に支給回・人数・明細数・A/M件数を確認して出力 | 利用者が出力前確認ありを選択 |">
+<h3>
+<a href="I4.html#requirement-I4" >I4</a>
+</h3>
+<p>確認してExcel出力 / 差分対応明細を再出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I5 支給回・タブを選択 給与簿CSVを取り込む 最新版と照合 | I5 | 個別指定 | 照合はExcelの元となる最新版のアプリ計算結果データと給与簿データ。計算版を選ばせない | 利用者指定：アプリと人給のデータ同士を一致させる |">
+<h3>
+<a href="I5.html#requirement-I5" >I5</a>
+</h3>
+<p>支給回・タブを選択 / 給与簿CSVを取り込む / 最新版と照合</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 3件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I6 差分・全件表示を切替 | I6 | A | 差分のみを初期表示とし、全件表示へ切り替え可能 | 利用者の表示選択 |">
+<h3>
+<a href="I6.html#requirement-I6" >I6</a>
+</h3>
+<p>差分・全件表示を切替</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I7 最新版と照合 | I7 | A | 出力後に計算結果が変わっても最新版と照合し、変更を画面で通知 | 利用者の選択とI5の最新版照合 |">
+<h3>
+<a href="I7.html#requirement-I7" >I7</a>
+</h3>
+<p>最新版と照合</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I8 人給エラー行を確認 | I8 | C・方式未確定 | 人給エラー行をアプリで分かるようにする要件は維持。結果取得方式は未入力 | 人給のエラー情報形式・取得方法が未確認 |">
+<h3>
+<a href="I8.html#requirement-I8" >I8</a>
+</h3>
+<p>人給エラー行を確認</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I9 出力対象を選択 差分対応明細を再出力 | I9 | B | 再出力は差分に対応する明細行のみを初期選択し、職員が対象を変更可能 | 利用者の再出力対象選択 |">
+<h3>
+<a href="I9.html#requirement-I9" >I9</a>
+</h3>
+<p>出力対象を選択 / 差分対応明細を再出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I10 人給取込・給与簿出力 給与簿CSVを取り込む | I10 | B | 人給への取込成功／一部失敗／失敗を手入力しない。給与簿取込後の照合で確認 | 利用者の操作選択。照合結果を人給取込処理の成功証明とは扱わない |">
+<h3>
+<a href="I10.html#requirement-I10" >I10</a>
+</h3>
+<p>人給取込・給与簿出力 / 給与簿CSVを取り込む</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I11 差分・全件表示を切替 | I11 | A | 差分一覧は職員・対象期間・項目・アプリ値・給与簿値・差額を表示 | 利用者の差分表示項目選択 |">
+<h3>
+<a href="I11.html#requirement-I11" >I11</a>
+</h3>
+<p>差分・全件表示を切替</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="I12 個別・所属一括確定の境界 給与班が支給回を確定 ### 2026-10-08 承認済み人給連携画面とI1～I12
+
+ ## 7. 承認済み画面の処理契約（I1～I12）
+
+ ## 11. モック承認・I1～I12（2026-10-08）
+
+ | I12 | B | 給与班確定は確認ダイアログなしの確定ボタン操作 | 利用者の確定操作選択。全支給回の最新照合で差分ゼロが前提 | ## 2026-10-08 人給連携画面：承認済みモック・I1～I12
+
+ ## 人給連携モック・I1～I12の受入観点（2026-10-08、全件未実施）
+
+">
+<h3>
+<a href="I12.html#requirement-I12" >I12</a>
+</h3>
+<p>個別・所属一括確定の境界 / 給与班が支給回を確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 6件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-01 確認してExcel出力 人給取込・給与簿出力 | IF-01 | 人給インポート用出力 | Excel（.xlsx） | 利用者がCSVとの誤認を訂正。VBAもxlsx保存 |">
+<h3>
+<a href="IF-01.html#requirement-IF-01" >IF-01</a>
+</h3>
+<p>確認してExcel出力 / 人給取込・給与簿出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-02 確認してExcel出力 | IF-02 | 列構成 | 237列、A～IC。順序・見出しを既存サンプルに合わせる | VBAの237列とサンプルの見出しが一致 |">
+<h3>
+<a href="IF-02.html#requirement-IF-02" >IF-02</a>
+</h3>
+<p>確認してExcel出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-03 確認してExcel出力 | IF-03 | 行構成 | 固定見出し１行目、データ２行目以降 | 利用者が貼付開始２行目を正常と確認 |">
+<h3>
+<a href="IF-03.html#requirement-IF-03" >IF-03</a>
+</h3>
+<p>確認してExcel出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-04 確認してExcel出力 | IF-04 | セル表示形式 | 人給仕様に従い文字列とする | 添付仕様の「セルの表示形式は文字列」に基づく。金額等の文字列の詳細な整形は未入力 |">
+<h3>
+<a href="IF-04.html#requirement-IF-04" >IF-04</a>
+</h3>
+<p>確認してExcel出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-05 A/Mを指定 | IF-05 | 更新区分 | 職員が判断。初回A（新規）、不一致の修正はM（更新） | 利用者の業務フロー。自動判定しない |">
+<h3>
+<a href="IF-05.html#requirement-IF-05" >IF-05</a>
+</h3>
+<p>A/Mを指定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-06 確認してExcel出力 | IF-06 | 空欄 | 人給へのインポートで自動的に0へ置換 | 利用者による仕様確認済み。空欄を既存値保持の指定として使用しない |">
+<h3>
+<a href="IF-06.html#requirement-IF-06" >IF-06</a>
+</h3>
+<p>確認してExcel出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-07 確認してExcel出力 | IF-07 | 更新対象のキー | 添付仕様の☆付き11項目の組合せ | 画像が「データを一意に特定」と説明 |">
+<h3>
+<a href="IF-07.html#requirement-IF-07" >IF-07</a>
+</h3>
+<p>確認してExcel出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-08 確認してExcel出力 | IF-08 | 人給の名称等の列 | 網掛け項目は値を入力してもインポートされない | 添付仕様。237列の見出しから削除する意味ではない |">
+<h3>
+<a href="IF-08.html#requirement-IF-08" >IF-08</a>
+</h3>
+<p>確認してExcel出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-09 人給取込・給与簿出力 給与簿CSVを取り込む | IF-09 | 給与簿の戻り | 人給出力の給与簿CSVをアプリへ取り込む | 出力xlsxの変更は給与簿CSVには適用しない |">
+<h3>
+<a href="IF-09.html#requirement-IF-09" >IF-09</a>
+</h3>
+<p>人給取込・給与簿出力 / 給与簿CSVを取り込む</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-10 給与簿CSVを取り込む 差分原因の入力画面へ | IF-10 | 給与簿の編集 | アプリ内は読み取り専用 | R4の合意。差分原因に応じ元データまたは人給を訂正 |">
+<h3>
+<a href="IF-10.html#requirement-IF-10" >IF-10</a>
+</h3>
+<p>給与簿CSVを取り込む / 差分原因の入力画面へ</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-11 人給エラー行を確認 | IF-11 | エラー表示 | エラー行はアプリでも分かるようにする | 利用者の追加指定。人給の結果を受け取る具体方式は未入力 |">
+<h3>
+<a href="IF-11.html#requirement-IF-11" >IF-11</a>
+</h3>
+<p>人給エラー行を確認</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="IF-12 処理回の履歴を確認 | IF-12 | 規模 | 通常約800レコードを想定 | 利用者説明。件数上限・処理時間の基準は未入力 |">
+<h3>
+<a href="IF-12.html#requirement-IF-12" >IF-12</a>
+</h3>
+<p>処理回の履歴を確認</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-01 人給連携 支給回・タブを選択 ホームへ戻る | JLINK-UI-01 | 入口・構成 | ホームから「人給連携」へ。同一画面の「支給回の状況」「出力」「取込・照合」を切り替える | モック・I3 |">
+<h3>
+<a href="JLINK-UI-01.html#requirement-JLINK-UI-01" >JLINK-UI-01</a>
+</h3>
+<p>人給連携 / 支給回・タブを選択 / ホームへ戻る</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 3件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-02 支給回・タブを選択 | JLINK-UI-02 | 共通ヘッダー | 選択支給回の支給日・対象期間・状態を表示し、タブ間で支給回を保持する。計算版の照合対象選択は置かない | モック・I5 |">
+<h3>
+<a href="JLINK-UI-02.html#requirement-JLINK-UI-02" >JLINK-UI-02</a>
+</h3>
+<p>支給回・タブを選択</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-03 出力対象を選択 差分対応明細を再出力 | JLINK-UI-03 | 出力対象 | 初回は支給回の全職員を既定対象とし、職員で絞り込める。再出力は差分に対応する明細行を初期選択し変更可能 | I1・I9 |">
+<h3>
+<a href="JLINK-UI-03.html#requirement-JLINK-UI-03" >JLINK-UI-03</a>
+</h3>
+<p>出力対象を選択 / 差分対応明細を再出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-04 A/Mを指定 | JLINK-UI-04 | 更新区分 | A/Mを一括指定し明細ごとに変更できる。初回A・不一致修正Mの業務判断は職員が行い、自動切替しない | I2・IF-05 |">
+<h3>
+<a href="JLINK-UI-04.html#requirement-JLINK-UI-04" >JLINK-UI-04</a>
+</h3>
+<p>A/Mを指定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-05 確認してExcel出力 | JLINK-UI-05 | 出力前確認 | 支給回・人数・明細数・A/M件数を確認してExcelを出力する | I4 |">
+<h3>
+<a href="JLINK-UI-05.html#requirement-JLINK-UI-05" >JLINK-UI-05</a>
+</h3>
+<p>確認してExcel出力</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-06 給与簿CSVを取り込む 最新版と照合 | JLINK-UI-06 | 取込・照合 | 人給給与簿CSVを取り込み、最新版のアプリ計算結果と照合する。給与簿は読取専用。人給取込の成否を手入力する操作は置かない | I5・I10 |">
+<h3>
+<a href="JLINK-UI-06.html#requirement-JLINK-UI-06" >JLINK-UI-06</a>
+</h3>
+<p>給与簿CSVを取り込む / 最新版と照合</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-07 最新版と照合 | JLINK-UI-07 | 計算変更通知 | 出力後に結果が変更された場合「出力後に計算結果が変更されています」を表示し、最新版との再照合へつなぐ | I7 |">
+<h3>
+<a href="JLINK-UI-07.html#requirement-JLINK-UI-07" >JLINK-UI-07</a>
+</h3>
+<p>最新版と照合</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-08 差分・全件表示を切替 | JLINK-UI-08 | 差分表示 | 初期は差分のみ、全件へ切替可能。職員・対象期間・項目・アプリ値・給与簿値・差額を表示 | I6・I11 |">
+<h3>
+<a href="JLINK-UI-08.html#requirement-JLINK-UI-08" >JLINK-UI-08</a>
+</h3>
+<p>差分・全件表示を切替</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-09 差分原因の入力画面へ 勤怠の差分訂正へ 人給連携へ戻る 人給連携へ戻る | JLINK-UI-09 | 訂正への動線 | 差分の原因に応じ勤務条件・勤怠・通勤等の入力画面へ進む。戻った際に支給回・職員を保持する。給与簿の直接訂正はしない | モック・IF-10 |">
+<h3>
+<a href="JLINK-UI-09.html#requirement-JLINK-UI-09" >JLINK-UI-09</a>
+</h3>
+<p>差分原因の入力画面へ / 勤怠の差分訂正へ / 人給連携へ戻る / 人給連携へ戻る</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 4件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-10 人給エラー行を確認 | JLINK-UI-10 | エラー行 | 人給のエラー行をアプリで特定できるようにする。エラー情報の取得・関連付け方式は未入力 | I8・IF-11 |">
+<h3>
+<a href="JLINK-UI-10.html#requirement-JLINK-UI-10" >JLINK-UI-10</a>
+</h3>
+<p>人給エラー行を確認</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="JLINK-UI-11 個別・所属一括確定の境界 給与班が支給回を確定 | JLINK-UI-11 | 給与班確定 | 支給回全体の最新照合が差分ゼロのとき給与班が確定ボタンで確定。確認ダイアログは出さない。差分ゼロだけで自動確定しない | I12・既存確定要件 |">
+<h3>
+<a href="JLINK-UI-11.html#requirement-JLINK-UI-11" >JLINK-UI-11</a>
+</h3>
+<p>個別・所属一括確定の境界 / 給与班が支給回を確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAY-01 業務マスタを登録・改定 | PAY-01 | 調査員の採用時に初任給を自動設定する際は、採用日を基準として給与ルールマスタの適用版を選ぶ。 | | PAY-01 | 調査員の採用日による初任給ルール選択：対応する現行機能要件なし | 版選択・境界値の設計と試験未定 |">
+<h3>
+<a href="PAY-01.html#requirement-PAY-01" >PAY-01</a>
+</h3>
+<p>業務マスタを登録・改定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAY-02 業務マスタを登録・改定 | PAY-02 | 給与ルールが改定された場合は、調査員に限らず、その改定の対象となる在職者にも適用開始日以降の対象期間から新ルールを適用する。改定前に適用した金額・ルールは履歴として保持する。 | | PAY-02 | 改定後の対象在職者・期間への適用：関連候補 `SCR005-CALC-001～008` | 現行SCR-005は内蔵仮例。ルール履歴と実データ計算の設計・試験未定 |">
+<h3>
+<a href="PAY-02.html#requirement-PAY-02" >PAY-02</a>
+</h3>
+<p>業務マスタを登録・改定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAY-03 過去月との差額を計算 | PAY-03 | 改定の適用開始日が過去で、既に計算した期間へ影響する場合は、過去の計算結果を上書きせず、旧結果と新ルールによる結果の差額を遡及計算する。 | | PAY-03 | 既計算結果を保持した差額遡及：対応する現行機能要件なし | 旧結果・再計算・差額・支給反映の設計と試験未定 |">
+<h3>
+<a href="PAY-03.html#requirement-PAY-03" >PAY-03</a>
+</h3>
+<p>過去月との差額を計算</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAY-04 差額内訳を確認・確定 | PAY-04 | 遡及差額の計算結果は「確認待ち」から給与班の確認によって「確定」へ移す。確定前は支給・返納へ反映しない。実際の支給・返納の実施結果は差額の状態を増やさず、確定状態とは別に記録する。 | | PAY-04 | 差額の確認待ち→確定：`FUT-STATE-PAY` | 支給返納の実施結果は別記録。設計・試験未定 |">
+<h3>
+<a href="PAY-04.html#requirement-PAY-04" >PAY-04</a>
+</h3>
+<p>差額内訳を確認・確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAY-05 返納方法を決定 回収実績と残額を記録 | PAY-05 | 給与班が給与相殺・納入告知書の方法を判断する。分割回収と両方法の併用を許容し、案件別に複数回収実績・回収済額・残額を管理する。支払い済み給与を上書きしない（Q53・R3・R18）。 | | PAY-05 | 給与相殺か納入告知書かの返納方法判断：対応する現行機能要件なし | 方式別処理・帳票・入金管理の設計と試験未定 |">
+<h3>
+<a href="PAY-05.html#requirement-PAY-05" >PAY-05</a>
+</h3>
+<p>返納方法を決定 / 回収実績と残額を記録</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAYREQ-01 発行職員番号を反映 実際の条件変更を登録 | PAYREQ-01 | 全体構造・キー・履歴 | Q1～Q6 | GUID Lookup＋職員番号、有効期間履歴、業務単位のヘッダー／明細。 |">
+<h3>
+<a href="PAYREQ-01.html#requirement-PAYREQ-01" >PAYREQ-01</a>
+</h3>
+<p>発行職員番号を反映 / 実際の条件変更を登録</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAYREQ-02 発行職員番号を反映 実際の条件変更を登録 | PAYREQ-02 | 職員基本・組織・予算 | Q7～Q12 | 12桁一意職員番号、住所、階層なし所属、所属既定／職員個別予算。 |">
+<h3>
+<a href="PAYREQ-02.html#requirement-PAYREQ-02" >PAYREQ-02</a>
+</h3>
+<p>発行職員番号を反映 / 実際の条件変更を登録</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAYREQ-03 実際の条件変更を登録 誤登録を訂正 内容を確認待ちにする 給与情報を差し戻す 給与情報を確定・再確定 | PAYREQ-03 | 勤務条件・発令 | Q13～Q18、R11 | 発令統合、日額／時間額、期間履歴と訂正の区別、給与班確認。 |">
+<h3>
+<a href="PAYREQ-03.html#requirement-PAYREQ-03" >PAYREQ-03</a>
+</h3>
+<p>実際の条件変更を登録 / 誤登録を訂正 / 内容を確認待ちにする / 給与情報を差し戻す / 給与情報を確定・再確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 5件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAYREQ-04 実際の条件変更を登録 誤登録を訂正 内容を確認待ちにする 給与情報を差し戻す 給与情報を確定・再確定 外部決定結果を確認確定 | PAYREQ-04 | 保険・税・固定控除・住民税 | Q19～Q27、R19 | 未確認を区別、保険資格日／控除期間、登録額、項目別控除、月別住民税。 |">
+<h3>
+<a href="PAYREQ-04.html#requirement-PAYREQ-04" >PAYREQ-04</a>
+</h3>
+<p>実際の条件変更を登録 / 誤登録を訂正 / 内容を確認待ちにする / 給与情報を差し戻す / 給与情報を確定・再確定 / 外部決定結果を確認確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 6件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAYREQ-05 通勤届を入力 通勤手当を認定 変更届から新認定へ | PAYREQ-05 | 通勤 | Q28～Q33 | ヘッダー／経路、定期／IC、変更認定、認定済み参照、別タブHTML印刷維持。 |">
+<h3>
+<a href="PAYREQ-05.html#requirement-PAYREQ-05" >PAYREQ-05</a>
+</h3>
+<p>通勤届を入力 / 通勤手当を認定 / 変更届から新認定へ</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 3件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAYREQ-06 局・月・報告を選択 勤務実績を一覧編集 勤務実績を保存 勤怠編集を取り消す 現行Excel全置換取込 勤務実績を追加更新取込 取込失敗を復旧・再実行 職員行を追加・削除 勤務時間を報告 報告を差し戻す 勤務報告対象月を設定 勤怠の差分訂正へ 人給連携へ戻る | PAYREQ-06 | 勤務時間報告・取込 | Q34～Q39、R12～R15 | 所属×月、職員別集計、追加更新、手修正上書き、空欄クリア、提出後ロック、失敗時隔離。 | | PAYREQ-06 | 所属×勤務月、取込処理記録 | 勤怠再取込 | PD-05、空欄0、未掲載保持・上書き・障害 |">
+<h3>
+<a href="PAYREQ-06.html#requirement-PAYREQ-06" >PAYREQ-06</a>
+</h3>
+<p>局・月・報告を選択 / 勤務実績を一覧編集 / 勤務実績を保存 / 勤怠編集を取り消す / 現行Excel全置換取込 / 勤務実績を追加更新取込 / 取込失敗を復旧・再実行 / 職員行を追加・削除 / 勤務時間を報告 / 報告を差し戻す / 勤務報告対象月を設定 / 勤怠の差分訂正へ / 人給連携へ戻る</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 13件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAYREQ-07 報告を差し戻す 期末・勤勉率を登録 誤登録を訂正 給与情報を確定・再確定 支給回・対象期間を設定 給与を計算・再計算 例外調整を記録 個別・所属一括確定の境界 差分原因の入力画面へ 給与班が支給回を確定 勤怠の差分訂正へ | PAYREQ-07 | 給与計算・確定 | Q40～Q47、R2～R6・R11・R16・R20 | 対象期間／支給日、期末勤勉別率、元データ訂正、調整記録、版、差分ゼロ確定。 |">
+<h3>
+<a href="PAYREQ-07.html#requirement-PAYREQ-07" >PAYREQ-07</a>
+</h3>
+<p>報告を差し戻す / 期末・勤勉率を登録 / 誤登録を訂正 / 給与情報を確定・再確定 / 支給回・対象期間を設定 / 給与を計算・再計算 / 例外調整を記録 / 個別・所属一括確定の境界 / 差分原因の入力画面へ / 給与班が支給回を確定 / 勤怠の差分訂正へ</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 11件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAYREQ-08 給与を計算・再計算 支払い済みを記録 人給取込・給与簿出力 最新版と照合 給与班が支給回を確定 処理回の履歴を確認 過去月との差額を計算 追給を人給出力へ渡す 返納方法を決定 回収実績と残額を記録 | PAYREQ-08 | 人給給与簿・照合・追給・返納 | Q48～Q53、R2～R10・R16～R18 | 人給CSV読み取り専用、行列対応、照合履歴、支払済不訂正、追給集約、返納分割併用。 |">
+<h3>
+<a href="PAYREQ-08.html#requirement-PAYREQ-08" >PAYREQ-08</a>
+</h3>
+<p>給与を計算・再計算 / 支払い済みを記録 / 人給取込・給与簿出力 / 最新版と照合 / 給与班が支給回を確定 / 処理回の履歴を確認 / 過去月との差額を計算 / 追給を人給出力へ渡す / 返納方法を決定 / 回収実績と残額を記録</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 10件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAYREQ-09 業務マスタを登録・改定 マスタを使用停止 | PAYREQ-09 | 役割・マスタ・初回対象 | Q54～Q57、R15・R21 | 本人は将来、給与班と管理者兼務、自局範囲、業務／システム管理分離、SKDB・家族・メモ対象外。 | | PAYREQ-09 | 役割別境界・複数ロール | 読取り／更新／帳票の認可 | PD-04、自局・他局・兼務 |">
+<h3>
+<a href="PAYREQ-09.html#requirement-PAYREQ-09" >PAYREQ-09</a>
+</h3>
+<p>業務マスタを登録・改定 / マスタを使用停止</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PAYREQ-10 取込失敗を復旧・再実行 給与を計算・再計算 支払い済みを記録 処理回の履歴を確認 | PAYREQ-10 | 構築・保存・検証前提 | Q58～Q60、R1・R7・R8・R14・R16・R17・R20 | ローコード、架空データ、最終根拠／照合履歴保存、詳細未入力と未実施の明示。 | | PAYREQ-10 | ローコード・保存・架空データ | 中間削除後の履歴維持、復旧 | PD-05・06、性能・D-07 |">
+<h3>
+<a href="PAYREQ-10.html#requirement-PAYREQ-10" >PAYREQ-10</a>
+</h3>
+<p>取込失敗を復旧・再実行 / 給与を計算・再計算 / 支払い済みを記録 / 処理回の履歴を確認</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 4件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PERIOD-01 支給回・対象期間を設定 | PERIOD-01 | 月末締め、翌月支給。本俸の対象は前月期間（D4=B） | 利用者の業務説明 |">
+<h3>
+<a href="PERIOD-01.html#requirement-PERIOD-01" >PERIOD-01</a>
+</h3>
+<p>支給回・対象期間を設定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PERIOD-02 支給回・対象期間を設定 | PERIOD-02 | 本俸の対象年月日は、D4の比較では１か月前とする | D4回答。ただし期間内の具体的な日・採用日との境界は別途精査 |">
+<h3>
+<a href="PERIOD-02.html#requirement-PERIOD-02" >PERIOD-02</a>
+</h3>
+<p>支給回・対象期間を設定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PERIOD-04 追給を人給出力へ渡す | PERIOD-04 | 今回の対象月より前の支払済み対象月に生じた差額は差額明細で処理する | 支払済み給与を訂正しない既存方針とD5・D6の補足 |">
+<h3>
+<a href="PERIOD-04.html#requirement-PERIOD-04" >PERIOD-04</a>
+</h3>
+<p>追給を人給出力へ渡す</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="PERIOD-05 追給を人給出力へ渡す | PERIOD-05 | 本俸差額・実績差額の対象年月日は差額が発生した対象期間の日付（D7・D8） | 一律に前月とすると、過去月差額の対象を表せない |">
+<h3>
+<a href="PERIOD-05.html#requirement-PERIOD-05" >PERIOD-05</a>
+</h3>
+<p>追給を人給出力へ渡す</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR001-UI-001 ### 12.1 SCR-001の上部操作（`SCR001-UI-001`・`002`）
+
+ | SCR001-UI-001 | 画面遷移ボタンおよび確認用の権限切替・所属選択を上部へ集約する。スマートフォンのPlayer上でも「確認用所属」をタップして候補を開き、選択・確定できること。表示のみで選択不能なプルダウンを許容しない |">
+<h3>
+<a href="SCR001-UI-001.html#requirement-SCR001-UI-001" >SCR001-UI-001</a>
+</h3>
+<p>画面・業務から参照される要件</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 0件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-COM-003 認定簿を表示 ブラウザー印刷でPDF保存 元の通勤タブへ戻る ### 10.4.2 HTML認定簿の帳票・権限契約（`SCR002-COM-003`）
+
+ | SCR002-COM-003 | HTML認定簿はA4横2ページをブラウザー印刷から1PDFとして保存でき、Dataverse権限、NULLと0、別職員・旧選択の再利用防止を適用する | | SCR002-COM-003 | B構・B全・B機 | D10.4・10.4.2（一部） | 計画 `LT-COM-01`・`02` | 横2ページ・0/NULL・拒否時の契約を補完。84項目の正式配置と権限属性・実効ロールは未決。隔離HTMLソースと公開版の実測も別。 | 未照合：[P26] HTML、84項目、2ページ・1PDF、権限未試験。[O] | 一部確認：[V27] V27-06。合成011の認定とHTML2ページ。全84項目・GUID不一致・印刷/PDF・権限未試験。 |">
+<h3>
+<a href="SCR002-COM-003.html#requirement-SCR002-COM-003" >SCR002-COM-003</a>
+</h3>
+<p>認定簿を表示 / ブラウザー印刷でPDF保存 / 元の通勤タブへ戻る</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 3件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-E-001 確認待ち候補を開く 確認待ちで絞り込む | SCR002-E-001 | FR-AD-01～03、FR-E-01～03 | SCR-002左側の既存検索領域に「給与情報の確認待ち」の絞込みと候補選択を追加する。修正後に確認待ちへ戻った候補も絞込み対象に含める。右側の詳細領域で選択した候補の不足・不整合の確認、修正、会計課給与班の確定・再確定を扱う。Excel一括取込操作はSCR-001ホームのボタンから開く専用画面で行い、この検索領域には置かない。 |">
+<h3>
+<a href="SCR002-E-001.html#requirement-SCR002-E-001" >SCR002-E-001</a>
+</h3>
+<p>確認待ち候補を開く / 確認待ちで絞り込む</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-EDIT-001 編集モードへ ### 10.9 編集・保存・破棄確認（`SCR002-EDIT-001`～`004`、`SCR002-UI-003`・`007`）
+
+ | SCR002-EDIT-001 | SCR-002を開いたときは読み取りモードとする。読み取り／編集モードの切替操作を置き、編集モードで基本情報、勤務条件、通勤、社会保険、税固定控除の編集可能な値を変更できる。給与簿タブは両モードとも全項目読み取り専用とする | | SCR002-EDIT-001 | B機・B配 | D10.9（保存先一部未決） | — | 読取り初期・5区分入力・給与簿の書込み禁止の現行ケース不足。 | 一部確認：[P26] 初期読取りと基本情報入力。5区分・給与簿禁止未検証。[O] | 一部確認：[V27] V27-03、V27-06、V27-07。入口・給与簿の読取り。保存・実効権限は未試験。 |">
+<h3>
+<a href="SCR002-EDIT-001.html#requirement-SCR002-EDIT-001" >SCR002-EDIT-001</a>
+</h3>
+<p>編集モードへ</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-EDIT-002 変更を保存 | SCR002-EDIT-002 | 保存時は変更された編集可能項目を、選択職員・選択履歴レコード・所属部署権限を確認したうえで対応するDataverseレコードへ反映する。保存成功後に再取得して読み取りモードへ戻す。給与簿への書込みは行わない。実データ接続や更新先が未整備の項目を、保存に成功したように扱わない | | SCR002-EDIT-002 | B機・B全 | D10.9（保存先・権限一部未決） | 計画 `LT-DATA-02`（再取得のみ） | 3区分の保存先・ロール、成功／失敗と再取得の現行ケース不足。 | 未照合：[P26] 保存操作なし。更新先・権限・再取得未検証。[O] | 未照合：[V27] V27-01。保存先・認可・再取得はソースと隔離更新試験が必要。 |">
+<h3>
+<a href="SCR002-EDIT-002.html#requirement-SCR002-EDIT-002" >SCR002-EDIT-002</a>
+</h3>
+<p>変更を保存</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-EDIT-003 職員を選択 詳細タブを切替 変更を保存 読取りモードへ 破棄確認を取消 破棄して続行 | SCR002-EDIT-003 | 編集中にタブを移っても未保存の入力を保持する。未保存の変更があるまま別画面への遷移または別職員の選択を試みたら、「変更を破棄して移動しますか」を確認し、続行を選んだ場合だけ破棄・移動する。キャンセルなら現在の職員と入力を保持する。保存失敗時も入力を保持し、エラーを示す | | SCR002-EDIT-003 | B機 | D10.9 | — | タブ移動・破棄続行／取消・保存失敗の現行ケース不足。 | 一部確認：[P26] 未保存の破棄と取消。タブ移動・失敗未試験。 | 一部確認：[V27] V27-01。前回[P26]の破棄確認のみ。今回の保存・失敗試験なし。 |">
+<h3>
+<a href="SCR002-EDIT-003.html#requirement-SCR002-EDIT-003" >SCR002-EDIT-003</a>
+</h3>
+<p>職員を選択 / 詳細タブを切替 / 変更を保存 / 読取りモードへ / 破棄確認を取消 / 破棄して続行</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 6件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-EDIT-004 読取りモードへ | SCR002-EDIT-004 | 画面上の「変更を破棄」ボタンは置かない。読み取りモードへの切替で未保存の変更が失われる場合にも破棄確認を出す | | SCR002-EDIT-004 | B機・B配 | D10.9 | 計画 `LT-UI-04`（ボタン不在・確認のみ） | 読取り切替時の破棄確認の現行ケース不足。 | 一部確認：[P26] 読取り復帰時の破棄確認と取消・続行。保存後未試験。 | 一部確認：[V27] V27-01。前回[P26]の破棄確認のみ。今回の保存・失敗試験なし。 |">
+<h3>
+<a href="SCR002-EDIT-004.html#requirement-SCR002-EDIT-004" >SCR002-EDIT-004</a>
+</h3>
+<p>読取りモードへ</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-F-001 通勤届を提出・再提出 | SCR002-F-001 | FR-F-01～04 | SCR-002の既存「通勤」タブで届出・差戻し・再提出・認定・変更時の再認定・認定終了を扱う。差戻し理由はシステム外で連絡し、再提出操作は同タブ内に置く。認定簿の出力操作は同タブの既存HTML認定簿入口との整合を確認する。病気・欠勤時の一時的な不支給を認定終了と混同しない。 |">
+<h3>
+<a href="SCR002-F-001.html#requirement-SCR002-F-001" >SCR002-F-001</a>
+</h3>
+<p>通勤届を提出・再提出</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-G-001 外部決定結果を登録 | SCR002-G-001 | 共済組合・社会保険・ハローワークに関わる外部機関の決定結果の登録・確認操作は、SCR-002の「社会保険」タブに置く。 |">
+<h3>
+<a href="SCR002-G-001.html#requirement-SCR002-G-001" >SCR002-G-001</a>
+</h3>
+<p>外部決定結果を登録</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-G-002 外部決定結果を登録 | SCR002-G-002 | 転職者の住民税に関わる外部機関の決定結果の登録・確認操作は、SCR-002の「税固定控除」タブに置く。住民税年度更新の未確定要件とは区別する。 |">
+<h3>
+<a href="SCR002-G-002.html#requirement-SCR002-G-002" >SCR002-G-002</a>
+</h3>
+<p>外部決定結果を登録</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-G-004 外部決定結果を確認確定 | SCR002-G-004 | 決定結果は「登録（確認待ち）→給与班の確定」とし、給与計算に影響する内容は確定前に使用しない。給与班が同じ社会保険・税固定控除の各タブで内容・対象職員を確認して確定する操作を置く。外部機関の決定内容を給与班が採否判定する操作は設けない。 |">
+<h3>
+<a href="SCR002-G-004.html#requirement-SCR002-G-004" >SCR002-G-004</a>
+</h3>
+<p>外部決定結果を確認確定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-LT-002 職員を選択 検索欄を開閉 検索条件をクリア ### 10.8 検索、サイドバー、一覧・タブの状態（`SCR002-LT-002`・`007`、`SCR002-UI-004`・`008`～`010`）
+
+ | SCR002-LT-002 | 左領域 | 現行の開閉式職員検索・検索結果一覧を維持する。職員選択だけでは自動で閉じず、検索条件、結果、選択職員、ページ位置を保持する | | SCR002-LT-002 | B構・B側・B機 | D10.8（実ソースの開閉式は未照合） | —（旧版の開閉ケースは現行に転用しない） | 開閉と検索状態保持の現行実装・試験が不足。 | 差分あり：[P26] 側欄開閉時は保持、SCR-005往復後は初期7件へ戻る。[O] | 差分あり：[V27] V27-04。画面往復で検索一覧が1→7件。側欄開閉時は保持。 |">
+<h3>
+<a href="SCR002-LT-002.html#requirement-SCR002-LT-002" >SCR002-LT-002</a>
+</h3>
+<p>職員を選択 / 検索欄を開閉 / 検索条件をクリア</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 3件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-LT-003 詳細タブを切替 | SCR002-LT-003 | 右領域 | 選択職員サマリーと、基本情報、勤務条件、通勤、社会保険、税固定控除、給与簿の6タブを表示する。従来の「給与」表示は「給与簿」へ改称する | | SCR002-LT-003 | B構 | D10.1・10.3 | 計画 `LT-TAB-01` | 6タブの内容と名称を現行版で照合。 | 一部確認：[P26] 6タブ名を確認。全内容・状態未検証。 | 一部確認：[V27] V27-05。6タブ表示。各タブの全状態・内容は未照合。 |">
+<h3>
+<a href="SCR002-LT-003.html#requirement-SCR002-LT-003" >SCR002-LT-003</a>
+</h3>
+<p>詳細タブを切替</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-LT-004 履歴を選択 | SCR002-LT-004 | タブ切替 | 基本情報、勤務条件、通勤の選択レコード詳細、社会保険、税固定控除は共通の詳細ギャラリーをタブに応じて使い回す。6区分の完成した非表示パネルを同一スクリーンに保持しない | | SCR002-LT-004 | B構 | D10.3 | 計画 `LT-TAB-01`・`LT-DETAIL-01` | 共通ギャラリー構造を現行ソースで確認。 | 未照合：[P26] タブのみ観察。共通ギャラリーのソース未読戻し。[O] | 未照合：[V27] V27-05。6タブの存在のみ。共通ギャラリー構造・複数履歴・長文未試験。 |">
+<h3>
+<a href="SCR002-LT-004.html#requirement-SCR002-LT-004" >SCR002-LT-004</a>
+</h3>
+<p>履歴を選択</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-LT-007 職員を検索 | SCR002-LT-007 | 0件・切替 | 検索0件、職員切替、履歴0件では以前の職員・履歴・認定ID・給与値を残さない。職員番号は12桁文字列キーとして扱う | | SCR002-LT-007 | B構・B全・B機 | D10.1・10.6・10.8 | 計画 `LT-HIST-01`・`LT-DATA-03` | 12桁文字列キーと0件時の旧データ消去を現行ケースで確認。 | 一部確認：[P26] 検索0件で詳細消去。12桁キー・履歴0件未検証。 | 一部確認：[V27] V27-03。所有者の1/0件。専用利用者FAIL、取得式・失敗時未照合。 |">
+<h3>
+<a href="SCR002-LT-007.html#requirement-SCR002-LT-007" >SCR002-LT-007</a>
+</h3>
+<p>職員を検索</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-PAY-005 給与簿の月範囲変更 ### 10.10 給与簿の月操作と一体スクロール（`SCR002-PAY-005`～`008`）
+
+ | SCR002-PAY-005 | 163×表示レコード数のセルコントロールを静的作成せず、縦ギャラリーと横ギャラリー等の反復構造を使用する。ただし項目の縦方向はギャラリー内に独立したスクロールを設けず、画面の内容領域と一緒に全163項目の末尾まで縦スクロールできること。月別の横スクロールは維持する。支給年月日が空欄・解釈不能な行を黙って範囲外として捨てず、例外件数と対象を確認できるようにする | | SCR002-PAY-005 | B構・B配・B機 | D10.5・10.10 | 計画 `LT-PAY-02`～`04`（一部） | 一体縦スクロール・例外行の現行ケース不足。 | 未照合：[P26] 一体スクロール・例外行未試験。 | 未照合：[V27] V27-07。1行を閲覧しただけ。同月複数・例外・全文欄の撤去は未試験。 |">
+<h3>
+<a href="SCR002-PAY-005.html#requirement-SCR002-PAY-005" >SCR002-PAY-005</a>
+</h3>
+<p>給与簿の月範囲変更</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-PAY-006 給与簿の月範囲変更 | SCR002-PAY-006 | 「給与簿」の表示開始月と表示終了月のそれぞれの入力欄の直横に、対応するカレンダー切替操作を配置する | | SCR002-PAY-006 | B機・B配 | D10.10 | — | 両入力欄に隣接するカレンダーの実装・現行ケース不足。 | 一部確認：[P26] 両入力欄にカレンダー。異常日付未試験。 | 一部確認：[V27] V27-07。1行163項目と期間入口。独立原票・同月複数・0/負/NULL・範囲変更未試験。 |">
+<h3>
+<a href="SCR002-PAY-006.html#requirement-SCR002-PAY-006" >SCR002-PAY-006</a>
+</h3>
+<p>給与簿の月範囲変更</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-PAY-008 給与簿の月範囲変更 | SCR002-PAY-008 | 「項目（163項目）」行とその隣の欄を削除する。給与期間対象年以降は独立した縦スクロールを設けず、画面の内容領域全体で163項目を縦に移動できるようにする。項目名と各支給月列の対応を保つ | | SCR002-PAY-008 | B機・B配 | D10.10 | 計画 `LT-PAY-04`（末尾到達のみ） | 「項目」行撤去・本文一体スクロール・列対応の現行ケース不足。 | 未照合：[P26] 項目行撤去・本文スクロール・列対応未試験。 | 一部確認：[V27] V27-07。1行163項目と期間入口。独立原票・同月複数・0/負/NULL・範囲変更未試験。 |">
+<h3>
+<a href="SCR002-PAY-008.html#requirement-SCR002-PAY-008" >SCR002-PAY-008</a>
+</h3>
+<p>給与簿の月範囲変更</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 2件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-UI-003 文字サイズを切替 ### 10.9 編集・保存・破棄確認（`SCR002-EDIT-001`～`004`、`SCR002-UI-003`・`007`）
+
+ | SCR002-UI-003 | 文字サイズ切替、支給明細への遷移、「詳細表示」、読み取り／編集モード切替、「保存」など存続する操作をヘッダー直下の操作領域へ集める。操作領域は本文とともにスクロールする。ホームは固定ヘッダー右端の画面IDの左隣に移し、旧ホーム右の独立した年月選択は削除する。給与簿内の表示開始月・表示終了月は残す。既存の「変更を破棄」ボタンは削除する。表示条件と権限制御は既存要件に従う | | SCR002-UI-003 | B配・B機 | D10.4.1・10.9（保存先一部未決） | 計画 `LT-UI-04`（操作配置のみ） | 実装の表示条件と保存・権限の現行ケースが不足。 | 一部確認：[P26] 編集切替。配置・権限・保存未検証。[O] | 一部確認：[V27] V27-03、V27-05。表示・6タブ・取得日時。成功時のみの更新、権限、全幅未確認。 |">
+<h3>
+<a href="SCR002-UI-003.html#requirement-SCR002-UI-003" >SCR002-UI-003</a>
+</h3>
+<p>文字サイズを切替</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR002-UI-004 職員を検索 検索条件をクリア ### 10.8 検索、サイドバー、一覧・タブの状態（`SCR002-LT-002`・`007`、`SCR002-UI-004`・`008`～`010`）
+
+ | SCR002-UI-004 | 左の検索条件を縦一列に配置し、「職員を検索」入力欄に虫眼鏡アイコンを付ける。検索結果は氏名の下に職員番号、在籍・退職・採用前の状態の下に部署略称を表示する。状態は色分けし、文字でも識別できるようにする | | SCR002-UI-004 | B配 | D10.4.1 | 計画 `LT-UI-03`、検索の実測FAIL | 縦一列・結果2段と検索機能を別に確認。 | 一部確認：[P26] 検索欄と一覧。[S26] 専用検索FAIL。配置と検索を分けて再試験。[O] | 一部確認：[V27] V27-03。所有者の1/0件。専用利用者FAIL、取得式・失敗時未照合。 |">
+<h3>
+<a href="SCR002-UI-004.html#requirement-SCR002-UI-004" >SCR002-UI-004</a>
+</h3>
+<p>職員を検索 / 検索条件をクリア</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 2件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR005-ACT-001 | `SCR005-ACT-001` | ホームへ戻るときログイン者の氏名・メールは維持し、選択対象職員と混同しない。 | | SCR005-ACT-001 | ホーム | SCR-001へ戻る。ログイン者情報を保持 | | SCR005-ACT-001 | ホームへ戻る | B機／D11.3 | — | ログイン者情報を保持するケースを追加。 | 未照合：[P26] ホーム復帰時のログイン者保持未試験。 | 一部確認：[V27] V27-02。ホーム復路。ログイン主体の全画面保持は未試験。 |">
+<h3>
+<a href="SCR005-ACT-001.html#requirement-SCR005-ACT-001" >SCR005-ACT-001</a>
+</h3>
+<p>画面・業務から参照される要件</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 0件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR005-ACT-002 職員詳細へ戻る | `SCR005-ACT-002` | SCR-002との往復時には職員番号・対象月を渡し、受け手で現在の所属許可と対象の存在を再検証する。SCR-002が編集中で未保存なら10.9の確認を先に行う。 | | SCR005-ACT-002 | 職員マスタ検索 | SCR-002へ遷移し、選択職員番号・支給対象月を引き継ぐ。SCR-002から戻る時も選択を反映 | | SCR005-ACT-002 | SCR-002との相互遷移 | B機／D11.3 | — | 職員番号・対象月・所属制限を結合試験。 | 一部確認：[P26] SCR-002往復で職員011・月保持。所属制限未試験。[O] | 一部確認：[V27] V27-04。選択職員・月は往復。所属制限未試験、検索結果保持は差分。 |">
+<h3>
+<a href="SCR005-ACT-002.html#requirement-SCR005-ACT-002" >SCR005-ACT-002</a>
+</h3>
+<p>職員詳細へ戻る</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR005-ACT-003 試算対象月を変更 | `SCR005-ACT-003` | 有効な対象がなければ選択案内と再計算無効状態にし、別職員や初期fixtureの先頭行を自動選択しない。 | | SCR005-ACT-003 | 初期表示 | 有効な対象があればデータ確認後に計算表示。未選択なら選択案内を出し再計算を無効化。無関係の職員を自動選択しない | | SCR005-ACT-003 | 未選択時の初期表示 | B機／D11.3 | — | 無関係職員の自動選択なしを確認。 | 未照合：[P26] 未選択初期表示・他職員の自動選択なしは未試験。 | 未照合：[V27] V27-10。未選択・再計算連打/書込み・登録済み0円は未試験。 |">
+<h3>
+<a href="SCR005-ACT-003.html#requirement-SCR005-ACT-003" >SCR005-ACT-003</a>
+</h3>
+<p>試算対象月を変更</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR005-ACT-004 内蔵仮例を再計算 | `SCR005-ACT-004` | 再計算開始時は入力版を固定して連打を抑え、内蔵データを検証・再計算する。Dataverseへの登録・保存・確定・支払実行は呼ばない。 | | SCR005-ACT-004 | 再計算 | 現在の内蔵データから検証・再計算。処理中は連打を防止。データの登録やDataverseへの書込みは行わない | | SCR005-ACT-004 | 内蔵データの再計算 | B機／D11.3 | — | 書込みなし・連打抑止を確認。 | 未照合：[P26] 再計算・書込み有無・連打抑止未試験。 | 未照合：[V27] V27-10。未選択・再計算連打/書込み・登録済み0円は未試験。 |">
+<h3>
+<a href="SCR005-ACT-004.html#requirement-SCR005-ACT-004" >SCR005-ACT-004</a>
+</h3>
+<p>内蔵仮例を再計算</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR005-ACT-005 試算対象月を変更 | `SCR005-ACT-005` | 職員・対象月・入力登録版の変更時に旧結果を直ちに無効化し、新しい結果が揃うまで旧額を表示しない。 | | SCR005-ACT-005 | 対象・版変更 | 職員・対象月・勤務登録版が変わった時点で旧結果を無効化し、再計算を促す。旧結果を新しい対象の数値として残さない | | SCR005-ACT-005 | 対象変更時の旧結果破棄 | B機／D11.3 | — | 別職員・別月への値残りを検査。 | 要再現：[P26] 未登録月の合計は消去、前月額の根拠文残留。[O] | 差分あり：[V27] V27-10。未登録月で額—と不足理由、前月額を含む説明文が残留。失敗時未試験。 |">
+<h3>
+<a href="SCR005-ACT-005.html#requirement-SCR005-ACT-005" >SCR005-ACT-005</a>
+</h3>
+<p>試算対象月を変更</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR005-ACT-006 試算対象月を変更 | `SCR005-ACT-006` | 未登録勤務・単価未設定・通勤／控除欠落・重複・取得失敗は理由を区別し、計算状態を「不足／失敗」として総額「—」を示す。 | | SCR005-ACT-006 | 未登録・不足・失敗 | 未登録勤務、欠勤単価未設定、通勤・控除データ欠落、重複等は理由を表示し、総額は「—」。未登録を0円扱いしない | | SCR005-ACT-006 | 不足・失敗時の未計算表示 | B機／D11.3 | — | 未登録を0円と混同しない。 | 要再現：[P26] 不足理由表示、前月額の根拠文残留。失敗時未試験。[O] | 差分あり：[V27] V27-10。未登録月で額—と不足理由、前月額を含む説明文が残留。失敗時未試験。 |">
+<h3>
+<a href="SCR005-ACT-006.html#requirement-SCR005-ACT-006" >SCR005-ACT-006</a>
+</h3>
+<p>試算対象月を変更</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR005-ACT-007 支給・控除内訳を開閉 | `SCR005-ACT-007` | 支給／控除を別々に開閉し、閉じた領域は空白とTab対象から除外。見出し額と固定サマリーは保持する。 | | SCR005-ACT-007 | 折りたたみ | 支給・控除を独立して開閉。見出し金額と上部サマリーは残す。閉じた領域の高さ・空白を除去し、Tab対象から外す | | SCR005-ACT-007 | 開閉とTab対象 | B機／D11.3 | — | 空白を残さず閉じた領域を除外。 | 一部確認：[P26] 支給・控除独立開閉。空白・キーボードTab未試験。 | 一部確認：[V27] V27-09。支給と控除の独立開閉。キーボードTabと余白未試験。 |">
+<h3>
+<a href="SCR005-ACT-007.html#requirement-SCR005-ACT-007" >SCR005-ACT-007</a>
+</h3>
+<p>支給・控除内訳を開閉</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR005-CALC-008 内蔵仮例を再計算 | `SCR005-CALC-008` | 試作の未丸め現金支給額＝未丸め給与支給総額－未丸め控除額計。途中では端数処理をせず、必要入力が揃い最終額が非負の場合だけ`RoundDown(未丸め現金支給額, 0)`を一度適用して円表示する。負額・欠落は計算対象外／不足として「—」と理由を示す。中間値に小数があれば小数・概数を区別し、表示整数を再計算の入力に使わない。本番の税・保険項目別端数処理は未決のまま維持する。 | | SCR005-CALC-008 | 現金支給額 | 給与支給総額 − 控除額計 | 151,800円 | | SCR005-CALC-008 | 現金支給額 | B機／D11.2 | — | 内蔵仮例の最終切捨ては設計済み。本番税・保険の個別端数規則は別途業務判断。 | 未照合：[P26] 現金表示のみ。端数式未読戻し。[O] | 一部確認：[V27] V27-08。表示値間の算術整合のみ。元値・Power Fx・端数/0/負/欠損は未照合。 |">
+<h3>
+<a href="SCR005-CALC-008.html#requirement-SCR005-CALC-008" >SCR005-CALC-008</a>
+</h3>
+<p>内蔵仮例を再計算</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 3件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR005-UI-004 | `SCR005-UI-004` | 固定サマリーは給与支給総額－控除額計＝現金支給額の3値を一つの計算結果から表示。最後の額を強調し、本文移動中も表示する。計算不能なら実額を残さず「—」と理由を示す。 | | SCR005-UI-004 | 上部サマリー | 「給与支給総額 − 控除額計 ＝ 現金支給額」を金額付きで表示。現金支給額を強調。本文スクロール中も見える固定領域に置く | ## DOT-001：SCR005-UI-004／015の承認A追補
+
+ | SCR005-UI-004 | 上部サマリー | B機／D11.1 | — | 共通結果の表示額と固定位置を検査。 | 差分あり：[P26] 数値サマリーは表示、スクロールで画面外へ流れる。[O] | 差分あり：[V27] V27-09。本文スクロールで固定サマリーが画面外。末尾まで到達。 | ## DOT-001：SCR005-UI-004／015の承認A追補
+
+2026-10-10 07:37:54 UTCにAを承認。通常PCのサマリー固定は維持し、狭い・低い表示領域だけ全体を縦横スクロールしてサマリーも移動する。文字・項目は省略しない。公開38の観測と残るフォーカス見切れ・履歴AX差は[機能要件のDOT-001節](requirements.md)を参照。常時固定という旧行はこの承認範囲に限り更新され、未確認のアクセシビリティ基準を緩和しない。
+">
+<h3>
+<a href="SCR005-UI-004.html#requirement-SCR005-UI-004" >SCR005-UI-004</a>
+</h3>
+<p>画面・業務から参照される要件</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 0件 / 出典箇所 5件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR005-UI-015 支給・控除内訳を開閉 | `SCR005-UI-015` | 固定ヘッダー・対象操作・サマリーの下から内訳だけを縦スクロールする。支給対象月から「職員マスタ検索」までを本文スクロール内に入れず、最終行へ到達可能にする。 | | SCR005-UI-015 | 縦スクロール | 支給対象月から「職員マスタ検索」ボタンまでの対象・操作欄はスクロール領域の外に置く。その欄より下の内訳本文を縦スクロールできるようにする。上部サマリーは従来どおり固定し、最後の貯金預入まで到達できること | | SCR005-UI-015 | 内訳全体の縦スクロール | B機／D11.1 | — | 固定領域と末尾到達を確認。 | 差分あり：[P26] 本文スクロールで固定すべきサマリーが画面外へ流れる。[O] | 差分あり：[V27] V27-09。本文スクロールで固定サマリーが画面外。末尾まで到達。 | ## DOT-001：SCR005-UI-004／015の承認A追補
+
+2026-10-10 07:37:54 UTCにAを承認。通常PCのサマリー固定は維持し、狭い・低い表示領域だけ全体を縦横スクロールしてサマリーも移動する。文字・項目は省略しない。公開38の観測と残るフォーカス見切れ・履歴AX差は[機能要件のDOT-001節](requirements.md)を参照。常時固定という旧行はこの承認範囲に限り更新され、未確認のアクセシビリティ基準を緩和しない。
+">
+<h3>
+<a href="SCR005-UI-015.html#requirement-SCR005-UI-015" >SCR005-UI-015</a>
+</h3>
+<p>支給・控除内訳を開閉</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 4件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR006-RULE-001 業務マスタを登録・改定 | SCR006-RULE-001 | FR-AUTH-04、PAYREQ-09 | SCR-006の単価・区分等の業務マスタ登録・改定は業務マスタ管理者に許可する。給与班との兼務可能。システム管理権限は別。従来の給与班のみという将来要件をQ55・R21で更新する。 |">
+<h3>
+<a href="SCR006-RULE-001.html#requirement-SCR006-RULE-001" >SCR006-RULE-001</a>
+</h3>
+<p>業務マスタを登録・改定</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 1件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="requirement" data-search-text="SCR007-DIFF-001 差額内訳を確認・確定 遡及差額を開く ホームへ戻る | SCR007-DIFF-001 | FR-PAY-01/02 | 遡及差額の確認・確定には、まず既存SCR-005の試算画面と区別した独立画面を設ける。対象職員の計算結果を一覧から選び、差額の内訳を確認して会計課給与班が確定する。画面IDは将来対象の識別のため`SCR-007`と仮置きする。完成後にSCR-002のタブとする可能性を再検討する（未決一覧D-08）。遷移元と支給・返納操作の範囲は後続設計で決める。 |">
+<h3>
+<a href="SCR007-DIFF-001.html#requirement-SCR007-DIFF-001" >SCR007-DIFF-001</a>
+</h3>
+<p>差額内訳を確認・確定 / 遡及差額を開く / ホームへ戻る</p>
+<div class="meta-line">
+<span class="tag ">要件ID</span>
+<span>関連操作 3件 / 出典箇所 1件</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-001-STAFF 職員マスタ検索 SCR-001 最新の4主ボタンから対象画面へ移動する。 ログイン利用者 ログイン主体 現行表示確認用コンテキスト COMMON-NAV-001 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-001-STAFF.html#OP-001-STAFF" >OP-001-STAFF 職員マスタ検索</a>
+</h3>
+<p>最新の4主ボタンから対象画面へ移動する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>ログイン利用者 · SCR-001</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-001-ATTENDANCE 勤務時間報告 SCR-001 最新の4主ボタンから対象画面へ移動する。 ログイン利用者 ログイン主体 現行表示確認用コンテキスト COMMON-NAV-001 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-001-ATTENDANCE.html#OP-001-ATTENDANCE" >OP-001-ATTENDANCE 勤務時間報告</a>
+</h3>
+<p>最新の4主ボタンから対象画面へ移動する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>ログイン利用者 · SCR-001</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-001-RATES 期末勤勉支給率登録 SCR-001 最新の4主ボタンから対象画面へ移動する。 ログイン利用者 ログイン主体 現行表示確認用コンテキスト COMMON-NAV-001 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-001-RATES.html#OP-001-RATES" >OP-001-RATES 期末勤勉支給率登録</a>
+</h3>
+<p>最新の4主ボタンから対象画面へ移動する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>ログイン利用者 · SCR-001</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-001-MAINTENANCE メンテナンス SCR-001 最新の4主ボタンから対象画面へ移動する。 ログイン利用者 ログイン主体 現行表示確認用コンテキスト COMMON-NAV-001 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-001-MAINTENANCE.html#OP-001-MAINTENANCE" >OP-001-MAINTENANCE メンテナンス</a>
+</h3>
+<p>最新の4主ボタンから対象画面へ移動する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>ログイン利用者 · SCR-001</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-001-IMPORT データ一括取込み SCR-001 E専用の行別取込画面を開く。 会計課給与班 対象の論理レコード（正式物理名未入力） FUT-IMPORT-001 FR-E-01">
+<h3>
+<a href="../operations/OP-001-IMPORT.html#OP-001-IMPORT" >OP-001-IMPORT データ一括取込み</a>
+</h3>
+<p>E専用の行別取込画面を開く。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-001</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-001-JLINK 人給連携 SCR-001 同一画面3タブの人給連携へ移動する。 会計課給与班 対象の論理レコード（正式物理名未入力） JLINK-UI-01 I3">
+<h3>
+<a href="../operations/OP-001-JLINK.html#OP-001-JLINK" >OP-001-JLINK 人給連携</a>
+</h3>
+<p>同一画面3タブの人給連携へ移動する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-001</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-SEARCH 職員を検索 SCR-002 入力条件を確定し、認可範囲の職員を取得する。 会計課給与班 局担当者 職員基本 所属・在籍状態 SCR002-UI-004 SCR002-LT-007">
+<h3>
+<a href="../operations/OP-002-SEARCH.html#OP-002-SEARCH" >OP-002-SEARCH 職員を検索</a>
+</h3>
+<p>入力条件を確定し、認可範囲の職員を取得する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-SELECT 職員を選択 SCR-002 12桁番号と所属を再検証し、当該職員の必要データを取得する。 会計課給与班 局担当者 職員基本 勤務条件・通勤・保険・税・給与簿の履歴 SCR002-LT-002 SCR002-EDIT-003">
+<h3>
+<a href="../operations/OP-002-SELECT.html#OP-002-SELECT" >OP-002-SELECT 職員を選択</a>
+</h3>
+<p>12桁番号と所属を再検証し、当該職員の必要データを取得する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-SIDEBAR 検索欄を開閉 SCR-002 検索欄の幅と表示を切替え、閉じた領域をTab対象から外す。 会計課給与班 局担当者 画面表示状態 SCR002-LT-002">
+<h3>
+<a href="../operations/OP-002-SIDEBAR.html#OP-002-SIDEBAR" >OP-002-SIDEBAR 検索欄を開閉</a>
+</h3>
+<p>検索欄の幅と表示を切替え、閉じた領域をTab対象から外す。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-TABS 詳細タブを切替 SCR-002 取得済みデータでタブを切替える。給与簿は常時読取り専用。 会計課給与班 局担当者 取得済み詳細・履歴 SCR002-LT-003 SCR002-EDIT-003">
+<h3>
+<a href="../operations/OP-002-TABS.html#OP-002-TABS" >OP-002-TABS 詳細タブを切替</a>
+</h3>
+<p>取得済みデータでタブを切替える。給与簿は常時読取り専用。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-HISTORY 履歴を選択 SCR-002 選択GUIDで該当職員の履歴を表示する。0件・単一件・複数件を区別する。 会計課給与班 局担当者 対象タブの履歴 SCR002-LT-004">
+<h3>
+<a href="../operations/OP-002-HISTORY.html#OP-002-HISTORY" >OP-002-HISTORY 履歴を選択</a>
+</h3>
+<p>選択GUIDで該当職員の履歴を表示する。0件・単一件・複数件を区別する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-EDIT 編集モードへ SCR-002 対象レコードと表示値を確認し、許可列の入力バッファを作る。 会計課給与班 局担当者 選択職員・選択履歴 許可列 画面内の編集バッファ SCR002-EDIT-001">
+<h3>
+<a href="../operations/OP-002-EDIT.html#OP-002-EDIT" >OP-002-EDIT 編集モードへ</a>
+</h3>
+<p>対象レコードと表示値を確認し、許可列の入力バッファを作る。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-SAVE 変更を保存 SCR-002 変更された許可列のみ保存し、再取得した内容と一致を確認して読取りへ戻す。 会計課給与班 局担当者 選択レコード 編集差分 保存先確認済みの職員基本・履歴レコード SCR002-EDIT-002 SCR002-EDIT-003">
+<h3>
+<a href="../operations/OP-002-SAVE.html#OP-002-SAVE" >OP-002-SAVE 変更を保存</a>
+</h3>
+<p>変更された許可列のみ保存し、再取得した内容と一致を確認して読取りへ戻す。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-READMODE 読取りモードへ SCR-002 変更なしなら読取りへ。未保存なら破棄確認を表示する。 会計課給与班 局担当者 編集バッファの変更状態 SCR002-EDIT-003 SCR002-EDIT-004">
+<h3>
+<a href="../operations/OP-002-READMODE.html#OP-002-READMODE" >OP-002-READMODE 読取りモードへ</a>
+</h3>
+<p>変更なしなら読取りへ。未保存なら破棄確認を表示する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-CANCEL 破棄確認を取消 SCR-002 保留した移動・職員変更・読取り切替を取消し、編集を続ける。 会計課給与班 局担当者 保留中の遷移 編集バッファ SCR002-EDIT-003">
+<h3>
+<a href="../operations/OP-002-CANCEL.html#OP-002-CANCEL" >OP-002-CANCEL 破棄確認を取消</a>
+</h3>
+<p>保留した移動・職員変更・読取り切替を取消し、編集を続ける。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-DISCARD 破棄して続行 SCR-002 明示的な続行を受けた後に入力を破棄し、保留していた目的画面／職員へ移動する。 会計課給与班 局担当者 保留中の遷移 編集バッファ SCR002-EDIT-003">
+<h3>
+<a href="../operations/OP-002-DISCARD.html#OP-002-DISCARD" >OP-002-DISCARD 破棄して続行</a>
+</h3>
+<p>明示的な続行を受けた後に入力を破棄し、保留していた目的画面／職員へ移動する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-LEDGER 給与簿の月範囲変更 SCR-002 職員と月範囲で取得し、163項目×登録済み支給行を表示。同月複数行は別列。 会計課給与班 局担当者 基準給与簿の163項目 支給年月日・番号・行GUID SCR002-PAY-005 SCR002-PAY-006 SCR002-PAY-008">
+<h3>
+<a href="../operations/OP-002-LEDGER.html#OP-002-LEDGER" >OP-002-LEDGER 給与簿の月範囲変更</a>
+</h3>
+<p>職員と月範囲で取得し、163項目×登録済み支給行を表示。同月複数行は別列。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-PAYDETAIL 支給明細へ SCR-002 選択職員・対象月を渡し、遷移先で存在と所属を再確認。 会計課給与班 局担当者 選択職員 対象月 COMMON-NAV-003 COMMON-CONTEXT-002">
+<h3>
+<a href="../operations/OP-002-PAYDETAIL.html#OP-002-PAYDETAIL" >OP-002-PAYDETAIL 支給明細へ</a>
+</h3>
+<p>選択職員・対象月を渡し、遷移先で存在と所属を再確認。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-HOME ホームへ戻る SCR-002 ログイン主体を保持してホームへ戻る。 ログイン利用者 画面コンテキスト COMMON-NAV-002 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-002-HOME.html#OP-002-HOME" >OP-002-HOME ホームへ戻る</a>
+</h3>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>ログイン利用者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-HOME ホームへ戻る SCR-003 ログイン主体を保持してホームへ戻る。 ログイン利用者 画面コンテキスト COMMON-NAV-002 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-003-HOME.html#OP-003-HOME" >OP-003-HOME ホームへ戻る</a>
+</h3>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>ログイン利用者 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-004-HOME ホームへ戻る SCR-004 ログイン主体を保持してホームへ戻る。 ログイン利用者 画面コンテキスト COMMON-NAV-002 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-004-HOME.html#OP-004-HOME" >OP-004-HOME ホームへ戻る</a>
+</h3>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>ログイン利用者 · SCR-004</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-005-HOME ホームへ戻る SCR-005 ログイン主体を保持してホームへ戻る。 ログイン利用者 画面コンテキスト COMMON-NAV-002 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-005-HOME.html#OP-005-HOME" >OP-005-HOME ホームへ戻る</a>
+</h3>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>ログイン利用者 · SCR-005</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-006-HOME ホームへ戻る SCR-006 ログイン主体を保持してホームへ戻る。 ログイン利用者 画面コンテキスト COMMON-NAV-002 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-006-HOME.html#OP-006-HOME" >OP-006-HOME ホームへ戻る</a>
+</h3>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>ログイン利用者 · SCR-006</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-SELECT 局・月・報告を選択 SCR-003 有効対象月と報告を選び、有効バッチ明細をNo順・課室で表示する。 会計課給与班 局担当者 T_勤務時間報告 T_勤務時間報告明細 M_勤務報告対象月 PAYREQ-06">
+<h3>
+<a href="../operations/OP-003-SELECT.html#OP-003-SELECT" >OP-003-SELECT 局・月・報告を選択</a>
+</h3>
+<p>有効対象月と報告を選び、有効バッチ明細をNo順・課室で表示する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-EDIT 勤務実績を一覧編集 SCR-003 同画面内に全明細のドラフトを作り日数・時間・備考を編集する。 会計課給与班 局担当者 選択報告の全明細 画面内ドラフト PAYREQ-06">
+<h3>
+<a href="../operations/OP-003-EDIT.html#OP-003-EDIT" >OP-003-EDIT 勤務実績を一覧編集</a>
+</h3>
+<p>同画面内に全明細のドラフトを作り日数・時間・備考を編集する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-SAVE 勤務実績を保存 SCR-003 全明細・reportId・expectedVersionを既存保存フローへ送り、成功後にヘッダー・有効明細を再取得。 会計課給与班 局担当者 ドラフト全件 報告状態・版 現行報告の新有効バッチ・版 PAYREQ-06">
+<h3>
+<a href="../operations/OP-003-SAVE.html#OP-003-SAVE" >OP-003-SAVE 勤務実績を保存</a>
+</h3>
+<p>全明細・reportId・expectedVersionを既存保存フローへ送り、成功後にヘッダー・有効明細を再取得。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-READMODE 勤怠編集を取り消す SCR-003 未保存変更があれば破棄確認。続行で破棄、取消で全ドラフトを保持。 会計課給与班 局担当者 Dirty状態 編集ドラフト PAYREQ-06">
+<h3>
+<a href="../operations/OP-003-READMODE.html#OP-003-READMODE" >OP-003-READMODE 勤怠編集を取り消す</a>
+</h3>
+<p>未保存変更があれば破棄確認。続行で破棄、取消で全ドラフトを保持。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-IMPORT-CURRENT 現行Excel全置換取込 SCR-003 現行は新GUIDバッチへ全行保存し、件数・版・入力中状態確認後に有効バッチを全置換する。 会計課給与班 局担当者 1ファイル.xlsxのTestData 対象報告・現在版 現行勤務時間報告の新バッチ・有効版 PAYREQ-06">
+<h3>
+<a href="../operations/OP-003-IMPORT-CURRENT.html#OP-003-IMPORT-CURRENT" >OP-003-IMPORT-CURRENT 現行Excel全置換取込</a>
+</h3>
+<p>現行は新GUIDバッチへ全行保存し、件数・版・入力中状態確認後に有効バッチを全置換する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-IMPORT 勤務実績を追加更新取込 SCR-003 掲載行を追加／更新。手修正済みでもファイル優先。空欄は消去し0は0。非掲載の既存職員行を残す。 会計課給与班 局担当者 取込ファイル全件 対象報告の既存行 対象報告の掲載職員行 取込処理状態 PAYREQ-06">
+<h3>
+<a href="../operations/OP-003-IMPORT.html#OP-003-IMPORT" >OP-003-IMPORT 勤務実績を追加更新取込</a>
+</h3>
+<p>掲載行を追加／更新。手修正済みでもファイル優先。空欄は消去し0は0。非掲載の既存職員行を残す。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-RECOVER 取込失敗を復旧・再実行 SCR-003 失敗情報と対象報告を確認し、不完全結果を利用せず復旧・再実行する。 会計課給与班 局担当者 取込処理状態 検証結果 既存報告版 復旧後の取込処理状態・利用可能版（方式未決） PAYREQ-06 PAYREQ-10">
+<h3>
+<a href="../operations/OP-003-RECOVER.html#OP-003-RECOVER" >OP-003-RECOVER 取込失敗を復旧・再実行</a>
+</h3>
+<p>失敗情報と対象報告を確認し、不完全結果を利用せず復旧・再実行する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-ROWEDIT 職員行を追加・削除 SCR-003 対象報告内で職員行を追加／削除できるようにする。保存時の所属・対象職員・状態を検証する。 会計課給与班 局担当者 職員基本 入力中の報告 対象報告の職員行 PAYREQ-06">
+<h3>
+<a href="../operations/OP-003-ROWEDIT.html#OP-003-ROWEDIT" >OP-003-ROWEDIT 職員行を追加・削除</a>
+</h3>
+<p>対象報告内で職員行を追加／削除できるようにする。保存時の所属・対象職員・状態を検証する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-REPORT 勤務時間を報告 SCR-003 現行は確認モーダルから実行。報告後は編集・取込を停止する。 会計課給与班 局担当者 対象報告・状態・版 報告状態 PAYREQ-06">
+<h3>
+<a href="../operations/OP-003-REPORT.html#OP-003-REPORT" >OP-003-REPORT 勤務時間を報告</a>
+</h3>
+<p>現行は確認モーダルから実行。報告後は編集・取込を停止する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-003-RETURN 報告を差し戻す SCR-003 給与班が差戻し後、局担当が訂正・再提出。影響する未払い結果は再計算・再照合。 会計課給与班 対象報告・影響支給回 報告状態 再処理の対象情報 PAYREQ-06 PAYREQ-07">
+<h3>
+<a href="../operations/OP-003-RETURN.html#OP-003-RETURN" >OP-003-RETURN 報告を差し戻す</a>
+</h3>
+<p>給与班が差戻し後、局担当が訂正・再提出。影響する未払い結果は再計算・再照合。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-004-RATES 期末・勤勉率を登録 SCR-004 職員×支給対象期間に期末と勤勉の支給率を別々に登録する。 会計課給与班 職員 支給対象期間 期末率・勤勉率 PAYREQ-07">
+<h3>
+<a href="../operations/OP-004-RATES.html#OP-004-RATES" >OP-004-RATES 期末・勤勉率を登録</a>
+</h3>
+<p>職員×支給対象期間に期末と勤勉の支給率を別々に登録する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-004</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-005-MONTH 試算対象月を変更 SCR-005 対象変更で旧結果と根拠を失効させ、新入力を確認する。未選択なら選択案内。 会計課給与班 局担当者 選択職員・対象月の内蔵仮例 SCR005-ACT-003 SCR005-ACT-005 SCR005-ACT-006">
+<h3>
+<a href="../operations/OP-005-MONTH.html#OP-005-MONTH" >OP-005-MONTH 試算対象月を変更</a>
+</h3>
+<p>対象変更で旧結果と根拠を失効させ、新入力を確認する。未選択なら選択案内。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-005</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-005-RECALC 内蔵仮例を再計算 SCR-005 入力版を固定して仮例の検証・試算を実行する。Dataverse保存・確定・支払を呼ばない。 会計課給与班 局担当者 内蔵仮例の勤務・単価・認定通勤・控除 画面内試算結果 SCR005-ACT-004 SCR005-CALC-008">
+<h3>
+<a href="../operations/OP-005-RECALC.html#OP-005-RECALC" >OP-005-RECALC 内蔵仮例を再計算</a>
+</h3>
+<p>入力版を固定して仮例の検証・試算を実行する。Dataverse保存・確定・支払を呼ばない。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-005</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-005-DETAILS 支給・控除内訳を開閉 SCR-005 支給・控除を個別に開閉し、見出し金額と固定サマリーを維持する。 会計課給与班 局担当者 画面内試算結果 SCR005-ACT-007 SCR005-UI-015">
+<h3>
+<a href="../operations/OP-005-DETAILS.html#OP-005-DETAILS" >OP-005-DETAILS 支給・控除内訳を開閉</a>
+</h3>
+<p>支給・控除を個別に開閉し、見出し金額と固定サマリーを維持する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-005</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-005-RETURN 職員詳細へ戻る SCR-005 職員番号・対象月を戻し、存在・所属を再確認する。 会計課給与班 局担当者 選択職員・対象月 COMMON-NAV-003 SCR005-ACT-002">
+<h3>
+<a href="../operations/OP-005-RETURN.html#OP-005-RETURN" >OP-005-RETURN 職員詳細へ戻る</a>
+</h3>
+<p>職員番号・対象月を戻し、存在・所属を再確認する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-005</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-006-MONTH 勤務報告対象月を設定 SCR-006 勤務時間報告に選択できる対象月の有効状態を保存する。 現行管理者 M_勤務報告対象月 勤務報告対象月の有効状態 PAYREQ-06">
+<h3>
+<a href="../operations/OP-006-MONTH.html#OP-006-MONTH" >OP-006-MONTH 勤務報告対象月を設定</a>
+</h3>
+<p>勤務時間報告に選択できる対象月の有効状態を保存する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>現行管理者 · SCR-006</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-006-RULE 業務マスタを登録・改定 SCR-006 単価・区分・組織・予算・控除項目等を登録し、改定には適用開始日と対象を管理。旧ルール・額を保持する。 業務マスタ管理者 業務マスタ・適用履歴 業務マスタの新規／改定情報 SCR006-RULE-001 PAY-01 PAY-02 PAYREQ-09">
+<h3>
+<a href="../operations/OP-006-RULE.html#OP-006-RULE" >OP-006-RULE 業務マスタを登録・改定</a>
+</h3>
+<p>単価・区分・組織・予算・控除項目等を登録し、改定には適用開始日と対象を管理。旧ルール・額を保持する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>業務マスタ管理者 · SCR-006</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-006-END マスタを使用停止 SCR-006 使用停止または終了で履歴を残す。物理削除はこの操作に含めない。 業務マスタ管理者 対象マスタ・参照履歴 使用停止／終了情報 PAYREQ-09">
+<h3>
+<a href="../operations/OP-006-END.html#OP-006-END" >OP-006-END マスタを使用停止</a>
+</h3>
+<p>使用停止または終了で履歴を残す。物理削除はこの操作に含めない。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>業務マスタ管理者 · SCR-006</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-AD-CANDIDATE 発令情報から候補作成 FUT-IMPORT C完了を起点に確認待ち候補を作る。調査員は採用日で給与ルール版を選ぶ。 会計課給与班 異動情報アプリの発令情報 調査員用ルール・適用日 給与情報の確認待ち候補 AD-01 AD-02 AD-03 AD-09 FR-AD-01 FR-AD-04">
+<h3>
+<a href="../operations/OP-AD-CANDIDATE.html#OP-AD-CANDIDATE" >OP-AD-CANDIDATE 発令情報から候補作成</a>
+</h3>
+<p>C完了を起点に確認待ち候補を作る。調査員は採用日で給与ルール版を選ぶ。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-IMPORT</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-AD-NUMBER 発行職員番号を反映 SCR-002 採用ごとの識別子で同じ候補へ12桁番号を反映する。再採用は新しい採用識別子を使う。 会計課給与班 局担当者 採用ごとの識別子 発行職員番号 既存候補と職員基本の対応（物理方式未決） AD-04 AD-05 FR-AD-02 PAYREQ-01 PAYREQ-02">
+<h3>
+<a href="../operations/OP-AD-NUMBER.html#OP-AD-NUMBER" >OP-AD-NUMBER 発行職員番号を反映</a>
+</h3>
+<p>採用ごとの識別子で同じ候補へ12桁番号を反映する。再採用は新しい採用識別子を使う。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-AD-CHANGE 前工程変更の差異確認 SCR-002 変更前を保持。給与班の修正値と前工程変更値が食い違えば自動上書きせず採用値を給与班が判断する。 会計課給与班 変更前候補 前工程変更値 給与班修正値 採用された変更・変更前後履歴 確認待ち状態 AD-08 E-09 FR-E-03">
+<h3>
+<a href="../operations/OP-AD-CHANGE.html#OP-AD-CHANGE" >OP-AD-CHANGE 前工程変更の差異確認</a>
+</h3>
+<p>変更前を保持。給与班の修正値と前工程変更値が食い違えば自動上書きせず採用値を給与班が判断する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-AD-CANCEL 採用取消を反映 SCR-002 確認待ち・確定のいずれからも採用取消へ移し、候補を保持して給与計算から除外。 会計課給与班 取消情報・対応候補 採用取消状態・履歴 AD-06 AD-07 FR-AD-03">
+<h3>
+<a href="../operations/OP-AD-CANCEL.html#OP-AD-CANCEL" >OP-AD-CANCEL 採用取消を反映</a>
+</h3>
+<p>確認待ち・確定のいずれからも採用取消へ移し、候補を保持して給与計算から除外。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-IMPORT-VALIDATE Excelの行を検証 FUT-IMPORT 異動情報アプリのExcelを読み、職員に紐づくデータ内容で重複候補・不備を行別に表示。 会計課給与班 異動情報Excel 既存職員と関連データ 取込検証結果（論理記録） E-02 E-03 E-04 E-05 FR-E-01">
+<h3>
+<a href="../operations/OP-IMPORT-VALIDATE.html#OP-IMPORT-VALIDATE" >OP-IMPORT-VALIDATE Excelの行を検証</a>
+</h3>
+<p>異動情報アプリのExcelを読み、職員に紐づくデータ内容で重複候補・不備を行別に表示。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-IMPORT</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-IMPORT-APPLY 行別に取込を判断 FUT-IMPORT 正常行を先に取り込み、問題行は給与班が注意を見て取込／見送りを決める。 会計課給与班 行別検証結果 給与班の判断 給与情報の確認待ち候補 行別処理結果 E-04 E-11 FR-E-01">
+<h3>
+<a href="../operations/OP-IMPORT-APPLY.html#OP-IMPORT-APPLY" >OP-IMPORT-APPLY 行別に取込を判断</a>
+</h3>
+<p>正常行を先に取り込み、問題行は給与班が注意を見て取込／見送りを決める。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-IMPORT</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-IMPORT-RETURN 確認待ち候補を開く FUT-IMPORT 取込結果の対象をSCR-002の確認待ち候補へ引き継ぐ。 会計課給与班 取込対象候補・行別結果 SCR002-E-001 FUT-IMPORT-001">
+<h3>
+<a href="../operations/OP-IMPORT-RETURN.html#OP-IMPORT-RETURN" >OP-IMPORT-RETURN 確認待ち候補を開く</a>
+</h3>
+<p>取込結果の対象をSCR-002の確認待ち候補へ引き継ぐ。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · FUT-IMPORT</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-E-PENDING 確認待ちで絞り込む SCR-002 左検索に確認待ち絞込みを追加し、右詳細で不足・不整合を表示。確定後修正で戻った候補も含める。 会計課給与班 局担当者 認可範囲の候補・確認状態 SCR002-E-001 FUT-STATE-E">
+<h3>
+<a href="../operations/OP-E-PENDING.html#OP-E-PENDING" >OP-E-PENDING 確認待ちで絞り込む</a>
+</h3>
+<p>左検索に確認待ち絞込みを追加し、右詳細で不足・不整合を表示。確定後修正で戻った候補も含める。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-E-HISTORY 実際の条件変更を登録 SCR-002 実際の条件変更は月途中を含む新しい有効期間履歴として登録。発令は勤務条件へ統合し、所属既定予算を個別予算で上書き可能。 会計課給与班 局担当者 職員基本 旧履歴 日額／時間額単価・所属既定予算 勤務条件・保険・税・固定控除の新履歴 職員×控除年月の住民税 PAYREQ-01 PAYREQ-02 PAYREQ-03 PAYREQ-04">
+<h3>
+<a href="../operations/OP-E-HISTORY.html#OP-E-HISTORY" >OP-E-HISTORY 実際の条件変更を登録</a>
+</h3>
+<p>実際の条件変更は月途中を含む新しい有効期間履歴として登録。発令は勤務条件へ統合し、所属既定予算を個別予算で上書き可能。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-E-CORRECT 誤登録を訂正 SCR-002 原則は局担当が不足・不整合を訂正。給与班も直接訂正可能。誤登録は確定済み履歴も直接訂正でき、前後値を残して再確認へ戻す。 会計課給与班 局担当者 訂正前の元データ 影響する未払い支給回 訂正後元データ・訂正前後履歴 確認待ち状態・影響情報 E-06 E-08 PAYREQ-03 PAYREQ-04 PAYREQ-07">
+<h3>
+<a href="../operations/OP-E-CORRECT.html#OP-E-CORRECT" >OP-E-CORRECT 誤登録を訂正</a>
+</h3>
+<p>原則は局担当が不足・不整合を訂正。給与班も直接訂正可能。誤登録は確定済み履歴も直接訂正でき、前後値を残して再確認へ戻す。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-E-SUBMIT 内容を確認待ちにする SCR-002 勤務条件・保険・税等の内容を給与班の確認待ちにする。局との連絡・調整はアプリ外。 会計課給与班 局担当者 登録・訂正された内容 確認待ち状態 E-07 E-12 PAYREQ-03 PAYREQ-04">
+<h3>
+<a href="../operations/OP-E-SUBMIT.html#OP-E-SUBMIT" >OP-E-SUBMIT 内容を確認待ちにする</a>
+</h3>
+<p>勤務条件・保険・税等の内容を給与班の確認待ちにする。局との連絡・調整はアプリ外。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-E-RETURN 給与情報を差し戻す SCR-002 必要な修正を差戻しとし、原則局担当が直して再提出する。 会計課給与班 確認待ちの内容 差戻し状態・確認履歴（物理項目未決） E-07 E-12 PAYREQ-03 PAYREQ-04">
+<h3>
+<a href="../operations/OP-E-RETURN.html#OP-E-RETURN" >OP-E-RETURN 給与情報を差し戻す</a>
+</h3>
+<p>必要な修正を差戻しとし、原則局担当が直して再提出する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-E-CONFIRM 給与情報を確定・再確定 SCR-002 給与班が対象・内容を確認して確定する。訂正後も同じ確認待ちから再確定し、影響する未払い結果を再計算・再照合へ。 会計課給与班 確認待ちデータ 確認履歴 給与班確定状態・確認記録 E-07 E-08 E-10 PAYREQ-03 PAYREQ-04 PAYREQ-07">
+<h3>
+<a href="../operations/OP-E-CONFIRM.html#OP-E-CONFIRM" >OP-E-CONFIRM 給与情報を確定・再確定</a>
+</h3>
+<p>給与班が対象・内容を確認して確定する。訂正後も同じ確認待ちから再確定し、影響する未払い結果を再計算・再照合へ。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-F-EDIT 通勤届を入力 SCR-002 認定ヘッダーと経路ごとの明細を入力。経路ごとに定期券前払いまたはIC運賃×実通勤日数を選択し混在可能。 局担当者 自局職員・旧認定 通勤届の入力内容 F-01 F-02 PAYREQ-05">
+<h3>
+<a href="../operations/OP-F-EDIT.html#OP-F-EDIT" >OP-F-EDIT 通勤届を入力</a>
+</h3>
+<p>認定ヘッダーと経路ごとの明細を入力。経路ごとに定期券前払いまたはIC運賃×実通勤日数を選択し混在可能。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-F-SUBMIT 通勤届を提出・再提出 SCR-002 内容検証後に提出。差戻しは原則提出者が修正し、同じ通勤タブから再提出する。 局担当者 通勤届・経路・対象職員 提出状態 F-01 F-02 F-03 SCR002-F-001">
+<h3>
+<a href="../operations/OP-F-SUBMIT.html#OP-F-SUBMIT" >OP-F-SUBMIT 通勤届を提出・再提出</a>
+</h3>
+<p>内容検証後に提出。差戻しは原則提出者が修正し、同じ通勤タブから再提出する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-F-RETURN 通勤届を差し戻す SCR-002 給与班が不備を差戻し状態にし、差戻し理由をアプリ外で提出者へ連絡する。 会計課給与班 提出内容 差戻し状態 F-03 FUT-STATE-F">
+<h3>
+<a href="../operations/OP-F-RETURN.html#OP-F-RETURN" >OP-F-RETURN 通勤届を差し戻す</a>
+</h3>
+<p>給与班が不備を差戻し状態にし、差戻し理由をアプリ外で提出者へ連絡する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-F-CERTIFY 通勤手当を認定 SCR-002 給与班が認定し、計算は認定済みヘッダーと経路を直接参照する。 会計課給与班 提出内容・経路・期間 認定情報・認定状態 F-04 PAYREQ-05">
+<h3>
+<a href="../operations/OP-F-CERTIFY.html#OP-F-CERTIFY" >OP-F-CERTIFY 通勤手当を認定</a>
+</h3>
+<p>給与班が認定し、計算は認定済みヘッダーと経路を直接参照する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-F-CHANGE 変更届から新認定へ SCR-002 変更届を新たに提出し給与班が再認定。旧認定を残し、精算・追給・返納と関連付ける。 局担当者 旧認定・変更後経路 新通勤届 新旧認定の関連 F-07 PAYREQ-05">
+<h3>
+<a href="../operations/OP-F-CHANGE.html#OP-F-CHANGE" >OP-F-CHANGE 変更届から新認定へ</a>
+</h3>
+<p>変更届を新たに提出し給与班が再認定。旧認定を残し、精算・追給・返納と関連付ける。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-F-NOPAY 一時不支給期間を確認 SCR-002 病気・欠勤で通勤しない期間は通勤手当を支給しない。認定期間終了と区別する。 会計課給与班 局担当者 認定期間 病気・欠勤と勤務実績 不支給対象期間の記録（方式未決） F-08 FR-F-03">
+<h3>
+<a href="../operations/OP-F-NOPAY.html#OP-F-NOPAY" >OP-F-NOPAY 一時不支給期間を確認</a>
+</h3>
+<p>病気・欠勤で通勤しない期間は通勤手当を支給しない。認定期間終了と区別する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-F-END 認定期間の終了を確定 SCR-002 給与班が認定期間の終了を確定する。 会計課給与班 終了届出・認定期間 認定期間の終了情報 F-08 FUT-STATE-F">
+<h3>
+<a href="../operations/OP-F-END.html#OP-F-END" >OP-F-END 認定期間の終了を確定</a>
+</h3>
+<p>給与班が認定期間の終了を確定する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-F-HTML 認定簿を表示 SCR-002 選択認定GUIDだけを別タブHTMLへ渡し、HTML側で親職員と認定を再取得。 会計課給与班 局担当者 選択認定 親職員・閲覧範囲 SCR002-COM-003 FR-F-04">
+<h3>
+<a href="../operations/OP-F-HTML.html#OP-F-HTML" >OP-F-HTML 認定簿を表示</a>
+</h3>
+<p>選択認定GUIDだけを別タブHTMLへ渡し、HTML側で親職員と認定を再取得。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-F-PDF ブラウザー印刷でPDF保存 EXT-COMMUTE A4横2ページを1つのPDFとして保存する。枠超過なら印刷停止・警告。 会計課給与班 局担当者 現在の認定簿HTML 利用者が保存するPDFファイル SCR002-COM-003 F-05">
+<h3>
+<a href="../operations/OP-F-PDF.html#OP-F-PDF" >OP-F-PDF ブラウザー印刷でPDF保存</a>
+</h3>
+<p>A4横2ページを1つのPDFとして保存する。枠超過なら印刷停止・警告。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · EXT-COMMUTE</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-F-RETURN-HTML 元の通勤タブへ戻る EXT-COMMUTE 元のSCR-002通勤タブへ戻る。 会計課給与班 局担当者 元画面コンテキスト SCR002-COM-003">
+<h3>
+<a href="../operations/OP-F-RETURN-HTML.html#OP-F-RETURN-HTML" >OP-F-RETURN-HTML 元の通勤タブへ戻る</a>
+</h3>
+<p>元のSCR-002通勤タブへ戻る。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · EXT-COMMUTE</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-G-REGISTER 外部決定結果を登録 SCR-002 紙・電子で受領した外部機関の決定結果を担当局または給与班が手入力する。住民税は税固定控除、共済・保険・ハローワークは社会保険。 会計課給与班 局担当者 外部機関の決定結果 対象職員 決定結果と確認待ち状態 G-01 G-02 G-04 G-06 SCR002-G-001 SCR002-G-002">
+<h3>
+<a href="../operations/OP-G-REGISTER.html#OP-G-REGISTER" >OP-G-REGISTER 外部決定結果を登録</a>
+</h3>
+<p>紙・電子で受領した外部機関の決定結果を担当局または給与班が手入力する。住民税は税固定控除、共済・保険・ハローワークは社会保険。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-G-CONFIRM 外部決定結果を確認確定 SCR-002 給与班が決定内容・対象職員を確認して確定する。給与へ影響する内容はそれまで使わない。 会計課給与班 外部決定の登録内容 確認確定状態 G-05 SCR002-G-004 PAYREQ-04">
+<h3>
+<a href="../operations/OP-G-CONFIRM.html#OP-G-CONFIRM" >OP-G-CONFIRM 外部決定結果を確認確定</a>
+</h3>
+<p>給与班が決定内容・対象職員を確認して確定する。給与へ影響する内容はそれまで使わない。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-PAY-PERIOD 支給回・対象期間を設定 FUT-JLINK 支給対象期間と支給日を別管理し、通常既定と例外変更を扱う。月末締め翌月支給。 会計課給与班 職員・支給対象期間・支給日 支給回の期間・支給日（論理記録） PAYREQ-07 PERIOD-01 PERIOD-02">
+<h3>
+<a href="../operations/OP-PAY-PERIOD.html#OP-PAY-PERIOD" >OP-PAY-PERIOD 支給回・対象期間を設定</a>
+</h3>
+<p>支給対象期間と支給日を別管理し、通常既定と例外変更を扱う。月末締め翌月支給。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-PAY-CALCULATE 給与を計算・再計算 FUT-JLINK 給与班が計算版を実行。複数所属の実績は職員ごとに集計し、結果と使用条件・単価・率・入力値を版別に保持する。 会計課給与班 確認済み勤務条件・勤務実績 認定済み通勤 登録済み保険・税・控除 日額／時間額単価・期末勤勉別率・調整 計算版・職員別結果・使用根拠 PAYREQ-07 PAYREQ-08 PAYREQ-10">
+<h3>
+<a href="../operations/OP-PAY-CALCULATE.html#OP-PAY-CALCULATE" >OP-PAY-CALCULATE 給与を計算・再計算</a>
+</h3>
+<p>給与班が計算版を実行。複数所属の実績は職員ごとに集計し、結果と使用条件・単価・率・入力値を版別に保持する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-PAY-ADJUST 例外調整を記録 FUT-JLINK 例外・追給・返納は計算額と別の調整記録に対象・項目・額・理由・処理者を保存する。 会計課給与班 元計算結果・対象支給回 調整記録・理由・処理者 PAYREQ-07">
+<h3>
+<a href="../operations/OP-PAY-ADJUST.html#OP-PAY-ADJUST" >OP-PAY-ADJUST 例外調整を記録</a>
+</h3>
+<p>例外・追給・返納は計算額と別の調整記録に対象・項目・額・理由・処理者を保存する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-PAY-INDIVIDUAL 個別・所属一括確定の境界 FUT-JLINK 職員×支給回の個別確定と所属単位一括確定の業務要件は維持する。I12の支給回全体最新ゼロ判定との操作分担は詳細未入力。 会計課給与班 職員別・所属別状態 支給回全体の最新照合 PAYREQ-07 JLINK-UI-11 I12">
+<h3>
+<a href="../operations/OP-PAY-INDIVIDUAL.html#OP-PAY-INDIVIDUAL" >OP-PAY-INDIVIDUAL 個別・所属一括確定の境界</a>
+</h3>
+<p>職員×支給回の個別確定と所属単位一括確定の業務要件は維持する。I12の支給回全体最新ゼロ判定との操作分担は詳細未入力。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">未決</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-PAY-PAID 支払い済みを記録 FUT-JLINK 給与班確定とは別に支払い済みを記録する。アプリが銀行送金など実際の支払いを実行する要件はない。 会計課給与班 確定結果 支払実績 支払い済み状態・支払実績 PAYREQ-08 PAYREQ-10">
+<h3>
+<a href="../operations/OP-PAY-PAID.html#OP-PAY-PAID" >OP-PAY-PAID 支払い済みを記録</a>
+</h3>
+<p>給与班確定とは別に支払い済みを記録する。アプリが銀行送金など実際の支払いを実行する要件はない。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-SELECT 支給回・タブを選択 FUT-JLINK 選択支給回の支給日・対象期間・状態を共通表示し3タブを切替える。 会計課給与班 支給回・最新結果・取込照合状態 JLINK-UI-01 JLINK-UI-02 I3 I5">
+<h3>
+<a href="../operations/OP-JLINK-SELECT.html#OP-JLINK-SELECT" >OP-JLINK-SELECT 支給回・タブを選択</a>
+</h3>
+<p>選択支給回の支給日・対象期間・状態を共通表示し3タブを切替える。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-TARGET 出力対象を選択 FUT-JLINK 初回は支給回の全職員を既定対象にし、職員で絞れる。差分再出力では対応明細のみを初期選択し変更可能。 会計課給与班 最新計算結果の出力明細 差分と出力明細の対応 画面内の出力対象選択 JLINK-UI-03 I1 I9">
+<h3>
+<a href="../operations/OP-JLINK-TARGET.html#OP-JLINK-TARGET" >OP-JLINK-TARGET 出力対象を選択</a>
+</h3>
+<p>初回は支給回の全職員を既定対象にし、職員で絞れる。差分再出力では対応明細のみを初期選択し変更可能。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-AM A/Mを指定 FUT-JLINK 職員がA/Mを一括指定し、明細ごとに変更する。初回A・不一致修正Mは人が判断する。 会計課給与班 出力対象明細 利用者指定 明細別指定A/M JLINK-UI-04 IF-05 I2">
+<h3>
+<a href="../operations/OP-JLINK-AM.html#OP-JLINK-AM" >OP-JLINK-AM A/Mを指定</a>
+</h3>
+<p>職員がA/Mを一括指定し、明細ごとに変更する。初回A・不一致修正Mは人が判断する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-EXPORT 確認してExcel出力 FUT-JLINK その時点の最新版計算結果からxlsxを生成し、計算版・対象明細・指定A/Mを処理履歴に結ぶ。職員が外部人給へ渡す。 会計課給与班 最新版計算結果 指定対象・A/M 既存237列見出し 出力xlsx 出力履歴 JLINK-UI-05 I4 IF-01 IF-02 IF-03 IF-04 IF-06 IF-07 IF-08">
+<h3>
+<a href="../operations/OP-JLINK-EXPORT.html#OP-JLINK-EXPORT" >OP-JLINK-EXPORT 確認してExcel出力</a>
+</h3>
+<p>その時点の最新版計算結果からxlsxを生成し、計算版・対象明細・指定A/Mを処理履歴に結ぶ。職員が外部人給へ渡す。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JINKYU-PROCESS 人給取込・給与簿出力 EXT-JINKYU xlsxを人給へ取り込み必要な人給処理を行い、人給給与簿CSVを出力してアプリへ戻す。 会計課給与班 計算結果xlsx 人給側データ 外部人給データ（実行は別システム） 給与簿CSV IF-01 IF-09 I10 PAYREQ-08">
+<h3>
+<a href="../operations/OP-JINKYU-PROCESS.html#OP-JINKYU-PROCESS" >OP-JINKYU-PROCESS 人給取込・給与簿出力</a>
+</h3>
+<p>xlsxを人給へ取り込み必要な人給処理を行い、人給給与簿CSVを出力してアプリへ戻す。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · EXT-JINKYU</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-IMPORT 給与簿CSVを取り込む FUT-JLINK 1～5行を固定領域、6行目以降を明細とし、可変位置の【合計情報】を境界に明細を取り込む。合計情報のチェック・保存は不要。 会計課給与班 人給給与簿CSV 給与簿取込回・読取り専用明細・原値 JLINK-UI-06 IF-09 IF-10 I5 I10">
+<h3>
+<a href="../operations/OP-JLINK-IMPORT.html#OP-JLINK-IMPORT" >OP-JLINK-IMPORT 給与簿CSVを取り込む</a>
+</h3>
+<p>1～5行を固定領域、6行目以降を明細とし、可変位置の【合計情報】を境界に明細を取り込む。合計情報のチェック・保存は不要。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-RECONCILE 最新版と照合 FUT-JLINK 成功取込給与簿と支給回の最新版計算結果を職員・支給回の項目・合計・欠落・余分・重複まで照合。日時・実行者・件数・双方額・差額を処理回別に保存。 会計課給与班 選択支給回の最新版計算結果 成功した給与簿取込回 照合処理・不一致明細・最新結果識別 JLINK-UI-06 JLINK-UI-07 I5 I7 PAYREQ-08">
+<h3>
+<a href="../operations/OP-JLINK-RECONCILE.html#OP-JLINK-RECONCILE" >OP-JLINK-RECONCILE 最新版と照合</a>
+</h3>
+<p>成功取込給与簿と支給回の最新版計算結果を職員・支給回の項目・合計・欠落・余分・重複まで照合。日時・実行者・件数・双方額・差額を処理回別に保存。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-FILTER 差分・全件表示を切替 FUT-JLINK 初期は差分のみ。全件表示へ切替え可能。6列：職員・対象期間・項目・アプリ値・給与簿値・差額。 会計課給与班 照合結果 画面表示条件 JLINK-UI-08 I6 I11">
+<h3>
+<a href="../operations/OP-JLINK-FILTER.html#OP-JLINK-FILTER" >OP-JLINK-FILTER 差分・全件表示を切替</a>
+</h3>
+<p>初期は差分のみ。全件表示へ切替え可能。6列：職員・対象期間・項目・アプリ値・給与簿値・差額。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-CORRECT 差分原因の入力画面へ FUT-JLINK 勤務条件・通勤・控除ならSCR-002、勤怠ならSCR-003へ。元データ訂正→再確認／再提出→再計算を経て戻る。人給原因は外部人給で訂正。 会計課給与班 差分・対象職員・支給回 JLINK-UI-09 IF-10 PAYREQ-07">
+<h3>
+<a href="../operations/OP-JLINK-CORRECT.html#OP-JLINK-CORRECT" >OP-JLINK-CORRECT 差分原因の入力画面へ</a>
+</h3>
+<p>勤務条件・通勤・控除ならSCR-002、勤怠ならSCR-003へ。元データ訂正→再確認／再提出→再計算を経て戻る。人給原因は外部人給で訂正。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-REEXPORT 差分対応明細を再出力 FUT-JLINK 差分に対応する出力明細のみを初期選択し、利用者が対象・A/Mを変更して、出力前確認からExcelを再生成する。 会計課給与班 差分と出力明細の対応 最新版結果 出力対象・指定A/M・再出力履歴 JLINK-UI-03 I9 I2 I4">
+<h3>
+<a href="../operations/OP-JLINK-REEXPORT.html#OP-JLINK-REEXPORT" >OP-JLINK-REEXPORT 差分対応明細を再出力</a>
+</h3>
+<p>差分に対応する出力明細のみを初期選択し、利用者が対象・A/Mを変更して、出力前確認からExcelを再生成する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-ERROR 人給エラー行を確認 FUT-JLINK 人給のエラー対象行をアプリで分かるようにする。 会計課給与班 人給エラー情報（取得方式未入力） JLINK-UI-10 IF-11 I8">
+<h3>
+<a href="../operations/OP-JLINK-ERROR.html#OP-JLINK-ERROR" >OP-JLINK-ERROR 人給エラー行を確認</a>
+</h3>
+<p>人給のエラー対象行をアプリで分かるようにする。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-CONFIRM 給与班が支給回を確定 FUT-JLINK 給与班が確定ボタンで確定する。確認ダイアログは出さない。ゼロだけで自動確定しない。 会計課給与班 支給回全体の最新計算識別・照合 必要情報の確定状態 給与班確定状態・履歴 JLINK-UI-11 I12 PAYREQ-07 PAYREQ-08">
+<h3>
+<a href="../operations/OP-JLINK-CONFIRM.html#OP-JLINK-CONFIRM" >OP-JLINK-CONFIRM 給与班が支給回を確定</a>
+</h3>
+<p>給与班が確定ボタンで確定する。確認ダイアログは出さない。ゼロだけで自動確定しない。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-HISTORY 処理回の履歴を確認 FUT-JLINK 計算版・出力・取込回・照合の履歴と不一致明細を参照する。 会計課給与班 各処理回の日時・実行者・件数・状態 双方額・差額 最終結果・最終根拠・給与簿・支払実績 PAYREQ-08 PAYREQ-10 IF-12">
+<h3>
+<a href="../operations/OP-JLINK-HISTORY.html#OP-JLINK-HISTORY" >OP-JLINK-HISTORY 処理回の履歴を確認</a>
+</h3>
+<p>計算版・出力・取込回・照合の履歴と不一致明細を参照する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-HOME ホームへ戻る FUT-JLINK ホームへ戻る。未実行出力対象やA/Mの保存・破棄方法は詳細未決。 会計課給与班 支給回・画面選択 JLINK-UI-01 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-JLINK-HOME.html#OP-JLINK-HOME" >OP-JLINK-HOME ホームへ戻る</a>
+</h3>
+<p>ホームへ戻る。未実行出力対象やA/Mの保存・破棄方法は詳細未決。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-RETRO-CALCULATE 過去月との差額を計算 SCR-007 既確定・支払済み結果を保持し、改定ルールまたは訂正後の再計算との差額を月別・項目別に作る。 会計課給与班 過去の確定結果 訂正後条件・改定ルール・最終根拠 月別差額内訳・確認待ち結果 PAY-03 FR-PAY-01 PAYREQ-08">
+<h3>
+<a href="../operations/OP-RETRO-CALCULATE.html#OP-RETRO-CALCULATE" >OP-RETRO-CALCULATE 過去月との差額を計算</a>
+</h3>
+<p>既確定・支払済み結果を保持し、改定ルールまたは訂正後の再計算との差額を月別・項目別に作る。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-007</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-RETRO-CONFIRM 差額内訳を確認・確定 SCR-007 対象職員の計算結果を一覧選択し、月別・項目別の旧結果／訂正後／差額を確認して給与班が確定する。 会計課給与班 差額内訳・元支払 差額確定状態・確認履歴 PAY-04 SCR007-DIFF-001 FUT-STATE-PAY">
+<h3>
+<a href="../operations/OP-RETRO-CONFIRM.html#OP-RETRO-CONFIRM" >OP-RETRO-CONFIRM 差額内訳を確認・確定</a>
+</h3>
+<p>対象職員の計算結果を一覧選択し、月別・項目別の旧結果／訂正後／差額を確認して給与班が確定する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-007</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-RETRO-EXPORT 追給を人給出力へ渡す SCR-007 複数過去月追給を人給の追給行へ集約し、アプリ内に月別差額と出力行の対応を保持する。 会計課給与班 確定済み月別差額 集約追給と月別内訳の対応 PAYREQ-08 PERIOD-04 PERIOD-05">
+<h3>
+<a href="../operations/OP-RETRO-EXPORT.html#OP-RETRO-EXPORT" >OP-RETRO-EXPORT 追給を人給出力へ渡す</a>
+</h3>
+<p>複数過去月追給を人給の追給行へ集約し、アプリ内に月別差額と出力行の対応を保持する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-007</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-REPAY-METHOD 返納方法を決定 SCR-007 給与班が給与相殺・納入告知書を選ぶ。分割回収と両方法併用を認め、元支払と返納案件を関連付ける。 会計課給与班 確定差額・元支払 返納案件・方法・額・状態 PAY-05 PAYREQ-08">
+<h3>
+<a href="../operations/OP-REPAY-METHOD.html#OP-REPAY-METHOD" >OP-REPAY-METHOD 返納方法を決定</a>
+</h3>
+<p>給与班が給与相殺・納入告知書を選ぶ。分割回収と両方法併用を認め、元支払と返納案件を関連付ける。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · SCR-007</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-REPAY-RECORD 回収実績と残額を記録 SCR-007 案件に複数の回収実績を結び、回収済額と残額を確認する。支払済み給与を訂正しない。 会計課給与班 返納案件 既回収実績 今回回収実績・回収済額・残額 PAYREQ-08 PAY-05">
+<h3>
+<a href="../operations/OP-REPAY-RECORD.html#OP-REPAY-RECORD" >OP-REPAY-RECORD 回収実績と残額を記録</a>
+</h3>
+<p>案件に複数の回収実績を結び、回収済額と残額を確認する。支払済み給与を訂正しない。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · SCR-007</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-CLEAR 検索条件をクリア SCR-002 レビュー案として検索入力・条件を初期状態へ戻す。再検索・選択解除のタイミングは未確定。 会計課給与班 局担当者 画面内の検索入力・確定条件 画面内の検索条件 SCR002-LT-002 SCR002-UI-004">
+<h3>
+<a href="../operations/OP-002-CLEAR.html#OP-002-CLEAR" >OP-002-CLEAR 検索条件をクリア</a>
+</h3>
+<p>レビュー案として検索入力・条件を初期状態へ戻す。再検索・選択解除のタイミングは未確定。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-002-FONT 文字サイズを切替 SCR-002 ヘッダー直下の操作領域で文字サイズを切替える。 会計課給与班 局担当者 文字サイズ表示状態 画面内の文字サイズ状態 SCR002-UI-003">
+<h3>
+<a href="../operations/OP-002-FONT.html#OP-002-FONT" >OP-002-FONT 文字サイズを切替</a>
+</h3>
+<p>ヘッダー直下の操作領域で文字サイズを切替える。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>会計課給与班 / 局担当者 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-IMPORT-HOME ホームへ戻る FUT-IMPORT E一括取込画面からホームへ戻る。実行済み行の取込を巻き戻さない。 会計課給与班 取込結果・未処理行の選択 FUT-IMPORT-001 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-IMPORT-HOME.html#OP-IMPORT-HOME" >OP-IMPORT-HOME ホームへ戻る</a>
+</h3>
+<p>E一括取込画面からホームへ戻る。実行済み行の取込を巻き戻さない。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · FUT-IMPORT</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-001-DIFF 遡及差額を開く SCR-001 独立した遡及差額画面を開くレビュー用入口。 会計課給与班 ログイン主体・利用範囲 SCR007-DIFF-001">
+<h3>
+<a href="../operations/OP-001-DIFF.html#OP-001-DIFF" >OP-001-DIFF 遡及差額を開く</a>
+</h3>
+<p>独立した遡及差額画面を開くレビュー用入口。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · SCR-001</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-007-HOME ホームへ戻る SCR-007 レビュー用のホームへの復路。差額確定・回収実績を書き換えない。 会計課給与班 選択差額・回収入力状態 SCR007-DIFF-001 COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-007-HOME.html#OP-007-HOME" >OP-007-HOME ホームへ戻る</a>
+</h3>
+<p>レビュー用のホームへの復路。差額確定・回収実績を書き換えない。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>会計課給与班 · SCR-007</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-CORRECT-ATT 勤怠の差分訂正へ FUT-JLINK 差分原因が勤怠なら勤務時間報告へ進む。報告済みは給与班が差戻してから訂正・再提出する。 会計課給与班 差分・職員・支給回・勤務月 JLINK-UI-09 PAYREQ-06 PAYREQ-07">
+<h3>
+<a href="../operations/OP-JLINK-CORRECT-ATT.html#OP-JLINK-CORRECT-ATT" >OP-JLINK-CORRECT-ATT 勤怠の差分訂正へ</a>
+</h3>
+<p>差分原因が勤怠なら勤務時間報告へ進む。報告済みは給与班が差戻してから訂正・再提出する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · FUT-JLINK</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-RETURN 人給連携へ戻る SCR-002 訂正経路から支給回・職員を保持して人給連携へ戻る。更新された元データは再確認・再計算・再照合が必要。 会計課給与班 戻り先の支給回・職員 保存・確認状態 JLINK-UI-09">
+<h3>
+<a href="../operations/OP-JLINK-RETURN.html#OP-JLINK-RETURN" >OP-JLINK-RETURN 人給連携へ戻る</a>
+</h3>
+<p>訂正経路から支給回・職員を保持して人給連携へ戻る。更新された元データは再確認・再計算・再照合が必要。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-002</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-JLINK-RETURN-ATT 人給連携へ戻る SCR-003 勤怠訂正経路から支給回・職員を保持して戻る。保存・再提出・再計算が必要な状態を見落とさない。 会計課給与班 戻り先の支給回・職員 報告の状態 JLINK-UI-09 PAYREQ-06">
+<h3>
+<a href="../operations/OP-JLINK-RETURN-ATT.html#OP-JLINK-RETURN-ATT" >OP-JLINK-RETURN-ATT 人給連携へ戻る</a>
+</h3>
+<p>勤怠訂正経路から支給回・職員を保持して戻る。保存・再提出・再計算が必要な状態を見落とさない。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">確定改修要件</span>
+<span>会計課給与班 · SCR-003</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-001-POC PoCデータ一括取込 SCR-001 4主ボタンの下にある現行ボタンから既存scrExcelImportPocへ移動する。 ログイン利用者 ログイン主体 COMMON-NAV-001">
+<h3>
+<a href="../operations/OP-001-POC.html#OP-001-POC" >OP-001-POC PoCデータ一括取込</a>
+</h3>
+<p>4主ボタンの下にある現行ボタンから既存scrExcelImportPocへ移動する。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">現行実装</span>
+<span>ログイン利用者 · SCR-001</span>
+</div>
+</li>
+<li data-search-item data-kind="operation" data-search-text="OP-POC-HOME ホームへ戻る CUR-IMPORT-POC レビュー画面からホームへ戻る境界リンク。現行PoCの実際の復路部品は未照合。 ログイン利用者 画面コンテキスト COMMON-CONTEXT-001">
+<h3>
+<a href="../operations/OP-POC-HOME.html#OP-POC-HOME" >OP-POC-HOME ホームへ戻る</a>
+</h3>
+<p>レビュー画面からホームへ戻る境界リンク。現行PoCの実際の復路部品は未照合。</p>
+<div class="meta-line">
+<span class="tag ">操作</span>
+<span class="tag ">提案</span>
+<span>ログイン利用者 · CUR-IMPORT-POC</span>
+</div>
+</li>
+</ul>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>SCR002-LT-007 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="index.html" aria-current="page">要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >要件ID・操作</a>
+</span>
+<span aria-current="page">SCR002-LT-007</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 要件ID一覧へ戻る</a>
+<div>
+<span class="eyebrow">REQUIREMENT / SCR002-LT-007</span>
+<h1 id="requirement-SCR002-LT-007">SCR002-LT-007</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>出典箇所を記載</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>正本の該当記述を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>既存区分・出典時点限定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>正本に書かれている内容</h2>
+<p class="meta">出典の要件行・見出し・該当箇所をそのまま示しています。複数の記述がある場合は、文書と時点を確認してください。</p>
+<div class="source-row">
+<p>SCR002-LT-007 ｜ 0件・切替 ｜ 検索0件、職員切替、履歴0件では以前の職員・履歴・認定ID・給与値を残さない。職員番号は12桁文字列キーとして扱う</p>
+<p class="source">
+<a href="../sources/docs--requirements--screen-requirements.html?context=req-SCR002-LT-007#L312" >screen-requirements.md · 312行目</a> / 正本の該当行</p>
+</div>
+<div class="source-row">
+<p>SCR002-LT-007 ｜ B構・B全・B機 ｜ D10.1・10.6・10.8 ｜ 計画 LT-HIST-01・LT-DATA-03 ｜ 12桁文字列キーと0件時の旧データ消去を現行ケースで確認。 ｜ 一部確認：[P26] 検索0件で詳細消去。12桁キー・履歴0件未検証。 ｜ 一部確認：[V27] V27-03。所有者の1/0件。専用利用者FAIL、取得式・失敗時未照合。</p>
+<p class="source">
+<a href="../sources/docs--requirements--traceability-matrix.html?context=req-SCR002-LT-007#L63" >traceability-matrix.md · 63行目</a> / 正本の該当行</p>
+</div>
+</section>
+<p class="meta">関連操作・配置の区分: 現行実装。この区分を上記の要件判断へ転記していません。</p>
+<section class="panel" >
+<h2>この要件が関係する操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-002-SEARCH · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-SEARCH.html?context=req-SCR002-LT-007#OP-002-SEARCH" >職員を検索</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>入力条件を確定し、認可範囲の職員を取得する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>関連する章・業務・画面</h2>
+<h3>標準の章・節</h3>
+<div class="chips">
+<a href="../sections/1.8.1.html#section-1.8.1" >1.8.1</a>
+<a href="../sections/3.5.2.html#section-3.5.2" >3.5.2</a>
+</div>
+<h3 style="margin-top:18px">業務</h3>
+<div class="chips">
+</div>
+<h3 style="margin-top:18px">画面</h3>
+<div class="chips">
+</div>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

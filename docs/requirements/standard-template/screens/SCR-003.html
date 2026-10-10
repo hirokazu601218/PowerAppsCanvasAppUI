@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>SCR-003 勤務時間報告画面 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="index.html" aria-current="page">画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >画面一覧</a>
+</span>
+<span aria-current="page">SCR-003 勤務時間報告画面</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 画面一覧へ戻る</a>
+<div>
+<span class="eyebrow">SCREEN / SCR-003</span>
+<h1 id="SCR-003">勤務時間報告画面</h1>
+<p class="lead">所属×勤務月の報告。現行は一覧内編集・全置換取込。確定改修要件は追加更新方式。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>既存記録</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>既存区分・出典時点限定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>画面で何をするか</h2>
+<dl class="contract">
+<dt>利用する人</dt>
+<dd>会計課給与班 / 局担当者</dd>
+<dt>どこから開く</dt>
+<dd>
+<a href="../operations/OP-001-ATTENDANCE.html?context=screen-SCR-003#OP-001-ATTENDANCE" >SCR-001: 勤務時間報告</a>
+<br>
+<a href="../operations/OP-JLINK-CORRECT-ATT.html?context=screen-SCR-003#OP-JLINK-CORRECT-ATT" >FUT-JLINK: 勤怠の差分訂正へ</a>
+</dd>
+<dt>表示する領域</dt>
+<dd>各操作に対応する一覧・内容。具体的な領域は画面例と操作定義で確認。</dd>
+<dt>入力・確認</dt>
+<dd>勤務実績を一覧編集 / 勤務実績を保存 / 現行Excel全置換取込 / 勤務実績を追加更新取込 / 取込失敗を復旧・再実行 / 職員行を追加・削除 / 勤務時間を報告 / 報告を差し戻す</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>画面構成を確認する</h2>
+<div class="screen-layout">
+<div class="mock-pane">
+<strong>SCR-003</strong>
+<p>会計課給与班 / 局担当者</p>
+<p>対象を選び、内容を確認</p>
+</div>
+<div class="mock-pane">
+<div class="mock-tabs">
+<span>業務の内容</span>
+</div>
+<strong>勤務時間報告画面</strong>
+<p>所属×勤務月の報告。現行は一覧内編集・全置換取込。確定改修要件は追加更新方式。</p>
+<p class="meta">構造を説明する略図です。入力項目・配置の確定度は各操作に従います。</p>
+</div>
+</div>
+<div class="actions">
+<a href="../../../review/pay-html-001/wireframes/scr-003.html?context=screen-SCR-003" class="button primary">詳しい画面イメージを開く</a>
+<a href="../../../review/pay-html-001/operations/scr-003.html?context=screen-SCR-003" class="button">画面内の操作をまとめて読む</a>
+</div>
+<p class="meta">画面イメージは架空データのHTMLモックです。Power Appsでの実装・アクセシビリティ・保存・認可を検証済みとは扱いません。</p>
+</section>
+<section class="panel" >
+<h2>この画面の操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-003-HOME · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-HOME.html?context=screen-SCR-003#OP-003-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-SELECT · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-SELECT.html?context=screen-SCR-003#OP-003-SELECT" >局・月・報告を選択</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>有効対象月と報告を選び、有効バッチ明細をNo順・課室で表示する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-EDIT · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-EDIT.html?context=screen-SCR-003#OP-003-EDIT" >勤務実績を一覧編集</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>同画面内に全明細のドラフトを作り日数・時間・備考を編集する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-SAVE · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-SAVE.html?context=screen-SCR-003#OP-003-SAVE" >勤務実績を保存</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>全明細・reportId・expectedVersionを既存保存フローへ送り、成功後にヘッダー・有効明細を再取得。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-READMODE · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-READMODE.html?context=screen-SCR-003#OP-003-READMODE" >勤怠編集を取り消す</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>未保存変更があれば破棄確認。続行で破棄、取消で全ドラフトを保持。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-IMPORT-CURRENT · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-IMPORT-CURRENT.html?context=screen-SCR-003#OP-003-IMPORT-CURRENT" >現行Excel全置換取込</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>現行は新GUIDバッチへ全行保存し、件数・版・入力中状態確認後に有効バッチを全置換する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-IMPORT · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-IMPORT.html?context=screen-SCR-003#OP-003-IMPORT" >勤務実績を追加更新取込</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>掲載行を追加／更新。手修正済みでもファイル優先。空欄は消去し0は0。非掲載の既存職員行を残す。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-RECOVER · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-RECOVER.html?context=screen-SCR-003#OP-003-RECOVER" >取込失敗を復旧・再実行</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>失敗情報と対象報告を確認し、不完全結果を利用せず復旧・再実行する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-ROWEDIT · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-ROWEDIT.html?context=screen-SCR-003#OP-003-ROWEDIT" >職員行を追加・削除</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>対象報告内で職員行を追加／削除できるようにする。保存時の所属・対象職員・状態を検証する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-REPORT · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-REPORT.html?context=screen-SCR-003#OP-003-REPORT" >勤務時間を報告</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>現行は確認モーダルから実行。報告後は編集・取込を停止する。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-RETURN · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-RETURN.html?context=screen-SCR-003#OP-003-RETURN" >報告を差し戻す</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>給与班が差戻し後、局担当が訂正・再提出。影響する未払い結果は再計算・再照合。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-RETURN-ATT · SCR-003</span>
+<h3>
+<a href="../operations/OP-JLINK-RETURN-ATT.html?context=screen-SCR-003#OP-JLINK-RETURN-ATT" >人給連携へ戻る</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>勤怠訂正経路から支給回・職員を保持して戻る。保存・再提出・再計算が必要な状態を見落とさない。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>境界・未決・注記</h2>
+<ul>
+<li>初期読取り専用。現行は入力中の報告を編集し、成功後に再取得。</li>
+<li>報告済みロックと差戻しを維持。実効業務認可、同時操作・途中障害は別検証。</li>
+<li>現行全置換と将来の未掲載行保持を同時に実装済みとしない。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>この画面を使う業務</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">WF-10</span>
+<h3>
+<a href="../workflows/WF-10.html?context=screen-SCR-003#WF-10" >勤務時間報告・取込とロック</a>
+</h3>
+<p>所属×勤務月の入力中報告 → 報告済み、または不完全隔離から復旧</p>
+<div class="meta">局担当者・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-12</span>
+<h3>
+<a href="../workflows/WF-12.html?context=screen-SCR-003#WF-12" >給与計算から確定・支払記録</a>
+</h3>
+<p>確認済み元データと支給回 → 最新差分ゼロ確定・支払い済み記録</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-13</span>
+<h3>
+<a href="../workflows/WF-13.html?context=screen-SCR-003#WF-13" >人給出力・照合・差分再出力</a>
+</h3>
+<p>人給連携の支給回選択 → 差分訂正ループまたは支給回確定</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>要件と出典</h2>
+<div class="chips">
+<a href="../sections/2.2.1.html#section-2.2.1" >2.2.1</a>
+<a href="../sections/2.2.2.html#section-2.2.2" >2.2.2</a>
+<a href="../sections/2.2.3.html#section-2.2.3" >2.2.3</a>
+</div>
+<h3 style="margin-top:18px">関連要件</h3>
+<div class="chips">
+<a href="../requirements/PAYREQ-06.html?context=screen-SCR-003#requirement-PAYREQ-06" >PAYREQ-06</a>
+<a href="../requirements/COMMON-SCREEN-001.html?context=screen-SCR-003#requirement-COMMON-SCREEN-001" >COMMON-SCREEN-001</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--design--detailed--detailed-design.html?context=screen-SCR-003" data-keep-context>detailed-design.md</a>
+<div class="meta">docs/design/detailed/detailed-design.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=screen-SCR-003" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=screen-SCR-003" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

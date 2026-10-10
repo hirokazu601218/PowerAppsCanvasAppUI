@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>2.4.8 モニタリング対象データ一覧 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="2.4.html#section-2.4" >2.4 データに関する事項</a>
+</span>
+<span aria-current="page">2.4.8 モニタリング対象データ一覧</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 2.4.8</span>
+<h1 id="section-2.4.8">2.4.8 モニタリング対象データ一覧</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>一部設定・要件未設定あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>個別出典を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>既存の確定事項から補足した範囲</h2>
+<p>確定している業務モニタリングの情報に限定。インフラ監視方式は未設定として明示する。</p>
+<ul>
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=section-2.4.8#L113" >R17 · 113行目</a>
+</li>
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=section-2.4.8#L503" >JLINK-UI-02 · 503行目</a>
+</li>
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=section-2.4.8#L509" >JLINK-UI-08 · 509行目</a>
+</li>
+<li>
+<a href="../sources/docs--design--detailed--payroll-jinkyu-interface.html?context=section-2.4.8#L109" >I6 / I10 / I11 · 109行目</a>
+</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>現在の要件</h2>
+<p class="lead">業務上の照合履歴として、各処理回の日時・実行者・件数・状態、不一致職員・項目・双方金額・差額を保存する。支給回の対象期間・支給日・状態と、差分一覧の職員・対象期間・項目・アプリ値・給与簿値・差額を表示し、差分のみ／全件を切り替えられる。</p>
+</section>
+<section class="panel" >
+<h2>要件未設定・判断が必要な内容</h2>
+<p class="notice">システム運用監視の対象・取得方式・頻度・閾値・責任者、業務KPIとしての分析軸・評価条件。照合結果から人給の処理ログや取込成功を創作しない。</p>
+<p class="meta">具体的な条件・対象範囲・判定基準を未設定のまま表示しています。レイアウト案やテンプレートの例から補いません。</p>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-24">
+<h4>表 24　モニタリング対象データ一覧（想定）</h4>
+<p>No. / データ名 / 分析軸となる項目 / 目的 ・  /  /  / </p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>モニタリング対象データを明示していないと、運用フェーズでプロジェクトが目標どおりに進んでいるかを把握できなくなるため、取得すべきデータについては可能な限り明示するようにしてください。
+なお、情報システムの背景や特性によって取得すべきデータは大きく変わります。ここに記載したものはあくまで一例です。</li>
+</ul>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+<section class="panel" >
+<h2>根拠資料と、この節への戻り</h2>
+<p class="meta">資料は読みやすい別ページで開きます。冒頭の「元の要件へ戻る」でこの節へ戻れます。JavaScriptなしでも資料側の参照元一覧から戻れます。</p>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--open-decisions.html?context=section-2.4.8" data-keep-context>open-decisions.md</a>
+<div class="meta">docs/requirements/open-decisions.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=section-2.4.8" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=section-2.4.8" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--design--detailed--payroll-jinkyu-interface.html?context=section-2.4.8" data-keep-context>payroll-jinkyu-interface.md</a>
+<div class="meta">docs/design/detailed/payroll-jinkyu-interface.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

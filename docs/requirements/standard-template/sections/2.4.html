@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>2.4 データに関する事項 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="2.html#section-2" >2 機能要件定義</a>
+</span>
+<span aria-current="page">2.4 データに関する事項</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 2.4</span>
+<h1 id="section-2.4">2.4 データに関する事項</h1>
+<section class="panel" >
+<h2>この章・節に含まれる項目</h2>
+<ul class="list">
+<li>
+<h3>
+<a href="2.4.1.html#section-2.4.1" >2.4.1 データモデル</a>
+</h3>
+<p>GUID主キーLookupと職員番号を保持し、職員一人一行、給与に影響する条件は有効期間履歴、必要業務単位でヘッダー／明細を分ける。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+<li>
+<h3>
+<a href="2.4.2.html#section-2.4.2" >2.4.2 データ一覧</a>
+</h3>
+<p>変更後論理モデルの管理単位はデータ設計を参照。現行隔離_STUDIOテーブルと変更後論理モデルを混同しない。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+<li>
+<h3>
+<a href="2.4.3.html#section-2.4.3" >2.4.3 データ定義</a>
+</h3>
+<p>職員番号は半角数字12桁の文字列、先頭ゼロ保持・不足ゼロ埋め。基本情報は最新値、給与条件等は期間履歴。保険資格日と控除期間を分離し、固定控除は職員×項目×期間×額、住民税は職員×控除年月で管理。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+<li>
+<h3>
+<a href="2.4.4.html#section-2.4.4" >2.4.4 CRUDマトリクス</a>
+</h3>
+<p>給与簿はアプリ内読取り専用、支払済み結果は訂正せず、誤りは追給／返納案件で扱う。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+<li>
+<h3>
+<a href="2.4.5.html#section-2.4.5" >2.4.5 コード一覧</a>
+</h3>
+<p>区分マスタは業務管理者が可変候補を管理する。人給出力のA/M区分は職員が判断する。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+<li>
+<h3>
+<a href="2.4.6.html#section-2.4.6" >2.4.6 コード内容定義</a>
+</h3>
+<p>勤務条件等は登録→確認待ち→給与班確定、必要時差戻し。通勤は提出⇄差戻し→認定。計算は計算済み→照合中→差分ゼロ確認→給与班確定→支払い済み。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+<li>
+<h3>
+<a href="2.4.7.html#section-2.4.7" >2.4.7 オープンデータ一覧</a>
+</h3>
+<span class="tag amber">要件未設定</span>
+</li>
+<li>
+<h3>
+<a href="2.4.8.html#section-2.4.8" >2.4.8 モニタリング対象データ一覧</a>
+</h3>
+<p>業務上の照合履歴として、各処理回の日時・実行者・件数・状態、不一致職員・項目・双方金額・差額を保存する。支給回の対象期間・支給日・状態と、差分一覧の職員・対象期間・項目・アプリ値・給与簿値・差額を表示し、差分のみ／全件を切り替えられる。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+</ul>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>既存の情報システムがある場合は、その設計書等に基づいてデータに関する事項を明確にします。要件定義書用に内容を書き換える必要はなく、基本的には設計書の内容を転記する、または別紙や閲覧資料としてください。
+新規システム開発の場合は、データに関する事項の詳細まで決まっていないケースもありますが、情報システムで扱う主要なデータについては、この要件定義書サンプルにあるような内容を極力記載するようにしてください。受託者にとっては、このような情報があることで工数見積の精度が大きく向上しますし、設計工程でも事業者の準備、理解が進んだ状態で始められるというメリットがあります。</li>
+</ul>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

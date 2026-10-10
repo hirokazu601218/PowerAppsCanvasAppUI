@@ -1,0 +1,15 @@
+{
+  "files": [
+    {
+      "name": "DOT-002-HTML-rework-handoff-20261010.zip",
+      "sha256": "54f3dccaa7e92ad4fd760411c7825ab03eaa8712c1092af6991d49ff7bf2c5c0",
+      "bytes": 7015828
+    },
+    {
+      "name": "DOT-002-Work-integration-addendum-20261010.txt",
+      "sha256": "eb143b4d1732c38a274b4f819f895a7b70964c50407a9540319939c21444dae9",
+      "bytes": 6068
+    }
+  ],
+  "priority": "Work integration addendum supersedes duplicate ZIP instructions"
+}

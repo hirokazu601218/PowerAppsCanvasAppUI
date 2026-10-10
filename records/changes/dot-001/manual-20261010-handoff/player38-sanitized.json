@@ -1,0 +1,132 @@
+{
+  "purpose": "Portable sanitized extraction from actual Player and Maker observations; not a full release record",
+  "source_evidence": [
+    {
+      "filename": "v38-player-checks.json",
+      "bytes": 905543,
+      "sha256": "23a4e2fdfeba58d78f56643255ae86ab09e5a19649126ce49c729a90f13ea74c",
+      "raw_file_included": false
+    },
+    {
+      "filename": "v38-final-versions.json",
+      "bytes": 478,
+      "sha256": "1a0c23af341f928f2697e80873ef748bf6f66f4a6890fb62b6629410003bf0f6",
+      "raw_file_included": false
+    }
+  ],
+  "observed_at_utc": "2026-10-10T09:38:36.656Z",
+  "versions_checked_at_utc": "2026-10-10T09:39:23.443Z",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "live_version": 38,
+  "draft39_observed": false,
+  "associated_source_commit": "fba65fdaefcf3b70821d7831ce86a4262ea4a214",
+  "source_identity_limit": "Official published Maker source comparison completed separately: see published38-source-summary.json. Exact publication P and PAC readback H remain absent.",
+  "fingerprint": "summary root child and missing month basis cleared",
+  "keyboard100_targets_reached": [
+    "btnscrPayrollHome",
+    "btnPayrollSearch",
+    "btnPayEarnings",
+    "btnPayDeductions",
+    "btnPayRecalculate"
+  ],
+  "keyboard200_targets_reached": [
+    "btnscrPayrollHome",
+    "btnPayrollSearch",
+    "btnPayEarnings",
+    "btnPayDeductions",
+    "btnPayRecalculate"
+  ],
+  "keyboard_activation": "Enter deductions collapse/reopen PASS",
+  "focus_reveal_caveat": "Recalculate receives focus partly clipped; ordinary horizontal pan fully exposes it retaining focus",
+  "coverage": {
+    "September_mock": {
+      "sample_count": 37,
+      "field_count": 24,
+      "reached_count": 24,
+      "fully_visible_sample_index_by_control": {
+        "lblPayDeductionAmount0": 16,
+        "lblPayDeductionAmount1": 15,
+        "lblPayDeductionAmount2": 13,
+        "lblPayDeductionAmount3": 12,
+        "lblPayDeductionAmount4": 11,
+        "lblPayDeductionAmount5": 25,
+        "lblPayDeductionAmount6": 26,
+        "lblPayDeductionAmount7": 28,
+        "lblPayDeductionBasis0": 16,
+        "lblPayDeductionBasis1": 15,
+        "lblPayDeductionBasis2": 13,
+        "lblPayDeductionBasis3": 12,
+        "lblPayDeductionBasis4": 11,
+        "lblPayDeductionBasis5": 25,
+        "lblPayDeductionBasis6": 26,
+        "lblPayDeductionBasis7": 28,
+        "lblPayDeductionName0": 1,
+        "lblPayDeductionName1": 4,
+        "lblPayDeductionName2": 5,
+        "lblPayDeductionName3": 6,
+        "lblPayDeductionName4": 8,
+        "lblPayDeductionName5": 33,
+        "lblPayDeductionName6": 32,
+        "lblPayDeductionName7": 31
+      },
+      "interpretation": "Each field and text bounds were fully inside the measured viewport at least once across ordinary pan positions, not all fields simultaneously. Intermediate out-of-view samples are retained in the raw source evidence."
+    },
+    "November_registered_zero": {
+      "sample_count": 44,
+      "field_count": 24,
+      "reached_count": 24,
+      "fully_visible_sample_index_by_control": {
+        "lblPayDeductionAmount0": 24,
+        "lblPayDeductionAmount1": 23,
+        "lblPayDeductionAmount2": 22,
+        "lblPayDeductionAmount3": 21,
+        "lblPayDeductionAmount4": 19,
+        "lblPayDeductionAmount5": 17,
+        "lblPayDeductionAmount6": 16,
+        "lblPayDeductionAmount7": 15,
+        "lblPayDeductionBasis0": 0,
+        "lblPayDeductionBasis1": 2,
+        "lblPayDeductionBasis2": 3,
+        "lblPayDeductionBasis3": 4,
+        "lblPayDeductionBasis4": 6,
+        "lblPayDeductionBasis5": 8,
+        "lblPayDeductionBasis6": 10,
+        "lblPayDeductionBasis7": 11,
+        "lblPayDeductionName0": 33,
+        "lblPayDeductionName1": 34,
+        "lblPayDeductionName2": 36,
+        "lblPayDeductionName3": 37,
+        "lblPayDeductionName4": 38,
+        "lblPayDeductionName5": 41,
+        "lblPayDeductionName6": 42,
+        "lblPayDeductionName7": 43
+      },
+      "interpretation": "Each field and text bounds were fully inside the measured viewport at least once across ordinary pan positions, not all fields simultaneously. Intermediate out-of-view samples are retained in the raw source evidence."
+    }
+  },
+  "restoration_viewport": [
+    1180,
+    709,
+    1
+  ],
+  "search_return": {
+    "one_result": true,
+    "selected_staff_preserved": true,
+    "test_keyword_omitted": true
+  },
+  "history_smoke": {
+    "result": "PASS",
+    "detail_start": "2026/09/01",
+    "detail_end": "2026/09/01",
+    "fields": 9,
+    "tab_return": true,
+    "payroll_return": true,
+    "accessibility_caveat": "Gallery AX selected-item announcement remains item1, while blue row2 and detail values correctly retain past record"
+  },
+  "business_writes": 0,
+  "flow_runs": 0,
+  "pac_readback_status": "NOT_COLLECTED",
+  "exact_publication_metadata_status": "NOT_COLLECTED",
+  "official_published_source_comparison": "COMPLETE_SEPARATE_MAKER_EVIDENCE",
+  "privacy": "Owner name, full page text, test staff identifier, raw package and private paths omitted."
+}

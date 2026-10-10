@@ -1,0 +1,79 @@
+{
+  "change_id": "dot-001",
+  "request_id": "DOT-001",
+  "related_change_id": "PAY-IMPLEMENT-001",
+  "run_id": "38049776822",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "FAIL",
+  "observed_at": "2026-10-10T11:50:48Z",
+  "source_commit": "fba65fdaefcf3b70821d7831ce86a4262ea4a214",
+  "workflow_head": "949a0b5f2445be273504975c938480da7b09719a",
+  "run_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/38049776822",
+  "readback_only": true,
+  "publication": {
+    "lastPublishTime": "2026-10-10T09:28:28.7479961Z",
+    "lastDraftVersion": "2026-10-10T09:27:24Z",
+    "download_sha256": "7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f",
+    "scr002_sha256": "80ae540f22bbdb8661c8eece398401e4f0ea391eda3e1ed9b0350814731ae2f4"
+  },
+  "metadata_assertions": {
+    "status_ready": true,
+    "fixed_app_uri": true,
+    "before_equals_after": true,
+    "evidence": "Workflow emitted the complete summary after these assertions; raw appOpenUri omitted.",
+    "draft_not_newer_than_publication": true
+  },
+  "old_v25_guard": {
+    "expected_sha256": "498029d25c9191a3cf3157f8a294690afd90b4cbb4a4d3c0845cc27b2ea08e6d",
+    "match": false,
+    "result": "FAIL"
+  },
+  "maker_package_sha_equals_pac": true,
+  "package_identity_scope": "PAC H measured independently. It equals the handoff Maker msapp hash; no Maker hash substituted for H.",
+  "steps": [
+    {
+      "number": 1,
+      "name": "Set up job",
+      "result": "PASS"
+    },
+    {
+      "number": 2,
+      "name": "actions/checkout@v5",
+      "result": "PASS"
+    },
+    {
+      "number": 3,
+      "name": "actions/setup-dotnet@v4",
+      "result": "PASS"
+    },
+    {
+      "number": 4,
+      "name": "Download current package and check the saved screen definition",
+      "result": "FAIL"
+    },
+    {
+      "number": 5,
+      "name": "Report capture failure without changing app sharing",
+      "result": "PASS"
+    },
+    {
+      "number": 9,
+      "name": "Post actions/setup-dotnet@v4",
+      "result": "SKIP"
+    },
+    {
+      "number": 10,
+      "name": "Post actions/checkout@v5",
+      "result": "PASS"
+    },
+    {
+      "number": 11,
+      "name": "Complete job",
+      "result": "PASS"
+    }
+  ],
+  "other_jobs": "SKIPPED by readback_only=true: document-diff, readback, selected-e2e, completed",
+  "full_reconciliation": "NOT_RUN: per-path selected22 evidence not yet assembled; no invented MATCH/Player overall PASS",
+  "privacy": "No raw package, credentials, full logs or environment-specific URL included.",
+  "version": "2026-10-10T09:28:28.7479961Z"
+}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>1.1 業務実施手順 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="1.html#section-1" >1 業務要件定義</a>
+</span>
+<span aria-current="page">1.1 業務実施手順</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 1.1</span>
+<h1 id="section-1.1">1.1 業務実施手順</h1>
+<section class="panel" >
+<h2>この章・節に含まれる項目</h2>
+<ul class="list">
+<li>
+<h3>
+<a href="1.1.1.html#section-1.1.1" >1.1.1 業務範囲</a>
+</h3>
+<p>非常勤職員の職員基本・勤務条件、通勤、保険・税・固定控除、勤務時間報告、期末勤勉率、給与計算、人給照合、追給・返納を対象とする。A～Dの採用前工程は給与情報への受渡しを整理する。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+<li>
+<h3>
+<a href="1.1.2.html#section-1.1.2" >1.1.2 業務フロー</a>
+</h3>
+<p>給与情報を登録・確認し、認定済み通勤と報告済み勤怠等により計算する。Excelを人給へ渡し、戻り給与簿CSVと最新版の計算結果を照合する。差分を訂正して再照合し、差分ゼロで給与班が確定、支払い済みを記録する。支払済みの誤りは別の追給・返納で扱う。</p>
+<span class="tag ">記載済み</span>
+</li>
+<li>
+<h3>
+<a href="1.1.3.html#section-1.1.3" >1.1.3 業務の実施に必要な体制</a>
+</h3>
+<p>会計課給与班は全局の計算・確認・確定・認定を担当。局担当者は自局の勤務・申請・支給明細と必要な共通職員基本情報を扱う。業務マスタ管理者とシステム管理者は役割を分離し、兼務可能。本人機能は将来追加。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+<li>
+<h3>
+<a href="1.1.4.html#section-1.1.4" >1.1.4 入出力情報項目及び取扱量</a>
+</h3>
+<p>職員情報Excel、勤務時間Excel、人給出力xlsx、人給給与簿CSV、通勤認定簿を扱う。人給出力は237列・見出し1行目・データ2行目・文字列形式。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+<li>
+<h3>
+<a href="1.1.5.html#section-1.1.5" >1.1.5 管理対象情報一覧</a>
+</h3>
+<p>職員基本、勤務条件履歴、組織・予算・単価・区分、保険履歴、税条件・固定控除、月別住民税、通勤ヘッダー・経路、勤怠ヘッダー・明細、支給回・計算版・根拠、給与簿・照合履歴、追給・返納・回収実績を管理する。</p>
+<span class="tag amber">一部設定・要件未設定あり</span>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,4704 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>テンプレート階層の照合 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="assets/portal.css">
+<script src="assets/portal.js" defer>
+</script>
+<script src="assets/context.js" data-portal-root="./" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="index.html" >入口</a>
+<a href="journeys.html" >業務から読む</a>
+<a href="screens/index.html" >画面一覧</a>
+<a href="chapters.html" aria-current="page">標準の章立て</a>
+<a href="requirements/index.html" >要件ID・操作</a>
+<a href="open-items.html" >要件未設定</a>
+<a href="reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="index.html" >要件定義</a>
+</span>
+<span>
+<a href="chapters.html" >標準の章立て</a>
+</span>
+<span aria-current="page">テンプレート階層の照合</span>
+</nav>
+<div>
+<span class="eyebrow">OFFICIAL TEMPLATE STRUCTURE</span>
+<h1>標準テンプレートの階層・補助項目</h1>
+<p class="lead">既存140項目のIDを保持し、原本のアウトライン設定から判明した補助見出しと記入項目を補っています。</p>
+<p class="notice">140は従来の見出しスタイル1〜3の項目数です。原本には別スタイルの見出し8件もあり、上位3階層は148項目です。3.14の原本(1)は「移行に関する前提条件」で、従来ID 3.14.1「移行計画の作成」は原本(2)です。既存リンクの意味は変えず、原本位置を別に表示します。</p>
+<p>Word版: 2026/06/12 / 掲載更新: 2026-07-15。下位見出し・条文例を含む実効アウトライン321段落、表56件、図11件、原本コメントの記入要領132件を対応付けています。</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="原本の上位3階層と既存IDの対応">
+<table>
+<caption>原本の上位3階層と既存IDの対応</caption>
+<thead>
+<tr>
+<th scope="col">原本の階層番号</th>
+<th scope="col">見出し・論点</th>
+<th scope="col">既存IDと移動先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>業務要件定義</td>
+<td>
+<a href="sections/1.html#section-1" >既存ID 1</a>
+</td>
+</tr>
+<tr>
+<td>1.1</td>
+<td>業務実施手順</td>
+<td>
+<a href="sections/1.1.html#section-1.1" >既存ID 1.1</a>
+</td>
+</tr>
+<tr>
+<td>1.1.1</td>
+<td>業務範囲</td>
+<td>
+<a href="sections/1.1.1.html#section-1.1.1" >既存ID 1.1.1</a>
+</td>
+</tr>
+<tr>
+<td>1.1.2</td>
+<td>業務フロー</td>
+<td>
+<a href="sections/1.1.2.html#section-1.1.2" >既存ID 1.1.2</a>
+</td>
+</tr>
+<tr>
+<td>1.1.3</td>
+<td>業務の実施に必要な体制</td>
+<td>
+<a href="sections/1.1.3.html#section-1.1.3" >既存ID 1.1.3</a>
+</td>
+</tr>
+<tr>
+<td>1.1.4</td>
+<td>入出力情報項目及び取扱量</td>
+<td>
+<a href="sections/1.1.4.html#section-1.1.4" >既存ID 1.1.4</a>
+</td>
+</tr>
+<tr>
+<td>1.1.5</td>
+<td>管理対象情報一覧</td>
+<td>
+<a href="sections/1.1.5.html#section-1.1.5" >既存ID 1.1.5</a>
+</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>業務の規模</td>
+<td>
+<a href="sections/1.2.html#section-1.2" >既存ID 1.2</a>
+</td>
+</tr>
+<tr>
+<td>1.2.1</td>
+<td>サービスの利用者数及び情報システムの利用者数</td>
+<td>
+<a href="sections/1.2.1.html#section-1.2.1" >既存ID 1.2.1</a>
+</td>
+</tr>
+<tr>
+<td>1.2.2</td>
+<td>処理件数</td>
+<td>
+<a href="sections/1.2.2.html#section-1.2.2" >既存ID 1.2.2</a>
+</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>業務実施の時期・時間</td>
+<td>
+<a href="sections/1.3.html#section-1.3" >既存ID 1.3</a>
+</td>
+</tr>
+<tr>
+<td>1.3.1</td>
+<td>業務実施時期・期間及び繁忙期</td>
+<td>
+<a href="sections/1.3.1.html#section-1.3.1" >既存ID 1.3.1</a>
+</td>
+</tr>
+<tr>
+<td>1.3.2</td>
+<td>業務の実施・提供時間</td>
+<td>
+<a href="sections/1.3.2.html#section-1.3.2" >既存ID 1.3.2</a>
+</td>
+</tr>
+<tr>
+<td>1.3.3</td>
+<td>ヘルプデスク業務</td>
+<td>
+<a href="sections/1.3.3.html#section-1.3.3" >既存ID 1.3.3</a>
+</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>業務の実施場所等</td>
+<td>
+<a href="sections/1.4.html#section-1.4" >既存ID 1.4</a>
+</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>業務観点で管理すべき指標</td>
+<td>
+<a href="sections/1.5.html#section-1.5" >既存ID 1.5</a>
+</td>
+</tr>
+<tr>
+<td>1.6</td>
+<td>情報システム化の範囲</td>
+<td>
+<a href="sections/1.6.html#section-1.6" >既存ID 1.6</a>
+</td>
+</tr>
+<tr>
+<td>1.6.1</td>
+<td>情報システム化の範囲</td>
+<td>
+<a href="sections/1.6.1.html#section-1.6.1" >既存ID 1.6.1</a>
+</td>
+</tr>
+<tr>
+<td>1.7</td>
+<td>業務の継続の方針等</td>
+<td>
+<a href="sections/1.7.html#section-1.7" >既存ID 1.7</a>
+</td>
+</tr>
+<tr>
+<td>1.7.1</td>
+<td>システム停止時を想定した業務</td>
+<td>
+<a href="sections/1.7.1.html#section-1.7.1" >既存ID 1.7.1</a>
+</td>
+</tr>
+<tr>
+<td>1.8</td>
+<td>情報セキュリティ対策の方針等</td>
+<td>
+<a href="sections/1.8.html#section-1.8" >既存ID 1.8</a>
+</td>
+</tr>
+<tr>
+<td>1.8.1</td>
+<td>情報セキュリティ対策の基本的な考え方</td>
+<td>
+<a href="sections/1.8.1.html#section-1.8.1" >既存ID 1.8.1</a>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>機能要件定義</td>
+<td>
+<a href="sections/2.html#section-2" >既存ID 2</a>
+</td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>機能に関する事項</td>
+<td>
+<a href="sections/2.1.html#section-2.1" >既存ID 2.1</a>
+</td>
+</tr>
+<tr>
+<td>2.1.1</td>
+<td>機能一覧</td>
+<td>
+<a href="sections/2.1.1.html#section-2.1.1" >既存ID 2.1.1</a>
+</td>
+</tr>
+<tr>
+<td>2.1.2</td>
+<td>技術検証</td>
+<td>
+<a href="sections/2.1.2.html#section-2.1.2" >既存ID 2.1.2</a>
+</td>
+</tr>
+<tr>
+<td>2.1.3</td>
+<td>機能の主な追加・変更点</td>
+<td>
+<a href="sections/2.1.3.html#section-2.1.3" >既存ID 2.1.3</a>
+</td>
+</tr>
+<tr>
+<td>2.1.4</td>
+<td>今後の機能追加を踏まえた構成</td>
+<td>
+<a href="sections/2.1.4.html#section-2.1.4" >既存ID 2.1.4</a>
+</td>
+</tr>
+<tr>
+<td>2.1.5</td>
+<td>機能構成概念図</td>
+<td>
+<a href="sections/2.1.5.html#section-2.1.5" >既存ID 2.1.5</a>
+</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>画面に関する事項</td>
+<td>
+<a href="sections/2.2.html#section-2.2" >既存ID 2.2</a>
+</td>
+</tr>
+<tr>
+<td>2.2.1</td>
+<td>画面一覧</td>
+<td>
+<a href="sections/2.2.1.html#section-2.2.1" >既存ID 2.2.1</a>
+</td>
+</tr>
+<tr>
+<td>2.2.2</td>
+<td>画面イメージ</td>
+<td>
+<a href="sections/2.2.2.html#section-2.2.2" >既存ID 2.2.2</a>
+</td>
+</tr>
+<tr>
+<td>2.2.3</td>
+<td>画面遷移の基本的考え方</td>
+<td>
+<a href="sections/2.2.3.html#section-2.2.3" >既存ID 2.2.3</a>
+</td>
+</tr>
+<tr>
+<td>2.2.4</td>
+<td>画面設計ポリシー</td>
+<td>
+<a href="sections/2.2.4.html#section-2.2.4" >既存ID 2.2.4</a>
+</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>帳票に関する事項</td>
+<td>
+<a href="sections/2.3.html#section-2.3" >既存ID 2.3</a>
+</td>
+</tr>
+<tr>
+<td>2.3.1</td>
+<td>帳票一覧</td>
+<td>
+<a href="sections/2.3.1.html#section-2.3.1" >既存ID 2.3.1</a>
+</td>
+</tr>
+<tr>
+<td>2.3.2</td>
+<td>帳票イメージ</td>
+<td>
+<a href="sections/2.3.2.html#section-2.3.2" >既存ID 2.3.2</a>
+</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>データに関する事項</td>
+<td>
+<a href="sections/2.4.html#section-2.4" >既存ID 2.4</a>
+</td>
+</tr>
+<tr>
+<td>2.4.1</td>
+<td>データモデル</td>
+<td>
+<a href="sections/2.4.1.html#section-2.4.1" >既存ID 2.4.1</a>
+</td>
+</tr>
+<tr>
+<td>2.4.2</td>
+<td>データ一覧</td>
+<td>
+<a href="sections/2.4.2.html#section-2.4.2" >既存ID 2.4.2</a>
+</td>
+</tr>
+<tr>
+<td>2.4.3</td>
+<td>データ定義</td>
+<td>
+<a href="sections/2.4.3.html#section-2.4.3" >既存ID 2.4.3</a>
+</td>
+</tr>
+<tr>
+<td>2.4.4</td>
+<td>CRUDマトリクス</td>
+<td>
+<a href="sections/2.4.4.html#section-2.4.4" >既存ID 2.4.4</a>
+</td>
+</tr>
+<tr>
+<td>2.4.5</td>
+<td>コード一覧</td>
+<td>
+<a href="sections/2.4.5.html#section-2.4.5" >既存ID 2.4.5</a>
+</td>
+</tr>
+<tr>
+<td>2.4.6</td>
+<td>コード内容定義</td>
+<td>
+<a href="sections/2.4.6.html#section-2.4.6" >既存ID 2.4.6</a>
+</td>
+</tr>
+<tr>
+<td>2.4.7</td>
+<td>オープンデータ一覧</td>
+<td>
+<a href="sections/2.4.7.html#section-2.4.7" >既存ID 2.4.7</a>
+</td>
+</tr>
+<tr>
+<td>2.4.8</td>
+<td>モニタリング対象データ一覧</td>
+<td>
+<a href="sections/2.4.8.html#section-2.4.8" >既存ID 2.4.8</a>
+</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>外部インタフェースに関する事項</td>
+<td>
+<a href="sections/2.5.html#section-2.5" >既存ID 2.5</a>
+</td>
+</tr>
+<tr>
+<td>2.5.1</td>
+<td>外部インタフェース一覧</td>
+<td>
+<a href="sections/2.5.1.html#section-2.5.1" >既存ID 2.5.1</a>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>非機能要件定義</td>
+<td>
+<a href="sections/3.html#section-3" >既存ID 3</a>
+</td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>ユーザビリティ及びアクセシビリティに関する事項</td>
+<td>
+<a href="sections/3.1.html#section-3.1" >既存ID 3.1</a>
+</td>
+</tr>
+<tr>
+<td>3.1.1</td>
+<td>本システムの利用者の種類、特性</td>
+<td>
+<a href="sections/3.1.1.html#section-3.1.1" >既存ID 3.1.1</a>
+</td>
+</tr>
+<tr>
+<td>3.1.2</td>
+<td>ユーザビリティ要件</td>
+<td>
+<a href="sections/3.1.2.html#section-3.1.2" >既存ID 3.1.2</a>
+</td>
+</tr>
+<tr>
+<td>3.1.3</td>
+<td>アクセシビリティ要件</td>
+<td>
+<a href="sections/3.1.3.html#section-3.1.3" >既存ID 3.1.3</a>
+</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>システム方式に関する事項</td>
+<td>
+<a href="sections/3.2.html#section-3.2" >既存ID 3.2</a>
+</td>
+</tr>
+<tr>
+<td>3.2.1</td>
+<td>システム方式についての全体方針</td>
+<td>
+<a href="sections/3.2.1.html#section-3.2.1" >既存ID 3.2.1</a>
+</td>
+</tr>
+<tr>
+<td>3.2.2</td>
+<td>クラウドサービスの選定、利用に関する要件</td>
+<td>
+<a href="sections/3.2.2.html#section-3.2.2" >既存ID 3.2.2</a>
+</td>
+</tr>
+<tr>
+<td>3.2.3</td>
+<td>開発方式</td>
+<td>
+<a href="sections/3.2.3.html#section-3.2.3" >既存ID 3.2.3</a>
+</td>
+</tr>
+<tr>
+<td>3.2.4</td>
+<td>機器等の設置方針</td>
+<td>
+<a href="sections/3.2.4.html#section-3.2.4" >既存ID 3.2.4</a>
+</td>
+</tr>
+<tr>
+<td>3.2.5</td>
+<td>その他</td>
+<td>
+<a href="sections/3.2.5.html#section-3.2.5" >既存ID 3.2.5</a>
+</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>システム規模に関する事項</td>
+<td>
+<a href="sections/3.3.html#section-3.3" >既存ID 3.3</a>
+</td>
+</tr>
+<tr>
+<td>3.3.1</td>
+<td>規模に関する前提条件</td>
+<td>
+<a href="sections/3.3.1.html#section-3.3.1" >既存ID 3.3.1</a>
+</td>
+</tr>
+<tr>
+<td>3.3.2</td>
+<td>データ量</td>
+<td>
+<a href="sections/3.3.2.html#section-3.3.2" >既存ID 3.3.2</a>
+</td>
+</tr>
+<tr>
+<td>3.3.3</td>
+<td>処理件数</td>
+<td>
+<a href="sections/3.3.3.html#section-3.3.3" >既存ID 3.3.3</a>
+</td>
+</tr>
+<tr>
+<td>3.3.4</td>
+<td>利用者数</td>
+<td>
+<a href="sections/3.3.4.html#section-3.3.4" >既存ID 3.3.4</a>
+</td>
+</tr>
+<tr>
+<td>3.3.5</td>
+<td>保管データ量・保管期間</td>
+<td>
+<a href="sections/3.3.5.html#section-3.3.5" >既存ID 3.3.5</a>
+</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>性能に関する事項</td>
+<td>
+<a href="sections/3.4.html#section-3.4" >既存ID 3.4</a>
+</td>
+</tr>
+<tr>
+<td>3.4.1</td>
+<td>性能を考慮する対象</td>
+<td>
+<a href="sections/3.4.1.html#section-3.4.1" >既存ID 3.4.1</a>
+</td>
+</tr>
+<tr>
+<td>3.4.2</td>
+<td>応答時間</td>
+<td>
+<a href="sections/3.4.2.html#section-3.4.2" >既存ID 3.4.2</a>
+</td>
+</tr>
+<tr>
+<td>3.4.3</td>
+<td>スループット</td>
+<td>
+<a href="sections/3.4.3.html#section-3.4.3" >既存ID 3.4.3</a>
+</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>信頼性に関する事項</td>
+<td>
+<a href="sections/3.5.html#section-3.5" >既存ID 3.5</a>
+</td>
+</tr>
+<tr>
+<td>3.5.1</td>
+<td>可用性要件</td>
+<td>
+<a href="sections/3.5.1.html#section-3.5.1" >既存ID 3.5.1</a>
+</td>
+</tr>
+<tr>
+<td>3.5.2</td>
+<td>完全性要件</td>
+<td>
+<a href="sections/3.5.2.html#section-3.5.2" >既存ID 3.5.2</a>
+</td>
+</tr>
+<tr>
+<td>3.6</td>
+<td>拡張性に関する事項</td>
+<td>
+<a href="sections/3.6.html#section-3.6" >既存ID 3.6</a>
+</td>
+</tr>
+<tr>
+<td>3.6.1</td>
+<td>性能及び機能の拡張性</td>
+<td>
+<a href="sections/3.6.1.html#section-3.6.1" >既存ID 3.6.1</a>
+</td>
+</tr>
+<tr>
+<td>3.7</td>
+<td>上位互換性に関する事項</td>
+<td>
+<a href="sections/3.7.html#section-3.7" >既存ID 3.7</a>
+</td>
+</tr>
+<tr>
+<td>3.7.1</td>
+<td>上位互換性</td>
+<td>
+<a href="sections/3.7.1.html#section-3.7.1" >既存ID 3.7.1</a>
+</td>
+</tr>
+<tr>
+<td>3.7.2</td>
+<td>業務分担</td>
+<td>
+<a href="sections/3.7.2.html#section-3.7.2" >既存ID 3.7.2</a>
+</td>
+</tr>
+<tr>
+<td>3.8</td>
+<td>中立性に関する事項</td>
+<td>
+<a href="sections/3.8.html#section-3.8" >既存ID 3.8</a>
+</td>
+</tr>
+<tr>
+<td>3.8.1</td>
+<td>オープンな標準的技術又は製品の採用</td>
+<td>
+<a href="sections/3.8.1.html#section-3.8.1" >既存ID 3.8.1</a>
+</td>
+</tr>
+<tr>
+<td>3.9</td>
+<td>継続性に関する事項</td>
+<td>
+<a href="sections/3.9.html#section-3.9" >既存ID 3.9</a>
+</td>
+</tr>
+<tr>
+<td>3.9.1</td>
+<td>継続性に係る目標値</td>
+<td>
+<a href="sections/3.9.1.html#section-3.9.1" >既存ID 3.9.1</a>
+</td>
+</tr>
+<tr>
+<td>3.9.2</td>
+<td>継続性に係る対策</td>
+<td>
+<a href="sections/3.9.2.html#section-3.9.2" >既存ID 3.9.2</a>
+</td>
+</tr>
+<tr>
+<td>3.10</td>
+<td>情報セキュリティに関する事項</td>
+<td>
+<a href="sections/3.10.html#section-3.10" >既存ID 3.10</a>
+</td>
+</tr>
+<tr>
+<td>3.10.1</td>
+<td>セキュリティ対応方針</td>
+<td>
+<a href="sections/3.10.1.html#section-3.10.1" >既存ID 3.10.1</a>
+</td>
+</tr>
+<tr>
+<td>3.10.2</td>
+<td>セキュリティ要件</td>
+<td>
+<a href="sections/3.10.2.html#section-3.10.2" >既存ID 3.10.2</a>
+</td>
+</tr>
+<tr>
+<td>3.11</td>
+<td>情報システム稼働環境に関する事項</td>
+<td>
+<a href="sections/3.11.html#section-3.11" >既存ID 3.11</a>
+</td>
+</tr>
+<tr>
+<td>3.11.1</td>
+<td>システム構成</td>
+<td>
+<a href="sections/3.11.1.html#section-3.11.1" >既存ID 3.11.1</a>
+</td>
+</tr>
+<tr>
+<td>3.11.2</td>
+<td>クラウドサービス構成</td>
+<td>
+<a href="sections/3.11.2.html#section-3.11.2" >既存ID 3.11.2</a>
+</td>
+</tr>
+<tr>
+<td>3.11.3</td>
+<td>ハードウェア構成</td>
+<td>
+<a href="sections/3.11.3.html#section-3.11.3" >既存ID 3.11.3</a>
+</td>
+</tr>
+<tr>
+<td>3.11.4</td>
+<td>ソフトウェア構成</td>
+<td>
+<a href="sections/3.11.4.html#section-3.11.4" >既存ID 3.11.4</a>
+</td>
+</tr>
+<tr>
+<td>3.11.5</td>
+<td>ネットワーク構成</td>
+<td>
+<a href="sections/3.11.5.html#section-3.11.5" >既存ID 3.11.5</a>
+</td>
+</tr>
+<tr>
+<td>3.11.6</td>
+<td>施設・設備要件</td>
+<td>
+<a href="sections/3.11.6.html#section-3.11.6" >既存ID 3.11.6</a>
+</td>
+</tr>
+<tr>
+<td>3.11.7</td>
+<td>利用端末の要件</td>
+<td>
+<a href="sections/3.11.7.html#section-3.11.7" >既存ID 3.11.7</a>
+</td>
+</tr>
+<tr>
+<td>3.12</td>
+<td>データマネジメントに関する事項</td>
+<td>
+<a href="sections/3.12.html#section-3.12" >既存ID 3.12</a>
+</td>
+</tr>
+<tr>
+<td>3.12.1</td>
+<td>データ管理体制の明確化</td>
+<td>
+<a href="template-sections/3.12.1.html" >補完した原本見出し</a>
+</td>
+</tr>
+<tr>
+<td>3.12.2</td>
+<td>データの標準化</td>
+<td>
+<a href="template-sections/3.12.2.html" >補完した原本見出し</a>
+</td>
+</tr>
+<tr>
+<td>3.12.3</td>
+<td>データに関するドキュメントの一元的管理</td>
+<td>
+<a href="template-sections/3.12.3.html" >補完した原本見出し</a>
+</td>
+</tr>
+<tr>
+<td>3.12.4</td>
+<td>オープンデータ化を容易にする設計</td>
+<td>
+<a href="template-sections/3.12.4.html" >補完した原本見出し</a>
+</td>
+</tr>
+<tr>
+<td>3.12.5</td>
+<td>データに関する運用情報の管理</td>
+<td>
+<a href="template-sections/3.12.5.html" >補完した原本見出し</a>
+</td>
+</tr>
+<tr>
+<td>3.12.6</td>
+<td>データの機密性定義に応じた設計</td>
+<td>
+<a href="template-sections/3.12.6.html" >補完した原本見出し</a>
+</td>
+</tr>
+<tr>
+<td>3.12.7</td>
+<td>データ品質の継続的改善</td>
+<td>
+<a href="template-sections/3.12.7.html" >補完した原本見出し</a>
+</td>
+</tr>
+<tr>
+<td>3.13</td>
+<td>テストに関する事項</td>
+<td>
+<a href="sections/3.13.html#section-3.13" >既存ID 3.13</a>
+</td>
+</tr>
+<tr>
+<td>3.13.1</td>
+<td>単体テスト</td>
+<td>
+<a href="sections/3.13.1.html#section-3.13.1" >既存ID 3.13.1</a>
+</td>
+</tr>
+<tr>
+<td>3.13.2</td>
+<td>結合テスト</td>
+<td>
+<a href="sections/3.13.2.html#section-3.13.2" >既存ID 3.13.2</a>
+</td>
+</tr>
+<tr>
+<td>3.13.3</td>
+<td>総合テスト</td>
+<td>
+<a href="sections/3.13.3.html#section-3.13.3" >既存ID 3.13.3</a>
+</td>
+</tr>
+<tr>
+<td>3.13.4</td>
+<td>受入テスト</td>
+<td>
+<a href="sections/3.13.4.html#section-3.13.4" >既存ID 3.13.4</a>
+</td>
+</tr>
+<tr>
+<td>3.14</td>
+<td>移行に関する事項</td>
+<td>
+<a href="sections/3.14.html#section-3.14" >既存ID 3.14</a>
+</td>
+</tr>
+<tr>
+<td>3.14.1</td>
+<td>移行に関する前提条件</td>
+<td>
+<a href="template-sections/3.14.1.html" >補完した原本見出し</a>
+</td>
+</tr>
+<tr>
+<td>3.14.2</td>
+<td>移行計画の作成</td>
+<td>
+<a href="sections/3.14.1.html#section-3.14.1" >既存ID 3.14.1</a>
+</td>
+</tr>
+<tr>
+<td>3.14.3</td>
+<td>移行データ準備・提供</td>
+<td>
+<a href="sections/3.14.2.html#section-3.14.2" >既存ID 3.14.2</a>
+</td>
+</tr>
+<tr>
+<td>3.14.4</td>
+<td>移行データ分析</td>
+<td>
+<a href="sections/3.14.3.html#section-3.14.3" >既存ID 3.14.3</a>
+</td>
+</tr>
+<tr>
+<td>3.14.5</td>
+<td>移行設計</td>
+<td>
+<a href="sections/3.14.4.html#section-3.14.4" >既存ID 3.14.4</a>
+</td>
+</tr>
+<tr>
+<td>3.14.6</td>
+<td>データ移行サーバ・ツールの開発</td>
+<td>
+<a href="sections/3.14.5.html#section-3.14.5" >既存ID 3.14.5</a>
+</td>
+</tr>
+<tr>
+<td>3.14.7</td>
+<td>移行リハーサル</td>
+<td>
+<a href="sections/3.14.6.html#section-3.14.6" >既存ID 3.14.6</a>
+</td>
+</tr>
+<tr>
+<td>3.14.8</td>
+<td>移行判定</td>
+<td>
+<a href="sections/3.14.7.html#section-3.14.7" >既存ID 3.14.7</a>
+</td>
+</tr>
+<tr>
+<td>3.14.9</td>
+<td>本番移行</td>
+<td>
+<a href="sections/3.14.8.html#section-3.14.8" >既存ID 3.14.8</a>
+</td>
+</tr>
+<tr>
+<td>3.14.10</td>
+<td>稼働判定</td>
+<td>
+<a href="sections/3.14.9.html#section-3.14.9" >既存ID 3.14.9</a>
+</td>
+</tr>
+<tr>
+<td>3.14.11</td>
+<td>移行対象データ</td>
+<td>
+<a href="sections/3.14.10.html#section-3.14.10" >既存ID 3.14.10</a>
+</td>
+</tr>
+<tr>
+<td>3.14.12</td>
+<td>移行対象業務</td>
+<td>
+<a href="sections/3.14.11.html#section-3.14.11" >既存ID 3.14.11</a>
+</td>
+</tr>
+<tr>
+<td>3.15</td>
+<td>引継ぎに関する事項</td>
+<td>
+<a href="sections/3.15.html#section-3.15" >既存ID 3.15</a>
+</td>
+</tr>
+<tr>
+<td>3.15.1</td>
+<td>引継ぎ計画書の作成</td>
+<td>
+<a href="sections/3.15.1.html#section-3.15.1" >既存ID 3.15.1</a>
+</td>
+</tr>
+<tr>
+<td>3.15.2</td>
+<td>引継ぎ方法</td>
+<td>
+<a href="sections/3.15.2.html#section-3.15.2" >既存ID 3.15.2</a>
+</td>
+</tr>
+<tr>
+<td>3.15.3</td>
+<td>引継ぎ対象</td>
+<td>
+<a href="sections/3.15.3.html#section-3.15.3" >既存ID 3.15.3</a>
+</td>
+</tr>
+<tr>
+<td>3.15.4</td>
+<td>クラウドサービスを利用する場合の引継ぎ</td>
+<td>
+<a href="sections/3.15.4.html#section-3.15.4" >既存ID 3.15.4</a>
+</td>
+</tr>
+<tr>
+<td>3.15.5</td>
+<td>引継ぎ結果報告書の作成</td>
+<td>
+<a href="sections/3.15.5.html#section-3.15.5" >既存ID 3.15.5</a>
+</td>
+</tr>
+<tr>
+<td>3.15.6</td>
+<td>前任事業者からの引継作業</td>
+<td>
+<a href="sections/3.15.6.html#section-3.15.6" >既存ID 3.15.6</a>
+</td>
+</tr>
+<tr>
+<td>3.16</td>
+<td>教育に関する事項</td>
+<td>
+<a href="sections/3.16.html#section-3.16" >既存ID 3.16</a>
+</td>
+</tr>
+<tr>
+<td>3.16.1</td>
+<td>教育計画の策定</td>
+<td>
+<a href="sections/3.16.1.html#section-3.16.1" >既存ID 3.16.1</a>
+</td>
+</tr>
+<tr>
+<td>3.16.2</td>
+<td>教育対象者</td>
+<td>
+<a href="sections/3.16.2.html#section-3.16.2" >既存ID 3.16.2</a>
+</td>
+</tr>
+<tr>
+<td>3.16.3</td>
+<td>教育の実施時期</td>
+<td>
+<a href="sections/3.16.3.html#section-3.16.3" >既存ID 3.16.3</a>
+</td>
+</tr>
+<tr>
+<td>3.16.4</td>
+<td>教育の方法</td>
+<td>
+<a href="sections/3.16.4.html#section-3.16.4" >既存ID 3.16.4</a>
+</td>
+</tr>
+<tr>
+<td>3.16.5</td>
+<td>教材の作成</td>
+<td>
+<a href="sections/3.16.5.html#section-3.16.5" >既存ID 3.16.5</a>
+</td>
+</tr>
+<tr>
+<td>3.16.6</td>
+<td>教育訓練実施結果報告</td>
+<td>
+<a href="sections/3.16.6.html#section-3.16.6" >既存ID 3.16.6</a>
+</td>
+</tr>
+<tr>
+<td>3.17</td>
+<td>運用に関する事項</td>
+<td>
+<a href="sections/3.17.html#section-3.17" >既存ID 3.17</a>
+</td>
+</tr>
+<tr>
+<td>3.17.1</td>
+<td>運用・保守計画</td>
+<td>
+<a href="sections/3.17.1.html#section-3.17.1" >既存ID 3.17.1</a>
+</td>
+</tr>
+<tr>
+<td>3.17.2</td>
+<td>運用・保守準備</td>
+<td>
+<a href="sections/3.17.2.html#section-3.17.2" >既存ID 3.17.2</a>
+</td>
+</tr>
+<tr>
+<td>3.17.3</td>
+<td>共通的な要件</td>
+<td>
+<a href="sections/3.17.3.html#section-3.17.3" >既存ID 3.17.3</a>
+</td>
+</tr>
+<tr>
+<td>3.17.4</td>
+<td>システム稼働要件</td>
+<td>
+<a href="sections/3.17.4.html#section-3.17.4" >既存ID 3.17.4</a>
+</td>
+</tr>
+<tr>
+<td>3.17.5</td>
+<td>主な運用作業一覧</td>
+<td>
+<a href="sections/3.17.5.html#section-3.17.5" >既存ID 3.17.5</a>
+</td>
+</tr>
+<tr>
+<td>3.18</td>
+<td>保守に関する事項</td>
+<td>
+<a href="sections/3.18.html#section-3.18" >既存ID 3.18</a>
+</td>
+</tr>
+<tr>
+<td>3.18.1</td>
+<td>保守業務の実施</td>
+<td>
+<a href="sections/3.18.1.html#section-3.18.1" >既存ID 3.18.1</a>
+</td>
+</tr>
+<tr>
+<td>3.18.2</td>
+<td>保守設計</td>
+<td>
+<a href="sections/3.18.2.html#section-3.18.2" >既存ID 3.18.2</a>
+</td>
+</tr>
+<tr>
+<td>3.18.3</td>
+<td>アプリケーションの保守</td>
+<td>
+<a href="sections/3.18.3.html#section-3.18.3" >既存ID 3.18.3</a>
+</td>
+</tr>
+<tr>
+<td>3.18.4</td>
+<td>クラウドサービスの保守</td>
+<td>
+<a href="sections/3.18.4.html#section-3.18.4" >既存ID 3.18.4</a>
+</td>
+</tr>
+<tr>
+<td>3.18.5</td>
+<td>ソフトウェア保守</td>
+<td>
+<a href="sections/3.18.5.html#section-3.18.5" >既存ID 3.18.5</a>
+</td>
+</tr>
+<tr>
+<td>3.18.6</td>
+<td>保守実績の評価及び改善</td>
+<td>
+<a href="sections/3.18.6.html#section-3.18.6" >既存ID 3.18.6</a>
+</td>
+</tr>
+<tr>
+<td>3.18.7</td>
+<td>ドキュメントの保守</td>
+<td>
+<a href="sections/3.18.7.html#section-3.18.7" >既存ID 3.18.7</a>
+</td>
+</tr>
+<tr>
+<td>3.18.8</td>
+<td>軽微な改修</td>
+<td>
+<a href="sections/3.18.8.html#section-3.18.8" >既存ID 3.18.8</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>下位項目・表・記入要領（案件要件とは別）</h2>
+<section id="template-parent-1.1.1">
+<h3>
+<a href="sections/1.1.1.html#section-1.1.1" >1.1.1 業務範囲</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-01">
+<h4>表 1　業務の範囲（業務機能とその階層）</h4>
+<p>階層０ / 階層１ / 階層2 / 本システム適用対象候補 ・ 項番 / 名称 / 項番 / 名称 / 項番 / 業務ID / 名称 / </p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+階層：業務機能（細分化し、段階的に記載します。）
+名称：階層で区分した業務の処理手順
+本システム適用対象候補：開発対象である新システムの適用範囲（本システムの適用対象業務であれば○を付けます。）</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.1.2">
+<h3>
+<a href="sections/1.1.2.html#section-1.1.2" >1.1.2 業務フロー</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>図で示す対象</h3>
+<ul>
+<li id="template-figure-01">図 1　業務フロー（現行）の定義例<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+<li id="template-figure-02">図 2　業務フロー（将来）の定義例<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.1.3">
+<h3>
+<a href="sections/1.1.3.html#section-1.1.3" >1.1.3 業務の実施に必要な体制</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-02">
+<h4>表 2　業務の実施体制</h4>
+<p>項番 / 実施体制 / 業務概要 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+実施体制：業務を実施する組織
+業務概要：組織が実施する業務の概要</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.1.4">
+<h3>
+<a href="sections/1.1.4.html#section-1.1.4" >1.1.4 入出力情報項目及び取扱量</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-03">
+<h4>表 3　入出力情報項目及び取扱量</h4>
+<p>項番 / 業務処理 / 入出力情報名 / 入出力情報概要 / 入出力の区分 / 主な入出力情報項目 / 取扱量 / 用途 / 取得元/提供元 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>本項目は非機能要件の根拠になる情報です。そのため、プロジェクト特性に応じて必要項目を入力します。</li>
+<li>各項目には以下の内容を記載します。
+業務処理：業務の処理内容
+入出力情報名：業務処理で利用する画面・帳票・ファイル（受け渡し用のcsv形式ファイルなど）等、入出力情報の名称
+入出力情報概要：業務処理で利用する画面・帳票・ファイル（受け渡し用のcsv形式ファイルなど）等、入出力情報の概要
+入出力の区分：入力または出力の区分
+主な入出力情報項目：入力または出力する情報
+取扱量：年間または月間、日単位などの業務処理取扱量
+用途：入出力情報の用途
+取得元/提供元：入出力情報の取得元または提供元</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.1.5">
+<h3>
+<a href="sections/1.1.5.html#section-1.1.5" >1.1.5 管理対象情報一覧</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-04">
+<h4>表 4　管理対象情報一覧</h4>
+<p>項番 / 管理対象情報名 / 管理単位 / 主たる用途 / 主な属性 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+管理対象情報名：管理対象情報の名称（他の管理対象情報との関連等で、誤解の生じない名称にすることが重要。）
+管理単位：同一管理対象情報内で、ある個体を他と区別するために識別を行う識別子
+主たる用途：何に関する情報かを記載する。
+主な属性：その管理対象情報に付随する情報項目名
+補足：管理単位の採番タイミングなど、その他留意事項</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.2">
+<h3>
+<a href="sections/1.2.html#section-1.2" >1.2 業務の規模</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>新規業務であればこのような記載ができますが、　　既存業務の延長（改修、再構築）の場合は過去データから想定量を算出します。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.2.1">
+<h3>
+<a href="sections/1.2.1.html#section-1.2.1" >1.2.1 サービスの利用者数及び情報システムの利用者数</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-05">
+<h4>表 5　サービスの利用者数及び情報システムの利用者数（想定）</h4>
+<p>項番 / 利用者 / 利用者の種類 / 主な利用拠点 / サービス提供時間帯 / 利用者数 / 補足 ・  /  / サービス利用者 / 情報システム利用者 /  /  /  / </p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+利用者：サービスまたは情報システムを利用する者
+利用者の種類：利用者のうち、サービス利用者/情報システム利用者の有無を記載
+主な利用拠点：サービスまたは情報システムを利用する拠点
+サービス提供時間帯：サービスまたは情報システムを利用できる時間帯
+利用者数：サービスまたは情報システムのおおよその利用者数</li>
+<li>サービス利用者は、サービス自体を利用するエンドユーザーを指します。（例：図書館で本の貸し出しサービスを利用し、本を借りる人を指す。）
+情報システム利用者は、サービスを提供するための業務を実施するためにシステムを使用するユーザーを指します。（例：図書館で本の貸し出しサービスを行うシステム自体を利用する人を指す。）</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.2.2">
+<h3>
+<a href="sections/1.2.2.html#section-1.2.2" >1.2.2 処理件数</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-06">
+<h4>表 6　主な業務の処理件数</h4>
+<p>項番 / 項目 / 処理件数 / 補足 ・  /  / 定常時 / ピークの特性 / </p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>定常時とピーク時で処理件数に差がある項目は漏れなく記載します。</li>
+<li>各項目には以下の内容を記載します。
+項目：年度別の処理項目
+処理件数（定常時）：定常時の処理件数
+処理件数（ピークの特性）：ピーク時の処理件数、集中する時間帯等の特性</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.3.1">
+<h3>
+<a href="sections/1.3.1.html#section-1.3.1" >1.3.1 業務実施時期・期間及び繁忙期</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-07">
+<h4>表 7　業務の通常期、繁忙期</h4>
+<p>項番 / 実施時期・期間 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+実施時期・期間：業務の実施時期・期間（通常期と繁忙期別に区分して記載します。）</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.3.2">
+<h3>
+<a href="sections/1.3.2.html#section-1.3.2" >1.3.2 業務の実施・提供時間</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="1.3.2.1">
+<strong>サービス提供時間</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="1.3.2.2">
+<strong>運用時間</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="1.3.2.3">
+<strong>システム障害時の対応</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>プロジェクトの特性上ミッションクリティカルである場合、運用時間を24時間365日にすることを検討します。</li>
+<li>一般的な情報システムでは一次対応のみを優先実施して、原因究明・恒久的対策は後日実施することが多いです。
+一方で、プロジェクトの特性上ミッションクリティカルである場合は、障害発生時に再発防止を含めた恒久的対策まで速やかに実施することが必要となります。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.3.3">
+<h3>
+<a href="sections/1.3.3.html#section-1.3.3" >1.3.3 ヘルプデスク業務</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-08">
+<h4>表 8　ヘルプデスク業務の問合せ対応時間</h4>
+<p>項番 / 問い合わせ方法 / 受付時間 / 回答時間 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>問い合わせメールアドレスのドメインを事業者にすると事業者が変わった場合に問い合わせ先のメールアドレスも変わるリスクがあります。
+原則として、国民からの問い合わせについては政府系ドメイン（go.jp）で受け付けるように配慮してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.4">
+<h3>
+<a href="sections/1.4.html#section-1.4" >1.4 業務の実施場所等</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-09">
+<h4>表 9　業務の実施場所</h4>
+<p>項番 / 場所名 / 実施体制 / 実施業務 / 所在地</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>利用者の業務の実施場所が限定される等の特殊な要件がある場合に明記します。</li>
+<li>特殊な要件（業務の実施場所が限定される等）がある場合に記載します。</li>
+<li>各項目には以下の内容を記載します。
+場所名：業務の実施場所
+実施体制：業務を実施する組織
+実施業務：組織が実施する業務内容
+所在地：業務を実施する場所の所在地</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.5">
+<h3>
+<a href="sections/1.5.html#section-1.5" >1.5 業務観点で管理すべき指標</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-10">
+<h4>表 10　達成度評価指標（KPI：Key Performance Indicator）</h4>
+<p>項番 / 指標の種類 / 指標名 / 計算式 / 単位 / 目標値 / 計測方法 / 計測周期</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>管理すべき指標には定量的に測定・評価できる指標を記載します。</li>
+<li>デジタル・ガバメント推進標準ガイドライン実践ガイドブック「第３編第９章Step.2.2.B.指標の基礎データを誰がどのように集めるかを明確にする」の「参考 9-2主な指標とデータの関係例」に例示があります。</li>
+<li>各項目には以下の内容を記載します。
+指標の種類：業務の運営上管理すべき指標の種類
+指標名：指標の種類に属する指標名
+計算式：指標の計算式
+単位：指標の単位
+目標値：目的の達成を評価するための、時期と指標値
+計測方法：指標を評価するための計測方法
+計測周期：計測を行う頻度</li>
+<li>データの取りこぼしが発生しないよう、収集方法だけでなく計測周期まで明確にしておく必要があります。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.6.1">
+<h3>
+<a href="sections/1.6.1.html#section-1.6.1" >1.6.1 情報システム化の範囲</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>図で示す対象</h3>
+<ul>
+<li id="template-figure-03">図 3　業務概要図（サンプル）<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.7.1">
+<h3>
+<a href="sections/1.7.1.html#section-1.7.1" >1.7.1 システム停止時を想定した業務</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>クラウドサービスやネットワークの全面障害が起こった際に電子媒体もしくは紙資料で業務を継続する必要がある場合は、このような記載を追記してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-1.8.1">
+<h3>
+<a href="sections/1.8.1.html#section-1.8.1" >1.8.1 情報セキュリティ対策の基本的な考え方</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-11">
+<h4>表 11　本システムで扱う情報の特徴</h4>
+<p>項番 / 主な情報 / 情報の機密性 / その他
+（情報の完全性、可用性等） / 情報の取扱いで考慮すべき関連法令 / 補足 ・  /  / 特徴 / 格付の区分 / 特徴 / 格付の区分 /  / </p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>業務特有のセキュリティ対策の考え方がある場合に本項目を記載します。</li>
+<li>各項目には以下の内容を記載します。
+主な情報：業務において取り扱われる情報（「入出力情報及び取扱量」の入出力情報名と名称を合わせてください。）
+＜情報の機密性＞
+特徴：個人情報の有無や情報漏えいが発生した際の影響等、情報の機密性に関する特徴
+格付の区分：機密性の格付区分
+＜その他（情報の完全性、可用性等）＞
+特徴：情報の改ざん等が行われた際の影響等、情報の完全性、可用性等に関する特徴
+格付の区分：完全性・可用性等の格付区分
+情報の取扱いで考慮すべき関連法令</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.1.1">
+<h3>
+<a href="sections/2.1.1.html#section-2.1.1" >2.1.1 機能一覧</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-12">
+<h4>表 12　機能一覧</h4>
+<p>項番 / 機能ID / 機能分類 / 機能名 / 機能概要 / 処理
+方式 / 利用者区分 / 現状の機能との差異 / 該当業務 / 補足 ・  /  /  /  / 入力 / 処理 / 出力 /  /  /  /  / </p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>本章に主要な機能を記載し、別紙で詳細（アクター/業務/機能等）をまとめた機能一覧を用意することも一案です。</li>
+<li>各項目には以下の内容を記載します。
+機能ID：機能を一意に識別するためのID（設計以降のトレーサビリティを確保するため、詳細機能まで一意にIDを振ることを推奨します。）
+機能分類：複数の機能をまとめて一定の粒度で分類化したもの
+機能名：処理内容を表す名称を記載（異なる機能IDに対し重複する機能名を使用しないこと、機能名だけで処理内容をイメージしやすいものとなるよう留意してください。）
+機能概要：
+入力：入力情報・方法
+処理：機能内で蓄積すべきデータ、実現方法についての制約及び前提条件等
+出力：出力情報・方法
+処理方式：当該機能の処理方式（画面等からオンラインで即時に利用する機能か、バッチ処理による機能か等）
+利用者区分：当該機能を利用する利用者区分
+現状の機能との差異：（現状の情報システムが存在する場合）新規に整備する機能と既存の機能の差異や改善点</li>
+<li>改修案件の場合、現状の機能との差異で「新規機能」「機能変更」「機能廃止」の区分を示します。更に機能変更については、「処理追加」「処理内容の変更」「処理内容の廃止」のように整理するとより分かりやすくなります。</li>
+<li>総合評価方式の場合は、受託者（応札者）から付加的な提案を受けることができます。この時、受託者の立場では付加的な提案を行うほどコストが増加することに留意が必要です。
+付加的な提案に対して、技術点の加点要素として高く評価するという方式をとることで、受託者からの意欲的な提案を引き出すことができます。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.1.2">
+<h3>
+<a href="sections/2.1.2.html#section-2.1.2" >2.1.2 技術検証</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>本案件の調達中に技術検証の結果が出ておらず、案件開始後に技術検証の結果を踏まえて設計・開発を行う必要がある場合は、当該記載を残してください。
+技術検証自体を実施する調達の場合は、以下のような記載を入れて有意義な検証となるように留意してください。「技術検証の対象については、独自に構築した部分の性能や複雑な情報システム連携を中心とし、クラウドサービスの標準機能自体の単純な機能検証等は含めないこと。」</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.1.3">
+<h3>
+<a href="sections/2.1.3.html#section-2.1.3" >2.1.3 機能の主な追加・変更点</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-13">
+<h4>表 13　機能の主な追加・変更点</h4>
+<p>項番 / 変更区分 / 主な観点 / 説明 / メリット</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>既に稼働しているシステムを改修する場合、既存の機能一覧から今回の変更に関連する部分を抜き出して記載します。</li>
+<li>本機能は主管課にて別途契約する受託業者が開発するため、当機能と連携する部分がある場合は、連携先と十分に調整を行う必要があります。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.1.4">
+<h3>
+<a href="sections/2.1.4.html#section-2.1.4" >2.1.4 今後の機能追加を踏まえた構成</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-14">
+<h4>表 14　将来追加する必要のある機能一覧</h4>
+<p>項番 / 機能分類 / 機能名 / 概要</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>将来の案件の見込みまで推測できるようにしておくことで、開発事業者にて将来に向けた投資判断（例えば、個々の機能を独自実装するのではなく、ローコード開発ツールを入れて将来的な生産性を高めること等）を行うことができます。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.1.5">
+<h3>
+<a href="sections/2.1.5.html#section-2.1.5" >2.1.5 機能構成概念図</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>図で示す対象</h3>
+<ul>
+<li id="template-figure-04">図 4　機能構成概念図例<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>複雑な構成の場合（機能が利用者別に分かれている、他システム連携がある等）は機能構成概念図を示す必要があります。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.2">
+<h3>
+<a href="sections/2.2.html#section-2.2" >2.2 画面に関する事項</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>主管課で指定するツール（例：Figma）がある場合は、要件として記載します。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.2.1">
+<h3>
+<a href="sections/2.2.1.html#section-2.2.1" >2.2.1 画面一覧</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-15">
+<h4>表 15　画面一覧（想定）</h4>
+<p>項番 / 画面ID / 画面名 / 画面概要 / 該当機能 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+画面ID：画面を一意に識別するためのID
+画面名：画面の内容を表す名称（異なる画面IDに対し重複する画面名を使用しないこと、画面名だけで処理内容をイメージしやすいものとなるよう留意してください。）
+画面概要：画面の用途等
+該当機能：当該画面と紐付く機能ID</li>
+<li>画面一覧には必要に応じて以下の項目も加えることも検討します。
+画面分類：複数の画面をまとめて一定の粒度で分類化したもの
+画面入出力要件：表示方法や入力操作の概要等
+画面設計要件：画面設計に求める要件
+利用者区分：当該画面を利用する利用者区分</li>
+<li>可能な限り各画面に対して業務や機能との紐づけが分かるように記入してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.2.2">
+<h3>
+<a href="sections/2.2.2.html#section-2.2.2" >2.2.2 画面イメージ</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>図で示す対象</h3>
+<ul>
+<li id="template-figure-05">図 5　画面イメージ<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.2.3">
+<h3>
+<a href="sections/2.2.3.html#section-2.2.3" >2.2.3 画面遷移の基本的考え方</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>図で示す対象</h3>
+<ul>
+<li id="template-figure-06">図 6　画面遷移図<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>記載イメージとして画面遷移図を本書に掲載していますが、実案件では画面数が多く本書に全て記載することは難しいと考えるため、別紙に記載することを推奨します。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.2.4">
+<h3>
+<a href="sections/2.2.4.html#section-2.2.4" >2.2.4 画面設計ポリシー</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="2.2.4.1">
+<strong>UXデザイン</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="2.2.4.2">
+<strong>画面の表示</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="2.2.4.3">
+<strong>入力負荷の軽減</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="2.2.4.4">
+<strong>誤操作の防止</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="2.2.4.5">
+<strong>メニュー</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.3">
+<h3>
+<a href="sections/2.3.html#section-2.3" >2.3 帳票に関する事項</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>帳票イメージのサンプルはデジタル・ガバメント推進標準ガイドライン実践ガイドブック「第3編第5章Step.5.1.C.帳票に関する事項 図 5-6帳票イメージの定義例」を参照してください。</li>
+<li>ペーパーレス化推進のため、開発事業者からペーパーレス化の提案を受けることも一案です。
+事業者からペーパーレス推進に向けた提案を受け付ける場合の文言例：「現時点での想定している帳票を記載しているが、必ずしもこれらの帳票を全て本システムで実装する必要はなく、業務効率化やペーパーレス推進の観点から既存の帳票を見直すことも可能である。必要に応じてペーパーレス推進のための提案を行うこと。」</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.3.1">
+<h3>
+<a href="sections/2.3.1.html#section-2.3.1" >2.3.1 帳票一覧</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-16">
+<h4>表 16　帳票一覧</h4>
+<p>項番 / 帳票ID / 帳票概要 / 入出力形式 / 該当機能 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+帳票ID：帳票を一意に識別するためのID
+帳票概要：帳票の用途、出力場所等
+入出力形式：帳票を入出力する形式（出力帳票がPDF形式の場合はデータ集計できない等のデメリットがあるため、利用者に配慮した形式を検討してください。）
+該当機能：当該帳票と紐付く機能ID
+</li>
+<li>帳票一覧には必要に応じて以下の項目も加えることができます。
+帳票名：帳票の内容を表す名称
+入出力の区分：入力帳票、出力帳票等
+帳票入出力要件：入力方法（ＯＣＲ等）及び出力方法（モノクロ印刷、カラー印刷、事前印刷用紙（プレプリント用紙）使用、ラベル印刷等）等
+帳票設計要件：帳票設計に求める要件
+利用者区分：当該帳票を利用する利用者区分</li>
+<li>可能な限り各帳票に対して業務や機能との紐づけが分かるように記入してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.3.2">
+<h3>
+<a href="sections/2.3.2.html#section-2.3.2" >2.3.2 帳票イメージ</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>図で示す対象</h3>
+<ul>
+<li id="template-figure-07">図 7　帳票イメージ<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.4">
+<h3>
+<a href="sections/2.4.html#section-2.4" >2.4 データに関する事項</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>既存の情報システムがある場合は、その設計書等に基づいてデータに関する事項を明確にします。要件定義書用に内容を書き換える必要はなく、基本的には設計書の内容を転記する、または別紙や閲覧資料としてください。
+新規システム開発の場合は、データに関する事項の詳細まで決まっていないケースもありますが、情報システムで扱う主要なデータについては、この要件定義書サンプルにあるような内容を極力記載するようにしてください。受託者にとっては、このような情報があることで工数見積の精度が大きく向上しますし、設計工程でも事業者の準備、理解が進んだ状態で始められるというメリットがあります。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.4.1">
+<h3>
+<a href="sections/2.4.1.html#section-2.4.1" >2.4.1 データモデル</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>図で示す対象</h3>
+<ul>
+<li id="template-figure-08">図 8　データモデル<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+<li id="template-figure-09">図 9　データモデルの凡例<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>記載イメージとしてデータモデルを本書に掲載していますが、実案件ではテーブル数が多く本書に全て記載することは難しいと考えるため、別紙に記載することを推奨します。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.4.2">
+<h3>
+<a href="sections/2.4.2.html#section-2.4.2" >2.4.2 データ一覧</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="2.4.2.1">
+<strong>マスターデータ</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="2.4.2.2">
+<strong>マスターデータ以外（トランザクションデータ、入出力ファイル等）</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-17">
+<h4>表 17　マスターデータ一覧</h4>
+<p>No. / データID / データ名 / 概要・用途 / 主管部門 / 保存期間 / 規模情報（概算）／初期件数 / 規模情報（概算）／増加件数 / 規模情報（概算）／最大件数 / 規模情報（概算）／レコード長 / 状態遷移の確認対象 / マスタデータ分類 / 分類選択理由 / 標準化レベル / 個人情報／特定個人情報の有無 / 格付・取扱・アクセス制限 / 公開可否 / 公開範囲 / 公開不可の理由 / 運用管理レベル / 保管方法 / 備考</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<section id="template-table-18">
+<h4>表 18　マスターデータ以外のデータ一覧</h4>
+<p>No. / データID / データ名 / 概要・用途 / 主管部門 / 保存期間 / 規模情報（概算）／初期件数 / 規模情報（概算）／増加件数 / 規模情報（概算）／最大件数 / 規模情報（概算）／レコード長 / 状態遷移の確認対象 / 個人情報／特定個人情報の有無 / 格付・取扱・アクセス制限 / 公開可否 / 公開範囲 / 公開不可の理由 / 運用管理レベル / 保管方法 / 備考</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.4.3">
+<h3>
+<a href="sections/2.4.3.html#section-2.4.3" >2.4.3 データ定義</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-19">
+<h4>表 19　データ定義</h4>
+<p>データID / データ名 / データ分類 / 上位概念 / 用途 / データの単位 / No. / データ項目名 / データタイプ / データ概要 / 主キー / 参照キー / データ型 / 桁数 / 標準化レベル / 機密性レベル / 暗号化有無 / 履歴管理 / 備考</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.4.4">
+<h3>
+<a href="sections/2.4.4.html#section-2.4.4" >2.4.4 CRUDマトリクス</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-20">
+<h4>表 20　CRUDマトリクス</h4>
+<p>機能ID / 機能名 / 概念データID・名称 / 機能×概念データごとのC/R/U/D</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.4.5">
+<h3>
+<a href="sections/2.4.5.html#section-2.4.5" >2.4.5 コード一覧</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-21">
+<h4>表 21　コード一覧</h4>
+<p>No. / コード名 / 用途 / 主管部門 / コード内容定義の有無 / コード構成／データ型 / コード構成／桁数 / コード構成／項目名 / コード構成／構成項目説明 / コード標準化分類 / 分類選択理由 / 標準化レベル / 公開可否 / 公開範囲 / 公開不可の理由 / 備考</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.4.6">
+<h3>
+<a href="sections/2.4.6.html#section-2.4.6" >2.4.6 コード内容定義</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-22">
+<h4>表 22　コード内容定義</h4>
+<p>No. / コード名 / 値 / 値の内容 / 備考</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.4.7">
+<h3>
+<a href="sections/2.4.7.html#section-2.4.7" >2.4.7 オープンデータ一覧</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-23">
+<h4>表 23　オープンデータ一覧</h4>
+<p>No. / データID / データ名 / 概要 / 利用者 / 公開範囲 / 利用目的 / 利用頻度・特徴 / 実装方式 / 処理方式 / 備考</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.4.8">
+<h3>
+<a href="sections/2.4.8.html#section-2.4.8" >2.4.8 モニタリング対象データ一覧</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-24">
+<h4>表 24　モニタリング対象データ一覧（想定）</h4>
+<p>No. / データ名 / 分析軸となる項目 / 目的 ・  /  /  / </p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>モニタリング対象データを明示していないと、運用フェーズでプロジェクトが目標どおりに進んでいるかを把握できなくなるため、取得すべきデータについては可能な限り明示するようにしてください。
+なお、情報システムの背景や特性によって取得すべきデータは大きく変わります。ここに記載したものはあくまで一例です。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-2.5.1">
+<h3>
+<a href="sections/2.5.1.html#section-2.5.1" >2.5.1 外部インタフェース一覧</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-25">
+<h4>表 25　外部インタフェース一覧（想定）</h4>
+<p>項番 / 外部インタフェースID / 外部インタフェース名 / 外部インタフェース概要 / 相手先システム / 送受信区分 / 送受信データ種別 / 送受信タイミング / 送受信の条件 / 補足 ・  /  /  /  /  /  /  /  / プロトコル / 文字コード / </p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3">
+<h3>
+<a href="sections/3.html#section-3" >3 非機能要件定義</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>非機能要件定義のうち、「3.1.ユーザビリティ及びアクセシビリティに関する事項」から「3.11.情報システム稼働環境に関する事項」までが情報システムに対する非機能要件となります。「3.12.データマネジメントに関する事項」から「3.18.保守に関する事項」については、非機能要件の中でも役務的な要素の強いものとなります。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.1.1">
+<h3>
+<a href="sections/3.1.1.html#section-3.1.1" >3.1.1 本システムの利用者の種類、特性</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-26">
+<h4>表 26　本システムの利用者の種類、特性</h4>
+<p>項番 / 利用者区分 / 利用者の種類 / 利用イメージ / 特性</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+利用者区分：本システムの利用者を分類する名称
+利用者の種類：各利用者区分の該当者の説明（職員、国民等）
+利用イメージ：本システムの利用イメージ、利用方法
+特性：ユーザビリティ及びアクセシビリティに関する特性</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.1.2">
+<h3>
+<a href="sections/3.1.2.html#section-3.1.2" >3.1.2 ユーザビリティ要件</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-27">
+<h4>表 27　ユーザビリティ要件</h4>
+<p>項番 / ユーザビリティ分類 / ユーザビリティ要件</p>
+<ul>
+<li>画面の構成（直感・シンプル）</li>
+<li>画面の構成（フォント及び文字サイズ）</li>
+<li>画面の構成（マルチデバイス対応）</li>
+<li>画面の構成 （表示/非表示）</li>
+<li>画面の構成 （クリックやチェックができる箇所）</li>
+<li>画面遷移</li>
+<li>画面表示・操作の一貫性（統一）</li>
+<li>画面表示・操作の一貫性（視認性）</li>
+<li>操作方法のわかりやすさ</li>
+<li>操作方法のわかりやすさ（操作説明）</li>
+<li>操作方法のわかりやすさ（Tabキー）</li>
+<li>操作方法のわかりやすさ（画面遷移）</li>
+<li>操作方法のわかりやすさ（マルチデバイス対応）</li>
+<li>指示や状態のわかりやすさ</li>
+<li>指示や状態のわかりやすさ（外部ドメインへの遷移）</li>
+<li>メッセージ出力</li>
+<li>メッセージ出力 （次の操作）</li>
+<li>エラーの防止と処理</li>
+<li>エラーの防止と処理 （エラー防止）</li>
+<li>エラーの防止と処理（エラーメッセージ）</li>
+<li>エラーの防止と処理（エラー表示と解決策）</li>
+<li>エラーの防止と処理（確認画面）</li>
+<li>エラーの防止と処理（画面遷移）</li>
+<li>エラーの防止と処理（情報保持）</li>
+<li>ヘルプ</li>
+<li>既存の情報システムとの統合</li>
+<li>デザイナーによるUI/UX検討</li>
+<li>画面遷移、操作ログ等の分析</li>
+<li>言語対応</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>多数の国民が利用する情報システムについては、必要に応じて以下の記載を入れることを検討してください。「本システムのユーザーインタフェースについては、デジタル庁が提供するデザインシステム（https://www.digital.go.jp/policies/servicedesign/designsystem/）を活用して設計すること。」</li>
+<li>各項目には以下の内容を記載します。
+ユーザビリティ分類：ユーザビリティ要件を体系的かつ分かりやすく整理するため、必要に応じ複数の要件をまとめて一定の粒度で分類化したもの
+ユーザビリティ要件：ユーザビリティ分類ごとに、利用者の種類及び各利用者の特性を踏まえたユーザビリティに関する基本的な考え方等</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.1.3">
+<h3>
+<a href="sections/3.1.3.html#section-3.1.3" >3.1.3 アクセシビリティ要件</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-28">
+<h4>表 28　アクセシビリティ要件</h4>
+<p>項番 / アクセシビリティ分類 / アクセシビリティ要件</p>
+<ul>
+<li>基準等への準拠</li>
+<li>指示や状態の分かりやすさ</li>
+<li>マルチデバイス対応</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>デジタル庁においては、国民が広く利用する情報システムを構築する際には、「ウェブアクセシビリティ導入ガイドブック」を参考にすることを推奨しています。
+各府省庁のPJMOにおかれましても、適宜参考にしてください。</li>
+<li>各項目には以下の内容を記載します。
+アクセシビリティ分類：アクセシビリティ要件を体系的かつ分かりやすく整理するため、必要に応じ複数の要件をまとめて一定の粒度で分類化したもの
+アクセシビリティ要件：アクセシビリティ分類ごとに、利用者の種類及び各利用者の特性を踏まえたアクセシビリティに関する基本的な考え方等</li>
+<li>対応する際は最新のJIS規格やガイドラインを参照してください。</li>
+<li>デジタル庁においては、国民が広く利用する情報システムを構築する際には、「ウェブアクセシビリティ導入ガイドブック」を参考にすることを推奨しています。各府省庁のPJMOにおかれましても、適宜参考にしてください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.2.1">
+<h3>
+<a href="sections/3.2.1.html#section-3.2.1" >3.2.1 システム方式についての全体方針</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-29">
+<h4>表 29　システム方式についての全体方針</h4>
+<p>項番 / 観点 / 全体方針</p>
+<ul>
+<li>システムアーキテクチャ</li>
+<li>アプリケーションの設計方針</li>
+<li>ソフトウェア製品の活用方針</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>本システムの一部機能をSaaSサービスを利用して構築する場合は、対象の機能を記載してください。</li>
+<li>主管課が準備したSaaSの詳細情報（以下の要素を参照）を記載ください。・ライセンス名称、エディション
+・ライセンス数、契約期間
+・開発に必要となるオプション
+・運用に必要となるオプション</li>
+<li>本契約終了時までに必要となるライセンス・オプション等については、発注者の責任において確認してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.2.2">
+<h3>
+<a href="sections/3.2.2.html#section-3.2.2" >3.2.2 クラウドサービスの選定、利用に関する要件</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.2.2.1">
+<strong>クラウドのISMAP等登録・代替管理策</strong>
+<span class="tag ">原本の条文例</span>
+<p>クラウドのISMAP等登録・代替管理策</p>
+</li>
+<li id="3.2.2.2">
+<strong>要機密情報を扱うクラウドの選定・利用</strong>
+<span class="tag ">原本の条文例</span>
+<p>要機密情報を扱うクラウドの選定・利用</p>
+</li>
+<li id="3.2.2.3">
+<strong>データセンタの設置場所</strong>
+<span class="tag ">原本の条文例</span>
+<p>データセンタの設置場所</p>
+</li>
+<li id="3.2.2.4">
+<strong>契約の準拠法</strong>
+<span class="tag ">原本の条文例</span>
+<p>契約の準拠法</p>
+</li>
+<li id="3.2.2.5">
+<strong>契約紛争の合意管轄</strong>
+<span class="tag ">原本の条文例</span>
+<p>契約紛争の合意管轄</p>
+</li>
+<li id="3.2.2.6">
+<strong>国外保管・国外アクセス</strong>
+<span class="tag ">原本の条文例</span>
+<p>国外保管・国外アクセス</p>
+</li>
+<li id="3.2.2.7">
+<strong>障害時の国外移管</strong>
+<span class="tag ">原本の条文例</span>
+<p>障害時の国外移管</p>
+</li>
+<li id="3.2.2.8">
+<strong>情報資産の所有権・移管</strong>
+<span class="tag ">原本の条文例</span>
+<p>情報資産の所有権・移管</p>
+</li>
+<li id="3.2.2.9">
+<strong>クラウドの冗長性・障害切替</strong>
+<span class="tag ">原本の条文例</span>
+<p>クラウドの冗長性・障害切替</p>
+</li>
+<li id="3.2.2.10">
+<strong>アクセス制御・暗号化・鍵管理</strong>
+<span class="tag ">原本の条文例</span>
+<p>アクセス制御・暗号化・鍵管理</p>
+</li>
+<li id="3.2.2.11">
+<strong>アクセスログ等の提供</strong>
+<span class="tag ">原本の条文例</span>
+<p>アクセスログ等の提供</p>
+</li>
+<li id="3.2.2.12">
+<strong>インターネット接続点の監視</strong>
+<span class="tag ">原本の条文例</span>
+<p>インターネット接続点の監視</p>
+</li>
+<li id="3.2.2.13">
+<strong>クラウドサービスの認証</strong>
+<span class="tag ">原本の条文例</span>
+<p>クラウドサービスの認証</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>SaaSサービスにおいて、適切なアクセス制御を設けない場合、自宅PCからID・パスワードを入力すれば情報システムにログインできてしまうといった事象が起こりうるため、適切にアクセス制御を設定するよう、当該記載を要件定義書に記載してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.2.3">
+<h3>
+<a href="sections/3.2.3.html#section-3.2.3" >3.2.3 開発方式</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.2.3.1">
+<strong>開発環境の用意</strong>
+<span class="tag ">原本の条文例</span>
+<p>開発環境の用意</p>
+</li>
+<li id="3.2.3.2">
+<strong>UI設計ツールと共有</strong>
+<span class="tag ">原本の条文例</span>
+<p>UI設計ツールと共有</p>
+</li>
+<li id="3.2.3.3">
+<strong>API設計ツール</strong>
+<span class="tag ">原本の条文例</span>
+<p>API設計ツール</p>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.2.4">
+<h3>
+<a href="sections/3.2.4.html#section-3.2.4" >3.2.4 機器等の設置方針</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>クラウドサービス以外に運用管理端末やヘルプデスク端末等が必要な場合、基本的に発注者が調達するため、調達仕様書「2.4.主管課が調達する機器、ソフトウェア、サービスの一覧」に追記してください。
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.2.5">
+<h3>
+<a href="sections/3.2.5.html#section-3.2.5" >3.2.5 その他</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.2.5.1">
+<strong>技術検証結果の設計への反映</strong>
+<span class="tag ">原本の条文例</span>
+<p>技術検証結果の設計への反映</p>
+</li>
+<li id="3.2.5.2">
+<strong>簡潔な構成と将来の機能追加</strong>
+<span class="tag ">原本の条文例</span>
+<p>簡潔な構成と将来の機能追加</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>事前に機能面や性能面等での技術検証を行っている場合は、その内容を応札者にも閲覧資料として共有します。
+調達と同時並行で技術検証を行っている場合には、公告時点で開示可能な中間成果物を共有します。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.3.1">
+<h3>
+<a href="sections/3.3.1.html#section-3.3.1" >3.3.1 規模に関する前提条件</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.3.1.1">
+<strong>使用量・費用の監視と可視化</strong>
+<span class="tag ">原本の条文例</span>
+<p>使用量・費用の監視と可視化</p>
+</li>
+<li id="3.3.1.2">
+<strong>マネージドサービス・構成見直しによる費用管理</strong>
+<span class="tag ">原本の条文例</span>
+<p>マネージドサービス・構成見直しによる費用管理</p>
+</li>
+<li id="3.3.1.3">
+<strong>リソース確保方式</strong>
+<span class="tag ">原本の条文例</span>
+<p>リソース確保方式</p>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.3.2">
+<h3>
+<a href="sections/3.3.2.html#section-3.3.2" >3.3.2 データ量</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-30">
+<h4>表 30　データ量</h4>
+<p>項番 / 項目 / データ種類 / データ量 / 年間データ増加率（%） / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+項目：当該情報システムのデータ項目（デジタル・ガバメント推進標準ガイドライン実践ガイドブック「第３編第５章Step.6.1.C.規模に関する事項 表5-15データ量」におけるデータ区分を参照）
+データ種類：データの形式
+データ量：最大のデータ蓄積量の想定
+年間データ増加率：情報システムの運用期間中に想定されるデータの年間増加率</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.3.3">
+<h3>
+<a href="sections/3.3.3.html#section-3.3.3" >3.3.3 処理件数</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-31">
+<h4>表 31　処理件数</h4>
+<p>項番 / 項目 / 処理件数 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>ピーク時の業務処理件数に対応できるリソースを、常時求める必要はありません。</li>
+<li>各項目には以下の内容を記載します。
+項目：処理件数の項目名
+処理件数：規模に相当する一定期間内での処理件数</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.3.4">
+<h3>
+<a href="sections/3.3.4.html#section-3.3.4" >3.3.4 利用者数</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.3.4.1">
+<strong>マイナンバーカード保有者を想定した利用者例</strong>
+<span class="tag ">原本の条文例</span>
+<p>マイナンバーカード保有者を想定した利用者例</p>
+</li>
+<li id="3.3.4.2">
+<strong>還付申告等の利用頻度と増減の想定例</strong>
+<span class="tag ">原本の条文例</span>
+<p>還付申告等の利用頻度と増減の想定例</p>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-32">
+<h4>表 32　利用者数</h4>
+<p>項番 / 利用者区分 / 利用者数 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>各項目には以下の内容を記載します。
+利用者区分：当該情報システムの利用者区分（デジタル・ガバメント推進標準ガイドライン実践ガイドブック「第３編第５章Step.6.1.C.規模に関する事項 表5-17利用者数」における利用者区分を参照）
+利用者数：情報システムを同時に利用可能な利用者数や利用頻度等</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.4.1">
+<h3>
+<a href="sections/3.4.1.html#section-3.4.1" >3.4.1 性能を考慮する対象</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.4.1.1">
+<strong>性能目標の設定対象</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.4.1.2">
+<strong>性能見積もり</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.4.2">
+<h3>
+<a href="sections/3.4.2.html#section-3.4.2" >3.4.2 応答時間</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-33">
+<h4>表 33　目標レスポンスタイム</h4>
+<p>項番 / 指標名 / 目標値 / 補足</p>
+<ul>
+<li>参照系処理</li>
+<li>更新系処理</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>遵守率は情報システムの特性に応じて90%も検討します。</li>
+<li>各項目には以下の内容を記載します。
+指標名：応答時間の指標名
+目標値：指標に対する目標値（原則としてピーク時（最大同時アクセス件数時）に求める上限時間を記載しますが、併せて定常時に求める要件を記載することが望ましいです。また縮退運転時や運用開始直後など、異なる目標値を設定する必要がある場合は、それぞれ定義します。）
+
+なお、複雑な検索処理を実施するなどで応答時間が長くなる画面がある場合、個別に応答時間を設定する方法も一案です。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.4.3">
+<h3>
+<a href="sections/3.4.3.html#section-3.4.3" >3.4.3 スループット</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-34">
+<h4>表 34　処理件数（実績）</h4>
+<p>項番 / 対象業務 / 対象サーバ / ピーク日（令和XX年度） / 処理件数（件/日）</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.5.1">
+<h3>
+<a href="sections/3.5.1.html#section-3.5.1" >3.5.1 可用性要件</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.5.1.1">
+<strong>可用性に係る目標値</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.5.1.2">
+<strong>可用性に係る対策</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-35">
+<h4>表 35　可用性に係る目標値</h4>
+<p>項番 / 指標名 / 目標値 / 補足</p>
+<ul>
+<li>運用時間</li>
+<li>稼働率</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>単一障害点（Single Point of Failure）とは、ある箇所が停止すると情報システムの全体が停止するような箇所のことを指します。</li>
+<li>サーキットブレーカーパターンとは、多数のマイクロサービスが接続して複雑なネットワーク構造となっている場合に、部分的な障害が発生した際にその処理を止める（エラーを返す）ことで、情報システム全体に波及させないようにすることです。
+電力消費が大きくなったときに電力供給を止めるブレーカーのイメージです。</li>
+<li>各項目には以下の内容を記載します。
+指標名：可用性の指標
+目標値：指標に対する目標値</li>
+<li>稼働停止は事業者が開発するアプリケーションだけでなく、利用するクラウドサービスに起因する障害等の外部要因によって発生することもあります。
+仮に稼働停止によってペナルティを求めた場合、外部要因を含めた目標値にすると事業者がリスクと捉え、費用が高騰する可能性もあります。情報システムの特性に応じて適切な目標値を検討してください。</li>
+<li>稼働率の設定はクラウドサービスにより多種多様です。また、クラウドサービスプロバイダが「サービスレベル」として保証する稼働率は、低めに設定される傾向にありますが、実績から見た実質的な稼働率は、高い水準となっていることが多いです。
+上記のような外部環境の稼働率も踏まえて、本システムに求める稼働率目標を設定してください。（なお、本サンプルでは「運用時間」の補足に記載したとおり、クラウドサービス自体に起因する停止時間について除外する前提であることにもご留意ください）
+現在の記載例では稼働率のみが記載されていますが、過去の運用実績が分かる場合は、平均故障間隔（MTBF : Mean Time Between Failures）や平均修復時間 （MTTR : Mean Time to Repair/Recovery）を、目標値として記載することも一案です。
+○MTBFについて
+（説明）過去の実績に基づき、一度障害が発生し、次の障害が発生するまでの時間の平均値
+（算出式）総運用時間÷総故障回数
+○MTTRについて
+（説明）過去の実績に基づき、障害発生から復旧までに要した時間の平均値（算出式）総修理時間÷総故障回数
+○参考：以下条件でMTBFとMTTRを算出した場合
+＜条件＞
+ 総運用時間8,760時間（1年間）
+ 総故障回数4回
+ 総修理時間9時間
+＜算出例＞
+ MTBF＝
+ 8,760時間÷4回=2,190時間≒約90日
+ MTTR＝
+ 9時間÷4回＝2.25時間≒約2時間
+
+本項目には、災害以外で業務停止を伴う障害が発生した場合の復旧までの目標値を記載します。
+なお、大規模災害に伴う障害が発生した場合における、障害発生から復旧までの目標値は
+3.9.(1).ア 大規模災害発生時 で設定してください。</li>
+<li>フェールソフトとは、情報システムの一部に故障や不良が発生しても完全に停止せずに、最低限の作業を続行可能にできるようにすることを指します。</li>
+<li>マルチAZが必須ではありません。情報システムの特性や環境（本番、検証）に合わせて適切な可用性要件を主管課側が検討・見直してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.5.2">
+<h3>
+<a href="sections/3.5.2.html#section-3.5.2" >3.5.2 完全性要件</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.5.2.1">
+<strong>クラウド利用時の完全性対策</strong>
+<span class="tag ">原本の条文例</span>
+<p>クラウド利用時の完全性対策</p>
+</li>
+<li id="3.5.2.2">
+<strong>システムログの取得・出力・保存期間</strong>
+<span class="tag ">原本の条文例</span>
+<p>システムログの取得・出力・保存期間</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>閣副安危第375号において、標的型攻撃への対策として、ログは1年間以上保存することが求められています。この点を踏まえ、セキュリティに関する必要なログについては、1年間以上の保存を検討してください。 </li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.6.1">
+<h3>
+<a href="sections/3.6.1.html#section-3.6.1" >3.6.1 性能及び機能の拡張性</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.6.1.1">
+<strong>基本方針</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.6.1.2">
+<strong>マネージドサービスなどの活用</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.6.1.3">
+<strong>機能の追加</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.6.1.4">
+<strong>コンポーネントの再利用性・拡張性</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.6.1.5">
+<strong>モニタリングと定期的な報告</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.6.1.6">
+<strong>割り当て変更</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>設計・開発段階から過剰なスペックを用意する必要はありませんが、利用者が増加した際にディスクやメモリの容量を増やせるような構成や柔軟性のあるデータベースを設計（※）します。※例えば、内部事務システムの組織階層の設定において、情報システムの運用中に組織改編などの理由から設計段階に想定していた階層より増えてしまうと、階層の追加に対応するために多大な工数がかかります。そういったケースを防ぐため、設計段階において運用中の利用拡大に耐えうるような構造にしておくことが重要です。</li>
+<li>クラウドサービス事業者から提供される新技術・新サービスについて、事前検証による導入の実現性確認を事業者に依頼したい場合は、以下の文案を要件定義書に記載してください。ただし、新技術・新サービスがリリースされるたびに事前検証を求めると受託者側の負担が増大してしまうため、記載する際には留意してください。
+記載例：クラウドサービス事業者から提供される新技術・新サービスのうち、特に本システムに対して効果が見込めるものについては、事前検証による導入の実現性確認を行うこと。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.7.1">
+<h3>
+<a href="sections/3.7.1.html#section-3.7.1" >3.7.1 上位互換性</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.7.1.1">
+<strong>クラウドサービスのバージョンアップ</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.7.1.2">
+<strong>OS等への依存</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.7.1.3">
+<strong>クライアント端末の更新</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.7.2">
+<h3>
+<a href="sections/3.7.2.html#section-3.7.2" >3.7.2 業務分担</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.7.2.1">
+<strong>アプリケーション保守担当の影響調査</strong>
+<span class="tag ">原本の条文例</span>
+<p>アプリケーション保守担当の影響調査</p>
+</li>
+<li id="3.7.2.2">
+<strong>運用担当の基盤影響調査</strong>
+<span class="tag ">原本の条文例</span>
+<p>運用担当の基盤影響調査</p>
+</li>
+<li id="3.7.2.3">
+<strong>機器・ソフトウェア担当による支援</strong>
+<span class="tag ">原本の条文例</span>
+<p>機器・ソフトウェア担当による支援</p>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.8.1">
+<h3>
+<a href="sections/3.8.1.html#section-3.8.1" >3.8.1 オープンな標準的技術又は製品の採用</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.8.1.1">
+<strong>データの可搬性の担保</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.8.1.2">
+<strong>オープンソースソフトウェア（OSS）活用</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.8.1.3">
+<strong>オープンなインタフェースの活用</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.9.1">
+<h3>
+<a href="sections/3.9.1.html#section-3.9.1" >3.9.1 継続性に係る目標値</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.9.1.1">
+<strong>大規模災害発生時</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-36">
+<h4>表 36　継続性に係る目標値（大規模災害発生時）</h4>
+<p>項番 / 設定対象 / 目標復旧時間（RTO） / 目標復旧レベル（RLO） / 目標復旧時点（RPO）</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>当該表には大規模災害に伴う障害が発生した場合における、障害発生から復旧までの目標値を記載します。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.9.2">
+<h3>
+<a href="sections/3.9.2.html#section-3.9.2" >3.9.2 継続性に係る対策</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.9.2.1">
+<strong>災害対策</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.9.2.2">
+<strong>データバックアップ</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.9.2.3">
+<strong>システムバックアップ</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.9.2.4">
+<strong>システム障害時の業務継続</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>異なるリージョンでの運用には、次の2つのパターンがあります。
+本書では、バックアップ型を前提としています。
+
+常時稼働型
+別リージョンでもシステムを常時稼働させ、プライマリリージョンで障害が発生した場合は即時切り替えを行う方式です。
+目標復旧時間（RTO）が短い場合に有効です。
+
+バックアップ型
+別リージョンにはデータやシステムのバックアップのみを保持し、障害発生時にはバックアップから復旧作業を行った上で再稼働する方式です。
+RTOにある程度余裕がある場合に適しています。
+
+なお、RTOが十分に確保されている場合、常時稼働型は過剰な要件となる可能性があります。必要性を踏まえ、適切な方式を選択してください。</li>
+<li>業務システムの運用要件によって、例えば、1月1日時点のデータを保持するなど、必要なバックアップ方法について追記してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.10.1">
+<h3>
+<a href="sections/3.10.1.html#section-3.10.1" >3.10.1 セキュリティ対応方針</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-37">
+<h4>表 37　本システムにおけるセキュリティ対応方針</h4>
+<p>項番 / 分類 / 概要</p>
+<ul>
+<li>原則</li>
+<li>システム特性（概要）</li>
+<li>優先的に対処すべきセキュリティリスク</li>
+<li>セキュリティ対応方針</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>情報システムのセキュリティ要件定義に影響するシステム特性として以下を記載します。なお、別の章で既に記載されているのであれば、本章で改めて明記する必要はありません。
+情報システムの利用者（国民or政府系職員orその他）
+情報システムで取扱う情報（個人情報、機微情報有無）
+利用環境・ネットワーク構成（ネットワーク接続方法（インターネット、専用線、その他）、外部システムとの接続有無）</li>
+<li>情報システムにおけるセキュリティ対応方針を検討するため、システム特性を踏まえて、セキュリティリスクを発生確率×影響度で評価し、特にリスク低減を図るべきセキュリティリスクを検討し記載する。リスクについては「どのような脅威により、どのような被害が発生するか」を記載します。リスク評価の詳細な実施方法は以下等を参照してください。
+IPA：セキュリティバイデザイン導入指南書（セキュリティ・バイ・デザイン導入指南書 （ipa.go.jp））
+IPA：制御システムのセキュリティリスク分析ガイド（「制御システムのセキュリティリスク分析ガイド 第2版 ～セキュリティ対策におけるリスクアセスメントの実施と活用～」を公開：IPA 独立行政法人 情報処理推進機構）※制御システムが対象ですが、情報システムでも考え方は活用可能です。</li>
+<li>セキュリティ要件を漏れなく導出するためのベースライン（情報システムのセキュリティ標準）を決定します。要件定義の際は、選定したベースライン（システムのセキュリティ標準）に基づいて、自システムの特性やセキュリティリスク等に基づいて要件の追加/削除等を行い、過不足ないセキュリティ要件を導出します。
+政府情報システムにおいては以下のベースラインの活用事例が多くあります。※以下以外のセキュリティ標準や、複数組合せて使用することも可能であり、システム特性を考慮して必要なベースラインを選定することが重要です。
+情報システムに係る政府調達におけるセキュリティ要件策定マニュアル：政府機関対策関連 - NCO（国家サイバー統括室）
+CIS Critical Security Contorls：CIS Critical Security Controls （cisecurity.org）</li>
+<li>優先的に対処すべきセキュリティリスクに対して、どのようにリスク低減を図るか、記載サンプルに倣って対応方針を記載します。（ある程度具体的な内容を記載頂くことが望ましいです。）
+その他のリスクへのセキュリティ対応方針については、情報システムにおける全般的セキュリティリスクへの基本的な姿勢について記載します。
+以降で定義したセキュリティ要件が、本対応方針に沿っているか検証し、情報システムにおけるセキュリティ対応方針とセキュリティ要件の一貫性を担保することが重要です。
+ガバメントクラウドを利用する場合は、セキュリティ対応方針に「ガバメントクラウドの各種ガイドやテンプレートに従い、セキュリティを担保する」といった文言を記載してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.10.2">
+<h3>
+<a href="sections/3.10.2.html#section-3.10.2" >3.10.2 セキュリティ要件</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>セキュリティ要件について、（1）セキュリティ対応方針に準拠しているかを確認し、以下を参考に過不足ない要件を定義します。
+選定したベースライン（情報システムのセキュリティ標準）に基づいて、自システムの特性やセキュリティリスク等に基づいて要件の追加/削除等を行い、過不足ないセキュリティ要件が導出できているか（ベースラインと完全に一致する要件を求めることは意図していない）
+優先的に対処すべきセキュリティリスクに対して十分にリスク低減可能なセキュリティ要件となっているか</li>
+<li>デジタル庁「政府情報システムにおけるセキュリティ・バイ・デザインガイドライン（政府情報システムにおける セキュリティ・バイ・デザインガイドライン （digital.go.jp））」の要件定義に関する重要なセキュリティ対策の考え方に従い、セキュリティ要件定義が実施されていることを確認します。
+重要なセキュリティ対策の考え方は以下の通りです。
+サイバー攻撃は成功する（発生する）前提で、多層のセキュリティ対策を実施し、一つのセキュリティ対策が破られたとしても、別のセキュリティ対策により被害を極小化することを目的とした考え方に基づいて、セキュリティ要件を定義することが重要である。
+OS やミドルウェア、ネットワーク、アプリケーション、物理等の各コンポーネントにおいて多層のセキュリティ対策を実施することで、攻撃者にとって攻撃コストの高いシステムを実現する。
+攻撃や事故の発生自体を防止する防御に類するセキュリティ対策に偏らず、 速やかなインシデント（兆候）の検知、インシデント対応、サービス復旧 のための対策も含め、多層的にセキュリティ対策を実装することが求められる。</li>
+<li>当該別紙については、各府省、各プロジェクトで異なる内容となるため共通的なテンプレートは用意しておりません。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.11">
+<h3>
+<a href="sections/3.11.html#section-3.11" >3.11 情報システム稼働環境に関する事項</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>現行システムが存在する場合は、現行のシステム構成（クラウドサービス、ハードウェア、ソフトウェア、ネットワーク構成も含む）について、要件定義書や設計書等を閲覧資料として示してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.11.1">
+<h3>
+<a href="sections/3.11.1.html#section-3.11.1" >3.11.1 システム構成</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.11.1.1">
+<strong>本番環境</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.11.1.2">
+<strong>検証環境</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.11.1.3">
+<strong>開発環境</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>図で示す対象</h3>
+<ul>
+<li id="template-figure-10">図 10　本番環境システム構成（想定）<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+<li id="template-figure-11">図 11　検証環境システム構成（想定）<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>新規システムの場合、システム構成の詳細まで決まっていないケースもありますが、外部コンサルの利用や類似システムを参考にすることである程度記載することができます。
+既存システムがある場合は、既存の設計書等に基づいてシステム構成を記載します。要件定義書用に内容を書き換える必要はなく、基本的には設計書の内容を転記する、または別紙や閲覧資料としてください。
+受託者にとっては、このような情報があることで工数見積の精度が大きく向上しますし、設計工程でも事業者の準備、理解が進んだ状態で始められるというメリットがあります。</li>
+<li>開発環境を事業者側の環境に構築するか、主管課側の環境に構築するかは、プロジェクトごとに設定します。
+なお、ガバメントクラウド利用システムにおいてCI/CDを行う場合は、開発環境もガバメントクラウドが提供します。</li>
+<li>主管課がソースコードまで理解して事業者とやり取りを行う場合は、事業者と主管課で管理ツールを共有することもあります。
+このような記載をしておくことで、管理ツール共有の提案を事業者に促すことができます。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.11.2">
+<h3>
+<a href="sections/3.11.2.html#section-3.11.2" >3.11.2 クラウドサービス構成</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.11.2.1">
+<strong>クラウドサービスの要件</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.11.2.2">
+<strong>クラウドサービス構成</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-38">
+<h4>表 38　クラウドサービス構成</h4>
+<p>項番 / クラウドサービス / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>クラウドサービスでは仮想サーバを始め様々なサービスの立ち上げ自体もコード（設定情報のプログラム）で記載することができます。これによって効率化や品質を向上させることができます。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.11.3">
+<h3>
+<a href="sections/3.11.3.html#section-3.11.3" >3.11.3 ハードウェア構成</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.11.3.1">
+<strong>未使用時の検証サーバ停止</strong>
+<span class="tag ">原本の条文例</span>
+<p>未使用時の検証サーバ停止</p>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-39">
+<h4>表 39　ハードウェア構成</h4>
+<p>項番 / ハードウェア分類 / ハードウェア名 / ハードウェア要件 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.11.4">
+<h3>
+<a href="sections/3.11.4.html#section-3.11.4" >3.11.4 ソフトウェア構成</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-40">
+<h4>表 40　ソフトウェア一覧</h4>
+<p>項番 / ソフトウェア分類 / ソフトウェア名 / ソフトウェア要件 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>主管課からソフトウェアを指定する場合、製品自体は指定せずにスペックのみ指定することも可能です。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.11.5">
+<h3>
+<a href="sections/3.11.5.html#section-3.11.5" >3.11.5 ネットワーク構成</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.11.5.1">
+<strong>連携先との閉域網接続</strong>
+<span class="tag ">原本の条文例</span>
+<p>連携先との閉域網接続</p>
+</li>
+<li id="3.11.5.2">
+<strong>固有グローバルIPアドレス</strong>
+<span class="tag ">原本の条文例</span>
+<p>固有グローバルIPアドレス</p>
+</li>
+<li id="3.11.5.3">
+<strong>クラウド上の仮想閉域網</strong>
+<span class="tag ">原本の条文例</span>
+<p>クラウド上の仮想閉域網</p>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-41">
+<h4>表 41　ネットワーク構成</h4>
+<p>項番 / 回線種別 / ネットワーク要件 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.11.6">
+<h3>
+<a href="sections/3.11.6.html#section-3.11.6" >3.11.6 施設・設備要件</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-42">
+<h4>表 42　施設・設備要件</h4>
+<p>項番 / 施設名 / 施設形態 / 施設・設備要件 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.11.7">
+<h3>
+<a href="sections/3.11.7.html#section-3.11.7" >3.11.7 利用端末の要件</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.11.7.1">
+<strong>動作保証する端末・OSの範囲</strong>
+<span class="tag ">原本の条文例</span>
+<p>動作保証する端末・OSの範囲</p>
+</li>
+<li id="3.11.7.2">
+<strong>動作保証するブラウザの範囲</strong>
+<span class="tag ">原本の条文例</span>
+<p>動作保証するブラウザの範囲</p>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-43">
+<h4>表 43　動作保証対象とする利用端末</h4>
+<p>項番 / 端末 / OS / バージョン</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>調達仕様書作成段階で未定の場合は、設計工程開始時に決定する方針を記載します。こちらの記載を参考にしてください。「本システムの運用開始時点で動作対象とする端末・OS・ブラウザの機種やバージョンは、機種やバージョンの公開時期、設計に必要な期間等を踏まえ主管課と協議の上、設計工程で決定する。」</li>
+<li>スマホに加え、タブレットにも独自のUIを加える場合は、本表にその要件を記載してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.12">
+<h3>
+<a href="sections/3.12.html#section-3.12" >3.12 データマネジメントに関する事項</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>本文に指定された補助アウトライン</h3>
+<ul>
+<li id="template-outline-extra-1770">データ管理体制の明確化 <span class="tag ">原本の小見出し</span>
+</li>
+<li id="template-outline-extra-1772">データの標準化 <span class="tag ">原本の小見出し</span>
+</li>
+<li id="template-outline-extra-1774">共有マスターデータの選定・独自設計時の再利用性 <span class="tag ">原本の条文例</span>
+</li>
+<li id="template-outline-extra-1775">広く利用される標準コード値の採用 <span class="tag ">原本の条文例</span>
+</li>
+<li id="template-outline-extra-1776">関連分野のデータ流通と関係者調整 <span class="tag ">原本の条文例</span>
+</li>
+<li id="template-outline-extra-1777">データに関するドキュメントの一元的管理 <span class="tag ">原本の小見出し</span>
+</li>
+<li id="template-outline-extra-1779">オープンデータ化を容易にする設計 <span class="tag ">原本の小見出し</span>
+</li>
+<li id="template-outline-extra-1781">データに関する運用情報の管理 <span class="tag ">原本の小見出し</span>
+</li>
+<li id="template-outline-extra-1784">データの機密性定義に応じた設計 <span class="tag ">原本の小見出し</span>
+</li>
+<li id="template-outline-extra-1786">データ品質の継続的改善 <span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>データ品質を確保する手法として、データ・プロファイリング（データの内容や品質を詳細に調査し、設計不備や設計と実装とのギャップを発見すること）も有効です。
+必要に応じて、データ・プロファイリングについても明示的に要件化してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.13">
+<h3>
+<a href="sections/3.13.html#section-3.13" >3.13 テストに関する事項</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-44">
+<h4>表 44　テスト要件</h4>
+<p>項番 / 分類 / 要件</p>
+<ul>
+<li>テスト工程の定義</li>
+<li>テスト環境</li>
+<li>テスト 計画書</li>
+<li>テスト 仕様書</li>
+<li>テストの実施</li>
+<li>テストデータ</li>
+<li>対応状況の報告</li>
+<li>テスト完了報告書</li>
+<li>テストの 自動化</li>
+<li>将来時点の仕様変更</li>
+<li>構築時の 脆弱性対策</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>案件開始後においては、発注者は受託者からの報告内容を理解し、要件どおりの仕様書になっていないなど何らかの問題が疑われる場合は受託者に対策を講じるように依頼するなど先手の対応を取るようにしてください。</li>
+<li>案件開始後においては、発注者は受託者からの報告内容を理解し、予定に対して実績が大きく乖離しているなど何らかの問題が疑われる場合は受託者に対策を講じるように依頼するなど先手の対応を取るようにしてください。
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.13.1">
+<h3>
+<a href="sections/3.13.1.html#section-3.13.1" >3.13.1 単体テスト</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.13.1.1">
+<strong>単体テストコードの用意と実行</strong>
+<span class="tag ">原本の条文例</span>
+<p>単体テストコードの用意と実行</p>
+</li>
+<li id="3.13.1.2">
+<strong>単体テスト指標と報告</strong>
+<span class="tag ">原本の条文例</span>
+<p>単体テスト指標と報告</p>
+</li>
+<li id="3.13.1.3">
+<strong>単体テスト証跡</strong>
+<span class="tag ">原本の条文例</span>
+<p>単体テスト証跡</p>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.13.2">
+<h3>
+<a href="sections/3.13.2.html#section-3.13.2" >3.13.2 結合テスト</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.13.2.1">
+<strong>結合テストの観点</strong>
+<span class="tag ">原本の条文例</span>
+<p>結合テストの観点</p>
+</li>
+<li id="3.13.2.2">
+<strong>同値・境界値・原因結果分析</strong>
+<span class="tag ">原本の条文例</span>
+<p>同値・境界値・原因結果分析</p>
+</li>
+<li id="3.13.2.3">
+<strong>画面の状態遷移・誤操作</strong>
+<span class="tag ">原本の条文例</span>
+<p>画面の状態遷移・誤操作</p>
+</li>
+<li id="3.13.2.4">
+<strong>APIの境界値・状態遷移</strong>
+<span class="tag ">原本の条文例</span>
+<p>APIの境界値・状態遷移</p>
+</li>
+<li id="3.13.2.5">
+<strong>結合テスト用の疑似データ</strong>
+<span class="tag ">原本の条文例</span>
+<p>結合テスト用の疑似データ</p>
+</li>
+<li id="3.13.2.6">
+<strong>結合テスト証跡</strong>
+<span class="tag ">原本の条文例</span>
+<p>結合テスト証跡</p>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-45">
+<h4>表 45　結合テストの主なテスト観点</h4>
+<p>項番 / テスト種別 / 概要</p>
+<ul>
+<li>システム基盤テスト</li>
+<li>外部連携テスト</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>特に他の情報システムとデータ連携を行う場合、情報システムの特性に合わせて必要な外部連携テストを実施することを推奨します。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.13.3">
+<h3>
+<a href="sections/3.13.3.html#section-3.13.3" >3.13.3 総合テスト</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.13.3.1">
+<strong>総合テストの観点</strong>
+<span class="tag ">原本の条文例</span>
+<p>総合テストの観点</p>
+</li>
+<li id="3.13.3.2">
+<strong>総合テスト用の疑似データ</strong>
+<span class="tag ">原本の条文例</span>
+<p>総合テスト用の疑似データ</p>
+</li>
+<li id="3.13.3.3">
+<strong>停止・バックアップ・復旧・起動の実施担当</strong>
+<span class="tag ">原本の条文例</span>
+<p>停止・バックアップ・復旧・起動の実施担当</p>
+</li>
+<li id="3.13.3.4">
+<strong>総合テスト証跡</strong>
+<span class="tag ">原本の条文例</span>
+<p>総合テスト証跡</p>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-46">
+<h4>表 46　総合テストの主なテスト観点</h4>
+<p>項番 / テスト種別 / 概要</p>
+<ul>
+<li>業務運用テスト</li>
+<li>ユーザビリティ/アクセシビリティテスト</li>
+<li>性能・拡張性テスト</li>
+<li>可用性（障害）テスト</li>
+<li>完全性テスト</li>
+<li>互換性検証テスト</li>
+<li>セキュリティテスト</li>
+<li>ロングランテスト</li>
+<li>運用・保守テスト</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>特に国民等の多数のユーザー（リテラシーも大きく異なる）が利用する場合には、このようにユーザビリティ/アクセシビリティテストを明示的に実施することを推奨します。
+ユーザビリティ/アクセシビリティテストは費用が掛かることを理解し、国民や多数の人員が利用するような情報システムで、ユーザー評価によってデザイン・画面遷移等を修正する必要があるものに対してテストを実施することが望ましいです。
+主管課側として、意思決定者や基準をある程度決定しておく必要があります。</li>
+<li>特に現行システムを更改する場合には、このように互換性評価テストを明示的に実施することを推奨します。</li>
+<li>セキュリティテストのテスト手法はあくまでも例示となりますので、各情報システムのセキュリティ要件に応じて、テスト手法の追加等をご検討ください。（例）ファジング：潜在的なバグ・脆弱性を検出することを目的として、通常想定されない不正データ等を情報システムに与え意図的に例外処理を発生させるテスト手法。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.13.4">
+<h3>
+<a href="sections/3.13.4.html#section-3.13.4" >3.13.4 受入テスト</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.13.4.1">
+<strong>受入テスト計画と期間の確保</strong>
+<span class="tag ">原本の条文例</span>
+<p>受入テスト計画と期間の確保</p>
+</li>
+<li id="3.13.4.2">
+<strong>受入テスト仕様・合格基準</strong>
+<span class="tag ">原本の条文例</span>
+<p>受入テスト仕様・合格基準</p>
+</li>
+<li id="3.13.4.3">
+<strong>受入テスト実施支援</strong>
+<span class="tag ">原本の条文例</span>
+<p>受入テスト実施支援</p>
+</li>
+<li id="3.13.4.4">
+<strong>受入テストの環境・データ調整</strong>
+<span class="tag ">原本の条文例</span>
+<p>受入テストの環境・データ調整</p>
+</li>
+<li id="3.13.4.5">
+<strong>受入テストの問合せ対応</strong>
+<span class="tag ">原本の条文例</span>
+<p>受入テストの問合せ対応</p>
+</li>
+<li id="3.13.4.6">
+<strong>未解決障害の解消・承認</strong>
+<span class="tag ">原本の条文例</span>
+<p>未解決障害の解消・承認</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>設計・開発工程で遅延が発生した場合、スケジュール調整の最終手段としてテスト工程を短縮するという方法が選択されがちですが、テスト期間を短縮することにより受入テストで本来確認すべきことを十分に確認することができなくなる可能性があります。
+受入テスト計画段階で受入テストの期間を確保するとともに、それまでの工程が遅延したとしても受入テストの期間短縮を安易に受け入れないように注意してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.14">
+<h3>
+<a href="sections/3.14.html#section-3.14" >3.14 移行に関する事項</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>本文に指定された補助アウトライン</h3>
+<ul>
+<li id="template-outline-extra-1996">移行に関する前提条件 <span class="tag ">原本の小見出し</span>
+</li>
+<li id="template-outline-extra-1998">移行漏れを防ぐ停止と業務停止調整 <span class="tag ">原本の条文例</span>
+</li>
+<li id="template-outline-extra-1999">移行データの作成・加工と既存担当者の協力 <span class="tag ">原本の条文例</span>
+</li>
+<li id="template-outline-extra-2073">具体的な移行時期の決定 <span class="tag ">原本の条文例</span>
+</li>
+<li id="template-outline-extra-2074">停止を伴う本番移行の時期・連絡体制 <span class="tag ">原本の条文例</span>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-47">
+<h4>表 47　移行に向けた作業手順及び役割分担</h4>
+<p>項番 / 作業名 / 主管課 / 工程管理支援事業者 / 現行システム運用・保守事業者 / 本システム設計・開発事業者
+（受託者） / …</p>
+<ul>
+<li>移行計画の作成</li>
+<li>移行データ準備・提供</li>
+<li>移行データ分析</li>
+<li>移行設計</li>
+<li>データ移行サーバ・ツールの開発</li>
+<li>移行リハーサル</li>
+<li>移行判定</li>
+<li>本番移行</li>
+<li>稼働判定</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>移行作業に関し、移行元システムの運用・保守事業者に作業が発生する場合は、その作業を鑑みた上で予算要求を行ってください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.14.1">
+<h3>
+<a href="sections/3.14.1.html#section-3.14.1" >3.14.2 移行計画の作成</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-48">
+<h4>表 48　移行計画書の記載内容</h4>
+<p>項番 / 項目 / 補足</p>
+<ul>
+<li>主管課及び各事業者の移行実施体制と役割</li>
+<li>移行に係る詳細な作業及びスケジュール</li>
+<li>移行対象</li>
+<li>移行環境／移行方法／移行ツール</li>
+<li>移行作業、移行に伴い発生する各種設定を行うための各種手順書・マニュアル</li>
+<li>切り戻し基準、切り戻し手順書</li>
+<li>移行判定基準</li>
+<li>連携先の外部システム</li>
+<li>移行リハーサルの実施場所（システム環境）</li>
+<li>稼働判定基準</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<section id="template-table-49">
+<h4>表 49　計画の種類</h4>
+<p>項番 / 計画の種類 / 概要</p>
+<ul>
+<li>移行リハーサル計画</li>
+<li>移行（本番）計画</li>
+<li>並行稼働計画</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>新規開発システムで現行システムが存在しない場合は、こちらの記載を参考に補足を記載してください。「情報システムは、新規構築するものであるため、切り戻し手順等の検討は不要である。」</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.14.4">
+<h3>
+<a href="sections/3.14.4.html#section-3.14.4" >3.14.5 移行設計</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.14.4.1">
+<strong>システム・データ移行方式</strong>
+<span class="tag ">原本の条文例</span>
+<p>システム・データ移行方式</p>
+</li>
+<li id="3.14.4.2">
+<strong>事前計測による移行所要時間見積り</strong>
+<span class="tag ">原本の条文例</span>
+<p>事前計測による移行所要時間見積り</p>
+</li>
+<li id="3.14.4.3">
+<strong>接続切替えと関係者調整</strong>
+<span class="tag ">原本の条文例</span>
+<p>接続切替えと関係者調整</p>
+</li>
+<li id="3.14.4.4">
+<strong>移行作業フローと時程</strong>
+<span class="tag ">原本の条文例</span>
+<p>移行作業フローと時程</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>準備事項に関する主な支援例は以下となります。
+並行稼働中の業務データの手動保存/移行
+情報システムへのアクセス先（URL）の変更等の周知
+端末の入れ替え
+利用者のログインID/パスワードの変更</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.14.6">
+<h3>
+<a href="sections/3.14.6.html#section-3.14.6" >3.14.7 移行リハーサル</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.14.6.1">
+<strong>リハーサル設計・手順の最終確認</strong>
+<span class="tag ">原本の条文例</span>
+<p>リハーサル設計・手順の最終確認</p>
+</li>
+<li id="3.14.6.2">
+<strong>連携先への設定変更依頼</strong>
+<span class="tag ">原本の条文例</span>
+<p>連携先への設定変更依頼</p>
+</li>
+<li id="3.14.6.3">
+<strong>リハーサル結果と承認</strong>
+<span class="tag ">原本の条文例</span>
+<p>リハーサル結果と承認</p>
+</li>
+<li id="3.14.6.4">
+<strong>リハーサル回数・使用データの扱い</strong>
+<span class="tag ">原本の条文例</span>
+<p>リハーサル回数・使用データの扱い</p>
+</li>
+<li id="3.14.6.5">
+<strong>本番移行に向けた課題分析</strong>
+<span class="tag ">原本の条文例</span>
+<p>本番移行に向けた課題分析</p>
+</li>
+<li id="3.14.6.6">
+<strong>再検証の必要性判断</strong>
+<span class="tag ">原本の条文例</span>
+<p>再検証の必要性判断</p>
+</li>
+<li id="3.14.6.7">
+<strong>手順修正後の再実施</strong>
+<span class="tag ">原本の条文例</span>
+<p>手順修正後の再実施</p>
+</li>
+<li id="3.14.6.8">
+<strong>本番までに解決する課題の整理</strong>
+<span class="tag ">原本の条文例</span>
+<p>本番までに解決する課題の整理</p>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.14.8">
+<h3>
+<a href="sections/3.14.8.html#section-3.14.8" >3.14.9 本番移行</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.14.8.1">
+<strong>本番移行計画・手順の修正と承認</strong>
+<span class="tag ">原本の条文例</span>
+<p>本番移行計画・手順の修正と承認</p>
+</li>
+<li id="3.14.8.2">
+<strong>切戻し判断のチェックポイント</strong>
+<span class="tag ">原本の条文例</span>
+<p>切戻し判断のチェックポイント</p>
+</li>
+<li id="3.14.8.3">
+<strong>移行成果物の説明・承認</strong>
+<span class="tag ">原本の条文例</span>
+<p>移行成果物の説明・承認</p>
+</li>
+<li id="3.14.8.4">
+<strong>移行進捗・不具合の報告</strong>
+<span class="tag ">原本の条文例</span>
+<p>移行進捗・不具合の報告</p>
+</li>
+<li id="3.14.8.5">
+<strong>本番稼働開始の判断と実施</strong>
+<span class="tag ">原本の条文例</span>
+<p>本番稼働開始の判断と実施</p>
+</li>
+<li id="3.14.8.6">
+<strong>安定運用までの支援期間・体制</strong>
+<span class="tag ">原本の条文例</span>
+<p>安定運用までの支援期間・体制</p>
+</li>
+<li id="3.14.8.7">
+<strong>並行稼働・切戻し期間の例</strong>
+<span class="tag ">原本の条文例</span>
+<p>並行稼働・切戻し期間の例</p>
+</li>
+<li id="3.14.8.8">
+<strong>移行結果報告と承認</strong>
+<span class="tag ">原本の条文例</span>
+<p>移行結果報告と承認</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>現行システムが存在する場合等、主管課側にてピーク時の問い合わせやインシデント量を想定できる場合は、体制を極力定量的に求める記載してください（対応人数、1日の想定問合せ数等）。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.14.10">
+<h3>
+<a href="sections/3.14.10.html#section-3.14.10" >3.14.11 移行対象データ</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-50">
+<h4>表 50　移行対象データ</h4>
+<p>項番 / 移行元 / 移行対象データ / 件数 / 提供方法 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>移行対象データは主管課側で確定する必要があります。特に過去データやログの移行に関して、どの程度移行するかを明記します。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.15.2">
+<h3>
+<a href="sections/3.15.2.html#section-3.15.2" >3.15.2 引継ぎ方法</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.15.2.1">
+<strong>引継ぎ計画・理解度・時間の確保</strong>
+<span class="tag ">原本の条文例</span>
+<p>引継ぎ計画・理解度・時間の確保</p>
+</li>
+<li id="3.15.2.2">
+<strong>第三者が保守可能な編集可能成果物</strong>
+<span class="tag ">原本の条文例</span>
+<p>第三者が保守可能な編集可能成果物</p>
+</li>
+<li id="3.15.2.3">
+<strong>設計根拠・検討経緯の記録</strong>
+<span class="tag ">原本の条文例</span>
+<p>設計根拠・検討経緯の記録</p>
+</li>
+<li id="3.15.2.4">
+<strong>引継ぎ期間中の問合せ対応</strong>
+<span class="tag ">原本の条文例</span>
+<p>引継ぎ期間中の問合せ対応</p>
+</li>
+<li id="3.15.2.5">
+<strong>引継ぎ未完了時の扱い</strong>
+<span class="tag ">原本の条文例</span>
+<p>引継ぎ未完了時の扱い</p>
+</li>
+<li id="3.15.2.6">
+<strong>連携先への引継ぎ時間・回数の例</strong>
+<span class="tag ">原本の条文例</span>
+<p>連携先への引継ぎ時間・回数の例</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>打合せ回数についても工数積算に影響します。調達時点で正確に予測することは難しいですが、中心的な打合せ回数に加えて、必要に応じて個別打合せという形であれば、打合せ回数についても発注側が考えている目安を伝えることができます。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.15.3">
+<h3>
+<a href="sections/3.15.3.html#section-3.15.3" >3.15.3 引継ぎ対象</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-51">
+<h4>表 51　本システムの引継ぎ対象</h4>
+<p>項番 / 引継ぎ期間 / 引継ぎ先 / 引継ぎ内容 / 引継ぎ手順 / 補足</p>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>引継ぎ期間が明示されていないと、見積を行う事業者が不必要にリスクを積んで工数が増えてしまうことがあります。</li>
+<li>テストに利用したツール、テストコード等については、成果物として納品を受けただけでは実際に使えないこともあります。
+引継ぎ先事業者が後続業務でも活用できることが重要です。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.15.4">
+<h3>
+<a href="sections/3.15.4.html#section-3.15.4" >3.15.4 クラウドサービスを利用する場合の引継ぎ</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>本調達の契約期間終了時点で本システムがクラウドサービスプロバイダから退去することを想定している場合は、当該項目に以下の文言を記載することを検討してください。
+記載例：本調達の契約期間終了時点で本システムがクラウドサービスプロバイダから退去する場合には、本調達の受託者がデータベースに格納しているすべての対象データをオンプレミス環境や媒体等に抽出した状態で受託者の負担により引き渡すこと。なお、対象となるデータや詳細な引き渡し方法は協議の上決定すること。</li>
+<li>クラウドサービス自体の切替えであったり、同じクラウドサービスでも別アカウントに移行すると、サービスを継続提供することが困難になり一時的なサービス中断が発生します。そのような事態を防ぐために、アカウント（管理者権限）の引き渡し等を定めています。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.16.2">
+<h3>
+<a href="sections/3.16.2.html#section-3.16.2" >3.16.2 教育対象者</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-52">
+<h4>表 52　教育対象者</h4>
+<p>項番 / 教育対象者 / 教育内容 / 教育対象者数</p>
+<ul>
+<li>システム部門職員</li>
+<li>業務部門職員</li>
+<li>運用・保守事業者</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.16.3">
+<h3>
+<a href="sections/3.16.3.html#section-3.16.3" >3.16.3 教育の実施時期</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>プロジェクト中に担当者の人事異動が発生することが見込まれる場合は、当該要件を加えることを検討してください。</li>
+<li>「表52 教育対象者」の教育対象者に人事異動が発生することが見込まれる場合は、当該要件を加えることを検討してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.16.4">
+<h3>
+<a href="sections/3.16.4.html#section-3.16.4" >3.16.4 教育の方法</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.16.4.1">
+<strong>講師の担当</strong>
+<span class="tag ">原本の条文例</span>
+<p>講師の担当</p>
+</li>
+<li id="3.16.4.2">
+<strong>教材・機材の準備</strong>
+<span class="tag ">原本の条文例</span>
+<p>教材・機材の準備</p>
+</li>
+<li id="3.16.4.3">
+<strong>会場・Web会議の準備</strong>
+<span class="tag ">原本の条文例</span>
+<p>会場・Web会議の準備</p>
+</li>
+<li id="3.16.4.4">
+<strong>講義録画と再利用</strong>
+<span class="tag ">原本の条文例</span>
+<p>講義録画と再利用</p>
+</li>
+<li id="3.16.4.5">
+<strong>講義回数・日数・時間の例</strong>
+<span class="tag ">原本の条文例</span>
+<p>講義回数・日数・時間の例</p>
+</li>
+<li id="3.16.4.6">
+<strong>教材配布方法</strong>
+<span class="tag ">原本の条文例</span>
+<p>教材配布方法</p>
+</li>
+<li id="3.16.4.7">
+<strong>質疑応答時間の例</strong>
+<span class="tag ">原本の条文例</span>
+<p>質疑応答時間の例</p>
+</li>
+<li id="3.16.4.8">
+<strong>本番への影響を避ける操作体験</strong>
+<span class="tag ">原本の条文例</span>
+<p>本番への影響を避ける操作体験</p>
+</li>
+<li id="3.16.4.9">
+<strong>講義・マニュアルの評価</strong>
+<span class="tag ">原本の条文例</span>
+<p>講義・マニュアルの評価</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>実体験のためには以下のような作業が必要となり、コストがかかります。システム特性に応じて実体験の必要有無を検討してください。
+実体験の準備に必要な作業例：
+サーバ側にて研修環境を構築する
+研修用データを事前作成する
+検収用データを消去する等</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.16.5">
+<h3>
+<a href="sections/3.16.5.html#section-3.16.5" >3.16.5 教材の作成</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.16.5.1">
+<strong>操作に不慣れな人への配慮</strong>
+<span class="tag ">原本の条文例</span>
+<p>操作に不慣れな人への配慮</p>
+</li>
+<li id="3.16.5.2">
+<strong>国民向け教材とUI/UX専門家の例</strong>
+<span class="tag ">原本の条文例</span>
+<p>国民向け教材とUI/UX専門家の例</p>
+</li>
+<li id="3.16.5.3">
+<strong>教育資料のレビュー・承認</strong>
+<span class="tag ">原本の条文例</span>
+<p>教育資料のレビュー・承認</p>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-53">
+<h4>表 53　教育資料の概要</h4>
+<p>項番 / 教材 / 教材の概要 / 対象者 / 補足</p>
+<ul>
+<li>本システムの概要資料</li>
+<li>操作動画</li>
+<li>FAQ</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.17.1">
+<h3>
+<a href="sections/3.17.1.html#section-3.17.1" >3.17.1 運用・保守計画</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-54">
+<h4>表 54　運用・保守計画書の記載内容</h4>
+<p>項番 / 項目 / 補足</p>
+<ul>
+<li>作業概要</li>
+<li>作業体制に関する事項</li>
+<li>スケジュールに関する事項</li>
+<li>成果物に関する事項</li>
+<li>運用・保守形態、運用・保守環境等</li>
+<li>管理対象</li>
+<li>クラウドサービスの利用</li>
+<li>サービスレベル</li>
+<li>その他</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<section id="template-table-55">
+<h4>表 55　運用・保守実施要領の記載内容</h4>
+<p>項番 / 項目 / 補足</p>
+<ul>
+<li>コミュニケーション管理</li>
+<li>体制管理</li>
+<li>作業管理</li>
+<li>リスク管理</li>
+<li>課題管理</li>
+<li>システム構成管理</li>
+<li>変更管理</li>
+<li>情報セキュリティ対策</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>運用・保守作業には日次、週次、月次といったタイミングで実施するものから、年次若しくは数年に1度の作業といった中長期の間隔が空く作業も存在します。
+法改正や連携先システムの更改等により、数年に一度発生する作業やスポット的に発生する作業についても忘れずに要件定義書に記載してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.17.2">
+<h3>
+<a href="sections/3.17.2.html#section-3.17.2" >3.17.2 運用・保守準備</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.17.2.1">
+<strong>監視設定</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.17.2.2">
+<strong>バックアップサービス</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.17.2.3">
+<strong>運用・保守手順書</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.17.3">
+<h3>
+<a href="sections/3.17.3.html#section-3.17.3" >3.17.3 共通的な要件</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.17.3.1">
+<strong>運用・保守期間</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.17.3.2">
+<strong>運用・保守報告書の作成</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.17.3.3">
+<strong>情報セキュリティ対策の実施</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.17.5">
+<h3>
+<a href="sections/3.17.5.html#section-3.17.5" >3.17.5 主な運用作業一覧</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>表の記入項目</h3>
+<section id="template-table-56">
+<h4>表 56　主な運用作業一覧</h4>
+<p>項番 / 運用作業の分類 / 主な運用作業の内容</p>
+<ul>
+<li>パッチ適用</li>
+<li>ログ管理業務</li>
+<li>ジョブ管理業務</li>
+<li>システム 監視</li>
+<li>問題管理</li>
+<li>変更管理</li>
+<li>リリース管理</li>
+<li>システム構成管理</li>
+<li>バックアップ</li>
+<li>業務支援</li>
+<li>障害対応</li>
+<li>ヘルプデスク業務</li>
+<li>設計・開発事業者による報告・問合せ対応</li>
+<li>インシデント管理</li>
+<li>バージョンアップ対応</li>
+<li>大規模災害等対応訓練</li>
+<li>運用改善</li>
+<li>サービスオペレーション支援</li>
+<li>情報セキュリティ監査</li>
+<li>アカウント管理</li>
+<li>その他業務</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>具体的な監視ツールとしては、AWS ConfigやGCPのCloud Asset Inventory等を指します。</li>
+<li>サービス監視：サーバ上で動作している各種プログラムが正常に動作しているか、ユーザーが問題なく使用できるかを監視することを指します。</li>
+<li>不正アクセスやマルウェア感染等の具体的なセキュリティ脅威は、「表 37 本システムにおけるセキュリティ対応方針」の内容に基づき対応する必要があります。</li>
+<li>CI（Continuous Integration）とはアプリケーションを改修する際に発生するビルド、テスト、デプロイなどの作業を自動化することによって、継続的に（頻繁に）アプリケーションの改善を可能とする手法を指します。
+代表的なCIツールとしてはJenkins, Travis CI等があります。</li>
+<li>主管課側にて実績に基づいた問い合わせ量を設定できる場合は、ヘルプデスク業務の体制を定量的に記載することを検討してください。</li>
+<li>主管課側で利用者へのアンケート（活用場面、効果、利用しやすさ、満足度、改善点・要望等）を実施することで情報システムの利用状況を把握する方法もあります。</li>
+<li>現行システムにおいて、システムメンテナンスの一環でサーバを定期的に再起動する運用を行っており、今後も継続する場合は当該記載を残してください。</li>
+<li>主管課がアカウントを管理する場合、当該記載は不要となりますので、削除してください。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.18">
+<h3>
+<a href="sections/3.18.html#section-3.18" >3.18 保守に関する事項</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>他の事業者が保守を行う場合は、以下を参考に記載してください。
+
+記載例：情報システムの保守の作業内容は以下のとおり。なお、サービスレベルで規定された時間以内に、対応を開始できる体制下で実施されることを要件としている。また、以下の保守要件は現時点のものであり、保守設計において具体的な作業等を確定の上で本システムの運用・保守事業者の調達を行う予定である。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.18.1">
+<h3>
+<a href="sections/3.18.1.html#section-3.18.1" >3.18.1 保守業務の実施</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.18.1.1">
+<strong>保守問合せの受付時間・緊急対応</strong>
+<span class="tag ">原本の条文例</span>
+<p>保守問合せの受付時間・緊急対応</p>
+</li>
+<li id="3.18.1.2">
+<strong>問合せの継続管理</strong>
+<span class="tag ">原本の条文例</span>
+<p>問合せの継続管理</p>
+</li>
+<li id="3.18.1.3">
+<strong>障害報告書</strong>
+<span class="tag ">原本の条文例</span>
+<p>障害報告書</p>
+</li>
+<li id="3.18.1.4">
+<strong>稼働を継続した保守</strong>
+<span class="tag ">原本の条文例</span>
+<p>稼働を継続した保守</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>他の事業者が保守を行う場合は、本章の記載は不要です。</li>
+<li>インシデントとは利用者や主管課、ヘルプデスクから事業者に直接寄せられた問い合わせ全般を指します。（利用者からヘルプデスクへの問合せは、保守業務の対象ではなくヘルプデスク側で別途管理します）</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.18.2">
+<h3>
+<a href="sections/3.18.2.html#section-3.18.2" >3.18.2 保守設計</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.18.2.1">
+<strong>役割分担の整理</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.2.2">
+<strong>クラウドサービスの利用</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>他の事業者が保守を行う場合は、設計・開発事業者は各ドキュメントの案の作成までとなります。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.18.3">
+<h3>
+<a href="sections/3.18.3.html#section-3.18.3" >3.18.3 アプリケーションの保守</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.18.3.1">
+<strong>インシデント管理</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.2">
+<strong>是正保守</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.3">
+<strong>適応保守</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.4">
+<strong>予防保守</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.5">
+<strong>改善措置</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.6">
+<strong>根本原因の分析</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.7">
+<strong>検証</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.3.8">
+<strong>ドキュメントの修正</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>他の事業者が保守を行う場合は、本章は以下を参考に記載してください。
+記載例：業務アプリケーションに起因する障害については、本システムの運用・保守事業者がプログラムの修正、変更、適用等復旧までの一連の作業を実施するものとする。ただし、受託者の契約期間中における業務アプリケーションの保守においては受託者が実施する。また、契約不適合責任の期間内における障害のうち、障害原因が受託者の責任範囲と判断される場合の一連の作業は、受託者が実施する。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.18.4">
+<h3>
+<a href="sections/3.18.4.html#section-3.18.4" >3.18.4 クラウドサービスの保守</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.18.4.1">
+<strong>脆弱性・不具合へのパッチ判断</strong>
+<span class="tag ">原本の条文例</span>
+<p>脆弱性・不具合へのパッチ判断</p>
+</li>
+<li id="3.18.4.2">
+<strong>バージョンアップの影響調査・適用判断</strong>
+<span class="tag ">原本の条文例</span>
+<p>バージョンアップの影響調査・適用判断</p>
+</li>
+<li id="3.18.4.3">
+<strong>IaCを利用する環境更新の例</strong>
+<span class="tag ">原本の条文例</span>
+<p>IaCを利用する環境更新の例</p>
+</li>
+<li id="3.18.4.4">
+<strong>更新前の検証環境での評価</strong>
+<span class="tag ">原本の条文例</span>
+<p>更新前の検証環境での評価</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>他の事業者が保守を行う場合は、本項目は運用・保守事業者側で対応します。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.18.5">
+<h3>
+<a href="sections/3.18.5.html#section-3.18.5" >3.18.5 ソフトウェア保守</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.18.5.1">
+<strong>ソフトウェア最新化</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.5.2">
+<strong>修正プログラムの適用</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.5.3">
+<strong>検証・デプロイ</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.5.4">
+<strong>設計書への反映</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.5.5">
+<strong>保守条件の決定</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+<li id="3.18.5.6">
+<strong>脆弱性管理</strong>
+<span class="tag ">原本の小見出し</span>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>他の事業者が保守を行う場合は、本章は以下を参考に記載してください。
+記載例：
+ソフトウェアの保守
+情報システムの運用・保守事業者がソフトウェアの保守を行うこととする。受託者の契約期間内において、主管課、及び運用担当者等から障害や異常の発生通知を受けた場合、契約内作業として障害の切り分け、調査、情報システムの運用・保守事業者への問い合わせ及び作業指示等による必要な措置を直ちに行うこと。
+修正プログラム
+使用しているクラウドサービスの内容に変更が発生する際には、クラウドサービスより提供する情報を元に情報システムへの影響範囲を調査の上、修正プログラムの適用可否を主管課へ報告すること。適用が必要と判断された場合、クラウドサービスより提供されるソフトウェアに対する修正プログラムの適用作業を実施すること。
+保守条件
+保守条件は、「製品の導入や使用方法」、「製品の互換性や相互操作性」、「製品資料の解釈」、「構成サンプルの提供」、「修正策の情報提供」、「製品プログラム、製品コードに起因する障害」等の保守が提供されることを想定しているが、最終的な保守条件は、主管課と調整の上、保守設計において決定すること。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.18.6">
+<h3>
+<a href="sections/3.18.6.html#section-3.18.6" >3.18.6 保守実績の評価及び改善</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.18.6.1">
+<strong>保守情報と問題認識の共有</strong>
+<span class="tag ">原本の条文例</span>
+<p>保守情報と問題認識の共有</p>
+</li>
+<li id="3.18.6.2">
+<strong>保守品質の定量指標</strong>
+<span class="tag ">原本の条文例</span>
+<p>保守品質の定量指標</p>
+</li>
+<li id="3.18.6.3">
+<strong>ログを使った指標収集</strong>
+<span class="tag ">原本の条文例</span>
+<p>ログを使った指標収集</p>
+</li>
+<li id="3.18.6.4">
+<strong>指標未達の原因分析・改善報告</strong>
+<span class="tag ">原本の条文例</span>
+<p>指標未達の原因分析・改善報告</p>
+</li>
+<li id="3.18.6.5">
+<strong>利用実績と費用削減可能性の分析</strong>
+<span class="tag ">原本の条文例</span>
+<p>利用実績と費用削減可能性の分析</p>
+</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section id="template-parent-3.18.8">
+<h3>
+<a href="sections/3.18.8.html#section-3.18.8" >3.18.8 軽微な改修</a>
+</h3>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.18.8.1">
+<strong>軽微な改修の対象と上限工数の例</strong>
+<span class="tag ">原本の条文例</span>
+<p>軽微な改修の対象と上限工数の例</p>
+</li>
+<li id="3.18.8.2">
+<strong>影響範囲・工数見積りと事前承認</strong>
+<span class="tag ">原本の条文例</span>
+<p>影響範囲・工数見積りと事前承認</p>
+</li>
+<li id="3.18.8.3">
+<strong>月次報告・改善提案</strong>
+<span class="tag ">原本の条文例</span>
+<p>月次報告・改善提案</p>
+</li>
+<li id="3.18.8.4">
+<strong>工数実績と見積精度の改善</strong>
+<span class="tag ">原本の条文例</span>
+<p>工数実績と見積精度の改善</p>
+</li>
+</ul>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>軽微な改修に対応することを記載するだけでなく、例示のように上限工数を示すことが重要です。上限工数が記載されていないと改修範囲が想定できないため、事業者にリスクと捉えられ費用が高騰する可能性があります。</li>
+</ul>
+<p>
+<a href="template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+</section>
+<section class="panel">
+<h2>出典・利用条件</h2>
+<p>出典：デジタル庁「DS-120 第5章 要件定義書標準テンプレート」（2026/06/12、2026/07/15掲載更新）をもとに、この確認資料用に構造を抽出・再整理。デジタル庁が作成した案件要件ではありません。</p>
+<p>公共データ利用規約 第1.0版（PDL1.0、別途権利表記部分を除く）。<a href="https://www.digital.go.jp/copyright-policy">デジタル庁の著作権・利用条件</a> / <a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">PDL1.0</a>
+</p>
+<p>構造抽出・再整理: dot（DOT-002）。第三者図版・ロゴは再配布していません。</p>
+</section>
+<p class="meta">原本の例示値・条文を本アプリの確定条件へ自動採用していません。補助項目には対応未設定のものがあります。</p>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="sources.html" >出典と版</a> · <a href="reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>E-11 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="index.html" aria-current="page">要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >要件ID・操作</a>
+</span>
+<span aria-current="page">E-11</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 要件ID一覧へ戻る</a>
+<div>
+<span class="eyebrow">REQUIREMENT / E-11</span>
+<h1 id="requirement-E-11">E-11</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>出典箇所を記載</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>正本の該当記述を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>正本に書かれている内容</h2>
+<p class="meta">出典の要件行・見出し・該当箇所をそのまま示しています。複数の記述がある場合は、文書と時点を確認してください。</p>
+<div class="source-row">
+<p>E-11 ｜ Excel一括取込で一部の行に不備または重複可能性がある場合、問題のない行は先に取り込み、問題のある行だけ会計課給与班の確認待ちにする。重複の最終取込判断はE-04に従う。</p>
+<p class="source">
+<a href="../sources/docs--requirements--business-requirements.html?context=req-E-11#L109" >business-requirements.md · 109行目</a> / 正本の該当行</p>
+</div>
+<div class="source-row">
+<p>E-11 ｜ 一括取込時の正常行先行・問題行別確認：対応する現行機能要件なし ｜ 部分成功・重複警告・再取込の設計と試験未定</p>
+<p class="source">
+<a href="../sources/docs--requirements--traceability-matrix.html?context=req-E-11#L297" >traceability-matrix.md · 297行目</a> / 正本の該当行</p>
+</div>
+</section>
+<p class="meta">関連操作・配置の区分: 確定改修要件。この区分を上記の要件判断へ転記していません。</p>
+<section class="panel" >
+<h2>この要件が関係する操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-IMPORT-APPLY · FUT-IMPORT</span>
+<h3>
+<a href="../operations/OP-IMPORT-APPLY.html?context=req-E-11#OP-IMPORT-APPLY" >行別に取込を判断</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>正常行を先に取り込み、問題行は給与班が注意を見て取込／見送りを決める。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>関連する章・業務・画面</h2>
+<h3>標準の章・節</h3>
+<div class="chips">
+<a href="../sections/1.1.2.html#section-1.1.2" >1.1.2</a>
+<a href="../sections/2.5.1.html#section-2.5.1" >2.5.1</a>
+</div>
+<h3 style="margin-top:18px">業務</h3>
+<div class="chips">
+<a href="../workflows/WF-04.html?context=req-E-11#WF-04" >WF-04</a>
+</div>
+<h3 style="margin-top:18px">画面</h3>
+<div class="chips">
+</div>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

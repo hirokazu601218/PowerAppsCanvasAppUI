@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>OP-001-DIFF 遡及差額を開く | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" aria-current="page">要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../requirements/index.html" >要件ID・操作</a>
+</span>
+<span aria-current="page">OP-001-DIFF 遡及差額を開く</span>
+</nav>
+<a class="context-return" data-context-return href="../screens/SCR-001.html#SCR-001">← 操作元の画面へ戻る</a>
+<div>
+<span class="eyebrow">OPERATION / OP-001-DIFF</span>
+<h1 id="OP-001-DIFF">遡及差額を開く</h1>
+<p class="lead">独立した遡及差額画面を開くレビュー用入口。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>操作・配置は提案（業務要件は別）</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<p class="meta">関連操作・配置の区分: 提案 / 遷移ID: <span id="TR-001-DIFF">TR-001-DIFF</span>
+</p>
+<section class="panel" >
+<h2>利用する場面</h2>
+<dl class="contract">
+<dt>担当</dt>
+<dd>会計課給与班</dd>
+<dt>操作する画面</dt>
+<dd>
+<a href="../screens/SCR-001.html#SCR-001" >SCR-001 ログイン画面＆ホーム画面</a> → <a href="../screens/SCR-007.html#SCR-007" >SCR-007</a>
+</dd>
+<dt>何を確認するか</dt>
+<dd>対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</dd>
+<dt>完了の確認</dt>
+<dd>目的の状態と再表示を確認する。実装合格を意味しない。</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>設計・構築者向けの処理契約</h2>
+<dl class="contract">
+<dt>遷移元タブ</dt>
+<dd data-contract-field="origin_tab">該当なし</dd>
+<dt>遷移元の状態</dt>
+<dd data-contract-field="origin_mode">読取り</dd>
+<dt>遷移先タブ</dt>
+<dd data-contract-field="destination_tab">該当なし</dd>
+<dt>遷移先の状態</dt>
+<dd data-contract-field="destination_mode">読取り</dd>
+<dt>操作部品</dt>
+<dd data-contract-field="control">提案：遡及差額</dd>
+<dt>操作方法</dt>
+<dd data-contract-field="method">クリック／キーボード実行（具体部品は未入力）</dd>
+<dt>対象行・データ範囲</dt>
+<dd data-contract-field="row_scope">給与班が担当業務について全対象職員を扱う。局担当者・本人にはこの操作を許可しない。実効方式はPD-04。</dd>
+<dt>表示条件</dt>
+<dd data-contract-field="visible">対象画面・タブ内。権限別の具体表示条件は未入力。</dd>
+<dt>実行できる条件</dt>
+<dd data-contract-field="enabled">給与班の実効権限、対象、業務状態を検証した場合。物理方式はPD-04。</dd>
+<dt>実行前提</dt>
+<dd data-contract-field="preconditions">認証済みで対象レコードを識別できること。</dd>
+<dt>入力検証</dt>
+<dd data-contract-field="validation">対象職員・対象履歴・操作権限の整合を確認。詳細検証値は未入力。</dd>
+<dt>処理する内容</dt>
+<dd data-contract-field="process">独立した遡及差額画面を開くレビュー用入口。</dd>
+<dt>保持する情報</dt>
+<dd data-contract-field="retained">ログイン主体、選択対象、参照元の識別情報。</dd>
+<dt>解除・失効する情報</dt>
+<dd data-contract-field="reset">明記のないリセット範囲は未決。</dd>
+<dt>成功時</dt>
+<dd data-contract-field="success">目的の状態と再表示を確認する。実装合格を意味しない。</dd>
+<dt>失敗・再実行</dt>
+<dd data-contract-field="failure">エラーを示し成功扱いしない。復旧・再実行の詳細は未決。</dd>
+<dt>取消時</dt>
+<dd data-contract-field="cancel">処理開始前の取消は状態を変更しない（画面操作案）。</dd>
+<dt>未保存の扱い</dt>
+<dd data-contract-field="unsaved">未保存入力の扱いは個別契約を優先。未定義の画面は未決。</dd>
+<dt>参照するデータ</dt>
+<dd data-contract-field="reads">
+<ul>
+<li>ログイン主体・利用範囲</li>
+</ul>
+</dd>
+<dt>変更・記録するデータ</dt>
+<dd data-contract-field="writes">業務データの更新なし</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>受入観点・注記</h2>
+<h3>確認する観点</h3>
+<ul>
+<li>対象・権限・業務状態と出力／保存結果が対応する。</li>
+</ul>
+<h3>未決・提案・対象範囲</h3>
+<ul>
+<li>独立画面先行は確定。ホーム入口は未承認の配置案で、現行4主ボタンに実装済みとはしない。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>要件・業務・出典をたどる</h2>
+<h3>関連要件ID</h3>
+<div class="chips">
+<a href="../requirements/SCR007-DIFF-001.html#requirement-SCR007-DIFF-001" >SCR007-DIFF-001</a>
+</div>
+<h3 style="margin-top:18px">含まれる業務</h3>
+<div class="chips">
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--screen-requirements.html?context=req-SCR007-DIFF-001" data-keep-context>screen-requirements.md</a>
+<div class="meta">docs/requirements/screen-requirements.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--open-decisions.html?context=req-SCR007-DIFF-001" data-keep-context>open-decisions.md</a>
+<div class="meta">docs/requirements/open-decisions.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>3.13.3 総合テスト | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="3.13.html#section-3.13" >3.13 テストに関する事項</a>
+</span>
+<span aria-current="page">3.13.3 総合テスト</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 3.13.3</span>
+<h1 id="section-3.13.3">3.13.3 総合テスト</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>一部設定・要件未設定あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>個別出典を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>既存の確定事項から補足した範囲</h2>
+<p>正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。</p>
+<ul>
+<li>
+<a href="../sources/docs--testing--test-policy.html?context=section-3.13.3#L30" >D-07 · 30行目</a>
+</li>
+<li>
+<a href="../sources/docs--testing--test-policy.html?context=section-3.13.3#L33" >3. テスト工程の選び方 · 33行目</a>
+</li>
+<li>
+<a href="../sources/docs--testing--test-policy.html?context=section-3.13.3#L56" >6. 合否、中断・再開 · 56行目</a>
+</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>現在の要件</h2>
+<p class="lead">総合テストは、複数機能を通す業務シナリオと開始・終了条件を定義してから、一連の業務結果と必要な非機能要件を確認する。公開直後の起動確認や単体・結合の成功を総合テスト完了へ読み替えず、総合テストと業務受入を独立して判定する。</p>
+</section>
+<section class="panel" >
+<h2>要件未設定・判断が必要な内容</h2>
+<p class="notice">D-07の対象シナリオ、開始終了条件の具体値、独立期待値、非機能観点、実施時期・担当・自動化範囲。</p>
+<p class="meta">具体的な条件・対象範囲・判定基準を未設定のまま表示しています。レイアウト案やテンプレートの例から補いません。</p>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>補助見出し・条文例の論点</h3>
+<ul>
+<li id="3.13.3.1">
+<strong>総合テストの観点</strong>
+<span class="tag ">原本の条文例</span>
+<p>総合テストの観点</p>
+</li>
+<li id="3.13.3.2">
+<strong>総合テスト用の疑似データ</strong>
+<span class="tag ">原本の条文例</span>
+<p>総合テスト用の疑似データ</p>
+</li>
+<li id="3.13.3.3">
+<strong>停止・バックアップ・復旧・起動の実施担当</strong>
+<span class="tag ">原本の条文例</span>
+<p>停止・バックアップ・復旧・起動の実施担当</p>
+</li>
+<li id="3.13.3.4">
+<strong>総合テスト証跡</strong>
+<span class="tag ">原本の条文例</span>
+<p>総合テスト証跡</p>
+</li>
+</ul>
+<h3>表の記入項目</h3>
+<section id="template-table-46">
+<h4>表 46　総合テストの主なテスト観点</h4>
+<p>項番 / テスト種別 / 概要</p>
+<ul>
+<li>業務運用テスト</li>
+<li>ユーザビリティ/アクセシビリティテスト</li>
+<li>性能・拡張性テスト</li>
+<li>可用性（障害）テスト</li>
+<li>完全性テスト</li>
+<li>互換性検証テスト</li>
+<li>セキュリティテスト</li>
+<li>ロングランテスト</li>
+<li>運用・保守テスト</li>
+</ul>
+<p class="meta">表内の見本値は本アプリの要件へ採用していません。</p>
+</section>
+<h3>原本の記入ガイド</h3>
+<ul>
+<li>特に国民等の多数のユーザー（リテラシーも大きく異なる）が利用する場合には、このようにユーザビリティ/アクセシビリティテストを明示的に実施することを推奨します。
+ユーザビリティ/アクセシビリティテストは費用が掛かることを理解し、国民や多数の人員が利用するような情報システムで、ユーザー評価によってデザイン・画面遷移等を修正する必要があるものに対してテストを実施することが望ましいです。
+主管課側として、意思決定者や基準をある程度決定しておく必要があります。</li>
+<li>特に現行システムを更改する場合には、このように互換性評価テストを明示的に実施することを推奨します。</li>
+<li>セキュリティテストのテスト手法はあくまでも例示となりますので、各情報システムのセキュリティ要件に応じて、テスト手法の追加等をご検討ください。（例）ファジング：潜在的なバグ・脆弱性を検出することを目的として、通常想定されない不正データ等を情報システムに与え意図的に例外処理を発生させるテスト手法。</li>
+</ul>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+<section class="panel" >
+<h2>根拠資料と、この節への戻り</h2>
+<p class="meta">資料は読みやすい別ページで開きます。冒頭の「元の要件へ戻る」でこの節へ戻れます。JavaScriptなしでも資料側の参照元一覧から戻れます。</p>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--open-decisions.html?context=section-3.13.3" data-keep-context>open-decisions.md</a>
+<div class="meta">docs/requirements/open-decisions.md</div>
+</li>
+<li>
+<a href="../sources/docs--testing--test-policy.html?context=section-3.13.3" data-keep-context>test-policy.md</a>
+<div class="meta">docs/testing/test-policy.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

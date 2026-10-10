@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>QA-REPORT.md | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">QA-REPORT.md</span>
+</nav>
+<a class="context-return" data-context-return href="../sources.html">← 出典一覧へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>QA-REPORT.md</h1>
+<p class="meta">records/changes/dot-001/38049776822/QA-REPORT.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/dot-001/38049776822/QA-REPORT.md">この版のGitHub原文</a> / SHA-256: <code>a7f371474ed9e4c92cc388ff17da410bfed32eedece5d19bf767a804cc2dd57b</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+</div>
+<div class="chips">
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L1" data-source-start="1" data-source-end="3">
+<h1 id="dot-001-正式phの読戻し">DOT-001 正式P/Hの読戻し</h1>
+</section>
+<section id="L3" data-source-start="3" data-source-end="3">
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/38049776822">Actions run 38049776822</a>、head <code>949a0b5f2445be273504975c938480da7b09719a</code>。開始11:49 UTC、PAC download完了11:50:46 UTC、旧guard FAIL11:50:48 UTC。対象Appは固定。文書・アプリ・データ・フロー・権限・secretを変更しない既存readback_only=true。</p>
+</section>
+<section id="L5" data-source-start="5" data-source-end="10">
+<ul>
+<li>正式P：<code>2026-10-10T09:28:28.7479961Z</code>。</li>
+<li>最終下書き：<code>2026-10-10T09:27:24Z</code>（P以前）。</li>
+<li>安定PAC H：<code>7877bb8d4729f687b94dcaf3e3ade0e33849218a7a1454e7852a9cfe4568dd3f</code>。</li>
+<li>metadata Ready、fixed app URI、before/after一致は完全summaryに達する前のworkflow assertionsが通過したことをコードとsummaryで確認。環境固有URIは転記しない。</li>
+<li>SCR002実SHA：<code>80ae540f22bbdb8661c8eece398401e4f0ea391eda3e1ed9b0350814731ae2f4</code>。旧v25期待SHAとの不一致で採取jobとrunはFAIL。guard変更・再試行なし。</li>
+<li>Hは独立PAC実測後に引継ぎMaker hashとの一致を確認。引継ぎの二画面parsed-source比較と同じパッケージであることを示す。全選定22pathの実比較表や業務受入PASSの代用にはしない。</li>
+</ul>
+</section>
+<section id="L12" data-source-start="12" data-source-end="12">
+<p>選定15ケースの3試験ファイルとfull workflowを読んだ。検索・表示・メモリ内fixture切替、再計算表示とスクロールに限定し、永続データ書込み／アプリ公開は含まない。外部同意は検出時に停止する。正式postpublish JSONに必要な選定22pathの実比較証拠をこの採取runだけで作れないため、宣言だけのMATCHを追加せずfull reconciliationはNOT_RUN。引継ぎの手動部分PASS、焦点見切れ／履歴AXの残件は保持。</p>
+</section>
+<section id="L14" data-source-start="14" data-source-end="14">
+<p>
+<img src="../assets/source-readback-summary.jpg" alt="完全summary">
+</p>
+</section>
+<section id="L16" data-source-start="16" data-source-end="18">
+<h2 id="文書html更新後の検査">文書・HTML更新後の検査</h2>
+</section>
+<section id="L18" data-source-start="18" data-source-end="24">
+<ul>
+<li>正本文書出典commit：6d203bf29887598555e9eb17383cb433c5228691。生成物commit：8d1a557dac77b62cc7ac30a0423e61386f5990fa、tree c4926ef93db2961aa8372e8840a0527ed5fdbd4d。ローカル全差分とリモートtree一致。</li>
+<li>review46ページ・相対リンク2316・生成一致PASS。要件HTML16ファイル、リンク／画像の相対参照433・出典SHA PASS。</li>
+<li>単一HTML62資料・3,800,163 bytes、内部参照・重複ID・生成一致PASS。出典画像の相対パスが元Markdown位置のままだったため、HTML配置先から解決するよう生成器を修正し、単一HTMLへ画像を埋め込んだ。</li>
+<li>既存review15件・governance3件、選定／公開後gateの既存単体23件PASS。試験選定は文書差分のみでsource/test/case空。</li>
+<li>配置検査の初回FAIL：新run recordの必須versionを欠落。正式Pをversionへ追記して訂正。検査条件・workflow変更なし。</li>
+<li>実描画・クリック・iPhone実機はNOT_RUN。クラウドブラウザーがfileプロトコルを拒否したため、ローカルHTML表示を迂回せず静的検査結果だけを記録。</li>
+</ul>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

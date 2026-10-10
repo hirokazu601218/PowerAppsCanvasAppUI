@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>payroll-interface-decisions-20261008.md | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">payroll-interface-decisions-20261008.md</span>
+</nav>
+<a class="context-return" data-context-return href="../sections/1.1.2.html#section-1.1.2">← 関連する要件 1.1.2 へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>payroll-interface-decisions-20261008.md</h1>
+<p class="meta">docs/requirements/payroll-interface-decisions-20261008.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-interface-decisions-20261008.md">この版のGitHub原文</a> / SHA-256: <code>11dcc8ce3cb8b4ada1cb5b5e6f0da83707ddf0254de5c3b95ea31c9dc164b913</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+<a href="../sections/1.1.2.html#section-1.1.2" >1.1.2</a>
+<a href="../sections/1.3.1.html#section-1.3.1" >1.3.1</a>
+<a href="../sections/2.1.3.html#section-2.1.3" >2.1.3</a>
+<a href="../sections/2.2.1.html#section-2.2.1" >2.2.1</a>
+<a href="../sections/2.2.2.html#section-2.2.2" >2.2.2</a>
+<a href="../sections/2.2.3.html#section-2.2.3" >2.2.3</a>
+<a href="../sections/2.4.5.html#section-2.4.5" >2.4.5</a>
+<a href="../sections/2.5.1.html#section-2.5.1" >2.5.1</a>
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+<a href="../requirements/I1.html#requirement-I1" >I1</a>
+<a href="../requirements/I2.html#requirement-I2" >I2</a>
+<a href="../requirements/I3.html#requirement-I3" >I3</a>
+<a href="../requirements/I4.html#requirement-I4" >I4</a>
+<a href="../requirements/I5.html#requirement-I5" >I5</a>
+<a href="../requirements/I6.html#requirement-I6" >I6</a>
+<a href="../requirements/I7.html#requirement-I7" >I7</a>
+<a href="../requirements/I8.html#requirement-I8" >I8</a>
+<a href="../requirements/I9.html#requirement-I9" >I9</a>
+<a href="../requirements/I10.html#requirement-I10" >I10</a>
+<a href="../requirements/I11.html#requirement-I11" >I11</a>
+<a href="../requirements/I12.html#requirement-I12" >I12</a>
+</div>
+<div class="chips">
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L1" data-source-start="1" data-source-end="3">
+<h1 id="人給連携の確定保留台帳2026-10-08">人給連携の確定・保留台帳（2026-10-08）</h1>
+</section>
+<section id="L3" data-source-start="3" data-source-end="3">
+<p>業務仕様の決定記録。計算式確認は後回しとし、未回答のD9以降を確定しない。出力仕様は<a href="docs--design--detailed--payroll-jinkyu-interface.html" data-keep-context>Excel出力・給与簿CSV取込仕様</a>。</p>
+</section>
+<section id="L5" data-source-start="5" data-source-end="7">
+<h2 id="7-d質問の確定保留一覧">7. D質問の確定・保留一覧</h2>
+</section>
+<section id="block-L7" data-source-start="7" data-source-end="22">
+<div class="table-wrap" role="region" tabindex="0" aria-label="payroll-interface-decisions-20261008.mdの表">
+<table>
+<thead>
+<tr id="L7">
+<th>質問</th>
+<th>状態</th>
+<th>回答・扱い</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L9">
+<td>D1</td>
+<td>確定</td>
+<td>実績U6は10</td>
+<td>月次給与・当月分としてAを選択</td>
+</tr>
+<tr id="L10">
+<td>D2</td>
+<td>確定</td>
+<td>本俸差額U6は11</td>
+<td>月次給与・差額分としてAを選択</td>
+</tr>
+<tr id="L11">
+<td>D3</td>
+<td>確定</td>
+<td>実績差額U6は11</td>
+<td>月次給与・差額分としてAを選択</td>
+</tr>
+<tr id="L12">
+<td>D4</td>
+<td>確定</td>
+<td>本俸E6はB（１か月前）</td>
+<td>月末締め・翌月支給、対象は前月期間</td>
+</tr>
+<tr id="L13">
+<td>D5</td>
+<td>確定</td>
+<td>本俸AZ6はA（決定額－差額）</td>
+<td>減算は今回の支給対象月の欠勤分</td>
+</tr>
+<tr id="L14">
+<td>D6</td>
+<td>確定</td>
+<td>本俸CP6はA（決定額－差額）</td>
+<td>減算は今回の支給対象月の欠勤分</td>
+</tr>
+<tr id="L15">
+<td>D7</td>
+<td>確定</td>
+<td>本俸差額E6は差額発生対象期間の日付</td>
+<td>過去支払済み対象月の差額を扱うため</td>
+</tr>
+<tr id="L16">
+<td>D8</td>
+<td>確定</td>
+<td>実績差額E6は差額発生対象期間の日付</td>
+<td>過去支払済み対象月の差額を扱うため</td>
+</tr>
+<tr id="L17">
+<td>D9</td>
+<td>保留・未回答</td>
+<td>本俸差額AZ6：俸給差額／0</td>
+<td>未入力</td>
+</tr>
+<tr id="L18">
+<td>D10</td>
+<td>保留・未回答</td>
+<td>本俸差額CP6：通勤差額／通勤支給月＋決定額</td>
+<td>未入力</td>
+</tr>
+<tr id="L19">
+<td>D11</td>
+<td>保留・未回答</td>
+<td>本俸差額CI6：期末差額／通常額＋差額</td>
+<td>未入力</td>
+</tr>
+<tr id="L20">
+<td>D12</td>
+<td>保留・未回答</td>
+<td>本俸差額CK6：勤勉差額／通常額＋差額</td>
+<td>未入力</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L22" data-source-start="22" data-source-end="22">
+<p>D5・D6で式の選択は確認済みだが、金額符号・入力項目の実装・二重減額防止・期待結果の試験は未実施。D1～D8の回答を根拠に、残る式を一括でセル側優先と確定しない。</p>
+</section>
+<section id="L25" data-source-start="25" data-source-end="27">
+<h2 id="10-残件と再開順序">10. 残件と再開順序</h2>
+</section>
+<section id="block-L27" data-source-start="27" data-source-end="37">
+<div class="table-wrap" role="region" tabindex="0" aria-label="payroll-interface-decisions-20261008.mdの表">
+<table>
+<thead>
+<tr id="L27">
+<th>項目</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L29">
+<td>金額計算・式の相違D9以降、端数・符号・二重減額の確認</td>
+<td>利用者指示で保留</td>
+</tr>
+<tr id="L30">
+<td>対象期間の日付の具体ルール、複数過去月差額の集約と11キーの両立</td>
+<td>未入力</td>
+</tr>
+<tr id="L31">
+<td>給与簿CSVの行識別・照合キー、出力明細との対応</td>
+<td>未入力。出力11キーの確定では解消しない</td>
+</tr>
+<tr id="L32">
+<td>期末勤勉・法改正の支払処理区分の具体的な割当て</td>
+<td>コード意味確認済み、割当て未入力</td>
+</tr>
+<tr id="L33">
+<td>人給のエラー結果をアプリへ戻す方式</td>
+<td>エラー行表示は確定、方式未入力</td>
+</tr>
+<tr id="L34">
+<td>Excel生成方法、保存／配布先、物理列名、性能基準</td>
+<td>未入力。画面操作は下記I1～I12で確定</td>
+</tr>
+<tr id="L35">
+<td>D（削除）出力をアプリで扱うか</td>
+<td>未入力。A/Mの運用だけ確定</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L37" data-source-start="37" data-source-end="37">
+<p>今後の仕様更新も関連要件・設計・試験仕様へ反映し、計算式の保留を維持して文書を整合させる。計算式精査を再開する場合はD9～D12から開始し、確定済みD1～D8を繰り返し質問しない。</p>
+</section>
+<section id="L40" data-source-start="40" data-source-end="42">
+<h2 id="11-モック承認i1i122026-10-08">11. モック承認・I1～I12（2026-10-08）</h2>
+</section>
+<section id="L42" data-source-start="42" data-source-end="42">
+<p>承認対象は人給連携画面の構成と操作動線。モックの架空人数・金額・日付やデモ用操作は業務仕様に採用しない。I1～I3はモック承認を根拠とし、個別の選択肢回答があったとは記録しない。</p>
+</section>
+<section id="block-L44" data-source-start="44" data-source-end="59">
+<div class="table-wrap" role="region" tabindex="0" aria-label="payroll-interface-decisions-20261008.mdの表">
+<table>
+<thead>
+<tr id="L44">
+<th>決定</th>
+<th>回答・確定根拠</th>
+<th>反映内容</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L46">
+<td>I1</td>
+<td>モック承認による確定</td>
+<td>支給回の全職員を既定の出力対象とし、職員を絞り込める</td>
+<td>承認された出力画面の対象選択</td>
+</tr>
+<tr id="L47">
+<td>I2</td>
+<td>モック承認による確定</td>
+<td>A/Mは一括指定と明細ごとの変更を可能とする。判断は職員が行う</td>
+<td>承認された更新区分操作と既存の職員判断方針</td>
+</tr>
+<tr id="L48">
+<td>I3</td>
+<td>モック承認による確定</td>
+<td>人給連携の同一画面に「支給回の状況」「出力」「取込・照合」を配置</td>
+<td>利用者の「いいですね。これでいいです」によるモック承認</td>
+</tr>
+<tr id="L49">
+<td>I4</td>
+<td>A</td>
+<td>Excel出力前に支給回・人数・明細数・A/M件数を確認して出力</td>
+<td>利用者が出力前確認ありを選択</td>
+</tr>
+<tr id="L50">
+<td>I5</td>
+<td>個別指定</td>
+<td>照合はExcelの元となる最新版のアプリ計算結果データと給与簿データ。計算版を選ばせない</td>
+<td>利用者指定：アプリと人給のデータ同士を一致させる</td>
+</tr>
+<tr id="L51">
+<td>I6</td>
+<td>A</td>
+<td>差分のみを初期表示とし、全件表示へ切り替え可能</td>
+<td>利用者の表示選択</td>
+</tr>
+<tr id="L52">
+<td>I7</td>
+<td>A</td>
+<td>出力後に計算結果が変わっても最新版と照合し、変更を画面で通知</td>
+<td>利用者の選択とI5の最新版照合</td>
+</tr>
+<tr id="L53">
+<td>I8</td>
+<td>C・方式未確定</td>
+<td>人給エラー行をアプリで分かるようにする要件は維持。結果取得方式は未入力</td>
+<td>人給のエラー情報形式・取得方法が未確認</td>
+</tr>
+<tr id="L54">
+<td>I9</td>
+<td>B</td>
+<td>再出力は差分に対応する明細行のみを初期選択し、職員が対象を変更可能</td>
+<td>利用者の再出力対象選択</td>
+</tr>
+<tr id="L55">
+<td>I10</td>
+<td>B</td>
+<td>人給への取込成功／一部失敗／失敗を手入力しない。給与簿取込後の照合で確認</td>
+<td>利用者の操作選択。照合結果を人給取込処理の成功証明とは扱わない</td>
+</tr>
+<tr id="L56">
+<td>I11</td>
+<td>A</td>
+<td>差分一覧は職員・対象期間・項目・アプリ値・給与簿値・差額を表示</td>
+<td>利用者の差分表示項目選択</td>
+</tr>
+<tr id="L57">
+<td>I12</td>
+<td>B</td>
+<td>給与班確定は確認ダイアログなしの確定ボタン操作</td>
+<td>利用者の確定操作選択。全支給回の最新照合で差分ゼロが前提</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L59" data-source-start="59" data-source-end="60">
+<p>画面要件は<a href="docs--requirements--screen-requirements.html" data-keep-context>画面要件定義書</a>、処理契約は<a href="docs--design--detailed--payroll-jinkyu-interface.html" data-keep-context>詳細設計</a>を参照。I8の方式、給与簿行と出力明細の対応キー、正式画面ID・物理名は未入力。D9以降の式確認は保留を維持する。</p>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

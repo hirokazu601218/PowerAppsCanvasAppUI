@@ -1,0 +1,23 @@
+{
+  "change_id": "pay-req-html-rework-001",
+  "run_id": "manual-20261010-portal",
+  "request_id": "DOT-002",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T11:03:27+00:00",
+  "source_commit": "38362c8cf7ded201b1d185eeaccf2892f40c5f51",
+  "version": "0.2-review",
+  "scope": "Local-only requirements HTML derivative. No app, environment, remote repository, publication, permission or real-data change.",
+  "static_checks": "PASS_STATIC: 25 checks, 489 HTML pages, 15765 relative href/src references",
+  "browser_verification": "NOT_RUN: local HTTP not reachable by authorized browser; no supported forwarding route",
+  "iphone_verification": "NOT_RUN",
+  "business_acceptance": "NOT_RUN",
+  "remote_applied": false,
+  "started_at": "2026-10-10T10:25:12Z",
+  "verified_at": "2026-10-10T11:03:27+00:00",
+  "simulated_logic_checks": "PASS: 11 simulated DOM tests; no real-browser claim",
+  "source_guard_negative_test": "PASS: isolated stale canonical quote rejected",
+  "pdf_document_review": "PASS: four pages visually inspected; not browser rendering",
+  "status_mismatch": "Latest DOT-002 request supersedes old STATUS mobile-only task; canonical STATUS retained for manual Work reconciliation.",
+  "post_freeze_correction": "Guide and Quick Look summary now reference actual repository and viewer ZIP entries; all checks rerun."
+}

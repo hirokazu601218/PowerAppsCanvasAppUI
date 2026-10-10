@@ -1,0 +1,1097 @@
+{
+  "purpose": "正本に確定済みだが旧HTMLの節本文で未設定扱いだった内容を補足する。正本の変更・新しい制度判断ではない。",
+  "source_commit": "38362c8cf7ded201b1d185eeaccf2892f40c5f51",
+  "reviewed_on": "2026-10-10",
+  "sections": [
+    {
+      "id": "3.2.2",
+      "title": "クラウドサービスの選定、利用に関する要件",
+      "text": "利用する方式はPower Apps Canvas＋Dataverse標準＋Power Automateのローコードのみとする。独自API・プラグイン等のコード実装を前提にしない。",
+      "missing": "本番サービスの選定条件、契約・利用条件、具体的な構成・設定、処理配置、実行上限、件数に応じた性能、責任分界。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md",
+        "docs/requirements/non-functional-requirements.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 97,
+          "end_line": 97,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R1"
+          ],
+          "quote": "| R1 | B | Canvas＋Dataverse標準＋Power Automateのローコードのみ。独自API・プラグイン等のコード実装を前提にしない。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L97-L97",
+          "label": "R1 · 97行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 67,
+          "end_line": 67,
+          "heading": "2026-10-07に確定した方式・データ・権限制約",
+          "requirement_ids": [
+            "NFR-B"
+          ],
+          "quote": "| NFR-B | Canvas＋Dataverse標準＋Power Automateのローコードのみ（R1） | 処理配置、実行上限、件数での性能 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L67-L67",
+          "label": "NFR-B · 67行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "旧HTMLで本文が空欄だったが、採用する方式はR1で確定済み。サービス選定や本番構成の全条件が確定した意味ではない。"
+    },
+    {
+      "id": "3.3.5",
+      "title": "保管データ量・保管期間",
+      "text": "処理中は各計算版と根拠を保持する。差分ゼロで支払い確定後は中間版・中間根拠を削除可能とするが、最終結果、最終版の勤務条件・勤怠・単価等の計算根拠、給与簿、支払実績は残す。照合処理回ごとの日時・実行者・件数・状態、不一致職員・項目・双方金額・差額を、中間版削除後も参照できるよう保持する。Excel／CSVファイル自体の継続保存は不要。",
+      "missing": "保管データ量、具体的な保存期間、削除時期・方式・権限、バックアップ／復元、削除後の参照整合。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md",
+        "docs/requirements/non-functional-requirements.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 103,
+          "end_line": 104,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R7",
+            "R8"
+          ],
+          "quote": "| R7 | 条件付きA、補足整理を承認 | 処理中は各計算版・根拠を保持。差分ゼロで支払い確定後は中間版・中間根拠を削除可能。最終結果と給与簿・支払実績は残す。 |\n| R8 | 補足指定 | Excel／CSVファイル自体は継続保存不要。計算版・取込回・照合結果は処理回ごとに残す。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L103-L104",
+          "label": "R7 / R8 · 103行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 112,
+          "end_line": 113,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R16",
+            "R17"
+          ],
+          "quote": "| R16 | A | 最終版の勤務条件・勤怠・単価等の計算根拠を支払い確定後も保存。 |\n| R17 | A | 各照合処理回で日時・実行者・件数・状態に加え、不一致職員・項目・双方金額・差額を保存。中間版削除後も参照可能。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L112-L113",
+          "label": "R16 / R17 · 112行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 71,
+          "end_line": 71,
+          "heading": "2026-10-07に確定した方式・データ・権限制約",
+          "requirement_ids": [
+            "NFR-L"
+          ],
+          "quote": "| NFR-L | 支払済不訂正。最終結果・最終計算根拠・給与簿・支払実績・照合回ごとの不一致双方額を保持。中間版は支払確定後に削除可能。CSV自体は継続保存不要（R3・R7・R8・R16・R17） | 保存期間、削除方式・権限、バックアップ／復元、参照整合 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L71-L71",
+          "label": "NFR-L · 71行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "保存対象と削除できる範囲は確定済み。未設定の保存年数や容量を補完せず、対象と期間を分けて記載。"
+    },
+    {
+      "id": "3.9.2",
+      "title": "継続性に係る対策",
+      "text": "勤務実績の対象報告を取り込んでいる間は編集・提出を停止し、全件検証後に反映する。途中失敗などで不完全な結果は給与計算から除外し、復旧／再実行の対象とする。",
+      "missing": "排他・復旧・再実行の具体方式、障害・災害時の業務代替、復旧時間（RTO）・復旧時点（RPO）の目標と検証。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md",
+        "docs/requirements/non-functional-requirements.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 110,
+          "end_line": 110,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R14"
+          ],
+          "quote": "| R14 | A | 対象報告の取込中は編集・提出停止。全件検証後に反映。途中失敗は計算から除外して復旧／再実行。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L110-L110",
+          "label": "R14 · 110行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 68,
+          "end_line": 68,
+          "heading": "2026-10-07に確定した方式・データ・権限制約",
+          "requirement_ids": [
+            "NFR-E",
+            "NFR-I"
+          ],
+          "quote": "| NFR-E・I | 取込全件検証、取込中の対象編集／提出停止、不完全結果の計算利用禁止（R14） | 排他・復旧・再実行、RTO/RPO |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L68-L68",
+          "label": "NFR-E / NFR-I · 68行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "取込時の不完全結果を使わない制約は確定済み。一般的な可用性・復旧目標が確定した意味ではない。"
+    },
+    {
+      "id": "3.11.2",
+      "title": "クラウドサービス構成",
+      "text": "アプリはPower Apps Canvas、データはDataverse標準、連携処理はPower Automateを使用するローコード方式とする。独自API・プラグイン等のコード実装を構成の前提にしない。",
+      "missing": "本番の正式なクラウド構成、環境・接続設定、サービス間の処理配置、実行上限、責任分界、セキュリティ設定と性能の確認。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md",
+        "docs/requirements/non-functional-requirements.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 97,
+          "end_line": 97,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R1"
+          ],
+          "quote": "| R1 | B | Canvas＋Dataverse標準＋Power Automateのローコードのみ。独自API・プラグイン等のコード実装を前提にしない。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L97-L97",
+          "label": "R1 · 97行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 67,
+          "end_line": 67,
+          "heading": "2026-10-07に確定した方式・データ・権限制約",
+          "requirement_ids": [
+            "NFR-B"
+          ],
+          "quote": "| NFR-B | Canvas＋Dataverse標準＋Power Automateのローコードのみ（R1） | 処理配置、実行上限、件数での性能 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L67-L67",
+          "label": "NFR-B · 67行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "採用サービス方式は確定済み。正式な本番構成図や設定を既定と扱わない。"
+    },
+    {
+      "id": "1.2.2",
+      "title": "処理件数",
+      "text": "人給連携の規模は、通常約800レコードを想定する。",
+      "missing": "件数上限・処理時間基準、システム全体／月間の件数、ピーク、総容量・増加率。約800を利用者数・上限・性能合格値には読み替えない。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/design/detailed/payroll-jinkyu-interface.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line": 22,
+          "end_line": 22,
+          "heading": "2. 確定済みの入出力仕様",
+          "requirement_ids": [
+            "IF-12"
+          ],
+          "quote": "| IF-12 | 規模 | 通常約800レコードを想定 | 利用者説明。件数上限・処理時間の基準は未入力 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/detailed/payroll-jinkyu-interface.md#L22-L22",
+          "label": "IF-12 · 22行目",
+          "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "IF-12の明記済み概数のみを採用。期間や1ファイル当たりの固定値を付け足さない。"
+    },
+    {
+      "id": "3.3.1",
+      "title": "規模に関する前提条件",
+      "text": "人給連携の規模は、通常約800レコードを想定する。",
+      "missing": "件数上限・処理時間基準、システム全体／月間の件数、ピーク、総容量・増加率。約800を利用者数・上限・性能合格値には読み替えない。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/design/detailed/payroll-jinkyu-interface.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line": 22,
+          "end_line": 22,
+          "heading": "2. 確定済みの入出力仕様",
+          "requirement_ids": [
+            "IF-12"
+          ],
+          "quote": "| IF-12 | 規模 | 通常約800レコードを想定 | 利用者説明。件数上限・処理時間の基準は未入力 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/detailed/payroll-jinkyu-interface.md#L22-L22",
+          "label": "IF-12 · 22行目",
+          "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "IF-12の明記済み概数のみを採用。期間や1ファイル当たりの固定値を付け足さない。"
+    },
+    {
+      "id": "3.3.2",
+      "title": "データ量",
+      "text": "人給連携の規模は、通常約800レコードを想定する。人給出力は237列（A〜IC）である。",
+      "missing": "件数上限・処理時間基準、システム全体／月間の件数、ピーク、総容量・増加率。約800を利用者数・上限・性能合格値には読み替えない。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/design/detailed/payroll-jinkyu-interface.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line": 22,
+          "end_line": 22,
+          "heading": "2. 確定済みの入出力仕様",
+          "requirement_ids": [
+            "IF-12"
+          ],
+          "quote": "| IF-12 | 規模 | 通常約800レコードを想定 | 利用者説明。件数上限・処理時間の基準は未入力 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/detailed/payroll-jinkyu-interface.md#L22-L22",
+          "label": "IF-12 · 22行目",
+          "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line": 12,
+          "end_line": 12,
+          "heading": "2. 確定済みの入出力仕様",
+          "requirement_ids": [
+            "IF-02"
+          ],
+          "quote": "| IF-02 | 列構成 | 237列、A～IC。順序・見出しを既存サンプルに合わせる | VBAの237列とサンプルの見出しが一致 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/detailed/payroll-jinkyu-interface.md#L12-L12",
+          "label": "IF-02 · 12行目",
+          "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "IF-12の明記済み概数のみを採用。期間や1ファイル当たりの固定値を付け足さない。"
+    },
+    {
+      "id": "3.3.3",
+      "title": "処理件数",
+      "text": "人給連携の規模は、通常約800レコードを想定する。",
+      "missing": "件数上限・処理時間基準、システム全体／月間の件数、ピーク、総容量・増加率。約800を利用者数・上限・性能合格値には読み替えない。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/design/detailed/payroll-jinkyu-interface.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line": 22,
+          "end_line": 22,
+          "heading": "2. 確定済みの入出力仕様",
+          "requirement_ids": [
+            "IF-12"
+          ],
+          "quote": "| IF-12 | 規模 | 通常約800レコードを想定 | 利用者説明。件数上限・処理時間の基準は未入力 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/detailed/payroll-jinkyu-interface.md#L22-L22",
+          "label": "IF-12 · 22行目",
+          "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "IF-12の明記済み概数のみを採用。期間や1ファイル当たりの固定値を付け足さない。"
+    },
+    {
+      "id": "2.4.8",
+      "title": "モニタリング対象データ一覧",
+      "text": "業務上の照合履歴として、各処理回の日時・実行者・件数・状態、不一致職員・項目・双方金額・差額を保存する。支給回の対象期間・支給日・状態と、差分一覧の職員・対象期間・項目・アプリ値・給与簿値・差額を表示し、差分のみ／全件を切り替えられる。",
+      "missing": "システム運用監視の対象・取得方式・頻度・閾値・責任者、業務KPIとしての分析軸・評価条件。照合結果から人給の処理ログや取込成功を創作しない。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md",
+        "docs/requirements/screen-requirements.md",
+        "docs/design/detailed/payroll-jinkyu-interface.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 113,
+          "end_line": 113,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R17"
+          ],
+          "quote": "| R17 | A | 各照合処理回で日時・実行者・件数・状態に加え、不一致職員・項目・双方金額・差額を保存。中間版削除後も参照可能。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L113-L113",
+          "label": "R17 · 113行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/screen-requirements.md",
+          "line": 503,
+          "end_line": 503,
+          "heading": "2026-10-08 人給連携画面：承認済みモック・I1～I12",
+          "requirement_ids": [
+            "JLINK-UI-02"
+          ],
+          "quote": "| JLINK-UI-02 | 共通ヘッダー | 選択支給回の支給日・対象期間・状態を表示し、タブ間で支給回を保持する。計算版の照合対象選択は置かない | モック・I5 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/screen-requirements.md#L503-L503",
+          "label": "JLINK-UI-02 · 503行目",
+          "sha256": "52ae4f29d73310c99783b902f50f9bc8fb297ed58c260f6818f35563ae314fea",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/screen-requirements.md",
+          "line": 509,
+          "end_line": 509,
+          "heading": "2026-10-08 人給連携画面：承認済みモック・I1～I12",
+          "requirement_ids": [
+            "JLINK-UI-08"
+          ],
+          "quote": "| JLINK-UI-08 | 差分表示 | 初期は差分のみ、全件へ切替可能。職員・対象期間・項目・アプリ値・給与簿値・差額を表示 | I6・I11 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/screen-requirements.md#L509-L509",
+          "label": "JLINK-UI-08 · 509行目",
+          "sha256": "52ae4f29d73310c99783b902f50f9bc8fb297ed58c260f6818f35563ae314fea",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line": 109,
+          "end_line": 109,
+          "heading": "7.2 最新版との照合",
+          "requirement_ids": [
+            "I6",
+            "I10",
+            "I11"
+          ],
+          "quote": "人給の取込成功／一部失敗／失敗を手入力しない（I10）。給与簿との比較でデータの一致を確認するが、照合結果から人給の取込処理の実行ログや成功状態を創作しない。初期表示は差分のみ、全件へ切替可能。差分列は職員・対象期間・項目・アプリ値・給与簿値・差額（I6・I11）。差額の表示符号・非数値差分の表現は未入力。",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/detailed/payroll-jinkyu-interface.md#L109-L109",
+          "label": "I6 / I10 / I11 · 109行目",
+          "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "確定している業務モニタリングの情報に限定。インフラ監視方式は未設定として明示する。"
+    },
+    {
+      "id": "3.4.2",
+      "title": "応答時間",
+      "text": "起動・検索・職員切替・タブ・履歴・HTML・給与表示を、改修前後で同じ環境・データ・操作として計時し、比較値と悪化箇所を記録する。",
+      "missing": "許容秒数、同時利用数、計測回数、達成率・百分位。比較計測の実施を性能合格とは扱わない。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/requirements/non-functional-requirements.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 25,
+          "end_line": 25,
+          "heading": "現行文書から引き継げる検査条件",
+          "requirement_ids": [
+            "NFR-D"
+          ],
+          "quote": "| NFR-D | [画面要件9.6](screen-requirements.md#96-軽量化の受入条件)：起動・検索・職員切替・タブ・履歴・HTML・給与表示を、改修前後で同じ環境・データ・操作として計時し、App checkerと画面別・型別部品数も記録。 | 比較値と悪化箇所は示せるが、許容秒数・同時利用数・計測回数・達成率は未決。SCR-002の150～210部品は設計目標であり、それだけでは合否を決めない。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L25-L25",
+          "label": "NFR-D · 25行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 37,
+          "end_line": 37,
+          "heading": "ガイド分類ごとの適用・未決台帳",
+          "requirement_ids": [
+            "NFR-D"
+          ],
+          "quote": "| NFR-D | 性能 | 一部既定 | 改修前後の計時項目は上表どおり。秒数・負荷条件・百分位の合格値は未決。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L37-L37",
+          "label": "NFR-D · 37行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。"
+    },
+    {
+      "id": "3.13.3",
+      "title": "総合テスト",
+      "text": "総合テストは、複数機能を通す業務シナリオと開始・終了条件を定義してから、一連の業務結果と必要な非機能要件を確認する。公開直後の起動確認や単体・結合の成功を総合テスト完了へ読み替えず、総合テストと業務受入を独立して判定する。",
+      "missing": "D-07の対象シナリオ、開始終了条件の具体値、独立期待値、非機能観点、実施時期・担当・自動化範囲。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/testing/test-policy.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/testing/test-policy.md",
+          "line": 30,
+          "end_line": 30,
+          "heading": "3. テスト工程の選び方",
+          "requirement_ids": [
+            "D-07"
+          ],
+          "quote": "| 総合テスト | 複数機能を通す業務シナリオと開始・終了条件が定義されてから | 業務の一連の結果と必要な非機能要件 | シナリオと実施時期は後続で策定。一括PASSにしない |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/test-policy.md#L30-L30",
+          "label": "D-07 · 30行目",
+          "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/testing/test-policy.md",
+          "line": 33,
+          "end_line": 33,
+          "heading": "3. テスト工程の選び方",
+          "requirement_ids": [],
+          "quote": "従来のL0～L4は**確認手段の区分**であり、単体・結合・総合という工程と一対一に対応しない。ソース静的検査、Studioの式エラー確認、公開版照合、Playwrightの操作を工程に応じて組み合わせる。公開直後の起動確認を実施しても総合テスト完了とは扱わない。",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/test-policy.md#L33-L33",
+          "label": "3. テスト工程の選び方 · 33行目",
+          "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/testing/test-policy.md",
+          "line": 56,
+          "end_line": 56,
+          "heading": "6. 合否、中断・再開",
+          "requirement_ids": [],
+          "quote": "認証失敗、App ID不一致、隔離データの不明な変更、ケース設計の多数の誤り、共通部品の不具合の影響範囲不明があれば対象試験を中断する。原因、修正内容、影響範囲、再テスト対象、環境を確認して再開する。改修部品の単体ケース、必要な結合ケースが未実施なら改修完了としない。総合テストと業務受入はそれぞれ独立して判定する。",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/test-policy.md#L56-L56",
+          "label": "6. 合否、中断・再開 · 56行目",
+          "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。"
+    },
+    {
+      "id": "3.18.1",
+      "title": "保守業務の実施",
+      "text": "改修時は版管理と試験選定を適用する。変更した部品・数式の単体試験は必須とし、他部品・画面・データ・帳票・外部連携に影響する場合は結合試験も選定し、記録と実測を残す。",
+      "missing": "保守担当、保守期間・受付時間、修正期限、依存更新の範囲と責任。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/requirements/non-functional-requirements.md",
+        "docs/testing/test-policy.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 51,
+          "end_line": 51,
+          "heading": "ガイド分類ごとの適用・未決台帳",
+          "requirement_ids": [
+            "NFR-R"
+          ],
+          "quote": "| NFR-R | 保守 | 一部既定 | 改修時の[試験選定](../testing/test-policy.md)と版管理は既定。依存更新、担当、保守期間・修正期限は未決。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L51-L51",
+          "label": "NFR-R · 51行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/testing/test-policy.md",
+          "line": 28,
+          "end_line": 29,
+          "heading": "3. テスト工程の選び方",
+          "requirement_ids": [],
+          "quote": "| 単体テスト | **改修した部品・数式は必ず対象**。対象App IDと隔離データ、期待値を確定 | 公開Playerでその部品を実際に操作し、当該部品の入力から結果まで照合。直接操作できない部品は最小限の画面操作で結果を確認 | 改修ごと |\n| 結合テスト | 改修部品が他部品、複数部品、画面、データ、帳票、外部連携へ影響する場合 | 間の受渡し、状態、異常時動作と結果の整合を確認 | 影響がある改修ごと。影響なしの判断理由も記録 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/test-policy.md#L28-L29",
+          "label": "3. テスト工程の選び方 · 28行目",
+          "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/testing/test-policy.md",
+          "line": 50,
+          "end_line": 50,
+          "heading": "5. 担当、環境、証跡",
+          "requirement_ids": [],
+          "quote": "各改修では変更パス・部品、対象App ID、影響先、単体ケース、必要な結合ケース、総合テストの扱いを[選定記録](change-records/README.md)に記録する。実行後は[実施記録の様式](templates/test-execution-record.md)にrun URL、コミット、公開版の照合状況、日時、環境、ケースID、期待値、実測値、PASS/FAIL/BLOCKED/NOT_RUN、残件を残す。GitHubには架空データだけを置き、資格情報、認証状態、機密を含むtraceは保存しない。画面やPDFの証跡はリスクに応じて選ぶ。",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/test-policy.md#L50-L50",
+          "label": "5. 担当、環境、証跡 · 50行目",
+          "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。"
+    },
+    {
+      "id": "3.18.3",
+      "title": "アプリケーションの保守",
+      "text": "アプリの改修は影響分析とケース選定に基づき、変更部品の単体試験および影響先の結合試験を実施する。公開版とGitHub候補ソースの同一性を別に確認し、未実施・未照合を合格にしない。",
+      "missing": "保守体制、対応時間・期限、変更規模の区分、依存更新方針。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "legacy",
+      "sources": [
+        "docs/testing/test-policy.md",
+        "docs/requirements/non-functional-requirements.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/testing/test-policy.md",
+          "line": 28,
+          "end_line": 29,
+          "heading": "3. テスト工程の選び方",
+          "requirement_ids": [],
+          "quote": "| 単体テスト | **改修した部品・数式は必ず対象**。対象App IDと隔離データ、期待値を確定 | 公開Playerでその部品を実際に操作し、当該部品の入力から結果まで照合。直接操作できない部品は最小限の画面操作で結果を確認 | 改修ごと |\n| 結合テスト | 改修部品が他部品、複数部品、画面、データ、帳票、外部連携へ影響する場合 | 間の受渡し、状態、異常時動作と結果の整合を確認 | 影響がある改修ごと。影響なしの判断理由も記録 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/test-policy.md#L28-L29",
+          "label": "3. テスト工程の選び方 · 28行目",
+          "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/testing/test-policy.md",
+          "line": 44,
+          "end_line": 44,
+          "heading": "4. 設計成果物と観点の対応",
+          "requirement_ids": [],
+          "quote": "既存コードが選定ケースを十分検証できるなら再利用する。新しい分岐、期待値、連携が漏れる場合は追加・更新する。失敗回避のために期待値を緩めない。公開版とGitHub候補ソースの一致が照合できない場合は「公開Playerの現状試験」と記録する。",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/test-policy.md#L44-L44",
+          "label": "4. 設計成果物と観点の対応 · 44行目",
+          "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/testing/test-policy.md",
+          "line": 48,
+          "end_line": 50,
+          "heading": "5. 担当、環境、証跡",
+          "requirement_ids": [],
+          "quote": "Codexは影響分析、ケース選定、テストコードの保守、実行と一次評価を担当。GitHub Actionsは選定記録の形式・差分・ケース参照を検査し、選定された自動ケースを実行する。ユーザーは業務上の期待値と受入可否を判断する。Actionsの静的チェックは影響分析の漏れを意味的に検証できない。\n\n各改修では変更パス・部品、対象App ID、影響先、単体ケース、必要な結合ケース、総合テストの扱いを[選定記録](change-records/README.md)に記録する。実行後は[実施記録の様式](templates/test-execution-record.md)にrun URL、コミット、公開版の照合状況、日時、環境、ケースID、期待値、実測値、PASS/FAIL/BLOCKED/NOT_RUN、残件を残す。GitHubには架空データだけを置き、資格情報、認証状態、機密を含むtraceは保存しない。画面やPDFの証跡はリスクに応じて選ぶ。",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/test-policy.md#L48-L50",
+          "label": "5. 担当、環境、証跡 · 48行目",
+          "sha256": "7d9c80c4d1bf0462704a2ff2b49e1caa1e52c4d71f2923576cb7ee220db12ca5",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 51,
+          "end_line": 51,
+          "heading": "ガイド分類ごとの適用・未決台帳",
+          "requirement_ids": [
+            "NFR-R"
+          ],
+          "quote": "| NFR-R | 保守 | 一部既定 | 改修時の[試験選定](../testing/test-policy.md)と版管理は既定。依存更新、担当、保守期間・修正期限は未決。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L51-L51",
+          "label": "NFR-R · 51行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。"
+    }
+  ],
+  "template_sections": [
+    {
+      "id": "3.12.1",
+      "title": "データ管理体制の明確化",
+      "text": "給与班は全局の対象業務について確認・確定・認定を担当し、局担当者は自局の勤務・申請・支給明細と必要な共通職員基本情報を扱う。業務マスタ管理者とシステム管理者を分け、同じ人物の兼務は認める。",
+      "missing": "データ品質責任者・運用責任者の具体的な割当て、権威ある属性取得・物理ロール・フロー経路の認可。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "additional",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md",
+        "docs/requirements/business-requirements.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 111,
+          "end_line": 111,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R15"
+          ],
+          "quote": "| R15 | A | 局担当は自局の勤務・申請・支給明細と必要な共通職員基本情報のみ。他局分・全局集計は給与班。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L111-L111",
+          "label": "R15 · 111行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 117,
+          "end_line": 117,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R21"
+          ],
+          "quote": "| R21 | A | 業務マスタ管理者とアプリ／Dataverseのシステム管理権限を分ける。同じ人物の兼務は可能。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L117-L117",
+          "label": "R21 · 117行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/business-requirements.md",
+          "line": 245,
+          "end_line": 248,
+          "heading": "共通｜役割別の対象範囲",
+          "requirement_ids": [
+            "AUTH-01",
+            "AUTH-02",
+            "AUTH-03",
+            "AUTH-04"
+          ],
+          "quote": "| AUTH-01 | 会計課給与班は、所属部署を問わず全対象職員について、同班が担当する情報の修正・確定、通勤認定、外部機関の決定結果確認を行える。 |\n| AUTH-02 | 局担当者は自局の勤務・申請・支給明細と必要な共通職員基本情報を扱う。他局分・全局集計は給与班。確定・認定は給与班。組織は階層なし一覧とし、部署略称の文字一致だけを認可根拠としない（Q9・R15）。 |\n| AUTH-03 | 本人向け利用は将来追加とする。追加時は自己分に限定。初回は給与班・局担当・業務管理者を対象とし、本人機能を要求しない（Q54）。 |\n| AUTH-04 | 業務マスタ管理者が給与単価・区分等を管理する。給与班と兼務可能。システム管理権限は別とし、同一人の兼務も可能（Q55・R21）。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/business-requirements.md#L245-L248",
+          "label": "AUTH-01 / AUTH-02 / AUTH-03 / AUTH-04 · 245行目",
+          "sha256": "707f695e40f7fa165e598ff2940eed0ec8bc06134d7f7e035200c116c044fe65",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。"
+    },
+    {
+      "id": "3.12.2",
+      "title": "データの標準化",
+      "text": "職員基本は一人一行、職員番号は全体一意の半角数字12桁文字列とし先頭ゼロを保持する。参照はGUID主キーへのLookupと職員番号を両方保持する。人給出力は既存契約に沿った237列・文字列形式とし、日付はyyyy/mm/ddの固定桁数で出力する。",
+      "missing": "一般列の正式名・型・精度、共通コードの全面的な標準化、他システムとのデータ流通方式、給与簿照合キーと行対応。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "additional",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md",
+        "docs/design/detailed/payroll-jinkyu-interface.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 33,
+          "end_line": 34,
+          "heading": "Q1～Q60の最終整理",
+          "requirement_ids": [
+            "Q2",
+            "Q3"
+          ],
+          "quote": "| Q2 | A | 職員番号は全体で一意。職員基本は一人一行。再雇用や条件変更は履歴で扱う。 |\n| Q3 | A | GUID主キーを参照するLookupと職員番号を両方保持する。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L33-L34",
+          "label": "Q2 / Q3 · 33行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 38,
+          "end_line": 38,
+          "heading": "Q1～Q60の最終整理",
+          "requirement_ids": [
+            "Q7"
+          ],
+          "quote": "| Q7 | A | 職員番号は半角数字12桁の文字列。先頭ゼロを保持・不足桁をゼロ埋め。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L38-L38",
+          "label": "Q7 · 38行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line": 12,
+          "end_line": 14,
+          "heading": "2. 確定済みの入出力仕様",
+          "requirement_ids": [
+            "IF-02",
+            "IF-03",
+            "IF-04"
+          ],
+          "quote": "| IF-02 | 列構成 | 237列、A～IC。順序・見出しを既存サンプルに合わせる | VBAの237列とサンプルの見出しが一致 |\n| IF-03 | 行構成 | 固定見出し１行目、データ２行目以降 | 利用者が貼付開始２行目を正常と確認 |\n| IF-04 | セル表示形式 | 人給仕様に従い文字列とする | 添付仕様の「セルの表示形式は文字列」に基づく。金額等の文字列の詳細な整形は未入力 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/detailed/payroll-jinkyu-interface.md#L12-L14",
+          "label": "IF-02 / IF-03 / IF-04 · 12行目",
+          "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line": 24,
+          "end_line": 24,
+          "heading": "2. 確定済みの入出力仕様",
+          "requirement_ids": [],
+          "quote": "Excelの「文字列の表示形式」と「実際に文字列型で値を保存すること」は実装時に揃える。先頭ゼロを落とさず、日付は`yyyy/mm/dd`の固定桁数で出力する。CSV出力の文字コード・区切り・BOMは対象外。給与簿CSVの読み取り設定とは混同しない。",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/detailed/payroll-jinkyu-interface.md#L24-L24",
+          "label": "2. 確定済みの入出力仕様 · 24行目",
+          "sha256": "a6826005053b67e3615a135d867a0d0042ba09786c30e2bac2f381ca15b0725b",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。"
+    },
+    {
+      "id": "3.12.3",
+      "title": "データに関するドキュメントの一元的管理",
+      "text": "要件・設計・ソースはGitHubとSTATUSで履歴を追う。データモデルでは機械可読の列契約を参照し、確定済み論理モデルと未入力の物理名・型・制約を区別して管理する。",
+      "missing": "データ辞書の具体的な更新責任者・承認主体・運用頻度、未確定物理項目の整備。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "additional",
+      "sources": [
+        "docs/requirements/non-functional-requirements.md",
+        "docs/design/basic/data-model.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 48,
+          "end_line": 48,
+          "heading": "ガイド分類ごとの適用・未決台帳",
+          "requirement_ids": [
+            "NFR-O"
+          ],
+          "quote": "| NFR-O | 引継ぎ | 一部既定 | GitHubの要件・設計・ソースと[STATUS](../handoff/STATUS.md)で履歴を追う。担当変更時の引継ぎ項目と承認主体は未決。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L48-L48",
+          "label": "NFR-O · 48行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/design/basic/data-model.md",
+          "line": 30,
+          "end_line": 30,
+          "heading": "SCR-002の4履歴テーブル（2026-09-28）",
+          "requirement_ids": [],
+          "quote": "添付4定義書の列名・型・制約を[機械可読の列契約](../../../config/dataverse/scr002-history-columns.json)に転記した。正式4表と隔離4表のメタデータ、親子関係は[構築Action](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/36363649180)で読戻し済み。公開v25の隔離4表の全列表示は専用利用者の選定6ケース（Action 36380881898）で検証した。編集保存・他所属の権限と実データは未判定。",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/basic/data-model.md#L30-L30",
+          "label": "SCR-002の4履歴テーブル（2026-09-28） · 30行目",
+          "sha256": "bca14fc642bebbe57f04b7cb4e54577ae81508d25d04c2178dae0129ae5747cd",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/design/basic/data-model.md",
+          "line": 50,
+          "end_line": 50,
+          "heading": "2026-10-07の変更後論理モデル（物理設計未確定）",
+          "requirement_ids": [],
+          "quote": "[確定要件](../../requirements/payroll-confirmed-20261007.md)と[添付２文書の変更対応](../../changes/payroll-markdown-change-list-20261007.md)に基づく。以下の名称は論理的な管理単位の仮称であり、既存_STUDIO表の正式な置換物理名・列名・実装済み関係ではない。物理テーブル数、制約の実装方法、削除連鎖等は未入力。親参照はGUID Lookup、職員番号も保持する。",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/design/basic/data-model.md#L50-L50",
+          "label": "2026-10-07の変更後論理モデル（物理設計未確定） · 50行目",
+          "sha256": "bca14fc642bebbe57f04b7cb4e54577ae81508d25d04c2178dae0129ae5747cd",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。"
+    },
+    {
+      "id": "3.12.5",
+      "title": "データに関する運用情報の管理",
+      "text": "計算版・取込回・照合結果を処理回ごとに残す。照合ごとの日時・実行者・件数・状態、不一致職員・項目・双方金額・差額を保存し、中間版削除後も参照できるようにする。",
+      "missing": "保存期間、削除方式・権限、バックアップ／復元、物理的な参照整合、運用ログ全般の収集条件。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "additional",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md",
+        "docs/requirements/non-functional-requirements.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 104,
+          "end_line": 104,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R8"
+          ],
+          "quote": "| R8 | 補足指定 | Excel／CSVファイル自体は継続保存不要。計算版・取込回・照合結果は処理回ごとに残す。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L104-L104",
+          "label": "R8 · 104行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 113,
+          "end_line": 113,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R17"
+          ],
+          "quote": "| R17 | A | 各照合処理回で日時・実行者・件数・状態に加え、不一致職員・項目・双方金額・差額を保存。中間版削除後も参照可能。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L113-L113",
+          "label": "R17 · 113行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 71,
+          "end_line": 71,
+          "heading": "2026-10-07に確定した方式・データ・権限制約",
+          "requirement_ids": [
+            "NFR-L"
+          ],
+          "quote": "| NFR-L | 支払済不訂正。最終結果・最終計算根拠・給与簿・支払実績・照合回ごとの不一致双方額を保持。中間版は支払確定後に削除可能。CSV自体は継続保存不要（R3・R7・R8・R16・R17） | 保存期間、削除方式・権限、バックアップ／復元、参照整合 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L71-L71",
+          "label": "NFR-L · 71行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。"
+    },
+    {
+      "id": "3.12.6",
+      "title": "データの機密性定義に応じた設計",
+      "text": "業務上の情報範囲は、給与班の全局対象と局担当者の自局記録・必要な共通基本情報に分ける。業務マスタ管理とシステム管理権限を分離する。画面非表示だけで実効認可を完了としない。",
+      "missing": "正式な機密性分類・分類別の取扱規則、権威ある属性取得、Dataverse物理ロール・所有共有・フロー認可、監査期間。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "additional",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md",
+        "docs/requirements/non-functional-requirements.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 111,
+          "end_line": 111,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R15"
+          ],
+          "quote": "| R15 | A | 局担当は自局の勤務・申請・支給明細と必要な共通職員基本情報のみ。他局分・全局集計は給与班。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L111-L111",
+          "label": "R15 · 111行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 117,
+          "end_line": 117,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R21"
+          ],
+          "quote": "| R21 | A | 業務マスタ管理者とアプリ／Dataverseのシステム管理権限を分ける。同じ人物の兼務は可能。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L117-L117",
+          "label": "R21 · 117行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 27,
+          "end_line": 27,
+          "heading": "現行文書から引き継げる検査条件",
+          "requirement_ids": [
+            "NFR-J"
+          ],
+          "quote": "| NFR-J | [画面要件5章](screen-requirements.md#5-権限制御)：所属制限・管理者限定遷移・職員番号直指定による迂回防止を、異なる権限の隔離アカウントで検査。 | 画面要件の範囲のみ。認証・所属／管理者属性の取得元、権限設計と監査・保管期間は未決であり、UI上の非表示だけでアクセス制御完了としない。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L27-L27",
+          "label": "NFR-J · 27行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 70,
+          "end_line": 70,
+          "heading": "2026-10-07に確定した方式・データ・権限制約",
+          "requirement_ids": [
+            "NFR-J"
+          ],
+          "quote": "| NFR-J | 給与班全局／局担当自局記録、必要な共通基本、複数ロール兼務、業務／システム管理分離（R15・R21） | 権威ある属性取得、Dataverse物理ロール、フロー経路の認可、監査期間 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L70-L70",
+          "label": "NFR-J · 70行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。"
+    },
+    {
+      "id": "3.12.7",
+      "title": "データ品質の継続的改善",
+      "text": "元データの訂正後は再確認・再提出を行い、影響する未払い支給回を再計算・再照合する。職員・支給回ごとの項目・合計に加え、欠落・余分・重複も確認する。途中失敗の不完全な取込結果を計算に利用しない。",
+      "missing": "品質指標の数値目標、定期評価の頻度・責任者、恒常的な品質改善手順、排他・復旧・再実行の物理方式。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "additional",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 101,
+          "end_line": 101,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R5"
+          ],
+          "quote": "| R5 | A | 職員・支給回ごとに支給／控除項目・合計を照合し、欠落・余分・重複も確認。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L101-L101",
+          "label": "R5 · 101行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 107,
+          "end_line": 107,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R11"
+          ],
+          "quote": "| R11 | A | 元データ訂正後は該当の再確認・再提出を行い、影響する未払い支給回を再計算・再照合する。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L107-L107",
+          "label": "R11 · 107行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 110,
+          "end_line": 110,
+          "heading": "R1～R21の追加確定",
+          "requirement_ids": [
+            "R14"
+          ],
+          "quote": "| R14 | A | 対象報告の取込中は編集・提出停止。全件検証後に反映。途中失敗は計算から除外して復旧／再実行。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L110-L110",
+          "label": "R14 · 110行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "正本で既定の部分条件を本文へ対応付ける。残る詳細を確定した意味ではない。"
+    },
+    {
+      "id": "3.14.1",
+      "title": "移行に関する前提条件",
+      "text": "架空データで検証し、実データ移行は後段とする。現在の隔離検証アプリから実データ・本番環境への移行は今回の対象外であり、必要時に件数照合・差戻し・移行期間等を別途定める。",
+      "missing": "実データ移行の対象、具体的な受入・件数照合・差戻し・期間・担当、実施承認。本節は移行実行を承認しない。",
+      "state": "一部設定・要件未設定あり",
+      "section_kind": "additional",
+      "sources": [
+        "docs/requirements/payroll-confirmed-20261007.md",
+        "docs/requirements/non-functional-requirements.md"
+      ],
+      "source_refs": [
+        {
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line": 90,
+          "end_line": 90,
+          "heading": "Q1～Q60の最終整理",
+          "requirement_ids": [
+            "Q59"
+          ],
+          "quote": "| Q59 | A | 架空データで検証し、実データ移行は後段。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/payroll-confirmed-20261007.md#L90-L90",
+          "label": "Q59 · 90行目",
+          "sha256": "05eb88fde783410c6e16fcd9676fd3c1bb3c107d425bd6bc51fd108ca8208eb2",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 47,
+          "end_line": 47,
+          "heading": "ガイド分類ごとの適用・未決台帳",
+          "requirement_ids": [
+            "NFR-N"
+          ],
+          "quote": "| NFR-N | 移行 | 今回対象外 | 隔離`_STUDIO`から実データ・本番環境への移行を今回の文書整理に含めない。必要時に件数照合、差戻し、期間を新規に定める。 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L47-L47",
+          "label": "NFR-N · 47行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        },
+        {
+          "path": "docs/requirements/non-functional-requirements.md",
+          "line": 72,
+          "end_line": 72,
+          "heading": "2026-10-07に確定した方式・データ・権限制約",
+          "requirement_ids": [
+            "NFR-M",
+            "NFR-N"
+          ],
+          "quote": "| NFR-M・N | 架空データで検証し、実データ移行は後段。設計・式・単体結合・データ権限・既存維持を受入前提（Q59・Q60） | 総合シナリオD-07、性能値、実データ移行の具体的基準 |",
+          "github_url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/non-functional-requirements.md#L72-L72",
+          "label": "NFR-M / NFR-N · 72行目",
+          "sha256": "0750c5c6bbfd2109284ffa390bf31b439516a9581c1c210d2f3c8c4d57387d75",
+          "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf"
+        }
+      ],
+      "reason": "原本の新補完3.14.1。既存ID3.14.1「移行計画の作成」と別キーで扱う。"
+    }
+  ],
+  "scope": "旧未設定61項目と補完した8見出しを正本と対照。直接確定記述のある13旧項目・7補完見出しだけを一部設定へ補足。",
+  "unresolved_legacy_ids": [
+    "1.2.1",
+    "1.3.2",
+    "1.3.3",
+    "1.4",
+    "1.7.1",
+    "2.4.7",
+    "3.2.4",
+    "3.2.5",
+    "3.3.4",
+    "3.4.3",
+    "3.5.1",
+    "3.7.1",
+    "3.7.2",
+    "3.8.1",
+    "3.9.1",
+    "3.11.3",
+    "3.11.5",
+    "3.11.6",
+    "3.11.7",
+    "3.14.1",
+    "3.14.3",
+    "3.14.4",
+    "3.14.5",
+    "3.14.6",
+    "3.14.7",
+    "3.14.8",
+    "3.14.9",
+    "3.14.10",
+    "3.14.11",
+    "3.15.1",
+    "3.15.4",
+    "3.15.5",
+    "3.15.6",
+    "3.16.1",
+    "3.16.2",
+    "3.16.3",
+    "3.16.4",
+    "3.16.5",
+    "3.16.6",
+    "3.17.1",
+    "3.17.2",
+    "3.17.4",
+    "3.17.5",
+    "3.18.2",
+    "3.18.4",
+    "3.18.5",
+    "3.18.6",
+    "3.18.8"
+  ],
+  "unresolved_template_ids": [
+    "3.12.4"
+  ],
+  "metadata": {
+    "source_commit": "4928decc67fdc6baa0f3f83300eca2c3760669cf",
+    "previous_pr136": "38362c8cf7ded201b1d185eeaccf2892f40c5f51",
+    "review_note": "正式P/H採取状態の更新は20補足の業務本文・未決判断を変更しない。53引用の本文不変・位置・全ファイルSHAを再確認。",
+    "previous_source_commit": "b5e5d460fe19169252de05bb02bafc9461120540"
+  }
+}

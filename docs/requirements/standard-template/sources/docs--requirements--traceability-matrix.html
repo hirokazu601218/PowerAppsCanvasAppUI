@@ -1,0 +1,2464 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>traceability-matrix.md | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../sources.html" >出典と版</a>
+</span>
+<span aria-current="page">traceability-matrix.md</span>
+</nav>
+<a class="context-return" data-context-return href="../sections/3.15.3.html#section-3.15.3">← 関連する要件 3.15.3 へ戻る</a>
+<div>
+<span class="eyebrow">SOURCE DOCUMENT</span>
+<h1>traceability-matrix.md</h1>
+<p class="meta">docs/requirements/traceability-matrix.md<br>全文のHTML表示（Markdown等の正本は変更していません）</p>
+<p class="notice info">新旧の記述を保持した出典です。今後の業務仕様は2026-10-07給与確定要件、2026-10-08人給決定を優先します。既存実装記録をLive 38の確認結果へ読み替えません。</p>
+<p>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/requirements/traceability-matrix.md">この版のGitHub原文</a> / SHA-256: <code>ddb84071fff5a5260fd60307e45b3cabb689107e287284e795ac1f366c053b74</code>
+</p>
+<details>
+<summary>この資料を参照している要件・節</summary>
+<div>
+<div class="chips">
+<a href="../sections/3.15.3.html#section-3.15.3" >3.15.3</a>
+<a href="../sections/3.18.7.html#section-3.18.7" >3.18.7</a>
+</div>
+<div style="margin-top:12px">
+<div class="chips">
+<a href="../requirements/AD-01.html#requirement-AD-01" >AD-01</a>
+<a href="../requirements/AD-02.html#requirement-AD-02" >AD-02</a>
+<a href="../requirements/AD-03.html#requirement-AD-03" >AD-03</a>
+<a href="../requirements/AD-04.html#requirement-AD-04" >AD-04</a>
+<a href="../requirements/AD-05.html#requirement-AD-05" >AD-05</a>
+<a href="../requirements/AD-06.html#requirement-AD-06" >AD-06</a>
+<a href="../requirements/AD-07.html#requirement-AD-07" >AD-07</a>
+<a href="../requirements/AD-08.html#requirement-AD-08" >AD-08</a>
+<a href="../requirements/AD-09.html#requirement-AD-09" >AD-09</a>
+<a href="../requirements/AUTH-04.html#requirement-AUTH-04" >AUTH-04</a>
+<a href="../requirements/COMMON-AUTH-002.html#requirement-COMMON-AUTH-002" >COMMON-AUTH-002</a>
+<a href="../requirements/COMMON-CONTEXT-001.html#requirement-COMMON-CONTEXT-001" >COMMON-CONTEXT-001</a>
+<a href="../requirements/COMMON-CONTEXT-002.html#requirement-COMMON-CONTEXT-002" >COMMON-CONTEXT-002</a>
+<a href="../requirements/COMMON-NAV-001.html#requirement-COMMON-NAV-001" >COMMON-NAV-001</a>
+<a href="../requirements/COMMON-NAV-002.html#requirement-COMMON-NAV-002" >COMMON-NAV-002</a>
+<a href="../requirements/COMMON-NAV-003.html#requirement-COMMON-NAV-003" >COMMON-NAV-003</a>
+<a href="../requirements/COMMON-SCREEN-001.html#requirement-COMMON-SCREEN-001" >COMMON-SCREEN-001</a>
+<a href="../requirements/E-02.html#requirement-E-02" >E-02</a>
+<a href="../requirements/E-03.html#requirement-E-03" >E-03</a>
+<a href="../requirements/E-04.html#requirement-E-04" >E-04</a>
+<a href="../requirements/E-05.html#requirement-E-05" >E-05</a>
+<a href="../requirements/E-06.html#requirement-E-06" >E-06</a>
+<a href="../requirements/E-07.html#requirement-E-07" >E-07</a>
+<a href="../requirements/E-08.html#requirement-E-08" >E-08</a>
+<a href="../requirements/E-09.html#requirement-E-09" >E-09</a>
+<a href="../requirements/E-10.html#requirement-E-10" >E-10</a>
+<a href="../requirements/E-11.html#requirement-E-11" >E-11</a>
+<a href="../requirements/E-12.html#requirement-E-12" >E-12</a>
+<a href="../requirements/F-01.html#requirement-F-01" >F-01</a>
+<a href="../requirements/F-02.html#requirement-F-02" >F-02</a>
+<a href="../requirements/F-03.html#requirement-F-03" >F-03</a>
+<a href="../requirements/F-04.html#requirement-F-04" >F-04</a>
+<a href="../requirements/F-05.html#requirement-F-05" >F-05</a>
+<a href="../requirements/F-07.html#requirement-F-07" >F-07</a>
+<a href="../requirements/F-08.html#requirement-F-08" >F-08</a>
+<a href="../requirements/FR-AD-01.html#requirement-FR-AD-01" >FR-AD-01</a>
+<a href="../requirements/FR-AD-02.html#requirement-FR-AD-02" >FR-AD-02</a>
+<a href="../requirements/FR-AD-03.html#requirement-FR-AD-03" >FR-AD-03</a>
+<a href="../requirements/FR-AD-04.html#requirement-FR-AD-04" >FR-AD-04</a>
+<a href="../requirements/FR-E-01.html#requirement-FR-E-01" >FR-E-01</a>
+<a href="../requirements/FR-E-03.html#requirement-FR-E-03" >FR-E-03</a>
+<a href="../requirements/FR-F-03.html#requirement-FR-F-03" >FR-F-03</a>
+<a href="../requirements/FR-F-04.html#requirement-FR-F-04" >FR-F-04</a>
+<a href="../requirements/FR-PAY-01.html#requirement-FR-PAY-01" >FR-PAY-01</a>
+<a href="../requirements/FUT-IMPORT-001.html#requirement-FUT-IMPORT-001" >FUT-IMPORT-001</a>
+<a href="../requirements/FUT-STATE-E.html#requirement-FUT-STATE-E" >FUT-STATE-E</a>
+<a href="../requirements/FUT-STATE-F.html#requirement-FUT-STATE-F" >FUT-STATE-F</a>
+<a href="../requirements/FUT-STATE-PAY.html#requirement-FUT-STATE-PAY" >FUT-STATE-PAY</a>
+<a href="../requirements/G-01.html#requirement-G-01" >G-01</a>
+<a href="../requirements/G-02.html#requirement-G-02" >G-02</a>
+<a href="../requirements/G-04.html#requirement-G-04" >G-04</a>
+<a href="../requirements/G-05.html#requirement-G-05" >G-05</a>
+<a href="../requirements/G-06.html#requirement-G-06" >G-06</a>
+<a href="../requirements/PAY-01.html#requirement-PAY-01" >PAY-01</a>
+<a href="../requirements/PAY-02.html#requirement-PAY-02" >PAY-02</a>
+<a href="../requirements/PAY-03.html#requirement-PAY-03" >PAY-03</a>
+<a href="../requirements/PAY-04.html#requirement-PAY-04" >PAY-04</a>
+<a href="../requirements/PAY-05.html#requirement-PAY-05" >PAY-05</a>
+<a href="../requirements/PAYREQ-06.html#requirement-PAYREQ-06" >PAYREQ-06</a>
+<a href="../requirements/PAYREQ-09.html#requirement-PAYREQ-09" >PAYREQ-09</a>
+<a href="../requirements/PAYREQ-10.html#requirement-PAYREQ-10" >PAYREQ-10</a>
+<a href="../requirements/SCR002-COM-003.html#requirement-SCR002-COM-003" >SCR002-COM-003</a>
+<a href="../requirements/SCR002-EDIT-001.html#requirement-SCR002-EDIT-001" >SCR002-EDIT-001</a>
+<a href="../requirements/SCR002-EDIT-002.html#requirement-SCR002-EDIT-002" >SCR002-EDIT-002</a>
+<a href="../requirements/SCR002-EDIT-003.html#requirement-SCR002-EDIT-003" >SCR002-EDIT-003</a>
+<a href="../requirements/SCR002-EDIT-004.html#requirement-SCR002-EDIT-004" >SCR002-EDIT-004</a>
+<a href="../requirements/SCR002-LT-002.html#requirement-SCR002-LT-002" >SCR002-LT-002</a>
+<a href="../requirements/SCR002-LT-003.html#requirement-SCR002-LT-003" >SCR002-LT-003</a>
+<a href="../requirements/SCR002-LT-004.html#requirement-SCR002-LT-004" >SCR002-LT-004</a>
+<a href="../requirements/SCR002-LT-007.html#requirement-SCR002-LT-007" >SCR002-LT-007</a>
+<a href="../requirements/SCR002-PAY-005.html#requirement-SCR002-PAY-005" >SCR002-PAY-005</a>
+<a href="../requirements/SCR002-PAY-006.html#requirement-SCR002-PAY-006" >SCR002-PAY-006</a>
+<a href="../requirements/SCR002-PAY-008.html#requirement-SCR002-PAY-008" >SCR002-PAY-008</a>
+<a href="../requirements/SCR002-UI-003.html#requirement-SCR002-UI-003" >SCR002-UI-003</a>
+<a href="../requirements/SCR002-UI-004.html#requirement-SCR002-UI-004" >SCR002-UI-004</a>
+<a href="../requirements/SCR005-ACT-001.html#requirement-SCR005-ACT-001" >SCR005-ACT-001</a>
+<a href="../requirements/SCR005-ACT-002.html#requirement-SCR005-ACT-002" >SCR005-ACT-002</a>
+<a href="../requirements/SCR005-ACT-003.html#requirement-SCR005-ACT-003" >SCR005-ACT-003</a>
+<a href="../requirements/SCR005-ACT-004.html#requirement-SCR005-ACT-004" >SCR005-ACT-004</a>
+<a href="../requirements/SCR005-ACT-005.html#requirement-SCR005-ACT-005" >SCR005-ACT-005</a>
+<a href="../requirements/SCR005-ACT-006.html#requirement-SCR005-ACT-006" >SCR005-ACT-006</a>
+<a href="../requirements/SCR005-ACT-007.html#requirement-SCR005-ACT-007" >SCR005-ACT-007</a>
+<a href="../requirements/SCR005-CALC-008.html#requirement-SCR005-CALC-008" >SCR005-CALC-008</a>
+<a href="../requirements/SCR005-UI-004.html#requirement-SCR005-UI-004" >SCR005-UI-004</a>
+<a href="../requirements/SCR005-UI-015.html#requirement-SCR005-UI-015" >SCR005-UI-015</a>
+</div>
+<div class="chips">
+</div>
+</div>
+<p class="meta">JavaScriptなしの場合も、この一覧から関連する要件へ戻れます。</p>
+</div>
+</details>
+<article class="panel source-body" id="source-content">
+<section id="L1" data-source-start="1" data-source-end="3">
+<h1 id="要件基本設計詳細設計試験対応表-v122026-09-27">要件・基本設計・詳細設計・試験対応表 v1.2（2026-09-27）</h1>
+</section>
+<section id="L3" data-source-start="3" data-source-end="5">
+<h2 id="目的と判定方法">目的と判定方法</h2>
+</section>
+<section id="L5" data-source-start="5" data-source-end="5">
+<p>デジタル庁ガイド第７章の要件と設計の突合（参考7-5、RTM）の観点で整理する。</p>
+</section>
+<section id="L7" data-source-start="7" data-source-end="7">
+<p>本表は要件から設計・試験への縦方向の対応。本書の横方向の関係表で依存・別機能を、<a href="docs--requirements--open-decisions.html" data-keep-context>未決事項一覧</a>で業務判断待ちを確認する。</p>
+</section>
+<section id="L9" data-source-start="9" data-source-end="9">
+<p>
+<a href="docs--requirements--requirements.html" data-keep-context>要件定義書 v1.10</a>、<a href="docs--requirements--screen-requirements.html" data-keep-context>画面要件定義書 v1.1</a>の現行要件IDを起点に、<a href="docs--design--basic--basic-design.html" data-keep-context>基本設計書 v1.11</a>、<a href="docs--design--detailed--detailed-design.html" data-keep-context>詳細設計書 v1.10</a>、<a href="docs--testing--test-specification.html" data-keep-context>テスト実施要領</a>の対応を示す。対象は<a href="docs--operations--single-app-workflow.html" data-keep-context>単一アプリ運用</a>のApp ID <code>204a48dc-7f23-43dd-b934-4654a3cfa306</code>。既存の要件IDは改番せず、同一内容のR番号と画面要件IDを両方追跡する。設計への記載、試験ケースの定義、実行可能なコード、公開Playerでの実測はそれぞれ異なる状態である。設計文書に記載がないことだけでアプリの未実装を断定しない。</p>
+</section>
+<section id="L11" data-source-start="11" data-source-end="11">
+<p>以前のR・SCRの74行、追加済みの4行に加え、画面要件1～5章の既存の画面一覧・遷移・引継ぎ・権限制御に8つの追跡IDを付け、計86行を追う。<strong>新しい業務要件を8件承認したという意味ではない。</strong> 8つのIDは既存記述をグループ化したもので、5本の往路・5本の復路や全権限条件を1ケースで合格と判定しない。<code>NFR-*</code>は<a href="docs--requirements--non-functional-requirements.html" data-keep-context>非機能要件の検討ID</a>であり、承認済みIDや実行済みの試験へ算入しない。</p>
+</section>
+<section id="L13" data-source-start="13" data-source-end="17">
+<ul>
+<li>
+<code>B全</code>＝<a href="docs--design--basic--basic-design.html#%E7%8F%BE%E8%A1%8C%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E5%85%A8%E4%BD%93%E6%A7%8B%E6%88%90" data-keep-context>基本設計「現行アプリの全体構成」</a>、<code>B構</code>＝<a href="docs--design--basic--basic-design.html#%E8%BB%BD%E9%87%8F%E5%8C%96%E5%BE%8C%E3%81%AE%E6%A7%8B%E6%88%90" data-keep-context>「軽量化後の構成」</a>、<code>B配</code>＝<a href="docs--design--basic--basic-design.html#%E8%BB%BD%E9%87%8F%E5%8C%96%E5%BE%8C%E3%81%AE%E9%85%8D%E7%BD%AE" data-keep-context>「軽量化後の配置」</a>、<code>B側</code>＝<a href="docs--design--basic--basic-design.html#%E8%81%B7%E5%93%A1%E6%A4%9C%E7%B4%A2%E3%82%B5%E3%82%A4%E3%83%89%E3%83%90%E3%83%BC" data-keep-context>「職員検索サイドバー」</a>、<code>B機</code>＝<a href="docs--design--basic--basic-design.html#%E7%8F%BE%E8%A1%8C%E7%94%BB%E9%9D%A2%E3%81%AE%E6%A9%9F%E8%83%BD%E7%8A%B6%E6%85%8B%E3%83%87%E3%83%BC%E3%82%BF%E5%A2%83%E7%95%8C" data-keep-context>「現行画面の機能・状態・データ境界」</a>。旧版の「構成」「配置」は現行設計の根拠にしない。</li>
+<li>
+<code>D10.x</code>＝<a href="docs--design--detailed--detailed-design.html#10-scr-002%E8%BB%BD%E9%87%8F%E5%8C%96%E8%A8%AD%E8%A8%882026-09-24" data-keep-context>詳細設計10章</a>、<code>D11.x</code>＝<a href="docs--design--detailed--detailed-design.html#11-scr-005-%E6%94%AF%E7%B5%A6%E6%98%8E%E7%B4%B0%E3%81%AE%E5%86%85%E8%94%B5%E4%BB%AE%E4%BE%8B%E8%A9%A6%E7%AE%97%E8%A8%AD%E8%A8%88" data-keep-context>SCR-005試算設計</a>、<code>D12.x</code>＝<a href="docs--design--detailed--detailed-design.html#12-scr-001%E3%81%A8%E5%85%A86%E7%94%BB%E9%9D%A2%E3%81%AE%E5%85%B1%E9%80%9A%E8%A8%AD%E8%A8%88" data-keep-context>SCR-001と共通設計</a>。1～9章は旧版履歴。設計への対応は公開版の実装確認を意味しない。試験欄の<code>—</code>は現行ケース未設定を示す。</li>
+<li>
+<code>計画 LT-*</code>＝<a href="docs--testing--test-specification.html#scr-002%E8%BB%BD%E9%87%8F%E5%8C%96%E8%BF%BD%E5%8A%A0%E5%8F%97%E5%85%A52026-09-24" data-keep-context>SCR-002軽量化の試験ケース仕様</a>。<strong>現行App IDで実行するテストコードの存在やPASSを意味しない。</strong>
+<code>コード UT-*</code>／<code>IT-*</code>＝<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/e2e/current-app/navigation.test.ts">現行E2E</a>に実装済みのケース。実行結果はコミットと公開版を照合して別途判定する。</li>
+<li>
+<code>実測</code>＝<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">2026-09-26の検索試験記録</a>。<code>UT-SRCH-001</code>はFAIL、<code>IT-SRCH-DETAIL-001</code>はBLOCKEDで、どちらも現行の安定ゲートに入っていない。旧版の試験や別App IDのPASSを現行アプリの合格へ転記しない。</li>
+<li>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">同日の所有者セッションによる公開Playerの読取り照合</a>は、画面の部分的な実測と要件との差を示す。専用利用者のActionsケース、ソース読戻し、保存・権限・計算の合格へ転用しない。</li>
+</ul>
+</section>
+<section id="L19" data-source-start="19" data-source-end="19">
+<p>各行の「前回判定・根拠」は2026-09-26時点の証拠を示す。「2026-09-27再照合」はライブv20に対する当日の観測と、各行に残る未試験条件を示す。「差分あり」は公開版で確認した不一致、「要再現」は不一致が疑われる表示、「一部確認」は一部の表示・操作のみ、「未照合」は判定証拠なし、「計測未実施」は比較記録なし。<strong>一部確認は行全体の合格ではない。</strong> 表示から保存・権限・計算式を推定しない。残る条件は別列で追う。</p>
+</section>
+<section id="L21" data-source-start="21" data-source-end="21">
+<p>証拠の略号：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">2026-09-27の公開版操作記録</a>（各セルのV27番号は同記録の証拠ID）、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> は所有者の公開Player v1.27観察、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">S26</a> は専用利用者の検索実行記録、<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> は未決・未実装・未照合一覧、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/51">I51</a> は元テーブル列の未実施Issue。対象の時点・アカウントが異なる証拠からPASSを転記しない。</p>
+</section>
+<section id="L23" data-source-start="23" data-source-end="24">
+</section>
+<section id="L24" data-source-start="24" data-source-end="25">
+</section>
+<section id="L25" data-source-start="25" data-source-end="26">
+</section>
+<section id="L26" data-source-start="26" data-source-end="27">
+</section>
+<section id="L27" data-source-start="27" data-source-end="29">
+</section>
+<section id="L29" data-source-start="29" data-source-end="29">
+<p>表の試験列は<strong>関連する検査観点</strong>であり、同じケースIDが複数行にあっても全条件を検証できるとは限らない。要件の一部しか確認しない場合は残件を明記した。単体・結合・総合の実施判断は<a href="docs--testing--test-policy.html" data-keep-context>全体テスト計画</a>と<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/change-records/README.md">改修ごとの選定記録</a>で行う。総合テストのシナリオと実施時期は未確定。</p>
+</section>
+<section id="block-L31" data-source-start="31" data-source-end="37">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L31">
+<th>確認するもの</th>
+<th>この版の状態</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L33">
+<td>現行の採番済み要件→基本設計→詳細設計の<strong>参照先</strong>
+</td>
+<td>86/86件を記入（R15～23の9、SCR-002の34、SCR-005の31、従来追加4、今回追加8）。同内容のR番号と画面要件IDは別行で追跡</td>
+</tr>
+<tr id="L34">
+<td>各要件を実装できる粒度の業務・物理設計</td>
+<td>未完。権威あるログイン／所属／管理者属性、勤務・保険・税の更新先と編集列、本番給与・端数、SCR-003／004／006の業務内部が未決</td>
+</tr>
+<tr id="L35">
+<td>現行App IDの試験コード・実測・業務受入</td>
+<td>未完。設計へのリンクをPASSとみなさず、専用利用者の検索FAIL／結合BLOCKEDと所有者の部分観察を区別する</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L37" data-source-start="37" data-source-end="39">
+<h2 id="r15r23アプリ要件">R15～R23：アプリ要件</h2>
+</section>
+<section id="block-L39" data-source-start="39" data-source-end="51">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L39">
+<th>要件ID</th>
+<th>関連する画面要件</th>
+<th>基本設計</th>
+<th>詳細設計</th>
+<th>試験の対応</th>
+<th>設計・試験上の残件</th>
+<th>前回判定・根拠</th>
+<th>2026-09-27再照合（ライブv20）</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L41">
+<td>R15</td>
+<td>
+<code>SCR002-LT-001</code>
+</td>
+<td>B構</td>
+<td>D10.1</td>
+<td>計画 <code>LT-NAME-01</code>
+</td>
+<td>改名の全参照と公開版の一致を現行版で照合する。</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 内部名一致、表示名不一致。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。表示見出し不一致。内部参照のソースは未取得。</td>
+</tr>
+<tr id="L42">
+<td>R16</td>
+<td>
+<code>SCR002-LT-002</code>～<code>004</code>
+</td>
+<td>B構・B側</td>
+<td>D10.1・10.3</td>
+<td>計画 <code>LT-TAB-01</code>、コード <code>IT-HOME-DETAIL-001</code>（職員選択のみ）</td>
+<td>6タブの全内容・「給与簿」表示名と選択状態の現行ケースが不足。</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 6タブを観察。往復後に検索結果が初期7件へ戻る。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-04。画面往復で検索一覧が1→7件。側欄開閉時は保持。</td>
+</tr>
+<tr id="L43">
+<td>R17</td>
+<td>
+<code>SCR002-LT-004</code>～<code>006</code>
+</td>
+<td>B構</td>
+<td>D10.3</td>
+<td>計画 <code>LT-DETAIL-01</code>・<code>LT-HIST-01</code>
+</td>
+<td>共通詳細ギャラリー、全文、履歴切替の現行ケースが不足。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> タブのみ観察。共通ギャラリー構造・全文・履歴未検証。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。6タブの存在のみ。共通ギャラリー構造・複数履歴・長文未試験。</td>
+</tr>
+<tr id="L44">
+<td>R18</td>
+<td>
+<code>SCR002-PAY-001</code>～<code>008</code>
+</td>
+<td>B構・B配・B機</td>
+<td>D10.5・10.10</td>
+<td>計画 <code>LT-PAY-01</code>～<code>04</code>
+</td>
+<td>163項目・動的支給月・同月複数行の現行実行ケースと独立期待値が不足。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 163項目の1行と両カレンダー。値・複数行未検証。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-07。1行163項目と期間入口。独立原票・同月複数・0/負/NULL・範囲変更未試験。</td>
+</tr>
+<tr id="L45">
+<td>R19</td>
+<td>
+<code>SCR002-LT-007</code>・<code>SCR002-UI-007</code>
+</td>
+<td>B全・B機</td>
+<td>D10.6・10.8</td>
+<td>計画 <code>LT-DATA-01</code>～<code>03</code>、検索の実測FAIL／BLOCKED</td>
+<td>取得回数・対象切替・0件を現行コードで検証する。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 0件の詳細消去。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">S26</a> 専用検索FAIL。取得式未読戻し。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03。所有者の1/0件。専用利用者FAIL、取得式・失敗時未照合。</td>
+</tr>
+<tr id="L46">
+<td>R20</td>
+<td>
+<code>SCR002-PERF-001</code>
+</td>
+<td>B機</td>
+<td>D10.7</td>
+<td>計画 <code>LT-PERF-01</code>
+</td>
+<td>旧816／657を現行直前値にせず、単一アプリ改修前後の実測を揃える。</td>
+<td>計測未実施：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 同一App IDの改修前後対比較記録なし。</td>
+<td>計測未実施：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-01。同一App IDの改修前後、App checker・部品数・時間の比較なし。</td>
+</tr>
+<tr id="L47">
+<td>R21</td>
+<td>
+<code>SCR001-UI-001</code>・<code>002</code>
+</td>
+<td>B機・B配</td>
+<td>D12.1</td>
+<td>計画 <code>LT-UI-01</code>、コード <code>UT-HOME-001</code>（ホーム→検索のみ）</td>
+<td>スマホの所属選択・権限維持は現行ケース未整備。認可主体の定義待ち。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> デスクトップ入口・所属表示。スマホ・実効権限未検証。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-01、V27-02。デスクトップ一般入口。スマホと実効認可は未試験。</td>
+</tr>
+<tr id="L48">
+<td>R22</td>
+<td>
+<code>SCR002-UI-001</code>・<code>002</code>・<code>004</code>・<code>005</code>・<code>007</code>・<code>009</code>
+</td>
+<td>B機・B配</td>
+<td>D10.4.1・10.6・10.8</td>
+<td>計画 <code>LT-UI-02</code>・<code>03</code>・<code>LT-DATA-02</code>
+</td>
+<td>縦スクロール、取得日時、検索一覧の現行ケースが不足。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 画面表示。取得日時・全幅スクロール未検証。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03、V27-05。表示・6タブ・取得日時。成功時のみの更新、権限、全幅未確認。</td>
+</tr>
+<tr id="L49">
+<td>R23</td>
+<td>
+<code>SCR002-UI-003</code>・<code>006</code>・<code>007</code>、<code>SCR002-COM-005</code>、<code>SCR002-EDIT-004</code>
+</td>
+<td>B機・B配</td>
+<td>D10.4・10.4.1・10.6・10.9</td>
+<td>計画 <code>LT-UI-04</code>・<code>LT-DATA-02</code>
+</td>
+<td>保存経路・現行権限の読戻しと破棄確認の現行ケースが不足。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 編集切替・破棄確認。保存・権限未検証。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03、V27-06、V27-07。入口・給与簿の読取り。保存・実効権限は未試験。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L51" data-source-start="51" data-source-end="53">
+<h2 id="scr-002画面要件">SCR-002：画面要件</h2>
+</section>
+<section id="L53" data-source-start="53" data-source-end="53">
+<p>
+<a href="docs--requirements--screen-requirements.html#9-scr-002-%E8%81%B7%E5%93%A1%E3%83%9E%E3%82%B9%E3%82%BF%E6%A4%9C%E7%B4%A2%E8%A9%B3%E7%B4%B0%E8%BB%BD%E9%87%8F%E5%8C%96%E8%A6%81%E4%BB%B6" data-keep-context>画面要件9章</a>の34件を、IDごとに照合した。R15～R23と重なる場合も、画面要件の固有条件を省略しない。</p>
+</section>
+<section id="block-L55" data-source-start="55" data-source-end="92">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L55">
+<th>要件ID</th>
+<th>基本設計</th>
+<th>詳細設計</th>
+<th>試験の対応</th>
+<th>未充足の条件・確認範囲</th>
+<th>前回判定・根拠</th>
+<th>2026-09-27再照合（ライブv20）</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L57">
+<td>SCR002-LT-001</td>
+<td>B構</td>
+<td>D10.1</td>
+<td>計画 <code>LT-NAME-01</code>
+</td>
+<td>改名後の参照と実機照合。</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 内部名一致、表示名不一致。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。表示見出し不一致。内部参照のソースは未取得。</td>
+</tr>
+<tr id="L58">
+<td>SCR002-LT-002</td>
+<td>B構・B側・B機</td>
+<td>D10.8（実ソースの開閉式は未照合）</td>
+<td>—（旧版の開閉ケースは現行に転用しない）</td>
+<td>開閉と検索状態保持の現行実装・試験が不足。</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 側欄開閉時は保持、SCR-005往復後は初期7件へ戻る。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-04。画面往復で検索一覧が1→7件。側欄開閉時は保持。</td>
+</tr>
+<tr id="L59">
+<td>SCR002-LT-003</td>
+<td>B構</td>
+<td>D10.1・10.3</td>
+<td>計画 <code>LT-TAB-01</code>
+</td>
+<td>6タブの内容と名称を現行版で照合。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 6タブ名を確認。全内容・状態未検証。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。6タブ表示。各タブの全状態・内容は未照合。</td>
+</tr>
+<tr id="L60">
+<td>SCR002-LT-004</td>
+<td>B構</td>
+<td>D10.3</td>
+<td>計画 <code>LT-TAB-01</code>・<code>LT-DETAIL-01</code>
+</td>
+<td>共通ギャラリー構造を現行ソースで確認。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> タブのみ観察。共通ギャラリーのソース未読戻し。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。6タブの存在のみ。共通ギャラリー構造・複数履歴・長文未試験。</td>
+</tr>
+<tr id="L61">
+<td>SCR002-LT-005</td>
+<td>B構</td>
+<td>D10.3</td>
+<td>計画 <code>LT-HIST-01</code>
+</td>
+<td>複数履歴・0件と選択詳細の現行ケースなし。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 複数履歴・履歴0件と選択詳細未試験。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。6タブの存在のみ。共通ギャラリー構造・複数履歴・長文未試験。</td>
+</tr>
+<tr id="L62">
+<td>SCR002-LT-006</td>
+<td>B構・B配</td>
+<td>D10.3</td>
+<td>計画 <code>LT-DETAIL-01</code>
+</td>
+<td>青／白の配色、長文全文、全幅化判断を追加照合。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 長文全文と配色の全幅条件未試験。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。6タブの存在のみ。共通ギャラリー構造・複数履歴・長文未試験。</td>
+</tr>
+<tr id="L63">
+<td>SCR002-LT-007</td>
+<td>B構・B全・B機</td>
+<td>D10.1・10.6・10.8</td>
+<td>計画 <code>LT-HIST-01</code>・<code>LT-DATA-03</code>
+</td>
+<td>12桁文字列キーと0件時の旧データ消去を現行ケースで確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 検索0件で詳細消去。12桁キー・履歴0件未検証。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03。所有者の1/0件。専用利用者FAIL、取得式・失敗時未照合。</td>
+</tr>
+<tr id="L64">
+<td>SCR002-UI-001</td>
+<td>B配</td>
+<td>D10.4.1・10.6</td>
+<td>計画 <code>LT-UI-02</code>・<code>LT-DATA-02</code>
+</td>
+<td>取得成功時のみ時刻更新するケースなし。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 画面表示。取得成功時のみ日時更新する条件は未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03、V27-05。表示・6タブ・取得日時。成功時のみの更新、権限、全幅未確認。</td>
+</tr>
+<tr id="L65">
+<td>SCR002-UI-002</td>
+<td>B配</td>
+<td>D10.4.1</td>
+<td>計画 <code>LT-UI-02</code>・<code>LT-LAYOUT-02</code>
+</td>
+<td>本文一体スクロールの全幅条件を現行版で確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 本文表示。ヘッダー以外の一体スクロール未検証。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。画面・ソースの削除対象、レイアウト細部は未試験。</td>
+</tr>
+<tr id="L66">
+<td>SCR002-UI-003</td>
+<td>B配・B機</td>
+<td>D10.4.1・10.9（保存先一部未決）</td>
+<td>計画 <code>LT-UI-04</code>（操作配置のみ）</td>
+<td>実装の表示条件と保存・権限の現行ケースが不足。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 編集切替。配置・権限・保存未検証。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03、V27-05。表示・6タブ・取得日時。成功時のみの更新、権限、全幅未確認。</td>
+</tr>
+<tr id="L67">
+<td>SCR002-UI-004</td>
+<td>B配</td>
+<td>D10.4.1</td>
+<td>計画 <code>LT-UI-03</code>、検索の実測FAIL</td>
+<td>縦一列・結果2段と検索機能を別に確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 検索欄と一覧。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">S26</a> 専用検索FAIL。配置と検索を分けて再試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03。所有者の1/0件。専用利用者FAIL、取得式・失敗時未照合。</td>
+</tr>
+<tr id="L68">
+<td>SCR002-UI-005</td>
+<td>B配</td>
+<td>D10.4.1</td>
+<td>計画 <code>LT-UI-03</code>・<code>04</code>
+</td>
+<td>背景・見出し、旧部品不在の実機確認。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 背景・見出しと旧部品不在の詳細照合なし。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。画面・ソースの削除対象、レイアウト細部は未試験。</td>
+</tr>
+<tr id="L69">
+<td>SCR002-UI-006</td>
+<td>B配</td>
+<td>D10.4.1・10.6</td>
+<td>計画 <code>LT-UI-04</code>・<code>LT-DATA-02</code>
+</td>
+<td>削除ボタン・定期更新なし・案内なしを現行版で確認。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 旧ボタン不在・自動更新停止・案内文不在は未検証。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。画面・ソースの削除対象、レイアウト細部は未試験。</td>
+</tr>
+<tr id="L70">
+<td>SCR002-UI-007</td>
+<td>B配・B機</td>
+<td>D10.6・10.9</td>
+<td>計画 <code>LT-DATA-02</code>・<code>03</code>
+</td>
+<td>失敗時や職員切替時の時刻を独立期待値で確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 0件で詳細消去。取得日時・失敗／切替未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03。所有者の1/0件。専用利用者FAIL、取得式・失敗時未照合。</td>
+</tr>
+<tr id="L71">
+<td>SCR002-UI-008</td>
+<td>B構・B機</td>
+<td>D10.3・10.8</td>
+<td>計画 <code>LT-TAB-01</code>（選択状態のみ）</td>
+<td>形・枠・背景・文字とTab操作の現行ケース不足。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 6タブ表示。枠・選択色・キーボードTab未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03、V27-05。表示・6タブ・取得日時。成功時のみの更新、権限、全幅未確認。</td>
+</tr>
+<tr id="L72">
+<td>SCR002-UI-009</td>
+<td>B配・B機</td>
+<td>D10.8</td>
+<td>—</td>
+<td>4要素の連続青背景と選択マーカーの現行ケース不足。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 4要素の青背景とマーカー未照合。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。画面・ソースの削除対象、レイアウト細部は未試験。</td>
+</tr>
+<tr id="L73">
+<td>SCR002-UI-010</td>
+<td>B機</td>
+<td>D10.8（削除対象の実ソース照合待ち）</td>
+<td>—</td>
+<td>不要欄の特定・削除と履歴選択の現行回帰が不足。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 旧欄撤去と履歴選択の実装未照合。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。画面・ソースの削除対象、レイアウト細部は未試験。</td>
+</tr>
+<tr id="L74">
+<td>SCR002-COM-001</td>
+<td>B構</td>
+<td>D10.3・10.4</td>
+<td>計画 <code>LT-COM-01</code>
+</td>
+<td>認定レコード一覧の全表示項目を現行版で照合。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 認定TK-910004を選択。全項目・複数行未検証。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-06。合成011の認定とHTML2ページ。全84項目・GUID不一致・印刷/PDF・権限未試験。</td>
+</tr>
+<tr id="L75">
+<td>SCR002-COM-002</td>
+<td>B構</td>
+<td>D10.4</td>
+<td>計画 <code>LT-COM-01</code>・<code>02</code>
+</td>
+<td>GUIDと職員一致・不一致の実行ケースを追加。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 認定簿入口のみ。GUID一致／不一致未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-06。合成011の認定とHTML2ページ。全84項目・GUID不一致・印刷/PDF・権限未試験。</td>
+</tr>
+<tr id="L76">
+<td>SCR002-COM-003</td>
+<td>B構・B全・B機</td>
+<td>D10.4・10.4.2（一部）</td>
+<td>計画 <code>LT-COM-01</code>・<code>02</code>
+</td>
+<td>横2ページ・0/NULL・拒否時の契約を補完。84項目の正式配置と権限属性・実効ロールは未決。隔離HTMLソースと公開版の実測も別。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> HTML、84項目、2ページ・1PDF、権限未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-06。合成011の認定とHTML2ページ。全84項目・GUID不一致・印刷/PDF・権限未試験。</td>
+</tr>
+<tr id="L77">
+<td>SCR002-COM-004</td>
+<td>B構</td>
+<td>D10.4・10.7</td>
+<td>計画 <code>LT-COM-03</code>
+</td>
+<td>旧Canvas部品が正式版にないことをソースとPlayerで確認。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 旧Canvas部品不在のソース未読戻し。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-05。画面・ソースの削除対象、レイアウト細部は未試験。</td>
+</tr>
+<tr id="L78">
+<td>SCR002-COM-005</td>
+<td>B配</td>
+<td>D10.4.1</td>
+<td>計画 <code>LT-UI-04</code>・<code>LT-COM-02</code>
+</td>
+<td>右上配置・未選択時の無効化を現行版で確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 認定簿入口あり。位置・未選択時無効化未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03、V27-06、V27-07。入口・給与簿の読取り。保存・実効権限は未試験。</td>
+</tr>
+<tr id="L79">
+<td>SCR002-PAY-001</td>
+<td>B構</td>
+<td>D10.5</td>
+<td>計画 <code>LT-PAY-01</code>
+</td>
+<td>163項目を独立台帳と現行画面で照合。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 163項目の1登録行。独立した値照合なし。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-07。1行163項目と期間入口。独立原票・同月複数・0/負/NULL・範囲変更未試験。</td>
+</tr>
+<tr id="L80">
+<td>SCR002-PAY-002</td>
+<td>B構・B配</td>
+<td>D10.5</td>
+<td>計画 <code>LT-PAY-02</code>
+</td>
+<td>年またぎ・範囲変更・空状態を現行版で確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 2026/01～12表示。年またぎ・範囲変更未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-07。1行163項目と期間入口。独立原票・同月複数・0/負/NULL・範囲変更未試験。</td>
+</tr>
+<tr id="L81">
+<td>SCR002-PAY-003</td>
+<td>B構・B配</td>
+<td>D10.5</td>
+<td>計画 <code>LT-PAY-02</code>・<code>03</code>
+</td>
+<td>同月複数行と行GUIDの対応を現行版で確認。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 同月複数行・行GUID未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-07。1行を閲覧しただけ。同月複数・例外・全文欄の撤去は未試験。</td>
+</tr>
+<tr id="L82">
+<td>SCR002-PAY-004</td>
+<td>B構</td>
+<td>D10.5</td>
+<td>計画 <code>LT-PAY-03</code>・<code>04</code>
+</td>
+<td>0／負値／空欄と最終セルを現行版で確認。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 0・負値・NULL・最終セル未検証。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-07。1行163項目と期間入口。独立原票・同月複数・0/負/NULL・範囲変更未試験。</td>
+</tr>
+<tr id="L83">
+<td>SCR002-PAY-005</td>
+<td>B構・B配・B機</td>
+<td>D10.5・10.10</td>
+<td>計画 <code>LT-PAY-02</code>～<code>04</code>（一部）</td>
+<td>一体縦スクロール・例外行の現行ケース不足。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 一体スクロール・例外行未試験。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-07。1行を閲覧しただけ。同月複数・例外・全文欄の撤去は未試験。</td>
+</tr>
+<tr id="L84">
+<td>SCR002-PAY-006</td>
+<td>B機・B配</td>
+<td>D10.10</td>
+<td>—</td>
+<td>両入力欄に隣接するカレンダーの実装・現行ケース不足。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 両入力欄にカレンダー。異常日付未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-07。1行163項目と期間入口。独立原票・同月複数・0/負/NULL・範囲変更未試験。</td>
+</tr>
+<tr id="L85">
+<td>SCR002-PAY-007</td>
+<td>B機</td>
+<td>D10.10（実削除対象の照合待ち）</td>
+<td>—</td>
+<td>旧全文欄の撤去と全文到達性の現行ケース不足。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 旧全文欄撤去と全文到達性未検証。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-07。1行を閲覧しただけ。同月複数・例外・全文欄の撤去は未試験。</td>
+</tr>
+<tr id="L86">
+<td>SCR002-PAY-008</td>
+<td>B機・B配</td>
+<td>D10.10</td>
+<td>計画 <code>LT-PAY-04</code>（末尾到達のみ）</td>
+<td>「項目」行撤去・本文一体スクロール・列対応の現行ケース不足。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 項目行撤去・本文スクロール・列対応未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-07。1行163項目と期間入口。独立原票・同月複数・0/負/NULL・範囲変更未試験。</td>
+</tr>
+<tr id="L87">
+<td>SCR002-EDIT-001</td>
+<td>B機・B配</td>
+<td>D10.9（保存先一部未決）</td>
+<td>—</td>
+<td>読取り初期・5区分入力・給与簿の書込み禁止の現行ケース不足。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 初期読取りと基本情報入力。5区分・給与簿禁止未検証。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03、V27-06、V27-07。入口・給与簿の読取り。保存・実効権限は未試験。</td>
+</tr>
+<tr id="L88">
+<td>SCR002-EDIT-002</td>
+<td>B機・B全</td>
+<td>D10.9（保存先・権限一部未決）</td>
+<td>計画 <code>LT-DATA-02</code>（再取得のみ）</td>
+<td>3区分の保存先・ロール、成功／失敗と再取得の現行ケース不足。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 保存操作なし。更新先・権限・再取得未検証。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-01。保存先・認可・再取得はソースと隔離更新試験が必要。</td>
+</tr>
+<tr id="L89">
+<td>SCR002-EDIT-003</td>
+<td>B機</td>
+<td>D10.9</td>
+<td>—</td>
+<td>タブ移動・破棄続行／取消・保存失敗の現行ケース不足。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 未保存の破棄と取消。タブ移動・失敗未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-01。前回<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a>の破棄確認のみ。今回の保存・失敗試験なし。</td>
+</tr>
+<tr id="L90">
+<td>SCR002-EDIT-004</td>
+<td>B機・B配</td>
+<td>D10.9</td>
+<td>計画 <code>LT-UI-04</code>（ボタン不在・確認のみ）</td>
+<td>読取り切替時の破棄確認の現行ケース不足。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 読取り復帰時の破棄確認と取消・続行。保存後未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-01。前回<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a>の破棄確認のみ。今回の保存・失敗試験なし。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L92" data-source-start="92" data-source-end="94">
+<h2 id="scr-005支給明細の画面要件">SCR-005：支給明細の画面要件</h2>
+</section>
+<section id="L94" data-source-start="94" data-source-end="94">
+<p>
+<a href="docs--requirements--screen-requirements.html" data-keep-context>画面要件8章</a>の31件を、<a href="docs--design--basic--basic-design.html#%E7%8F%BE%E8%A1%8C%E7%94%BB%E9%9D%A2%E3%81%AE%E6%A9%9F%E8%83%BD%E7%8A%B6%E6%85%8B%E3%83%87%E3%83%BC%E3%82%BF%E5%A2%83%E7%95%8C" data-keep-context>基本設計B機</a>と<a href="docs--design--detailed--detailed-design.html#11-scr-005-%E6%94%AF%E7%B5%A6%E6%98%8E%E7%B4%B0%E3%81%AE%E5%86%85%E8%94%B5%E4%BB%AE%E4%BE%8B%E8%A9%A6%E7%AE%97%E8%A8%AD%E8%A8%88" data-keep-context>詳細設計11章</a>へ要件ID単位で対応させた。これは<strong>内蔵仮例の試算設計</strong>であり、現行ソース上の名称・計算実装・公開版の合格の読戻しではない。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/screens-v1.22-results.md">v1.22の画面試験記録</a>は旧アプリ版の結果で、現行単一App IDへの試験完了と扱わない。特に端数処理、権限主体、欠勤単価の元テーブル反映は未決／別残件として残す。</p>
+</section>
+<section id="block-L96" data-source-start="96" data-source-end="130">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L96">
+<th>要件ID</th>
+<th>対象事項</th>
+<th>基本・詳細設計</th>
+<th>現行試験</th>
+<th>必要な対応</th>
+<th>前回判定・根拠</th>
+<th>2026-09-27再照合（ライブv20）</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L98">
+<td>SCR005-UI-001</td>
+<td>ヘッダー・画面ID</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>現行画面の表示・位置を検査。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 公開画面の見出し表示。配置の全条件未照合。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L99">
+<td>SCR005-UI-002</td>
+<td>対象職員・月・操作</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>選択元と現行データの受渡しを検査。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 合成011・2026/09。選択元・他職員未検証。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L100">
+<td>SCR005-UI-003</td>
+<td>仮例の案内</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>本番値との誤認防止を検査。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 仮例の画面表示。誤認防止の全条件未検証。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L101">
+<td>SCR005-UI-004</td>
+<td>上部サマリー</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>共通結果の表示額と固定位置を検査。</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 数値サマリーは表示、スクロールで画面外へ流れる。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-09。本文スクロールで固定サマリーが画面外。末尾まで到達。</td>
+</tr>
+<tr id="L102">
+<td>SCR005-UI-005</td>
+<td>支給・控除の開閉</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>2領域の独立操作を検査。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 支給を閉じても控除は開いたまま。他状態未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L103">
+<td>SCR005-UI-006</td>
+<td>支給総額の見出し</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>金額との一致を確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 総額200,000円の1例。算出元との一致未検証。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L104">
+<td>SCR005-UI-007</td>
+<td>支給の式</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>動的値と表示順を確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 支給内訳の1例。表示順・動的値未照合。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L105">
+<td>SCR005-UI-008</td>
+<td>俸給と欠勤の内訳</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>入れ子の表示と金額を確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 俸給／欠勤を含む内訳例。各値独立未検算。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L106">
+<td>SCR005-UI-009</td>
+<td>固定額の算出行</td>
+<td>B機／D11.1・11.2</td>
+<td>—</td>
+<td>日額・日数の出所を確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 仮例の算出行。日額・日数の出所未照合。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L107">
+<td>SCR005-UI-010</td>
+<td>欠勤減額の算出行</td>
+<td>B機／D11.1・11.2</td>
+<td>—</td>
+<td>単価と時間の扱いを確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 仮例の欠勤表示。単価・時間未照合。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/51">I51</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L108">
+<td>SCR005-UI-011</td>
+<td>通勤手当の表示</td>
+<td>B機／D11.1・11.2</td>
+<td>—</td>
+<td>認定額の根拠・二重計上を確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 仮例の通勤表示。認定額・二重計上未検算。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L109">
+<td>SCR005-UI-012</td>
+<td>控除額計の見出し</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>不要な足し算行がないことを確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 控除計48,200円。不要行の不在未照合。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L110">
+<td>SCR005-UI-013</td>
+<td>社会保険関係の5項目</td>
+<td>B機／D11.1・11.2</td>
+<td>—</td>
+<td>3列表示と小計を確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 控除内訳例。5項目各値・小計未検算。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L111">
+<td>SCR005-UI-014</td>
+<td>税・貯金預入</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>最終行まで内容を確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 現金151,800円の1例。税・貯金末尾と各値未照合。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08、V27-09。合成011の表示・一例の算術。データ出所、他条件、ソース未照合。</td>
+</tr>
+<tr id="L112">
+<td>SCR005-UI-015</td>
+<td>内訳全体の縦スクロール</td>
+<td>B機／D11.1</td>
+<td>—</td>
+<td>固定領域と末尾到達を確認。</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 本文スクロールで固定すべきサマリーが画面外へ流れる。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-09。本文スクロールで固定サマリーが画面外。末尾まで到達。</td>
+</tr>
+<tr id="L113">
+<td>SCR005-CALC-001</td>
+<td>勤務日数</td>
+<td>B機／D11.2</td>
+<td>—</td>
+<td>登録日・重複の独立計算を用意。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 1例表示のみ。勤務日・重複の計算式と期待値なし。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08。勤務20日の表示のみ。登録日・重複から独立集計は未試験。</td>
+</tr>
+<tr id="L114">
+<td>SCR005-CALC-002</td>
+<td>固定額</td>
+<td>B機／D11.2</td>
+<td>—</td>
+<td>日額×勤務日数、465分の前提を照合。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 表示額のみ。日額×勤務日数と465分未検算。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08。表示値間の算術整合のみ。元値・Power Fx・端数/0/負/欠損は未照合。</td>
+</tr>
+<tr id="L115">
+<td>SCR005-CALC-003</td>
+<td>欠勤減額</td>
+<td>B機／D11.2</td>
+<td>—</td>
+<td>単価の元テーブルへの反映はIssue #51の残件。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 仮例の式・単価未読戻し。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/51">I51</a> 元テーブル列未実施。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08。表示値間の算術整合のみ。元値・Power Fx・端数/0/負/欠損は未照合。</td>
+</tr>
+<tr id="L116">
+<td>SCR005-CALC-004</td>
+<td>俸給支給額</td>
+<td>B機／D11.2</td>
+<td>—</td>
+<td>固定額－欠勤減額を照合。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 表示例のみ。固定額－欠勤減額未検算。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08。表示値間の算術整合のみ。元値・Power Fx・端数/0/負/欠損は未照合。</td>
+</tr>
+<tr id="L117">
+<td>SCR005-CALC-005</td>
+<td>給与支給総額</td>
+<td>B機／D11.2</td>
+<td>—</td>
+<td>通勤手当を一度だけ加算。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 総額表示のみ。通勤手当の一回加算未検算。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08。表示値間の算術整合のみ。元値・Power Fx・端数/0/負/欠損は未照合。</td>
+</tr>
+<tr id="L118">
+<td>SCR005-CALC-006</td>
+<td>社会保険料計</td>
+<td>B機／D11.2</td>
+<td>—</td>
+<td>試作5項目の小計と本番未確定を区別。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 控除例のみ。試作5項目の算出元未検算。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08。表示値間の算術整合のみ。元値・Power Fx・端数/0/負/欠損は未照合。</td>
+</tr>
+<tr id="L119">
+<td>SCR005-CALC-007</td>
+<td>控除額計</td>
+<td>B機／D11.2</td>
+<td>—</td>
+<td>二重加算を検査。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 控除計表示のみ。二重加算未検算。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08。表示値間の算術整合のみ。元値・Power Fx・端数/0/負/欠損は未照合。</td>
+</tr>
+<tr id="L120">
+<td>SCR005-CALC-008</td>
+<td>現金支給額</td>
+<td>B機／D11.2</td>
+<td>—</td>
+<td>内蔵仮例の最終切捨ては設計済み。本番税・保険の個別端数規則は別途業務判断。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 現金表示のみ。端数式未読戻し。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-08。表示値間の算術整合のみ。元値・Power Fx・端数/0/負/欠損は未照合。</td>
+</tr>
+<tr id="L121">
+<td>SCR005-ACT-001</td>
+<td>ホームへ戻る</td>
+<td>B機／D11.3</td>
+<td>—</td>
+<td>ログイン者情報を保持するケースを追加。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> ホーム復帰時のログイン者保持未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-02。ホーム復路。ログイン主体の全画面保持は未試験。</td>
+</tr>
+<tr id="L122">
+<td>SCR005-ACT-002</td>
+<td>SCR-002との相互遷移</td>
+<td>B機／D11.3</td>
+<td>—</td>
+<td>職員番号・対象月・所属制限を結合試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> SCR-002往復で職員011・月保持。所属制限未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-04。選択職員・月は往復。所属制限未試験、検索結果保持は差分。</td>
+</tr>
+<tr id="L123">
+<td>SCR005-ACT-003</td>
+<td>未選択時の初期表示</td>
+<td>B機／D11.3</td>
+<td>—</td>
+<td>無関係職員の自動選択なしを確認。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 未選択初期表示・他職員の自動選択なしは未試験。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-10。未選択・再計算連打/書込み・登録済み0円は未試験。</td>
+</tr>
+<tr id="L124">
+<td>SCR005-ACT-004</td>
+<td>内蔵データの再計算</td>
+<td>B機／D11.3</td>
+<td>—</td>
+<td>書込みなし・連打抑止を確認。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 再計算・書込み有無・連打抑止未試験。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-10。未選択・再計算連打/書込み・登録済み0円は未試験。</td>
+</tr>
+<tr id="L125">
+<td>SCR005-ACT-005</td>
+<td>対象変更時の旧結果破棄</td>
+<td>B機／D11.3</td>
+<td>—</td>
+<td>別職員・別月への値残りを検査。</td>
+<td>要再現：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 未登録月の合計は消去、前月額の根拠文残留。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-10。未登録月で額—と不足理由、前月額を含む説明文が残留。失敗時未試験。</td>
+</tr>
+<tr id="L126">
+<td>SCR005-ACT-006</td>
+<td>不足・失敗時の未計算表示</td>
+<td>B機／D11.3</td>
+<td>—</td>
+<td>未登録を0円と混同しない。</td>
+<td>要再現：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 不足理由表示、前月額の根拠文残留。失敗時未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>差分あり：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-10。未登録月で額—と不足理由、前月額を含む説明文が残留。失敗時未試験。</td>
+</tr>
+<tr id="L127">
+<td>SCR005-ACT-007</td>
+<td>開閉とTab対象</td>
+<td>B機／D11.3</td>
+<td>—</td>
+<td>空白を残さず閉じた領域を除外。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 支給・控除独立開閉。空白・キーボードTab未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-09。支給と控除の独立開閉。キーボードTabと余白未試験。</td>
+</tr>
+<tr id="L128">
+<td>SCR005-ACT-008</td>
+<td>登録済み0円</td>
+<td>B機／D11.3</td>
+<td>—</td>
+<td>不足データと0円を区別。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 登録済み0円と不足データの区別未試験。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-10。未選択・再計算連打/書込み・登録済み0円は未試験。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L130" data-source-start="130" data-source-end="132">
+<h2 id="公開playerの部分照合と差分2026-09-2627">公開Playerの部分照合と差分（2026-09-26～27）</h2>
+</section>
+<section id="L132" data-source-start="132" data-source-end="132">
+<p>上の86行に所有者の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">公開Player観察</a>、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">ライブv20での再照合</a>、専用利用者の<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">検索実行記録</a>を分けて記した。86行の記録は86行の全条件合格を意味せず、公開版と一致する保存版ソースの取得、独立fixture、異権限での試験は未完了。確定した不一致、再現待ちの疑い、元テーブル列と受入計測の未実施は<a href="docs--requirements--open-decisions.html" data-keep-context>未決・未実装・未照合一覧</a>で処理を追跡する。SCR-003／004の仮例表示と一般権限のSCR-006入口無効から、業務登録や管理者側の実装完了を推定しない。</p>
+</section>
+<section id="L134" data-source-start="134" data-source-end="136">
+<h2 id="既存の未採番要件に付けた追跡id">既存の未採番要件に付けた追跡ID</h2>
+</section>
+<section id="block-L136" data-source-start="136" data-source-end="143">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L136">
+<th>要件ID・根拠</th>
+<th>基本設計</th>
+<th>詳細設計</th>
+<th>現行試験</th>
+<th>未充足の条件</th>
+<th>前回判定・根拠</th>
+<th>2026-09-27再照合（ライブv20）</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L138">
+<td>
+<code>SCR001-UI-001</code>・画面要件9.2.1</td>
+<td>B機・B配</td>
+<td>D12.1</td>
+<td>計画 <code>LT-UI-01</code>（コード未整備）</td>
+<td>スマホ所属選択と上部操作を現行Playerで確認。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> デスクトップ入口・所属。スマホ未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-01、V27-02。デスクトップ一般入口。スマホと実効認可は未試験。</td>
+</tr>
+<tr id="L139">
+<td>
+<code>SCR001-UI-002</code>・画面要件9.2.1</td>
+<td>B機</td>
+<td>D12.1（権限取得元未決）</td>
+<td>—</td>
+<td>確認用UIによる権限拡大がないことを異なる所属で検証。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 確認用UIと実効権限の分離は別所属で未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-01、V27-02。デスクトップ一般入口。スマホと実効認可は未試験。</td>
+</tr>
+<tr id="L140">
+<td>
+<code>COMMON-LAYOUT-001</code>・画面要件9.5</td>
+<td>B機・B配</td>
+<td>D10.2・12.2</td>
+<td>計画 <code>LT-LAYOUT-*</code>（全6画面は未実施）</td>
+<td>共通定義、6画面と200%・可読性の実機検査。</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 全6画面・200%拡大・可読性は未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-09。SCR-005の部分スクロールのみ。6画面・200%未試験。</td>
+</tr>
+<tr id="L141">
+<td>
+<code>SCR002-PERF-001</code>・画面要件9.6</td>
+<td>B機・B配</td>
+<td>D10.7</td>
+<td>計画 <code>LT-PERF-01</code>（現行比較未実施）</td>
+<td>現行の改修直前値を読戻し、同一App IDの改修直後と比較。旧816／657は参考。</td>
+<td>計測未実施：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 同一App IDの部品数・検査・時間の前後比較なし。</td>
+<td>計測未実施：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-01。同一App IDの改修前後、App checker・部品数・時間の比較なし。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L143" data-source-start="143" data-source-end="145">
+<h2 id="画面要件15章既存記述に付けた8つの追跡id">画面要件1～5章：既存記述に付けた8つの追跡ID</h2>
+</section>
+<section id="L145" data-source-start="145" data-source-end="145">
+<p>各IDの範囲は<a href="docs--requirements--screen-requirements.html#1-%E7%94%BB%E9%9D%A2%E4%B8%80%E8%A6%A7" data-keep-context>画面要件定義書1～5章</a>で定め、基本設計の<a href="docs--design--basic--basic-design.html#%E7%94%BB%E9%9D%A2%E8%A6%81%E4%BB%B615%E7%AB%A0%E3%81%AE%E8%BF%BD%E8%B7%A1%E5%8D%98%E4%BD%8D" data-keep-context>追跡単位</a>と詳細設計12.3／12.4に対応付ける。経路・権限をまとめた行でも、試験は各経路・条件ごとに独立して判定する。</p>
+</section>
+<section id="block-L147" data-source-start="147" data-source-end="158">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L147">
+<th>要件ID</th>
+<th>範囲</th>
+<th>基本設計</th>
+<th>詳細設計</th>
+<th>現行試験と未解消事項</th>
+<th>前回判定・根拠</th>
+<th>2026-09-27再照合（ライブv20）</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L149">
+<td>
+<code>COMMON-SCREEN-001</code>
+</td>
+<td>SCR-001～006の画面ID・表示名・外部認証の境界</td>
+<td>B機</td>
+<td>D12.3</td>
+<td>画面表示の一部を所有者Playerで観察。SCR-006管理者側とSCR-003／004／006の業務内部は未確認・未定義</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> ホームから複数画面と表示名。管理者SCR-006未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-02。所有者の001～005と4往復。SCR-006管理者経路・業務内部未試験。</td>
+</tr>
+<tr id="L150">
+<td>
+<code>COMMON-NAV-001</code>
+</td>
+<td>ホーム→SCR-002～006の5経路</td>
+<td>B機</td>
+<td>D12.3・12.4</td>
+<td>コード<code>UT-HOME-001</code>はSCR-002のみ。SCR-003／004／005の入口は所有者で観察、SCR-006管理者経路は未試験</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> ホーム入口と一般権限で一部遷移。管理者未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-02。所有者の001～005と4往復。SCR-006管理者経路・業務内部未試験。</td>
+</tr>
+<tr id="L151">
+<td>
+<code>COMMON-NAV-002</code>
+</td>
+<td>SCR-002～006→ホームの5経路</td>
+<td>B機</td>
+<td>D12.3</td>
+<td>SCR-002／003／004／005の一部を所有者で観察。SCR-006の復路は未試験</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 複数画面からの戻り。SCR-006の復路未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-02。所有者の001～005と4往復。SCR-006管理者経路・業務内部未試験。</td>
+</tr>
+<tr id="L152">
+<td>
+<code>COMMON-NAV-003</code>
+</td>
+<td>SCR-002⇄SCR-005、職員番号と対象月、所属</td>
+<td>B機</td>
+<td>D12.3・12.4、D11.3</td>
+<td>所有者の往復時に検索結果保持の不一致。専用利用者の結合ケースはBLOCKED。SCR-002側の操作名称と所属判定は未決／未試験</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 002⇄005で職員・月保持、検索一覧は初期7件。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">S26</a> 結合BLOCKED。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-04。011・月を保持、検索結果1→7件。別人・所属・専用利用者未試験。</td>
+</tr>
+<tr id="L153">
+<td>
+<code>COMMON-CONTEXT-001</code>
+</td>
+<td>ログイン職員の氏名・メールを全画面で保持</td>
+<td>B機</td>
+<td>D12.3・12.4</td>
+<td>画面間の主体と表示を一部観察。アカウント属性の権威ある取得元は未決</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 画面上の主体を一部観察。氏名・メール全画面保持未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-02。ホームの主体のみ。氏名・メールを全画面で比較していない。</td>
+</tr>
+<tr id="L154">
+<td>
+<code>COMMON-CONTEXT-002</code>
+</td>
+<td>SCR-002⇄005の対象職員番号・対象月を保持</td>
+<td>B機</td>
+<td>D12.3・12.4</td>
+<td>所有者で合成011・2026/10の受渡しを観察。未選択・他職員・権限拒否は未試験</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 職員011・月2026/10を往復で保持。他職員未試験。</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-04。011・月を保持、検索結果1→7件。別人・所属・専用利用者未試験。</td>
+</tr>
+<tr id="L155">
+<td>
+<code>COMMON-AUTH-001</code>
+</td>
+<td>所属制限を一覧・参照・編集・職員遷移へ適用</td>
+<td>B全・B機</td>
+<td>D12.4、D10.9・11.3</td>
+<td>取得元・実効ロール・保存先は未決。異所属と直接指定の拒否は未試験</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 他所属・直接指定の実効拒否未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>未照合：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-03。単一所有者・同所属のみ。別所属・直指定・編集拒否未試験。</td>
+</tr>
+<tr id="L156">
+<td>
+<code>COMMON-AUTH-002</code>
+</td>
+<td>管理者限定のSCR-006入口・遷移</td>
+<td>B機</td>
+<td>D12.3・12.4</td>
+<td>一般の確認用入口が無効なことを観察。管理者実属性と直接遷移の拒否は未試験</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 一般確認用権限でSCR-006入口無効。管理者未試験。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+<td>一部確認：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/requirements-audit-20260927/manual-20260927-v20/audit.md">V27</a> V27-02。一般の入口無効。管理者と直接遷移は未試験。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L158" data-source-start="158" data-source-end="160">
+<h2 id="非機能要件の検討idnfr-ar">非機能要件の検討ID：NFR-A～R</h2>
+</section>
+<section id="L160" data-source-start="160" data-source-end="160">
+<p>
+<a href="docs--requirements--non-functional-requirements.html" data-keep-context>非機能要件・判定基準整理</a>で、現行文書から引き継ぐ検査条件と未決事項を区分した。これは上の86件とは別の<strong>検討台帳</strong>。<code>B全</code>・<code>B配</code>は冒頭の基本設計の略号。<code>計画</code>は現行App IDでの実施・合格を意味しない。未決の閾値を試験ケースへ勝手に設定しない。</p>
+</section>
+<section id="block-L162" data-source-start="162" data-source-end="183">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L162">
+<th>検討ID</th>
+<th>基本・詳細設計との接点</th>
+<th>試験・判定の現状</th>
+<th>検討状態・根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L164">
+<td>NFR-A</td>
+<td>B機・B配、D12.2、<code>COMMON-LAYOUT-001</code>
+</td>
+<td>表示条件の計画<code>LT-LAYOUT-*</code>。全6画面・人の可読性の現行合格は未記録。</td>
+<td>一部既定：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 6画面・支援環境の人手評価未記録。</td>
+</tr>
+<tr id="L165">
+<td>NFR-B</td>
+<td>B全、<a href="docs--design--detailed--detailed-design.html#10-scr-002%E8%BB%BD%E9%87%8F%E5%8C%96%E8%A8%AD%E8%A8%882026-09-24" data-keep-context>詳細設計10章</a>
+</td>
+<td>接続先の実測と本番方式は別。試験ケース未定。</td>
+<td>一部既定：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 隔離構成を記載。本番方式未決。</td>
+</tr>
+<tr id="L166">
+<td>NFR-C</td>
+<td>B全（一部）</td>
+<td>実利用規模・負荷量と合否未決。</td>
+<td>未決：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 利用規模・負荷の条件値なし。</td>
+</tr>
+<tr id="L167">
+<td>NFR-D</td>
+<td>B機・B配、<a href="docs--design--detailed--detailed-design.html#107-%E5%89%8A%E9%99%A4%E9%83%A8%E5%93%81%E6%95%B0%E5%AE%8C%E4%BA%86%E6%9D%A1%E4%BB%B6" data-keep-context>詳細設計10.7</a>、<code>SCR002-PERF-001</code>
+</td>
+<td>計画<code>LT-PERF-01</code>。単一アプリ改修前後の計時・比較は必要だが許容秒数未決。</td>
+<td>計測未実施：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 同一App IDの前後測定なし。秒数目標未決。</td>
+</tr>
+<tr id="L168">
+<td>NFR-E</td>
+<td>
+<a href="docs--design--detailed--detailed-design.html#106-%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%96%E5%BE%97" data-keep-context>詳細設計10.6</a>
+</td>
+<td>0件・切替の計画<code>LT-DATA-03</code>、現行検索の実測FAIL／BLOCKED。可用性・復旧値未決。</td>
+<td>一部既定：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 0件詳細消去。<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">S26</a> 検索FAIL、復旧値未決。</td>
+</tr>
+<tr id="L169">
+<td>NFR-F</td>
+<td>B全（一部）</td>
+<td>増加量と拡張限界の計測条件未決。</td>
+<td>未決：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> データ増加量と拡張限界未設定。</td>
+</tr>
+<tr id="L170">
+<td>NFR-G</td>
+<td>—</td>
+<td>上位版・回帰範囲と合否未決。</td>
+<td>未決：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 版上げ対象・回帰範囲未設定。</td>
+</tr>
+<tr id="L171">
+<td>NFR-H</td>
+<td>—</td>
+<td>データ抽出・移行可能性の判定未決。</td>
+<td>未決：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 抽出・移行の判定基準未設定。</td>
+</tr>
+<tr id="L172">
+<td>NFR-I</td>
+<td>—</td>
+<td>業務継続・復旧目標の判定未決。</td>
+<td>未決：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 災害時の代替・復旧値未設定。</td>
+</tr>
+<tr id="L173">
+<td>NFR-J</td>
+<td>B全（一部）、<a href="docs--requirements--screen-requirements.html#5-%E6%A8%A9%E9%99%90%E5%88%B6%E5%BE%A1" data-keep-context>画面要件5章</a>
+</td>
+<td>所属制限と管理者判定の実装箇所・現行ケース未整備。</td>
+<td>一部既定：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 一般のSCR-006入口無効。実効権限未検証。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+</tr>
+<tr id="L174">
+<td>NFR-K</td>
+<td>B全、<a href="docs--operations--single-app-workflow.html#%E5%AF%BE%E8%B1%A1" data-keep-context>単一アプリ運用</a>
+</td>
+<td>隔離環境とApp IDは明示。対象端末・ブラウザーの受入条件未決。</td>
+<td>一部既定：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> デスクトップのみ。端末・ブラウザー未決。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+</tr>
+<tr id="L175">
+<td>NFR-L</td>
+<td>B全、<a href="docs--design--detailed--detailed-design.html#105-%E5%9F%BA%E6%BA%96%E7%B5%A6%E4%B8%8E%E7%B0%BF163%E9%A0%85%E7%9B%AE%E5%8B%95%E7%9A%84%E6%94%AF%E7%B5%A6%E6%9C%88" data-keep-context>詳細設計10.5・10.6</a>
+</td>
+<td>12桁キー・行GUID・0／NULLの条件を検査。保全・保管は未決。</td>
+<td>一部既定：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/verification/current-app-player-20260926.md">P26</a> 一部表示。キー・保管・復元未照合。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+</tr>
+<tr id="L176">
+<td>NFR-M</td>
+<td>
+<a href="docs--testing--test-policy.html" data-keep-context>全体テスト計画</a>
+</td>
+<td>単体必須、結合は影響時。総合シナリオ・時期は未決。</td>
+<td>一部既定：<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/current-app-search-observation.md">S26</a> 検索FAIL／結合BLOCKED。総合シナリオ未決。<a href="docs--requirements--open-decisions.html" data-keep-context>O</a>
+</td>
+</tr>
+<tr id="L177">
+<td>NFR-N</td>
+<td>B全（隔離・本番の境界）</td>
+<td>今回の本番移行は対象外。移行時のケース未定。</td>
+<td>今回対象外：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 本番移行時に基準を新設。</td>
+</tr>
+<tr id="L178">
+<td>NFR-O</td>
+<td>—、<a href="docs--handoff--STATUS.html" data-keep-context>STATUS</a>
+</td>
+<td>引継ぎの責任者・完了条件未決。</td>
+<td>一部既定：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 文書参照のみ。引継ぎ承認者未決。</td>
+</tr>
+<tr id="L179">
+<td>NFR-P</td>
+<td>—</td>
+<td>対象者・教材・理解確認未決。</td>
+<td>未決：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 教材・習熟判定未設定。</td>
+</tr>
+<tr id="L180">
+<td>NFR-Q</td>
+<td>
+<a href="docs--operations--single-app-workflow.html" data-keep-context>単一アプリ運用</a>
+</td>
+<td>検証アプリの公開手順はあるが、常時運用・監視・受付条件未決。</td>
+<td>一部既定：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 監視・連絡水準未決。</td>
+</tr>
+<tr id="L181">
+<td>NFR-R</td>
+<td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/operations/work-policy.md">Work運用方針</a>
+</td>
+<td>改修時の試験選定は既定。保守期間・更新期限・担当未決。</td>
+<td>一部既定：<a href="docs--requirements--open-decisions.html" data-keep-context>O</a> 保守期限と依存更新の責任未決。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L183" data-source-start="183" data-source-end="185">
+<h2 id="未採番の要件旧版の扱い">未採番の要件・旧版の扱い</h2>
+</section>
+<section id="block-L185" data-source-start="185" data-source-end="193">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L185">
+<th>範囲</th>
+<th>対応と不足</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L187">
+<td>
+<a href="docs--requirements--screen-requirements.html#1-%E7%94%BB%E9%9D%A2%E4%B8%80%E8%A6%A7" data-keep-context>画面要件1～5章</a>
+</td>
+<td>8つの<code>COMMON-*</code>追跡IDを付与し、B機・D12.3／12.4へ割り付けた。全経路・実権限の試験と業務上の未定義範囲は上表に残す。6章は未決一覧、7章は変更履歴であり、確定要件としてカウントしない。</td>
+</tr>
+<tr id="L188">
+<td>
+<a href="docs--requirements--screen-requirements.html#921-scr-001-%E3%83%9B%E3%83%BC%E3%83%A0%E3%81%AE%E6%93%8D%E4%BD%9C%E9%85%8D%E7%BD%AE" data-keep-context>画面要件9.2.1</a>
+</td>
+<td>
+<code>SCR001-UI-001</code>・<code>002</code>を付与。画面遷移の全方向・管理者／所属の実権限は現行ケース未整備。</td>
+</tr>
+<tr id="L189">
+<td>
+<a href="docs--requirements--screen-requirements.html#95-%E5%85%A8%E7%94%BB%E9%9D%A2%E5%85%B1%E9%80%9A%E3%81%AE%E7%94%BB%E9%9D%A2%E9%A0%98%E5%9F%9F%E6%AF%94%E7%8E%87" data-keep-context>画面要件9.5～9.8</a>
+</td>
+<td>比率に<code>COMMON-LAYOUT-001</code>、性能に<code>SCR002-PERF-001</code>を付与。9.8は複数IDの包括受入であり、単独の新規業務要件にしない。全画面200%・可読性と改修前後の実測は未完了。</td>
+</tr>
+<tr id="L190">
+<td>旧R01～R14、HYB-001～004</td>
+<td>
+<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/requirements/requirements-before-consolidation.md#%E9%81%A9%E7%94%A8%E5%8C%BA%E5%88%86%E3%81%A8%E5%84%AA%E5%85%88%E9%A0%86%E4%BD%8D">統合前の要件定義書</a>に従い旧版履歴。<a href="docs--testing--test-specification.html#4-%E8%A6%81%E4%BB%B6%E3%82%B1%E3%83%BC%E3%82%B9%E5%AF%BE%E5%BF%9C" data-keep-context>旧版R01～R14のケース対応</a>は旧プロファイルの設計であり、現在のE2E合格を示さない。HYBの設計は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/design/hybrid-test-data.md">ハイブリッドデータ</a>を参照。</td>
+</tr>
+<tr id="L191">
+<td>COM-DV-001～003</td>
+<td>
+<a href="docs--design--basic--data-model.html" data-keep-context>通勤Dataverse設計</a>と<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/docs/testing/commute-dataverse-results.md">当時の実施記録</a>で照合。元テーブルの実施記録であり、現行アプリの<code>_STUDIO</code>接続試験ではない。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L193" data-source-start="193" data-source-end="195">
+<h2 id="変更時の更新手順">変更時の更新手順</h2>
+</section>
+<section id="L195" data-source-start="195" data-source-end="198">
+<ol>
+<li>要件を追加・変更するときはIDと適用範囲を確定し、本表の該当行を作成・更新する。競合する旧記述と変更理由を明示する。未採番の要件は勝手にケースIDへ転記せず、要件文書でIDの付与を検討する。</li>
+<li>基本設計と詳細設計の対応節を記入する。未設計なら<code>—</code>や<code>一部</code>のまま残し、設計・テスト完了と判定しない。要件変更時は関連画面、テーブル、HTML認定簿への影響も確認する。</li>
+<li>独立した期待値を持つ単体・必要な結合ケースを選び、<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/change-records/README.md">改修ごとの選定記録</a>に対象部品と理由を記す。既存のケースで不足する場合のみコード・ケース仕様を追加／更新し、試験記録に公開版・コミット・実測と判定を残す。</li>
+<li>文書の対応表の更新だけで実行済み・PASS・業務受入とはしない。本表は現時点でActionsが読んで網羅率を判定する仕組みではない。変更の意味的な妥当性と未解消行はレビューで確認する。</li>
+</ol>
+</section>
+<section id="L200" data-source-start="200" data-source-end="200">
+<p>今回の設計更新で、既存の画面要件1～5章に8つの追跡IDと設計対応を追加し、SCR-002通勤HTMLとSCR-005の<strong>内蔵仮例</strong>の端数規則を詳細化した。一方、SCR-002の勤務・保険・税の保存先と権限、SCR-005の本番計算・個別端数規則、SCR-003／004／006の画面内部、公開ソースの読戻し、現行テストコードと実測は残る。追加設計・試験コードの作成、公開アプリの操作は本表の更新だけでは実施されない。</p>
+</section>
+<section id="L202" data-source-start="202" data-source-end="204">
+<h2 id="横方向の関係旧要件間マトリクスを統合">横方向の関係（旧「要件間マトリクス」を統合）</h2>
+</section>
+<section id="L204" data-source-start="204" data-source-end="204">
+<p>R15～R23と画面IDの直接対応は本書のR15～R23表を正本とする。以下に逆引き、共通画面への適用、非機能との依存をまとめる。同じIDを複数の独立した機能・試験合格として数えない。</p>
+</section>
+<section id="L206" data-source-start="206" data-source-end="208">
+<h3 id="画面領域から引く逆引き">画面領域から引く逆引き</h3>
+</section>
+<section id="block-L208" data-source-start="208" data-source-end="220">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L208">
+<th>画面要件の領域</th>
+<th>機能要件との関係</th>
+<th>他領域との関係・個別に残す条件</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L210">
+<td>SCR-001 <code>SCR001-UI-001/002</code>
+</td>
+<td>R21</td>
+<td>
+<code>COMMON-NAV-001/002</code>、<code>COMMON-CONTEXT-001</code>、<code>COMMON-AUTH-001/002</code>。スマホの確認用所属と実効権限を混同しない</td>
+</tr>
+<tr id="L211">
+<td>SCR-002 構造 <code>SCR002-LT-001</code>～<code>007</code>
+</td>
+<td>R15～R19（各行の対応IDのみ）</td>
+<td>
+<code>SCR002-UI-008/010</code>、<code>COMMON-LAYOUT-001</code>、<code>COMMON-CONTEXT-002</code>。検索0件と履歴0件は別状態</td>
+</tr>
+<tr id="L212">
+<td>SCR-002 配置 <code>SCR002-UI-001</code>～<code>010</code>
+</td>
+<td>R16、R17、R19、R22、R23（各行の対応IDのみ）</td>
+<td>
+<code>SCR002-EDIT-001</code>～<code>004</code>、<code>SCR002-COM-005</code>。選択表示・日時・保存・破棄を分離</td>
+</tr>
+<tr id="L213">
+<td>SCR-002 認定簿 <code>SCR002-COM-001</code>～<code>005</code>
+</td>
+<td>R23は<code>COM-005</code>の移動に直接対応</td>
+<td>認定GUIDと対象職員・権限の確認は<code>COMMON-AUTH-001</code>、D-06。認定簿の帳票機能はR23だけでは網羅しない</td>
+</tr>
+<tr id="L214">
+<td>SCR-002 給与簿 <code>SCR002-PAY-001</code>～<code>008</code>
+</td>
+<td>R18</td>
+<td>
+<code>SCR002-EDIT-001</code>の読取り専用、<code>NFR-F/L</code>。SCR-005の月次支給明細とは別機能</td>
+</tr>
+<tr id="L215">
+<td>SCR-002 編集 <code>SCR002-EDIT-001</code>～<code>004</code>
+</td>
+<td>R17（同じ詳細領域）、R23（操作と破棄）</td>
+<td>
+<code>COMMON-AUTH-001</code>、<code>COMMON-NAV-003</code>。保存先・編集列はD-02。R行だけで5区分の保存を充足した扱いにしない</td>
+</tr>
+<tr id="L216">
+<td>SCR-002 性能 <code>SCR002-PERF-001</code>
+</td>
+<td>R20</td>
+<td>
+<code>NFR-D</code>の測定手順と目標秒数を区別</td>
+</tr>
+<tr id="L217">
+<td>SCR-005 <code>SCR005-UI-001</code>～<code>015</code>、<code>CALC-001</code>～<code>008</code>、<code>ACT-001</code>～<code>008</code>
+</td>
+<td>R18との直接同一対応はなし</td>
+<td>
+<code>COMMON-NAV-003</code>、<code>COMMON-CONTEXT-002</code>、<code>COMMON-AUTH-001</code>でSCR-002に依存。仮例試算31件はそれぞれの受入条件を維持。実務計算はD-03</td>
+</tr>
+<tr id="L218">
+<td>SCR-003／004／006</td>
+<td>R15～R23に直接対応する画面内機能要件は未採番</td>
+<td>画面一覧・ホーム往復・権限は<code>COMMON-*</code>を適用。画面内業務要件はD-04</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L220" data-source-start="220" data-source-end="222">
+<h3 id="共通要件--対象画面画面同士の依存">共通要件 × 対象画面（画面同士の依存）</h3>
+</section>
+<section id="block-L222" data-source-start="222" data-source-end="233">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L222">
+<th>共通ID</th>
+<th>SCR-001</th>
+<th>SCR-002</th>
+<th>SCR-003／004</th>
+<th>SCR-005</th>
+<th>SCR-006</th>
+<th>確認する関係</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L224">
+<td>
+<code>COMMON-SCREEN-001</code>
+</td>
+<td>ホーム・外部認証の境界</td>
+<td>画面ID・役割</td>
+<td>各画面ID・役割</td>
+<td>画面ID・役割</td>
+<td>画面ID・役割</td>
+<td>画面の列挙。外部Microsoft認証画面はCanvasの内部画面ではない</td>
+</tr>
+<tr id="L225">
+<td>
+<code>COMMON-NAV-001/002</code>
+</td>
+<td>5画面への入口と戻り先</td>
+<td>ホーム往復</td>
+<td>それぞれホーム往復</td>
+<td>ホーム往復、<code>SCR005-ACT-001</code>
+</td>
+<td>管理者のみホーム往復</td>
+<td>5本の往路と5本の復路は個別に確認</td>
+</tr>
+<tr id="L226">
+<td>
+<code>COMMON-NAV-003</code>
+</td>
+<td>—</td>
+<td>SCR-005への移動・戻り</td>
+<td>—</td>
+<td>SCR-002への移動、<code>SCR005-ACT-002</code>
+</td>
+<td>—</td>
+<td>双方向の職員番号・月・所属制限。SCR-002側の操作名はD-05</td>
+</tr>
+<tr id="L227">
+<td>
+<code>COMMON-CONTEXT-001</code>
+</td>
+<td>ログイン者の氏名・メール</td>
+<td>同じログイン者</td>
+<td>同じログイン者</td>
+<td>同じログイン者</td>
+<td>同じログイン者</td>
+<td>選択した非常勤職員の識別情報とは別主体</td>
+</tr>
+<tr id="L228">
+<td>
+<code>COMMON-CONTEXT-002</code>
+</td>
+<td>—</td>
+<td>選択職員番号・対象月</td>
+<td>—</td>
+<td>同じ選択職員番号・対象月</td>
+<td>—</td>
+<td>往復・対象変更・未選択時に旧結果を引き継がない</td>
+</tr>
+<tr id="L229">
+<td>
+<code>COMMON-AUTH-001</code>
+</td>
+<td>確認用所属UIは認可を変更しない</td>
+<td>同部署の一覧・詳細・更新・認定簿</td>
+<td>職員データを扱う場合は同部署を適用</td>
+<td>同部署の対象・月・計算表示</td>
+<td>職員データを扱う場合は同部署を適用</td>
+<td>職員番号直指定と遷移で制限を迂回させない。実効ロールはD-01</td>
+</tr>
+<tr id="L230">
+<td>
+<code>COMMON-AUTH-002</code>
+</td>
+<td>管理者だけSCR-006入口を活性</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>管理者だけ入れる</td>
+<td>UI活性状態に加え実際のアクセス拒否を確認</td>
+</tr>
+<tr id="L231">
+<td>
+<code>COMMON-LAYOUT-001</code>
+</td>
+<td>共通余白</td>
+<td>共通余白</td>
+<td>共通余白</td>
+<td>共通余白</td>
+<td>共通余白</td>
+<td>6画面それぞれの表示条件を確認</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L233" data-source-start="233" data-source-end="233">
+<p>
+<code>SCR005-ACT-003/005/006</code>の対象・版変更時の旧結果無効化と、<code>SCR002-LT-007</code>の検索0件・職員切替での旧詳細消去も相互の境界条件。SCR-002⇄005往復時には選択情報だけでなく、検索結果と新旧データの一致を結合試験で確かめる。</p>
+</section>
+<section id="L235" data-source-start="235" data-source-end="237">
+<h3 id="非機能の検討id--関連要件">非機能の検討ID × 関連要件</h3>
+</section>
+<section id="L237" data-source-start="237" data-source-end="237">
+<p>ここでの紐付けは<strong>検討または既定の部分条件への接点</strong>。<code>NFR-*</code>全体が承認済みの合格値になった意味ではない。未決の内容は<a href="docs--requirements--open-decisions.html#%E9%9D%9E%E6%A9%9F%E8%83%BD%E3%81%AE%E7%9B%AE%E6%A8%99%E5%80%A4%E9%81%8B%E7%94%A8%E6%9D%A1%E4%BB%B6" data-keep-context>未決事項一覧</a>を参照する。</p>
+</section>
+<section id="block-L239" data-source-start="239" data-source-end="260">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L239">
+<th>検討ID</th>
+<th>関連する機能・画面ID</th>
+<th>関係の範囲</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L241">
+<td>
+<code>NFR-A</code>
+</td>
+<td>R16/17/18/21/22、<code>COMMON-LAYOUT-001</code>、<code>SCR002-LT-006</code>、<code>SCR005-UI-015</code>
+</td>
+<td>可読性、操作可能性、全画面表示条件</td>
+</tr>
+<tr id="L242">
+<td>
+<code>NFR-B</code>
+</td>
+<td>
+<code>COMMON-SCREEN-001</code>、R15、R19</td>
+<td>単一アプリと隔離Dataverse・HTMLの構成。将来の本番方式は未決</td>
+</tr>
+<tr id="L243">
+<td>
+<code>NFR-C</code>
+</td>
+<td>R18/19/20、<code>SCR002-PERF-001</code>
+</td>
+<td>履歴・列・利用規模に応じた測定条件の検討</td>
+</tr>
+<tr id="L244">
+<td>
+<code>NFR-D</code>
+</td>
+<td>R19/20、<code>SCR002-PERF-001</code>
+</td>
+<td>取得方式と改修前後の実測。秒数の合格値は未決</td>
+</tr>
+<tr id="L245">
+<td>
+<code>NFR-E</code>
+</td>
+<td>R19/23、<code>SCR002-LT-007</code>、<code>SCR002-UI-007</code>、<code>SCR005-ACT-005/006</code>
+</td>
+<td>旧値残留・失敗表示の防止と復旧水準の検討</td>
+</tr>
+<tr id="L246">
+<td>
+<code>NFR-F</code>
+</td>
+<td>R18、<code>SCR002-PAY-002/003/005</code>
+</td>
+<td>登録履歴・月列増加への対応</td>
+</tr>
+<tr id="L247">
+<td>
+<code>NFR-G</code>
+</td>
+<td>R15、<code>COMMON-SCREEN-001</code>
+</td>
+<td>内部参照とアプリ更新時の回帰範囲の検討</td>
+</tr>
+<tr id="L248">
+<td>
+<code>NFR-H</code>
+</td>
+<td>R18、<code>SCR002-PAY-001</code>
+</td>
+<td>台帳項目とデータ抽出・移行可能性の検討</td>
+</tr>
+<tr id="L249">
+<td>
+<code>NFR-I</code>
+</td>
+<td>
+<code>COMMON-SCREEN-001</code>、<code>COMMON-NAV-001/002</code>
+</td>
+<td>障害・災害時の業務継続検討。画面遷移の合格条件は未定</td>
+</tr>
+<tr id="L250">
+<td>
+<code>NFR-J</code>
+</td>
+<td>R21/23、<code>COMMON-AUTH-001/002</code>、<code>SCR001-UI-002</code>、<code>SCR002-EDIT-002</code>
+</td>
+<td>所属・管理者・更新・画面遷移の権限</td>
+</tr>
+<tr id="L251">
+<td>
+<code>NFR-K</code>
+</td>
+<td>R21/22、<code>COMMON-LAYOUT-001</code>
+</td>
+<td>スマホ・ブラウザー・支援環境の対象条件</td>
+</tr>
+<tr id="L252">
+<td>
+<code>NFR-L</code>
+</td>
+<td>R18/19/23、<code>SCR002-EDIT-002</code>、<code>SCR002-COM-003</code>、<code>SCR005-ACT-006/008</code>
+</td>
+<td>キー・履歴・保存・NULL／0・欠損の区別</td>
+</tr>
+<tr id="L253">
+<td>
+<code>NFR-M</code>
+</td>
+<td>R15～R23、<code>SCR001-UI-*</code>、<code>SCR002-*</code>、<code>SCR005-*</code>、<code>COMMON-*</code>
+</td>
+<td>改修対象の単体、画面間影響の結合。総合シナリオは未決</td>
+</tr>
+<tr id="L254">
+<td>
+<code>NFR-N</code>
+</td>
+<td>現行要件へ直接対応なし</td>
+<td>本番移行は今回対象外。移行着手時に別途追跡</td>
+</tr>
+<tr id="L255">
+<td>
+<code>NFR-O</code>
+</td>
+<td>R15～R23、<code>COMMON-SCREEN-001</code>
+</td>
+<td>要件・設計・ソースの引継ぎ範囲の検討</td>
+</tr>
+<tr id="L256">
+<td>
+<code>NFR-P</code>
+</td>
+<td>
+<code>COMMON-NAV-001/002</code>、R21/22</td>
+<td>利用者教育の対象操作を決める際の候補。教材・判定は未決</td>
+</tr>
+<tr id="L257">
+<td>
+<code>NFR-Q</code>
+</td>
+<td>
+<code>COMMON-AUTH-001/002</code>、<code>SCR002-UI-007</code>
+</td>
+<td>運用監視・障害対応を決める際の接点。運用水準は未決</td>
+</tr>
+<tr id="L258">
+<td>
+<code>NFR-R</code>
+</td>
+<td>R15/20、<code>SCR002-PERF-001</code>
+</td>
+<td>改修前後の保守計測、依存更新時の責任の検討</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L260" data-source-start="260" data-source-end="262">
+<h2 id="2026-09-27-scr-002変更要求の要件設計試験連鎖">2026-09-27 SCR-002変更要求の要件・設計・試験連鎖</h2>
+</section>
+<section id="block-L262" data-source-start="262" data-source-end="268">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L262">
+<th>要件</th>
+<th>基本設計</th>
+<th>詳細設計</th>
+<th>ケース</th>
+<th>公開版確認の範囲</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L264">
+<td>
+<code>SCR002-UI-001/003</code>、R22/R23</td>
+<td>S01ヘッダー・操作</td>
+<td>10.4.1</td>
+<td>
+<code>UT-SCR002-HEADER-001</code>、<code>IT-SCR002-HOME-001</code>
+</td>
+<td>ホーム→SCR-002と復帰、独立年月欄不在。未保存時の破棄確認は別試験</td>
+</tr>
+<tr id="L265">
+<td>
+<code>SCR002-LT-005</code>、<code>SCR002-UI-005</code>
+</td>
+<td>S01-D短い履歴選択</td>
+<td>10.3</td>
+<td>
+<code>UT-SCR002-HISTORY-001</code>
+</td>
+<td>4区分の長文カード不在。複数履歴選択は別fixture待ち</td>
+</tr>
+<tr id="L266">
+<td>
+<code>SCR002-LT-006</code>、<code>SCR002-PAY-005</code>、R18</td>
+<td>S01-P</td>
+<td>10.10</td>
+<td>
+<code>UT-SCR002-PAYROLL-001</code>、<code>IT-SCR002-NAV-001</code>
+</td>
+<td>1行目の位置と配色、SCR-005との011引渡し。163行末尾・複数給与行は未試験</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L268" data-source-start="268" data-source-end="268">
+<p>変更要求・選定は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/change-records/change-20260927-scr002-ui.json">同IDの記録</a>、所有者による公開Player操作は<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/records/changes/change-20260927-scr002-ui/manual-20260927-scr002/record.md">実施記録</a>を参照。上の既存86行で残した未設計・未試験条件は自動的に解消しない。</p>
+</section>
+<section id="L271" data-source-start="271" data-source-end="273">
+<h2 id="将来の非常勤給与アプリ業務要件追跡準備ag給与共通">将来の非常勤給与アプリ業務要件：追跡準備（A～G・給与共通）</h2>
+</section>
+<section id="L273" data-source-start="273" data-source-end="273">
+<p>
+<a href="docs--requirements--business-requirements.html" data-keep-context>業務要件書</a>のAD・E・F・G・AUTH・PAYと<a href="docs--requirements--requirements.html" data-keep-context>追加の機能要件FR-*</a>はTo-Beの業務判断と、その実現に必要な将来機能を記録したもの。上記の現行86行と別枠で管理し、86行の件数や合否に算入しない。「関連候補」は既存機能との関係を示すだけで、当該要件の実装・設計・試験完了を意味しない。設計と独立期待値が定まった時点で要件IDごとに更新する。</p>
+</section>
+<section id="block-L275" data-source-start="275" data-source-end="323">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L275">
+<th>業務要件ID</th>
+<th>現行機能・画面との関係</th>
+<th>設計・試験の現状</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L277">
+<td>AD-01</td>
+<td>初任給確定後の情報受領：対応する現行機能要件なし</td>
+<td>連携条件・設計・試験未定</td>
+</tr>
+<tr id="L278">
+<td>AD-02</td>
+<td>EASY決裁前の候補抑止：対応する現行機能要件なし</td>
+<td>決裁通知方法・設計・試験未定</td>
+</tr>
+<tr id="L279">
+<td>AD-03</td>
+<td>通常職員・調査員のC発令情報登録完了時の候補作成：対応する現行機能要件なし</td>
+<td>通知・作成方式・設計・試験未定</td>
+</tr>
+<tr id="L280">
+<td>AD-04</td>
+<td>識別子照合・職員番号自動反映：対応する現行機能要件なし</td>
+<td>連携方式・失敗時対応・試験未定</td>
+</tr>
+<tr id="L281">
+<td>AD-05</td>
+<td>再採用時の新識別子：対応する現行機能要件なし</td>
+<td>採番仕様・試験未定</td>
+</tr>
+<tr id="L282">
+<td>AD-06</td>
+<td>秘書課による採用取消情報の受領：対応する現行機能要件なし</td>
+<td>連携方式・取消通知の試験未定</td>
+</tr>
+<tr id="L283">
+<td>AD-07</td>
+<td>確認待ち・確定から採用取消へ：将来画面要件 <code>FUT-STATE-E</code>
+</td>
+<td>履歴保持・計算除外試験未定。現行SCR-005は内蔵仮例</td>
+</tr>
+<tr id="L284">
+<td>AD-08</td>
+<td>決裁後の変更前履歴保持：関連候補 <code>SCR002-LT-005</code>
+</td>
+<td>変更連携・履歴保存・試験未定</td>
+</tr>
+<tr id="L285">
+<td>AD-09</td>
+<td>調査員の初任給ルールマスタ自動設定：対応する現行機能要件なし</td>
+<td>マスタ・自動設定の設計と試験未定</td>
+</tr>
+<tr id="L286">
+<td>AD-10</td>
+<td>調査員ルール改定時の旧値保持・適用開始日：対応する現行機能要件なし</td>
+<td>改定・期間判定・履歴の設計と試験未定</td>
+</tr>
+<tr id="L287">
+<td>E-01</td>
+<td>Cの通知に基づく登録候補の自動作成：対応する現行機能要件なし</td>
+<td>連携方式・設計・試験未定</td>
+</tr>
+<tr id="L288">
+<td>E-02</td>
+<td>会計課給与班の複数職員Excel一括取込：対応する現行機能要件なし</td>
+<td>異動情報アプリ出力の列・様式、取込設計・試験未定</td>
+</tr>
+<tr id="L289">
+<td>E-03</td>
+<td>職員に紐づくデータの照合：対応する現行機能要件なし</td>
+<td>照合条件・試験未定</td>
+</tr>
+<tr id="L290">
+<td>E-04</td>
+<td>重複注意と取込判断：対応する現行機能要件なし</td>
+<td>表示・操作設計・試験未定</td>
+</tr>
+<tr id="L291">
+<td>E-05</td>
+<td>不足・不整合の検証：対応する現行機能要件なし</td>
+<td>必須項目・試験未定</td>
+</tr>
+<tr id="L292">
+<td>E-06</td>
+<td>局担当者・給与班による修正：関連候補 <code>SCR002-EDIT-001～004</code>
+</td>
+<td>編集対象と権限は未決。実装・試験完了を意味しない</td>
+</tr>
+<tr id="L293">
+<td>E-07</td>
+<td>確認待ち→確定：将来画面要件 <code>FUT-STATE-E</code>
+</td>
+<td>操作・試験未実装</td>
+</tr>
+<tr id="L294">
+<td>E-08</td>
+<td>確定後の修正は履歴を残して確認待ちに戻す：<code>FUT-STATE-E</code>
+</td>
+<td>再確定まで計算利用を止める試験未定</td>
+</tr>
+<tr id="L295">
+<td>E-09</td>
+<td>連携変更値と給与班修正値の差異判断：対応する現行機能要件なし</td>
+<td>差異表示・判断履歴・試験未定</td>
+</tr>
+<tr id="L296">
+<td>E-10</td>
+<td>確認待ちデータの給与計算利用禁止：関連候補 <code>SCR005-CALC-001～008</code>
+</td>
+<td>現行SCR-005は内蔵仮例。確定状態の判定・実データ計算・試験未定</td>
+</tr>
+<tr id="L297">
+<td>E-11</td>
+<td>一括取込時の正常行先行・問題行別確認：対応する現行機能要件なし</td>
+<td>部分成功・重複警告・再取込の設計と試験未定</td>
+</tr>
+<tr id="L298">
+<td>E-12</td>
+<td>局担当者との不足・不整合の調整はシステム外：対応するアプリ内差戻し要件なし</td>
+<td>アプリ内の差戻し機能は対象外。調整後の修正と確認はE-06で追跡</td>
+</tr>
+<tr id="L299">
+<td>F-01</td>
+<td>局担当者・職員本人の通勤届入力：関連候補 <code>SCR002-EDIT-001～004</code>
+</td>
+<td>本人入力・権限の設計と試験未定</td>
+</tr>
+<tr id="L300">
+<td>F-02</td>
+<td>検証と会計課給与班の審査：対応する現行機能要件なし</td>
+<td>入力項目・審査・試験未定</td>
+</tr>
+<tr id="L301">
+<td>F-03</td>
+<td>提出者への差戻し・再提出：対応する現行機能要件なし</td>
+<td>状態遷移・通知・試験未定</td>
+</tr>
+<tr id="L302">
+<td>F-04</td>
+<td>確定済み認定情報の給与計算での参照：関連候補 <code>SCR002-COM-001～005</code>、<code>SCR005-CALC-001～008</code>
+</td>
+<td>現行SCR-005は内蔵仮例の試算。実データ参照・業務計算の設計と試験未定</td>
+</tr>
+<tr id="L303">
+<td>F-05</td>
+<td>利用者操作による認定簿PDF：関連候補 <code>SCR002-COM-001～005</code>
+</td>
+<td>3者の出力操作・PDF生成の実装と試験未照合</td>
+</tr>
+<tr id="L304">
+<td>F-06</td>
+<td>本人・担当部署によるPDF出力範囲：関連候補 <code>COMMON-AUTH-001/002</code>、<code>SCR002-COM-002/003</code>
+</td>
+<td>認証主体・担当部署・実効権限の設計と試験未定</td>
+</tr>
+<tr id="L305">
+<td>F-07</td>
+<td>通勤内容の変更後の再認定：<code>FUT-STATE-F</code>
+</td>
+<td>新たな提出・再認定の試験未定</td>
+</tr>
+<tr id="L306">
+<td>F-08</td>
+<td>病気欠勤の不支給と認定期間の終了：<code>FUT-STATE-F</code>
+</td>
+<td>独立の終了状態なし。期間と計算の試験未定</td>
+</tr>
+<tr id="L307">
+<td>G-01</td>
+<td>4区分の外部機関の決定結果：将来画面要件 <code>SCR002-G-001/002</code>
+</td>
+<td>アプリ内電子申請なし。結果登録・試験は未実装</td>
+</tr>
+<tr id="L308">
+<td>G-02</td>
+<td>担当者による決定結果登録：将来画面要件 <code>SCR002-G-003</code>
+</td>
+<td>現行<code>COMMON-AUTH-001</code>との権限整合・試験未決</td>
+</tr>
+<tr id="L309">
+<td>G-03</td>
+<td>アプリ外の手続きの二重申請防止：実現方法未決</td>
+<td>アプリ内の申請操作・自動停止は対象外。実装対象・試験条件も保留</td>
+</tr>
+<tr id="L310">
+<td>G-04</td>
+<td>紙・電子の決定結果の担当者登録：将来画面要件 <code>SCR002-G-001～003</code>
+</td>
+<td>自動取込・申請・受付状況管理は対象外。画面・試験は未実装</td>
+</tr>
+<tr id="L311">
+<td>G-05</td>
+<td>決定結果の登録（確認待ち）→確定：<code>FUT-STATE-G</code>、<code>SCR002-G-004</code>
+</td>
+<td>計算への反映試験未定。現行SCR-005は内蔵仮例</td>
+</tr>
+<tr id="L312">
+<td>G-06</td>
+<td>紙等の決定結果を担当者が登録：将来画面要件 <code>SCR002-G-001～003</code>
+</td>
+<td>証憑・画面・試験未実装</td>
+</tr>
+<tr id="L313">
+<td>AUTH-01</td>
+<td>会計課給与班の全対象職員への業務権限：将来画面要件 <code>FUT-AUTH-001</code>
+</td>
+<td>実効ロールと既存所属制限との整合・試験未決</td>
+</tr>
+<tr id="L314">
+<td>AUTH-02</td>
+<td>局担当者の自局・部署略称単位の対象制限：<code>FUT-AUTH-002</code>
+</td>
+<td>自局判定と実効権限・試験未決</td>
+</tr>
+<tr id="L315">
+<td>AUTH-03</td>
+<td>職員本人の自己分限定：<code>FUT-AUTH-003</code>
+</td>
+<td>本人照合と検索・認定簿権限・試験未決</td>
+</tr>
+<tr id="L316">
+<td>AUTH-04</td>
+<td>SCR-006給与ルールの給与班限定：<code>FUT-AUTH-004</code>
+</td>
+<td>現行管理者限定との整合・試験未決</td>
+</tr>
+<tr id="L317">
+<td>PAY-01</td>
+<td>調査員の採用日による初任給ルール選択：対応する現行機能要件なし</td>
+<td>版選択・境界値の設計と試験未定</td>
+</tr>
+<tr id="L318">
+<td>PAY-02</td>
+<td>改定後の対象在職者・期間への適用：関連候補 <code>SCR005-CALC-001～008</code>
+</td>
+<td>現行SCR-005は内蔵仮例。ルール履歴と実データ計算の設計・試験未定</td>
+</tr>
+<tr id="L319">
+<td>PAY-03</td>
+<td>既計算結果を保持した差額遡及：対応する現行機能要件なし</td>
+<td>旧結果・再計算・差額・支給反映の設計と試験未定</td>
+</tr>
+<tr id="L320">
+<td>PAY-04</td>
+<td>差額の確認待ち→確定：<code>FUT-STATE-PAY</code>
+</td>
+<td>支給返納の実施結果は別記録。設計・試験未定</td>
+</tr>
+<tr id="L321">
+<td>PAY-05</td>
+<td>給与相殺か納入告知書かの返納方法判断：対応する現行機能要件なし</td>
+<td>方式別処理・帳票・入金管理の設計と試験未定</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L323" data-source-start="323" data-source-end="325">
+<h3 id="追加機能要件fr-画面状態要件fut-state-と業務要件の対応">追加機能要件FR-*・画面状態要件FUT-STATE-*と業務要件の対応</h3>
+</section>
+<section id="L325" data-source-start="325" data-source-end="325">
+<p>以下の対応は機能要件の定義段階。画面・データの実装対象、独立した試験ケース、公開版での実測は未定であり、現行86行の合否と混同しない。</p>
+</section>
+<section id="block-L327" data-source-start="327" data-source-end="356">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L327">
+<th>要件ID</th>
+<th>対応する業務要件</th>
+<th>現行要件との接点・残件</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L329">
+<td>FUT-IMPORT-001</td>
+<td>E-02～04、E-11</td>
+<td>ホームから専用画面でExcel取込。行別結果と給与班の判断。実装・試験未定</td>
+</tr>
+<tr id="L330">
+<td>FUT-STATE-E</td>
+<td>E-07/08、AD-07</td>
+<td>確認待ち・確定・採用取消の遷移。実装・試験未定</td>
+</tr>
+<tr id="L331">
+<td>FUT-STATE-F</td>
+<td>F-01～04、F-07/08</td>
+<td>提出・差戻し・認定。終了は認定期間で管理。実装・試験未定</td>
+</tr>
+<tr id="L332">
+<td>FUT-STATE-G</td>
+<td>G-04/05/06</td>
+<td>決定結果の登録（確認待ち）・確定。実装・試験未定</td>
+</tr>
+<tr id="L333">
+<td>FUT-STATE-PAY</td>
+<td>PAY-03/04/05</td>
+<td>差額の確認待ち・確定と支給返納の別記録。実装・試験未定</td>
+</tr>
+<tr id="L334">
+<td>FR-AD-01</td>
+<td>AD-01～03、E-01</td>
+<td>将来のSCR-002候補選択 <code>SCR002-E-001</code>。自動連携方式未決</td>
+</tr>
+<tr id="L335">
+<td>FR-AD-02</td>
+<td>AD-04/05</td>
+<td>採用単位識別子・職員番号後続反映。採番・連携未決</td>
+</tr>
+<tr id="L336">
+<td>FR-AD-03</td>
+<td>AD-06～08</td>
+<td>取消・変更履歴・計算除外。現行SCR-005は仮例</td>
+</tr>
+<tr id="L337">
+<td>FR-AD-04</td>
+<td>AD-09/10、PAY-01</td>
+<td>ルール登録・改定は将来のSCR-006 <code>SCR006-RULE-001</code>。給与班権限未決</td>
+</tr>
+<tr id="L338">
+<td>FR-E-01</td>
+<td>E-02～04、E-11</td>
+<td>一括取込はSCR-001ホームから専用画面 <code>FUT-IMPORT-001</code>。候補の確認・確定はSCR-002 <code>SCR002-E-001</code>。詳細設計・試験未定</td>
+</tr>
+<tr id="L339">
+<td>FR-E-02</td>
+<td>E-05/06/12</td>
+<td>将来のSCR-002右詳細 <code>SCR002-E-001</code>。<code>SCR002-EDIT-*</code>は実装証拠ではない</td>
+</tr>
+<tr id="L340">
+<td>FR-E-03</td>
+<td>E-07～10</td>
+<td>SCR-002右詳細 <code>SCR002-E-001</code>と状態 <code>FUT-STATE-E</code>。現行SCR-005は仮例</td>
+</tr>
+<tr id="L341">
+<td>FR-F-01</td>
+<td>F-01～03、F-07</td>
+<td>SCR-002通勤タブ <code>SCR002-F-001</code>と状態 <code>FUT-STATE-F</code>。差戻し理由の連絡はシステム外、再提出は同タブ。本人照合未設計</td>
+</tr>
+<tr id="L342">
+<td>FR-F-02</td>
+<td>F-04</td>
+<td>確定済み認定の計算参照。現行SCR-005は仮例</td>
+</tr>
+<tr id="L343">
+<td>FR-F-03</td>
+<td>F-08</td>
+<td>将来のSCR-002通勤タブ <code>SCR002-F-001</code>。適用時点・計算条件未決</td>
+</tr>
+<tr id="L344">
+<td>FR-F-04</td>
+<td>F-05/06</td>
+<td>
+<code>SCR002-COM-*</code>関連候補。3者の出力権限未設計</td>
+</tr>
+<tr id="L345">
+<td>FR-G-01</td>
+<td>G-01/02</td>
+<td>4区分の決定結果を担当者が登録。アプリ内電子申請なし。将来画面要件 <code>SCR002-G-001～003</code>
+</td>
+</tr>
+<tr id="L346">
+<td>FR-G-02</td>
+<td>G-03</td>
+<td>二重申請防止の方法は未決。アプリ内の自動停止機能は保留</td>
+</tr>
+<tr id="L347">
+<td>FR-G-03</td>
+<td>G-04/06</td>
+<td>紙・電子を問わず手動登録。将来画面要件 <code>SCR002-G-001～003</code>。結果自動取込なし</td>
+</tr>
+<tr id="L348">
+<td>FR-G-04</td>
+<td>G-05</td>
+<td>将来画面要件 <code>SCR002-G-004</code>・<code>FUT-STATE-G</code>。同じタブで登録・確定し、現行SCR-005は仮例</td>
+</tr>
+<tr id="L349">
+<td>FR-AUTH-01</td>
+<td>AUTH-01</td>
+<td>将来の全対象職員権限 <code>FUT-AUTH-001</code>。現行<code>COMMON-AUTH-001</code>を上書きした意味ではない</td>
+</tr>
+<tr id="L350">
+<td>FR-AUTH-02</td>
+<td>AUTH-02</td>
+<td>自局・部署略称単位 <code>FUT-AUTH-002</code>。照合方式未決</td>
+</tr>
+<tr id="L351">
+<td>FR-AUTH-03</td>
+<td>AUTH-03</td>
+<td>本人の自己分 <code>FUT-AUTH-003</code>。本人照合方式未決</td>
+</tr>
+<tr id="L352">
+<td>FR-AUTH-04</td>
+<td>AUTH-04</td>
+<td>業務マスタ管理者がSCR-006の給与ルール登録・改定 <code>FUT-AUTH-004</code>。給与班兼務可、システム管理権限は別。物理方式PD-04</td>
+</tr>
+<tr id="L353">
+<td>FR-PAY-01</td>
+<td>PAY-02/03、AD-10</td>
+<td>ルール管理はSCR-006、差額確認はまず独立画面 <code>SCR007-DIFF-001</code>。最終配置はD-08、計算条件未決</td>
+</tr>
+<tr id="L354">
+<td>FR-PAY-02</td>
+<td>PAY-04/05</td>
+<td>まず独立画面 <code>SCR007-DIFF-001</code>と状態 <code>FUT-STATE-PAY</code>。内訳確認・給与班確定。最終配置はD-08で再検討、支給返納は別記録</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L356" data-source-start="356" data-source-end="356">
+<p>SCR-002・SCR-006の追加領域、将来の独立画面（仮ID <code>SCR-007</code>）、および役割別対象範囲は要件の決定だけであり、現行の6画面・86行の実装・試験合格へ算入しない。役割別の実効権限と画面間遷移は未決。</p>
+</section>
+<section id="L358" data-source-start="358" data-source-end="358">
+<p>Fの業務を通す試験シナリオ（提出→差戻し→再提出→認定→認定情報参照→PDF出力）と、Gの紙・電子によらない担当者の決定結果登録と給与班確認の試験シナリオは<a href="https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/4928decc67fdc6baa0f3f83300eca2c3760669cf/docs/testing/system-test-plan.md">総合テスト計画</a>のD-07判断後に仕様化する。上記はシナリオ策定やPASSを意味しない。</p>
+</section>
+<section id="L361" data-source-start="361" data-source-end="363">
+<h2 id="change-20261003-commute-official通勤認定簿公式様式-v102業務受入完了">CHANGE-20261003-COMMUTE-OFFICIAL／通勤認定簿公式様式 v1.02（業務受入完了）</h2>
+</section>
+<section id="block-L363" data-source-start="363" data-source-end="368">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L363">
+<th>要件ID</th>
+<th>実装</th>
+<th>検証</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L365">
+<td>COMMUTE-OFFICIAL-001</td>
+<td>src/commute-ledger/v1.02/build.py</td>
+<td>UT-COM-FORM-001、UT-COM-OVERFLOW-001、IT-COM-PRINT-001</td>
+</tr>
+<tr id="L366">
+<td>COMMUTE-PARALLEL-001</td>
+<td>src/commute-ledger/v1.02/test-button.paste.yaml</td>
+<td>IT-COM-PARALLEL-001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L368" data-source-start="368" data-source-end="370">
+<h2 id="2026-10-07の確定要件の追跡">2026-10-07の確定要件の追跡</h2>
+</section>
+<section id="L370" data-source-start="370" data-source-end="370">
+<p>会話のQ／R番号は既存要件R15～R23と別。本文の正本は<a href="docs--requirements--payroll-confirmed-20261007.html" data-keep-context>確定要件</a>。既存86行の実測判定を変更せず、今後の給与業務改修を別追跡する。全行が業務要件確定・実装未検証であり、今回の文書更新で試験合格を記入しない。</p>
+</section>
+<section id="block-L372" data-source-start="372" data-source-end="381">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L372">
+<th>要件ID</th>
+<th>基本／データ設計</th>
+<th>詳細設計</th>
+<th>検証残件</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L374">
+<td>PAYREQ-01・02・03</td>
+<td>基本設計の2026-10-07節、データ設計の変更後論理モデル</td>
+<td>変更後処理契約の元データ訂正</td>
+<td>PD-01・08、期間・番号整合</td>
+</tr>
+<tr id="L375">
+<td>PAYREQ-04・05</td>
+<td>用途別履歴、通勤ヘッダー／経路</td>
+<td>確認状態・帳票取得契約</td>
+<td>PD-02・09、未確認拒否</td>
+</tr>
+<tr id="L376">
+<td>PAYREQ-06</td>
+<td>所属×勤務月、取込処理記録</td>
+<td>勤怠再取込</td>
+<td>PD-05、空欄0、未掲載保持・上書き・障害</td>
+</tr>
+<tr id="L377">
+<td>PAYREQ-07・08</td>
+<td>計算版→根拠、人給取込→照合、案件→回収</td>
+<td>計算・人給照合・状態制御</td>
+<td>PD-02・03・06・07、差分ゼロ・支払済不訂正</td>
+</tr>
+<tr id="L378">
+<td>PAYREQ-09</td>
+<td>役割別境界・複数ロール</td>
+<td>読取り／更新／帳票の認可</td>
+<td>PD-04、自局・他局・兼務</td>
+</tr>
+<tr id="L379">
+<td>PAYREQ-10</td>
+<td>ローコード・保存・架空データ</td>
+<td>中間削除後の履歴維持、復旧</td>
+<td>PD-05・06、性能・D-07</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L381" data-source-start="381" data-source-end="381">
+<p>今回の検証はリンク・記述・配置の整合確認のみ。新しい業務動作の単体・結合・総合・受入は未実施であり、実装時に既存試験方針に従って選定する。</p>
+</section>
+<section id="L384" data-source-start="384" data-source-end="386">
+<h3 id="2026-10-07-通勤新様式の受入結果">2026-10-07 通勤新様式の受入結果</h3>
+</section>
+<section id="L386" data-source-start="386" data-source-end="386">
+<p>2026-10-07（日本時間）、ユーザーから通勤認定簿の新様式の受入テスト完了の申告を受領し、CHANGE-20261003-COMMUTE-OFFICIALの業務受入をPASSとして記録した。対象は並行配置した公式様式v1.02（公開版 <code>2026-10-03T18:31:30.4607518Z</code>）。申告受領日を記録しており、実際の試験日時・確認レコード・項目別操作ログは未入力。個別の実機印刷設定や全データ組合せの実測証跡へ読み替えない。総合試験D-07と今後の給与モデル再構成の受入は別判定。旧様式の削除・通常ボタンの切替は今回実施しない。</p>
+</section>
+<section id="L388" data-source-start="388" data-source-end="390">
+<h2 id="2026-10-08-人給インターフェース対応">2026-10-08 人給インターフェース対応</h2>
+</section>
+<section id="block-L390" data-source-start="390" data-source-end="398">
+<div class="table-wrap" role="region" tabindex="0" aria-label="traceability-matrix.mdの表">
+<table>
+<thead>
+<tr id="L390">
+<th>要件</th>
+<th>設計</th>
+<th>検証項目</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr id="L392">
+<td>IF-01～04</td>
+<td>
+<a href="docs--design--detailed--payroll-jinkyu-interface.html" data-keep-context>出力仕様</a>2章・付録</td>
+<td>IF-T01/02/09</td>
+<td>業務確定・実装未検証</td>
+</tr>
+<tr id="L393">
+<td>IF-05～08</td>
+<td>同2～4章</td>
+<td>IF-T03～06</td>
+<td>業務確定・実装未検証</td>
+</tr>
+<tr id="L394">
+<td>IF-09～12</td>
+<td>同6章</td>
+<td>IF-T07～09/12</td>
+<td>要件確定、方式・性能は未入力</td>
+</tr>
+<tr id="L395">
+<td>PERIOD-01～05、D1～D8</td>
+<td>同4～5章、<a href="docs--requirements--payroll-interface-decisions-20261008.html" data-keep-context>決定台帳</a>
+</td>
+<td>IF-T10/11</td>
+<td>業務確定、日付詳細・集約・式検証は未入力</td>
+</tr>
+<tr id="L396">
+<td>D9～D12・その他式</td>
+<td>決定台帳</td>
+<td>未入力</td>
+<td>未回答・精査保留</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="L398" data-source-start="398" data-source-end="399">
+<p>試験ケースは<a href="docs--testing--test-specification.html" data-keep-context>試験仕様</a>の当節。既存86行・通勤受入の判定には影響しない。</p>
+</section>
+</article>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>EXT-COMMUTE 通勤認定簿HTML（別タブ） | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="index.html" aria-current="page">画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >画面一覧</a>
+</span>
+<span aria-current="page">EXT-COMMUTE 通勤認定簿HTML（別タブ）</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 画面一覧へ戻る</a>
+<div>
+<span class="eyebrow">SCREEN / EXT-COMMUTE</span>
+<h1 id="EXT-COMMUTE">通勤認定簿HTML（別タブ）</h1>
+<p class="lead">認定GUIDで再取得する公式様式。ブラウザー印刷からA4横2ページの1PDFを保存。</p>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>本文あり</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>既存記録</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>既存区分・出典時点限定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>画面で何をするか</h2>
+<dl class="contract">
+<dt>利用する人</dt>
+<dd>会計課給与班 / 局担当者</dd>
+<dt>どこから開く</dt>
+<dd>
+<a href="../operations/OP-F-HTML.html?context=screen-EXT-COMMUTE#OP-F-HTML" >SCR-002: 認定簿を表示</a>
+</dd>
+<dt>表示する領域</dt>
+<dd>各操作に対応する一覧・内容。具体的な領域は画面例と操作定義で確認。</dd>
+<dt>入力・確認</dt>
+<dd>ブラウザー印刷でPDF保存</dd>
+</dl>
+</section>
+<section class="panel" >
+<h2>画面構成を確認する</h2>
+<div class="screen-layout">
+<div class="mock-pane">
+<strong>EXT-COMMUTE</strong>
+<p>会計課給与班 / 局担当者</p>
+<p>対象を選び、内容を確認</p>
+</div>
+<div class="mock-pane">
+<div class="mock-tabs">
+<span>業務の内容</span>
+</div>
+<strong>通勤認定簿HTML（別タブ）</strong>
+<p>認定GUIDで再取得する公式様式。ブラウザー印刷からA4横2ページの1PDFを保存。</p>
+<p class="meta">構造を説明する略図です。入力項目・配置の確定度は各操作に従います。</p>
+</div>
+</div>
+<div class="actions">
+<a href="../../../review/pay-html-001/wireframes/ext-commute.html?context=screen-EXT-COMMUTE" class="button primary">詳しい画面イメージを開く</a>
+<a href="../../../review/pay-html-001/operations/ext-commute.html?context=screen-EXT-COMMUTE" class="button">画面内の操作をまとめて読む</a>
+</div>
+<p class="meta">画面イメージは架空データのHTMLモックです。Power Appsでの実装・アクセシビリティ・保存・認可を検証済みとは扱いません。</p>
+</section>
+<section class="panel" >
+<h2>この画面の操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-F-PDF · EXT-COMMUTE</span>
+<h3>
+<a href="../operations/OP-F-PDF.html?context=screen-EXT-COMMUTE#OP-F-PDF" >ブラウザー印刷でPDF保存</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>A4横2ページを1つのPDFとして保存する。枠超過なら印刷停止・警告。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+<article class="card">
+<span class="number">OP-F-RETURN-HTML · EXT-COMMUTE</span>
+<h3>
+<a href="../operations/OP-F-RETURN-HTML.html?context=screen-EXT-COMMUTE#OP-F-RETURN-HTML" >元の通勤タブへ戻る</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>元のSCR-002通勤タブへ戻る。</p>
+<div class="meta">担当: 会計課給与班 / 局担当者</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>境界・未決・注記</h2>
+<ul>
+<li>10月7日の通常入口切替と旧リソース撤去後に受入PASS。新データモデルとの帳票連携は別の未実装契約。</li>
+<li>現行は71表示欄の様式v1.02。旧84データ列との数の違いを同一視しない。</li>
+<li>権限実効性・全データ組合せ・総合試験は既存の受入PASSから推定しない。</li>
+</ul>
+</section>
+<section class="panel" >
+<h2>この画面を使う業務</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">WF-08</span>
+<h3>
+<a href="../workflows/WF-08.html?context=screen-EXT-COMMUTE#WF-08" >F 通勤認定簿・別タブPDF</a>
+</h3>
+<p>通勤タブで認定を選択 → A4横2ページを1PDFとして保存</p>
+<div class="meta">給与班・局担当者</div>
+<span class="tag ">現行実装</span>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>要件と出典</h2>
+<div class="chips">
+<a href="../sections/2.2.1.html#section-2.2.1" >2.2.1</a>
+<a href="../sections/2.2.2.html#section-2.2.2" >2.2.2</a>
+<a href="../sections/2.2.3.html#section-2.2.3" >2.2.3</a>
+</div>
+<h3 style="margin-top:18px">関連要件</h3>
+<div class="chips">
+<a href="../requirements/SCR002-COM-003.html?context=screen-EXT-COMMUTE#requirement-SCR002-COM-003" >SCR002-COM-003</a>
+<a href="../requirements/FR-F-04.html?context=screen-EXT-COMMUTE#requirement-FR-F-04" >FR-F-04</a>
+</div>
+<ul class="list">
+<li>
+<a href="../sources/docs--design--detailed--detailed-design.html?context=screen-EXT-COMMUTE" data-keep-context>detailed-design.md</a>
+<div class="meta">docs/design/detailed/detailed-design.md</div>
+</li>
+<li>
+<a href="../sources/docs--handoff--STATUS.html?context=screen-EXT-COMMUTE" data-keep-context>STATUS.md</a>
+<div class="meta">docs/handoff/STATUS.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>COMMON-CONTEXT-001 | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" >標準の章立て</a>
+<a href="index.html" aria-current="page">要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="index.html" >要件ID・操作</a>
+</span>
+<span aria-current="page">COMMON-CONTEXT-001</span>
+</nav>
+<a class="context-return" data-context-return href="index.html">← 要件ID一覧へ戻る</a>
+<div>
+<span class="eyebrow">REQUIREMENT / COMMON-CONTEXT-001</span>
+<h1 id="requirement-COMMON-CONTEXT-001">COMMON-CONTEXT-001</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>出典箇所を記載</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>正本の該当記述を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>正本に書かれている内容</h2>
+<p class="meta">出典の要件行・見出し・該当箇所をそのまま示しています。複数の記述がある場合は、文書と時点を確認してください。</p>
+<div class="source-row">
+<p>COMMON-CONTEXT-001 ｜ ログイン職員の氏名・メールは画面を越えて同一のログイン主体として保持 ｜ 属性の権威ある取得元は未定</p>
+<p class="source">
+<a href="../sources/docs--design--basic--basic-design.html?context=req-COMMON-CONTEXT-001#L89" >basic-design.md · 89行目</a> / 正本の該当行</p>
+</div>
+<div class="source-row">
+<p>COMMON-CONTEXT-001 ｜ ログイン職員の氏名・メールを全画面で保持 ｜ B機 ｜ D12.3・12.4 ｜ 画面間の主体と表示を一部観察。アカウント属性の権威ある取得元は未決 ｜ 一部確認：[P26] 画面上の主体を一部観察。氏名・メール全画面保持未試験。[O] ｜ 一部確認：[V27] V27-02。ホームの主体のみ。氏名・メールを全画面で比較していない。</p>
+<p class="source">
+<a href="../sources/docs--requirements--traceability-matrix.html?context=req-COMMON-CONTEXT-001#L153" >traceability-matrix.md · 153行目</a> / 正本の該当行</p>
+</div>
+<div class="source-row">
+<p>COMMON-CONTEXT-001 ｜ ログイン者の氏名・メール ｜ 同じログイン者 ｜ 同じログイン者 ｜ 同じログイン者 ｜ 同じログイン者 ｜ 選択した非常勤職員の識別情報とは別主体</p>
+<p class="source">
+<a href="../sources/docs--requirements--traceability-matrix.html?context=req-COMMON-CONTEXT-001#L227" >traceability-matrix.md · 227行目</a> / 正本の該当行</p>
+</div>
+</section>
+<p class="meta">関連操作・配置の区分: 現行実装 / 提案。この区分を上記の要件判断へ転記していません。</p>
+<section class="panel" >
+<h2>この要件が関係する操作</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-001-STAFF · SCR-001</span>
+<h3>
+<a href="../operations/OP-001-STAFF.html?context=req-COMMON-CONTEXT-001#OP-001-STAFF" >職員マスタ検索</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>最新の4主ボタンから対象画面へ移動する。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-001-ATTENDANCE · SCR-001</span>
+<h3>
+<a href="../operations/OP-001-ATTENDANCE.html?context=req-COMMON-CONTEXT-001#OP-001-ATTENDANCE" >勤務時間報告</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>最新の4主ボタンから対象画面へ移動する。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-001-RATES · SCR-001</span>
+<h3>
+<a href="../operations/OP-001-RATES.html?context=req-COMMON-CONTEXT-001#OP-001-RATES" >期末勤勉支給率登録</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>最新の4主ボタンから対象画面へ移動する。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-001-MAINTENANCE · SCR-001</span>
+<h3>
+<a href="../operations/OP-001-MAINTENANCE.html?context=req-COMMON-CONTEXT-001#OP-001-MAINTENANCE" >メンテナンス</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>最新の4主ボタンから対象画面へ移動する。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-002-HOME · SCR-002</span>
+<h3>
+<a href="../operations/OP-002-HOME.html?context=req-COMMON-CONTEXT-001#OP-002-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-003-HOME · SCR-003</span>
+<h3>
+<a href="../operations/OP-003-HOME.html?context=req-COMMON-CONTEXT-001#OP-003-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-004-HOME · SCR-004</span>
+<h3>
+<a href="../operations/OP-004-HOME.html?context=req-COMMON-CONTEXT-001#OP-004-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-005-HOME · SCR-005</span>
+<h3>
+<a href="../operations/OP-005-HOME.html?context=req-COMMON-CONTEXT-001#OP-005-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-006-HOME · SCR-006</span>
+<h3>
+<a href="../operations/OP-006-HOME.html?context=req-COMMON-CONTEXT-001#OP-006-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag ">現行実装</span>
+<p>ログイン主体を保持してホームへ戻る。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-HOME · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-HOME.html?context=req-COMMON-CONTEXT-001#OP-JLINK-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>ホームへ戻る。未実行出力対象やA/Mの保存・破棄方法は詳細未決。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-IMPORT-HOME · FUT-IMPORT</span>
+<h3>
+<a href="../operations/OP-IMPORT-HOME.html?context=req-COMMON-CONTEXT-001#OP-IMPORT-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>E一括取込画面からホームへ戻る。実行済み行の取込を巻き戻さない。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-007-HOME · SCR-007</span>
+<h3>
+<a href="../operations/OP-007-HOME.html?context=req-COMMON-CONTEXT-001#OP-007-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>レビュー用のホームへの復路。差額確定・回収実績を書き換えない。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-POC-HOME · CUR-IMPORT-POC</span>
+<h3>
+<a href="../operations/OP-POC-HOME.html?context=req-COMMON-CONTEXT-001#OP-POC-HOME" >ホームへ戻る</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>レビュー画面からホームへ戻る境界リンク。現行PoCの実際の復路部品は未照合。</p>
+<div class="meta">担当: ログイン利用者</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>関連する章・業務・画面</h2>
+<h3>標準の章・節</h3>
+<div class="chips">
+<a href="../sections/2.2.3.html#section-2.2.3" >2.2.3</a>
+</div>
+<h3 style="margin-top:18px">業務</h3>
+<div class="chips">
+</div>
+<h3 style="margin-top:18px">画面</h3>
+<div class="chips">
+</div>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>

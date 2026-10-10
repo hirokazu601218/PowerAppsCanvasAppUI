@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-10T13:47:01.472Z",
+  "status": "NOT_RUN",
+  "method": "Executable existence only; no browser, app, or iPhone operation performed",
+  "browsers": {
+    "chromium": {
+      "executable": "/root/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome",
+      "exists": false
+    },
+    "firefox": {
+      "executable": "/root/.cache/ms-playwright/firefox-1538/firefox/firefox",
+      "exists": false
+    },
+    "webkit": {
+      "executable": "/root/.cache/ms-playwright/webkit-2336/pw_run.sh",
+      "exists": false
+    }
+  }
+}

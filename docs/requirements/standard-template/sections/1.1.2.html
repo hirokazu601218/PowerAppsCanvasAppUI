@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="非常勤給与アプリの要件定義レビュー。DS120の章、業務、画面、操作、出典を相互参照。Markdownが正本。">
+<title>1.1.2 業務フロー | 非常勤給与 要件定義</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<script src="../assets/portal.js" defer>
+</script>
+<script src="../assets/context.js" data-portal-root="../" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="masthead">
+<div class="masthead-inner">
+<a href="../index.html" class="brand">非常勤給与アプリ<small>要件定義・業務レビュー</small>
+</a>
+<div class="release">DOT-002 / レビュー版<br>2026-10-10 · Markdownが正本</div>
+</div>
+</header>
+<nav class="topnav" aria-label="主要な資料">
+<div>
+<a href="../index.html" >入口</a>
+<a href="../journeys.html" >業務から読む</a>
+<a href="../screens/index.html" >画面一覧</a>
+<a href="../chapters.html" aria-current="page">標準の章立て</a>
+<a href="../requirements/index.html" >要件ID・操作</a>
+<a href="../open-items.html" >要件未設定</a>
+<a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</nav>
+<main id="main" class="wrap">
+<nav class="breadcrumbs" aria-label="パンくず">
+<span>
+<a href="../index.html" >要件定義</a>
+</span>
+<span>
+<a href="../chapters.html" >標準の章立て</a>
+</span>
+<span>
+<a href="1.1.html#section-1.1" >1.1 業務実施手順</a>
+</span>
+<span aria-current="page">1.1.2 業務フロー</span>
+</nav>
+<a class="context-return" data-context-return href="../chapters.html">← 標準の章立てへ戻る</a>
+<div>
+<span class="eyebrow">DS-120 / 原本 1.1.2</span>
+<h1 id="section-1.1.2">1.1.2 業務フロー</h1>
+<dl class="status-grid">
+<div>
+<dt>記載の充足</dt>
+<dd>記載済み</dd>
+</div>
+<div>
+<dt>要件の判断</dt>
+<dd>個別出典を参照</dd>
+</div>
+<div>
+<dt>実装の状態</dt>
+<dd>この資料では未判定</dd>
+</div>
+<div>
+<dt>実機の検証</dt>
+<dd>本改訂では未実施</dd>
+</div>
+</dl>
+<section class="panel" >
+<h2>現在の要件</h2>
+<p class="lead">給与情報を登録・確認し、認定済み通勤と報告済み勤怠等により計算する。Excelを人給へ渡し、戻り給与簿CSVと最新版の計算結果を照合する。差分を訂正して再照合し、差分ゼロで給与班が確定、支払い済みを記録する。支払済みの誤りは別の追給・返納で扱う。</p>
+</section>
+<section class="panel" >
+<h2>操作条件まで確認する</h2>
+<p class="meta">関連する既存操作モデルの具体内容です。下位仕様や画面配置が提案の場合は、その区分を維持しています。</p>
+<div class="card-grid two">
+<article class="card">
+<span class="number">OP-E-CONFIRM · SCR-002</span>
+<h3>
+<a href="../operations/OP-E-CONFIRM.html?context=section-1.1.2#OP-E-CONFIRM" >給与情報を確定・再確定</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>給与班が対象・内容を確認して確定する。訂正後も同じ確認待ちから再確定し、影響する未払い結果を再計算・再照合へ。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-PAY-CALCULATE · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-PAY-CALCULATE.html?context=section-1.1.2#OP-PAY-CALCULATE" >給与を計算・再計算</a>
+</h3>
+<span class="tag purple">提案</span>
+<p>給与班が計算版を実行。複数所属の実績は職員ごとに集計し、結果と使用条件・単価・率・入力値を版別に保持する。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+<article class="card">
+<span class="number">OP-JLINK-CONFIRM · FUT-JLINK</span>
+<h3>
+<a href="../operations/OP-JLINK-CONFIRM.html?context=section-1.1.2#OP-JLINK-CONFIRM" >給与班が支給回を確定</a>
+</h3>
+<span class="tag ">確定改修要件</span>
+<p>給与班が確定ボタンで確定する。確認ダイアログは出さない。ゼロだけで自動確定しない。</p>
+<div class="meta">担当: 会計課給与班</div>
+</article>
+</div>
+</section>
+<section class="panel" >
+<h2>関連する業務の流れ</h2>
+<div class="card-grid two">
+<article class="card">
+<span class="number">WF-01</span>
+<h3>
+<a href="../workflows/WF-01.html?context=section-1.1.2#WF-01" >職員検索・編集・画面往復</a>
+</h3>
+<p>ホームから職員検索 → 保存済み読取り、または移動取消</p>
+<div class="meta">ログイン利用者</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-02</span>
+<h3>
+<a href="../workflows/WF-02.html?context=section-1.1.2#WF-02" >A～D 採用候補の受渡し</a>
+</h3>
+<p>通常職員の初任給確定、または調査員のC開始 → 同じ候補に発行番号を反映</p>
+<div class="meta">秘書課・前工程担当・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-03</span>
+<h3>
+<a href="../workflows/WF-03.html?context=section-1.1.2#WF-03" >A～D 決裁後変更・採用取消</a>
+</h3>
+<p>前工程で変更または取消 → 再確定、または履歴を残して計算除外</p>
+<div class="meta">秘書課・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-04</span>
+<h3>
+<a href="../workflows/WF-04.html?context=section-1.1.2#WF-04" >E Excel一括取込と行別判断</a>
+</h3>
+<p>ホームのデータ一括取込み → 確認待ち候補と行別結果</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-05</span>
+<h3>
+<a href="../workflows/WF-05.html?context=section-1.1.2#WF-05" >E 条件・控除の確認と訂正</a>
+</h3>
+<p>新規・実際変更・誤登録訂正 → 給与班確定後の未払い再計算</p>
+<div class="meta">局担当者・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-06</span>
+<h3>
+<a href="../workflows/WF-06.html?context=section-1.1.2#WF-06" >F 通勤届の提出・差戻し・認定</a>
+</h3>
+<p>局担当の通勤届入力 → 認定済み情報を計算が直接参照</p>
+<div class="meta">局担当者・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-07</span>
+<h3>
+<a href="../workflows/WF-07.html?context=section-1.1.2#WF-07" >F 変更認定・不支給・期間終了</a>
+</h3>
+<p>通勤認定後の事情変更 → 新認定、一時不支給または期間終了</p>
+<div class="meta">局担当者・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-08</span>
+<h3>
+<a href="../workflows/WF-08.html?context=section-1.1.2#WF-08" >F 通勤認定簿・別タブPDF</a>
+</h3>
+<p>通勤タブで認定を選択 → A4横2ページを1PDFとして保存</p>
+<div class="meta">給与班・局担当者</div>
+<span class="tag ">現行実装</span>
+</article>
+<article class="card">
+<span class="number">WF-09</span>
+<h3>
+<a href="../workflows/WF-09.html?context=section-1.1.2#WF-09" >G 外部機関の決定結果登録</a>
+</h3>
+<p>外部で手続きし決定結果を受領 → 確定した決定結果を管理・計算へ利用</p>
+<div class="meta">担当局・給与班・外部機関</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-10</span>
+<h3>
+<a href="../workflows/WF-10.html?context=section-1.1.2#WF-10" >勤務時間報告・取込とロック</a>
+</h3>
+<p>所属×勤務月の入力中報告 → 報告済み、または不完全隔離から復旧</p>
+<div class="meta">局担当者・給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-11</span>
+<h3>
+<a href="../workflows/WF-11.html?context=section-1.1.2#WF-11" >期末・勤勉率の登録</a>
+</h3>
+<p>職員と支給対象期間を選択 → 別々の率を計算根拠へ</p>
+<div class="meta">会計課給与班（配置案）</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-12</span>
+<h3>
+<a href="../workflows/WF-12.html?context=section-1.1.2#WF-12" >給与計算から確定・支払記録</a>
+</h3>
+<p>確認済み元データと支給回 → 最新差分ゼロ確定・支払い済み記録</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-13</span>
+<h3>
+<a href="../workflows/WF-13.html?context=section-1.1.2#WF-13" >人給出力・照合・差分再出力</a>
+</h3>
+<p>人給連携の支給回選択 → 差分訂正ループまたは支給回確定</p>
+<div class="meta">会計課給与班</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-14</span>
+<h3>
+<a href="../workflows/WF-14.html?context=section-1.1.2#WF-14" >遡及差額・追給・分割返納</a>
+</h3>
+<p>過去支払い後の誤り・遡及改定 → 別追給または回収実績・残額管理</p>
+<div class="meta">給与班・業務マスタ管理者</div>
+<span class="tag ">確定改修要件</span>
+</article>
+<article class="card">
+<span class="number">WF-15</span>
+<h3>
+<a href="../workflows/WF-15.html?context=section-1.1.2#WF-15" >業務マスタ・権限と有効期間</a>
+</h3>
+<p>管理権限と改定対象を確認 → 旧版保持・新期間適用・必要なら差額へ</p>
+<div class="meta">業務マスタ管理者</div>
+<span class="tag ">確定改修要件</span>
+</article>
+</div>
+</section>
+<details>
+<summary>標準テンプレートの補助項目・記入要領 <small>案件の要件とは別</small>
+</summary>
+<div>
+<p class="notice info">次は公式テンプレートが記入を促す項目です。例文・例示値・推奨条件を、そのまま本アプリの確定要件にしていません。</p>
+<h3>図で示す対象</h3>
+<ul>
+<li id="template-figure-01">図 1　業務フロー（現行）の定義例<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+<li id="template-figure-02">図 2　業務フロー（将来）の定義例<p class="meta">原本は例示図です。案件の図に読み替えず、必要な図の論点のみ参照します。</p>
+</li>
+</ul>
+<p>
+<a href="../template-details.html" >テンプレート照合の全体を見る</a>
+</p>
+</div>
+</details>
+<section class="panel" >
+<h2>根拠資料と、この節への戻り</h2>
+<p class="meta">資料は読みやすい別ページで開きます。冒頭の「元の要件へ戻る」でこの節へ戻れます。JavaScriptなしでも資料側の参照元一覧から戻れます。</p>
+<ul class="list">
+<li>
+<a href="../sources/docs--requirements--payroll-confirmed-20261007.html?context=section-1.1.2" data-keep-context>payroll-confirmed-20261007.md</a>
+<div class="meta">docs/requirements/payroll-confirmed-20261007.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--payroll-interface-decisions-20261008.html?context=section-1.1.2" data-keep-context>payroll-interface-decisions-20261008.md</a>
+<div class="meta">docs/requirements/payroll-interface-decisions-20261008.md</div>
+</li>
+<li>
+<a href="../sources/docs--requirements--business-requirements.html?context=section-1.1.2" data-keep-context>business-requirements.md</a>
+<div class="meta">docs/requirements/business-requirements.md</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<footer>
+<div>DOT-002 / PAY-REQ-HTML-REWORK-001 · 非正本・確認用。要件の確定、実装、実機検証、業務受入は別の判断です。<br>GitHub資料の基準: PR #136 4928decc67fd。レビューの業務・画面モデル: 4928decc67fd / 2026-10-10。DOT-001の承認A・引継ぎLive38観測を反映。正式P/Hはrun 38049776822で採取済み（旧v25 guardでrun FAIL）。選定自動E2E・最終照合は未実施です。 <a href="../sources.html" >出典と版</a> · <a href="../reading-guide.html" >閲覧方法</a>
+</div>
+</footer>
+</body>
+</html>
