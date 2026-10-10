@@ -1,5 +1,13 @@
 # 現在の作業と読取り対象
 
+## 2026-10-10 DOT-001 文書・HTML整合（検証継続）
+
+- 最新依頼：Work-prompt.txtに基づく台帳・文書・HTML・記録とDraft PR。アプリ・データ・フローは並行変更しない。開始15:22 UTC（00:22 JST翌日）、60分期限16:22 UTC。
+- 読取り対象：[依頼台帳](../dot/request-list.md)、PAY-IMPLEMENT-001要求／選定、各文書DOT-001節、[今回記録](../../records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md)。
+- S‴保存、引継ぎLive38観測・公式Export比較・A承認を記録。下のr6未承認／Live36等は当時の履歴であり最新状態ではない。
+- 正式P/Hは未取得。GitHub Actions実行画面が未サインインでreadback未実施。最終照合も前提不足で未実施。偽P/H・PASSを作らない。
+- 関連テスト：文書・HTML静的検査。引継ぎの手動14 UI＋1ソース、ローカル94＋配置3、公開Player観測、名前付き自動15、PR選定19を別扱い。Issue #51・D-07・制度式・実効認可は残件。
+
 ## 2026-10-10 r6a 子配置の読戻し整合
 
 - A案承認とS″固定後、Studioはroot StartをYAML省略し、直下4子のSetByContainerを明示した。root1件は既定値省略の直接証拠あり。子4件はv36 DynamicProperties.Stretchからの実効変更で、同値と扱わない。
