@@ -30,20 +30,29 @@
     "SD-06の旧バッチ削除という契約説明を、現行フローどおり旧バッチ保持・不完全ステージング未活性化へ訂正する。ランタイムフローは変更しない。",
     "r5: 控除枠のHeightを11子の実Height＋10gap＋上下paddingで導出し、1366/900/1920幅で最終行3欄の全文が本文scrollで到達する。200%実ブラウザズームは幅縮小モデルと区別して観測する。"
   ],
-  "implementation_status": "r5 is saved draft37 with normal-width passes; actual200% and450 reflow failed. r6 is a local unapproved UI-exception proposal, not current accepted requirements.",
+  "implementation_status": "Parent reports A approval and S-double-prime freeze. Current Studio includes four automatically changed child alignment properties; r6a makes these explicit. New source freeze and all required runtime gates remain pending.",
   "r6_proposal": {
-    "approval": "PENDING_OWNER",
+    "approval": "A_OWNER_APPROVED_REPORTED_BY_PARENT",
     "record": "records/changes/pay-implement-001/manual-20261010-layout-r6/PROPOSAL.md",
     "exceptions": [
       "When outer content width is below750, or ordinary residual body height is below body padding plus128, header/targets/summary scroll with the root instead of staying fixed.",
       "Content minimum width750 and deliberate horizontal panning replace compression at the narrowest widths."
     ],
-    "unchanged": "Current approved acceptance_criteria and requirements remain in force until explicit owner approval; no claim they are satisfied by this exception.",
+    "unchanged": "Business formulas and ordinary-size fixed layout remain unchanged. Historical pre-exception acceptance_criteria remain as provenance; A exceptions and proposed_acceptance govern the approved A runtime checks. Canonical post-publication documentation remains pending.",
     "proposed_acceptance": [
       "Ordinary900/1366/1920 retains fixed summary and body-only scrolling.",
       "Narrow450/683, real200%, and wide-short viewports preserve all information and actions, with user-operable root scrolling and no internal text clipping.",
       "100%→200%→100% and collapse/expand retain data state, restore normal fixed layout and reset unneeded scroll offsets through correct geometry.",
       "All14 prior named cases and added short-layout case are rerun against the approved source; actual zoom is never inferred from a CSS-width model."
     ]
+  },
+  "r6a_source_clarification": {
+    "base_source_commit": "0c0c9f8c4141a898d0ea64cccbe0aefe3a9258fe",
+    "input_property_changes": 9,
+    "automatic_child_alignment_changes": 4,
+    "effective_layout_properties_from_r5": 13,
+    "runtime_state": "Studio formula bars report Start and four SetByContainer; full behavior gates still pending",
+    "readback_rule": "Only missing root LayoutAlignItems.Start may normalize; four children must explicitly match SetByContainer",
+    "evidence": "records/changes/pay-implement-001/manual-20261010-layout-r6a/"
   }
 }

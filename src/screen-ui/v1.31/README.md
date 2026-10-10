@@ -1,8 +1,12 @@
+# v1.31 PAY-IMPLEMENT-001: r6a 明示的な子配置への読戻し整合
+
+親報告によりA案は承認済み。r6a公開ソース固定と実機ゲート完了までは公開しない。r6入力9項目に加え、Studioが4子のAlignInContainerをSetByContainerへ連動変更したため、実効変更は13項目。v36のDynamicPropertiesにはStretchがあり、4件を同値正規化とは扱わない。詳細と厳密読戻し規則は[追補記録](../../../records/changes/pay-implement-001/manual-20261010-layout-r6a/README.md)。
+
 # v1.31 PAY-IMPLEMENT-001: r6 未承認レスポンシブ提案
 
-**r6は未承認提案。適用・公開しない。** r5は保存37/Live36、通常900/1366/1920は末尾到達PASSだが実200%と450幅の文字切れはFAIL。現行要件が対象・summaryの固定を明記するため、狭い／短い画面だけrootスクロールへ退避する例外は本人確認待ち。通常幅の固定と業務式は維持する。詳細は[提案記録](../../../records/changes/pay-implement-001/manual-20261010-layout-r6/PROPOSAL.md)。
+**以下は当初r6提案時点の履歴。現状は上記追補を優先する。** r5は保存37/Live36、通常900/1366/1920は末尾到達PASSだが実200%と450幅の文字切れはFAIL。現行要件が対象・summaryの固定を明記するため、狭い／短い画面だけrootスクロールへ退避する例外は本人確認待ち。通常幅の固定と業務式は維持する。詳細は[提案記録](../../../records/changes/pay-implement-001/manual-20261010-layout-r6/PROPOSAL.md)。
 
-## r6候補の9プロパティ
+## 履歴：当初r6候補の9入力プロパティ
 
 - root: AlignItems Start、OverflowX Scroll、幅750未満または残り本文高が上下余白＋128未満の時だけOverflowY Scroll。
 - header/targets/summary/body: Width Max(750,Parent.Width)。外枠の共通比率は変更しない。

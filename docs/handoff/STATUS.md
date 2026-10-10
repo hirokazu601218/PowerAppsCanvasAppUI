@@ -1,5 +1,11 @@
 # 現在の作業と読取り対象
 
+## 2026-10-10 r6a 子配置の読戻し整合
+
+- A案承認とS″固定後、Studioはroot StartをYAML省略し、直下4子のSetByContainerを明示した。root1件は既定値省略の直接証拠あり。子4件はv36 DynamicProperties.Stretchからの実効変更で、同値と扱わない。
+- r6aは4子の継承をソースへ明示するだけ。9入力＋4自動変更の13項目、業務式変更0。外部追加編集は不要。公開ソース再固定、全実機・200%・キーボード・Playerゲートは別途必要。
+- 読取り対象：records/changes/pay-implement-001/manual-20261010-layout-r6a/、v1.31 manifest、test_payroll_layout_r6.py、test_payroll_readback_normalization.py。
+
 ## 2026-10-10 r6 狭幅・短画面高レイアウトの未承認提案
 
 - r5 source S′ `4f7b5c8df63a198e6d4c121d7135f3305f36f8f1` は同試験アプリ保存37へ適用され、2画面読戻し一致・Checker0・通常900/1366/1920幅の末尾全文到達を確認。Live36のまま公開停止。

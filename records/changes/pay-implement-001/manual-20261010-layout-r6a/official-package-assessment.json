@@ -1,0 +1,233 @@
+{
+  "status": "SOURCE_CLARIFICATION_REQUIRED; NOT_NINE_PROPERTY_SEMANTIC_EQUALITY",
+  "reported_candidate_commit": "0c0c9f8c4141a898d0ea64cccbe0aefe3a9258fe",
+  "official_v36_msapp_sha256": "f3af186814e138f60fe8e2848ccecdafd7db4af6d1454a852be815ca5e33266c",
+  "candidate_paste_sha256": "4f202f405b6d6554132ca1706cfdf9abf3e50faeb60756220edbcb2ae0b52b19",
+  "actual_r6_readback_sha256": "07fea705cc9caa9bd807e955e7f9f22559c944b6b2735182bcd7f902a407d07f",
+  "control_count": 86,
+  "literal_property_differences": [
+    {
+      "control": "conscrPayrollRoot",
+      "property": "LayoutAlignItems",
+      "candidate": "=LayoutAlignItems.Start",
+      "readback": null
+    },
+    {
+      "control": "conscrPayrollHeader",
+      "property": "AlignInContainer",
+      "candidate": null,
+      "readback": "=AlignInContainer.SetByContainer"
+    },
+    {
+      "control": "conPayrollTargets",
+      "property": "AlignInContainer",
+      "candidate": null,
+      "readback": "=AlignInContainer.SetByContainer"
+    },
+    {
+      "control": "conPaySummary",
+      "property": "AlignInContainer",
+      "candidate": null,
+      "readback": "=AlignInContainer.SetByContainer"
+    },
+    {
+      "control": "conPayBody",
+      "property": "AlignInContainer",
+      "candidate": null,
+      "readback": "=AlignInContainer.SetByContainer"
+    }
+  ],
+  "root_start_omission_examples": [
+    {
+      "control": "conStaffMaster111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conHeader111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conSearchSidebar111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conLeftScroll111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conLeftSurface111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conRightScroll111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conRightSurface111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conStaffActions111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conPerson111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conPayrollLight111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conPayrollScroll111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conPayrollGrid111",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conHomeActions",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conHomeDemo",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conBonusContent",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conMaintenanceBody",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conAttendanceMonthSettings",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conAttendanceImportOverlay",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conAttendanceImportDialog",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conAttendanceConfirmOverlay",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conAttendanceConfirmDialog",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conAttendanceFormalSidebar",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conAttendanceFormalReport",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conAttendanceInlineToolbar",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    },
+    {
+      "control": "conAttendanceFormalColumns",
+      "template": "groupContainer",
+      "raw_rule": "LayoutAlignItems.Start",
+      "source_property": null
+    }
+  ],
+  "group_container_alignment_counts": {
+    "raw_Stretch_source_omitted": 43,
+    "raw_Start_source_explicit": 2,
+    "raw_SetByContainer": 0
+  },
+  "direct_children_previous_rule_evidence": [
+    {
+      "control": "conscrPayrollHeader",
+      "template": "groupContainer",
+      "raw_rule": "AlignInContainer.Stretch",
+      "source_property": null,
+      "rule_provider": "Unknown"
+    },
+    {
+      "control": "conPayrollTargets",
+      "template": "groupContainer",
+      "raw_rule": "AlignInContainer.Stretch",
+      "source_property": null,
+      "rule_provider": "Unknown"
+    },
+    {
+      "control": "conPaySummary",
+      "template": "groupContainer",
+      "raw_rule": "AlignInContainer.Stretch",
+      "source_property": null,
+      "rule_provider": "Unknown"
+    },
+    {
+      "control": "conPayBody",
+      "template": "groupContainer",
+      "raw_rule": "AlignInContainer.Stretch",
+      "source_property": null,
+      "rule_provider": "Unknown"
+    }
+  ],
+  "explicit_four_child_alignment_plus_root_Start_omission_normalization_equals_full_actual_root": true,
+  "minimal_clarification": "Add explicit AlignInContainer.SetByContainer to four children; count13 proposed changes vs r5, retain explicit root LayoutAlignItems.Start.",
+  "current_formula_bar_evidence": "Parent reports current root Start and all four SetByContainer; not independently observed by this reviewer.",
+  "runtime_verification": "NOT_PERFORMED",
+  "external_mutations": [],
+  "candidate_source_mutations": []
+}

@@ -315,5 +315,14 @@
       "test_file": "e2e/current-app/state-retention.test.ts"
     }
   ],
-  "proposal_status": "R6_UI_EXCEPTION_PENDING_OWNER_APPROVAL; selection is proposed and must not be dispatched before approval"
+  "proposal_status": "A_OWNER_APPROVED_REPORTED_BY_PARENT; R6A_SOURCE_FREEZE_AND_RUNTIME_GATES_PENDING",
+  "r6a_source_clarification": {
+    "base_source_commit": "0c0c9f8c4141a898d0ea64cccbe0aefe3a9258fe",
+    "input_property_changes": 9,
+    "automatic_child_alignment_changes": 4,
+    "effective_layout_properties_from_r5": 13,
+    "runtime_state": "Studio formula bars report Start and four SetByContainer; full behavior gates still pending",
+    "readback_rule": "Only missing root LayoutAlignItems.Start may normalize; four children must explicitly match SetByContainer",
+    "evidence": "records/changes/pay-implement-001/manual-20261010-layout-r6a/"
+  }
 }

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "normalized": [
+    "conscrPayrollRoot.LayoutAlignItems: omitted -> =LayoutAlignItems.Start"
+  ],
+  "other_differences": 0,
+  "expected_sha256": "92f657a8483bc617e20c497e1da74a1b56407ed9ec0171b7c49b35ce87868740",
+  "actual_sha256": "07fea705cc9caa9bd807e955e7f9f22559c944b6b2735182bcd7f902a407d07f"
+}

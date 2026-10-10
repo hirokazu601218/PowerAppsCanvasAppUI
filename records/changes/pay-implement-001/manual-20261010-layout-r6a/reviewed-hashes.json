@@ -1,0 +1,9 @@
+{
+  "src/screen-ui/v1.31/payroll-root.pa.yaml": "0f067aef17bf575edb2db3db79c2a3cf67fb1250e232827d76706af1c641eb0c",
+  "src/screen-ui/v1.31/payroll-root.paste.yaml": "00acc856df0baa7d81f84dfe658a05ad32a7b0a1257c1a30371b616620d48555",
+  "src/screen-ui/v1.31/manifest.json": "f6611439418fd4ff0852171554c8c2935f828654b7117eb75f963ecd7d976a66",
+  "tests/automation/test_payroll_layout_r6.py": "0fda2ec54332d1cdacb283191f0dc7e117ec3e48993ec93a8cd62e76b6e83db5",
+  "tests/automation/test_payroll_readback_normalization.py": "35ec2c89b282e586ba9729546896039d0e8d84752fe5cbce54e0fa7b39f50e75",
+  "scripts/testing/check_payroll_readback.py": "104bdd612ac818f2d6c2150338f63b4a83bfc46eb26c7b6041759dce168ac36a",
+  "records/changes/pay-implement-001/manual-20261010-layout-r6a/delta.json": "5ddf6fd71d3dad6521ab926ab99f5dc0a2534aadf062d5fc118691ca501c2087"
+}

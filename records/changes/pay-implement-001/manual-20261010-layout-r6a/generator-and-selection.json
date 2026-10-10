@@ -1,0 +1,10 @@
+{
+  "generated_from": "Published v36 exact 10-file guarded source; generated screens remain private",
+  "source_control_count": 351,
+  "source_delta_entries_from_v36": 28,
+  "unapproved_changes": 0,
+  "full_payroll_expected_sha256": "92f657a8483bc617e20c497e1da74a1b56407ed9ec0171b7c49b35ce87868740",
+  "selection_case_count": 15,
+  "selection_source_paths": 22,
+  "runtime_behavior_test_claim": false
+}

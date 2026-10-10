@@ -6,7 +6,7 @@
     "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
     "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
   },
-  "status": "PROPOSED_UI_EXCEPTION_NOT_APPROVED",
+  "status": "R6A_SOURCE_CLARIFICATION_PENDING_FREEZE",
   "baseline": {
     "git_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
     "snapshot": "2026-10-10 official Export of published v36; all 10 Src files byte-identical to reviewed v35/r4 baseline",
@@ -465,11 +465,95 @@
         "UT-STATE-SUMMARY-REFLOW-001",
         "UT-STATE-SUMMARY-SHORT-001"
       ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conscrPayrollHeader",
+      "property": "AlignInContainer",
+      "before_absent": true,
+      "after": "=AlignInContainer.SetByContainer",
+      "v36_package_dynamic_before": "AlignInContainer.Stretch",
+      "classification": "Studio automatic effective child-alignment change, now explicit; not claimed default-equivalent",
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conPayrollTargets",
+      "property": "AlignInContainer",
+      "before_absent": true,
+      "after": "=AlignInContainer.SetByContainer",
+      "v36_package_dynamic_before": "AlignInContainer.Stretch",
+      "classification": "Studio automatic effective child-alignment change, now explicit; not claimed default-equivalent",
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conPaySummary",
+      "property": "AlignInContainer",
+      "before_absent": true,
+      "after": "=AlignInContainer.SetByContainer",
+      "v36_package_dynamic_before": "AlignInContainer.Stretch",
+      "classification": "Studio automatic effective child-alignment change, now explicit; not claimed default-equivalent",
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
+    },
+    {
+      "screen": "scrPayroll",
+      "control": "conPayBody",
+      "property": "AlignInContainer",
+      "before_absent": true,
+      "after": "=AlignInContainer.SetByContainer",
+      "v36_package_dynamic_before": "AlignInContainer.Stretch",
+      "classification": "Studio automatic effective child-alignment change, now explicit; not claimed default-equivalent",
+      "requirement_ids": [
+        "SCR005-UI-004",
+        "SCR005-UI-015",
+        "COMMON-LAYOUT-001"
+      ],
+      "unit_case_ids": [
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-STATE-SUMMARY-WIDE-001",
+        "UT-STATE-SUMMARY-REFLOW-001",
+        "UT-STATE-SUMMARY-SHORT-001"
+      ]
     }
   ],
   "runtime_tests": "NOT_RUN_R6",
   "rollback": "Capture current exact control properties and structure before editing. On failure restore only changed controls/properties in this same App ID, then save/read back and recheck Player. Never use legacy app deployment or import workflows.",
-  "candidate_revision": "r6_narrow_or_low_height_scroll_proposal",
+  "candidate_revision": "r6a_explicit_child_inheritance",
   "prepublication_r4_evidence": {
     "source_commit": "422256dbe14cbbcf8cde1b6334f7924a7483c5cc",
     "saved_draft_version": "37",
@@ -480,11 +564,13 @@
     "r5_applied": false
   },
   "proposal": {
-    "approval_status": "PENDING_OWNER_UI_EXCEPTION_AND_EXACT_PACKAGE",
+    "approval_status": "A_OWNER_APPROVED_REPORTED_BY_ROOT; R6A_PUBLIC_SOURCE_FREEZE_PENDING",
     "base_source_commit": "4f7b5c8df63a198e6d4c121d7135f3305f36f8f1",
-    "exception": "Only when content width<750 or residual body height<32+128, summary/targets/header scroll with the root; horizontal panning preserves a minimum readable content width. Current approved fixed-summary requirements remain unchanged pending explicit approval.",
-    "properties_changed_from_r5": 9,
+    "exception": "Only when content width<750 or residual body height<32+128, summary/targets/header scroll with the root; horizontal panning preserves a minimum readable content width. Parent reports owner approval of A; canonical post-publication alignment and all runtime gates remain pending.",
+    "properties_changed_from_r5": 13,
     "business_formula_changes": 0,
-    "new_controls": 0
+    "new_controls": 0,
+    "automatic_child_alignment_changes": 4,
+    "source_clarification_base_commit": "0c0c9f8c4141a898d0ea64cccbe0aefe3a9258fe"
   }
 }

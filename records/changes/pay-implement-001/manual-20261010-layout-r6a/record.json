@@ -1,0 +1,26 @@
+{
+  "change_id": "pay-implement-001",
+  "run_id": "manual-20261010-layout-r6a",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T07:56:00Z",
+  "source_commit": "0c0c9f8c4141a898d0ea64cccbe0aefe3a9258fe",
+  "version": "r6a local source clarification; current r6 UI readback, publication pending",
+  "checks": {
+    "source_property_delta_from_S_double_prime": 4,
+    "effective_layout_properties_from_r5": 13,
+    "actual_full_payroll_readback": "PASS except one evidenced root Start omission",
+    "local_automation": "94 PASS",
+    "governance_unit": "3 PASS",
+    "runtime_behavior_gates": "PENDING; see r6 RUNTIME-GATES.md"
+  },
+  "source_input_observations": {
+    "reported_by": "exclusive browser operator",
+    "observed_utc": "2026-10-10T07:52:00Z",
+    "root_LayoutAlignItems": "LayoutAlignItems.Start",
+    "four_children_AlignInContainer": "AlignInContainer.SetByContainer",
+    "checker_errors": 0,
+    "staff_screen": "reported raw byte equal r5",
+    "save_state": "Studio may auto-save; no publication claim"
+  }
+}

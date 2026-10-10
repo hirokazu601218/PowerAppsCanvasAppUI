@@ -1,4 +1,4 @@
-"""Unapproved r6 UI proposal source/model checks; never a Canvas runtime result."""
+"""r6a explicit child-inheritance source/model checks; never a Canvas runtime result."""
 import copy
 import hashlib
 import itertools
@@ -9,7 +9,7 @@ import unittest
 import yaml
 ROOT = Path(__file__).resolve().parents[2]
 SRC = ROOT / 'src/screen-ui/v1.31'
-RECORD = ROOT / 'records/changes/pay-implement-001/manual-20261010-layout-r6'
+RECORD = ROOT / 'records/changes/pay-implement-001/manual-20261010-layout-r6a'
 DIRECT = ['conscrPayrollHeader', 'conPayrollTargets', 'conPaySummary', 'conPayBody']
 BODY = ['lblPayPrototype', 'conPayActions', 'lblPayState', 'conPayGrossHeading', 'conPayEarnings', 'conPayDeductionHeading', 'conPayDeductions']
 def index(root):
@@ -43,10 +43,10 @@ class LayoutR6(unittest.TestCase):
     def setUp(self):
         self.root=yaml.safe_load((SRC/'payroll-root.paste.yaml').read_text())[0]['conscrPayrollRoot']
         self.nodes=index(self.root)
-        self.delta=json.loads((RECORD/'proposal-delta.json').read_text())
+        self.delta=json.loads((RECORD/'delta.json').read_text())
 
-    def test_exact_nine_properties_and_no_controls_or_structure_change(self):
-        self.assertEqual(len(self.delta['properties']),9)
+    def test_exact_thirteen_properties_and_no_controls_or_structure_change(self):
+        self.assertEqual(len(self.delta['properties']),13)
         self.assertEqual(len(self.nodes),86)
         reverse=copy.deepcopy(self.root); before=index(reverse)
         for entry in self.delta['properties']:
@@ -56,11 +56,17 @@ class LayoutR6(unittest.TestCase):
         self.assertEqual(semantic(reverse),self.delta['r5_source_root_sha256'])
         self.assertEqual(semantic(self.root),self.delta['r6_root_sha256'])
 
-    def test_current_approved_contract_is_not_claimed_changed(self):
-        self.assertEqual(self.delta['status'],'PROPOSAL_NOT_APPROVED')
+    def test_four_explicit_children_reverse_exactly_to_frozen_r6(self):
+        reverse=copy.deepcopy(self.root); nodes=index(reverse)
+        for name in DIRECT:
+            self.assertEqual(nodes[name]["Properties"].pop("AlignInContainer"),"=AlignInContainer.SetByContainer")
+        self.assertEqual(semantic(reverse),self.delta["r6_original_root_sha256"])
+
+    def test_source_clarification_still_requires_freeze(self):
+        self.assertEqual(self.delta['status'],'R6A_SOURCE_CLARIFICATION_PENDING_FREEZE')
         manifest=json.loads((SRC/'manifest.json').read_text())
-        self.assertEqual(manifest['status'],'PROPOSED_UI_EXCEPTION_NOT_APPROVED')
-        self.assertIn('PENDING_OWNER',manifest['proposal']['approval_status'])
+        self.assertEqual(manifest['status'],'R6A_SOURCE_CLARIFICATION_PENDING_FREEZE')
+        self.assertIn('R6A_PUBLIC_SOURCE_FREEZE_PENDING',manifest['proposal']['approval_status'])
         self.assertEqual(manifest['proposal']['business_formula_changes'],0)
 
     def test_current_r5_readback_identity_is_explicit(self):
@@ -77,6 +83,7 @@ class LayoutR6(unittest.TestCase):
         for name in DIRECT:
             self.assertEqual(self.nodes[name]['Properties']['Width'],'=Max(750,Parent.Width)')
             self.assertEqual(self.nodes[name]['Properties']['FillPortions'],'=0')
+            self.assertEqual(self.nodes[name]['Properties']['AlignInContainer'],'=AlignInContainer.SetByContainer')
 
     def test_minimum_width_is_derived_from_target_controls(self):
         expected=116+150+260+168+3*8+16+16
@@ -121,7 +128,7 @@ class LayoutR6(unittest.TestCase):
             props=self.nodes[name]['Properties']
             self.assertNotIn('Parent.Height',props.get('Height',''))
             self.assertNotIn('conPayBody.Height',props.get('Height',''))
-        allowed={'Width','Height','LayoutAlignItems','LayoutOverflowX','LayoutOverflowY'}
+        allowed={'Width','Height','LayoutAlignItems','LayoutOverflowX','LayoutOverflowY','AlignInContainer'}
         self.assertTrue(all(x['property'] in allowed for x in self.delta['properties']))
         self.assertTrue(all(x['control'] in DIRECT+['conscrPayrollRoot'] for x in self.delta['properties']))
 
