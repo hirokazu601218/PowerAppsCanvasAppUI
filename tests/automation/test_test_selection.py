@@ -87,6 +87,20 @@ class TestSelectionGate(unittest.TestCase):
         with self.assertRaisesRegex(SelectionError, 'without a changed selection record'):
             validate(self.repo, {self.source})
 
+    def test_v131_source_without_selection_fails_closed(self):
+        with self.assertRaisesRegex(SelectionError, 'without a changed selection record'):
+            validate(self.repo, {'src/screen-ui/v1.31/scrPayroll.OnVisible.fx'})
+
+    def test_v131_source_is_selected_for_postpublication(self):
+        self.source = 'src/screen-ui/v1.31/scrPayroll.OnVisible.fx'
+        source = self.repo / self.source
+        source.parent.mkdir(parents=True)
+        source.write_text('Set(varSelectedLine, Blank())\n', encoding='utf-8')
+        self.data['changes'][0]['path'] = self.source
+        self.save()
+        result = select_record(self.repo, self.record)
+        self.assertEqual(result['source_paths'], [self.source])
+
     def test_additional_changed_file_must_be_covered(self):
         with self.assertRaisesRegex(SelectionError, 'without test selection'):
             validate(self.repo, {self.source, 'src/screen-ui/v1.24/Other.pa.yaml', self.record, self.request})

@@ -1,0 +1,8 @@
+test_run_record_needs_matching_metadata (test_document_placement.RoutingTests.test_run_record_needs_matching_metadata) ... ok
+test_three_categories (test_document_placement.RoutingTests.test_three_categories) ... ok
+test_unknown_current_or_archive_is_rejected (test_document_placement.RoutingTests.test_unknown_current_or_archive_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK

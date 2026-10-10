@@ -1,0 +1,104 @@
+{
+  "status": "PASS_SOURCE_REBIND_AND_PACKAGE_METADATA_REVIEW",
+  "published_v36_msapp_sha256": "f3af186814e138f60fe8e2848ccecdafd7db4af6d1454a852be815ca5e33266c",
+  "observed_utc": "2026-10-10T01:08:28.563796+00:00",
+  "source_file_count": 10,
+  "sources": {
+    "scrStaffMasterSearch.pa.yaml": {
+      "sha256": "d97f5039b4247f105fea08cbb90f4d4569202bc7e07b569bae0d103895da0070",
+      "matches_manifest": true,
+      "equals_v35": true
+    },
+    "scrHome.pa.yaml": {
+      "sha256": "2048b533b83350f9e9498155c49e6af8cdf440a611a5922718789bf7a5705d2f",
+      "matches_manifest": true,
+      "equals_v35": true
+    },
+    "scrAttendance.pa.yaml": {
+      "sha256": "d1c785a764ae9f869cf5b2a8e17e24283e7c19398f358aa00ed4109c57017929",
+      "matches_manifest": true,
+      "equals_v35": true
+    },
+    "scrBonus.pa.yaml": {
+      "sha256": "a70230102a56edc8f2c6035375973c1201bd7ba0a2824938e0bbd34f3d2b816b",
+      "matches_manifest": true,
+      "equals_v35": true
+    },
+    "scrPayroll.pa.yaml": {
+      "sha256": "da9bf615774e75cc6f0a05a7079deef16b58de8765c6c8a43c2fbd0b1ad23678",
+      "matches_manifest": true,
+      "equals_v35": true
+    },
+    "scrMaintenance.pa.yaml": {
+      "sha256": "8eda2c59b83b26f021ef45adb62bcfd863863a9707fc68e81023d8117cca43e2",
+      "matches_manifest": true,
+      "equals_v35": true
+    },
+    "scrExcelImportPoc.pa.yaml": {
+      "sha256": "c94f5974facd393db281102613cd92eb2578f22414e8eba4244f691dd19b27b7",
+      "matches_manifest": true,
+      "equals_v35": true
+    },
+    "scrAttendanceFormal.pa.yaml": {
+      "sha256": "9590d9050c49a94f20e664d8c301a7334d6592eed945036cb5c148dae79c7597",
+      "matches_manifest": true,
+      "equals_v35": true
+    },
+    "App.pa.yaml": {
+      "sha256": "f10ea3ddcea5edd5ecfeeaae57be7785ae37a1621ffc1fc9befe834696d125d6",
+      "matches_manifest": true,
+      "equals_v35": true
+    },
+    "_EditorState.pa.yaml": {
+      "sha256": "ff06bc649a5896dc21f7c6ca08f5fed0017a90e56a0121494b4bb92bc03886bb",
+      "matches_manifest": true,
+      "equals_v35": true
+    }
+  },
+  "regenerated_wave1_screens": {
+    "scrStaffMasterSearch.pa.yaml": {
+      "sha256": "25d2c1a753cc15a436d689d34f69aaf2ec03ca7d651e2a20f7b0735baaa300f3",
+      "byte_equal_r4": true
+    },
+    "scrPayroll.pa.yaml": {
+      "sha256": "c841beab9cdc5d865c2b7e03c9613112d5f464ebc80d5526ae98092d82266ac3",
+      "byte_equal_r4": true
+    }
+  },
+  "guard_change_required": false,
+  "formula_or_structure_delta_change_required": false,
+  "package_classification": {
+    "verified_at_utc": "2026-10-10T01:09:05Z",
+    "source_yaml_files": 9,
+    "source_yaml_byte_equal": true,
+    "editor_state_byte_equal": true,
+    "canvas_manifest_status": "not present in either msapp",
+    "controls_by_name_equal_excluding_ControlUniqueId": true,
+    "ControlUniqueId_changes": 318,
+    "actual_controls_count": {
+      "v35": 372,
+      "v36": 372
+    },
+    "actual_modernButton_count": {
+      "v35": 51,
+      "v36": 51
+    },
+    "properties_modernButton_count": {
+      "v35": 52,
+      "v36": 51
+    },
+    "properties_count_interpretation": "Cached count corrected; no corresponding component deletion",
+    "data_sources_semantically_equal": true,
+    "data_sources_normalization": "Decode nested JSON strings then sort metadata object arrays by MetadataId",
+    "header_change": "LastSavedDateTimeUTC 10/07/2026 01:16:08 ->10/10/2026 01:01:23",
+    "other_properties_changed": [
+      "AnalysisLoadTime",
+      "DeserializationLoadTime",
+      "Id"
+    ],
+    "formula_changes": 0,
+    "named_structure_changes": 0,
+    "connection_changes": "No semantic DataSources differences; other unchanged entries retained",
+    "raw_artifacts_private_only": true
+  }
+}

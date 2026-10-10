@@ -298,7 +298,7 @@
       "勤務月",
       "所属部局名"
     ],
-    "replacement": "Validate every row before writing. Stage rows with a unique batch ID; switch the report active_batch_id only after all staged rows are verified, then remove superseded rows. Failures leave the old active batch visible. Reject reported reports.",
+    "replacement": "Validate every row before writing. Stage rows with a unique batch ID; switch the report active_batch_id only after all staged rows are verified, retain superseded rows without deleting them in this flow. Failures leave the old active batch visible; incomplete staging rows are not activated. Deletion of superseded or incomplete staging data rows is not implemented by this flow; temporary Excel file cleanup is separate. Reject reported reports.",
     "staff_number": "one to twelve ASCII digits in a numeric or text Excel cell; normalize by left-padding zeros to exactly twelve digits; reject blanks, non-digits, negatives and over-twelve digits",
     "zero_display": "all overtime 0 renders '0', nonzero at most 3 decimals without unnecessary trailing zeros",
     "report_period": "first and last calendar day of work_month"

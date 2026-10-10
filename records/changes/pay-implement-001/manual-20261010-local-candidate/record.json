@@ -1,0 +1,43 @@
+{
+  "change_id": "pay-implement-001",
+  "run_id": "manual-20261010-local-candidate",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T00:28:00Z",
+  "source_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+  "version": "Current published v35 baseline; v1.31 local candidate r4, not applied/published",
+  "baseline": "Official current v35 Export. All 10 Src YAML files byte-match the reviewed saved source. Raw backup is excluded from repository.",
+  "candidate_scope": [
+    "Search committed-state restoration",
+    "Per-category history retention",
+    "Payroll stale-basis guard",
+    "Fixed payroll summary",
+    "Fetch failure/error timestamp preservation"
+  ],
+  "checks": {
+    "focused_delta_tests": {
+      "status": "PASS",
+      "count": 14
+    },
+    "independent_automation_tests": {
+      "status": "PASS",
+      "count": 49,
+      "source": "Independent reviewer report"
+    },
+    "node_type_stripped_syntax": "PASS; not TypeScript type checking",
+    "current_full_source_hashes": "PASS",
+    "unapproved_control_property_changes": 0,
+    "modified_properties": 14,
+    "parent_moves": 1,
+    "control_count_unchanged": 351,
+    "studio": "NOT_RUN",
+    "player": "NOT_RUN",
+    "published_readback_after_change": "NOT_RUN"
+  },
+  "remaining": [
+    "Run Studio formula checker and preview tests before publication; selected published Player tests run after publication",
+    "Exact current editing version/no newer draft must be reconfirmed immediately before application",
+    "Live retrieval failure, requery shrink clamp, 200% and dedicated-user controls remain separate observations; no permission changes to force failures"
+  ],
+  "local_changes_only": true
+}

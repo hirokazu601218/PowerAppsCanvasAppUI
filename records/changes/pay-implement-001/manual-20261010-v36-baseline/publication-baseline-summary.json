@@ -1,0 +1,46 @@
+{
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+  "intentional_formula_or_structure_edits": 0,
+  "formula_errors": 0,
+  "live_confirmed_utc": "2026-10-10T01:04:15Z",
+  "export_appVersion_utc": "2026-10-10T01:01:24Z",
+  "export_lifeCycleId": "Published",
+  "package_sha256": "776a7892c701bb46afc6246fde1d0a4bee0b43c2160063c2819fdda0e02c6484",
+  "msapp_sha256": "f3af186814e138f60fe8e2848ccecdafd7db4af6d1454a852be815ca5e33266c",
+  "source_diff_summary": {
+    "verified_at_utc": "2026-10-10T01:09:05Z",
+    "source_yaml_files": 9,
+    "source_yaml_byte_equal": true,
+    "editor_state_byte_equal": true,
+    "canvas_manifest_status": "not present in either msapp",
+    "controls_by_name_equal_excluding_ControlUniqueId": true,
+    "ControlUniqueId_changes": 318,
+    "actual_controls_count": {
+      "v35": 372,
+      "v36": 372
+    },
+    "actual_modernButton_count": {
+      "v35": 51,
+      "v36": 51
+    },
+    "properties_modernButton_count": {
+      "v35": 52,
+      "v36": 51
+    },
+    "properties_count_interpretation": "Cached count corrected; no corresponding component deletion",
+    "data_sources_semantically_equal": true,
+    "data_sources_normalization": "Decode nested JSON strings then sort metadata object arrays by MetadataId",
+    "header_change": "LastSavedDateTimeUTC 10/07/2026 01:16:08 ->10/10/2026 01:01:23",
+    "other_properties_changed": [
+      "AnalysisLoadTime",
+      "DeserializationLoadTime",
+      "Id"
+    ],
+    "formula_changes": 0,
+    "named_structure_changes": 0,
+    "connection_changes": "No semantic DataSources differences; other unchanged entries retained",
+    "raw_artifacts_private_only": true
+  },
+  "checker_scope": "Unedited36 only; not wave1 candidate"
+}

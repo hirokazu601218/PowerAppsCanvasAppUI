@@ -1,0 +1,96 @@
+{
+  "control_count": 351,
+  "changes": [
+    {
+      "control": "btnSearch111",
+      "property": "OnSelect",
+      "before_sha256": "25ea63ce6a3be71c26fe17dd8222de9e2fddb50797a965011ec0c8679cb0e681",
+      "after_sha256": "73a06ba6d82001b682a3ae493f435c68f1d998806a47c7fa2f0416f0be69bc88"
+    },
+    {
+      "control": "btnDetailTab111",
+      "property": "OnSelect",
+      "before_sha256": "72882c5024d875386e0ace9a47962a16a0ce433f90215d83644b250b84a6c360",
+      "after_sha256": "e3a764656e1718a1926c9513f182b516eb60c2cff2ea8dc851083cef244843de"
+    },
+    {
+      "control": "galHistory111",
+      "property": "OnSelect",
+      "before_sha256": "c49667f23579a01b857dfcaceda9b714da705b6e31da91865bf09184cbab0450",
+      "after_sha256": "8ac3d99ab78cc3e3dd4b4a3d4042a14b99c8020a209cd2a5e6a30f20f0132669"
+    },
+    {
+      "control": "btnLoadDetails111",
+      "property": "OnSelect",
+      "before_sha256": "9324964fd4a79b744ef652bb4c31effc3c4bc2765fda5111760a8f83498c32ea",
+      "after_sha256": "4dd37dc14d18dfef6832461cf1af1342a2d7221e3ea529763ddaa93ab655a4ab"
+    },
+    {
+      "control": "conPayBody",
+      "property": "Height",
+      "before_sha256": "4651fe36c350981341687c97b96d83d0135d15be2e2e3e8530ee09e8301fc27d",
+      "after_sha256": "14f56962b3eec28c3626ccfdff273fdb1a984689d6b7740b40641981f562651a"
+    },
+    {
+      "control": "conPaySummary",
+      "property": "parent",
+      "before": "conPayBody",
+      "after": "conscrPayrollRoot"
+    },
+    {
+      "control": "lblPayDeductionBasis0",
+      "property": "Text",
+      "before_sha256": "04f29c67bd393809c1b33330f6347aee820b1b174a99df1410f8cb5a8da0ee06",
+      "after_sha256": "1dd24bd8353c0bd19a95ee552f9459c4a59550e74a6844ec68779a6000ee94de"
+    },
+    {
+      "control": "lblPayDeductionBasis1",
+      "property": "Text",
+      "before_sha256": "407b29f841c19eb90184db2ce026c5872490f7641003deca26951f2d19420a65",
+      "after_sha256": "dfe78ef91bca13d4a7d3cb6494c5258445846199a680cabdae4b4d2522d58083"
+    },
+    {
+      "control": "lblPayDeductionBasis2",
+      "property": "Text",
+      "before_sha256": "8c95d718b831fd9e55ba8a50f1ffc41f44dba1faeaa86e4f0194b0519de464be",
+      "after_sha256": "a376abd9ce0c243e3defeb6bdd2ca3b49136c5793d749cb5a354f68869eca258"
+    },
+    {
+      "control": "lblPayDeductionBasis3",
+      "property": "Text",
+      "before_sha256": "93a7c94ef54078d09c2a73ce336b178bbfa29d94dd97a6186d9eb8ab8efe9e72",
+      "after_sha256": "af36e5f35d0ba320c59e2e917ea0eaf6e64eaad2a6a8cb425dedccb95eaf68df"
+    },
+    {
+      "control": "lblPayDeductionBasis4",
+      "property": "Text",
+      "before_sha256": "bfa4d266ac341099bbe0cf172ddcfab69257fee6f98e19f9b4a951c51e29536f",
+      "after_sha256": "a17f46a68942c676b114bfde827458d9de5ac18a2d9ab4c183a0de33a60574b3"
+    },
+    {
+      "control": "lblPayDeductionBasis5",
+      "property": "Text",
+      "before_sha256": "f6b9f32cffc3321135380032b7ebc9ce4ab322a3c2fff65ce04c9d3a63ae0bf8",
+      "after_sha256": "04ac1c660e4c8e0bb67b1ab333f4404b920feadf280d36ef3a2e73ab99e3ee00"
+    },
+    {
+      "control": "lblPayDeductionBasis6",
+      "property": "Text",
+      "before_sha256": "09f280283daf6d488b7cc3a77e69f021e007eba20002e9aa790495786c5dd8e5",
+      "after_sha256": "6be03ec4c82a39a5dff2fb2ee303e04c00446c7420ffdbab738d9095c457acd9"
+    },
+    {
+      "control": "lblPayDeductionBasis7",
+      "property": "Text",
+      "before_sha256": "8361fcfda605b7479f72d39a06fedb701c30e66b0d7c21e904667a86df1a4ca3",
+      "after_sha256": "4101b1c49995924ce24e082a6716ba6743ec470fbc76acf1368a8203f5c0b378"
+    },
+    {
+      "control": "scrStaffMasterSearch",
+      "property": "OnVisible",
+      "before_sha256": "e6444fc03f24a2f08eb84190a190bbc709bed2e97e9d6ac1541bee0d90f77ce7",
+      "after_sha256": "0a3d872ed7c83994c772ee4a90f7bd11a59eb83bdc1d39dfa11082043305a3c1"
+    }
+  ],
+  "unapproved_changes": 0
+}

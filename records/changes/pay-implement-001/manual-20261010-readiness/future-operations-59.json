@@ -1,0 +1,4598 @@
+[
+  {
+    "operation_id": "OP-001-IMPORT",
+    "title": "データ一括取込み",
+    "feature_group_id": "G04",
+    "classification": "needsbusinessdecision",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "FUT-IMPORT-001",
+      "FR-E-01"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "異動Excel正式列・不備条件・内容一致／重複可能性基準を入手",
+      "行別処理回・確認待ち候補保存設計"
+    ],
+    "migration": "E用ステージングと判断履歴を設計。SCR003勤怠の全件検証方式をEに流用しない。",
+    "required_tests": [
+      "既存人の新履歴は許容",
+      "正常行＋重複／不備混在",
+      "行見送り／採用・再取込・外部値競合",
+      "給与班確定前は計算不可"
+    ],
+    "rollback": "取込回単位に追跡。適用済み行を勝手に取消せず、隔離行のみ元状態へ戻す。",
+    "smallest_missing_question": "E取込で内容一致／重複可能性と必須不足を判定する列と条件は何か。",
+    "question_owner": "business/data-owner",
+    "blocking_ids": [
+      "E-03",
+      "E-05",
+      "PD-01",
+      "PD-08"
+    ],
+    "requirement_evidence": {
+      "FUT-IMPORT-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 329,
+          "line_end": 329,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L329"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 422,
+          "line_end": 422,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L422"
+        }
+      ],
+      "FR-E-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/requirements.md",
+          "line_start": 58,
+          "line_end": 58,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/requirements.md#L58"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 338,
+          "line_end": 338,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L338"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-001-JLINK",
+    "title": "人給連携",
+    "feature_group_id": "G11",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-01",
+      "I3"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "最新アプリ読戻しと衝突しない最小Canvas差分",
+      "明確に架空と表示した入力データ契約。新しい正式物理名／業務状態コードを確定しない",
+      "実出力・取込・給与班確定は依存契約完成まで無効。試験完了を業務機能完了としない"
+    ],
+    "migration": "DB移行なし。新UIローカル状態のみ。内部コントロール名は実装上の名前として記録し正式業務画面IDを勝手に確定しない。",
+    "required_tests": [
+      "JLINK-T01の3タブ／コンテキスト部分",
+      "JLINK-T02の対象選択・A/M・確認件数部分",
+      "JLINK-T04の切替・6列表示部分",
+      "0件・多行同職員・取消・再入場・別支給回・Tab順",
+      "未接続操作は成功通知や架空の確定状態を出さない"
+    ],
+    "rollback": "追加した最小Canvas subtreeとローカル状態式を直前版へ戻す。既存画面／接続／権限を変更しない。",
+    "smallest_missing_question": "支給回と最新版結果を読み出す正式データ源／識別子を定義する。3タブ自体を再質問しない。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "支給回／最新版結果／出力明細／照合結果の正式データadapter不在",
+      "正本の正式画面ID・物理列名未入力",
+      "全体を業務機能として提供するにはG12/G13/G15が必要"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 502,
+          "line_end": 502,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L502"
+        }
+      ],
+      "I3": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 48,
+          "line_end": 48,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L48"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-003-IMPORT",
+    "title": "勤務実績を追加更新取込",
+    "feature_group_id": "G07",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-06"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "既存直列フロー／activebatch方式の再利用可能性を設計・検証",
+      "正規化12桁職員番号を新要件でも行キーに使う契約とNo再採番等を確定",
+      "対象報告の処理中状態・復旧記録・権威ある実行者を確定"
+    ],
+    "migration": "現行の有効バッチ＋旧バッチ保持は再利用候補。追加更新では旧有効行と正規化入力を合成して新バッチへ、検証後切替。これは設計案であり未承認物理方式。",
+    "required_tests": [
+      "掲載A更新・新B追加・非掲載C保持",
+      "手修正上書き・空欄クリア・0維持",
+      "複数所属同職員の別報告",
+      "全件検証前書込なし・999/1000境界",
+      "途中失敗／応答喪失／再実行／重複実行／並行編集・提出",
+      "報告者／差戻担当Lookup読戻し"
+    ],
+    "rollback": "旧activebatchと版を保存。失敗バッチは利用不可、旧成功分を維持。活性化後の取消は検証済み復旧手順のみ。",
+    "smallest_missing_question": "旧有効バッチと入力の合成時、職員番号キー・No衝突・合成後999上限・必須空欄・対象報告処理中状態を既存契約にどう対応させるか。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-01の行識別／必須空欄",
+      "PD-05",
+      "PD-04"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 22,
+          "line_end": 22,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L22"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 376,
+          "line_end": 376,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L376"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-003-RECOVER",
+    "title": "取込失敗を復旧・再実行",
+    "feature_group_id": "G07",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-06",
+      "PAYREQ-10"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "既存直列フロー／activebatch方式の再利用可能性を設計・検証",
+      "正規化12桁職員番号を新要件でも行キーに使う契約とNo再採番等を確定",
+      "対象報告の処理中状態・復旧記録・権威ある実行者を確定"
+    ],
+    "migration": "現行の有効バッチ＋旧バッチ保持は再利用候補。追加更新では旧有効行と正規化入力を合成して新バッチへ、検証後切替。これは設計案であり未承認物理方式。",
+    "required_tests": [
+      "掲載A更新・新B追加・非掲載C保持",
+      "手修正上書き・空欄クリア・0維持",
+      "複数所属同職員の別報告",
+      "全件検証前書込なし・999/1000境界",
+      "途中失敗／応答喪失／再実行／重複実行／並行編集・提出",
+      "報告者／差戻担当Lookup読戻し"
+    ],
+    "rollback": "旧activebatchと版を保存。失敗バッチは利用不可、旧成功分を維持。活性化後の取消は検証済み復旧手順のみ。",
+    "smallest_missing_question": "応答喪失／ステージング途中／活性化直後を識別する処理ID・状態・再実行契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-01の行識別／必須空欄",
+      "PD-05",
+      "PD-04"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 22,
+          "line_end": 22,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L22"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 376,
+          "line_end": 376,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L376"
+        }
+      ],
+      "PAYREQ-10": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 26,
+          "line_end": 26,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L26"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 379,
+          "line_end": 379,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L379"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-003-ROWEDIT",
+    "title": "職員行を追加・削除",
+    "feature_group_id": "G07",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-06"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "既存直列フロー／activebatch方式の再利用可能性を設計・検証",
+      "正規化12桁職員番号を新要件でも行キーに使う契約とNo再採番等を確定",
+      "対象報告の処理中状態・復旧記録・権威ある実行者を確定"
+    ],
+    "migration": "現行の有効バッチ＋旧バッチ保持は再利用候補。追加更新では旧有効行と正規化入力を合成して新バッチへ、検証後切替。これは設計案であり未承認物理方式。",
+    "required_tests": [
+      "掲載A更新・新B追加・非掲載C保持",
+      "手修正上書き・空欄クリア・0維持",
+      "複数所属同職員の別報告",
+      "全件検証前書込なし・999/1000境界",
+      "途中失敗／応答喪失／再実行／重複実行／並行編集・提出",
+      "報告者／差戻担当Lookup読戻し"
+    ],
+    "rollback": "旧activebatchと版を保存。失敗バッチは利用不可、旧成功分を維持。活性化後の取消は検証済み復旧手順のみ。",
+    "smallest_missing_question": "職員行追加の既定値・No割当て・最後の行削除の扱いを既存20列契約でどう定義するか。",
+    "question_owner": "engineering/business for boundary only",
+    "blocking_ids": [
+      "PD-01の行識別／必須空欄",
+      "PD-05",
+      "PD-04"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 22,
+          "line_end": 22,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L22"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 376,
+          "line_end": 376,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L376"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-006-RULE",
+    "title": "業務マスタを登録・改定",
+    "feature_group_id": "G08",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "SCR006-RULE-001",
+      "PAY-01",
+      "PAY-02",
+      "PAYREQ-09"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "率の桁・単位・上下限・期間／職員キーと正式保存先を設計",
+      "業務管理者の実効認可は今回変更しない"
+    ],
+    "migration": "現行SCR004はSetのみ。率を永続表に保存した証拠なし。マスタ新旧版は上書きしない。",
+    "required_tests": [
+      "別職員／別期間／別率の保存読戻し",
+      "未確定値を計算に使わない",
+      "マスタ改定前後・使用停止後の過去参照",
+      "業務／システム管理ロール混同なし"
+    ],
+    "rollback": "旧率画面とマスタ読取経路を保持し新保存機能を停止可能にする。",
+    "smallest_missing_question": "単価／区分マスタの正式項目と適用期間・改定対象の契約は何か。",
+    "question_owner": "engineering/business for rule applicability",
+    "blocking_ids": [
+      "PD-01",
+      "PD-04",
+      "PD-02"
+    ],
+    "requirement_evidence": {
+      "SCR006-RULE-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 424,
+          "line_end": 424,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L424"
+        }
+      ],
+      "PAY-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 258,
+          "line_end": 258,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L258"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 317,
+          "line_end": 317,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L317"
+        }
+      ],
+      "PAY-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 259,
+          "line_end": 259,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L259"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 318,
+          "line_end": 318,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L318"
+        }
+      ],
+      "PAYREQ-09": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 25,
+          "line_end": 25,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L25"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 378,
+          "line_end": 378,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L378"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-006-END",
+    "title": "マスタを使用停止",
+    "feature_group_id": "G08",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-09"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "率の桁・単位・上下限・期間／職員キーと正式保存先を設計",
+      "業務管理者の実効認可は今回変更しない"
+    ],
+    "migration": "現行SCR004はSetのみ。率を永続表に保存した証拠なし。マスタ新旧版は上書きしない。",
+    "required_tests": [
+      "別職員／別期間／別率の保存読戻し",
+      "未確定値を計算に使わない",
+      "マスタ改定前後・使用停止後の過去参照",
+      "業務／システム管理ロール混同なし"
+    ],
+    "rollback": "旧率画面とマスタ読取経路を保持し新保存機能を停止可能にする。",
+    "smallest_missing_question": "使用停止／終了日をどの既存または新規正式列で保存し、過去参照を維持するか。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-01",
+      "PD-04",
+      "PD-02"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-09": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 25,
+          "line_end": 25,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L25"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 378,
+          "line_end": 378,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L378"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-AD-CANDIDATE",
+    "title": "発令情報から候補作成",
+    "feature_group_id": "G03",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "AD-01",
+      "AD-02",
+      "AD-03",
+      "AD-09",
+      "FR-AD-01",
+      "FR-AD-04"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "異動情報アプリ通知／取得仕様と安定採用IDを入手",
+      "番号未発行候補と一人一行職員基本の分離・統合契約"
+    ],
+    "migration": "候補領域を別に設計し、番号未発行行を無条件に職員基本へ作らない。",
+    "required_tests": [
+      "重複通知・番号遅延・再採用別ID",
+      "確定前・後の取消",
+      "給与班修正と外部変更の競合",
+      "決裁だけでは候補作成しない"
+    ],
+    "rollback": "取込回／外部IDの対応を保存し再適用可能にする。候補を物理削除しない。",
+    "smallest_missing_question": "発令登録完了イベントと採用ごとの不変IDをどの正式インターフェースから取得できるか。",
+    "question_owner": "source-owner/engineering",
+    "blocking_ids": [
+      "PD-08",
+      "PD-01",
+      "AD連携方式"
+    ],
+    "requirement_evidence": {
+      "AD-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 45,
+          "line_end": 45,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L45"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 277,
+          "line_end": 277,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L277"
+        }
+      ],
+      "AD-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 46,
+          "line_end": 46,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L46"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 278,
+          "line_end": 278,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L278"
+        }
+      ],
+      "AD-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 47,
+          "line_end": 47,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L47"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 279,
+          "line_end": 279,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L279"
+        }
+      ],
+      "AD-09": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 53,
+          "line_end": 53,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L53"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 285,
+          "line_end": 285,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L285"
+        }
+      ],
+      "FR-AD-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/requirements.md",
+          "line_start": 49,
+          "line_end": 49,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/requirements.md#L49"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 334,
+          "line_end": 334,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L334"
+        }
+      ],
+      "FR-AD-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/requirements.md",
+          "line_start": 52,
+          "line_end": 52,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/requirements.md#L52"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 337,
+          "line_end": 337,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L337"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-AD-NUMBER",
+    "title": "発行職員番号を反映",
+    "feature_group_id": "G03",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "AD-04",
+      "AD-05",
+      "FR-AD-02",
+      "PAYREQ-01",
+      "PAYREQ-02"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "異動情報アプリ通知／取得仕様と安定採用IDを入手",
+      "番号未発行候補と一人一行職員基本の分離・統合契約"
+    ],
+    "migration": "候補領域を別に設計し、番号未発行行を無条件に職員基本へ作らない。",
+    "required_tests": [
+      "重複通知・番号遅延・再採用別ID",
+      "確定前・後の取消",
+      "給与班修正と外部変更の競合",
+      "決裁だけでは候補作成しない"
+    ],
+    "rollback": "取込回／外部IDの対応を保存し再適用可能にする。候補を物理削除しない。",
+    "smallest_missing_question": "発令登録完了イベントと採用ごとの不変IDをどの正式インターフェースから取得できるか。",
+    "question_owner": "source-owner/engineering",
+    "blocking_ids": [
+      "PD-08",
+      "PD-01",
+      "AD連携方式"
+    ],
+    "requirement_evidence": {
+      "AD-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 48,
+          "line_end": 48,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L48"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 280,
+          "line_end": 280,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L280"
+        }
+      ],
+      "AD-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 49,
+          "line_end": 49,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L49"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 281,
+          "line_end": 281,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L281"
+        }
+      ],
+      "FR-AD-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/requirements.md",
+          "line_start": 50,
+          "line_end": 50,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/requirements.md#L50"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 335,
+          "line_end": 335,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L335"
+        }
+      ],
+      "PAYREQ-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 17,
+          "line_end": 17,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L17"
+        }
+      ],
+      "PAYREQ-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 18,
+          "line_end": 18,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L18"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-AD-CHANGE",
+    "title": "前工程変更の差異確認",
+    "feature_group_id": "G03",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "AD-08",
+      "E-09",
+      "FR-E-03"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "異動情報アプリ通知／取得仕様と安定採用IDを入手",
+      "番号未発行候補と一人一行職員基本の分離・統合契約"
+    ],
+    "migration": "候補領域を別に設計し、番号未発行行を無条件に職員基本へ作らない。",
+    "required_tests": [
+      "重複通知・番号遅延・再採用別ID",
+      "確定前・後の取消",
+      "給与班修正と外部変更の競合",
+      "決裁だけでは候補作成しない"
+    ],
+    "rollback": "取込回／外部IDの対応を保存し再適用可能にする。候補を物理削除しない。",
+    "smallest_missing_question": "発令登録完了イベントと採用ごとの不変IDをどの正式インターフェースから取得できるか。",
+    "question_owner": "source-owner/engineering",
+    "blocking_ids": [
+      "PD-08",
+      "PD-01",
+      "AD連携方式"
+    ],
+    "requirement_evidence": {
+      "AD-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 52,
+          "line_end": 52,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L52"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 284,
+          "line_end": 284,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L284"
+        }
+      ],
+      "E-09": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 107,
+          "line_end": 107,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L107"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 295,
+          "line_end": 295,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L295"
+        }
+      ],
+      "FR-E-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/requirements.md",
+          "line_start": 60,
+          "line_end": 60,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/requirements.md#L60"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 340,
+          "line_end": 340,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L340"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-AD-CANCEL",
+    "title": "採用取消を反映",
+    "feature_group_id": "G03",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "AD-06",
+      "AD-07",
+      "FR-AD-03"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "異動情報アプリ通知／取得仕様と安定採用IDを入手",
+      "番号未発行候補と一人一行職員基本の分離・統合契約"
+    ],
+    "migration": "候補領域を別に設計し、番号未発行行を無条件に職員基本へ作らない。",
+    "required_tests": [
+      "重複通知・番号遅延・再採用別ID",
+      "確定前・後の取消",
+      "給与班修正と外部変更の競合",
+      "決裁だけでは候補作成しない"
+    ],
+    "rollback": "取込回／外部IDの対応を保存し再適用可能にする。候補を物理削除しない。",
+    "smallest_missing_question": "発令登録完了イベントと採用ごとの不変IDをどの正式インターフェースから取得できるか。",
+    "question_owner": "source-owner/engineering",
+    "blocking_ids": [
+      "PD-08",
+      "PD-01",
+      "AD連携方式"
+    ],
+    "requirement_evidence": {
+      "AD-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 50,
+          "line_end": 50,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L50"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 282,
+          "line_end": 282,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L282"
+        }
+      ],
+      "AD-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 51,
+          "line_end": 51,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L51"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 283,
+          "line_end": 283,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L283"
+        }
+      ],
+      "FR-AD-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/requirements.md",
+          "line_start": 51,
+          "line_end": 51,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/requirements.md#L51"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 336,
+          "line_end": 336,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L336"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-IMPORT-VALIDATE",
+    "title": "Excelの行を検証",
+    "feature_group_id": "G04",
+    "classification": "needsbusinessdecision",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "E-02",
+      "E-03",
+      "E-04",
+      "E-05",
+      "FR-E-01"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "異動Excel正式列・不備条件・内容一致／重複可能性基準を入手",
+      "行別処理回・確認待ち候補保存設計"
+    ],
+    "migration": "E用ステージングと判断履歴を設計。SCR003勤怠の全件検証方式をEに流用しない。",
+    "required_tests": [
+      "既存人の新履歴は許容",
+      "正常行＋重複／不備混在",
+      "行見送り／採用・再取込・外部値競合",
+      "給与班確定前は計算不可"
+    ],
+    "rollback": "取込回単位に追跡。適用済み行を勝手に取消せず、隔離行のみ元状態へ戻す。",
+    "smallest_missing_question": "E取込で内容一致／重複可能性と必須不足を判定する列と条件は何か。",
+    "question_owner": "business/data-owner",
+    "blocking_ids": [
+      "E-03",
+      "E-05",
+      "PD-01",
+      "PD-08"
+    ],
+    "requirement_evidence": {
+      "E-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 100,
+          "line_end": 100,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L100"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 288,
+          "line_end": 288,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L288"
+        }
+      ],
+      "E-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 101,
+          "line_end": 101,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L101"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 289,
+          "line_end": 289,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L289"
+        }
+      ],
+      "E-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 102,
+          "line_end": 102,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L102"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 290,
+          "line_end": 290,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L290"
+        }
+      ],
+      "E-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 103,
+          "line_end": 103,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L103"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 291,
+          "line_end": 291,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L291"
+        }
+      ],
+      "FR-E-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/requirements.md",
+          "line_start": 58,
+          "line_end": 58,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/requirements.md#L58"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 338,
+          "line_end": 338,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L338"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-IMPORT-APPLY",
+    "title": "行別に取込を判断",
+    "feature_group_id": "G04",
+    "classification": "needsbusinessdecision",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "E-04",
+      "E-11",
+      "FR-E-01"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "異動Excel正式列・不備条件・内容一致／重複可能性基準を入手",
+      "行別処理回・確認待ち候補保存設計"
+    ],
+    "migration": "E用ステージングと判断履歴を設計。SCR003勤怠の全件検証方式をEに流用しない。",
+    "required_tests": [
+      "既存人の新履歴は許容",
+      "正常行＋重複／不備混在",
+      "行見送り／採用・再取込・外部値競合",
+      "給与班確定前は計算不可"
+    ],
+    "rollback": "取込回単位に追跡。適用済み行を勝手に取消せず、隔離行のみ元状態へ戻す。",
+    "smallest_missing_question": "E取込で内容一致／重複可能性と必須不足を判定する列と条件は何か。",
+    "question_owner": "business/data-owner",
+    "blocking_ids": [
+      "E-03",
+      "E-05",
+      "PD-01",
+      "PD-08"
+    ],
+    "requirement_evidence": {
+      "E-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 102,
+          "line_end": 102,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L102"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 290,
+          "line_end": 290,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L290"
+        }
+      ],
+      "E-11": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 109,
+          "line_end": 109,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L109"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 297,
+          "line_end": 297,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L297"
+        }
+      ],
+      "FR-E-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/requirements.md",
+          "line_start": 58,
+          "line_end": 58,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/requirements.md#L58"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 338,
+          "line_end": 338,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L338"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-IMPORT-RETURN",
+    "title": "確認待ち候補を開く",
+    "feature_group_id": "G18",
+    "classification": "proposal",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "SCR002-E-001",
+      "FUT-IMPORT-001"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "該当の具体操作が正本で承認されるまで実装対象へ昇格しない"
+    ],
+    "migration": "なし。",
+    "required_tests": [
+      "提案UIを確定要件として自動採用していないこと"
+    ],
+    "rollback": "なし。",
+    "smallest_missing_question": "この具体動線を採用するか。現在は追加で質問せず保留する。",
+    "question_owner": "business if/when selected",
+    "blocking_ids": [
+      "explicitly proposed/out of initial scope"
+    ],
+    "requirement_evidence": {
+      "SCR002-E-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 421,
+          "line_end": 421,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L421"
+        }
+      ],
+      "FUT-IMPORT-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 329,
+          "line_end": 329,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L329"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 422,
+          "line_end": 422,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L422"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-E-PENDING",
+    "title": "確認待ちで絞り込む",
+    "feature_group_id": "G05",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "SCR002-E-001",
+      "FUT-STATE-E"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "編集可能列・検証と状態コード・監査前後値・保存先を確定",
+      "未払い結果失効と給与班確認経路を設計"
+    ],
+    "migration": "既存56列の読取接続をそのまま保存対象としない。住民税月列→月別行等は明示変換と行数照合。",
+    "required_tests": [
+      "期間変更と誤訂正を分離",
+      "未確認／非加入／加入、NULL／0",
+      "確認待ちを計算へ使わない",
+      "確定後訂正で再確認・未払い失効",
+      "保存失敗はドラフト保持"
+    ],
+    "rollback": "変更前後監査とテスト元行を保存。途中反映の再実行契約ができるまで本保存を有効化しない。",
+    "smallest_missing_question": "確認待ち対象を判定する正式状態列と候補／職員への対応は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "D-02: 現行列の明示的編集許可・状態別保存契約",
+      "Q17/Q18/Q27/R11: 訂正前後監査・再確認・未払い影響失効",
+      "PD-04: 現在callerの実効更新権限未検証（権限変更は範囲外）",
+      "PD-01/02: 新モデル再構成／特殊月の未確定。現行56物理列は既知。"
+    ],
+    "requirement_evidence": {
+      "SCR002-E-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 421,
+          "line_end": 421,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L421"
+        }
+      ],
+      "FUT-STATE-E": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 330,
+          "line_end": 330,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L330"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 448,
+          "line_end": 448,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L448"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-E-HISTORY",
+    "title": "実際の条件変更を登録",
+    "feature_group_id": "G05",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-01",
+      "PAYREQ-02",
+      "PAYREQ-03",
+      "PAYREQ-04"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "編集可能列・検証と状態コード・監査前後値・保存先を確定",
+      "未払い結果失効と給与班確認経路を設計"
+    ],
+    "migration": "既存56列の読取接続をそのまま保存対象としない。住民税月列→月別行等は明示変換と行数照合。",
+    "required_tests": [
+      "期間変更と誤訂正を分離",
+      "未確認／非加入／加入、NULL／0",
+      "確認待ちを計算へ使わない",
+      "確定後訂正で再確認・未払い失効",
+      "保存失敗はドラフト保持"
+    ],
+    "rollback": "変更前後監査とテスト元行を保存。途中反映の再実行契約ができるまで本保存を有効化しない。",
+    "smallest_missing_question": "新履歴の編集許可列・有効期間検証・親GUIDと番号対応・前履歴を保持する保存経路は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "D-02: 現行列の明示的編集許可・状態別保存契約",
+      "Q17/Q18/Q27/R11: 訂正前後監査・再確認・未払い影響失効",
+      "PD-04: 現在callerの実効更新権限未検証（権限変更は範囲外）",
+      "PD-01/02: 新モデル再構成／特殊月の未確定。現行56物理列は既知。"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 17,
+          "line_end": 17,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L17"
+        }
+      ],
+      "PAYREQ-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 18,
+          "line_end": 18,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L18"
+        }
+      ],
+      "PAYREQ-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 19,
+          "line_end": 19,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L19"
+        }
+      ],
+      "PAYREQ-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 20,
+          "line_end": 20,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L20"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-E-CORRECT",
+    "title": "誤登録を訂正",
+    "feature_group_id": "G05",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "E-06",
+      "E-08",
+      "PAYREQ-03",
+      "PAYREQ-04",
+      "PAYREQ-07"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "編集可能列・検証と状態コード・監査前後値・保存先を確定",
+      "未払い結果失効と給与班確認経路を設計"
+    ],
+    "migration": "既存56列の読取接続をそのまま保存対象としない。住民税月列→月別行等は明示変換と行数照合。",
+    "required_tests": [
+      "期間変更と誤訂正を分離",
+      "未確認／非加入／加入、NULL／0",
+      "確認待ちを計算へ使わない",
+      "確定後訂正で再確認・未払い失効",
+      "保存失敗はドラフト保持"
+    ],
+    "rollback": "変更前後監査とテスト元行を保存。途中反映の再実行契約ができるまで本保存を有効化しない。",
+    "smallest_missing_question": "訂正前後監査と確認待ちへの復帰、影響未払い結果の失効をどの保存処理で一貫させるか。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "D-02: 現行列の明示的編集許可・状態別保存契約",
+      "Q17/Q18/Q27/R11: 訂正前後監査・再確認・未払い影響失効",
+      "PD-04: 現在callerの実効更新権限未検証（権限変更は範囲外）",
+      "PD-01/02: 新モデル再構成／特殊月の未確定。現行56物理列は既知。"
+    ],
+    "requirement_evidence": {
+      "E-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 104,
+          "line_end": 104,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L104"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 292,
+          "line_end": 292,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L292"
+        }
+      ],
+      "E-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 106,
+          "line_end": 106,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L106"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 294,
+          "line_end": 294,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L294"
+        }
+      ],
+      "PAYREQ-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 19,
+          "line_end": 19,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L19"
+        }
+      ],
+      "PAYREQ-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 20,
+          "line_end": 20,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L20"
+        }
+      ],
+      "PAYREQ-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 23,
+          "line_end": 23,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L23"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-E-SUBMIT",
+    "title": "内容を確認待ちにする",
+    "feature_group_id": "G05",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "E-07",
+      "E-12",
+      "PAYREQ-03",
+      "PAYREQ-04"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "編集可能列・検証と状態コード・監査前後値・保存先を確定",
+      "未払い結果失効と給与班確認経路を設計"
+    ],
+    "migration": "既存56列の読取接続をそのまま保存対象としない。住民税月列→月別行等は明示変換と行数照合。",
+    "required_tests": [
+      "期間変更と誤訂正を分離",
+      "未確認／非加入／加入、NULL／0",
+      "確認待ちを計算へ使わない",
+      "確定後訂正で再確認・未払い失効",
+      "保存失敗はドラフト保持"
+    ],
+    "rollback": "変更前後監査とテスト元行を保存。途中反映の再実行契約ができるまで本保存を有効化しない。",
+    "smallest_missing_question": "確認待ちに移す必須列検証・正式状態コード・同時更新条件は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "D-02: 現行列の明示的編集許可・状態別保存契約",
+      "Q17/Q18/Q27/R11: 訂正前後監査・再確認・未払い影響失効",
+      "PD-04: 現在callerの実効更新権限未検証（権限変更は範囲外）",
+      "PD-01/02: 新モデル再構成／特殊月の未確定。現行56物理列は既知。"
+    ],
+    "requirement_evidence": {
+      "E-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 105,
+          "line_end": 105,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L105"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 293,
+          "line_end": 293,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L293"
+        }
+      ],
+      "E-12": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 110,
+          "line_end": 110,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L110"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 298,
+          "line_end": 298,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L298"
+        }
+      ],
+      "PAYREQ-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 19,
+          "line_end": 19,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L19"
+        }
+      ],
+      "PAYREQ-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 20,
+          "line_end": 20,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L20"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-E-RETURN",
+    "title": "給与情報を差し戻す",
+    "feature_group_id": "G05",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "E-07",
+      "E-12",
+      "PAYREQ-03",
+      "PAYREQ-04"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "編集可能列・検証と状態コード・監査前後値・保存先を確定",
+      "未払い結果失効と給与班確認経路を設計"
+    ],
+    "migration": "既存56列の読取接続をそのまま保存対象としない。住民税月列→月別行等は明示変換と行数照合。",
+    "required_tests": [
+      "期間変更と誤訂正を分離",
+      "未確認／非加入／加入、NULL／0",
+      "確認待ちを計算へ使わない",
+      "確定後訂正で再確認・未払い失効",
+      "保存失敗はドラフト保持"
+    ],
+    "rollback": "変更前後監査とテスト元行を保存。途中反映の再実行契約ができるまで本保存を有効化しない。",
+    "smallest_missing_question": "差戻し状態と戻し主体の保存先、元入力を失わず再提出する経路は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "D-02: 現行列の明示的編集許可・状態別保存契約",
+      "Q17/Q18/Q27/R11: 訂正前後監査・再確認・未払い影響失効",
+      "PD-04: 現在callerの実効更新権限未検証（権限変更は範囲外）",
+      "PD-01/02: 新モデル再構成／特殊月の未確定。現行56物理列は既知。"
+    ],
+    "requirement_evidence": {
+      "E-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 105,
+          "line_end": 105,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L105"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 293,
+          "line_end": 293,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L293"
+        }
+      ],
+      "E-12": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 110,
+          "line_end": 110,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L110"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 298,
+          "line_end": 298,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L298"
+        }
+      ],
+      "PAYREQ-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 19,
+          "line_end": 19,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L19"
+        }
+      ],
+      "PAYREQ-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 20,
+          "line_end": 20,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L20"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-E-CONFIRM",
+    "title": "給与情報を確定・再確定",
+    "feature_group_id": "G05",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "E-07",
+      "E-08",
+      "E-10",
+      "PAYREQ-03",
+      "PAYREQ-04",
+      "PAYREQ-07"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "編集可能列・検証と状態コード・監査前後値・保存先を確定",
+      "未払い結果失効と給与班確認経路を設計"
+    ],
+    "migration": "既存56列の読取接続をそのまま保存対象としない。住民税月列→月別行等は明示変換と行数照合。",
+    "required_tests": [
+      "期間変更と誤訂正を分離",
+      "未確認／非加入／加入、NULL／0",
+      "確認待ちを計算へ使わない",
+      "確定後訂正で再確認・未払い失効",
+      "保存失敗はドラフト保持"
+    ],
+    "rollback": "変更前後監査とテスト元行を保存。途中反映の再実行契約ができるまで本保存を有効化しない。",
+    "smallest_missing_question": "確定／再確定の許可条件と必要情報検証、権威ある給与班主体、未払い結果失効の契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "D-02: 現行列の明示的編集許可・状態別保存契約",
+      "Q17/Q18/Q27/R11: 訂正前後監査・再確認・未払い影響失効",
+      "PD-04: 現在callerの実効更新権限未検証（権限変更は範囲外）",
+      "PD-01/02: 新モデル再構成／特殊月の未確定。現行56物理列は既知。"
+    ],
+    "requirement_evidence": {
+      "E-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 105,
+          "line_end": 105,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L105"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 293,
+          "line_end": 293,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L293"
+        }
+      ],
+      "E-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 106,
+          "line_end": 106,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L106"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 294,
+          "line_end": 294,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L294"
+        }
+      ],
+      "E-10": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 108,
+          "line_end": 108,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L108"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 296,
+          "line_end": 296,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L296"
+        }
+      ],
+      "PAYREQ-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 19,
+          "line_end": 19,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L19"
+        }
+      ],
+      "PAYREQ-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 20,
+          "line_end": 20,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L20"
+        }
+      ],
+      "PAYREQ-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 23,
+          "line_end": 23,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L23"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-F-EDIT",
+    "title": "通勤届を入力",
+    "feature_group_id": "G06",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "F-01",
+      "F-02",
+      "PAYREQ-05"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "正式ヘッダー／経路列、必須検証・経路数・帳票取得対応を確定",
+      "精算・適用期間／不支給計算を業務資料で確定"
+    ],
+    "migration": "既存4経路を上限と決めない。新旧行のGUID対応を保存し受入済みHTMLを保持。",
+    "required_tests": [
+      "新旧認定・複数経路・混合方式",
+      "不支給と終了の区別",
+      "認定前は計算利用不可",
+      "GUIDと職員不一致拒否",
+      "71欄・2ページ・NULL/0・印刷枠超過停止"
+    ],
+    "rollback": "旧データ契約・受入済みHTML・通常入口の復元材料を保持。新契約受入前に旧経路を消さない。",
+    "smallest_missing_question": "ヘッダー／経路の入力列・必須検証・保存先は何か。",
+    "question_owner": "engineering/business for input rules",
+    "blocking_ids": [
+      "PD-01",
+      "PD-09",
+      "PD-02",
+      "F-02"
+    ],
+    "requirement_evidence": {
+      "F-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 154,
+          "line_end": 154,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L154"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 299,
+          "line_end": 299,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L299"
+        }
+      ],
+      "F-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 155,
+          "line_end": 155,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L155"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 300,
+          "line_end": 300,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L300"
+        }
+      ],
+      "PAYREQ-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 21,
+          "line_end": 21,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L21"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-F-SUBMIT",
+    "title": "通勤届を提出・再提出",
+    "feature_group_id": "G06",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "F-01",
+      "F-02",
+      "F-03",
+      "SCR002-F-001"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "正式ヘッダー／経路列、必須検証・経路数・帳票取得対応を確定",
+      "精算・適用期間／不支給計算を業務資料で確定"
+    ],
+    "migration": "既存4経路を上限と決めない。新旧行のGUID対応を保存し受入済みHTMLを保持。",
+    "required_tests": [
+      "新旧認定・複数経路・混合方式",
+      "不支給と終了の区別",
+      "認定前は計算利用不可",
+      "GUIDと職員不一致拒否",
+      "71欄・2ページ・NULL/0・印刷枠超過停止"
+    ],
+    "rollback": "旧データ契約・受入済みHTML・通常入口の復元材料を保持。新契約受入前に旧経路を消さない。",
+    "smallest_missing_question": "提出を許可する必須項目・検証条件と新認定への状態保存契約は何か。",
+    "question_owner": "engineering/business for validation",
+    "blocking_ids": [
+      "PD-01",
+      "PD-09",
+      "PD-02",
+      "F-02"
+    ],
+    "requirement_evidence": {
+      "F-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 154,
+          "line_end": 154,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L154"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 299,
+          "line_end": 299,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L299"
+        }
+      ],
+      "F-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 155,
+          "line_end": 155,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L155"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 300,
+          "line_end": 300,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L300"
+        }
+      ],
+      "F-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 156,
+          "line_end": 156,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L156"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 301,
+          "line_end": 301,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L301"
+        }
+      ],
+      "SCR002-F-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 423,
+          "line_end": 423,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L423"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-F-RETURN",
+    "title": "通勤届を差し戻す",
+    "feature_group_id": "G06",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "F-03",
+      "FUT-STATE-F"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "正式ヘッダー／経路列、必須検証・経路数・帳票取得対応を確定",
+      "精算・適用期間／不支給計算を業務資料で確定"
+    ],
+    "migration": "既存4経路を上限と決めない。新旧行のGUID対応を保存し受入済みHTMLを保持。",
+    "required_tests": [
+      "新旧認定・複数経路・混合方式",
+      "不支給と終了の区別",
+      "認定前は計算利用不可",
+      "GUIDと職員不一致拒否",
+      "71欄・2ページ・NULL/0・印刷枠超過停止"
+    ],
+    "rollback": "旧データ契約・受入済みHTML・通常入口の復元材料を保持。新契約受入前に旧経路を消さない。",
+    "smallest_missing_question": "差戻しの正式状態・担当主体・提出者対応をどこへ保存するか。理由連絡をアプリ外から変更しない。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-01",
+      "PD-09",
+      "PD-02",
+      "F-02"
+    ],
+    "requirement_evidence": {
+      "F-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 156,
+          "line_end": 156,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L156"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 301,
+          "line_end": 301,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L301"
+        }
+      ],
+      "FUT-STATE-F": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 331,
+          "line_end": 331,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L331"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 449,
+          "line_end": 449,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L449"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-F-CERTIFY",
+    "title": "通勤手当を認定",
+    "feature_group_id": "G06",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "F-04",
+      "PAYREQ-05"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "正式ヘッダー／経路列、必須検証・経路数・帳票取得対応を確定",
+      "精算・適用期間／不支給計算を業務資料で確定"
+    ],
+    "migration": "既存4経路を上限と決めない。新旧行のGUID対応を保存し受入済みHTMLを保持。",
+    "required_tests": [
+      "新旧認定・複数経路・混合方式",
+      "不支給と終了の区別",
+      "認定前は計算利用不可",
+      "GUIDと職員不一致拒否",
+      "71欄・2ページ・NULL/0・印刷枠超過停止"
+    ],
+    "rollback": "旧データ契約・受入済みHTML・通常入口の復元材料を保持。新契約受入前に旧経路を消さない。",
+    "smallest_missing_question": "認定状態の保存先と認定期間／登録額の検証、給与計算の認定済参照契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-01",
+      "PD-09",
+      "PD-02",
+      "F-02"
+    ],
+    "requirement_evidence": {
+      "F-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 157,
+          "line_end": 157,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L157"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 302,
+          "line_end": 302,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L302"
+        }
+      ],
+      "PAYREQ-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 21,
+          "line_end": 21,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L21"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-F-CHANGE",
+    "title": "変更届から新認定へ",
+    "feature_group_id": "G06",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "F-07",
+      "PAYREQ-05"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "正式ヘッダー／経路列、必須検証・経路数・帳票取得対応を確定",
+      "精算・適用期間／不支給計算を業務資料で確定"
+    ],
+    "migration": "既存4経路を上限と決めない。新旧行のGUID対応を保存し受入済みHTMLを保持。",
+    "required_tests": [
+      "新旧認定・複数経路・混合方式",
+      "不支給と終了の区別",
+      "認定前は計算利用不可",
+      "GUIDと職員不一致拒否",
+      "71欄・2ページ・NULL/0・印刷枠超過停止"
+    ],
+    "rollback": "旧データ契約・受入済みHTML・通常入口の復元材料を保持。新契約受入前に旧経路を消さない。",
+    "smallest_missing_question": "新旧認定GUID・期間・精算案件を関連付ける正式契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-01",
+      "PD-09",
+      "PD-02",
+      "F-02"
+    ],
+    "requirement_evidence": {
+      "F-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 160,
+          "line_end": 160,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L160"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 305,
+          "line_end": 305,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L305"
+        }
+      ],
+      "PAYREQ-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 21,
+          "line_end": 21,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L21"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-F-NOPAY",
+    "title": "一時不支給期間を確認",
+    "feature_group_id": "G06",
+    "classification": "needsbusinessdecision",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "F-08",
+      "FR-F-03"
+    ],
+    "readiness_reason": "病欠時不支給と認定期間終了の区別は確定。対象期間／支給月対応や入力条件は未確定なので値を推定して保存しない。",
+    "prerequisites": [
+      "正式ヘッダー／経路列、必須検証・経路数・帳票取得対応を確定",
+      "精算・適用期間／不支給計算を業務資料で確定"
+    ],
+    "migration": "既存4経路を上限と決めない。新旧行のGUID対応を保存し受入済みHTMLを保持。",
+    "required_tests": [
+      "新旧認定・複数経路・混合方式",
+      "不支給と終了の区別",
+      "認定前は計算利用不可",
+      "GUIDと職員不一致拒否",
+      "71欄・2ページ・NULL/0・印刷枠超過停止"
+    ],
+    "rollback": "旧データ契約・受入済みHTML・通常入口の復元材料を保持。新契約受入前に旧経路を消さない。",
+    "smallest_missing_question": "病気／欠勤のどの期間をどの支給月・経路へ対応させるか。精算式は推測しない。",
+    "question_owner": "business",
+    "blocking_ids": [
+      "PD-01",
+      "PD-09",
+      "PD-02",
+      "F-02"
+    ],
+    "requirement_evidence": {
+      "F-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 161,
+          "line_end": 161,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L161"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 306,
+          "line_end": 306,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L306"
+        }
+      ],
+      "FR-F-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/requirements.md",
+          "line_start": 68,
+          "line_end": 68,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/requirements.md#L68"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 343,
+          "line_end": 343,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L343"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-F-END",
+    "title": "認定期間の終了を確定",
+    "feature_group_id": "G06",
+    "classification": "needsbusinessdecision",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "F-08",
+      "FUT-STATE-F"
+    ],
+    "readiness_reason": "病欠時不支給と認定期間終了の区別は確定。対象期間／支給月対応や入力条件は未確定なので値を推定して保存しない。",
+    "prerequisites": [
+      "正式ヘッダー／経路列、必須検証・経路数・帳票取得対応を確定",
+      "精算・適用期間／不支給計算を業務資料で確定"
+    ],
+    "migration": "既存4経路を上限と決めない。新旧行のGUID対応を保存し受入済みHTMLを保持。",
+    "required_tests": [
+      "新旧認定・複数経路・混合方式",
+      "不支給と終了の区別",
+      "認定前は計算利用不可",
+      "GUIDと職員不一致拒否",
+      "71欄・2ページ・NULL/0・印刷枠超過停止"
+    ],
+    "rollback": "旧データ契約・受入済みHTML・通常入口の復元材料を保持。新契約受入前に旧経路を消さない。",
+    "smallest_missing_question": "認定期間終了日の境界と届出・給与班確認に必要な入力は何か。独立終了状態は追加しない。",
+    "question_owner": "business",
+    "blocking_ids": [
+      "PD-01",
+      "PD-09",
+      "PD-02",
+      "F-02"
+    ],
+    "requirement_evidence": {
+      "F-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 161,
+          "line_end": 161,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L161"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 306,
+          "line_end": 306,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L306"
+        }
+      ],
+      "FUT-STATE-F": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 331,
+          "line_end": 331,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L331"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 449,
+          "line_end": 449,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L449"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-G-REGISTER",
+    "title": "外部決定結果を登録",
+    "feature_group_id": "G09",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "G-01",
+      "G-02",
+      "G-04",
+      "G-06",
+      "SCR002-G-001",
+      "SCR002-G-002"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "決定結果項目・証憑契約・適用日・確認状態の保存先を確定"
+    ],
+    "migration": "新決定結果を既存保険26列等へ自動対応させない。必要な正式マッピングを作成。",
+    "required_tests": [
+      "紙／電子同じ登録経路",
+      "担当局外拒否",
+      "未確認結果の計算除外",
+      "外部結果を給与班独自判断で変更しない"
+    ],
+    "rollback": "テスト決定結果と確認前後を追跡し旧表示契約を保持。",
+    "smallest_missing_question": "各外部決定の必須登録内容・証憑の扱い・給与への適用日を示す資料は何か。",
+    "question_owner": "business/data-owner",
+    "blocking_ids": [
+      "PD-01",
+      "PD-04",
+      "Gの入力／証憑／適用条件"
+    ],
+    "requirement_evidence": {
+      "G-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 202,
+          "line_end": 202,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L202"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 307,
+          "line_end": 307,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L307"
+        }
+      ],
+      "G-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 203,
+          "line_end": 203,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L203"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 308,
+          "line_end": 308,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L308"
+        }
+      ],
+      "G-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 205,
+          "line_end": 205,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L205"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 310,
+          "line_end": 310,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L310"
+        }
+      ],
+      "G-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 207,
+          "line_end": 207,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L207"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 312,
+          "line_end": 312,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L312"
+        }
+      ],
+      "SCR002-G-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 408,
+          "line_end": 408,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L408"
+        }
+      ],
+      "SCR002-G-002": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 409,
+          "line_end": 409,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L409"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-G-CONFIRM",
+    "title": "外部決定結果を確認確定",
+    "feature_group_id": "G09",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "G-05",
+      "SCR002-G-004",
+      "PAYREQ-04"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "決定結果項目・証憑契約・適用日・確認状態の保存先を確定"
+    ],
+    "migration": "新決定結果を既存保険26列等へ自動対応させない。必要な正式マッピングを作成。",
+    "required_tests": [
+      "紙／電子同じ登録経路",
+      "担当局外拒否",
+      "未確認結果の計算除外",
+      "外部結果を給与班独自判断で変更しない"
+    ],
+    "rollback": "テスト決定結果と確認前後を追跡し旧表示契約を保持。",
+    "smallest_missing_question": "外部決定結果の正式状態と確定後適用時点をどの列／計算版へ結ぶか。",
+    "question_owner": "engineering/business for application date",
+    "blocking_ids": [
+      "PD-01",
+      "PD-04",
+      "Gの入力／証憑／適用条件"
+    ],
+    "requirement_evidence": {
+      "G-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 206,
+          "line_end": 206,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L206"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 311,
+          "line_end": 311,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L311"
+        }
+      ],
+      "SCR002-G-004": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 411,
+          "line_end": 411,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L411"
+        }
+      ],
+      "PAYREQ-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 20,
+          "line_end": 20,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L20"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-PAY-PERIOD",
+    "title": "支給回・対象期間を設定",
+    "feature_group_id": "G10",
+    "classification": "needsbusinessdecision",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-07",
+      "PERIOD-01",
+      "PERIOD-02"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "現行Excelと業務資料から項目別式・丸め・適用時期・独立期待結果を確定",
+      "支給回／計算版／使用値／調整の正式モデル",
+      "個別確定と支給回全体検証の関係を決める"
+    ],
+    "migration": "SCR005仮例は置換前提にしない。計算結果・根拠は版ごと分離、支払済への更新経路を作らない。",
+    "required_tests": [
+      "日額時間額・月途中条件・採退境界",
+      "二重欠勤減算なし",
+      "未確認保険・勤怠失敗・未確定元データは確定不可",
+      "支給回全件でゼロ判定・同時更新失効",
+      "支払済不変"
+    ],
+    "rollback": "支払済／最終版を不変保持。未払い候補版だけ無効化して直前有効版へ戻す設計。",
+    "smallest_missing_question": "対象年月日の具体日と採用日境界、支給日の例外設定ルールは何か。",
+    "question_owner": "business",
+    "blocking_ids": [
+      "PD-02",
+      "D9～D12保留",
+      "PD-01",
+      "PD-05",
+      "Q47とI12の個別／全支給回境界"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 23,
+          "line_end": 23,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L23"
+        }
+      ],
+      "PERIOD-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 66,
+          "line_end": 66,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L66"
+        }
+      ],
+      "PERIOD-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 67,
+          "line_end": 67,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L67"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-PAY-CALCULATE",
+    "title": "給与を計算・再計算",
+    "feature_group_id": "G10",
+    "classification": "needsbusinessdecision",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-07",
+      "PAYREQ-08",
+      "PAYREQ-10"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "現行Excelと業務資料から項目別式・丸め・適用時期・独立期待結果を確定",
+      "支給回／計算版／使用値／調整の正式モデル",
+      "個別確定と支給回全体検証の関係を決める"
+    ],
+    "migration": "SCR005仮例は置換前提にしない。計算結果・根拠は版ごと分離、支払済への更新経路を作らない。",
+    "required_tests": [
+      "日額時間額・月途中条件・採退境界",
+      "二重欠勤減算なし",
+      "未確認保険・勤怠失敗・未確定元データは確定不可",
+      "支給回全件でゼロ判定・同時更新失効",
+      "支払済不変"
+    ],
+    "rollback": "支払済／最終版を不変保持。未払い候補版だけ無効化して直前有効版へ戻す設計。",
+    "smallest_missing_question": "式精査再開はD9から。先に画面を進めるなら個別／所属一括確定と全支給回差分ゼロ判定の関係のみ確認する。",
+    "question_owner": "business; formula review remains on hold",
+    "blocking_ids": [
+      "PD-02",
+      "D9～D12保留",
+      "PD-01",
+      "PD-05",
+      "Q47とI12の個別／全支給回境界"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 23,
+          "line_end": 23,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L23"
+        }
+      ],
+      "PAYREQ-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 24,
+          "line_end": 24,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L24"
+        }
+      ],
+      "PAYREQ-10": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 26,
+          "line_end": 26,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L26"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 379,
+          "line_end": 379,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L379"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-PAY-ADJUST",
+    "title": "例外調整を記録",
+    "feature_group_id": "G10",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-07"
+    ],
+    "readiness_reason": "業務目的は確定済み。HTMLの提案表示だけで未承認業務としない。具体的な保存・識別・状態／例外処理設計が未完成。",
+    "prerequisites": [
+      "現行Excelと業務資料から項目別式・丸め・適用時期・独立期待結果を確定",
+      "支給回／計算版／使用値／調整の正式モデル",
+      "個別確定と支給回全体検証の関係を決める"
+    ],
+    "migration": "SCR005仮例は置換前提にしない。計算結果・根拠は版ごと分離、支払済への更新経路を作らない。",
+    "required_tests": [
+      "日額時間額・月途中条件・採退境界",
+      "二重欠勤減算なし",
+      "未確認保険・勤怠失敗・未確定元データは確定不可",
+      "支給回全件でゼロ判定・同時更新失効",
+      "支払済不変"
+    ],
+    "rollback": "支払済／最終版を不変保持。未払い候補版だけ無効化して直前有効版へ戻す設計。",
+    "smallest_missing_question": "理由・処理者・対象項目・調整額を結果本体と分離して保存し、最新結果／照合を失効させる正式契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-02",
+      "D9～D12保留",
+      "PD-01",
+      "PD-05",
+      "Q47とI12の個別／全支給回境界"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 23,
+          "line_end": 23,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L23"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-PAY-INDIVIDUAL",
+    "title": "個別・所属一括確定の境界",
+    "feature_group_id": "G10",
+    "classification": "needsbusinessdecision",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "未決",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-07",
+      "JLINK-UI-11",
+      "I12"
+    ],
+    "readiness_reason": "Q47の職員×支給回個別／所属一括確定とI12の支給回全体最新差分ゼロ条件の操作境界が未定。どちらかを捨てる解決は禁止。",
+    "prerequisites": [
+      "現行Excelと業務資料から項目別式・丸め・適用時期・独立期待結果を確定",
+      "支給回／計算版／使用値／調整の正式モデル",
+      "個別確定と支給回全体検証の関係を決める"
+    ],
+    "migration": "SCR005仮例は置換前提にしない。計算結果・根拠は版ごと分離、支払済への更新経路を作らない。",
+    "required_tests": [
+      "日額時間額・月途中条件・採退境界",
+      "二重欠勤減算なし",
+      "未確認保険・勤怠失敗・未確定元データは確定不可",
+      "支給回全件でゼロ判定・同時更新失効",
+      "支払済不変"
+    ],
+    "rollback": "支払済／最終版を不変保持。未払い候補版だけ無効化して直前有効版へ戻す設計。",
+    "smallest_missing_question": "Q47の職員単位／所属一括確定とI12の支給回全体最新差分ゼロを、同じ確定操作のどの単位で両立させるか。",
+    "question_owner": "business",
+    "blocking_ids": [
+      "PD-02",
+      "D9～D12保留",
+      "PD-01",
+      "PD-05",
+      "Q47とI12の個別／全支給回境界"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 23,
+          "line_end": 23,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L23"
+        }
+      ],
+      "JLINK-UI-11": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 512,
+          "line_end": 512,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L512"
+        }
+      ],
+      "I12": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 57,
+          "line_end": 57,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L57"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-PAY-PAID",
+    "title": "支払い済みを記録",
+    "feature_group_id": "G10",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-08",
+      "PAYREQ-10"
+    ],
+    "readiness_reason": "業務目的は確定済み。HTMLの提案表示だけで未承認業務としない。具体的な保存・識別・状態／例外処理設計が未完成。",
+    "prerequisites": [
+      "現行Excelと業務資料から項目別式・丸め・適用時期・独立期待結果を確定",
+      "支給回／計算版／使用値／調整の正式モデル",
+      "個別確定と支給回全体検証の関係を決める"
+    ],
+    "migration": "SCR005仮例は置換前提にしない。計算結果・根拠は版ごと分離、支払済への更新経路を作らない。",
+    "required_tests": [
+      "日額時間額・月途中条件・採退境界",
+      "二重欠勤減算なし",
+      "未確認保険・勤怠失敗・未確定元データは確定不可",
+      "支給回全件でゼロ判定・同時更新失効",
+      "支払済不変"
+    ],
+    "rollback": "支払済／最終版を不変保持。未払い候補版だけ無効化して直前有効版へ戻す設計。",
+    "smallest_missing_question": "支払い済みの記録項目・実施証拠・状態保存と最終根拠の凍結契約は何か。支払い実行機能は追加しない。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-02",
+      "D9～D12保留",
+      "PD-01",
+      "PD-05",
+      "Q47とI12の個別／全支給回境界"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 24,
+          "line_end": 24,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L24"
+        }
+      ],
+      "PAYREQ-10": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 26,
+          "line_end": 26,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L26"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 379,
+          "line_end": 379,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L379"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-SELECT",
+    "title": "支給回・タブを選択",
+    "feature_group_id": "G11",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-01",
+      "JLINK-UI-02",
+      "I3",
+      "I5"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "最新アプリ読戻しと衝突しない最小Canvas差分",
+      "明確に架空と表示した入力データ契約。新しい正式物理名／業務状態コードを確定しない",
+      "実出力・取込・給与班確定は依存契約完成まで無効。試験完了を業務機能完了としない"
+    ],
+    "migration": "DB移行なし。新UIローカル状態のみ。内部コントロール名は実装上の名前として記録し正式業務画面IDを勝手に確定しない。",
+    "required_tests": [
+      "JLINK-T01の3タブ／コンテキスト部分",
+      "JLINK-T02の対象選択・A/M・確認件数部分",
+      "JLINK-T04の切替・6列表示部分",
+      "0件・多行同職員・取消・再入場・別支給回・Tab順",
+      "未接続操作は成功通知や架空の確定状態を出さない"
+    ],
+    "rollback": "追加した最小Canvas subtreeとローカル状態式を直前版へ戻す。既存画面／接続／権限を変更しない。",
+    "smallest_missing_question": "選択支給回・支給日・期間・状態の実データadapterをどの正式モデルで提供するか。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "支給回／最新版結果／出力明細／照合結果の正式データadapter不在",
+      "正本の正式画面ID・物理列名未入力",
+      "全体を業務機能として提供するにはG12/G13/G15が必要"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 502,
+          "line_end": 502,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L502"
+        }
+      ],
+      "JLINK-UI-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 503,
+          "line_end": 503,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L503"
+        }
+      ],
+      "I3": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 48,
+          "line_end": 48,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L48"
+        }
+      ],
+      "I5": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 50,
+          "line_end": 50,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L50"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-TARGET",
+    "title": "出力対象を選択",
+    "feature_group_id": "G11",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-03",
+      "I1",
+      "I9"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "最新アプリ読戻しと衝突しない最小Canvas差分",
+      "明確に架空と表示した入力データ契約。新しい正式物理名／業務状態コードを確定しない",
+      "実出力・取込・給与班確定は依存契約完成まで無効。試験完了を業務機能完了としない"
+    ],
+    "migration": "DB移行なし。新UIローカル状態のみ。内部コントロール名は実装上の名前として記録し正式業務画面IDを勝手に確定しない。",
+    "required_tests": [
+      "JLINK-T01の3タブ／コンテキスト部分",
+      "JLINK-T02の対象選択・A/M・確認件数部分",
+      "JLINK-T04の切替・6列表示部分",
+      "0件・多行同職員・取消・再入場・別支給回・Tab順",
+      "未接続操作は成功通知や架空の確定状態を出さない"
+    ],
+    "rollback": "追加した最小Canvas subtreeとローカル状態式を直前版へ戻す。既存画面／接続／権限を変更しない。",
+    "smallest_missing_question": "出力明細IDと職員、差分行の対応は何か。初回全職員／絞込みは確定済み。",
+    "question_owner": "engineering/data-owner",
+    "blocking_ids": [
+      "支給回／最新版結果／出力明細／照合結果の正式データadapter不在",
+      "正本の正式画面ID・物理列名未入力",
+      "全体を業務機能として提供するにはG12/G13/G15が必要"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 504,
+          "line_end": 504,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L504"
+        }
+      ],
+      "I1": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 46,
+          "line_end": 46,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L46"
+        }
+      ],
+      "I9": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 54,
+          "line_end": 54,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L54"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-AM",
+    "title": "A/Mを指定",
+    "feature_group_id": "G11",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-04",
+      "IF-05",
+      "I2"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "最新アプリ読戻しと衝突しない最小Canvas差分",
+      "明確に架空と表示した入力データ契約。新しい正式物理名／業務状態コードを確定しない",
+      "実出力・取込・給与班確定は依存契約完成まで無効。試験完了を業務機能完了としない"
+    ],
+    "migration": "DB移行なし。新UIローカル状態のみ。内部コントロール名は実装上の名前として記録し正式業務画面IDを勝手に確定しない。",
+    "required_tests": [
+      "JLINK-T01の3タブ／コンテキスト部分",
+      "JLINK-T02の対象選択・A/M・確認件数部分",
+      "JLINK-T04の切替・6列表示部分",
+      "0件・多行同職員・取消・再入場・別支給回・Tab順",
+      "未接続操作は成功通知や架空の確定状態を出さない"
+    ],
+    "rollback": "追加した最小Canvas subtreeとローカル状態式を直前版へ戻す。既存画面／接続／権限を変更しない。",
+    "smallest_missing_question": "一括／明細別A/Mを保持する出力明細の安定IDと出力履歴adapterは何か。手動判断の方針は再確認しない。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "支給回／最新版結果／出力明細／照合結果の正式データadapter不在",
+      "正本の正式画面ID・物理列名未入力",
+      "全体を業務機能として提供するにはG12/G13/G15が必要"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 505,
+          "line_end": 505,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L505"
+        }
+      ],
+      "IF-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 15,
+          "line_end": 15,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L15"
+        }
+      ],
+      "I2": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 47,
+          "line_end": 47,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L47"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-EXPORT",
+    "title": "確認してExcel出力",
+    "feature_group_id": "G12",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-05",
+      "I4",
+      "IF-01",
+      "IF-02",
+      "IF-03",
+      "IF-04",
+      "IF-06",
+      "IF-07",
+      "IF-08"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "ローコードの生成方式・既存接続・保存配布先を確定",
+      "各出力列の入力元／文字列整形と最新結果ID・出力履歴を定義",
+      "単に237見出しが決まったことを金額マッピング完了としない"
+    ],
+    "migration": "出力履歴／計算版対応を新設する設計が必要。空欄0化は人給側の動作なので全セルをアプリで0埋めする新ルールを作らない。",
+    "required_tests": [
+      "IF-T01/02/03/04/06",
+      "237列／固定順／文字列実型／先頭0／日付",
+      "11キーと内部GUID分離",
+      "約800行の欠落重複／タイムアウト",
+      "Excel出力取消・再試行と履歴対応"
+    ],
+    "rollback": "生成候補を識別し未送信ファイル／失敗出力を業務完了扱いにしない。前回出力履歴保持。",
+    "smallest_missing_question": "237列の値設定元／整形、低コード生成方式、保存配布先と出力処理履歴を定義する。",
+    "question_owner": "engineering/data-owner",
+    "blocking_ids": [
+      "PD-03",
+      "全237列の値設定",
+      "D9～D12等の式保留"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 506,
+          "line_end": 506,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L506"
+        }
+      ],
+      "I4": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 49,
+          "line_end": 49,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L49"
+        }
+      ],
+      "IF-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 11,
+          "line_end": 11,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L11"
+        }
+      ],
+      "IF-02": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 12,
+          "line_end": 12,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L12"
+        }
+      ],
+      "IF-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 13,
+          "line_end": 13,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L13"
+        }
+      ],
+      "IF-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 14,
+          "line_end": 14,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L14"
+        }
+      ],
+      "IF-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 16,
+          "line_end": 16,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L16"
+        }
+      ],
+      "IF-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 17,
+          "line_end": 17,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L17"
+        }
+      ],
+      "IF-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 18,
+          "line_end": 18,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L18"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JINKYU-PROCESS",
+    "title": "人給取込・給与簿出力",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "IF-01",
+      "IF-09",
+      "I10",
+      "PAYREQ-08"
+    ],
+    "readiness_reason": "外部人給システムで担当者が行う手順。Canvas内自動実行・接続を依頼された機能と推定しない。取込／給与簿出力の業務接続仕様待ち。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "通常・追給・控除を含む給与簿CSVと出力明細の対応サンプル／照合キーは何か。",
+    "question_owner": "data-owner/engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "IF-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 11,
+          "line_end": 11,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L11"
+        }
+      ],
+      "IF-09": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 19,
+          "line_end": 19,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L19"
+        }
+      ],
+      "I10": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 55,
+          "line_end": 55,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L55"
+        }
+      ],
+      "PAYREQ-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 24,
+          "line_end": 24,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L24"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-IMPORT",
+    "title": "給与簿CSVを取り込む",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-06",
+      "IF-09",
+      "IF-10",
+      "I5",
+      "I10"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "給与簿CSVの文字コード・ヘッダー列・行識別・成功版切替を確定できるサンプルは何か。",
+    "question_owner": "data-owner/engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 507,
+          "line_end": 507,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L507"
+        }
+      ],
+      "IF-09": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 19,
+          "line_end": 19,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L19"
+        }
+      ],
+      "IF-10": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 20,
+          "line_end": 20,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L20"
+        }
+      ],
+      "I5": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 50,
+          "line_end": 50,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L50"
+        }
+      ],
+      "I10": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 55,
+          "line_end": 55,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L55"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-RECONCILE",
+    "title": "最新版と照合",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-06",
+      "JLINK-UI-07",
+      "I5",
+      "I7",
+      "PAYREQ-08"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "給与簿側の照合キー／多重行対応と最新結果ID・更新検知・差分明細保存の正式契約は何か。",
+    "question_owner": "data-owner/engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 507,
+          "line_end": 507,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L507"
+        }
+      ],
+      "JLINK-UI-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 508,
+          "line_end": 508,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L508"
+        }
+      ],
+      "I5": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 50,
+          "line_end": 50,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L50"
+        }
+      ],
+      "I7": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 52,
+          "line_end": 52,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L52"
+        }
+      ],
+      "PAYREQ-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 24,
+          "line_end": 24,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L24"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-FILTER",
+    "title": "差分・全件表示を切替",
+    "feature_group_id": "G11",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-08",
+      "I6",
+      "I11"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "最新アプリ読戻しと衝突しない最小Canvas差分",
+      "明確に架空と表示した入力データ契約。新しい正式物理名／業務状態コードを確定しない",
+      "実出力・取込・給与班確定は依存契約完成まで無効。試験完了を業務機能完了としない"
+    ],
+    "migration": "DB移行なし。新UIローカル状態のみ。内部コントロール名は実装上の名前として記録し正式業務画面IDを勝手に確定しない。",
+    "required_tests": [
+      "JLINK-T01の3タブ／コンテキスト部分",
+      "JLINK-T02の対象選択・A/M・確認件数部分",
+      "JLINK-T04の切替・6列表示部分",
+      "0件・多行同職員・取消・再入場・別支給回・Tab順",
+      "未接続操作は成功通知や架空の確定状態を出さない"
+    ],
+    "rollback": "追加した最小Canvas subtreeとローカル状態式を直前版へ戻す。既存画面／接続／権限を変更しない。",
+    "smallest_missing_question": "比較結果の実データ源、差額符号と非数値差分の表示値契約を定義する。6列と差分既定は確定済み。",
+    "question_owner": "engineering/business for display convention",
+    "blocking_ids": [
+      "支給回／最新版結果／出力明細／照合結果の正式データadapter不在",
+      "正本の正式画面ID・物理列名未入力",
+      "全体を業務機能として提供するにはG12/G13/G15が必要"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 509,
+          "line_end": 509,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L509"
+        }
+      ],
+      "I6": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 51,
+          "line_end": 51,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L51"
+        }
+      ],
+      "I11": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 56,
+          "line_end": 56,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L56"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-CORRECT",
+    "title": "差分原因の入力画面へ",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-09",
+      "IF-10",
+      "PAYREQ-07"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "差分原因を勤務条件／通勤等の正しい職員・履歴へ結ぶIDと、戻り支給回コンテキストの契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-09": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 510,
+          "line_end": 510,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L510"
+        }
+      ],
+      "IF-10": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 20,
+          "line_end": 20,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L20"
+        }
+      ],
+      "PAYREQ-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 23,
+          "line_end": 23,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L23"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-REEXPORT",
+    "title": "差分対応明細を再出力",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-03",
+      "I9",
+      "I2",
+      "I4"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "複数差分項目と1出力明細を重複なく対応させるキー／集約契約は何か。A/Mは自動変更しない。",
+    "question_owner": "data-owner/engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 504,
+          "line_end": 504,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L504"
+        }
+      ],
+      "I9": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 54,
+          "line_end": 54,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L54"
+        }
+      ],
+      "I2": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 47,
+          "line_end": 47,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L47"
+        }
+      ],
+      "I4": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 49,
+          "line_end": 49,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L49"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-ERROR",
+    "title": "人給エラー行を確認",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-10",
+      "IF-11",
+      "I8"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "人給インポートエラーをどの形式・取得方法・行IDで受け取れるか（I8）。",
+    "question_owner": "data-owner/engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-10": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 511,
+          "line_end": 511,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L511"
+        }
+      ],
+      "IF-11": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 21,
+          "line_end": 21,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L21"
+        }
+      ],
+      "I8": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 53,
+          "line_end": 53,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L53"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-CONFIRM",
+    "title": "給与班が支給回を確定",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-11",
+      "I12",
+      "PAYREQ-07",
+      "PAYREQ-08"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "全支給回の最新結果IDと照合回を確定時に再検証し、同時更新・未解決行を拒否する保存契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-11": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 512,
+          "line_end": 512,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L512"
+        }
+      ],
+      "I12": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-interface-decisions-20261008.md",
+          "line_start": 57,
+          "line_end": 57,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-interface-decisions-20261008.md#L57"
+        }
+      ],
+      "PAYREQ-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 23,
+          "line_end": 23,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L23"
+        }
+      ],
+      "PAYREQ-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 24,
+          "line_end": 24,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L24"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-HISTORY",
+    "title": "処理回の履歴を確認",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-08",
+      "PAYREQ-10",
+      "IF-12"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "処理回の日時・実行者・件数・版／取込ID・不一致双方額を、中間版削除後も残す物理保存契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 24,
+          "line_end": 24,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L24"
+        }
+      ],
+      "PAYREQ-10": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 26,
+          "line_end": 26,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L26"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 379,
+          "line_end": 379,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L379"
+        }
+      ],
+      "IF-12": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 22,
+          "line_end": 22,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L22"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-HOME",
+    "title": "ホームへ戻る",
+    "feature_group_id": "G18",
+    "classification": "proposal",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-01",
+      "COMMON-CONTEXT-001"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "該当の具体操作が正本で承認されるまで実装対象へ昇格しない"
+    ],
+    "migration": "なし。",
+    "required_tests": [
+      "提案UIを確定要件として自動採用していないこと"
+    ],
+    "rollback": "なし。",
+    "smallest_missing_question": "この具体動線を採用するか。現在は追加で質問せず保留する。",
+    "question_owner": "business if/when selected",
+    "blocking_ids": [
+      "explicitly proposed/out of initial scope"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 502,
+          "line_end": 502,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L502"
+        }
+      ],
+      "COMMON-CONTEXT-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 153,
+          "line_end": 153,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L153"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 227,
+          "line_end": 227,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L227"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 127,
+          "line_end": 127,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L127"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-RETRO-CALCULATE",
+    "title": "過去月との差額を計算",
+    "feature_group_id": "G14",
+    "classification": "needsbusinessdecision",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAY-03",
+      "FR-PAY-01",
+      "PAYREQ-08"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "過去複数月集約と対象日のルール",
+      "差額式・税保険丸め・相殺限度／取消／過回収／完了条件",
+      "案件・月別内訳・回収実績の物理モデル"
+    ],
+    "migration": "元支払を保持し新案件だけ作る。返納実績と差額確定状態を別保存。",
+    "required_tests": [
+      "複数過去月・同月複数支給",
+      "分割2回＋相殺／告知併用",
+      "負値・過回収・取消・未完了",
+      "元支払不変／回収済＋残額整合"
+    ],
+    "rollback": "元給与に書き戻さない。回収実績訂正は未確定のため実績取消機能を勝手に作らない。",
+    "smallest_missing_question": "複数過去月を1追給行に集約したとき対象年月日はどう決めるか。返納取消等は別の未決として保持。",
+    "question_owner": "business",
+    "blocking_ids": [
+      "PD-02",
+      "PD-03",
+      "PD-07",
+      "PERIOD-05とR10の両立"
+    ],
+    "requirement_evidence": {
+      "PAY-03": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 260,
+          "line_end": 260,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L260"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 319,
+          "line_end": 319,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L319"
+        }
+      ],
+      "FR-PAY-01": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/requirements.md",
+          "line_start": 86,
+          "line_end": 86,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/requirements.md#L86"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 353,
+          "line_end": 353,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L353"
+        }
+      ],
+      "PAYREQ-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 24,
+          "line_end": 24,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L24"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-RETRO-CONFIRM",
+    "title": "差額内訳を確認・確定",
+    "feature_group_id": "G14",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAY-04",
+      "SCR007-DIFF-001",
+      "FUT-STATE-PAY"
+    ],
+    "readiness_reason": "業務目的は確定済み。HTMLの提案表示だけで未承認業務としない。具体的な保存・識別・状態／例外処理設計が未完成。",
+    "prerequisites": [
+      "過去複数月集約と対象日のルール",
+      "差額式・税保険丸め・相殺限度／取消／過回収／完了条件",
+      "案件・月別内訳・回収実績の物理モデル"
+    ],
+    "migration": "元支払を保持し新案件だけ作る。返納実績と差額確定状態を別保存。",
+    "required_tests": [
+      "複数過去月・同月複数支給",
+      "分割2回＋相殺／告知併用",
+      "負値・過回収・取消・未完了",
+      "元支払不変／回収済＋残額整合"
+    ],
+    "rollback": "元給与に書き戻さない。回収実績訂正は未確定のため実績取消機能を勝手に作らない。",
+    "smallest_missing_question": "選択差額結果・内訳・確認主体・確定状態を支給／返納実績と分離する正式保存契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-02",
+      "PD-03",
+      "PD-07",
+      "PERIOD-05とR10の両立"
+    ],
+    "requirement_evidence": {
+      "PAY-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 261,
+          "line_end": 261,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L261"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 320,
+          "line_end": 320,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L320"
+        }
+      ],
+      "SCR007-DIFF-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 425,
+          "line_end": 425,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L425"
+        }
+      ],
+      "FUT-STATE-PAY": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 333,
+          "line_end": 333,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L333"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 451,
+          "line_end": 451,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L451"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-RETRO-EXPORT",
+    "title": "追給を人給出力へ渡す",
+    "feature_group_id": "G14",
+    "classification": "needsbusinessdecision",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-08",
+      "PERIOD-04",
+      "PERIOD-05"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "過去複数月集約と対象日のルール",
+      "差額式・税保険丸め・相殺限度／取消／過回収／完了条件",
+      "案件・月別内訳・回収実績の物理モデル"
+    ],
+    "migration": "元支払を保持し新案件だけ作る。返納実績と差額確定状態を別保存。",
+    "required_tests": [
+      "複数過去月・同月複数支給",
+      "分割2回＋相殺／告知併用",
+      "負値・過回収・取消・未完了",
+      "元支払不変／回収済＋残額整合"
+    ],
+    "rollback": "元給与に書き戻さない。回収実績訂正は未確定のため実績取消機能を勝手に作らない。",
+    "smallest_missing_question": "複数過去月の追給を集約した行の対象年月日と月別内訳対応をどう両立させるか。",
+    "question_owner": "business",
+    "blocking_ids": [
+      "PD-02",
+      "PD-03",
+      "PD-07",
+      "PERIOD-05とR10の両立"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 24,
+          "line_end": 24,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L24"
+        }
+      ],
+      "PERIOD-04": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 69,
+          "line_end": 69,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L69"
+        }
+      ],
+      "PERIOD-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/design/detailed/payroll-jinkyu-interface.md",
+          "line_start": 70,
+          "line_end": 70,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/design/detailed/payroll-jinkyu-interface.md#L70"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-REPAY-METHOD",
+    "title": "返納方法を決定",
+    "feature_group_id": "G14",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAY-05",
+      "PAYREQ-08"
+    ],
+    "readiness_reason": "業務目的は確定済み。HTMLの提案表示だけで未承認業務としない。具体的な保存・識別・状態／例外処理設計が未完成。",
+    "prerequisites": [
+      "過去複数月集約と対象日のルール",
+      "差額式・税保険丸め・相殺限度／取消／過回収／完了条件",
+      "案件・月別内訳・回収実績の物理モデル"
+    ],
+    "migration": "元支払を保持し新案件だけ作る。返納実績と差額確定状態を別保存。",
+    "required_tests": [
+      "複数過去月・同月複数支給",
+      "分割2回＋相殺／告知併用",
+      "負値・過回収・取消・未完了",
+      "元支払不変／回収済＋残額整合"
+    ],
+    "rollback": "元給与に書き戻さない。回収実績訂正は未確定のため実績取消機能を勝手に作らない。",
+    "smallest_missing_question": "返納案件と給与班指定の相殺／告知書方法を複数回収へ結ぶ保存契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-02",
+      "PD-03",
+      "PD-07",
+      "PERIOD-05とR10の両立"
+    ],
+    "requirement_evidence": {
+      "PAY-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 262,
+          "line_end": 262,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L262"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 321,
+          "line_end": 321,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L321"
+        }
+      ],
+      "PAYREQ-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 24,
+          "line_end": 24,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L24"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-REPAY-RECORD",
+    "title": "回収実績と残額を記録",
+    "feature_group_id": "G14",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "PAYREQ-08",
+      "PAY-05"
+    ],
+    "readiness_reason": "業務目的は確定済み。HTMLの提案表示だけで未承認業務としない。具体的な保存・識別・状態／例外処理設計が未完成。",
+    "prerequisites": [
+      "過去複数月集約と対象日のルール",
+      "差額式・税保険丸め・相殺限度／取消／過回収／完了条件",
+      "案件・月別内訳・回収実績の物理モデル"
+    ],
+    "migration": "元支払を保持し新案件だけ作る。返納実績と差額確定状態を別保存。",
+    "required_tests": [
+      "複数過去月・同月複数支給",
+      "分割2回＋相殺／告知併用",
+      "負値・過回収・取消・未完了",
+      "元支払不変／回収済＋残額整合"
+    ],
+    "rollback": "元給与に書き戻さない。回収実績訂正は未確定のため実績取消機能を勝手に作らない。",
+    "smallest_missing_question": "回収日・方法・額の保存先と、取消／過回収／完了判定／相殺限度をどう扱うか。",
+    "question_owner": "business/engineering",
+    "blocking_ids": [
+      "PD-02",
+      "PD-03",
+      "PD-07",
+      "PERIOD-05とR10の両立"
+    ],
+    "requirement_evidence": {
+      "PAYREQ-08": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 24,
+          "line_end": 24,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L24"
+        }
+      ],
+      "PAY-05": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/business-requirements.md",
+          "line_start": 262,
+          "line_end": 262,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/business-requirements.md#L262"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 321,
+          "line_end": 321,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L321"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-IMPORT-HOME",
+    "title": "ホームへ戻る",
+    "feature_group_id": "G18",
+    "classification": "proposal",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "FUT-IMPORT-001",
+      "COMMON-CONTEXT-001"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "該当の具体操作が正本で承認されるまで実装対象へ昇格しない"
+    ],
+    "migration": "なし。",
+    "required_tests": [
+      "提案UIを確定要件として自動採用していないこと"
+    ],
+    "rollback": "なし。",
+    "smallest_missing_question": "この具体動線を採用するか。現在は追加で質問せず保留する。",
+    "question_owner": "business if/when selected",
+    "blocking_ids": [
+      "explicitly proposed/out of initial scope"
+    ],
+    "requirement_evidence": {
+      "FUT-IMPORT-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 329,
+          "line_end": 329,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L329"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 422,
+          "line_end": 422,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L422"
+        }
+      ],
+      "COMMON-CONTEXT-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 153,
+          "line_end": 153,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L153"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 227,
+          "line_end": 227,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L227"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 127,
+          "line_end": 127,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L127"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-001-DIFF",
+    "title": "遡及差額を開く",
+    "feature_group_id": "G18",
+    "classification": "proposal",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "SCR007-DIFF-001"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "該当の具体操作が正本で承認されるまで実装対象へ昇格しない"
+    ],
+    "migration": "なし。",
+    "required_tests": [
+      "提案UIを確定要件として自動採用していないこと"
+    ],
+    "rollback": "なし。",
+    "smallest_missing_question": "この具体動線を採用するか。現在は追加で質問せず保留する。",
+    "question_owner": "business if/when selected",
+    "blocking_ids": [
+      "explicitly proposed/out of initial scope"
+    ],
+    "requirement_evidence": {
+      "SCR007-DIFF-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 425,
+          "line_end": 425,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L425"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-007-HOME",
+    "title": "ホームへ戻る",
+    "feature_group_id": "G18",
+    "classification": "proposal",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "提案",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "SCR007-DIFF-001",
+      "COMMON-CONTEXT-001"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "該当の具体操作が正本で承認されるまで実装対象へ昇格しない"
+    ],
+    "migration": "なし。",
+    "required_tests": [
+      "提案UIを確定要件として自動採用していないこと"
+    ],
+    "rollback": "なし。",
+    "smallest_missing_question": "この具体動線を採用するか。現在は追加で質問せず保留する。",
+    "question_owner": "business if/when selected",
+    "blocking_ids": [
+      "explicitly proposed/out of initial scope"
+    ],
+    "requirement_evidence": {
+      "SCR007-DIFF-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 425,
+          "line_end": 425,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L425"
+        }
+      ],
+      "COMMON-CONTEXT-001": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 153,
+          "line_end": 153,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L153"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 227,
+          "line_end": 227,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L227"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 127,
+          "line_end": 127,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L127"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-CORRECT-ATT",
+    "title": "勤怠の差分訂正へ",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-09",
+      "PAYREQ-06",
+      "PAYREQ-07"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "勤怠差分を局×月の報告ID／職員行へ結ぶ対応と、戻り支給回コンテキストの契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-09": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 510,
+          "line_end": 510,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L510"
+        }
+      ],
+      "PAYREQ-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 22,
+          "line_end": 22,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L22"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 376,
+          "line_end": 376,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L376"
+        }
+      ],
+      "PAYREQ-07": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 23,
+          "line_end": 23,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L23"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-RETURN",
+    "title": "人給連携へ戻る",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-09"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "入力画面から返す安定支給回ID／職員IDと訂正後失効の通知契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-09": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 510,
+          "line_end": 510,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L510"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  },
+  {
+    "operation_id": "OP-JLINK-RETURN-ATT",
+    "title": "人給連携へ戻る",
+    "feature_group_id": "G13",
+    "classification": "designblocked",
+    "classification_scope": "whole_business_operation",
+    "html_declared_status": "確定改修要件",
+    "source_classification": "not_present_in_snapshot_planned",
+    "requirement_ids": [
+      "JLINK-UI-09",
+      "PAYREQ-06"
+    ],
+    "readiness_reason": "保存ソースに当該業務操作なし。業務確定と実装可能性を分離し、下記の具体的依存契約が完了するまで本機能化しない。",
+    "prerequisites": [
+      "実CSVの文字コード・列・引用符・キー・行対応を確認",
+      "最新結果IDと同時更新検出・確定再検証を設計",
+      "差分⇔出力明細の多対多対応、エラー源と行IDを定義"
+    ],
+    "migration": "給与簿は取込回ごとの読み取り専用スナップショット。既存163列と出力237列の1対1一致を仮定しない。",
+    "required_tests": [
+      "IF-T07/08/09/12、JLINK-T03/05/06/08",
+      "未知／不足／余分／重複／空欄対0",
+      "途中失敗で前回成功維持",
+      "再計算中／照合中／確定直前の更新",
+      "多差分1出力行でも再出力重複なし"
+    ],
+    "rollback": "取込回・照合回を追跡し前回成功分を維持。過去照合を削除せず失効扱い。",
+    "smallest_missing_question": "勤怠画面から返す安定支給回ID／職員IDと訂正後失効の通知契約は何か。",
+    "question_owner": "engineering",
+    "blocking_ids": [
+      "PD-03",
+      "PD-05",
+      "照合キー／多重行／出力行対応",
+      "I8エラー取得方式",
+      "差額符号／非数値表現"
+    ],
+    "requirement_evidence": {
+      "JLINK-UI-09": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/screen-requirements.md",
+          "line_start": 510,
+          "line_end": 510,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/screen-requirements.md#L510"
+        }
+      ],
+      "PAYREQ-06": [
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/payroll-confirmed-20261007.md",
+          "line_start": 22,
+          "line_end": 22,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/payroll-confirmed-20261007.md#L22"
+        },
+        {
+          "commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+          "path": "docs/requirements/traceability-matrix.md",
+          "line_start": 376,
+          "line_end": 376,
+          "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/252abe4aa5d3b1d99a584a30c97d9b48153c91f5/docs/requirements/traceability-matrix.md#L376"
+        }
+      ]
+    },
+    "source_evidence": [],
+    "source_notes": "2026-10-07 saved source only; no present-day live execution or effective authorization verified.",
+    "end_to_end_runtime_pass": false
+  }
+]

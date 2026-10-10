@@ -1,0 +1,20 @@
+{
+  "issue_number": 51,
+  "requirement_id": "ABS-RATE-001",
+  "url": "https://github.com/hirokazu601218/PowerAppsCanvasAppUI/issues/51",
+  "title": "[次回の職員基本テーブル編集時] 欠勤時間単価を追加する",
+  "state": "open",
+  "observed_at_utc": "2026-10-10T00:28:20Z",
+  "updated_at": "2026-09-17T23:10:03Z",
+  "body": "## 状態・実施タイミング\n未実施。今回はDataverseのテーブルを変更しない。次回M_職員基本（職員基本テーブル）の編集を行う際に、同じ作業範囲へ必ず組み込む。\n\n## 要件 ABS-RATE-001\n欠勤控除用の「欠勤時間単価」（円/時間）を職員基本テーブルに追加する。給与計算では日額から都度算出せず、この項目を参照し、UIには「時間単価×欠勤時間＝減額」を表示する。\n\n試作はcolStaff.AbsenceHourlyRateを使用。実テーブルの論理名、型、精度、必須条件、既存職員への設定方法はテーブル編集時に確定する。試作用の単価を本番値として流用しない。\n\n## 完了条件\n- [ ] 次回の職員基本テーブル編集の計画に本Issueを含める。\n- [ ] 項目定義（型・精度・既存値の設定方針）を確定する。\n- [ ] 実際のDataverse職員基本テーブルに欠勤時間単価を追加し、公開・反映する。\n- [ ] 実テーブルを読み戻し、項目名・型・精度を確認して証跡を本Issueへ記録する。\n- [ ] 関連定義書とSTATUSを更新する。\n\n**実テーブルへの反映を確認した時点でタスク完了とし、Issueを閉じる。文書変更・試作の内蔵項目追加・PRマージだけでは閉じない。** 未反映ならOpenを維持する。実テーブル参照へのアプリ移行が未実施なら別残件として明記する。\n\n## 再開時の確認経路\nAGENTS.md → docs/handoff/STATUS.md先頭の保留タスク → 本Issue。職員基本テーブル編集時にOpen状態と反映状況を確認する。\n\n## 関連\n[勤務報告・給与計算プロトタイプ](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/blob/main/docs/prototypes/attendance-payroll-prototype.md)\n\n全日欠勤は日数・控除対象から除外。端数は最終合計のみ円未満切捨て。",
+  "verified_contract": {
+    "display_label": "欠勤時間単価",
+    "unit": "円/時間",
+    "logical_name": null,
+    "type": null,
+    "precision": null,
+    "requiredness": null,
+    "existing_value_population": null
+  },
+  "scope_boundary": "原M_職員基本は今回の試験アプリ範囲外。照会のみ。変更・コメント・クローズなし。"
+}

@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "source": "Current v35 official Export",
+  "published_package_sha256": "465dcdc2eec6deb181f8df811558bdade4f0b6494675346e1cac700d90f1a740",
+  "source_count": 10,
+  "files": [
+    {
+      "file": "scrStaffMasterSearch.pa.yaml",
+      "sha256": "d97f5039b4247f105fea08cbb90f4d4569202bc7e07b569bae0d103895da0070",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrHome.pa.yaml",
+      "sha256": "2048b533b83350f9e9498155c49e6af8cdf440a611a5922718789bf7a5705d2f",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrAttendance.pa.yaml",
+      "sha256": "d1c785a764ae9f869cf5b2a8e17e24283e7c19398f358aa00ed4109c57017929",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrBonus.pa.yaml",
+      "sha256": "a70230102a56edc8f2c6035375973c1201bd7ba0a2824938e0bbd34f3d2b816b",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrPayroll.pa.yaml",
+      "sha256": "da9bf615774e75cc6f0a05a7079deef16b58de8765c6c8a43c2fbd0b1ad23678",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrMaintenance.pa.yaml",
+      "sha256": "8eda2c59b83b26f021ef45adb62bcfd863863a9707fc68e81023d8117cca43e2",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrExcelImportPoc.pa.yaml",
+      "sha256": "c94f5974facd393db281102613cd92eb2578f22414e8eba4244f691dd19b27b7",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrAttendanceFormal.pa.yaml",
+      "sha256": "9590d9050c49a94f20e664d8c301a7334d6592eed945036cb5c148dae79c7597",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "App.pa.yaml",
+      "sha256": "f10ea3ddcea5edd5ecfeeaae57be7785ae37a1621ffc1fc9befe834696d125d6",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "_EditorState.pa.yaml",
+      "sha256": "ff06bc649a5896dc21f7c6ca08f5fed0017a90e56a0121494b4bb92bc03886bb",
+      "same_oct7_saved_bytes": true
+    }
+  ],
+  "caution": "Export proves the current published source; recheck no newer editing draft immediately before mutation. Raw package and tenant-specific sources are not repository artifacts."
+}

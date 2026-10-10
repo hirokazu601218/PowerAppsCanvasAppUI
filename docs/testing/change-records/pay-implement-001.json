@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "change_id": "PAY-IMPLEMENT-001",
+  "target": {
+    "environment_id": "68e00049-b7e5-eda6-9888-9a3cc493c5be",
+    "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306"
+  },
+  "changes": [
+    {
+      "path": "src/screen-ui/v1.31/btnDetailTab111.OnSelect.fx",
+      "component": "btnDetailTab111.OnSelect",
+      "unit_case_ids": [
+        "UT-STATE-HISTORY-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/btnLoadDetails111.OnSelect.fx",
+      "component": "btnLoadDetails111.OnSelect",
+      "unit_case_ids": [
+        "UT-STATE-HISTORY-001",
+        "UT-STATE-HISTORY-EMPTY-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/btnSearch111.OnSelect.fx",
+      "component": "btnSearch111.OnSelect",
+      "unit_case_ids": [
+        "UT-STATE-SEARCH-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/galHistory111.OnSelect.fx",
+      "component": "galHistory111.OnSelect",
+      "unit_case_ids": [
+        "UT-STATE-HISTORY-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/lblPayDeductionBasis0.Text.fx",
+      "component": "lblPayDeductionBasis0.Text",
+      "unit_case_ids": [
+        "UT-STATE-PAYROLL-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/lblPayDeductionBasis1.Text.fx",
+      "component": "lblPayDeductionBasis1.Text",
+      "unit_case_ids": [
+        "UT-STATE-PAYROLL-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/lblPayDeductionBasis2.Text.fx",
+      "component": "lblPayDeductionBasis2.Text",
+      "unit_case_ids": [
+        "UT-STATE-PAYROLL-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/lblPayDeductionBasis3.Text.fx",
+      "component": "lblPayDeductionBasis3.Text",
+      "unit_case_ids": [
+        "UT-STATE-PAYROLL-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/lblPayDeductionBasis4.Text.fx",
+      "component": "lblPayDeductionBasis4.Text",
+      "unit_case_ids": [
+        "UT-STATE-PAYROLL-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/lblPayDeductionBasis5.Text.fx",
+      "component": "lblPayDeductionBasis5.Text",
+      "unit_case_ids": [
+        "UT-STATE-PAYROLL-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/lblPayDeductionBasis6.Text.fx",
+      "component": "lblPayDeductionBasis6.Text",
+      "unit_case_ids": [
+        "UT-STATE-PAYROLL-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/lblPayDeductionBasis7.Text.fx",
+      "component": "lblPayDeductionBasis7.Text",
+      "unit_case_ids": [
+        "UT-STATE-PAYROLL-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/manifest.json",
+      "component": "SCR002/SCR005 control delta manifest",
+      "unit_case_ids": [
+        "UT-STATE-SEARCH-001",
+        "UT-STATE-HISTORY-001",
+        "UT-STATE-PAYROLL-001",
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001",
+        "UT-HOME-001"
+      ],
+      "expected_result": "同名部品の追加・消失なく、本文外サマリーと金額・根拠の同時失効を公開Playerで確認する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/payroll-root.pa.yaml",
+      "component": "conscrPayrollRoot: summary parent and deduction-basis state",
+      "unit_case_ids": [
+        "UT-STATE-PAYROLL-001",
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001"
+      ],
+      "expected_result": "同名部品の追加・消失なく、本文外サマリーと金額・根拠の同時失効を公開Playerで確認する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/payroll-root.paste.yaml",
+      "component": "conscrPayrollRoot: summary parent and deduction-basis state",
+      "unit_case_ids": [
+        "UT-STATE-PAYROLL-001",
+        "UT-STATE-SUMMARY-001",
+        "UT-STATE-SUMMARY-NARROW-001"
+      ],
+      "expected_result": "同名部品の追加・消失なく、本文外サマリーと金額・根拠の同時失効を公開Playerで確認する。"
+    },
+    {
+      "path": "src/screen-ui/v1.31/scrStaffMasterSearch.OnVisible.tail.fx",
+      "component": "scrStaffMasterSearch.OnVisible",
+      "unit_case_ids": [
+        "UT-STATE-SEARCH-001"
+      ],
+      "expected_result": "変更要求とmanifestの前後値・受入条件に一致し、選択した架空職員の状態を保持する。給与根拠は結果有効時だけ表示する。"
+    },
+    {
+      "path": "config/dataverse/scr003-attendance-columns.json",
+      "component": "replacement description: retained old batch and inactive incomplete staging; no runtime flow change",
+      "unit_case_ids": [
+        "UT-SCR003-CONTRACT-001"
+      ],
+      "expected_result": "機械可読契約の説明文が既存フローの旧バッチ保持・不完全ステージング未活性化・一時Excel削除との区別に一致する。runtime flowの変更なし。既存test_scr003_flow.py静的10件と読取り契約ケースで確認する。"
+    }
+  ],
+  "integration": {
+    "required": true,
+    "reason": "検索結果・職員・履歴キーが複数タブとSCR002/SCR005往復へ影響する。再取得と0件処理を含む。",
+    "case_ids": [
+      "IT-STATE-RETURN-001",
+      "IT-STATE-HISTORY-TABS-001",
+      "IT-STATE-PAGE-001",
+      "IT-HOME-DETAIL-001"
+    ]
+  },
+  "system_test": {
+    "status": "deferred",
+    "reason": "D-07の業務総合試験仕様は未決。今回の限定単体・結合を総合合格へ読み替えない。"
+  },
+  "cases": [
+    {
+      "id": "UT-STATE-SEARCH-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "UT-STATE-HISTORY-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "UT-STATE-HISTORY-EMPTY-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "UT-STATE-PAYROLL-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "UT-STATE-SUMMARY-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "IT-STATE-RETURN-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "IT-STATE-HISTORY-TABS-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "IT-STATE-PAGE-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "UT-STATE-SUMMARY-NARROW-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/state-retention.test.ts"
+    },
+    {
+      "id": "UT-HOME-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/navigation.test.ts"
+    },
+    {
+      "id": "IT-HOME-DETAIL-001",
+      "level": "integration",
+      "test_file": "e2e/current-app/navigation.test.ts"
+    },
+    {
+      "id": "UT-SCR003-CONTRACT-001",
+      "level": "unit",
+      "test_file": "e2e/current-app/attendance-contract.test.ts"
+    }
+  ]
+}

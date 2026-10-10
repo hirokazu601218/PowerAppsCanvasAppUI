@@ -1,0 +1,42 @@
+{
+  "change_id": "pay-implement-001",
+  "run_id": "manual-20261010-candidate-review",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T00:36:15.598969+00:00",
+  "source_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+  "version": "local v1.31 r4 candidate against verified current published v35; not applied by reviewer",
+  "source_review": "CLEAR_FOR_GUARDED_STUDIO_APPLY",
+  "unresolved_source_blockers": 0,
+  "tests": {
+    "automation": {
+      "passed": 49
+    },
+    "governance": {
+      "passed": 3
+    },
+    "commute_layout": {
+      "passed": 2,
+      "skipped": 1
+    },
+    "typescript_syntax": "PASS",
+    "git_diff_check": "PASS",
+    "studio": "NOT_RUN",
+    "powerfx_compiler": "NOT_RUN",
+    "player": "NOT_RUN",
+    "publication": "NOT_RUN",
+    "postpublish_readback": "NOT_RUN",
+    "scr003_flow_focused": {
+      "passed": 10,
+      "runtime": "NOT_RUN"
+    }
+  },
+  "reviewed_file_hashes": "reviewed-file-hashes.json",
+  "review_addendum": "SD-06 description-only alignment, literal contract assertions, default home smoke selection, and memory fixture reset reviewed; core r4 source unchanged",
+  "selected_tests": {
+    "postpublication": 12,
+    "pr_changed_worktree": 16,
+    "source_paths": 17
+  },
+  "reviewed_file_count": 31
+}

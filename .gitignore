@@ -3,3 +3,7 @@ __pycache__/
 *.zip
 tmp/
 .DS_Store
+
+# Local pre-release export contains tenant-specific connection metadata.
+/backup/
+/release-readiness.md

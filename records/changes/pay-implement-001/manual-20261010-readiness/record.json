@@ -1,0 +1,21 @@
+{
+  "change_id": "pay-implement-001",
+  "run_id": "manual-20261010-readiness",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T00:33:00Z",
+  "source_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+  "version": "v35",
+  "scope": "Read-only readiness inventory. Current published v35 official Export and all 10 Source files are verified byte-identical to the reviewed Oct7 source. Exported DataSources cache also matches. Runtime, current Dataverse rows, current caller privileges and newest unpublished draft remain separately unverified.",
+  "coverage": {
+    "operations": 100,
+    "future_operations": 59,
+    "named_requirements": 240,
+    "decision_records": 136,
+    "history_fields": 56
+  },
+  "source_edits_by_inventory_worker": false,
+  "live_tests_run_by_inventory_worker": false,
+  "remote_writes_by_inventory_worker": false,
+  "incomplete": "End-to-end future features require named design or business dependencies. All implemented/current-core classifications remain scoped and not current-live PASS."
+}

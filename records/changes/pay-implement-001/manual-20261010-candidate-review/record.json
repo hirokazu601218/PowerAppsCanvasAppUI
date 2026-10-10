@@ -1,0 +1,59 @@
+{
+  "change_id": "pay-implement-001",
+  "run_id": "manual-20261010-candidate-review",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T01:14:26.659380+00:00",
+  "source_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+  "version": "local v1.31 r4 candidate against verified published v36; UI repair candidate not applied or type-validated by reviewer",
+  "source_review": "CLEAR_FOR_GUARDED_STUDIO_APPLY",
+  "unresolved_source_blockers": 0,
+  "tests": {
+    "automation": {
+      "passed": 49
+    },
+    "governance": {
+      "passed": 3
+    },
+    "commute_layout": {
+      "passed": 2,
+      "skipped": 1
+    },
+    "typescript_syntax": "PASS",
+    "git_diff_check": "PASS",
+    "studio": "NOT_RUN",
+    "powerfx_compiler": "NOT_RUN",
+    "player": "NOT_RUN",
+    "publication": "NOT_RUN",
+    "postpublish_readback": "NOT_RUN",
+    "scr003_flow_focused": {
+      "passed": 10,
+      "runtime": "NOT_RUN"
+    },
+    "v36_focused_automation": {
+      "passed": 14,
+      "execution": "independent reviewer rerun"
+    }
+  },
+  "reviewed_file_hashes": "reviewed-file-hashes.json",
+  "review_addendum": "Metadata-only v35 to v36 baseline rebind independently reviewed. Core FX, before-source guards, r4 generated screens, helper, E2E and selection unchanged. SD-06 publication approval is outside this review.",
+  "selected_tests": {
+    "postpublication": 12,
+    "pr_changed_worktree": 16,
+    "source_paths": 17
+  },
+  "reviewed_file_count": 34,
+  "previous_review_record": "record-v35.json",
+  "previous_reviewed_file_hashes": "reviewed-file-hashes-v35.json",
+  "current_baseline": {
+    "published_version": "36",
+    "msapp_sha256": "f3af186814e138f60fe8e2848ccecdafd7db4af6d1454a852be815ca5e33266c",
+    "source_files_byte_equal_v35": 10,
+    "canvas_manifest": "absent in both packages",
+    "candidate_screens_byte_equal_r4": 2,
+    "controls_json_names": 372,
+    "renumbered_control_ids": 318,
+    "normalized_datasources_equal": true
+  },
+  "current_review_limit": "Source review only. Current Studio Power Fx type checking, repaired candidate Player testing and repaired candidate publication remain NOT_RUN. Recheck editing version immediately before any apply."
+}

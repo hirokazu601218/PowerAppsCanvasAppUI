@@ -1,0 +1,40 @@
+test_rejects_missing_published_source_coverage (test_current_app_postpublish.PostpublishGateTest.test_rejects_missing_published_source_coverage) ... ok
+test_rejects_missing_updated_integration_specification (test_current_app_postpublish.PostpublishGateTest.test_rejects_missing_updated_integration_specification) ... ok
+test_rejects_new_draft_in_both_snapshots (test_current_app_postpublish.PostpublishGateTest.test_rejects_new_draft_in_both_snapshots) ... ok
+test_rejects_saved_version_newer_than_published_version (test_current_app_postpublish.PostpublishGateTest.test_rejects_saved_version_newer_than_published_version) ... ok
+test_rejects_unrecorded_app_source_change_after_publication (test_current_app_postpublish.PostpublishGateTest.test_rejects_unrecorded_app_source_change_after_publication) ... ok
+test_rejects_v131_source_change_after_publication (test_current_app_postpublish.PostpublishGateTest.test_rejects_v131_source_change_after_publication) ... ok
+test_rejects_wrong_readback_even_with_ready_metadata (test_current_app_postpublish.PostpublishGateTest.test_rejects_wrong_readback_even_with_ready_metadata) ... ok
+test_verified_release_and_documents (test_current_app_postpublish.PostpublishGateTest.test_verified_release_and_documents) ... ok
+test_all_source_columns_and_names (test_scr002_history_schema.SchemaContract.test_all_source_columns_and_names) ... ok
+test_types_and_parent_relationships (test_scr002_history_schema.SchemaContract.test_types_and_parent_relationships) ... ok
+test_concurrency_uses_async_response (test_scr003_flow.FlowSourceTest.test_concurrency_uses_async_response) ... ok
+test_every_run_after_is_sibling (test_scr003_flow.FlowSourceTest.test_every_run_after_is_sibling) ... ok
+test_lexical_validation_before_normalization (test_scr003_flow.FlowSourceTest.test_lexical_validation_before_normalization) ... ok
+test_no_destructive_line_deletion (test_scr003_flow.FlowSourceTest.test_no_destructive_line_deletion) ... ok
+test_oversized_excel_not_silently_truncated (test_scr003_flow.FlowSourceTest.test_oversized_excel_not_silently_truncated) ... ok
+test_reject_invalid_range_type_month_and_identifier (test_scr003_flow.FlowSourceTest.test_reject_invalid_range_type_month_and_identifier) ... ok
+test_response_even_when_cleanup_fails (test_scr003_flow.FlowSourceTest.test_response_even_when_cleanup_fails) ... ok
+test_saved_definition_matches_generator (test_scr003_flow.FlowSourceTest.test_saved_definition_matches_generator) ... ok
+test_single_serialization_boundary (test_scr003_flow.FlowSourceTest.test_single_serialization_boundary) ... ok
+test_valid_zero_decimal_null (test_scr003_flow.FlowSourceTest.test_valid_zero_decimal_null) ... ok
+test_additional_changed_file_must_be_covered (test_test_selection.TestSelectionGate.test_additional_changed_file_must_be_covered) ... ok
+test_archived_sources_do_not_require_current_app_tests (test_test_selection.TestSelectionGate.test_archived_sources_do_not_require_current_app_tests) ... ok
+test_changed_test_file_is_not_hidden_by_another_selected_case (test_test_selection.TestSelectionGate.test_changed_test_file_is_not_hidden_by_another_selected_case) ... ok
+test_comment_only_case_id_does_not_count (test_test_selection.TestSelectionGate.test_comment_only_case_id_does_not_count) ... ok
+test_deleted_test_file_cannot_silently_pass (test_test_selection.TestSelectionGate.test_deleted_test_file_cannot_silently_pass) ... ok
+test_integration_is_required_when_impact_is_declared (test_test_selection.TestSelectionGate.test_integration_is_required_when_impact_is_declared) ... ok
+test_missing_record_does_not_mark_app_change_as_tested (test_test_selection.TestSelectionGate.test_missing_record_does_not_mark_app_change_as_tested) ... ok
+test_missing_request_fails_closed (test_test_selection.TestSelectionGate.test_missing_request_fails_closed) ... ok
+test_postpublish_selects_recorded_cases (test_test_selection.TestSelectionGate.test_postpublish_selects_recorded_cases) ... ok
+test_test_code_change_runs_its_own_cases (test_test_selection.TestSelectionGate.test_test_code_change_runs_its_own_cases) ... ok
+test_unit_test_cannot_be_omitted (test_test_selection.TestSelectionGate.test_unit_test_cannot_be_omitted) ... ok
+test_v131_source_is_selected_for_postpublication (test_test_selection.TestSelectionGate.test_v131_source_is_selected_for_postpublication) ... ok
+test_v131_source_without_selection_fails_closed (test_test_selection.TestSelectionGate.test_v131_source_without_selection_fails_closed) ... ok
+test_valid_selection_runs_only_its_named_cases (test_test_selection.TestSelectionGate.test_valid_selection_runs_only_its_named_cases) ... ok
+test_wrong_app_id_fails_before_live_execution (test_test_selection.TestSelectionGate.test_wrong_app_id_fails_before_live_execution) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.315s
+
+OK

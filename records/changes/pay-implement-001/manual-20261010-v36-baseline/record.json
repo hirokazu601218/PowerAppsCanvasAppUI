@@ -1,0 +1,40 @@
+{
+  "change_id": "pay-implement-001",
+  "run_id": "manual-20261010-v36-baseline",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T01:09:05Z",
+  "source_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+  "version": "Published v36 baseline, unchanged wave1 r4 candidate; wave1 not applied",
+  "baseline_msapp_sha256": "f3af186814e138f60fe8e2848ccecdafd7db4af6d1454a852be815ca5e33266c",
+  "previous_baseline_msapp_sha256": "465dcdc2eec6deb181f8df811558bdade4f0b6494675346e1cac700d90f1a740",
+  "checks": {
+    "official_live36": "PASS",
+    "published_lifecycle": "PASS",
+    "exact10_source_guard": "PASS",
+    "regenerated_two_candidate_screens_equal_r4": "PASS",
+    "named_control_structure": "PASS",
+    "normalized_data_sources": "PASS",
+    "formula_delta_modified": 0,
+    "wave1_studio": "NOT_RUN",
+    "wave1_player": "NOT_RUN",
+    "automation_tests": {
+      "status": "PASS",
+      "count": 49
+    },
+    "governance_tests": {
+      "status": "PASS",
+      "count": 3
+    },
+    "named_selection": {
+      "status": "PASS",
+      "count": 12
+    },
+    "node_syntax": "PASS; not Studio/TypeScript type check",
+    "document_placement": "PASS; explicit changed paths",
+    "git_diff_check": "PASS"
+  },
+  "publication_distinction": "Publishing unedited draft36 is not publication of the UI repairs.",
+  "privacy": "Raw exports, source readbacks and connection metadata excluded from public repository.",
+  "test_adjustment": "Initial run had one expected stale baseline assertion35. Updated to36 and exact current msapp SHA; rerun49PASS. Initial log retained."
+}

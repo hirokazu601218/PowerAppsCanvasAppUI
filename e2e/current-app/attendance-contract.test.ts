@@ -30,6 +30,11 @@ test('UT-SCR003-CONTRACT-001 添付Excelの20列と報告単位の設計契約�
     kind: 'integer', min: 0,
   });
   expect(spec.import_contract.zero_display).toContain("0");
+  // SD-06 describes the existing non-destructive batch flow; no migration runs here.
+  expect(spec.import_contract.replacement).toContain('retain superseded rows without deleting them in this flow');
+  expect(spec.import_contract.replacement).toContain('incomplete staging rows are not activated');
+  expect(spec.import_contract.replacement).toContain('temporary Excel file cleanup is separate');
+  expect(spec.import_contract.replacement).not.toContain('then remove superseded rows');
   expect(spec.entities.map((e: { key: string }) => e.key)).toEqual([
     'report', 'detail', 'target_month',
   ]);

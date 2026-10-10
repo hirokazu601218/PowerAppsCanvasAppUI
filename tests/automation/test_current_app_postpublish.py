@@ -118,6 +118,13 @@ class PostpublishGateTest(unittest.TestCase):
         with self.assertRaisesRegex(ReconcileError, "app source changed"):
             preflight(self.repo, self.change_id)
 
+    def test_rejects_v131_source_change_after_publication(self):
+        self.write("src/screen-ui/v1.31/scrPayroll.OnVisible.fx",
+                   "Set(varSelectedLine, Blank())\n")
+        self.commit("unrecorded v1.31 source")
+        with self.assertRaisesRegex(ReconcileError, "app source changed"):
+            preflight(self.repo, self.change_id)
+
     def test_rejects_wrong_readback_even_with_ready_metadata(self):
         self.package.write_bytes(b"different package")
         with self.assertRaisesRegex(ReconcileError, "PAC readback differs"):

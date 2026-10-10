@@ -1,0 +1,22 @@
+{
+  "checked_paths": [
+    "src/screen-ui/v1.31/manifest.json",
+    "src/screen-ui/v1.31/README.md",
+    "docs/handoff/STATUS.md",
+    "tests/automation/test_pay_implement_001.py",
+    "records/changes/pay-implement-001/manual-20261010-v36-baseline/review-addendum.md",
+    "records/changes/pay-implement-001/manual-20261010-v36-baseline/automation-tests-initial-baseline-assertion.txt",
+    "records/changes/pay-implement-001/manual-20261010-v36-baseline/record.json",
+    "records/changes/pay-implement-001/manual-20261010-v36-baseline/automation-tests.txt",
+    "records/changes/pay-implement-001/manual-20261010-v36-baseline/source-rebind-verification.json",
+    "records/changes/pay-implement-001/manual-20261010-v36-baseline/publication-baseline-summary.json",
+    "records/changes/pay-implement-001/manual-20261010-v36-baseline/governance-tests.txt"
+  ],
+  "result": {
+    "current": 1,
+    "record": 7,
+    "other": 0,
+    "code": 3
+  },
+  "method": "validate(repo,explicit working-tree paths), not empty HEAD diff"
+}

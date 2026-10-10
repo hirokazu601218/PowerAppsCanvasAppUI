@@ -1,0 +1,37 @@
+{
+  "change_id": "pay-implement-001",
+  "run_id": "manual-20261010-release-preflight",
+  "app_id": "204a48dc-7f23-43dd-b934-4654a3cfa306",
+  "status": "PARTIAL",
+  "observed_at": "2026-10-10T00:19:07Z",
+  "source_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+  "version": "NOT_PUBLISHED: local candidate gate patch only",
+  "base_commit": "252abe4aa5d3b1d99a584a30c97d9b48153c91f5",
+  "tested_worktree_files": {
+    ".github/workflows/current-app-test-gate.yml": "eef9f82e92047a0c09c4cc5c4c13829d66ee2a9d549742b3ec97d89d27ce7c30",
+    "e2e/current-app/attendance-ui.test.ts": "e93bb14f18573891488a7d9ba9fa62f2e397e1dc26784123dbca4f24d74a6d10",
+    "scripts/testing/validate_selection.py": "223062e0a37f3cd7f788a2834981c7ffad11ab2e83af4860b1c24c72ed4d7231",
+    "tests/automation/test_current_app_postpublish.py": "67375cbceb3f5b54e60500f0c4843a9975fdfc79336fed5f3481df06e6114322",
+    "tests/automation/test_test_selection.py": "9d33e2ad4e97a33f188a1506fcbba753f412e74d4b29973f60f042e0ca71e539"
+  },
+  "results": {
+    "automation_unittests": {
+      "status": "PASS",
+      "count": 35
+    },
+    "governance_unittests": {
+      "status": "PASS",
+      "count": 3
+    },
+    "git_diff_check": "PASS",
+    "studio": "NOT_RUN",
+    "published_player": "NOT_RUN",
+    "pac_readback": "NOT_RUN",
+    "publication": "NOT_RUN"
+  },
+  "limitations": [
+    "Source files listed were uncommitted local worktree candidates; base SHA is not a released candidate SHA.",
+    "No workflow was dispatched, no app or data was changed, no PR or main branch was changed.",
+    "Python guard tests do not establish Power Fx compilation or actual Player behavior."
+  ]
+}

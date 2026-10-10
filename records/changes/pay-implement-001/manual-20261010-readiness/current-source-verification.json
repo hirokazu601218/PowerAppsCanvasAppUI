@@ -1,0 +1,94 @@
+{
+  "observed_at_utc": "2026-10-10T00:33:00Z",
+  "current_version": "published v35",
+  "package_sha256": "465dcdc2eec6deb181f8df811558bdade4f0b6494675346e1cac700d90f1a740",
+  "parent_export_evidence": "records/changes/pay-implement-001/manual-20261010-local-candidate/baseline-source-comparison.json",
+  "source_files": [
+    {
+      "file": "scrStaffMasterSearch.pa.yaml",
+      "sha256": "d97f5039b4247f105fea08cbb90f4d4569202bc7e07b569bae0d103895da0070",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrHome.pa.yaml",
+      "sha256": "2048b533b83350f9e9498155c49e6af8cdf440a611a5922718789bf7a5705d2f",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrAttendance.pa.yaml",
+      "sha256": "d1c785a764ae9f869cf5b2a8e17e24283e7c19398f358aa00ed4109c57017929",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrBonus.pa.yaml",
+      "sha256": "a70230102a56edc8f2c6035375973c1201bd7ba0a2824938e0bbd34f3d2b816b",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrPayroll.pa.yaml",
+      "sha256": "da9bf615774e75cc6f0a05a7079deef16b58de8765c6c8a43c2fbd0b1ad23678",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrMaintenance.pa.yaml",
+      "sha256": "8eda2c59b83b26f021ef45adb62bcfd863863a9707fc68e81023d8117cca43e2",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrExcelImportPoc.pa.yaml",
+      "sha256": "c94f5974facd393db281102613cd92eb2578f22414e8eba4244f691dd19b27b7",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "scrAttendanceFormal.pa.yaml",
+      "sha256": "9590d9050c49a94f20e664d8c301a7334d6592eed945036cb5c148dae79c7597",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "App.pa.yaml",
+      "sha256": "f10ea3ddcea5edd5ecfeeaae57be7785ae37a1621ffc1fc9befe834696d125d6",
+      "same_oct7_saved_bytes": true
+    },
+    {
+      "file": "_EditorState.pa.yaml",
+      "sha256": "ff06bc649a5896dc21f7c6ca08f5fed0017a90e56a0121494b4bb92bc03886bb",
+      "same_oct7_saved_bytes": true
+    }
+  ],
+  "source_count": 10,
+  "source_byte_identity": "PASS",
+  "reference_files": [
+    {
+      "artifact": "References/Themes.json",
+      "sha256": "deb426615acd42028b71a1dadb2db9dfb2facbcfea964b56b06cd642bacd5161",
+      "same_reviewed_snapshot_bytes": true
+    },
+    {
+      "artifact": "References/DataSources.json",
+      "sha256": "6d6508e38a84eeffbe2e6c3101b7769b97f925dc2dcf50917494800ad12ef7d7",
+      "same_reviewed_snapshot_bytes": true
+    },
+    {
+      "artifact": "References/ModernThemes.json",
+      "sha256": "051c0a7dbcedfd9b5475333ff331233b0e941f2dccc3c7bbba1b6e4bfc008e7f",
+      "same_reviewed_snapshot_bytes": true
+    },
+    {
+      "artifact": "References/QualifiedValues.json",
+      "sha256": "be74b2c4efb38a1257721bff0315f41ae7655e4f3823a3fe230a64b5770e5d31",
+      "same_reviewed_snapshot_bytes": true
+    },
+    {
+      "artifact": "References/Resources.json",
+      "sha256": "66c1c1004ddfba273c626b3379412e438edca1a0acbc2803915a799f21f694ab",
+      "same_reviewed_snapshot_bytes": true
+    },
+    {
+      "artifact": "References/Templates.json",
+      "sha256": "fe5f76e0c19bc04bb04030e9a954c21c581490a630fd9d60cc2f34b933a8112f",
+      "same_reviewed_snapshot_bytes": true
+    }
+  ],
+  "scope": "Current published Source and exported cached DataSources confirmed. No fresh live Dataverse query, current unpublished draft check, runtime acceptance or effective-permission test implied.",
+  "sd01_resolution": "Original SD-01 remains historical audit result. Current publication/source identity gap is now resolved for v35; latest editing draft must still be rechecked immediately before mutation."
+}

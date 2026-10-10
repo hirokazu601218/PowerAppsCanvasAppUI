@@ -8,12 +8,14 @@ async function open(page: Page) {
   await page.goto(value, { waitUntil: 'domcontentloaded', timeout: 60000 });
   const app = page.frameLocator('iframe[name="fullscreen-app-host"]');
   await expect(app.getByRole('button', { name: '勤務時間報告', exact: true })).toBeVisible({ timeout: 60000 });
-  // Existing owner-provided flow connections require Player consent after release.
+  // A new connection consent is outside this read-only test's authorization.
   const consent = page.frameLocator('iframe[src*="/consent/"]');
   const allow = consent.getByRole('button', { name: /^(Allow|許可)$/ });
   try { await allow.waitFor({ state: 'visible', timeout: 10000 }); }
   catch { /* Already consented sessions do not show this dialog. */ }
-  if (await allow.isVisible()) await allow.click();
+  if (await allow.isVisible()) {
+    throw new Error('BLOCKED: Player connection consent is required; no permission was granted');
+  }
   return app;
 }
 
