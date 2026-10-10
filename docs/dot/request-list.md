@@ -15,3 +15,5 @@
 依存：[PR #135](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/135) → [PR #136](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/136)。既存PRのbase・headは変更せず、実装S‴とPR136最新版を子ブランチに取り込む。
 
 [今回記録](../../records/changes/dot-001/manual-20261010-handoff/QA-REPORT.md)／[作業状態](../handoff/STATUS.md)。
+
+[Draft PR #137](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/pull/137)。文書更新・PR作成済み、正式P/H・最終照合は検証継続。

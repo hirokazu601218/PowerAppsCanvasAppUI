@@ -1,6 +1,6 @@
 # DOT-001 検証・引継ぎ記録
 
-開始2026-10-10 15:22 UTC。ZIPの事実確認時点09:44:53 UTCとWorkの着手時点を区別。
+開始2026-10-10 10:22:53 UTC。ZIPの事実確認時点09:44:53 UTCとWorkの着手時点を区別。
 
 - main：252abe4aa5d3b1d99a584a30c97d9b48153c91f5。実装：fba65fdaefcf3b70821d7831ce86a4262ea4a214。
 - PR135 head：c1008452348fd27448742796069647584278dca6。PR136 head：38362c8cf7ded201b1d185eeaccf2892f40c5f51（引継ぎ後更新あり）。
@@ -39,3 +39,13 @@ current-app-postpublish-docs.ymlのreadback_only=trueはmetadata前後読取り�
 - 試験選定：source_paths/test_files/case_idsすべて空（文書差分）。実機E2Eは未実施。
 - 配置検査初回FAIL：record.jsonのchange_idがディレクトリ名dot-001と大文字小文字不一致。メタデータをdot-001に修正し、利用者依頼ID DOT-001をrequest_idとして保持。検査条件は変更しない。
 - 新規実描画、クリック実測、iPhone実機は未実施。
+
+## GitHub保存・CI読戻し
+
+Draft PR #137。文書編集前B=d74a4986a46f94fa93f474f7c35efd638e420098、文書出典D=6064ca820553511e1d52b19f896a063213eb88c8、生成物C=72f7fb56dab560c0fadc89a03be5f9d0bbcb3242。Cのtree 74818c8630363cb66f9059f02dba8e91115e169dはローカルと一致。アプリsource・要求・選定・実機試験コードの差分0。
+
+- [配置CI](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/38045453079)：SUCCESS。
+- [HTML CI](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/38045453047)：SUCCESS。
+- [選定CI](https://github.com/hirokazu601218/PowerAppsCanvasAppUI/actions/runs/38045453051)：SUCCESS。実機E2E対象なし。
+- 要件HTMLの追加検査：467相対リンク・出典SHA一致PASS。
+- 作業開始は利用者時刻2026-10-10 19:22:53 JSTからUTC換算して記録。初稿の15:22 UTCは誤記であり訂正した。
