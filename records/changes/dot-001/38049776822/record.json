@@ -74,5 +74,6 @@
   ],
   "other_jobs": "SKIPPED by readback_only=true: document-diff, readback, selected-e2e, completed",
   "full_reconciliation": "NOT_RUN: per-path selected22 evidence not yet assembled; no invented MATCH/Player overall PASS",
-  "privacy": "No raw package, credentials, full logs or environment-specific URL included."
+  "privacy": "No raw package, credentials, full logs or environment-specific URL included.",
+  "version": "2026-10-10T09:28:28.7479961Z"
 }

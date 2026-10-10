@@ -12,3 +12,12 @@
 選定15ケースの3試験ファイルとfull workflowを読んだ。検索・表示・メモリ内fixture切替、再計算表示とスクロールに限定し、永続データ書込み／アプリ公開は含まない。外部同意は検出時に停止する。正式postpublish JSONに必要な選定22pathの実比較証拠をこの採取runだけで作れないため、宣言だけのMATCHを追加せずfull reconciliationはNOT_RUN。引継ぎの手動部分PASS、焦点見切れ／履歴AXの残件は保持。
 
 ![完全summary](readback-summary.jpg)
+
+## 文書・HTML更新後の検査
+
+- 正本文書出典commit：6d203bf29887598555e9eb17383cb433c5228691。生成物commit：8d1a557dac77b62cc7ac30a0423e61386f5990fa、tree c4926ef93db2961aa8372e8840a0527ed5fdbd4d。ローカル全差分とリモートtree一致。
+- review46ページ・相対リンク2316・生成一致PASS。要件HTML16ファイル、リンク／画像の相対参照433・出典SHA PASS。
+- 単一HTML62資料・3,800,163 bytes、内部参照・重複ID・生成一致PASS。出典画像の相対パスが元Markdown位置のままだったため、HTML配置先から解決するよう生成器を修正し、単一HTMLへ画像を埋め込んだ。
+- 既存review15件・governance3件、選定／公開後gateの既存単体23件PASS。試験選定は文書差分のみでsource/test/case空。
+- 配置検査の初回FAIL：新run recordの必須versionを欠落。正式Pをversionへ追記して訂正。検査条件・workflow変更なし。
+- 実描画・クリック・iPhone実機はNOT_RUN。クラウドブラウザーがfileプロトコルを拒否したため、ローカルHTML表示を迂回せず静的検査結果だけを記録。
