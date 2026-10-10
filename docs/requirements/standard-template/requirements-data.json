@@ -4,8 +4,8 @@
     "version": "0.2-review",
     "date": "2026-10-10",
     "status": "確認待ち・非正本",
-    "base_main": "6064ca820553511e1d52b19f896a063213eb88c8",
-    "review_commit": "6064ca820553511e1d52b19f896a063213eb88c8",
+    "base_main": "6d203bf29887598555e9eb17383cb433c5228691",
+    "review_commit": "6d203bf29887598555e9eb17383cb433c5228691",
     "template_url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/9117f22a/20260715_resources_standard_guidelines_guideline_07.zip",
     "template_entry": "５章/要件定義書標準テンプレート.docx",
     "template_sha256": "29f34fc98729f2d1ea3e4136b09c7abbc2254a6b23c9aff3fa2817eb238781c2",
@@ -17,7 +17,7 @@
       },
       {
         "path": "docs/design/basic/basic-design.md",
-        "sha256": "248acb8c8cea78e57e720e3f3e546f4baab342f492d7e574a901a1aaf20cc462"
+        "sha256": "21812e567b2e265fc0e899f3b3e22ef0f85bdd22b474c74ed04ba611c89cc49b"
       },
       {
         "path": "docs/design/basic/data-model.md",
@@ -25,7 +25,7 @@
       },
       {
         "path": "docs/design/detailed/detailed-design.md",
-        "sha256": "d3a32f6d3f591fedec5f310c0e75511754f6d8c3ee5ca682d193a30b659a2ae0"
+        "sha256": "474b2c0bed2b0e3bc8f14a35256265fda50b1d65d106fcc6cb13a319ec482e8e"
       },
       {
         "path": "docs/design/detailed/payroll-jinkyu-interface.md",
@@ -57,7 +57,7 @@
       },
       {
         "path": "docs/requirements/requirements.md",
-        "sha256": "74ea62a804391cc29a9471dfac08923af5f38456ec51c3d93e47a05ad5029fa8"
+        "sha256": "e03874f73fa4210d8cf34c2a1fb4c64d3632f8f38ad8e1928decc6fe8a21ad32"
       },
       {
         "path": "docs/requirements/screen-requirements.md",

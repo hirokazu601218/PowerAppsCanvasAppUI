@@ -38,7 +38,7 @@ screen('SCR-001','ログイン画面＆ホーム画面',CURRENT,'現行4主ボ�
 screen('SCR-002','職員マスタ検索・詳細',CURRENT,'検索・履歴・6タブ表示の現行画面。E・F・Gの将来業務を既存タブに追加する。',['基本情報','勤務条件','通勤','社会保険','税固定控除','給与簿'],BOTH,['SCR002-LT-003','SCR002-EDIT-001','SCR002-E-001','SCR002-F-001','SCR002-G-001','SCR002-G-002'],['SRC-SCREEN','SRC-DETAIL','SRC-PAY'],['住民税は税固定控除タブ内。外部手続きタブを新設しない。','給与簿は常時読取り専用。既存56項目の読取検証は新モデルの編集・保存合格を意味しない。','給与簿163項目表示と人給出力237列は別契約。','勤務条件・保険等の確認状態は改修先。現行実装へ読み替えない。'])
 screen('SCR-003','勤務時間報告画面',CURRENT,'所属×勤務月の報告。現行は一覧内編集・全置換取込。確定改修要件は追加更新方式。',[],BOTH,['PAYREQ-06','COMMON-SCREEN-001'],['SRC-ATT','SRC-UIOCT','SRC-PAY'],['初期読取り専用。現行は入力中の報告を編集し、成功後に再取得。','報告済みロックと差戻しを維持。実効業務認可、同時操作・途中障害は別検証。','現行全置換と将来の未掲載行保持を同時に実装済みとしない。'])
 screen('SCR-004','期末勤勉支給率登録画面',CURRENT,'現行6画面の一つ。職員×支給対象期間の期末・勤勉別率は確定改修要件。',[],PAY,['COMMON-SCREEN-001','PAYREQ-07'],['SRC-SCREEN','SRC-PAY','SRC-OPEN'],['内部の正式項目、保存部品、率の入力範囲、基礎額・式・端数は未入力。','画面の存在を別率登録の実装・受入完了としない。'])
-screen('SCR-005','支給明細画面',CURRENT,'選択職員・対象月の内蔵仮例による支給内訳試算。給与班の本番計算・確定と分ける。',[],BOTH,['SCR005-ACT-001','SCR005-ACT-004','COMMON-NAV-003'],['SRC-SCREEN','SRC-DETAIL','SRC-OPEN'],['現行再計算ではDataverseの保存・支給確定・支払処理を行わない。','通常PCサマリー固定と狭い・低い領域の全体スクロールは承認A。引継ぎ公開38で通常到達を観測。focus見切れ・履歴AX差、正式P/H・最終照合は残る。制度式・Issue #51は未完了。','改修先計算の配置をこの画面へ断定しない。レビュー上の候補配置には提案を明記。'])
+screen('SCR-005','支給明細画面',CURRENT,'選択職員・対象月の内蔵仮例による支給内訳試算。給与班の本番計算・確定と分ける。',[],BOTH,['SCR005-ACT-001','SCR005-ACT-004','COMMON-NAV-003'],['SRC-SCREEN','SRC-DETAIL','SRC-OPEN'],['現行再計算ではDataverseの保存・支給確定・支払処理を行わない。','通常PCサマリー固定と狭い・低い領域の全体スクロールは承認A。引継ぎ公開38で通常到達を観測。正式P/Hはrun 38049776822で実測済み。旧v25 guard FAIL、focus見切れ・履歴AX差と選定E2E・最終照合は残る。制度式・Issue #51は未完了。','改修先計算の配置をこの画面へ断定しない。レビュー上の候補配置には提案を明記。'])
 screen('SCR-006','メンテナンス画面',CURRENT,'現行管理者限定画面と対象月設定。業務マスタ管理を改修先として整理。',[],ADMIN+['現行管理者'],['COMMON-AUTH-002','SCR006-RULE-001','PAYREQ-09'],['SRC-SCREEN','SRC-ATT','SRC-PAY'],['業務マスタ管理者とシステム管理権限は別。給与班との兼務可能。','現行の管理者切替UIは実効認可ではない。'])
 screen('FUT-IMPORT','データ一括取込み',CONFIRMED,'Eの異動情報Excelを複数職員分取り込み、行別不備・重複候補を確認する専用画面。',[],PAY,['FUT-IMPORT-001','FR-E-01'],['SRC-E','SRC-SCREEN'],['仮ID。正式画面ID・Excel列・再取込方法は未決。','正常行を先に反映し、問題行は給与班が判断する。勤怠取込の全件検証契約と区別。','A～Dは前工程の受渡条件のみを図示し、異動情報アプリそのものを作らない。'])
 screen('FUT-JLINK','人給連携',CONFIRMED,'支給回ごとに出力・給与簿取込・最新照合・給与班確定を行う承認済み構成。',['支給回の状況','出力','取込・照合'],PAY,['JLINK-UI-01','JLINK-UI-02','JLINK-UI-11','PAYREQ-08'],['SRC-JSCREEN','SRC-I','SRC-JDETAIL'],['仮ID。正式画面ID・物理実装未入力。モック承認を実装合格と扱わない。','I1～I3はモック承認根拠。架空の人数・金額・日付は仕様に採用しない。','計算版選択、人給取込成否の手入力、確定確認ダイアログは設けない。','出力前確認は行う。D9～D12等の式精査は保留。'])
@@ -240,7 +240,7 @@ screens[5]['notes'].append('勤務報告対象月を無効化しても保存済�
 from payroll_flow_diagrams import apply_display_metadata
 apply_display_metadata(workflows)
 
-model=dict(metadata=dict(version='0.2-review',source_sha='6064ca820553511e1d52b19f896a063213eb88c8',updated='2026-10-10',status='提案・レビュー用（未承認）'),sources=S,screens=screens,operations=ops,workflows=workflows)
+model=dict(metadata=dict(version='0.2-review',source_sha='6d203bf29887598555e9eb17383cb433c5228691',updated='2026-10-10',status='提案・レビュー用（未承認）'),sources=S,screens=screens,operations=ops,workflows=workflows)
 def validate():
     ids=lambda seq:{r['id'] for r in seq}
     sid,oid,srcid=ids(screens),ids(ops),ids(S)
